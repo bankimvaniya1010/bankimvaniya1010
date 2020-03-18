@@ -64,6 +64,8 @@ public partial class admin_mastermapping : System.Web.UI.Page
             ddlMaster.DataValueField = "masterid";
             ddlMaster.DataBind();
             ddlMaster.Items.Insert(0, lst);
+            ListItem removeListItem = ddlMaster.Items.FindByValue("3");
+            ddlMaster.Items.Remove(removeListItem);
         }
         catch (Exception ex)
         {

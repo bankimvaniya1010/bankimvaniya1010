@@ -17,11 +17,13 @@ public partial class courseapplication : System.Web.UI.Page
     string webURL = String.Empty;
     public List<CoursegridData> courses = new List<CoursegridData>();
     public List<coursemaster> appliedcourseData = new List<coursemaster>();
+    public string universityname;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
+        universityname = db.university_master.Where(x => x.universityid == universityID).Select(x => x.university_name).FirstOrDefault();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
 

@@ -88,28 +88,28 @@
                                 <h3 aria-expanded="false" aria-selected="false">Select Country +</h3>
                                 <div id="rbCountryContainer">
                                     <p>
-                                        <asp:RadioButtonList ID="rblcountry" runat="server" RepeatDirection="Vertical"></asp:RadioButtonList>
+                                        <asp:RadioButtonList ID="rblcountry" runat="server" RepeatDirection="Vertical" CssClass="course-radioButtonList"></asp:RadioButtonList>
                                     </p>
                                 </div>
 
                                 <h3 id="citybtn">Select City +</h3>
 
-                                <div class="col-md-12 updt-prftbl" id="rbCityContainer" style="height: auto;">
+                                <div id="rbCityContainer" style="height: auto;">
                                 </div>
                                 <asp:HiddenField runat="server" ID="HidRBSelectedcityID" />
                                 <asp:HiddenField runat="server" ID="HidRBSelectedcityName" />
 
                                 <h3>Select Level Of Study  +</h3>
-                                <div id="studylevelcontainer" class="col-md-12 updt-prftbl">
+                                <div id="studylevelcontainer">
                                     <p>
-                                        <asp:RadioButtonList ID="rbllevelofstudy" runat="server" RepeatColumns="3"></asp:RadioButtonList>
+                                        <asp:RadioButtonList ID="rbllevelofstudy" runat="server" RepeatColumns="3" CssClass="course-radioButtonList"></asp:RadioButtonList>
                                     </p>
                                 </div>
 
                                 <h3>Select Major / Discipline +</h3>
-                                <div id="majorcontainer" class="col-md-12 updt-prftbl">
+                                <div id="majorcontainer">
                                     <p>
-                                        <asp:RadioButtonList ID="rblmajor" runat="server" RepeatColumns="2"></asp:RadioButtonList>
+                                        <asp:RadioButtonList ID="rblmajor" runat="server" RepeatColumns="2" CssClass="course-radioButtonList"></asp:RadioButtonList>
                                     </p>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                         CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No courses found. Change your preferences above and retry." OnPageIndexChanging="courseGridView_PageIndexChanging">
 
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Select this Course">
+                                            <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <asp:RadioButton runat="server" ID="selectedRB" OnClick="javascript:SelectSingleRadiobutton(this.id)"></asp:RadioButton>
                                                 </ItemTemplate>
@@ -241,13 +241,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    <label style="font-size: small;">For more details about this course, visit <u><a href='#' id="courselink" target="_blank"> <label id="uniName" runat="server" style="text-decoration: underline;"></label>’s course page </a> </u></label>
+                                    <label style="font-size: small;">For more details about this course, visit <u><a href='#' id="courselink" target="_blank"> <%= universityname %>’s course page </a> </u></label>
                                 </div>
                                 <div id="selectedcourseDiv" style="font-size: smaller; display: none" class="table-responsive">
                                     <table>
                                         <tr>
                                             <td colspan="2">
-                                                <label runat="server" id="lblCourseName" style="font-size: 20px; font-weight: 500;"></label>
+                                                <label runat="server" id="lblCourseName" style="font-size: 17px; font-weight: 500;"></label>
                                                 <asp:HiddenField runat="server" ID="Hidcoursename" />
                                             </td>
                                         </tr>
@@ -338,8 +338,8 @@
                                         <tr id="eligibilityresponse" style="display: none" runat="server">
                                             <td>I meet the eligibility of the course:</td>
                                             <td>
-                                                <input type="radio" runat="server" id="yesRB" name="eligibility" />Yes
-                                           <input type="radio" runat="server" id="NoRB" name="eligibility" />NO
+                                                <input type="radio" runat="server" id="yesRB" name="eligibility" style="margin-right: 5px;" />Yes
+                                           <input type="radio" runat="server" id="NoRB" name="eligibility" style="margin-right: 5px;" />NO
                                             </td>
                                         </tr>
                                         <tr id="eligibilityresponseNote" style="display: none" runat="server">
@@ -455,7 +455,7 @@
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
-                        $("#<%= uniName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
+                        <%--$("#<%= uniName.ClientID%>").val(result[0].university_name).html(result[0].university_name);--%>
                         $("#<%= lblcoursedescription.ClientID%>").val(result[0].coursedescription).html(result[0].coursedescription);
                         $("#<%= lblInstitution.ClientID%>").val(result[0].university_name).html(result[0].university_name);
                         $("#<%= HidUniversityName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
@@ -531,8 +531,12 @@
 
                         for (var i = 0; i < result.length; i++) {
                             var $target = $('#commencementDateContainer');
-                            $target.append($('<label>').text(result[i].commencementdate)
-                                .prepend($('<input type="radio" name="commencementdate" id="commencementdate_' + i + '"/>').val(result[i].id)));
+
+                            $target.append($('<label style="margin-right: 29px;">').text(result[i].commencementdate)
+                                .prepend($('<input type="radio" style="margin-right: 5px;" name="commencementdate" id="commencementdate_' + i + '" OnClick="javascript:SelectSingle(' + i + ')"/>').val(result[i].id)));
+
+                            //$target.append($('<label>').text(result[i].commencementdate)
+                            //    .prepend($('<input type="radio" name="commencementdate" id="commencementdate_' + i + '"/>').val(result[i].id)));
                             $target.append("<br/>");
                         }
                     }
@@ -602,7 +606,7 @@
                         for (var i = 0; i < result.length; i++) {
                             var $container = $('#rbCityContainer');
                             $container.append($('<label style="margin-right: 29px;">').text(result[i].name)
-                                .prepend($('<input type="radio" name="rblcity" id="rblcity_' + i + '" OnClick="javascript:SelectSingle(' + i + ')"/>').val(result[i].city_id)));
+                                .prepend($('<input type="radio" style="margin-right: 5px;" name="rblcity" id="rblcity_' + i + '" OnClick="javascript:SelectSingle(' + i + ')"/>').val(result[i].city_id)));
                         }
                     }
                 }
@@ -644,8 +648,7 @@
 
         $("#citybtn").click(function () {
             if ($("#ContentPlaceHolder1_selectedcountry").val() == "") {
-                alert("Please Select Country");
-                $("#rbCityContainer").collapse();
+                alert("Please Select Country");                
                 $("#rbCityContainer").hide();
                 $("#rbCityContainer").removeClass();
                 $("#citybtn").removeClass();

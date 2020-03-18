@@ -38,8 +38,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                 {
                     ViewState["universityID"] = universityId;
                     objCommon.BindCountries(ddlCountry);
-                    objCommon.BindTimeZone(ddlTimeZone);
-                    bindCityDropdown(existingUninversity.cityid);
+                    objCommon.BindTimeZone(ddlTimeZone);                    
 
                     string[] airportDistanceValue = existingUninversity.distance_from_airport.Split(' ');
                     string[] railDistanceValue = existingUninversity.distance_from_railway.Split(' ');
@@ -85,7 +84,9 @@ public partial class edituniversitydetails : System.Web.UI.Page
 
                     ddlTimeZone.SelectedValue = existingUninversity.time_zone;
                     hidCityField.Value = Convert.ToString(existingUninversity.cityid);
-                    ddlCity.SelectedIndex = Convert.ToInt32(existingUninversity.cityid);
+                    bindCityDropdown(existingUninversity.countryid);                    
+                    ddlCity.Items.FindByValue(existingUninversity.cityid.ToString()).Selected = true;
+                    //ddlCity.SelectedIndex = Convert.ToInt32(existingUninversity.cityid);
                     ddlCountry.SelectedIndex = existingUninversity.countryid;
                     txtUniAcceptedMaxAge.Value = Convert.ToString(existingUninversity.acceptedmaxage);
                     txtUniAcceptedMinAge.Value = Convert.ToString(existingUninversity.acceptedminage);
@@ -129,11 +130,11 @@ public partial class edituniversitydetails : System.Web.UI.Page
         }
     }
 
-    private void bindCityDropdown(int cityId)
+    private void bindCityDropdown(int countryId)
     {
         try
         {
-            List<citymaster> cityMaster = db.citymaster.ToList();
+            var cityMaster = db.citymaster.Where(x => x.country_id == countryId).ToList();
 
             ddlCity.DataSource = cityMaster;
             ddlCity.DataBind();

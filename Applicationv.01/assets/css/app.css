@@ -249,7 +249,7 @@
 [dir=ltr] textarea.form-control.edit-textarea{height: 100px;margin-bottom: 15px;}
 .visaStatusBox{width: 19.5%;background: #ebebeb !important;}
 .visaStatusBox+ .visaStatusBox {margin-left: 2px;}
-.visaStatusBox label{word-break: break-all;min-height: 72px;}
+.visaStatusBox label{word-break: break-word;min-height: 72px;}
 
 .star-list {position: relative;padding-left: 15px;}
 .star-list:before {content: '*';position: absolute;left: 0;top: 0;}
@@ -289,3 +289,18 @@ html{
     font-size: 12px !important;
 }
 .instructn{font-size: 16px;font-weight: 400;font-style: normal;font-family: 'Oswald'}
+.card-header.text-center.logn-head.positnrel{position: relative;}
+.margintop {margin-top: 10%}
+.marginright {margin-right: 29%}
+.course-radioButtonList input[type="radio"] {
+   width: auto;
+   margin-bottom: 10px;
+}
+.course-radioButtonList label {      
+   width: auto;
+   margin-left: 6px;
+   margin-right: 10px;
+   display: inline;
+}
+.card-header.text-center.positnrel{position: relative;}
+.table#ContentPlaceHolder1_courseGridView th{width: 0%;}

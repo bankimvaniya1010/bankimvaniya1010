@@ -12,6 +12,7 @@ public partial class createuser : System.Web.UI.Page
     Logger objLog = new Logger();
     string webURL = String.Empty;
     string roleName = string.Empty;
+    int universityID = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,7 +23,7 @@ public partial class createuser : System.Web.UI.Page
         roleName = Utility.GetRoleName();
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
-
+        universityID = Utility.GetUniversityId();
 
         if (!IsPostBack)
         { bindDropdown(); }
@@ -41,7 +42,7 @@ public partial class createuser : System.Web.UI.Page
             ddlRole.DataValueField = "roleid";
             ddlRole.DataBind();
             ddlRole.Items.Insert(0, lst);
-            if (roleName.ToLower() == "university")
+            if (roleName.ToLower() == "university admin")
             {
                 ListItem removeListItem = ddlRole.Items.FindByText("Admin");
                 ddlRole.Items.Remove(removeListItem);
@@ -64,7 +65,7 @@ public partial class createuser : System.Web.UI.Page
                                 where (cats.username == txtUsername.Value.Trim() && cats.email == txtEmail.Value && cats.roleid == selectedrole)
                                 select cats).SingleOrDefault();                              
                                 
-            if (existingUser != null)
+            if (existingUser == null)
             {
                 usrObj.name = txtName.Value.Trim();
                 usrObj.username = txtUsername.Value.Trim();
@@ -73,7 +74,7 @@ public partial class createuser : System.Web.UI.Page
                 usrObj.roleid = Convert.ToInt32(ddlRole.SelectedItem.Value);
                 usrObj.email = txtEmail.Value.Trim();
                 usrObj.universityId = Utility.GetUniversityId();
-                // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
+                //usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
                 usrObj.status = 1;
                 db.adminusers.Add(usrObj);
                 db.SaveChanges();

@@ -56,7 +56,7 @@
                                                 <div class="custom-file" style="width: auto;">
                                                 <asp:Label ID="lblavatar" runat="server" />
                                                 <asp:FileUpload ID="avatar" runat="server" />
-                                                <label style="font-size: small;">The file formats you can upload are -  jpg, png, .pdf</label>
+                                                <label style="font-size: small;" class="marginright">The file formats you can upload are -  jpg, png, pdf</label>
                                                 </div>
                                             </div>                                             
 
@@ -151,13 +151,16 @@
         </div>
     </div>
     <script>      
-        function validfileExtention(filepath) {
+        function validfileExtention(ddlDocuments ,filepath) {
             if (filepath == "")            
                 return false;
             var fileExtension = filepath.substring(filepath.lastIndexOf(".") + 1).toString().toLowerCase();
-            if (filepath != "")
-            {
-                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension !="jpeg")
+            if (ddlDocuments == "Profile Photo for Application Centre" && filepath != "") {
+                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "jpeg")
+                    return false;
+            }
+            else if (ddlDocuments != "Profile Photo for Application Centre" && filepath != "") {
+                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "pdf")
                     return false;
             }
             return true;
@@ -167,15 +170,8 @@
             var flag = false;
             if ($("#<%=ddlDocuments.ClientID%>").val() == "0")
                 alert("Please select document name");
-            else if ($("#<%=avatar.ClientID%>").val() == "")
-                alert("Please upload valid document");
-            else if ($("#<%=ddlDocuments.ClientID%>").val() == "Profile Photo")
-            {
-                if (!validfileExtention($("#<%=avatar.ClientID%>").val()))
-                    alert("Please upload valid file format");
-                else
-                    flag = true;
-            }
+            else if (!validfileExtention($("#<%=ddlDocuments.ClientID%>").val() , $("#<%=avatar.ClientID%>").val()))
+                alert("Please upload valid document");            
             else
                 flag = true;            
             if (flag) {
@@ -225,7 +221,7 @@
                 });
 
                 req.onreadystatechange = function () {
-                    if (req.status && req.status == 200 && (req.readyState == 4)) {
+                    if (req.status && req.status == 200 && (req.readyState == 4)) {                        
                         $("#ContentPlaceHolder1_btn_login").removeAttr("disabled");
                         alert("uploaded successfully");
                         location.reload();

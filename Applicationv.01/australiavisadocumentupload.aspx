@@ -30,7 +30,7 @@
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <asp:DropDownList runat="server" ID="ddlidentity">
+                                                <asp:DropDownList runat="server" ID="ddlidentity" class="form-control">
                                                     <asp:ListItem Value="0" Selected="True">Please select</asp:ListItem>
                                                     <asp:ListItem Value="Passport">Passport</asp:ListItem>
                                                     <asp:ListItem Value="birth Certificate">Certified copy of birth Certificate</asp:ListItem>
@@ -51,7 +51,7 @@
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <asp:DropDownList runat="server" ID="ddlWelfaredoc">
+                                                <asp:DropDownList runat="server" ID="ddlWelfaredoc" class="form-control">
                                                     <asp:ListItem Value="0" Selected="True">Please select</asp:ListItem>
                                                     <asp:ListItem Value="Form 157N">Form 157N</asp:ListItem>
                                                     <asp:ListItem Value="appropriate accommodation">confirmation of appropriate accommodation </asp:ListItem>                                                   
@@ -71,7 +71,7 @@
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <asp:DropDownList runat="server" ID="ddlGTERdoc">
+                                                <asp:DropDownList runat="server" ID="ddlGTERdoc" class="form-control">
                                                     <asp:ListItem Value="0" Selected="True">Please select</asp:ListItem>
                                                     <asp:ListItem Value="employment  Proof">Proof of employment </asp:ListItem>
                                                     <asp:ListItem Value="academic transcripts">certified copy of your academic transcripts </asp:ListItem>    
@@ -94,7 +94,7 @@
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <asp:DropDownList runat="server" ID="ddlemploymenthistory">
+                                                <asp:DropDownList runat="server" ID="ddlemploymenthistory" class="form-control">
                                                     <asp:ListItem Value="0" Selected="True">Please select</asp:ListItem>
                                                     <asp:ListItem Value="employment payslips">recent employment payslips </asp:ListItem>
                                                     <asp:ListItem Value="resume">resume </asp:ListItem>  
@@ -115,7 +115,7 @@
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <asp:DropDownList runat="server" ID="ddlrelationshipEvidence">
+                                                <asp:DropDownList runat="server" ID="ddlrelationshipEvidence" class="form-control">
                                                     <asp:ListItem Value="0" Selected="True">Please select</asp:ListItem>
                                                     <asp:ListItem Value="marriage certificate">marriage certificate</asp:ListItem>
                                                     <asp:ListItem Value="Household Booklet">Family/Household Booklet </asp:ListItem>  
@@ -136,7 +136,7 @@
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <asp:DropDownList runat="server" ID="ddlnamechangeevidence">
+                                                <asp:DropDownList runat="server" ID="ddlnamechangeevidence" class="form-control">
                                                     <asp:ListItem Value="0" Selected="True">Please select</asp:ListItem>
                                                     <asp:ListItem Value="marriage certificate">marriage certificate</asp:ListItem>
                                                     <asp:ListItem Value="deed poll certificate">deed poll certificate </asp:ListItem>  
