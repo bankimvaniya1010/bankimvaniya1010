@@ -1,0 +1,119 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class schedulemeeting_otp : System.Web.UI.Page
+{
+    private GTEEntities db = new GTEEntities();
+    int UserID = 0, ApplicantID = 0;
+    Logger objLog = new Logger();
+    Common objCom = new Common();
+    string webURL = string.Empty;
+    int UniversityID = -1;
+    string meetingtime;
+    string username;
+    DateTime meetingTime, fiveminbeforemeeetingtimeis, currenttime;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        webURL = Utility.GetWebUrl();
+        UniversityID = Utility.GetUniversityId();
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
+        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if ((Request.QueryString["meetingtime"] == null) || (Request.QueryString["meetingtime"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            meetingtime = Request.QueryString["meetingtime"];
+
+        var scheduledata = db.applicant_meeting_schedule.Where(x => x.applicant_id == UserID && x.university_id == UniversityID && x.is_meetingtime_expires == null).FirstOrDefault();
+
+        meetingTime = scheduledata.applicant_time_zone;
+        string mainmeetingtime = meetingTime.ToString("HH:mm");
+
+        fiveminbeforemeeetingtimeis = meetingTime.AddMinutes(-5);
+        string meeting_date = fiveminbeforemeeetingtimeis.ToString("dd/MM/yyyy");
+        string meeting_time = fiveminbeforemeeetingtimeis.ToString("HH:mm");
+
+        currenttime = DateTime.Now;
+        string cur_time = currenttime.ToString("HH:mm");
+        string cur_date = currenttime.ToString("dd/MM/yyyy");
+
+        //var currentTime = DateTime.Now;
+        //var scheduletimezone_minus5 = scheduledata.applicant_time_zone;
+        //scheduletimezone_minus5 = scheduletimezone_minus5.AddMinutes(-5);
+
+        if (Convert.ToDateTime(meeting_time) <= Convert.ToDateTime(cur_time))
+        {
+            if (Convert.ToDateTime(cur_time) <= Convert.ToDateTime(mainmeetingtime))
+            {
+                withotp.Attributes.Add("style", "display:block;");
+                lblwithotp.InnerText = "Enter your Passkey";
+            }
+        }
+        else
+        {
+            btnsubmit.Visible = false;
+            withoutotp.Attributes.Add("style", "display:block;");
+            lblwithoutotp.InnerText = "Your test scheduled at time " + meetingtime;
+        }
+        if (Convert.ToDateTime(mainmeetingtime) < Convert.ToDateTime(cur_time))
+        {
+            btnsubmit.Visible = false;
+            withoutotp.Attributes.Add("style", "display:block;");
+            withotp.Attributes.Add("style", "display:none;");
+            lblwithoutotp.InnerText = "No Show.Meeting time is expired please reshedule counselling.";
+            //status 
+            var mode = "new";
+            var Schedule = (from pInfo in db.applicant_meeting_schedule
+                            where pInfo.applicant_id == UserID && pInfo.university_id == UniversityID && pInfo.is_meetingtime_expires == null
+                            select pInfo).FirstOrDefault();
+            applicant_meeting_schedule objapplicant_meeting_schedule = new applicant_meeting_schedule();
+            if (Schedule != null)
+            {
+                mode = "update";
+                objapplicant_meeting_schedule = Schedule;
+            }
+            objapplicant_meeting_schedule.is_meetingtime_expires = true;
+            if (mode == "new")
+                db.applicant_meeting_schedule.Add(objapplicant_meeting_schedule);
+            db.SaveChanges();
+        }
+    }
+
+    protected void btnsubmit_Click(object sender, EventArgs e)
+    {
+        var enteredPasskey = txtpassskey.Value;
+        var mode = "new";
+        var Schedule = (from pInfo in db.applicant_meeting_schedule
+                        where pInfo.applicant_id == UserID && pInfo.university_id == UniversityID && pInfo.is_meetingtime_expires == null
+                        select pInfo).FirstOrDefault();
+        applicant_meeting_schedule objapplicant_meeting_schedule = new applicant_meeting_schedule();
+
+        if (Schedule != null)
+        {
+            mode = "update";
+            objapplicant_meeting_schedule = Schedule;
+        }
+        if (!string.IsNullOrEmpty(Schedule.otp) && Schedule.otp != enteredPasskey)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Enteres otp does not match')", true);
+        else
+        {
+            if (objapplicant_meeting_schedule.otp != null)
+                objapplicant_meeting_schedule.is_otp_generated = true;
+            objapplicant_meeting_schedule.is_otpverified = true;
+            objapplicant_meeting_schedule.is_meetingtime_expires = null ;
+            if (mode == "new")
+                db.applicant_meeting_schedule.Add(objapplicant_meeting_schedule);
+            db.SaveChanges();
+            Response.Redirect(webURL +"gte_preliminary_section.aspx",true);
+        }
+        
+    }
+}
