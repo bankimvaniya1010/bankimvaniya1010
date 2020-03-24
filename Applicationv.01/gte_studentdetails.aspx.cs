@@ -65,7 +65,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             objCom.BindCountries(ddluniversityCountry);
             //BindCommencementDate(ddlCommencementdate);
             FillMonth(ddlCommencementdateMonth);
-            FillYears(ddlCommencementdateYear);
+            FillYears(ddlCommencementdateYear,3);
             if (isuniversityGroupHead)
                 BindUnivercity(universityID);
             else
@@ -787,11 +787,12 @@ public partial class gte_studentdetails : System.Web.UI.Page
         }
     }
 
-    public void FillYears(DropDownList ddl)
+    public void FillYears(DropDownList ddl, int years = 0)
     {
         try
         {
-            int maxYers = DateTime.Now.Year;
+
+            int maxYers = DateTime.Now.Year + years;
             int minYrs = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["YearsSince"].ToString());
             ddl.Items.Add(new ListItem("Please select", "0"));
             for (int i = minYrs; i <= maxYers; i++)
