@@ -614,7 +614,7 @@
             var fullService = ("<%=Session["FullService"]%>".toLowerCase() == "true");
             var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
-            var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");
+            var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");            
 
             if (!declarationCompleted) { 
                 $("#gtepart1").hide();
@@ -623,7 +623,7 @@
                 $("#gtestudent_sop").hide();
                 $("#gte_downlload_your_sop").hide();
                 $("#gtedocmentupload").hide();
-                $("#schedulecounselling").hide();                
+                $("#schedulecounselling").show();                
                 $("#admissionsOffer_list").hide();
                 $("#studentapplication_list").hide();
                 $("#visaapplication_list").hide();
@@ -704,7 +704,7 @@
                 }
                
             }
-                        
+
             var questioncompleted = '<%=questioncompleted%>';
             var isclarificationquestionset = '<%=isclarificationquestionset%>'
             if (questioncompleted == 0 || isclarificationquestionset == 0)

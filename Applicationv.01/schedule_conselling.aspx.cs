@@ -37,6 +37,8 @@ public partial class schedule_conselling : System.Web.UI.Page
         objSchedule.applicant_email_id = data.email;
         objSchedule.utc_meeting_time = data.meetingtime.Date;
         objSchedule.applicant_time_zone = data.CustomerTime;
+        objSchedule.event_type_name = data.eventtype;
+        objSchedule.is_meetingtime_expires = null;
         db1.applicant_meeting_schedule.Add(objSchedule);
         db1.SaveChanges();
     }
@@ -47,10 +49,11 @@ public partial class schedule_conselling : System.Web.UI.Page
         public int applicantid;
         public string name;
         public string email;
-        public string eventype;
+        public string eventtype;
         public string message;
         public DateTime meetingtime;
         public DateTime CustomerTime;
+        public bool is_meetingtime_expires;
     }
 
 }

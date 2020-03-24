@@ -108,6 +108,9 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtsupportserviceInstructions.Text = existingUninversity.supprot_service_instructions;
                     txtvisainstruction.Text = existingUninversity.visa_instructions;
                     txtgtmcode.Text = Convert.ToString(existingUninversity.university_gtm_code);
+                    txtproctorname1.Text = existingUninversity.proctor1_name;
+                    txtproctorno1.Text = existingUninversity.proctor1_contactno;
+                    txtproctoremail1.Text = existingUninversity.proctor1_email;
 
                     foreach (ListItem item in subscription.Items)
                     {
@@ -202,6 +205,9 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.supprot_service_instructions = txtsupportserviceInstructions.Text;
             universityObj.visa_instructions = txtvisainstruction.Text;
             universityObj.university_gtm_code = txtgtmcode.Text.Trim();
+            universityObj.proctor1_name = txtproctorname1.Text.Trim();
+            universityObj.proctor1_contactno = txtproctorno1.Text.Trim();
+            universityObj.proctor1_email = txtproctoremail1.Text.Trim();
 
             if (logo.HasFile)  //fileupload control contains a file  
             {

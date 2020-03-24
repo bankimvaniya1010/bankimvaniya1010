@@ -90,6 +90,10 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.coe_instruction = txtUniversityCOE.Text;
                 universityObj.visa_instructions = txtvisainstruction.Text;
                 universityObj.university_gtm_code = txtgtmcode.Text.Trim();
+                universityObj.proctor1_name = txtproctorname1.Text.Trim();
+                universityObj.proctor1_contactno = txtproctorno1.Text.Trim();
+                universityObj.proctor1_email = txtproctoremail1.Text.Trim();
+
                 var url = txthosturl.Value.Trim();
                 if(url.ToLower().Contains("www."))
                     url = url.Replace("www.", string.Empty);
