@@ -146,8 +146,8 @@ public partial class gte_sop : System.Web.UI.Page
                     else
                     {
                         applicantdetails = db.gte_applicantdetails.AsNoTracking().Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
-                        int courseId = Convert.ToInt32(applicantdetails.coursename);
-                        applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == courseId).Select(x => x.coursename).FirstOrDefault();
+                        //int courseId = Convert.ToInt32(applicantdetails.coursename);
+                        //applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == courseId).Select(x => x.coursename).FirstOrDefault();
                     }
 
                     if (applicantdetails == null)
@@ -427,7 +427,7 @@ public partial class gte_sop : System.Web.UI.Page
         btnSave.Style.Add("display", "none");
         btnsubmit.Style.Add("display", "none");
         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-            "alert('SOP saved successfully. Thank You for completing GTE SOP.');window.location='" + Request.ApplicationPath + "gte_documentupload.aspx';", true);
+            "alert('SOP saved successfully. Thank You for completing GTE SOP.');window.location='" + Request.ApplicationPath + "download_reports.aspx';", true);
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

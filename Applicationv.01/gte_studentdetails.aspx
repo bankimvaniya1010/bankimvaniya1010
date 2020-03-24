@@ -211,7 +211,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="universityCampus" runat="server">
+                           <%-- <div class="list-group-item" id="universityCampus" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-universitycampusname">
                                     <div class="form-row">
                                         <label id="lblCampusName" runat="server" for="universitycampusname" class="col-md-3 col-form-label form-label">Please select university campus you are applying to  </label>
@@ -221,7 +221,34 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>--%>
+                            <div class="list-group-item" id="universityCountry" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-universityCountry">
+                                    <div class="form-row">
+                                        <label id="lbluniversityCountry" runat="server" for="universityCountry" class="col-md-3 col-form-label form-label">Country where chosen Educational Institution is located  </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddluniversityCountry" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                              <div class="list-group-item" id="eduinstitutioncity">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-eduinstitutioncity">
+                                    <div class="form-row">
+                                        <label id="lbleduinstitutioncity" runat="server" for="eduinstitutioncity" class="col-md-3 col-form-label form-label">CITY WHERE CHOSEN UNIVERSITY IS LOCATED</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddleduinstitutioncity" runat="server" class="form-control">
+                                                <asp:ListItem Value="0">Please Select</asp:ListItem>
+                                            </asp:DropDownList>                                            
+                                            <asp:HiddenField ID="hidCityField" runat="server" />
+                                            <span class="helpicon"><i id="iceduinstitutioncity" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+
                             <div class="list-group-item" id="courseapplied">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-courseapplied">
                                     <div class="form-row">
@@ -251,11 +278,11 @@
                                     <div class="form-row">
                                         <label id="lblnameofcourse" runat="server" for="nameofcourse" class="col-md-3 col-form-label form-label">Name of Course you are applying for (First Choice)</label>
                                         <div class="col-md-6">
-                                            <%--<input id="txtnameofcourse" runat="server" type="text" class="form-control" placeholder="Name Of Course">--%>
-                                            <asp:DropDownList runat="server" ID="ddlnameofcourse" CssClass="form-control">
+                                            <input id="txtnameofcourse" runat="server" type="text" class="form-control" placeholder="Name Of Course">
+                                           <%-- <asp:DropDownList runat="server" ID="ddlnameofcourse" CssClass="form-control">
                                                 <asp:ListItem Value="">Please select</asp:ListItem>
                                             </asp:DropDownList>
-                                            <asp:HiddenField ID="hidnameofcourse" runat="server"/>
+                                            <asp:HiddenField ID="hidnameofcourse" runat="server"/>--%>
                                             <span class="helpicon"><i id="icnameofcourse" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -267,30 +294,20 @@
                                         <label id="lblcommencementdate" runat="server" for="commencementdate" class="col-md-3 col-form-label form-label">Date of course commencement </label>
                                         <div class="col-md-6">
                                            <%-- <input id="txtcommencementdate" runat="server" type="text" class="form-control" placeholder="Date of course commencement" data-toggle="flatpickr" value="">--%>
-                                             <asp:DropDownList runat="server" ID="ddlCommencementdate" CssClass="form-control">
+                                             <%--<asp:DropDownList runat="server" ID="ddlCommencementdate" CssClass="form-control">
                                                 <asp:ListItem Value="0">Please Select </asp:ListItem>
+                                            </asp:DropDownList>  
+                                            <asp:HiddenField ID="hidCommencementDate" runat="server" />--%>
+                                            <asp:DropDownList ID="ddlCommencementdateYear" CssClass="form-control" runat="server">                                                
                                             </asp:DropDownList>
-                                            <asp:HiddenField ID="hidCommencementDate" runat="server" />
+                                            <asp:DropDownList ID="ddlCommencementdateMonth" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>       
                                             <span class="helpicon"><i id="iccommencementdate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="eduinstitutioncity">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-eduinstitutioncity">
-                                    <div class="form-row">
-                                        <label id="lbleduinstitutioncity" runat="server" for="eduinstitutioncity" class="col-md-3 col-form-label form-label">CITY WHERE CHOSEN UNIVERSITY IS LOCATED</label>
-                                        <div class="col-md-6">
-                                            <select id="ddleduinstitutioncity" name="ddleduinstitutioncity" runat="server" class="form-control">
-                                                <option value="" selected="selected" disabled="disabled">Please Select City</option>
-                                            </select>
-                                            <asp:HiddenField ID="hidCityField" runat="server" />
-                                            <span class="helpicon"><i id="iceduinstitutioncity" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                           
+                          
                             <div class="list-group-item" id="annualfee">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-annualfee">
                                     <div class="form-row">
@@ -442,11 +459,11 @@
                 alert("Please Select Level of Course you are applying for ");
             else  if ($("#<%=ddlfieldofstudy.ClientID%>").val() == "0")
                 alert("Please Select Field of study Applying to");
-            else  if ($("#<%=ddlUniversityCampus.ClientID%>").val() == "0")
-                alert("Please select university campus you are applying to");
-            else if ($("#<%=ddlnameofcourse.ClientID%>").val() == "0" || $("#<%=hidnameofcourse.ClientID%>").val() == "")
-                alert("Please Select Name of Course you are applying for");
-            else if ($("#<%=ddlCommencementdate.ClientID%>").val() == "0")
+            <%--else  if ($("#<%=ddlUniversityCampus.ClientID%>").val() == "0")
+                alert("Please select university campus you are applying to");--%>
+            else if ($("#<%=txtnameofcourse.ClientID%>").val() == "")
+                alert("Please enter Name of Course you are applying for");
+            else if ($("#<%=ddlCommencementdateMonth.ClientID%>").val() == "0" && $("#<%=ddlCommencementdateYear.ClientID%>").val() == "0")
                 alert("Please Select Date of course commencement ");
             else if ($("#<%=ddlworkexperience.ClientID%>").val() == "0")
                 alert("Please Select Work experience ");
@@ -521,7 +538,7 @@
                 }
             });
 
-            $("#<%=ddluniversityname.ClientID%>").change(function () {
+            <%--$("#<%=ddluniversityname.ClientID%>").change(function () {
                 var universityID = $("#<%=ddluniversityname.ClientID%>").val()
                 if (universityID > 0) {
                     $.ajax({
@@ -547,7 +564,7 @@
             
             $("#<%=ddleduinstitutioncity.ClientID%>").change(function () {
                 $("#<%=hidCityField.ClientID%>").val($("#<%=ddleduinstitutioncity.ClientID%>").val());
-            });
+            });--%>
 
             if (maritalStatus == "Married") 
                 $("#<%=fieldcontainer.ClientID%>").show();
@@ -587,10 +604,10 @@
                         });
                 }
         });            
-        $("#<%=ddltypeofworkexperience.ClientID%>").change(function () {
+      $("#<%=ddltypeofworkexperience.ClientID%>").change(function () {
             $("#<%=hidddltypeofworkexperience.ClientID%>").val($("#<%=ddltypeofworkexperience.ClientID%>").val());
         });
-        $("#<%=ddlcourseapplied.ClientID%>").change(function () {
+       <%-- $("#<%=ddlcourseapplied.ClientID%>").change(function () {
             if ($("#<%=ddlfieldofstudy.ClientID%>").val() != "" && $("#<%=ddlUniversityCampus.ClientID%>").val() != "0") {
                 var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
                 var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
@@ -615,8 +632,8 @@
                     }
                 });
             }
-        });
-        $("#<%=ddlfieldofstudy.ClientID%>").change(function () {
+        });--%>
+       <%-- $("#<%=ddlfieldofstudy.ClientID%>").change(function () {
             if ($("#<%=ddlcourseapplied.ClientID%>").val() != "0" && $("#<%=ddlUniversityCampus.ClientID%>").val() != "0") {
                 var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
                 var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
@@ -641,9 +658,9 @@
                     }
                 });
             }
-        });
+        });--%>
 
-        $("#<%=universityCampus.ClientID%>").change(function () {
+        <%--$("#<%=universityCampus.ClientID%>").change(function () {
             if ($("#<%=ddlfieldofstudy.ClientID%>").val() != "" && $("#<%=ddlcourseapplied.ClientID%>").val() != "0") {
                 var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
                 var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
@@ -671,10 +688,10 @@
 
         $("#<%=ddlnameofcourse.ClientID%>").change(function () {
             $("#<%=hidnameofcourse.ClientID%>").val($("#<%=ddlnameofcourse.ClientID%>").val());
-        });
+        });--%>
 
         //comm date
-         $("#<%=ddlnameofcourse.ClientID%>").change(function () {
+        <%-- $("#<%=ddlnameofcourse.ClientID%>").change(function () {
             $("#<%=hidnameofcourse.ClientID%>").val($("#<%=ddlnameofcourse.ClientID%>").val());
 
             if ($("#<%=hidnameofcourse.ClientID%>").val() != "") {
@@ -702,7 +719,40 @@
 
         $("#<%=ddlCommencementdate.ClientID%>").change(function () {
             $("#<%=hidCommencementDate.ClientID%>").val($("#<%=ddlCommencementdate.ClientID%>").val());
-        });
+        });--%>
+        $("#<%=ddluniversityCountry.ClientID%>").change(function () {
+            var countryid = $("#<%=ddluniversityCountry.ClientID%>").val();
+            var universityid = 0;
+            if (<%= isunigrouped%> == 1)                 
+                    universityid = $("#<%=ddluniversityname.ClientID%>").val();
+            else
+                universityid = '<%= Utility.GetUniversityId()%>';
+            if(universityid != 0)
+                $.ajax({
+                    type: "GET",
+                    url: "gte_studentdetails.aspx/GetCityDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: {countryId: countryid, universityid: universityid},                    
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddleduinstitutioncity.ClientID%>").length >= 1) {
+                                $("#<%=ddleduinstitutioncity.ClientID%>").empty();
+                                $("#<%=ddleduinstitutioncity.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddleduinstitutioncity.ClientID%>").append($("<option></option>").val(result[i].city_id).html(result[i].name));
+                            }
+                        }
+                    }
+                });
+
+            });
+
+            $("#<%=ddleduinstitutioncity.ClientID%>").change(function () {
+                $("#<%=hidCityField.ClientID%>").val($("#<%=ddleduinstitutioncity.ClientID%>").val());
+            });
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
