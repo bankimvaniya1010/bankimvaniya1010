@@ -20,7 +20,7 @@
                              <div class="list-group-item" id="question1" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-dateofissue">
                                     <div class="form-row">
-                                        <label id="questionno" runat="server" for="passportno" class="col-md-12 col-form-label form-label">
+                                        <label id="questionno" runat="server" for="passportno" class="col-md-12 col-form-label form-label" style="font-size: medium;">
                                             How would pursuing your selected course at 
                                             <asp:Label ID="lblinstitutename" runat="server"></asp:Label>, <asp:Label ID="lblcity" runat="server"></asp:Label>      
                                             help you ? What do you plan to do after completing this course.

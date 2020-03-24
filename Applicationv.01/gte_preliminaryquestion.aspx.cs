@@ -23,6 +23,9 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     int UniversityID = -1;
     int section1Question;
     int section2Question;
+    string username = string.Empty;
+    string useremail = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -37,7 +40,22 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                     "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
             return;
         }
-
+        var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+        if (gteProgressBar != null)
+        {
+            if (gteProgressBar.is_gte_preliminarysection1_completed != null && gteProgressBar.is_gte_preliminarysection1_completed.Value != true)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                   "alert('Please complete Test your knowledge first.');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+                return;
+            }
+        }
+        else
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                   "alert('Please complete Test your knowledge first.');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+            return;
+        }
         section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
         section2Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection2Question"]);
         if (!IsPostBack)

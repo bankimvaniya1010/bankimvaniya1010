@@ -367,7 +367,12 @@
                                         <a class="sidebar-menu-button" href="universitywisesupportservicemapping.aspx">
                                             <span class="sidebar-menu-text">Institution Support Service Selection</span>
                                         </a>
-                                    </li>                                    
+                                    </li>
+                                    <li class="sidebar-menu-item" id="educationalinstitutionmaster"> 
+                                        <a class="sidebar-menu-button" href="educationalinstitutionmaster_listing.aspx">
+                                            <span class="sidebar-menu-text">Educational Institution Master</span>
+                                        </a>
+                                    </li>  
                                 </ul>                                
                             </li>                          
                             <li class="sidebar-menu-item" id="course_list">
@@ -562,7 +567,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>                           
                             <li class="sidebar-menu-item" id="Scholarships_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Scholarships_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -592,6 +597,20 @@
                                     <li class="sidebar-menu-item" id="fieldmaster"> 
                                         <a class="sidebar-menu-button" href="fieldmaster.aspx">
                                             <span class="sidebar-menu-text">Secondary Language</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-menu-item" id="managemeeting_schedule_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#managemeeting_schedule">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                   Manage Meeting Schedule
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="managemeeting_schedule">
+                                    <li class="sidebar-menu-item" id="scheduledapplicant_list"> 
+                                        <a class="sidebar-menu-button" href="scheduledapplicant_list.aspx">
+                                            <span class="sidebar-menu-text">Schedule Once List</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -15,6 +15,9 @@ public partial class logout : System.Web.UI.Page
         Session["totalResponseTime"] = null;
         Session["totalResponseTimeQue2"] = null;
 
+        Session["meetingTime"] = null;
+        Session["currentlogintime"] = null;
+
         Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
         Response.Cache.SetCacheability(HttpCacheability.NoCache);
         Response.Cache.SetNoStore();

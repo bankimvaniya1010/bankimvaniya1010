@@ -500,6 +500,36 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label form-label">1 Proctor Name</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtproctorname1" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label form-label">1 Proctor Contact Number </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtproctorno1" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label form-label">1 Proctor Email </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtproctoremail1" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>       
+                    <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
@@ -586,7 +616,11 @@
             var fontcolor = $('#<%=txtfontcolor.ClientID%>').val();
             var headercolor = $('#<%=txtstripcolor.ClientID%>').val();
             var verticalNavcolor = $('#<%=txtverticalnavigationcolor.ClientID%>').val();
-            var gtmCode =$('#<%=txtgtmcode.ClientID%>').val();
+            var gtmCode = $('#<%=txtgtmcode.ClientID%>').val();
+            var proctoename1 = $('#<%=txtproctorname1.ClientID%>').val();
+            var proctorno1 = $('#<%=txtproctorno1.ClientID%>').val();
+            var proctoremail1 = $('#<%=txtproctoremail1.ClientID%>').val();
+
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
@@ -736,6 +770,18 @@
             }
             else if (gtmCode == "") {
                 alert("Please enter google tag manager code.");
+                return false;
+            }
+            else if (proctoename1 == "") {
+                alert("Please enter proctor 1 name.");
+                return false;
+            }
+            else if (proctorno1 == "") {
+                alert("Please enter Proctor 1 contact number.");
+                return false;
+            }
+            else if (proctoremail1 == "") {
+                alert("Please enter Proctor 1 email ID.");
                 return false;
             }
 
