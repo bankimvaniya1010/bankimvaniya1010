@@ -45,7 +45,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         if (scheduledate != null)
         {
             if (scheduledate.is_otpverified == null)
-                Response.Redirect(webURL + "schedulemeeting_otp.aspx?meetingtime="+scheduledate.applicant_time_zone+"", true); 
+                Response.Redirect(webURL + "schedulemeeting_otp.aspx?meetingtime=" + scheduledate.applicant_time_zone + "", true);
         }
         else
         {
@@ -54,10 +54,10 @@ public partial class gte_preliminary_section : System.Web.UI.Page
             useremail = loggedInApplicant.email;
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('Please Schedule conselling first.');window.location='" + Request.ApplicationPath + "schedule_conselling.aspx?name="+username+"&email="+useremail+"';", true);
+                    "alert('Please schedule Counselling first.');window.location='" + Request.ApplicationPath + "schedule_conselling.aspx?name=" + username + "&email=" + useremail + "';", true);
             return;
         }
-        
+
         section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
         if (!IsPostBack)
         {

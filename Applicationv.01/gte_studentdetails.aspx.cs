@@ -485,6 +485,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                     bindcity(Convert.ToInt32(studentInfo.countryofeducationInstitution),Convert.ToInt32(studentInfo.nameofuniversityappliedfor));
                     ddleduinstitutioncity.ClearSelection();
                     ddleduinstitutioncity.Items.FindByValue(studentInfo.cityofeducationInstitution.ToString()).Selected = true;
+                    hidCityField.Value = Convert.ToString(studentInfo.cityofeducationInstitution);
                     if (isuniversityGroupHead)
                     {
                         //ListItem lst = new ListItem("Please select", "0");

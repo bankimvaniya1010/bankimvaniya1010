@@ -47,70 +47,70 @@ public partial class admin : System.Web.UI.MasterPage
             isclarificationquestionset = 0;
         else
             isclarificationquestionset = 1;
-        //scheduling time
-        var schedulingData = db.applicant_meeting_schedule.Where(x => x.university_id == universityID && x.applicant_id == UserID && x.is_meetingtime_expires == null).FirstOrDefault();
-        if (schedulingData != null)
-            Session["meetingTime"] = schedulingData.applicant_time_zone;
-        else
-            Session["meetingTime"] = null;
-        if (Session["meetingTime"] != null)
-        {
-            meetingTime = Convert.ToDateTime(Session["meetingTime"]);
-            string main_meetingTime = Convert.ToDateTime(Session["meetingTime"]).ToString("HH:mm");
 
-            fiveminbeforemeeetingtimeis = meetingTime.AddMinutes(-5);
-            string meeting_date = fiveminbeforemeeetingtimeis.ToString("dd/MM/yyyy");
-            dynamic meeting_time = Convert.ToDateTime(fiveminbeforemeeetingtimeis).ToString("HH:mm");
+        ////scheduling time
+        //var schedulingData = db.applicant_meeting_schedule.Where(x => x.university_id == universityID && x.applicant_id == UserID && x.is_meetingtime_expires == null).FirstOrDefault();
+        //if (schedulingData != null)
+        //    Session["meetingTime"] = schedulingData.applicant_time_zone;
+        //else
+        //    Session["meetingTime"] = null;
+        //if (Session["meetingTime"] != null)
+        //{
+        //    meetingTime = Convert.ToDateTime(Session["meetingTime"]);
+        //    string main_meetingTime = Convert.ToDateTime(Session["meetingTime"]).ToString("HH:mm");
 
-            currenttime = DateTime.Now;
-            string cur_time = Convert.ToDateTime(currenttime).ToString("HH:mm");
-            string cur_date = currenttime.ToString("dd/MM/yyyy");
+        //    fiveminbeforemeeetingtimeis = meetingTime.AddMinutes(-5);
+        //    string meeting_date = fiveminbeforemeeetingtimeis.ToString("dd/MM/yyyy");
+        //    dynamic meeting_time = Convert.ToDateTime(fiveminbeforemeeetingtimeis).ToString("HH:mm");
 
-            if (meeting_date == cur_date)
-            {
-                if (Convert.ToDateTime(meeting_time) <= Convert.ToDateTime(cur_time))
-                {
-                    if (Convert.ToDateTime(cur_time) <= Convert.ToDateTime(main_meetingTime))
-                    {
-                        if (string.IsNullOrEmpty(schedulingData.otp))
-                        {
-                            //genrate otp
-                            int otp = objCom.RandomNumber(100000, 999999);
-                            var mode = "new";
-                            var Schedule = (from pInfo in db.applicant_meeting_schedule
-                                            where pInfo.applicant_id == UserID && pInfo.university_id == universityID && pInfo.is_meetingtime_expires == null
-                                            select pInfo).FirstOrDefault();
-                            applicant_meeting_schedule objapplicant_meeting_schedule = new applicant_meeting_schedule();
-                            if (Schedule != null)
-                            {
-                                mode = "update";
-                                objapplicant_meeting_schedule = Schedule;
-                            }
-                            objapplicant_meeting_schedule.otp = Convert.ToString(otp);
-                            objapplicant_meeting_schedule.is_otp_generated = true;
-                            if (mode == "new")
-                                db.applicant_meeting_schedule.Add(objapplicant_meeting_schedule);
-                            db.SaveChanges();
+        //    currenttime = DateTime.Now;
+        //    string cur_time = Convert.ToDateTime(currenttime).ToString("HH:mm");
+        //    string cur_date = currenttime.ToString("dd/MM/yyyy");
 
-                            //send email
-                            students loggedInApplicant1 = (students)Session["LoginInfo"];
-                            username = loggedInApplicant1.username;
+        //    if (meeting_date == cur_date)
+        //    {
+        //        if (Convert.ToDateTime(meeting_time) <= Convert.ToDateTime(cur_time))
+        //        {
+        //            if (Convert.ToDateTime(cur_time) <= Convert.ToDateTime(main_meetingTime))
+        //            {
+        //                if (string.IsNullOrEmpty(schedulingData.otp))
+        //                {
+        //                    //genrate otp
+        //                    int otp = objCom.RandomNumber(100000, 999999);
+        //                    var mode = "new";
+        //                    var Schedule = (from pInfo in db.applicant_meeting_schedule
+        //                                    where pInfo.applicant_id == UserID && pInfo.university_id == universityID && pInfo.is_meetingtime_expires == null
+        //                                    select pInfo).FirstOrDefault();
+        //                    applicant_meeting_schedule objapplicant_meeting_schedule = new applicant_meeting_schedule();
+        //                    if (Schedule != null)
+        //                    {
+        //                        mode = "update";
+        //                        objapplicant_meeting_schedule = Schedule;
+        //                    }
+        //                    objapplicant_meeting_schedule.otp = Convert.ToString(otp);
+        //                    objapplicant_meeting_schedule.is_otp_generated = true;
+        //                    if (mode == "new")
+        //                        db.applicant_meeting_schedule.Add(objapplicant_meeting_schedule);
+        //                    db.SaveChanges();
 
-                            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-                            string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/proctorNotificationwithotp.html"));
-                            html = html.Replace("@UniversityName", university.university_name);
-                            html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);
-                            html = html.Replace("@proctorName", university.proctor1_name);
-                            html = html.Replace("@studentname", username);
-                            html = html.Replace("@studentemail", objapplicant_meeting_schedule.applicant_email_id);
-                            html = html.Replace("@OTP", objapplicant_meeting_schedule.otp);
-                            objCom.SendMail(university.proctor1_email, html, "SCHEDULED " + objapplicant_meeting_schedule.event_type_name + " MEETING");
-                        }
-                    }
-                }
+        //                    //send email
+        //                    students loggedInApplicant1 = (students)Session["LoginInfo"];
+        //                    username = loggedInApplicant1.username;
 
-            }
-        }
+        //                    var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        //                    string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/proctorNotificationwithotp.html"));
+        //                    html = html.Replace("@UniversityName", university.university_name);
+        //                    html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);
+        //                    html = html.Replace("@proctorName", university.proctor1_name);
+        //                    html = html.Replace("@studentname", username);
+        //                    html = html.Replace("@studentemail", objapplicant_meeting_schedule.applicant_email_id);
+        //                    html = html.Replace("@OTP", objapplicant_meeting_schedule.otp);
+        //                    objCom.SendMail(university.proctor1_email, html, "SCHEDULED " + objapplicant_meeting_schedule.event_type_name + " MEETING");
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         if (!IsPostBack) {
             Bindseclanguagelist();
@@ -124,7 +124,7 @@ public partial class admin : System.Web.UI.MasterPage
             Session["universitylogo"] = universityDetails.logo;
             Session["universityverticalnavigationcolor"] = universityDetails.verticalnavigationcolor;
             Session["universityfontColor"] = universityDetails.fontcolor;
-            Session["universityheadercolor"] = universityDetails.headerstripcolor;
+            Session["universityheadercolor"] = universityDetails.headerstripcolor;            
         }
 
         students loggedInApplicant = (students)Session["LoginInfo"];
@@ -136,6 +136,11 @@ public partial class admin : System.Web.UI.MasterPage
         verticalnavigationcolor = (string)Session["universityverticalnavigationcolor"];
         fontColor = (string)Session["universityfontColor"];
         headercolor = (string)Session["universityheadercolor"];
+        bool isfullservice = (bool)Session["isfullservice"];
+        if (isfullservice)
+            isfullservicethenlbl.Text = "APPLICATION CENTER";
+        else
+            isfullservicethenlbl.Text = "GTE Online Center (GOC)";
     }
 
     private void populateSelectedLanguage()
