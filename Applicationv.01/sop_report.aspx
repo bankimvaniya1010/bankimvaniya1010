@@ -29,8 +29,15 @@
 </head>
 <body>
     <form runat="server">
-   <div>
+   <div>       
         <table cellspacing="0" cellpadding="0" width="100%" class="report-table" style="margin-top: 84px;margin-left: 80px;">
+            <tr>
+                <td>
+                     <div class="sop-descptn-wrp">
+                        <div class="ttl text-left" style="font-size: 20px">SOP based on Student Statements <span class="d-inline-block"></span></div>                        
+                    </div>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <div class="sop-descptn-wrp">

@@ -65,8 +65,20 @@ public partial class register : System.Web.UI.Page
                 db.applicantdetails.Add(objapplicant);
                 db.SaveChanges();
                 var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                string html = string.Empty;
+                string emailsubject = string.Empty;
 
-                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationwithotp.html"));
+                if (Utility.GetUniversityId() == 13)
+                {
+                    html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/gte_direct_signupNotification.html"));
+                    emailsubject = "Welcome to GTE-Direct Online Centre (GOC)";
+                }
+                else
+                {
+                    html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationwithotp.html"));
+                    emailsubject = "Application Centre Account Created Email";
+                }
+
                 html = html.Replace("@UniversityName", university.university_name);
                 html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);
 
@@ -80,7 +92,7 @@ public partial class register : System.Web.UI.Page
                 html = html.Replace("@UniversityChatID", university.chatid);
                 html = html.Replace("@UniversityMobileNumber", university.mobile);
 
-                objCom.SendMail(email.Value.Trim(), html, "Application Centre Account Created Email");
+                objCom.SendMail(email.Value.Trim(), html, emailsubject);
                 webURL = "";
                 webURL = webURL + "registerconfimation.aspx?email=" + email.Value;
                 Response.Redirect(webURL, true);

@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-        <h1 class="h2">WELCOME TO THE APPLICATION CENTER</h1>
+        <h1 class="h2">WELCOME TO THE <asp:Label runat="server" ID="isfullservicethenlbl"></asp:Label></h1>
         <div id="domesticDiv" runat="server" class="form-group" style="display: none">
             <div class="col-lg-8 list-group-item">
                 <label class="form-label" for="password">Are you an Australian Citizen, an Australian Permanent Resident or a Citizen of New Zealand?</label>
@@ -29,22 +29,42 @@
                             <h4 class="card-title">Instructions</h4>
                         </div>
                     </div>
-                    <div class="card-body">
-                        In this Application Center portal, you will be able to:
+                    <div id="defaultinstructions" runat="server" style="display:none">
+                        <div class="card-body">
+                            In this Application Center portal, you will be able to:
+                        </div>
+                        <div>
+                            <ol>
+                                <li>Start, complete and submit a course application</li><br>
+                                <li>Check the status of your course application</li><br>
+                                <li>Complete a Genuine Temporary Entrant (GTE) and Genuine Student (GS) assessment</li><br>
+                                <li>Start, complete and submit a visa application</li><br>
+                                <li>Check the status of your visa application</li><br>
+                                <li>Upload supporting documents</li><br>
+                                <li>Access your messages, offer letters and other documentation relevant to your applications</li><br>
+                                <li>Respond to your offers</li><br>
+                                <li>Make payments; and</li><br>
+                                <li>Access other relevant information and support services that will be useful as you prepare to commence your studies with <%=_Default.universityName %>.</li></ol>
+                        </div>
                     </div>
-                    <div>
-                        <ol>
-                            <li>Start, complete and submit a course application</li><br>
-                            <li>Check the status of your course application</li><br>
-                            <li>Complete a Genuine Temporary Entrant (GTE) and Genuine Student (GS) assessment</li><br>
-                            <li>Start, complete and submit a visa application</li><br>
-                            <li>Check the status of your visa application</li><br>
-                            <li>Upload supporting documents</li><br>
-                            <li>Access your messages, offer letters and other documentation relevant to your applications</li><br>
-                            <li>Respond to your offers</li><br>
-                            <li>Make payments; and</li><br>
-                            <li>Access other relevant information and support services that will be useful as you prepare to commence your studies with <%=_Default.universityName %>.</li>
-                        </ol>
+                    <%--for euc.gte.stude.care i.e universityid 13 instructions--%>
+                    <div id="ecu_gteinstructions" runat="server" style="display:none">
+                        <div class="card-body">
+                            In the GTE-Direct Online Centre (GOC), based on your subscription you will be able to:
+                        </div>
+                        <div>
+                            <ol>
+                                <li>Access the GS & GTE Tutorial </li><br>
+                                <li>On the scheduled time and day test your understanding of GS & GTE.</li><br>
+                                <li>Get Certified for your understanding of GS & GTE, download your Certificate</li><br>
+                                <li>Start and complete your proctor based 100% online GS & GTE evaluation</li><br>
+                                <li>Upload your documents for verification and validation for GTE </li><br>
+                                <li>Use the AI driven GTE SOP builder to create your GTE SOP in minutes </li><br>
+                                <li>View and download your detailed GS & GTE Assessment report </li><br>
+                                <li>Get access to experienced counsellors for 1-on-1 GS & GTE counselling </li><br>
+                                <li>Get support with completing and submitting your Admission Applications</li><br>
+                                <li>Get full-service support to complete and file your student VISA Application </li></ol>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,4 +95,13 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            var universityid = '<%= UniversityID%>';
+            if (universityid == 13)
+                $("#<%=ecu_gteinstructions.ClientID%>").show();
+            else
+                $("#<%=defaultinstructions.ClientID%>").show();
+        });
+    </script>
 </asp:Content>
