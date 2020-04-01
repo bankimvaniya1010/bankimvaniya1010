@@ -15,6 +15,7 @@ public partial class download_reports : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     string webURL = String.Empty;
     int applicantID = 0, universityID = 0;
+    int formId = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,6 +24,12 @@ public partial class download_reports : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Utility.GetUniversityId();
         applicantID = Convert.ToInt32(Session["UserID"]);
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
 
         var gte_student_sop = db.gte_student_sop
                             .Where(x => x.applicant_id == applicantID && x.universityid == universityID && x.is_sop_submitted_by_applicant == true)
@@ -35,7 +42,7 @@ public partial class download_reports : System.Web.UI.Page
             lblmsg.Text = "Please complete statement of purpose to download.";
         }
         if (!IsPostBack)
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
     }
 
     protected void downloadsop_Click(object sender, EventArgs e)

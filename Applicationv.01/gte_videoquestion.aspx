@@ -183,7 +183,7 @@
                     if (req.status && req.status == 200 && (req.readyState == 4)) {
                         $("#ContentPlaceHolder1_btnupload").removeAttr("disabled");
                         alert("Video uploaded successfully");
-                        location.replace(hostName + "gte_sop.aspx");
+                        location.replace(hostName + "gte_sop.aspx?formid=26");
                     }
                 }
 

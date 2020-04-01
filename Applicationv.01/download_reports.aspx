@@ -6,11 +6,11 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">DocumentS
+            <li class="breadcrumb-item active">GTE STATEMENT OF PURPOSE (SOP)
 
             </li>
         </ol>
-        <h1 class="h2">DOCUMENTS
+        <h1 class="h2">GTE STATEMENT OF PURPOSE (SOP)
 
         </h1>
 
@@ -26,8 +26,8 @@
                             <div class="list-group-item" runat="server" style="display:none" id="sopdoc">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" class="col-md-6 col-form-label form-label">Download Your Sop Report</label>
-                                        <div class="col-md-6">
+                                        <label runat="server" class="col-md-7 col-form-label form-label">Download your GTE Statement of Purpose (SOP)</label>
+                                        <div class="col-md-5">
                                             <asp:Button ID="Button1" runat="server" Text="Download" CssClass="btn btn-success" OnClick="downloadsop_Click" />                                            
                                         </div>
                                     </div>

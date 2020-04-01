@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="media-body">
                                             <h4 class="card-title">
-                                                <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("question") %>'></asp:Label>?
+                                                <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("question") %>'></asp:Label>
                                             </h4>
                                         </div>
                                     </div>

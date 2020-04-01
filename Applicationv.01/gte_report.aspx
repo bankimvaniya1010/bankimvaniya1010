@@ -302,7 +302,7 @@
                                 </div>
                             </td>
                             <td class="width25">
-                                 <table cellpadding="0" cellspacing="0">
+                                 <table cellpadding="0" cellspacing="0" class="studeinfotable">
                                      <tr>
                                          <td colspan="2">
                                              <div class="text-center hd text-uppercase font-bold">Student Information</div>

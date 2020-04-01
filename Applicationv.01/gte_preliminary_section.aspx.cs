@@ -23,14 +23,20 @@ public partial class gte_preliminary_section : System.Web.UI.Page
     int section1Question;
     string username = string.Empty;
     string useremail = string.Empty;
-
+    int formId = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        UserID = Convert.ToInt32(Session["UserID"].ToString());        
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         if (isGteDeclarationDoneByApplicant)
         {
@@ -54,7 +60,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
             useremail = loggedInApplicant.email;
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('Please schedule Counselling first.');window.location='" + Request.ApplicationPath + "schedule_conselling.aspx?name=" + username + "&email=" + useremail + "';", true);
+                    "alert('Please schedule counselling first.');window.location='" + Request.ApplicationPath + "schedule_conselling.aspx?name=" + username + "&email=" + useremail + "';", true);
             return;
         }
 
@@ -70,7 +76,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
             }
 
             GetQuestion();
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
             btnGoToNextPage.Enabled = false;
         }
     }
@@ -228,6 +234,6 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         
     protected void btnGoToNextPage_Click(object sender, EventArgs e)
     {
-        Response.Redirect(webURL + "gte_preliminaryquestion.aspx", true);
+        Response.Redirect(webURL + "gte_preliminaryquestion.aspx?formid=19", true);
     }
 }
