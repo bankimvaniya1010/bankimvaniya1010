@@ -37,7 +37,7 @@
 </head>
 <body>
     <form runat="server">
-        <div runat="server" id="btnDiv" class="form-row justify-content-between" style="display: block;margin: auto;width: 50%;padding: 10px;">
+        <div runat="server" id="btnDiv" class="form-row justify-content-between" style="display: none;margin: auto;width: 50%;padding: 10px;">
             <input id="backNavLink" runat="server" type="button" class="btn btn-success" value="Back" onclick="return window.location = '/gte_declaration.aspx?formid=20';"/>
             <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-success" Text="Download Certificate" OnClick="btnDownload_Click" />
         </div>
