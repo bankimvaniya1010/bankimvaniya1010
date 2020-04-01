@@ -6,11 +6,11 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">DocumentS
+            <li class="breadcrumb-item active">GTE REPORT
 
             </li>
         </ol>
-        <h1 class="h2">DOCUMENTS
+        <h1 class="h2">GTE REPORT
 
         </h1>
 
@@ -78,7 +78,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#gte_downlload_your_sop').addClass('active');
+            $('#download_gtereport').addClass('active');
         });
     </script>
 </asp:Content>
