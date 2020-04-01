@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -20,7 +21,8 @@ public partial class gte_studentdetails : System.Web.UI.Page
     string webURL = String.Empty;
     gte_applicantdetails objgte_applicantdetails = new gte_applicantdetails();
     bool isuniversityGroupHead;
-    public int isunigrouped = 0; 
+    public int isunigrouped = 0;
+    int formId = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,7 +30,12 @@ public partial class gte_studentdetails : System.Web.UI.Page
         universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         var isFullService = (bool)Session["FullService"];
         if (isFullService)
             Response.Redirect(webURL + "default.aspx", true);
@@ -45,15 +52,15 @@ public partial class gte_studentdetails : System.Web.UI.Page
         userID = objUser.studentid;
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             objCom.BindCountries(ddlcountryofdob);
             objCom.BindCountries(ddlnationality);
             objCom.BindCountries(ddlspousenationality);
             objCom.BindCountries(ddlcountryresidence);
             objCom.BindCountries(ddlhighestqualificationcountry);
-           // BindUniversityCampuses();
+            // BindUniversityCampuses();
             BindMaritalstatus();
-            Bindworkexperienceyears();          
+            Bindworkexperienceyears();
             FillMonth(ddlhighestqualificationmonth);
             FillYears(ddlhighestqualificationYear);
             BindMajorDiscipline(ddlhighestqualificationfield, true);
@@ -65,7 +72,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             objCom.BindCountries(ddluniversityCountry);
             //BindCommencementDate(ddlCommencementdate);
             FillMonth(ddlCommencementdateMonth);
-            FillYears(ddlCommencementdateYear,3);
+            FillYears(ddlCommencementdateYear, 3);
             if (isuniversityGroupHead)
                 BindUnivercity(universityID);
             else
@@ -73,13 +80,13 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 universityname.Style.Add("display", "none");
                 //BindcityofInstitution();
             }
-            populategteapplicantdetail();            
+            populategteapplicantdetail();
         }
     }
 
     [WebMethod]
     [ScriptMethod(UseHttpGet = true)]
-    public static string GetCityDropdown(int countryId , int universityid)
+    public static string GetCityDropdown(int countryId, int universityid)
     {
         GTEEntities db1 = new GTEEntities();
         var temp = (from em in db1.educationalinstitution_master
@@ -89,7 +96,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                     {
                         city_id = cm.city_id,
                         name = cm.name,
-                    }).ToList();            
+                    }).ToList();
         return JsonConvert.SerializeObject(temp);
     }
     private void bindcity(int countryId, int universityid)
@@ -128,7 +135,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
     {
         GTEEntities db1 = new GTEEntities();
         var universityID1 = Utility.GetUniversityId();
-        var temp = (from sd in db1.typeofworkexperiencemaster                    
+        var temp = (from sd in db1.typeofworkexperiencemaster
                     select new
                     {
                         description = sd.description,
@@ -271,7 +278,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             if (ddlfieldofstudy.SelectedValue != "")
                 objgte_applicantdetails.fieldofstudyapplied = Convert.ToInt32(ddlfieldofstudy.SelectedValue);
             objgte_applicantdetails.coursename = txtnameofcourse.Value; //hidnameofcourse.Value;
-                        
+
             //if (hidCommencementDate.Value != "")
             //    objgte_applicantdetails.commencementdate = hidCommencementDate.Value;
 
@@ -348,8 +355,8 @@ public partial class gte_studentdetails : System.Web.UI.Page
             var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
             if (!isProfileDetailsCompletedByApplicant)
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetGteStudentDetailsCompletedStatus(userID, universityID);
-            Response.Redirect(webURL + "gte_questions1.aspx", true);
-           
+            Response.Redirect(webURL + "gte_questions1.aspx?formid=22", true);
+
         }
         catch (Exception ex)
         {
@@ -364,7 +371,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (studentInfo != null) {
-                if(studentInfo.dateofbirth != null)
+                if (studentInfo.dateofbirth != null)
                     txtdob.Value = Convert.ToDateTime(studentInfo.dateofbirth).ToString("yyyy-MM-dd");
                 if (studentInfo.nationality != null)
                 {
@@ -410,7 +417,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                     ddlhighestqualificationYear.Items.FindByValue(Convert.ToString(highestqualificationdate[1])).Selected = true;
                 }
 
-                if (studentInfo.highestqualificationcountry!= null)
+                if (studentInfo.highestqualificationcountry != null)
                 {
                     ddlhighestqualificationcountry.ClearSelection();
                     ddlhighestqualificationcountry.Items.FindByValue(studentInfo.highestqualificationcountry.ToString()).Selected = true;
@@ -456,7 +463,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 {
                     ddltypeofworkexperience.ClearSelection();
                     Bindtypeofworkexperienceyears(Convert.ToInt32(studentInfo.workexperience));
-                    if(studentInfo.workexperience != 0)
+                    if (studentInfo.workexperience != 0)
                         ddltypeofworkexperience.Items.FindByValue(studentInfo.typeofworkexperience.ToString()).Selected = true;
                     hidddltypeofworkexperience.Value = studentInfo.typeofworkexperience.ToString();
                 }
@@ -482,7 +489,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 }
                 if (studentInfo.cityofeducationInstitution != null)
                 {
-                    bindcity(Convert.ToInt32(studentInfo.countryofeducationInstitution),Convert.ToInt32(studentInfo.nameofuniversityappliedfor));
+                    bindcity(Convert.ToInt32(studentInfo.countryofeducationInstitution), Convert.ToInt32(studentInfo.nameofuniversityappliedfor));
                     ddleduinstitutioncity.ClearSelection();
                     ddleduinstitutioncity.Items.FindByValue(studentInfo.cityofeducationInstitution.ToString()).Selected = true;
                     hidCityField.Value = Convert.ToString(studentInfo.cityofeducationInstitution);
@@ -530,7 +537,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
@@ -580,11 +587,11 @@ public partial class gte_studentdetails : System.Web.UI.Page
         var campusIds = db1.universitycampus.Where(x => x.universityid == universityId).Select(x => x.campusid).ToList();
         List<object> cityDetails = new List<object>();
         foreach (int campusid in campusIds)
-            cityDetails.AddRange(db1.universitycampus.Where(x => x.campusid == campusid).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name}).ToList());
+            cityDetails.AddRange(db1.universitycampus.Where(x => x.campusid == campusid).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name }).ToList());
 
         if (cityDetails.Count == 0)
             cityDetails.Add(db1.university_master.Where(x => x.universityid == universityId).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name }));
-            
+
         return JsonConvert.SerializeObject(cityDetails.Distinct());
     }
 
@@ -610,7 +617,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
         {
             if (ddlworkexpValue == 0)
                 ddltypeofworkexperience.Items.Insert(0, "Not Applicable");
-            else 
+            else
             {
                 ListItem lst = new ListItem("Please select", "0");
                 var workexperiencetype = db.typeofworkexperiencemaster.ToList();
@@ -807,20 +814,20 @@ public partial class gte_studentdetails : System.Web.UI.Page
         }
     }
 
-    protected void btnNewAgent_Click(object sender, EventArgs e)
-    {
-        var applicantNameDetails = db.students.Where(x => x.studentid == userID).Select(x => new { x.name}).FirstOrDefault();        
-        var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+    //public void sendemail(string email)
+    //{
+    //    var applicantNameDetails = db.students.Where(x => x.studentid == userID).Select(x => new { x.name }).FirstOrDefault();
+    //    var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
 
-        string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/gte_agentResgistrationNotification.html"));
-        html = html.Replace("@UniversityName", univresityDetails.university_name);
-        html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
-        html = html.Replace("@applicatFullName", applicantNameDetails.name + "'s");
-        html = html.Replace("@applicantFirstname", applicantNameDetails.name);
-        html = html.Replace("@agentRegistrationurl", webURL + "registeragent.aspx");
-        objCom.SendMail(txtAgentname.Text, html, "Agent Registration Link");        
-    }
-    
+    //    string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/gte_agentResgistrationNotification.html"));
+    //    html = html.Replace("@UniversityName", univresityDetails.university_name);
+    //    html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
+    //    html = html.Replace("@applicatFullName", applicantNameDetails.name + "'s");
+    //    html = html.Replace("@applicantFirstname", applicantNameDetails.name);
+    //    html = html.Replace("@agentRegistrationurl", webURL + "registeragent.aspx");
+    //    objCom.SendMail(email, html, "Agent Registration Link");
+    //}
+
     private void BindAgent()
     {
         try
@@ -837,5 +844,28 @@ public partial class gte_studentdetails : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string sendemailtoAgent(string email)
+    {
+        GTEEntities db = new GTEEntities();
+        Common objCom = new Common();
+        int universityID = Utility.GetUniversityId();
+        int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
+        string webURL = Utility.GetWebUrl();
+        var applicantNameDetails = db.students.Where(x => x.studentid == userID).Select(x => new { x.name }).FirstOrDefault();
+        var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+
+        string html = File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("/assets/Emailtemplate/gte_agentResgistrationNotification.html"));
+        html = html.Replace("@UniversityName", univresityDetails.university_name);
+        html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
+        html = html.Replace("@applicatFullName", applicantNameDetails.name + "'s");
+        html = html.Replace("@applicantFirstname", applicantNameDetails.name);
+        html = html.Replace("@agentRegistrationurl", webURL + "registeragent.aspx");
+        objCom.SendMail(email, html, "Agent Registration Link");
+
+        return JsonConvert.SerializeObject(email);
     }
 }

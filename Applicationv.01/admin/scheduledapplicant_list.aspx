@@ -32,6 +32,11 @@
                                     <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("applicant_id") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>                            
+                            <asp:TemplateField HeaderText="Applicant Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblname" runat="server" Text='<%# Bind("applicantname") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Institution Name">                                                            
                                 <ItemTemplate>
                                     <asp:Label ID="lbltype" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>

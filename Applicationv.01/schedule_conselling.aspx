@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Schedule a FREE 1-on-1 session with our Counsellors</h1>
+        <h1 class="h2">Schedule your Proctor based GTE Assessment</h1>
     </div>
     <div class="page">
         <div class="container page__container">

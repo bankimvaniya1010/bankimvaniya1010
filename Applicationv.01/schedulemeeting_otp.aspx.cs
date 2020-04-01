@@ -34,54 +34,57 @@ public partial class schedulemeeting_otp : System.Web.UI.Page
 
         var scheduledata = db.applicant_meeting_schedule.Where(x => x.applicant_id == UserID && x.university_id == UniversityID && x.is_meetingtime_expires == null).FirstOrDefault();
 
-        meetingTime = Convert.ToDateTime(scheduledata.applicant_time_zone);
-        string mainmeetingtime = meetingTime.ToString("HH:mm");
-        string mainmeetingDate = meetingTime.ToString("dd/MM/yyyy");
+        withotp.Attributes.Add("style", "display:block;");
+        lblwithotp.InnerText = "Enter your Passkey";
 
-        fiveminbeforemeeetingtimeis = meetingTime.AddMinutes(-5);
-        string meeting_date = fiveminbeforemeeetingtimeis.ToString("dd/MM/yyyy");
-        string meeting_time = fiveminbeforemeeetingtimeis.ToString("HH:mm");
+        //meetingTime = Convert.ToDateTime(scheduledata.applicant_time_zone);
+        //string mainmeetingtime = meetingTime.ToString("HH:mm");
+        //string mainmeetingDate = meetingTime.ToString("dd/MM/yyyy");
 
-        currenttime = DateTime.Now;
-        string cur_time = currenttime.ToString("HH:mm");
-        string cur_date = currenttime.ToString("dd/MM/yyyy");
+        //fiveminbeforemeeetingtimeis = meetingTime.AddMinutes(-5);
+        //string meeting_date = fiveminbeforemeeetingtimeis.ToString("dd/MM/yyyy");
+        //string meeting_time = fiveminbeforemeeetingtimeis.ToString("HH:mm");
 
-        meetingtime_30min = meetingTime.AddMinutes(30);
-        string plus30_time = meetingtime_30min.ToString("HH:mm");
+        //currenttime = DateTime.Now;
+        //string cur_time = currenttime.ToString("HH:mm");
+        //string cur_date = currenttime.ToString("dd/MM/yyyy");
+
+        //meetingtime_30min = meetingTime.AddMinutes(30);
+        //string plus30_time = meetingtime_30min.ToString("HH:mm");
 
 
-        
-        int result = DateTime.Compare(meetingTime, currenttime); // to compare dates
 
-        if (mainmeetingDate == cur_date)
-        {
-            if (Convert.ToDateTime(meeting_time) <= Convert.ToDateTime(cur_time))
-            {
-                if (Convert.ToDateTime(cur_time) <= Convert.ToDateTime(plus30_time))
-                {
-                    withotp.Attributes.Add("style", "display:block;");
-                    lblwithotp.InnerText = "Enter your Passkey";
-                }
-            }
-            else
-            {
-                toshowmeetingtime();
-            }
+        //int result = DateTime.Compare(meetingTime, currenttime); // to compare dates
 
-            // if meeting time is expires after 30 min
-            if (Convert.ToDateTime(plus30_time) < Convert.ToDateTime(cur_time))
-            {
-                meetingschedulrexpires();
-            }
-        }
-        else if (result < 0)
-        {
-            meetingschedulrexpires();
-        }
-        else
-        {
-            toshowmeetingtime();
-        }
+        //if (mainmeetingDate == cur_date)
+        //{
+        //    if (Convert.ToDateTime(meeting_time) <= Convert.ToDateTime(cur_time))
+        //    {
+        //        if (Convert.ToDateTime(cur_time) <= Convert.ToDateTime(plus30_time))
+        //        {
+        //            withotp.Attributes.Add("style", "display:block;");
+        //            lblwithotp.InnerText = "Enter your Passkey";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        toshowmeetingtime();
+        //    }
+
+        //    // if meeting time is expires after 30 min
+        //    if (Convert.ToDateTime(plus30_time) < Convert.ToDateTime(cur_time))
+        //    {
+        //        meetingschedulrexpires();
+        //    }
+        //}
+        //else if (result < 0)
+        //{
+        //    meetingschedulrexpires();
+        //}
+        //else
+        //{
+        //    toshowmeetingtime();
+        //}
 
     }
 
@@ -143,7 +146,7 @@ public partial class schedulemeeting_otp : System.Web.UI.Page
             if (mode == "new")
                 db.applicant_meeting_schedule.Add(objapplicant_meeting_schedule);
             db.SaveChanges();
-            Response.Redirect(webURL +"gte_preliminary_section.aspx",true);
+            Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
         }
         
     }
