@@ -304,3 +304,5 @@ html{
 }
 .card-header.text-center.positnrel{position: relative;}
 .table#ContentPlaceHolder1_courseGridView th{width: 0%;}
+.fontsize-radioButtonList label {font-size: large;}
+[dir=ltr] .form-control .width {width: auto;}

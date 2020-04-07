@@ -141,6 +141,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<preliminary_questionmaster> preliminary_questionmaster { get; set; }
     public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
     public virtual DbSet<primaryfieldmaster> primaryfieldmaster { get; set; }
+    public virtual DbSet<proctor_master> proctor_master { get; set; }
     public virtual DbSet<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
     public virtual DbSet<qualificationmaster> qualificationmaster { get; set; }
     public virtual DbSet<question_master> question_master { get; set; }

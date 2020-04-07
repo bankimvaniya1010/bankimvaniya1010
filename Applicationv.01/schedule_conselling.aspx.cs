@@ -35,7 +35,7 @@ public partial class schedule_conselling : System.Web.UI.Page
         objSchedule.applicant_id = data.applicantid;
         objSchedule.university_id = data.universityid;
         objSchedule.applicant_email_id = data.email;
-        objSchedule.utc_meeting_time = data.meetingtime.Date;
+        objSchedule.utc_meeting_time = data.meetingtime;
         objSchedule.applicant_time_zone = data.CustomerTime;
         objSchedule.event_type_name = data.eventtype;
         objSchedule.is_meetingtime_expires = null;

@@ -608,11 +608,16 @@
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse" id="managemeeting_schedule">
+                                    <li class="sidebar-menu-item" id="proctoremaster"> 
+                                        <a class="sidebar-menu-button" href="proctormasterListing.aspx">
+                                            <span class="sidebar-menu-text">Proctor Master</span>
+                                        </a>
+                                    </li>                                   
                                     <li class="sidebar-menu-item" id="scheduledapplicant_list"> 
                                         <a class="sidebar-menu-button" href="scheduledapplicant_list.aspx">
                                             <span class="sidebar-menu-text">Schedule Once List</span>
                                         </a>
-                                    </li>
+                                    </li>                                    
                                 </ul>
                             </li>
                            

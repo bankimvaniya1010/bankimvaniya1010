@@ -149,6 +149,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicant_id" Type="int" Nullable="false" />
           <Property Name="university_id" Type="int" Nullable="false" />
+          <Property Name="is_meetingtime_expires" Type="bit" />
           <Property Name="applicant_email_id" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="utc_meeting_time" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="applicant_time_zone" Type="datetime" Precision="0" Nullable="false" />
@@ -157,7 +158,8 @@
           <Property Name="is_otp_generated" Type="bit" />
           <Property Name="otp" Type="varchar" MaxLength="11" />
           <Property Name="is_otpverified" Type="bit" />
-          <Property Name="is_meetingtime_expires" Type="bit" />
+          <Property Name="proctor_id" Type="int" />
+          <Property Name="virtualmeetinginfo" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="applicant_scholarships">
           <Key>
@@ -1894,6 +1896,18 @@
           <Property Name="primaryfieldid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="formid" Type="int" />
           <Property Name="primaryfiledname" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="proctor_master">
+          <Key>
+            <PropertyRef Name="proctorID" />
+          </Key>
+          <Property Name="proctorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="mobile" Type="varchar" MaxLength="100" />
+          <Property Name="country" Type="int" />
+          <Property Name="city" Type="int" />
+          <Property Name="timezone" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="qualificationcountriesmapping">
           <Key>
@@ -4045,6 +4059,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="Self.preliminaryapplicantanswers" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="primaryfieldmaster" EntityType="Self.primaryfieldmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="proctor_master" EntityType="Self.proctor_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="qualificationcountriesmapping" EntityType="Self.qualificationcountriesmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="qualificationmaster" EntityType="Self.qualificationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="question_master" EntityType="Self.question_master" Schema="GTE" store:Type="Tables" />
@@ -4751,6 +4766,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
           <EntitySet Name="primaryfieldmaster" EntityType="GTEModel.primaryfieldmaster" />
+          <EntitySet Name="proctor_master" EntityType="GTEModel.proctor_master" />
           <EntitySet Name="qualificationcountriesmapping" EntityType="GTEModel.qualificationcountriesmapping" />
           <EntitySet Name="qualificationmaster" EntityType="GTEModel.qualificationmaster" />
           <EntitySet Name="question_master" EntityType="GTEModel.question_master" />
@@ -5487,6 +5503,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="applicant_id" Type="Int32" Nullable="false" />
           <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="is_meetingtime_expires" Type="Boolean" />
           <Property Name="applicant_email_id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="utc_meeting_time" Type="DateTime" Nullable="false" />
           <Property Name="applicant_time_zone" Type="DateTime" Nullable="false" />
@@ -5495,7 +5512,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="is_otp_generated" Type="Boolean" />
           <Property Name="otp" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="is_otpverified" Type="Boolean" />
-          <Property Name="is_meetingtime_expires" Type="Boolean" />
+          <Property Name="proctor_id" Type="Int32" />
+          <Property Name="virtualmeetinginfo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicant_scholarships">
           <Key>
@@ -7383,6 +7401,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="adminuniversitywisetooltips" Relationship="GTEModel.fk_adminuniversitywisetooltips_primaryfieldmaster" FromRole="primaryfieldmaster" ToRole="adminuniversitywisetooltips" />
           <NavigationProperty Name="tooltipmaster" Relationship="GTEModel.FK_tooltips_primaryfieldmaster" FromRole="primaryfieldmaster" ToRole="tooltipmaster" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_primaryfieldmaster" FromRole="primaryfieldmaster" ToRole="universitywisetooltipmaster" />
+        </EntityType>
+        <EntityType Name="proctor_master">
+          <Key>
+            <PropertyRef Name="proctorID" />
+          </Key>
+          <Property Name="proctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="Int32" />
+          <Property Name="city" Type="Int32" />
+          <Property Name="timezone" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="qualificationcountriesmapping">
           <Key>
@@ -9666,7 +9696,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicant_meeting_schedule">
             <EntityTypeMapping TypeName="GTEModel.applicant_meeting_schedule">
               <MappingFragment StoreEntitySet="applicant_meeting_schedule">
-                <ScalarProperty Name="is_meetingtime_expires" ColumnName="is_meetingtime_expires" />
+                <ScalarProperty Name="virtualmeetinginfo" ColumnName="virtualmeetinginfo" />
+                <ScalarProperty Name="proctor_id" ColumnName="proctor_id" />
                 <ScalarProperty Name="is_otpverified" ColumnName="is_otpverified" />
                 <ScalarProperty Name="otp" ColumnName="otp" />
                 <ScalarProperty Name="is_otp_generated" ColumnName="is_otp_generated" />
@@ -9675,6 +9706,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="applicant_time_zone" ColumnName="applicant_time_zone" />
                 <ScalarProperty Name="utc_meeting_time" ColumnName="utc_meeting_time" />
                 <ScalarProperty Name="applicant_email_id" ColumnName="applicant_email_id" />
+                <ScalarProperty Name="is_meetingtime_expires" ColumnName="is_meetingtime_expires" />
                 <ScalarProperty Name="university_id" ColumnName="university_id" />
                 <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -11514,6 +11546,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="primaryfiledname" ColumnName="primaryfiledname" />
                 <ScalarProperty Name="formid" ColumnName="formid" />
                 <ScalarProperty Name="primaryfieldid" ColumnName="primaryfieldid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proctor_master">
+            <EntityTypeMapping TypeName="GTEModel.proctor_master">
+              <MappingFragment StoreEntitySet="proctor_master">
+                <ScalarProperty Name="timezone" ColumnName="timezone" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="proctorID" ColumnName="proctorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
