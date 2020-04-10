@@ -18,6 +18,8 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
     Common objCom = new Common();
     int UniversityID = -1;
     protected static List<faq> allQuestions = new List<faq>();
+    int formId = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -26,10 +28,16 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         UserID = objUser.studentid;
-      
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
             var gteQuestionPart2Count = db.gte_question_master_part2.Count();
             var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
 
@@ -166,7 +174,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
 
             //displayLabel("Thank you for answering all clarification questions.");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('Thank you for answering all clarification questions.');window.location='" + Request.ApplicationPath + "gte_videoquestion.aspx';", true);
+                        "alert('Thank you for answering all clarification questions.');window.location='" + Request.ApplicationPath + "gte_videoquestion.aspx?formid=25';", true);
         }
         catch (Exception ex)
         {

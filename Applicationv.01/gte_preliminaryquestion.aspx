@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="media-body">
                                             <h4 class="card-title">
-                                                <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("question") %>'></asp:Label>?
+                                                <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("question") %>'></asp:Label>
                                             </h4>
                                         </div>
                                     </div>
@@ -54,27 +54,27 @@
 
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("answer1") %>' />
-                                        <i id="correctTick1" style="display: none" runat="server" class="fas fa-check-circle"></i>
-                                        <i id="incorrectTick1" style="display:none" runat="server" class="fas fa-times-circle"></i>
-                                        <span class="helpicon"><i id="icincorrectTick1" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>                                        
+                                        <i id="correctTick1" style="display: none" runat="server" class="fas fa-check-circle fontsize correcttickclr"></i>
+                                        <i id="incorrectTick1" style="display:none" runat="server" class="fas fa-times-circle fontsize crosstickcolor"></i>
+                                        <span class="helpicon"><i id="icincorrectTick1" runat="server" class="fa fa-info-circle fontsize infotickclr" style="display: none;"></i></span>                                        
                                     </div>
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("answer2") %>' />
-                                        <i id="correctTick2" style="display:none" runat="server" class="fas fa-check-circle"></i>
-                                        <i id="incorrectTick2" style="display:none" runat="server" class="fas fa-times-circle"></i>
-                                        <span class="helpicon"><i id="icincorrectTick2" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        <i id="correctTick2" style="display:none" runat="server" class="fas fa-check-circle fontsize correcttickclr"></i>
+                                        <i id="incorrectTick2" style="display:none" runat="server" class="fas fa-times-circle fontsize crosstickcolor"></i>
+                                        <span class="helpicon"><i id="icincorrectTick2" runat="server" class="fa fa-info-circle fontsize infotickclr" style="display: none;"></i></span>
                                     </div>
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("answer3") %>' />
-                                        <i id="correctTick3" style="display:none" runat="server" class="fas fa-check-circle"></i>
-                                        <i id="incorrectTick3" style="display:none" runat="server" class="fas fa-times-circle"></i>
-                                         <span class="helpicon"><i id="icincorrectTick3" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        <i id="correctTick3" style="display:none" runat="server" class="fas fa-check-circle fontsize correcttickclr"></i>
+                                        <i id="incorrectTick3" style="display:none" runat="server" class="fas fa-times-circle fontsize crosstickcolor"></i>
+                                         <span class="helpicon"><i id="icincorrectTick3" runat="server" class="fa fa-info-circle fontsize infotickclr" style="display: none;"></i></span>
                                     </div>
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("answer4") %>' />
-                                        <i id="correctTick4" style="display:none" runat="server" class="fas fa-check-circle"></i>
-                                        <i id="incorrectTick4" style="display:none" runat="server" class="fas fa-times-circle"></i>
-                                         <span class="helpicon"><i id="icincorrectTick4" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        <i id="correctTick4" style="display:none" runat="server" class="fas fa-check-circle fontsize correcttickclr"></i>
+                                        <i id="incorrectTick4" style="display:none" runat="server" class="fas fa-times-circle fontsize crosstickcolor"></i>
+                                         <span class="helpicon"><i id="icincorrectTick4" runat="server" class="fa fa-info-circle fontsize infotickclr" style="display: none;"></i></span>
                                     </div>
 
                                 </div>

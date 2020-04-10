@@ -42,10 +42,10 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <div class="form-group option">
+                                    <div class="form-group option fontsize-radioButtonList">
                                         <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text="True" />
                                     </div>
-                                    <div class="form-group option">
+                                    <div class="form-group option fontsize-radioButtonList">
                                         <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text="False" />
                                     </div>
                                 </div>

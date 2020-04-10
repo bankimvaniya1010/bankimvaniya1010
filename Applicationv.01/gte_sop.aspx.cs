@@ -16,6 +16,7 @@ public partial class gte_sop : System.Web.UI.Page
     string webURL = String.Empty;
     gte_applicantdetails applicantdetails;
     protected static List<faq> allQuestions = new List<faq>();
+    int formId = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -24,10 +25,17 @@ public partial class gte_sop : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         UserID = objUser.studentid;
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
 
         if (!IsPostBack)
         {
-            allQuestions = objCommon.FaqQuestionList();
+            allQuestions = objCommon.FaqQuestionList(Request.QueryString["formid"], universityID);
 
             var sop_details = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
 
@@ -146,8 +154,8 @@ public partial class gte_sop : System.Web.UI.Page
                     else
                     {
                         applicantdetails = db.gte_applicantdetails.AsNoTracking().Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
-                        int courseId = Convert.ToInt32(applicantdetails.coursename);
-                        applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == courseId).Select(x => x.coursename).FirstOrDefault();
+                        //int courseId = Convert.ToInt32(applicantdetails.coursename);
+                        //applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == courseId).Select(x => x.coursename).FirstOrDefault();
                     }
 
                     if (applicantdetails == null)
@@ -427,7 +435,7 @@ public partial class gte_sop : System.Web.UI.Page
         btnSave.Style.Add("display", "none");
         btnsubmit.Style.Add("display", "none");
         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-            "alert('SOP saved successfully. Thank You for completing GTE SOP.');window.location='" + Request.ApplicationPath + "gte_documentupload.aspx';", true);
+            "alert('SOP saved successfully. Thank You for completing GTE SOP.');window.location='" + Request.ApplicationPath + "download_reports.aspx?formid=27';", true);
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

@@ -18,14 +18,22 @@ public partial class _Default : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     protected static string universityName = string.Empty;
     Common objCom = new Common();
+    public int UniversityID = -1;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
 
         Session["Applicant"] = UserID;
+        //Session["isfullservice"] = false;
+        bool isfullservice = (bool)Session["isfullservice"];
+        if (isfullservice)
+            isfullservicethenlbl.Text = "APPLICATION CENTER";
+        else
+            isfullservicethenlbl.Text = "GTE ONLINE CENTER (GOC)";
 
         if (!IsPostBack)
         {

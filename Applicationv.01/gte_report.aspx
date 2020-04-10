@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gtereport.aspx.cs" Inherits="admin_gtereport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_report.aspx.cs" Inherits="gte_report" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
@@ -165,6 +165,18 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/bootstrap.min.css")%>" />
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/style.css")%>">
+     <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '<%=Session["universityGoogleTagID"]%>');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 <body>
     <form runat="server">
@@ -297,32 +309,32 @@
                                          </td>
                                      </tr>
                                     <tr>
-                                        <td class="width33 txt bordertop">Applicant ID : </td>
-                                        <td class="width66">
+                                        <td class="width33 txt bordertop">Applicant ID</td>
+                                        <td class="width66 bordertop">
                                             <asp:label runat="server" ID="lblapplicantid"> </asp:label>
                                         </td>
                                     </tr>
                                      <tr>
-                                        <td class="width33 txt bordertop">Nationality : </td>
-                                        <td class="width66">
+                                        <td class="width33 txt bordertop">Nationality</td>
+                                        <td class="width66 bordertop">
                                             <asp:label runat="server" ID="lblnationality"> </asp:label>
                                         </td>
                                     </tr>
                                      <tr>
-                                        <td class="width33 txt">Country of Residence : </td>
-                                        <td class="width66">
+                                        <td class="width33 txt bordertop">Country of Residence</td>
+                                        <td class="width66 bordertop">
                                             <asp:label runat="server" ID="lblcountry"> </asp:label>
                                         </td>
                                     </tr>
                                      <tr>
-                                        <td class="width33 txt">Age : </td>
-                                        <td class="width66">
+                                        <td class="width33 txt bordertop">Age</td>
+                                        <td class="width66 bordertop">
                                             <asp:label runat="server" ID="lblage"> </asp:label>
                                         </td>
                                     </tr>
                                      <tr>
-                                        <td class="width33 txt">Course applied to : </td>
-                                        <td class="width66">
+                                        <td class="width33 txt bordertop">Course applied to </td>
+                                        <td class="width66 bordertop">
                                             <asp:label runat="server" ID="lblcoursename"> </asp:label>
                                         </td>
                                     </tr>
@@ -581,9 +593,9 @@
                 </td>
             </tr>
         </table>
-    </div>
-        <asp:Button ID="btn_Save" runat="server" Text="Save Changes" CssClass="btn btn-success" Style="position: relative;margin-left: 10px;margin-bottom: 20px;" OnClick="btn_Save_Click" />
+    </div>        
     </form>
 
 </body>
 </html>
+

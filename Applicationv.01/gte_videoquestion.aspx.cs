@@ -17,6 +17,8 @@ public partial class gte_videoquestion : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     gte_videouploadmaster objgte_videouploadmaster = new gte_videouploadmaster();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int formId = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -26,13 +28,20 @@ public partial class gte_videoquestion : System.Web.UI.Page
 
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
         if (!IsPostBack)
         {
             populateVideo();
             var applicantdetails = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
             if (applicantdetails != null)
             {
-                allQuestions = objCom.FaqQuestionList();
+                allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
                 if (applicantdetails.postalcity != null)
                     city = applicantdetails.postalcity;
                 if (applicantdetails.universityid.HasValue)

@@ -19,30 +19,35 @@
              <div class="card" runat="server" id="sop_section">
               <div class="card-body list-group-fit">
                 <div class="list-group list-group-fit">
+                    <h5 class="ttl text-left" style="font-size: 20px;font-weight: 500;">Genuine Student Assessment:</h5>
                     <div runat="server">
                         <asp:TextBox ID="txtPara1" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="list-group list-group-fit">
+                    <h5 class="ttl text-left" style="font-size: 20px;font-weight: 500;">Situation in Home Country:</h5>
                     <div runat="server">
                         <asp:TextBox ID="txtPara2" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="list-group list-group-fit">
+                    <h5 class="ttl text-left" style="font-size: 20px;font-weight: 500;">Potential Situation in Australia & Value of the course: </h5>
                     <div runat="server">
                         <asp:TextBox ID="txtPara3" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>                    
                     </div>            
                 </div>
 
                 <div class="list-group list-group-fit">
+                    <h5 class="ttl text-left" style="font-size: 20px;font-weight: 500;">Immigration History & Links to Australia: </h5>
                     <div runat="server">
                         <asp:TextBox ID="txtPara4" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="list-group list-group-fit">
+                    <h5 class="ttl text-left" style="font-size: 20px;font-weight: 500;">Character Assessment & Declarations: </h5>
                     <div runat="server">
                         <asp:TextBox ID="txtPara5" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                     </div>

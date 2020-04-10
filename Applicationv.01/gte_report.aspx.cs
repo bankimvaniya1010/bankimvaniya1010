@@ -8,7 +8,7 @@ using System.Web.UI.DataVisualization.Charting;
 using System.Data;
 using System.Drawing;
 
-public partial class admin_gtereport : System.Web.UI.Page
+public partial class gte_report : System.Web.UI.Page
 {
     protected string _institutionID = "";
     protected string _studentName = "Test Report";
@@ -30,7 +30,7 @@ public partial class admin_gtereport : System.Web.UI.Page
     protected string _paragraphComment5 = "";
     protected string _studentRecommended = "";
     protected string _recommendationRemark = "";
-    protected string _notesDisclaimer = "";    
+    protected string _notesDisclaimer = "";
 
     public string logourl = string.Empty;
     public string studentphoto = string.Empty;
@@ -40,8 +40,8 @@ public partial class admin_gtereport : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-
     string webURL = String.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -56,16 +56,16 @@ public partial class admin_gtereport : System.Web.UI.Page
             {
                 universityID = Utility.GetUniversityId();
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                ViewState["downloadPdf"] = downloadPdf;               
-                
-                var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo , x.notes_disclaimer,x.university_name,x.full_service }).FirstOrDefault();
+                ViewState["downloadPdf"] = downloadPdf;
+
+                var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo, x.notes_disclaimer, x.university_name, x.full_service }).FirstOrDefault();
                 logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
                 _universityName = universityDetails.university_name;
 
                 lblapplicantid.Text = Convert.ToString(ApplicantID);
                 if (universityDetails.full_service)
                 {
-                    var applicantdoc = db.applicantdocumentmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && x.documentname == "Profile Photo for Application Centre").Select(x=>x.filename).FirstOrDefault();
+                    var applicantdoc = db.applicantdocumentmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && x.documentname == "Profile Photo").Select(x => x.filename).FirstOrDefault();
                     if (applicantdoc != null)
                         studentphoto = webURL + "/Docs/" + ApplicantID + "/Documents/" + applicantdoc;
                     //other details
@@ -80,7 +80,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                         Age objAge = new Age(Dob, DateTime.Now);
                         lblage.Text = Convert.ToString(objAge.Years);
                     }
-                    if(coursedetails!= null && coursedetails.course != null)
+                    if (coursedetails != null && coursedetails.course != null)
                         lblcoursename.Text = objCom.GetCourseName(Convert.ToInt32(coursedetails.course));
                 }
                 else
@@ -88,7 +88,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                     var gte_applicantdetails = db.gte_applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).FirstOrDefault();
                     if (gte_applicantdetails != null && gte_applicantdetails.profilepicturepath != "")
                         studentphoto = webURL + "/Docs/GTEProfileDetail/" + gte_applicantdetails.profilepicturepath;
-                    var gtestudentdetails = db.gte_applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).Select(x => new { x.nationality, x.residencecountry, x.dateofbirth,x.coursename }).FirstOrDefault();
+                    var gtestudentdetails = db.gte_applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).Select(x => new { x.nationality, x.residencecountry, x.dateofbirth, x.coursename }).FirstOrDefault();
                     if (gtestudentdetails != null)
                     {
                         lblnationality.Text = objCom.GetCountryDiscription(Convert.ToInt32(gtestudentdetails.nationality));
@@ -101,7 +101,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                 }
                 var Personal = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
                 _studentName = Personal.firstname + " " + Personal.lastname;
-                               
+
                 if (!IsPostBack)
                 {
                     DateTime currentDate = DateTime.Now;
@@ -374,40 +374,7 @@ public partial class admin_gtereport : System.Web.UI.Page
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
-
-    protected void btn_Save_Click(object sender, EventArgs e)
-    {
-        var mode = "new";
-        int student_sop_id = Convert.ToInt32(ViewState["student_sop_id"]);
-        var gteAdminCommentObj = db.gte_report_admin_comment.Where(x => x.applicant_id == ApplicantID && x.university_id == universityID && x.student_sop_id == student_sop_id).FirstOrDefault();
-        gte_report_admin_comment obj = new gte_report_admin_comment();
-        if (gteAdminCommentObj != null)
-        {
-            mode = "update";
-            obj = gteAdminCommentObj;
-        }
-
-        obj.applicant_id = ApplicantID;
-        obj.university_id = universityID;
-        obj.student_sop_id = Convert.ToInt32(ViewState["student_sop_id"]);
-        obj.para1_comments = para1Comments.Value;
-        obj.para2_comments = para2Comments.Value;
-        obj.para3_comments = para3Comments.Value;
-        obj.para4_comments = para4Comments.Value;
-        obj.para5_comments = para5Comments.Value;
-        obj.student_video_comments = studentVideoReview.Value;
-        obj.student_document_comments = studentDocumentsValidations.Value;
-        obj.student_recommended = studentRecommended.Value;
-        obj.final_recommendation = recommendationRemark.Value;
-
-        if (mode == "new")
-            db.gte_report_admin_comment.Add(obj);
-
-        db.SaveChanges();
-
-        Response.Redirect(webURL + "admin/applicantlist.aspx", true);
-    }
-
+   
     private void hidePDFFields()
     {
         studentRecommendedPDF.Style.Add("display", "none");
@@ -432,7 +399,6 @@ public partial class admin_gtereport : System.Web.UI.Page
         para4Comments.Style.Add("display", "none");
         para5Comments.Style.Add("display", "none");
         studentVideoReview.Style.Add("display", "none");
-        studentDocumentsValidations.Style.Add("display", "none");
-        btn_Save.Style.Add("display", "none");
+        studentDocumentsValidations.Style.Add("display", "none");        
     }
 }

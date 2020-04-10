@@ -12,7 +12,7 @@ public partial class schedule_conselling : System.Web.UI.Page
     int UserID = 0;
     Common objCom = new Common();
     protected static List<faq> allfaqQuestion = new List<faq>();
-    string webURL = String.Empty;
+    string webURL = String.Empty;    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,7 +27,7 @@ public partial class schedule_conselling : System.Web.UI.Page
     [WebMethod]
     [ScriptMethod(UseHttpGet = false)]
     public static void AddBookingData (string uData)
-    {
+    {        
         GTEEntities db1 = new GTEEntities();
         bookingdata data = Newtonsoft.Json.JsonConvert.DeserializeObject<bookingdata>(uData);//to DeserializeObject
         
@@ -35,8 +35,15 @@ public partial class schedule_conselling : System.Web.UI.Page
         objSchedule.applicant_id = data.applicantid;
         objSchedule.university_id = data.universityid;
         objSchedule.applicant_email_id = data.email;
-        objSchedule.utc_meeting_time = data.meetingtime.Date;
+        objSchedule.utc_meeting_time = data.meetingtime;
         objSchedule.applicant_time_zone = data.CustomerTime;
+        objSchedule.event_type_name = data.eventtype;
+        objSchedule.is_meetingtime_expires = null;
+        // also generate otp
+        Random random = new Random();
+        int otp = random.Next(100000, 999999);
+        objSchedule.otp = Convert.ToString(otp);
+        objSchedule.is_otp_generated = true;
         db1.applicant_meeting_schedule.Add(objSchedule);
         db1.SaveChanges();
     }
@@ -47,10 +54,11 @@ public partial class schedule_conselling : System.Web.UI.Page
         public int applicantid;
         public string name;
         public string email;
-        public string eventype;
+        public string eventtype;
         public string message;
         public DateTime meetingtime;
         public DateTime CustomerTime;
+        public bool is_meetingtime_expires;
     }
 
 }

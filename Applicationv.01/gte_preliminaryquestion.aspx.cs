@@ -23,6 +23,10 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     int UniversityID = -1;
     int section1Question;
     int section2Question;
+    string username = string.Empty;
+    string useremail = string.Empty;
+    int formId = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -30,6 +34,13 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         if (isGteDeclarationDoneByApplicant)
         {
@@ -37,7 +48,22 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                     "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
             return;
         }
-
+        var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+        if (gteProgressBar != null)
+        {
+            if (gteProgressBar.is_gte_preliminarysection1_completed != null && gteProgressBar.is_gte_preliminarysection1_completed.Value != true)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                   "alert('Please complete Test your knowledge first.');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+                return;
+            }
+        }
+        else
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                   "alert('Please complete Test your knowledge first.');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+            return;
+        }
         section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
         section2Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection2Question"]);
         if (!IsPostBack)
@@ -63,7 +89,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 }
             }
             GetQuestion();
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
             btnGoToDeclaration.Enabled = false;
         }
     }
@@ -358,6 +384,6 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
 
     protected void btnGoToDeclaration_Click(object sender, EventArgs e)
     {
-        Response.Redirect(webURL + "gte_declaration.aspx", true);
+        Response.Redirect(webURL + "gte_declaration.aspx?formid=20", true);
     }
 }

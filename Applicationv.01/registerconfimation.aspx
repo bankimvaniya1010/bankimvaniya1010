@@ -58,17 +58,17 @@
                     </div>
                     <div class="card-body">
                         <p>
-                            Thank you for registering with <%=universityName %> – Application Centre.                        
+                            Thank you for registering with <%=universityName %> – <%=fullservicelbl %>.                        
                         </p>
                         <p>Your Username is:<b> <%=email %> </b></p>                        
                         <p>
-                            An email has been sent to <%=email %> along with a one-time password (OTP). Please use your given username and OTP to login to the Application Centre for the first time.On your first login, you will be asked to set a new password. Be sure to set a password that you can easily remember. In case you forget your password, you could always click on "Forget Password?" on the Student Login page and set a new one.
+                            An email has been sent to <%=email %> along with a one-time password (OTP). Please use your given username and OTP to login to the <%=fullservicelbl %> for the first time.On your first login, you will be asked to set a new password. Be sure to set a password that you can easily remember. In case you forget your password, you could always click on "Forget Password?" on the Student Login page and set a new one.
                         </p>
                         <p>
                             If an email from us is not in your Inbox, please check your 'Junk Mail' or 'Spam Folder' as it may have been redirected by your email service provider.
                         </p>                        
                         <p>
-                            To login to <%=universityName %> – Application Centre, click <a href="login.aspx">here</a>.
+                            To login to <%=universityName %> – <%=fullservicelbl %>, click <a href="login.aspx">here</a>.
                         </p>                       
 
                     </div>

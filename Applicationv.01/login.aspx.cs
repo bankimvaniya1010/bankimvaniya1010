@@ -15,6 +15,8 @@ public partial class login : System.Web.UI.Page
     int universityID;
     public string logourl = string.Empty;
     public string universityGTMCode = string.Empty;
+    public string isfullservicethenlbl = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -31,6 +33,13 @@ public partial class login : System.Web.UI.Page
         var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo, x.university_gtm_code}).FirstOrDefault();
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
         universityGTMCode = universityDetails.university_gtm_code;
+
+        bool isfullservice = (bool)Session["isfullservice"];
+        if (isfullservice)
+            isfullservicethenlbl = " APPLICATION CENTER";
+        else
+            isfullservicethenlbl = " GTE Online Center (GOC)";
+
     }
 
     protected void btn_login_Click(object sender, EventArgs e)

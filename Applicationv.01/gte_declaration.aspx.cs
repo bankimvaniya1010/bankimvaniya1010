@@ -19,6 +19,7 @@ public partial class gte_declaration : System.Web.UI.Page
     gte_progressbar gteProgressBar = new gte_progressbar();
     protected static string universityName = string.Empty;
     protected List<gte_declaration_master> allStatements = new List<gte_declaration_master>();
+    int formId = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,6 +28,13 @@ public partial class gte_declaration : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         if (isGteDeclarationDoneByApplicant)
         {
@@ -36,10 +44,11 @@ public partial class gte_declaration : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-            allQuestions= objCom.FaqQuestionList();
+            allQuestions= objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
             gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
             if (gteProgressBar != null)
-                questionsCompleted = gteProgressBar.is_gte_preliminarysection1_completed.Value && gteProgressBar.is_gte_preliminarysection2_completed.Value;
+                if(gteProgressBar.is_gte_preliminarysection1_completed != null && gteProgressBar.is_gte_preliminarysection2_completed != null)
+                    questionsCompleted = gteProgressBar.is_gte_preliminarysection1_completed.Value && gteProgressBar.is_gte_preliminarysection2_completed.Value;
 
             allStatements = db.gte_declaration_master.Where(x => x.universityId == UniversityID).ToList();            
             foreach (var item in allStatements)
@@ -86,14 +95,14 @@ public partial class gte_declaration : System.Web.UI.Page
                 Session["DeclarationCompleted"] = true && declarationCompleted;
                 var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
                 if (isProfileDetailsCompletedByApplicant)
-                    Response.Redirect(webURL + "gte_questions1.aspx", true);
+                    Response.Redirect(webURL + "gte_questions1.aspx?formid=22", true);
                 else
                     Response.Redirect(webURL + "default.aspx", true);
             }
             else
             {
                 Session["DeclarationCompleted"] = true;
-                Response.Redirect(webURL + "gte_studentdetails.aspx", true);
+                Response.Redirect(webURL + "gte_studentdetails.aspx?formid=21", true);
             }
         }
         catch (Exception ex)

@@ -21,19 +21,46 @@ public partial class gte_preliminary_section : System.Web.UI.Page
     string webURL = string.Empty;
     int UniversityID = -1;
     int section1Question;
-
+    string username = string.Empty;
+    string useremail = string.Empty;
+    int formId = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        UserID = Convert.ToInt32(Session["UserID"].ToString());        
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         if (isGteDeclarationDoneByApplicant)
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                     "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+            return;
+        }
+
+        //schedule meeting otp verified check code
+        var scheduledate = db.applicant_meeting_schedule.Where(x => x.applicant_id == UserID && x.university_id == UniversityID && x.is_meetingtime_expires == null).FirstOrDefault();
+
+        if (scheduledate != null)
+        {
+            if (scheduledate.is_otpverified == null)
+                Response.Redirect(webURL + "schedulemeeting_otp.aspx?meetingtime=" + scheduledate.applicant_time_zone + "", true);
+        }
+        else
+        {
+            students loggedInApplicant = (students)Session["LoginInfo"];
+            username = loggedInApplicant.name;
+            useremail = loggedInApplicant.email;
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Please schedule counselling first.');window.location='" + Request.ApplicationPath + "schedule_conselling.aspx?name=" + username + "&email=" + useremail + "';", true);
             return;
         }
 
@@ -49,7 +76,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
             }
 
             GetQuestion();
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
             btnGoToNextPage.Enabled = false;
         }
     }
@@ -207,6 +234,6 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         
     protected void btnGoToNextPage_Click(object sender, EventArgs e)
     {
-        Response.Redirect(webURL + "gte_preliminaryquestion.aspx", true);
+        Response.Redirect(webURL + "gte_preliminaryquestion.aspx?formid=19", true);
     }
 }

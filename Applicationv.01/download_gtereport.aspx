@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="download_reports.aspx.cs" Inherits="download_reports" MasterPageFile="~/student.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="download_gtereport.aspx.cs" Inherits="download_gtereport" MasterPageFile="~/student.master"%>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -6,11 +6,11 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">GTE STATEMENT OF PURPOSE (SOP)
+            <li class="breadcrumb-item active">GTE REPORT
 
             </li>
         </ol>
-        <h1 class="h2">GTE STATEMENT OF PURPOSE (SOP)
+        <h1 class="h2">GTE REPORT
 
         </h1>
 
@@ -23,12 +23,12 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <div class="list-group-item" runat="server" style="display:none" id="sopdoc">
+                            <div class="list-group-item" runat="server" style="display:none" id="gtedoc">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" class="col-md-7 col-form-label form-label">Download your GTE Statement of Purpose (SOP)</label>
-                                        <div class="col-md-5">
-                                            <asp:Button ID="Button1" runat="server" Text="Download" CssClass="btn btn-success" OnClick="downloadsop_Click" />                                            
+                                        <label runat="server" class="col-md-6 col-form-label form-label">Download Your GTE Report</label>
+                                        <div class="col-md-6">
+                                            <asp:Button ID="btngte" runat="server" Text="Download" CssClass="btn btn-success" OnClick="btngte_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#gte_downlload_your_sop').addClass('active');
+            $('#download_gtereport').addClass('active');
         });
     </script>
 </asp:Content>

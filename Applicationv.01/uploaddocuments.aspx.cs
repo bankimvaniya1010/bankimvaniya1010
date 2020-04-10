@@ -41,7 +41,7 @@ public partial class uploaddocuments : System.Web.UI.Page
             appLangDetails = db.applicantlanguagecompetency.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
             appEmpDetails = db.applicantemployerdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
             appHigherDetails = db.applicanthighereducation.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
-            documentList.Add("Profile Photo for Application Centre");
+            documentList.Add("Profile Photo for Application Centre");//if this text changes then also change in admin gte report 
             documentList.Add("Recent Passport-size Photograph");
             documentList.Add("National ID Card");
             if ((appDetails.Count > 0) && (appDetails[0].alternativeIdentityproofId != null && appDetails[0].alternativeIdentityproofId != 0))

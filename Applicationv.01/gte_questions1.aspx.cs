@@ -15,7 +15,7 @@ public partial class gte_questions1 : System.Web.UI.Page
     string webURL = String.Empty;
     int UniversityID = -1;
     //public static int totalResponseTime = 0;
-
+    int formId = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -23,10 +23,17 @@ public partial class gte_questions1 : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
         if (Session["totalResponseTime"] == null)
             Session["totalResponseTime"] = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID)
                                              .Select(x => x.applicant_response_time).DefaultIfEmpty(0).Sum();
-        allfaqQuestion = objCommon.FaqQuestionList();
+        allfaqQuestion = objCommon.FaqQuestionList(Request.QueryString["formid"], UniversityID);
         if (!IsPostBack)
         {
             
@@ -230,7 +237,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                 lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
                 //Session.Remove("totalResponseTime");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('Thank you for answering all GTE questions in this part.');window.location='" + Request.ApplicationPath + "gte_questions2.aspx';", true);
+                        "alert('Thank you for answering all GTE questions in this part.');window.location='" + Request.ApplicationPath + "gte_questions2.aspx?formid=23';", true);
             }
         }
         catch (Exception ex)
