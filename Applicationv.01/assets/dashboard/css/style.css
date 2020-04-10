@@ -16,7 +16,7 @@ header{padding: 10px 0;}
 .recommndtn textarea {width: 100%; min-height: 50px; resize: none; border: 0; padding: 5px 10px; background-color: transparent;}
 .recommndtn textarea:focus {outline: none;}
 .recommndtn.remrk .txt{min-height: 163px;}
-.recommndtn.remrk textarea {width: 100%; min-height: 163px; resize: none; border: 0; padding: 5px 10px; background-color: transparent;}
+.recommndtn.remrk textarea {width: 100%; min-height: 100px; resize: none; border: 0; padding: 5px 10px; background-color: transparent;}
 .recommndtn.remrk textarea:focus {outline: none;}
 .recommndtn + .recommndtn{margin-top: 5px;}
 .student-dtls .hd{margin: 0 0 10px;}
@@ -215,3 +215,7 @@ img.bdy-check-icon {
 }
 .sop-descptn-wrp .ttl{color: #1b1919;padding: 16px 0px;font-size: 20px;font-weight: 800;}
 .td.width33.txt.bordertop {border-top: none;}
+.recommndtn.remrk .txt {
+    min-height: 100px;
+}
+.studeinfotable {border: 1px solid #dee2e6;margin-top: 45px;}

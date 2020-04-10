@@ -15,6 +15,7 @@ public partial class gte_questions2 : System.Web.UI.Page
     protected static List<faq> allfaqQuestion = new List<faq>();
     string webURL = String.Empty;
     int UniversityID = -1;
+    int formId = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,14 +23,21 @@ public partial class gte_questions2 : System.Web.UI.Page
         UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-        UserID = Convert.ToInt32(Session["UserID"].ToString());        
+        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
         if (Session["totalResponseTimeQue2"] == null)
             Session["totalResponseTimeQue2"] = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID)
                                              .Select(x => x.response_time).DefaultIfEmpty(0).Max();
 
         if (!IsPostBack)
         {
-            allfaqQuestion = objCommon.FaqQuestionList();
+            allfaqQuestion = objCommon.FaqQuestionList(Request.QueryString["formid"], UniversityID);
             var answeredQuestion = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
             var allQuestions = db.gte_question_master_part2.ToList();
             ViewState["QuestionsCount"] = allQuestions.Count;
@@ -210,7 +218,7 @@ public partial class gte_questions2 : System.Web.UI.Page
                     lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('Thank you for answering all GTE questions in this part.');window.location='" + Request.ApplicationPath + "gte_clarificationquestions.aspx';", true);
+                        "alert('Thank you for answering all GTE questions in this part.');window.location='" + Request.ApplicationPath + "gte_clarificationquestions.aspx?formid=24';", true);
 
             }
         }

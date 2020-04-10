@@ -9,6 +9,7 @@
             <li class="breadcrumb-item active">GTE Questions</li>
         </ol>
         <h1 class="h2">GTE-QUESTIONS - PART 1</h1>
+        <h6>Please select the most appropriate option as it relates to you or your circumstances.</h6>
 
     </div>
     <div class="page ">

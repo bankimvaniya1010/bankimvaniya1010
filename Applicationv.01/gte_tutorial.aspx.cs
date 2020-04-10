@@ -19,6 +19,7 @@ public partial class gte_tutorial : System.Web.UI.Page
     string webURL = String.Empty;
     int UniversityID = -1;
     bool? istutorialcomplete;
+    int formId = 0;
     gte_progressbar gteProgressBar = new gte_progressbar();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,14 +28,20 @@ public partial class gte_tutorial : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-       
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
         istutorialcomplete = db.gte_progressbar.Where(x => x.applicantid == UserID).Select(x => x.is_gte_tutorial_completed).FirstOrDefault();
         if (istutorialcomplete != null && istutorialcomplete == true)
             declaration.Attributes.Add("style", "display:none");
 
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
             allDocuments = db.gte_tutorialmaster.Where(x => x.status == 1).ToList();
 
             videoCount = allDocuments.Where(c => c.type == "video").ToList().Count;
@@ -74,7 +81,7 @@ public partial class gte_tutorial : System.Web.UI.Page
             if(mode== "new")
                 db.gte_progressbar.Add(gteProgressBar);
             db.SaveChanges();
-            Response.Redirect(webURL + "gte_preliminary_section.aspx", true);
+            Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
         }
         
         catch (Exception ex)

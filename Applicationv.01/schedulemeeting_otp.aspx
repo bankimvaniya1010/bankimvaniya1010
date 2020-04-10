@@ -9,7 +9,8 @@
             <li class="breadcrumb-item active">
 
             </li>
-        </ol>       
+        </ol>
+        <h3>IMPORTANT INSTRUCTIONS</h3>
     </div>
     <div class="page ">
         <div class="container page__container">
@@ -17,37 +18,67 @@
                 <div class="col-md-8">
 
                     <div class="card">
-                        <div class="card-body list-group list-group-fit">
+                        <div class="card-body">
 
+                            <div class="list-group-item border" id="meetingrexpiresDiv" runat="server" style="display:none">
+                                <label runat="server">
+                                    No Show.Meeting time is expired please reshedule counselling.
+                                </label>
+                            </div>
 
-                            <div class="list-group-item" id="withoutotp" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-linked">
+                            <div class="list-group-item border" id="para1" runat="server">
+                                <label id="lblwithoutotp" runat="server" for="withoutotp">Your Test Your Knowledge Proctor based Session is scheduled for </label>
+                                <br/>
+                                <ul typeof="disc">
+                                    <li>
+                                        <label id="lblutctime" runat="server" for="withoutotp"></label>
+                                    </li>
+                                    <li>
+                                        <label id="lblcusttime" runat="server" for="withoutotp"></label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="list-group-item border" id="para2" runat="server" style="display:none">
+                                <div class="form-group m-0" role="group">
                                     <div class="form-row">
-                                        <label id="lblwithoutotp" runat="server" for="withoutotp" class="col-md-12 col-form-label form-label"></label>
-                                        <div class="col-md-6">                                           
+                                        <label id="lblwithotp" runat="server" for="employer" >Enter Passkey :</label>&nbsp;
+                                        <div class="col-md-3">
+                                            <input id="txtpassskey" runat="server" type="text" class="form-control" placeholder="Enter the Passkey">                                              
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item" id="withotp" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-facebook">
-                                    <div class="form-row">
-                                        <label id="lblwithotp" runat="server" for="employer" class="col-md-06 col-form-label form-label"></label>
-                                        <div class="col-md-6">
-                                            <input id="txtpassskey" runat="server" type="text" class="form-control" placeholder="Enter the Passkey">
-                                            
+                                        <div class="col-md-3" style="margin-top: -1%;">
+                                             <asp:Button ID="btnsubmit" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnsubmit_Click" OnClientClick="return validateForm();"/>     
                                         </div>
+                                        <br/>
+                                        <label> This would be provided to you by your assigned Proctor during the session, post verification of identity.</label>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="list-group-item" id="otpbtn">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                    <div class="form-row justify-content-between">
-                                        <asp:Button ID="btnsubmit" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnsubmit_Click"/>                                        
-                                    </div>
-                                </div>
+
+                            <div class="list-group-item border" id="para3" runat="server" style="display:none">                                
+                                <label id="Label1" runat="server" for="employer">
+                                    Please ensure you are logged in to the GTE Online Center (GOC), at least 10 minutes before the scheduled time and are fully prepared for the session based on instructions provided via email and also available in the <a href="gte_tutorial.aspx?formid=17" target="_blank"> Tutorial section</a>.
+                                </label>
                             </div>
+
+                            <div class="list-group-item border" id="para4" runat="server" style="display:none">
+                                <label id="Label2" runat="server" for="employer">
+                                    Post logging in to the GTE Online Center (GOC), at least 5 minutes before the scheduled time please use the Virtual Meeting information provided in the GTE Assessment confirmation email and also provided below for ready reference to simultaneously join the Virtual Meeting.
+                                </label>
+                            </div>
+
+                            <div class="list-group-item border" id="para5" runat="server" style="display:none">
+                                <label id="Label3" runat="server" for="employer">                                            
+                                    Join the Virtual Meeting using the link <a href='<%=virtualmeetinglink %>' target="_blank"><%= virtualmeetinglink %> </a>.Please ensure you have enabled your webcam, mic and speakers (or headphone), have a stable internet connection with speeds above 2Mbps, and are using Google Chrome as your web browser.
+                                </label>
+                            </div>
+
+                            <div class="list-group-item border" id="para6" runat="server" style="display:none">
+                                <label id="Label4" runat="server" for="employer">
+                                    Your Proctor for the session will be <%=proctorname %>. You may contact your Proctor via <u><%=proctoremail %> </u> or <u><%=proctormobile %> </u>for any assistance or clarifications.
+                                </label>
+                            </div>
+
 
                         </div>
                     </div>
@@ -90,12 +121,23 @@
         </div>
     </div>
     <script>
+         function validateForm() {
 
+            var flag = false;
+            if ($("#<%=txtpassskey.ClientID%>").val() == "")
+                 alert("Please enter valid passkey");
+            else
+                flag = true;            
+            return flag;
+
+        }
         $(document).ready(function () {
+            <%--$("#<%=btnsubmit.ClientID%>").attr("disabled", "disabled");--%>
+
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            //$('#gtepreliminarysection1').addClass('active');
+            $('#gtepreliminarysection1').addClass('active');
         });
     </script>
 </asp:Content>

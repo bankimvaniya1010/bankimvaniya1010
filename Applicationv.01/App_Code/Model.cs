@@ -181,6 +181,7 @@ public partial class applicant_meeting_schedule
     public int id { get; set; }
     public int applicant_id { get; set; }
     public int university_id { get; set; }
+    public Nullable<bool> is_meetingtime_expires { get; set; }
     public string applicant_email_id { get; set; }
     public System.DateTime utc_meeting_time { get; set; }
     public System.DateTime applicant_time_zone { get; set; }
@@ -189,7 +190,8 @@ public partial class applicant_meeting_schedule
     public Nullable<bool> is_otp_generated { get; set; }
     public string otp { get; set; }
     public Nullable<bool> is_otpverified { get; set; }
-    public Nullable<bool> is_meetingtime_expires { get; set; }
+    public Nullable<int> proctor_id { get; set; }
+    public string virtualmeetinginfo { get; set; }
 }
 
 public partial class applicant_scholarships
@@ -2281,6 +2283,17 @@ public partial class primaryfieldmaster
     public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
+}
+
+public partial class proctor_master
+{
+    public int proctorID { get; set; }
+    public string name { get; set; }
+    public string email { get; set; }
+    public string mobile { get; set; }
+    public Nullable<int> country { get; set; }
+    public Nullable<int> city { get; set; }
+    public string timezone { get; set; }
 }
 
 public partial class qualificationcountriesmapping

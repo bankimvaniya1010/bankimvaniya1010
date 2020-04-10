@@ -349,7 +349,7 @@
                                             <asp:TextBox ID="txtAgentname" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icNewAgent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             &nbsp;
                                               <div class="col-md-6">
-                                                  <asp:Button ID="btnNewAgent" runat="server" Text="Ask to Register" CssClass="btn btn-success" OnClick="btnNewAgent_Click" />
+                                                  <asp:Button ID="btnNewAgent" runat="server" Text="Ask to Register" CssClass="btn btn-success" OnClientClick="return registeragentBysentEmail();"/>
                                               </div>
                                         </div>
                                     </div>
@@ -414,6 +414,29 @@
     </div>
 
     <script>
+        function registeragentBysentEmail() {
+            if ($("#<%=txtAgentname.ClientID%>").val() != "") {
+                var email = $("#<%=txtAgentname.ClientID%>").val();
+                $.ajax({
+                    type: "POST",
+                    url: "gte_studentdetails.aspx/sendemailtoAgent",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'email': '" + email + "'}",
+                    success: function (result) {
+                        if (result) {                            
+                            alert("Request send to mention email id of agent");
+                        }
+                    }
+                });
+                return false;
+
+            }
+            else {
+                alert("Please enter email id of agent to ask them to register");
+                return false;
+            }
+        }
         $('#ContentPlaceHolder1_txtdob').flatpickr({       
             dateFormat: 'Y-m-d', defaultDate: "", altInput: true, altFormat: 'd/m/Y'
         });

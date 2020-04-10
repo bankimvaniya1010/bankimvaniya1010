@@ -92,7 +92,7 @@ public partial class gte_certificate : System.Web.UI.Page
 
         if(!(applicantID == 0 || universityID == 0))
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                     "alert('Invalid Student Details');window.location='" + Request.ApplicationPath + "/default.aspx';", true);
+                     "alert('Invalid Student Details');window.location='" + Request.ApplicationPath + "/gte_declaration.aspx?formid=20';", true);
 
         var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
         htmlToPdf.Orientation = PageOrientation.Portrait;

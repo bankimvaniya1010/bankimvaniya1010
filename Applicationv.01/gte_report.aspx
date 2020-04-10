@@ -302,7 +302,7 @@
                                 </div>
                             </td>
                             <td class="width25">
-                                 <table cellpadding="0" cellspacing="0">
+                                 <table cellpadding="0" cellspacing="0" class="studeinfotable">
                                      <tr>
                                          <td colspan="2">
                                              <div class="text-center hd text-uppercase font-bold">Student Information</div>
@@ -350,7 +350,7 @@
                         <tr>
                             <td class="width25">
                                 <div class="rating">
-                                    <div class="ttl text-center">Genuine Student</div>
+                                    <div class="ttl text-center">Previous Study & Gaps</div>
                                     <asp:Chart ID="Genuine" runat="server"
                                         BorderlineWidth="0" Height="240px"
                                         Width="280px">
@@ -492,7 +492,7 @@
                         <tr>
                             <td>
                                 <div class="descptn-wrp">
-                                    <div class="ttl text-left">Genuine Student Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
+                                    <div class="ttl text-left">Previous Study & Gaps Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
                                     <div class="txt text-left">
                                         <%=_genuineStudentAssesment %>
                                     </div>

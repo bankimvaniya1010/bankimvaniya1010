@@ -150,13 +150,13 @@
                                       <li class="sidebar-menu-item" id="schedulecounselling">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#counselling">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/message board.png" /></i>
-                                           Schedule Counselling
+                                           Schedule Assessment
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="counselling">
                                             <li class="sidebar-menu-item" id="schedule">
                                                 <a class="sidebar-menu-button" href="schedule_conselling.aspx?name=<%=username %>&email=<%=useremail%>">
-                                                    <span class="sidebar-menu-text">Schedule</span>
+                                                    <span class="sidebar-menu-text">Schedule Now</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -384,12 +384,12 @@
                                             </li>
                                             <li class="sidebar-menu-item" id="gte_downlload_your_sop">
                                                 <a class="sidebar-menu-button" href="download_reports.aspx?formid=27">
-                                                    <span class="sidebar-menu-text">Download SOP</span>
+                                                    <span class="sidebar-menu-text">GTE Statement of Purpose (SOP)</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="download_gtereport">
                                                 <a class="sidebar-menu-button" href="download_gtereport.aspx?formid=28">
-                                                    <span class="sidebar-menu-text">Download GET Report</span>
+                                                    <span class="sidebar-menu-text">Download GTE Report</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="gtedocmentupload">
@@ -700,7 +700,7 @@
                     $("#gtevideoquestion").hide();
                     $("#gtestudent_sop").hide();
                     $("#gte_downlload_your_sop").hide();
-                    $("#download_gtereport").show();
+                    $("#download_gtereport").hide();
                     $("#gtedocmentupload").hide();
                 }
 

@@ -25,6 +25,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     int section2Question;
     string username = string.Empty;
     string useremail = string.Empty;
+    int formId = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,6 +34,13 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         if (isGteDeclarationDoneByApplicant)
         {
@@ -81,7 +89,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 }
             }
             GetQuestion();
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
             btnGoToDeclaration.Enabled = false;
         }
     }
@@ -376,6 +384,6 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
 
     protected void btnGoToDeclaration_Click(object sender, EventArgs e)
     {
-        Response.Redirect(webURL + "gte_declaration.aspx", true);
+        Response.Redirect(webURL + "gte_declaration.aspx?formid=20", true);
     }
 }
