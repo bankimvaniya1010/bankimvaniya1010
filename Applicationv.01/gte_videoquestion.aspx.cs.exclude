@@ -28,12 +28,12 @@ public partial class gte_videoquestion : System.Web.UI.Page
 
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
-        {
-            Response.Redirect(webURL + "default.aspx", true);
-        }
-        else
-            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        //if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        //{
+        //    Response.Redirect(webURL + "default.aspx", true);
+        //}
+        //else
+        //    formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
 
         if (!IsPostBack)
         {
