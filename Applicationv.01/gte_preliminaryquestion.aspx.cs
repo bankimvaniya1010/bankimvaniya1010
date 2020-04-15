@@ -54,14 +54,14 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
             if (gteProgressBar.is_gte_preliminarysection1_completed != null && gteProgressBar.is_gte_preliminarysection1_completed.Value != true)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                   "alert('Please complete Test your knowledge first.');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+                   "alert('Please complete Gte Certificate Test - Stage 1.');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx?formid=18';", true);
                 return;
             }
         }
         else
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                   "alert('Please complete Test your knowledge first.');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+                   "alert('Please complete Certificate Test first.');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx?formid=18';", true);
             return;
         }
         section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
@@ -77,14 +77,14 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 if (!isGtePreliminarySection1Done)
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                            "alert('GTE Test your Knowledge - 1 is not completed. Please complete Section 1 before proceeding');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+                            "alert('GTE Certificate Test - Stage 1 is not completed. Please complete Section 1 before proceeding');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx?formid=18';", true);
                     return;
                 }
 
                 if (isGtePreliminarySection2Done)
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                            "alert('GTE Test your Knowledge - 2 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                            "alert('GTE Certificate Test - Stage 2 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
                     return;
                 }
             }

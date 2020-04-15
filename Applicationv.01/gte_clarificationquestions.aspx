@@ -6,9 +6,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Clarification Question</li>
+            <li class="breadcrumb-item active">Clarification Questions</li>
         </ol>
-        <h1 class="h2">CLARIFICATION QUESTION
+        <h1 class="h2">Clarification Questions
 
         </h1>
 
@@ -110,7 +110,7 @@
 
           $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Gte_list').addClass('open');
+            $('#gteevalution_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gteclarification').addClass('active');
         });

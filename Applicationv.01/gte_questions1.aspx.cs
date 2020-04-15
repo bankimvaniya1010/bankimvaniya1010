@@ -50,6 +50,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                 completedDiv.Visible = true;
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
+                lblmsg.Visible = false;
                 lblCompleted.Text = "All questions have been answered in this part.";
             }
             else
