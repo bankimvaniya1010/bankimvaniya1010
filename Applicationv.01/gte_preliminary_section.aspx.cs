@@ -71,7 +71,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
             if (isGtePreliminarySectionDone)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('GTE Test your Knowledge - 1 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                        "alert('Gte Certificate Test - Stage 1 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
                 return;
             }
 

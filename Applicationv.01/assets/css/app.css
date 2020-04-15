@@ -310,3 +310,15 @@ html{
 .crosstickcolor{color: red;}
 .correcttickclr{color: green;}
 .infotickclr{color: blue;}
+ul.sidebar-menu>li+li {
+    margin-top: 20px;
+}
+ul.sidebar-menu>li .sidebar-menu-button {
+display: flex;
+align-items: center;
+font-weight: 400;
+line-height: 1.4;
+padding: 0 1.5rem;
+font-size: 15px;
+}
+.maringbtm{margin-top: 13px;}

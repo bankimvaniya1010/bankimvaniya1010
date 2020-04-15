@@ -5,9 +5,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Statement Of Purpose</li>
+            <li class="breadcrumb-item active">Real-time SOP Builder </li>
         </ol>
-        <h1 class="h2">STATEMENT OF PURPOSE
+        <h1 class="h2">Real-time SOP Builder 
 
         </h1>
     </div>
@@ -130,7 +130,7 @@
      
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Gte_list').addClass('open');
+            $('#gteevalution_list').addClass('open');
             $('#gte_questions_menu').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtestudent_sop').addClass('active');
