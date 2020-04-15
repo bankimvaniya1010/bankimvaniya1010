@@ -6,9 +6,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">GTE Preliminary Step</li>
+            <li class="breadcrumb-item active">GS & GTE Tutorial </li>
         </ol>
-        <h1 class="h2">TUTORIAL (STEP 1/4)</h1>
+        <h1 class="h2">GS & GTE Tutorial </h1>
     </div>
 
     <div class="page ">

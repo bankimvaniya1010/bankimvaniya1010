@@ -18,7 +18,7 @@
                     <div class="card">
                         <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#first" data-toggle="tab">Upload Document</a>
+                                <a class="nav-link active" href="#first" data-toggle="tab">*Please upload documents in .docx, .xlsx, .pdf, .jpg formats.  </a>                                
                             </li>
                         </ul>
                         <div class="tab-content card-body">
@@ -124,7 +124,7 @@
             var fileExtension = filepath.substring(filepath.lastIndexOf(".") + 1).toString().toLowerCase();
             if (filepath != "")
             {  
-                if (fileExtension != "pdf" && fileExtension != "jpg")                    
+                if (fileExtension != "pdf" && fileExtension != "jpg" && fileExtension != "docx" && fileExtension != "xlsx")                    
                     return false;                                   
             }
             return true;
@@ -132,7 +132,7 @@
 
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Gte_list').addClass('open');
+            $('#gtedocument_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtedocmentupload').addClass('active');
 

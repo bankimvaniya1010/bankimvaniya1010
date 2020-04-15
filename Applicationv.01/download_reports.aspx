@@ -6,11 +6,11 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">GTE STATEMENT OF PURPOSE (SOP)
+            <li class="breadcrumb-item active">Download your SOP
 
             </li>
         </ol>
-        <h1 class="h2">GTE STATEMENT OF PURPOSE (SOP)
+        <h1 class="h2">Download your SOP
 
         </h1>
 
@@ -76,7 +76,7 @@
     <script> 
         $(document).ready(function () {           
             $('.sidebar-menu-item').removeClass('open');
-            $('#Gte_list').addClass('open');
+            $('#gteevalution_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gte_downlload_your_sop').addClass('active');
         });

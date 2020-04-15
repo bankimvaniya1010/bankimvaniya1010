@@ -168,6 +168,10 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 }
             }
 
+            if (Comamandname.Equals("VerificationVideo")) {                
+                Response.Redirect(webURL + "admin/verification_video.aspx?applicantId=" + ID , true);
+            }
+
             if (Comamandname.Equals("Download"))
             {
                 downloadApplicantDetails(ID);
@@ -1075,7 +1079,8 @@ public partial class admin_applicantlist : System.Web.UI.Page
             LinkButton LinkbtnvisaDates = (LinkButton)e.Row.Cells[2].FindControl("LinkbtnvisaDates");
 
             LinkButton lnkDownloadGteReport = (LinkButton)e.Row.Cells[2].FindControl("lnkDownloadGteReport");
-            LinkButton lnkGteReportFeedBack = (LinkButton)e.Row.Cells[2].FindControl("lnkGteReportFeedBack");
+            LinkButton lnkVerificationVideo = (LinkButton)e.Row.Cells[2].FindControl("lnkVerificationVideo"); 
+             LinkButton lnkGteReportFeedBack = (LinkButton)e.Row.Cells[2].FindControl("lnkGteReportFeedBack");
             LinkButton lnkDownloadSOPReport = (LinkButton)e.Row.Cells[2].FindControl("lnkDownloadSOPReport");
             if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
             {
@@ -1087,6 +1092,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 if (!displayLinkButton)
                 {
                     lnkDownloadGteReport.Style.Add("display", "none");
+                    lnkVerificationVideo.Style.Add("display", "none");
                     lnkGteReportFeedBack.Style.Add("display", "none");
                     lnkDownloadSOPReport.Style.Add("display", "none");
                 }
@@ -1096,6 +1102,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 LinkButton2.Style.Add("display", "none");
                 LinkButton3.Style.Add("display", "none");
                 lnkDownloadGteReport.Style.Add("display", "none");
+                lnkVerificationVideo.Style.Add("display", "none");
                 lnkGteReportFeedBack.Style.Add("display", "none");
                 lnkProcessPayments.Style.Add("display", "none");
                 LinkbtnvisaDates.Style.Add("display", "none");

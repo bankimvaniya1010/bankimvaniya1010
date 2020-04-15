@@ -6,9 +6,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">GTE Questions</li>
+            <li class="breadcrumb-item active">GTE Evaluation - Stage 3</li>
         </ol>
-        <h1 class="h2">GTE QUESTIONS - PART 2</h1>
+        <h1 class="h2">GTE Evaluation - Stage 3</h1>
 
     </div>
     <div class="page ">
@@ -122,7 +122,7 @@
 
          $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Gte_list').addClass('open');
+            $('#gteevalution_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtepart2').addClass('active');
 
