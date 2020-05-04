@@ -48,7 +48,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                     "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
             return;
         }
-        var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+        var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
         if (gteProgressBar != null)
         {
             if (gteProgressBar.is_gte_preliminarysection1_completed != null && gteProgressBar.is_gte_preliminarysection1_completed.Value != true)
@@ -68,7 +68,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         section2Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection2Question"]);
         if (!IsPostBack)
         {
-            var gte_progress = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+            var gte_progress = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
             if (gte_progress != null)
             {
                 var isGtePreliminarySection1Done = gte_progress.is_gte_preliminarysection1_completed.HasValue && gte_progress.is_gte_preliminarysection1_completed.Value;
@@ -205,12 +205,13 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
             }
 
             var mode = "update";
-            var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+            var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
             if (gteProgressBar == null)
             {
                 mode = "new";
                 gteProgressBar = new gte_progressbar();
                 gteProgressBar.applicantid = UserID;
+                gteProgressBar.universityId = UniversityID;
             }
 
             gteProgressBar.is_gte_preliminarysection2_completed = true;
@@ -292,7 +293,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     {
         try
         {
-            var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+            var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
             if (gteProgressBar != null)
             {
                 string certificateNumber = generateCertificateNumber();
@@ -348,7 +349,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
 
         //Logic to calculate answered section 1 questions
         var preliminaryAnswerListSection1 = db.gtepreliminarysection_applicantanswers
-                                              .Where(x => x.applicantId == UserID)
+                                              .Where(x => x.applicantId == UserID && x.universityId == UniversityID)
                                               .Select(x => new { x.gte_preliminary_section_question_id, x.answer }).ToList();
 
         var preliminaryQuestionListSection1 = db.gte_preliminary_section_questionmaster.AsNoTracking().ToList();

@@ -1362,11 +1362,11 @@ public class Common
         return false;
     }
 
-    public bool IsGteDeclarationDoneByApplicant(int applicantId)
+    public bool IsGteDeclarationDoneByApplicant(int applicantId, int UniversityID)
     {
         try
         {
-            var applicantGteProgressInfo = db.gte_progressbar.Where(x => x.applicantid == applicantId).FirstOrDefault();
+            var applicantGteProgressInfo = db.gte_progressbar.Where(x => x.applicantid == applicantId && x.universityId == UniversityID).FirstOrDefault();
             if (applicantGteProgressInfo != null)
             {
                 if (applicantGteProgressInfo.is_gte_declaration_completed.HasValue && applicantGteProgressInfo.is_gte_declaration_completed.Value)

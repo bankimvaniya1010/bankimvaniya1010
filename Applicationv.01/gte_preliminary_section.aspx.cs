@@ -67,7 +67,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
         if (!IsPostBack)
         {
-            var isGtePreliminarySectionDone = db.gte_progressbar.Where(x => x.applicantid == UserID).Select(x => x.is_gte_preliminarysection1_completed.HasValue && x.is_gte_preliminarysection1_completed.Value).FirstOrDefault();
+            var isGtePreliminarySectionDone = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).Select(x => x.is_gte_preliminarysection1_completed.HasValue && x.is_gte_preliminarysection1_completed.Value).FirstOrDefault();
             if (isGtePreliminarySectionDone)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
@@ -151,7 +151,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
                     }
                 }
                 
-                responseInsertedForQuestion = db.gtepreliminarysection_applicantanswers.Any(x => x.applicantId == UserID && x.gte_preliminary_section_question_id == questionId);
+                responseInsertedForQuestion = db.gtepreliminarysection_applicantanswers.Any(x => x.applicantId == UserID && x.universityId == UniversityID && x.gte_preliminary_section_question_id == questionId);
                 if (!responseInsertedForQuestion)
                     answer.Add(questionID.Text, SelectedValue);
 
@@ -165,12 +165,13 @@ public partial class gte_preliminary_section : System.Web.UI.Page
             {
                 Save(answer);            
                 var mode = "update";
-                var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+                var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
                 if (gteProgressBar == null)
                 {
                     mode = "new";
                     gteProgressBar = new gte_progressbar();
                     gteProgressBar.applicantid = UserID;
+                    gteProgressBar.universityId = UniversityID;
                 }
 
                 gteProgressBar.is_gte_preliminarysection1_completed = true;
@@ -222,6 +223,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
                 int answerID = Convert.ToInt32(val);
                 objAnswer.answer = UserValues[val].ToString();
                 objAnswer.applicantId = UserID;
+                objAnswer.universityId = UniversityID;
                 objAnswer.gte_preliminary_section_question_id = answerID;
                 objAnswer.answersubmittedtime = DateTime.Now;
                 db.gtepreliminarysection_applicantanswers.Add(objAnswer);

@@ -638,11 +638,12 @@
             var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
             var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");            
+            var GteDeclarationDoneByApplicant = ("<%=Session["GteDeclarationDoneByApplicant"]%>".toLowerCase() == "true");
 
             if (!declarationCompleted) { 
                 $("#gtepart1").hide();
                 $("#gtepart2").hide();
-                $("#gtevideoquestion").hide();
+                //$("#gtevideoquestion").hide();
                 $("#gtestudent_sop").hide();
                 $("#gte_downlload_your_sop").hide();
                 $("#download_gtereport").hide();
@@ -667,6 +668,7 @@
                     $("#studentapplication_list").hide();
                 }
                 else {
+                    $("#gteevalution_list").hide();
                     $("#gtestudentdetail").hide();
                     $("#preliminary_list").show();
                 }
@@ -685,7 +687,7 @@
                 $("#supportservice_list").show();
                 $("#gtepart1").show();
                 $("#gtepart2").show();
-                $("#gtevideoquestion").show();
+                //$("#gtevideoquestion").show();
                 $("#gtestudent_sop").show();
                 $("#gte_downlload_your_sop").show();
                 $("#download_gtereport").show();
@@ -718,7 +720,7 @@
                 if (!studentDetailsCompleted) {
                     $("#gtepart1").hide();
                     $("#gtepart2").hide();
-                    $("#gtevideoquestion").hide();
+                    //$("#gtevideoquestion").hide();
                     $("#gtestudent_sop").hide();
                     $("#gte_downlload_your_sop").hide();
                     $("#download_gtereport").hide();
@@ -726,9 +728,23 @@
                     $("#gtedocument_list").hide();
 
                 }
+                if (fullService) {
+                    if (!GteDeclarationDoneByApplicant) {
+                        $("#gteevalution_list").hide();
+                        $("#gtepart1").hide();
+                        $("#gtepart2").hide();                        
+                        $("#gtestudent_sop").hide();
+                        $("#gte_downlload_your_sop").hide();
+                        $("#download_gtereport").hide();
+                        $("#gtedocmentupload").hide();
+                        $("#gtedocument_list").hide();
+                    }
+                }
 
                 if (isDomesticStudent) {
                     $("#Gte_list").hide();
+                    $("#gteevalution_list").hide();
+                    $("#gtedocument_list").hide();
                     $("#visaapplication_list").hide();
                     $("#predeparture_list").hide();
                 }
