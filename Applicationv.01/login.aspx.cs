@@ -109,7 +109,7 @@ public partial class login : System.Web.UI.Page
                         Session["LoginInfo"] = chkUser;
                         Session["UserID"] = chkUser.studentid;
                         Session["Role"] = "student";
-                        isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid);
+                        isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid,universityID);
                         isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
                         if (isFullService)

@@ -1520,6 +1520,7 @@
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" Nullable="false" />
+          <Property Name="universityId" Type="int" Nullable="false" />
           <Property Name="gte_preliminary_question_id" Type="int" Nullable="false" />
           <Property Name="answer" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="answersubmittedtime" Type="datetime" Precision="0" Nullable="false" />
@@ -1530,6 +1531,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" Nullable="false" />
+          <Property Name="universityId" Type="int" Nullable="false" />
           <Property Name="is_gte_tutorial_completed" Type="bit" />
           <Property Name="is_gte_preliminarysection1_completed" Type="bit" />
           <Property Name="is_gte_preliminarysection2_completed" Type="bit" />
@@ -1662,6 +1664,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantId" Type="int" Nullable="false" />
+          <Property Name="universityId" Type="int" Nullable="false" />
           <Property Name="gte_preliminary_section_question_id" Type="int" Nullable="false" />
           <Property Name="answer" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="answersubmittedtime" Type="datetime" Precision="0" Nullable="false" />
@@ -6981,6 +6984,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="gte_preliminary_question_id" Type="Int32" Nullable="false" />
           <Property Name="answer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="answersubmittedtime" Type="DateTime" Nullable="false" />
+          <Property Name="universityId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="gte_progressbar">
           <Key>
@@ -6996,6 +7000,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="certificate_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="certificate_creation_date" Type="DateTime" />
           <Property Name="performance_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="universityId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="gte_question_master_part2">
           <Key>
@@ -7132,6 +7137,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="gte_preliminary_section_question_id" Type="Int32" Nullable="false" />
           <Property Name="answer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="answersubmittedtime" Type="DateTime" Nullable="false" />
+          <Property Name="universityId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="health_insurance">
           <Key>
@@ -11135,6 +11141,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_preliminaryapplicantanswers">
             <EntityTypeMapping TypeName="GTEModel.gte_preliminaryapplicantanswers">
               <MappingFragment StoreEntitySet="gte_preliminaryapplicantanswers">
+                <ScalarProperty Name="universityId" ColumnName="universityId" />
                 <ScalarProperty Name="answersubmittedtime" ColumnName="answersubmittedtime" />
                 <ScalarProperty Name="answer" ColumnName="answer" />
                 <ScalarProperty Name="gte_preliminary_question_id" ColumnName="gte_preliminary_question_id" />
@@ -11146,6 +11153,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_progressbar">
             <EntityTypeMapping TypeName="GTEModel.gte_progressbar">
               <MappingFragment StoreEntitySet="gte_progressbar">
+                <ScalarProperty Name="universityId" ColumnName="universityId" />
                 <ScalarProperty Name="performance_category" ColumnName="performance_category" />
                 <ScalarProperty Name="certificate_creation_date" ColumnName="certificate_creation_date" />
                 <ScalarProperty Name="certificate_name" ColumnName="certificate_name" />
@@ -11288,6 +11296,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gtepreliminarysection_applicantanswers">
             <EntityTypeMapping TypeName="GTEModel.gtepreliminarysection_applicantanswers">
               <MappingFragment StoreEntitySet="gtepreliminarysection_applicantanswers">
+                <ScalarProperty Name="universityId" ColumnName="universityId" />
                 <ScalarProperty Name="answersubmittedtime" ColumnName="answersubmittedtime" />
                 <ScalarProperty Name="answer" ColumnName="answer" />
                 <ScalarProperty Name="gte_preliminary_section_question_id" ColumnName="gte_preliminary_section_question_id" />

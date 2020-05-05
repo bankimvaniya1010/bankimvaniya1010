@@ -35,7 +35,7 @@ public partial class gte_tutorial : System.Web.UI.Page
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
 
-        istutorialcomplete = db.gte_progressbar.Where(x => x.applicantid == UserID).Select(x => x.is_gte_tutorial_completed).FirstOrDefault();
+        istutorialcomplete = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).Select(x => x.is_gte_tutorial_completed).FirstOrDefault();
         if (istutorialcomplete != null && istutorialcomplete == true)
             declaration.Attributes.Add("style", "display:none");
 
@@ -52,7 +52,7 @@ public partial class gte_tutorial : System.Web.UI.Page
     private void populate()
     {
         var gteInfo = (from pInfo in db.gte_progressbar
-                       where pInfo.applicantid == UserID
+                       where pInfo.applicantid == UserID && pInfo.universityId == UniversityID
                        select pInfo).FirstOrDefault();
         if (gteInfo != null)
         {
@@ -68,8 +68,8 @@ public partial class gte_tutorial : System.Web.UI.Page
         {
             var mode = "new";
             var gteInfo = (from pInfo in db.gte_progressbar
-                        where pInfo.applicantid == UserID 
-                        select pInfo).FirstOrDefault();
+                        where pInfo.applicantid == UserID && pInfo.universityId == UniversityID
+                           select pInfo).FirstOrDefault();
             if (gteInfo != null)
             {
                 mode = "update";
@@ -77,6 +77,7 @@ public partial class gte_tutorial : System.Web.UI.Page
             }
             gteProgressBar.is_gte_tutorial_completed = true;
             gteProgressBar.applicantid = UserID;
+            gteProgressBar.universityId = UniversityID;
 
             if(mode== "new")
                 db.gte_progressbar.Add(gteProgressBar);

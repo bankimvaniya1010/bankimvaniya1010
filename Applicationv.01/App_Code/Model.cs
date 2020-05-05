@@ -1808,6 +1808,7 @@ public partial class gte_preliminaryapplicantanswers
     public int gte_preliminary_question_id { get; set; }
     public string answer { get; set; }
     public System.DateTime answersubmittedtime { get; set; }
+    public int universityId { get; set; }
 }
 
 public partial class gte_progressbar
@@ -1822,6 +1823,7 @@ public partial class gte_progressbar
     public string certificate_name { get; set; }
     public Nullable<System.DateTime> certificate_creation_date { get; set; }
     public string performance_category { get; set; }
+    public int universityId { get; set; }
 }
 
 public partial class gte_question_master_part2
@@ -1979,6 +1981,7 @@ public partial class gtepreliminarysection_applicantanswers
     public int gte_preliminary_section_question_id { get; set; }
     public string answer { get; set; }
     public System.DateTime answersubmittedtime { get; set; }
+    public int universityId { get; set; }
 }
 
 public partial class health_insurance

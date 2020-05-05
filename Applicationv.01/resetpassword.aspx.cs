@@ -79,7 +79,7 @@ public partial class Resetpassword : System.Web.UI.Page
                 Session["LoginInfo"] = login;
                 Session["UserID"] = login.studentid;
                 Session["Role"] = "student";
-                isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(login.studentid);
+                isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(login.studentid, universityID);
                 isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
                 if (isFullService)

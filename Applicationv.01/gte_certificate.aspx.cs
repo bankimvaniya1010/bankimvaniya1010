@@ -48,7 +48,7 @@ public partial class gte_certificate : System.Web.UI.Page
 
                 if (!IsPostBack)
                 {
-                    var studentGteProgress = db.gte_progressbar.Where(x => x.applicantid == ApplicantID).FirstOrDefault();
+                    var studentGteProgress = db.gte_progressbar.Where(x => x.applicantid == ApplicantID && x.universityId == universityID).FirstOrDefault();
                     if (studentGteProgress != null)
                     {
                         if (studentGteProgress.is_gte_certificate_generated.HasValue && studentGteProgress.is_gte_certificate_generated.Value)
@@ -78,7 +78,7 @@ public partial class gte_certificate : System.Web.UI.Page
         var Personal = db.applicantdetails.Where(x => x.applicantid == applicantId && x.universityid == universityID).FirstOrDefault();
         _studentName = Personal.firstname + " " + Personal.lastname;
 
-        var applicant_gte_progress = db.gte_progressbar.Where(x => x.applicantid == applicantId).FirstOrDefault();
+        var applicant_gte_progress = db.gte_progressbar.Where(x => x.applicantid == applicantId && x.universityId == universityID).FirstOrDefault();
         _performanceCategory = applicant_gte_progress.performance_category;
         _certificateNumber = applicant_gte_progress.certificate_name;
         if (applicant_gte_progress.certificate_creation_date.HasValue)
