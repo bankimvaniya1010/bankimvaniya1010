@@ -280,6 +280,6 @@ public partial class applicantsocial : System.Web.UI.Page
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
         SaveSocialDetails();
-        Response.Redirect(webURL + "applicantrefrencecheck.aspx?formid=6", true);
+        Response.Redirect(webURL + "applicantreview.aspx", true);
     }
 }

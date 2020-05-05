@@ -45,7 +45,7 @@ public partial class gte_declaration : System.Web.UI.Page
         if (!IsPostBack)
         {
             allQuestions= objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
-            gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+            gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
             if (gteProgressBar != null)
                 if(gteProgressBar.is_gte_preliminarysection1_completed != null && gteProgressBar.is_gte_preliminarysection2_completed != null)
                     questionsCompleted = gteProgressBar.is_gte_preliminarysection1_completed.Value && gteProgressBar.is_gte_preliminarysection2_completed.Value;
@@ -74,12 +74,13 @@ public partial class gte_declaration : System.Web.UI.Page
         try
         {
             var mode = "update";
-            gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+            gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
             if (gteProgressBar == null)
             {
                 mode = "new";
                 gteProgressBar = new gte_progressbar();
                 gteProgressBar.applicantid = UserID;
+                gteProgressBar.universityId = UniversityID;
             }
 
             gteProgressBar.is_gte_declaration_completed = true;
