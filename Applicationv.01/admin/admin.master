@@ -134,6 +134,20 @@
                                     </li> 
                                 </ul>
                             </li>
+                            <li class="sidebar-menu-item" id="manageprofile_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manage_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    Manage Profile
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="manage_menu">
+                                    <li class="sidebar-menu-item" id="manageprofile">
+                                        <a class="sidebar-menu-button" href="updatepassword.aspx">
+                                            <span class="sidebar-menu-text">Update password</span>
+                                        </a>
+                                    </li> 
+                                </ul>
+                            </li>
                             <li class="sidebar-menu-item" id="manageapplicantions_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manageapplicantions_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -161,7 +175,7 @@
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse" id="role_menu">
                                     <li class="sidebar-menu-item" id="createuser">
-                                        <a class="sidebar-menu-button" href="createuser.aspx">
+                                        <a class="sidebar-menu-button" href="editusers.aspx">
                                             <span class="sidebar-menu-text">Create User</span>
                                         </a>
                                     </li>

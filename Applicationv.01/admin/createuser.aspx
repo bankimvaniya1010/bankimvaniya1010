@@ -88,7 +88,7 @@
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
-                                    <asp:Button ID="btn_login" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="Button1_Click" OnClientClick="return validateForm()"/>
+                                    <asp:Button ID="btn_login" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="Button1_Click" OnClientClick="return validateForm();"/>
                                     <asp:Label ID="lblMessage" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -114,6 +114,7 @@
 
         function validateForm()
         {
+            var mode = '<%=pagemode %>';
             var name = $('#<%=txtName.ClientID%>').val();
             var username = $('#<%=txtUsername.ClientID%>').val();
             var email = $('#<%=txtEmail.ClientID%>').val();
@@ -139,7 +140,7 @@
                 alert("Please enter user mobile number");
                 return false;
             }
-            else if (password == '') {
+            else if (mode == 'new' && password == '') {
                 alert("Please enter user password");
                 return false;
             }
