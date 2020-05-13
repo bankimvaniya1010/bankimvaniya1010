@@ -87,14 +87,14 @@ public partial class gte_sop : System.Web.UI.Page
                     completedDiv.Visible = true;
                     completedDiv.Style.Remove("display");
                     sop_section.Visible = false;
-                    lblCompleted.Text = "Please complete GTE Stage-1 Assessment before proceeding";
+                    lblCompleted.Text = "Please complete GTE Stage-2 Assessment before proceeding";
                 }
                 else if (answeredGteQuestion2.Count != allGteQuestions2.Count)  // Check for gte assesment 2 check
                 {
                     completedDiv.Visible = true;
                     completedDiv.Style.Remove("display");
                     sop_section.Visible = false;
-                    lblCompleted.Text = "Please complete GTE Stage-2 Assessment before proceeding";
+                    lblCompleted.Text = "Please complete GTE Stage-3 Assessment before proceeding";
                 }
                 else if (answeredClarificationQuestion.Count < clarification_questionsList.Count) // Check for gte clarification question check
                 {

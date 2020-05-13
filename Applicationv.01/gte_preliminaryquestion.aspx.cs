@@ -385,6 +385,6 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
 
     protected void btnGoToDeclaration_Click(object sender, EventArgs e)
     {
-        Response.Redirect(webURL + "gte_declaration.aspx?formid=20", true);
+        Response.Redirect(webURL + "gte_certificate.aspx", true);
     }
 }
