@@ -718,6 +718,7 @@
                 }
 
                 if (!studentDetailsCompleted) {
+                    $("#gteevalution_list").hide();
                     $("#gtepart1").hide();
                     $("#gtepart2").hide();
                     //$("#gtevideoquestion").hide();
@@ -730,14 +731,16 @@
                 }
                 if (fullService) {
                     if (!GteDeclarationDoneByApplicant) {
-                        $("#gteevalution_list").hide();
-                        $("#gtepart1").hide();
-                        $("#gtepart2").hide();                        
-                        $("#gtestudent_sop").hide();
-                        $("#gte_downlload_your_sop").hide();
-                        $("#download_gtereport").hide();
-                        $("#gtedocmentupload").hide();
-                        $("#gtedocument_list").hide();
+                        if (!studentDetailsCompleted) {
+                            $("#gteevalution_list").hide();
+                            $("#gtepart1").hide();
+                            $("#gtepart2").hide();
+                            $("#gtestudent_sop").hide();
+                            $("#gte_downlload_your_sop").hide();
+                            $("#download_gtereport").hide();
+                            $("#gtedocmentupload").hide();
+                            $("#gtedocument_list").hide();
+                        }
                     }
                 }
 

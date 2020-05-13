@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="updatepassword.aspx.cs" Inherits="updatepassword" MasterPageFile="~/student.master"%>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="updatepassword.aspx.cs" Inherits="admin_updatepassword" MasterPageFile="~/admin/admin.master"%>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -7,7 +6,7 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">
+            <li class="breadcrumb-item active">CHANGE PASSWORD
 
             </li>
         </ol>
@@ -73,34 +72,6 @@
                     </div>
                     
                 </div>
-                 <div class="col-md-4">
-                    <div class="banImg-wrp">
-                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
-                    </div>
-                    <div class="card faq-qwrp" id="questions" runat="server">
-                            <div class="card-body">
-                            <%  if (allQuestions.Count > 0)
-                                { %>
-                            <div id="question" runat="server">
-                                    <h5>Frequently Asked Questions (FAQs)</h5>
-                                    <div class="">
-                                    <%for (int q = 0; q < allQuestions.Count; q++)
-                                        {%>  <div class="star-list">                                                             
-                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer.Replace(Environment.NewLine, "<br />") %>')">  <%=allQuestions[q].question%> </label>
-                                            </div>                                                  
-                                    <%} %>
-                                </div>
-                            </div>      
-                                <%} %>  
-                                     
-                            </div>
-                        </div>
-                    </div>
-                <div id="page-nav" class="col-lg-auto page-nav">
-                    <div>
-                        <span id="tooltip"></span>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container page__container">
@@ -125,9 +96,9 @@
      }
       $(document).ready(function () {
               $('.sidebar-menu-item').removeClass('open');
-              $('#profile_list').addClass('open');
+              $('#manageprofile_list').addClass('open');
               $('.sidebar-menu-item').removeClass('active');
-              $('#changepassword').addClass('active');
+              $('#manageprofile').addClass('active');
           });
 
  </script> 
