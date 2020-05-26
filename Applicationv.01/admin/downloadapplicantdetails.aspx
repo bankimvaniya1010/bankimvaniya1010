@@ -9,46 +9,55 @@
     <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/vendor/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/bootstrap.min.css")%>" />
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/style.css")%>" />
+    <style>
+        table.table.inner-table span {
+            display: inline-block;
+            min-height: 19px;
+        }
+        .inner-table td {
+            text-align: center;
+            padding: 5px 20px !important;
+            border: 1px solid #000 !important;
+            border-collapse: collapse !important;
+            min-height: 81px;
+        }
+        .bgcol {
+            background-color: #e6e1e1;
+        }
+        .adm-form-table .table.main-table td {
+            border: 1px solid #ccc;
+            padding: 7px 10px;
+            text-align: center;
+        }
+        .adm-form-table .table.main-table td.first-col{border:0;text-align: right;}
+    </style>
 
 </head>
 <body>
 
     <form id="form1" runat="server">
-        <div class="container-fluid adm-form-container">
-            <table cellspacing="0" cellpadding="0" width="100%" class="adm-form-table">
-                <tr>
-                    <td>
-                        <table cellpadding="0" cellspacing="0" class="table">
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
-                                        <tr>
-                                            <td class="width25">
-                                                <a href="#" class="d-inline-block canning-logo">
-                                                    <img src="<%=logoURL %>" class="img-fluid">
-                                                </a>
-                                            </td>
-                                            <td class="width75 text-right">
-                                                <div class="adm-frm-title">ADMISSIONS APPLICATION FORM</div>
-                                             <%--   <div class="adm-frm-no">No: AAA0001</div>--%>
-                                                <div class="adm-frm-sub-txt">Country of Applicant: <span><%=NationalityValue %></span></div>
-                                               <%--  <div class="adm-frm-sub-txt">Commencement date: <span>01 October, 2019</span></div>
-                                               <div class="adm-frm-sub-txt">Course applied for: <span>Western Australian Certificate of Education (WACE)</span>
-                                                </div>--%>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            <!-- Personal Info-->
-                            <tr>
-                                <td>
-                                    <div class="frm-ttle">PERSONAL DETAILS</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="100%" class="width100">
-                                    <table cellpadding="0" cellspacing="0" class="table">
+        <div class="container-fluid adm-form-container adm-form-table">
+          <div>
+               <table cellpadding="0" cellspacing="0" class="table adm-form-table">
+                   <tbody>
+                       <tr>
+                           <td class="width25">
+                               <a href="#" class="d-inline-block canning-logo">
+                                   <img src="/Docs/1/ABC.png" class="img-fluid">
+                               </a>
+                           </td>
+                           <td class="width75 text-right">
+                               <div class="adm-frm-title">ADMISSIONS APPLICATION FORM</div>
+
+                               <div class="adm-frm-sub-txt">Country of Applicant: <span>Afghanistan</span></div>
+
+                           </td>
+                       </tr>
+                   </tbody>
+               </table>
+           </div>
+		<div class="frm-ttle">PERSONAL DETAILS</div> 
+		 <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30"></td>
                                             <td class="width70 bg-gry-head text-right">
@@ -74,9 +83,9 @@
                                                 <label runat="server" id="labeltitle" for="title">* Title</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblTitle" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -97,9 +106,9 @@
                                                 <label id="labelfirstname" runat="server" for="firstname">First Name *</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblFirstName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -119,9 +128,9 @@
                                                 <label id="labelpassportsameasFirstName" runat="server" for="firstname">Passport First Name same as Above </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblpassportsameasFirstName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -141,9 +150,9 @@
                                                 <label id="labellastname" runat="server" for="lastname">Family Name *</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblLastName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -163,9 +172,9 @@
                                                 <label id="labelpassportsameasLastName" runat="server" for="firstname">Passport Family Name same as Above</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblpassportsameasLastName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -187,9 +196,9 @@
                                                 <label id="labelpreferreName" runat="server" for="preferreName">Preferred Name</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblPrefferedName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -209,9 +218,9 @@
                                                 <label id="labelmiddlename" runat="server" for="middlename">Middle Name(s)</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblMiddleName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -231,9 +240,9 @@
                                                 <label id="labelpassportsameasmiddlename" runat="server" for="firstname">Passport Middle Name same as Above</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblpassportsameasmiddlename" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -253,9 +262,9 @@
                                                 <label id="labeldob" runat="server" for="dob">Date of birth *</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblDOB" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -275,9 +284,9 @@
                                                 <label id="labelgender" runat="server" for="gender">Gender *</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblGender" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -296,9 +305,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelNationality" runat="server" for="Nationality">Citizenship</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblNationality" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -320,9 +329,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelChineseCode" runat="server" for="chineseCommercialCode">Do you ever use a Chinese Commercial Code Number for your names?</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblchineseCode" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -344,9 +353,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="lblChineseCodeNumber" runat="server" for="chineseCodeNumber">Chinese Commercial Code Number</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblChineseCodeNo" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -368,9 +377,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelRussianName" runat="server" for="russianPatronymicName">In English, provide your patronymic name</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblrussianName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -393,9 +402,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelDualNationality" runat="server" for="dualNationality">Do you have dual Citizenship?</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblDualNationality" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -418,9 +427,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelSecondNation" runat="server" for="SecondNationality">Citizenship</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblOtherNation" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -442,9 +451,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelbirthcountry" runat="server" for="birthcountry">Country of birth</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblBirthCountry" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -466,9 +475,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelMarital" runat="server" for="Marital">Marital Status</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblMarital" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -490,9 +499,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="lblSpouseName" runat="server" for="spouseName">Spouse Name</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="labelspouseName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -514,9 +523,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="lblSpouseNatinality" runat="server" for="NationalitySpouse">Nationality of Spouse</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSpouseNationality" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -537,9 +546,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="lblSpouseDOB" runat="server" for="spousedob">Spouse Date of birth</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="labelSpouseDOB" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -561,9 +570,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="lblMarriageDate" runat="server" for="marriagedate">Date of Marriage</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="labelMarriagedate" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -584,10 +593,11 @@
                                         <tr class="adm-form-row-tr" id="higheststudy" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelhigheststudy" runat="server" for="higheststudy">Highest study level successfully completed</label>
-                                            <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                            </td>
+                                                <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhigheststudy" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -609,9 +619,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labeldisability" runat="server" for="disability">Do you have any disability, impairment, or a long term condition</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblDisability" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -633,9 +643,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labeldisabilitydesc" runat="server" for="disabilitydesc">Disability Description</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldisabilitydesc" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -657,9 +667,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelagent" runat="server" for="agent">Are you reffered by Agent</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblAgent" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -681,9 +691,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelagentList" runat="server" for="agentList">Agent Name</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblAgentList" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -717,16 +727,16 @@
                                                 <label id="labelcustom<%= CustomControlsPersonal[personal].customfieldid%>"><%=  CustomControlsPersonal[personal].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=objCom.GetCustomFieldValue(ApplicantID,1,CustomControlsPersonal[personal].customfieldid) %></span>
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsPersonal[personal].customfieldid %>" style='<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsPersonal[personal].customfieldid %>" style:'<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsPersonal[personal].customfieldid %>" style='<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsPersonal[personal].customfieldid %>" style:'<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
                                                         </td>
                                                         <td class="width30 td-rightlabel">
                                                             <span><%=Admincomments %></span>
@@ -737,11 +747,7 @@
                                         </tr>
                                         <%} %>
                                     </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									 <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30 td-rightlabel">SUPERVISIOR REVIEW & COMMENTS
 
@@ -751,22 +757,15 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </td>
-                            </tr>
-                            <!-- Personal Info End -->
+									
+									 <!-- Personal Info End -->
                             <!-- Contact Info-->
-                            <tr>
-                                <td>
-                                    <div class="frm-ttle">CONTACT DETAILS</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="100%" class="width100">
-                                    <table cellpadding="0" cellspacing="0" class="table">
+							<div class="frm-ttle">CONTACT DETAILS</div>
+							 <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30"></td>
                                             <td class="width70 bg-gry-head text-right">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
                                                         <td class="width50">STUDENT RESPONSE
                                                         </td>
@@ -788,9 +787,9 @@
                                                 <label id="labelemail" runat="server" for="email">Email *</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblEmail" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -811,9 +810,9 @@
                                                 <label id="labelMobile" runat="server" for="Mobile">Mobile/Cellular Number *</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblMobile" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -833,9 +832,9 @@
                                                 <label id="labelphone" runat="server" for="phone">Home phone</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblHomePhone" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -855,9 +854,9 @@
                                                 <label id="labelskype" runat="server" for="skype">WOULD YOU LIKE TO CONNECT VIA SKYPE</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSkype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -879,9 +878,9 @@
                                                 <label id="labelskypeDesc" runat="server" for="skypeDesc">Skype ID</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSkypeDescription" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -903,9 +902,9 @@
                                                 <label id="labelwhatsapp" runat="server" for="whatsapp">WOULD YOU LIKE TO CONNECT VIA WHATSAPP </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblWhatsapp" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -925,9 +924,9 @@
                                                 <label id="labelwhatsappHave" runat="server" for="whatsappHave">IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblWhatsapphave" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -947,9 +946,9 @@
                                                 <label id="labelwhatsappDesc" runat="server" for="whatsappDesc">Whatsapp Number</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblWhastappDesription" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -969,9 +968,9 @@
                                                 <label id="labelpostal" runat="server" for="postal">Postal Address</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblPostalAddress" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -991,9 +990,9 @@
                                                 <label id="labeladdress" runat="server" for="address">Is your Postal Address same as your current residential address</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblAddress" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1012,9 +1011,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelCurrentAddress" runat="server" for="currentAddressSelection">Have you been living in the current address for Less than 1 year?</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1035,10 +1034,11 @@
                                         <tr class="adm-form-row-tr" id="residential" runat="server" role="group" aria-labelledby="label-chineseCommercialCode" visible="false">
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelResidential" runat="server" for="title">Current Residential  Address</label>
-                                            <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                            </td>
+                                                <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblResidential" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1070,9 +1070,9 @@
                                                 <asp:HiddenField ID="hidAddressCountry" runat="server" Value="" />
                                                 <label id="lblPrevAddress" runat="server" for="prevaddress">Previous Address History Details</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="Label38" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1090,13 +1090,14 @@
                                             </td>
 
                                         </tr>
+                                 
                                         <tr class="adm-form-row-tr" id="guardianname" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelguardianname" runat="server" for="nomineename">GUARDIAN Full Name</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblNominneName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1118,9 +1119,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelrelation" runat="server" for="relationnominee">Relationship with GUARDIAN</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblNomineeRealtion" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1142,9 +1143,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelguardianemail" runat="server" for="emailnominee">Email of GUARDIAN</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblNomineeEmail" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1162,14 +1163,13 @@
                                             </td>
 
                                         </tr>
-
                                         <tr class="adm-form-row-tr" id="guardianmobile" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelguardianmobile" runat="server" for="mobilenominee">Mobile/Cellular Number of GUARDIAN</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblNomineeMobile" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1204,16 +1204,16 @@
                                                 <label id="labelcustom<%= CustomControlsConatct[conatct].customfieldid%>"><%=  CustomControlsPersonal[conatct].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=objCom.GetCustomFieldValue(ApplicantID,2,CustomControlsConatct[conatct].customfieldid) %></span>
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsConatct[conatct].customfieldid %>" style='<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsConatct[conatct].customfieldid %>" style:'<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsConatct[conatct].customfieldid %>" style='<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsConatct[conatct].customfieldid %>" style:'<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
                                                         </td>
                                                         <td class="width30 td-rightlabel">
                                                             <span><%=Admincomments %></span>
@@ -1224,11 +1224,7 @@
                                         </tr>
                                         <%} %>
                                     </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									 <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30 td-rightlabel">SUPERVISIOR REVIEW & COMMENTS
 
@@ -1238,22 +1234,14 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </td>
-                            </tr>
-                            <!-- Contact Info End -->
+									  <!-- Contact Info End -->
                             <!-- Know Your information-->
-                            <tr>
-                                <td>
-                                    <div class="frm-ttle">Identification Detail</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="100%" class="width100">
-                                    <table cellpadding="0" cellspacing="0" class="table">
+							<div class="frm-ttle">Identification Detail</div>
+							  <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30"></td>
                                             <td class="width70 bg-gry-head text-right">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
                                                         <td class="width50">STUDENT RESPONSE
                                                         </td>
@@ -1275,9 +1263,9 @@
                                                 <label id="labelpassportno" runat="server" for="passportno">Passport Number </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1298,9 +1286,9 @@
                                                 <label id="labeldateofissue" runat="server" for="dateofissue">Date of Issue </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblDateOfissue" runat="server"></asp:Label>
 
                                                         </td>
@@ -1321,9 +1309,9 @@
                                                 <label id="labelexpirydate" runat="server" for="expirydate">Expiry Date </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblExpiryDate" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1343,9 +1331,9 @@
                                                 <label id="labelcountryIssue" runat="server" for="countryIssue">COUNTRY OF ISSUE </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1367,9 +1355,9 @@
                                                 <label id="labelissueplace" runat="server" for="issueplace">CITY OF ISSUE </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblissueplace" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1391,9 +1379,9 @@
                                                 <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype">Select Identity Proof Type</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblalternateIdentitytype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1413,9 +1401,9 @@
                                                 <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo">Identity Proof Number</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblalternateIdentityNo" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1435,9 +1423,9 @@
                                                 <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype">Select DOB Proof Type </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblalternatedobIdentitytype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1457,9 +1445,9 @@
                                                 <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo">DOB proof Number</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblalternatedobIdentityNo" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1479,9 +1467,9 @@
                                                 <label id="labelalternateresidenceIdentitytype" runat="server" for="alternateresidenceIdentitytype">Select Residence Proof Type </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblalternateresidenceIdentitytype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1500,9 +1488,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateresidenceIdentityNo">Residence Proof Number</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblalternateresidenceIdentityNo" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1537,16 +1525,16 @@
                                                 <label id="labelcustom<%= CustomControlsKYS[KYS].customfieldid%>"><%=  CustomControlsKYS[KYS].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=objCom.GetCustomFieldValue(ApplicantID,3,CustomControlsKYS[KYS].customfieldid) %></span>
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsKYS[KYS].customfieldid %>" style='<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsKYS[KYS].customfieldid %>" style:'<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsKYS[KYS].customfieldid %>" style='<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsKYS[KYS].customfieldid %>" style:'<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
                                                         </td>
                                                         <td class="width30 td-rightlabel">
                                                             <span><%=Admincomments %></span>
@@ -1557,11 +1545,7 @@
                                         </tr>
                                         <%} %>
                                     </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									<table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30 td-rightlabel">SUPERVISIOR REVIEW & COMMENTS
 
@@ -1571,22 +1555,14 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </td>
-                            </tr>
-                            <!-- Know Your information End-->
+									<!-- Know Your information End-->
                             <!--Education Details-->
-                            <tr>
-                                <td>
-                                    <div class="frm-ttle">Education Detail</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="100%" class="width100">
-                                    <table cellpadding="0" cellspacing="0" class="table">
+							<div class="frm-ttle">Education Detail</div>
+							 <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30"></td>
                                             <td class="width70 bg-gry-head text-right">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
                                                         <td class="width50">STUDENT RESPONSE
                                                         </td>
@@ -1608,9 +1584,9 @@
                                                 <label id="labelhighschool" runat="server" for="highschool">Have you completed high school?</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschool" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1631,9 +1607,9 @@
                                                 <label id="labelhighschoolCountry" runat="server" for="highschoolCountry">Country of High School</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolCountry" runat="server"></asp:Label>
 
                                                         </td>
@@ -1654,9 +1630,9 @@
                                                 <label id="labelhighschoolstartDate" runat="server" for="highschoolstartDate">Start Date </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolstartDate" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1676,9 +1652,9 @@
                                                 <label id="labelhighschoolendDate" runat="server" for="highschoolendDate">End Date </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolendDate" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1700,9 +1676,9 @@
                                                 <label id="labelhighschoolName" runat="server" for="highschoolName">Name of School</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1724,9 +1700,9 @@
                                                 <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype">Qualification Name</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolQualificationtype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1746,9 +1722,9 @@
                                                 <label id="labelhighschoolstudymode" runat="server" for="highschoolstudymode">Mode of study</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolstudymode" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1768,9 +1744,9 @@
                                                 <label id="labelhighschoollanguage" runat="server" for="highschoollanguage">Language (Medium) of Study</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoollanguage" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1790,9 +1766,9 @@
                                                 <label id="labelgradetype" runat="server" for="EnglishCourse">Grade Type</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblgradetype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1812,9 +1788,9 @@
                                                 <label id="labelgradeachieved" runat="server" for="gradeachieved">Final Grade Achieved </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblgradeachieved" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1834,9 +1810,9 @@
                                                 <label id="labelExpectedHighSchoolDategrade" runat="server" for="EnglishCourse">Expected dates when results will be declared </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblExpectedHighSchoolDategrade" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1859,9 +1835,9 @@
                                                 <label id="labelhighschoolverify" runat="server" for="highschoolverify">Name of Contact who can verify this qualification </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolverify" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1884,9 +1860,9 @@
                                                 <label id="labelhighschoolrelation" runat="server" for="highschoolrelation">Relationship with the Contact </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolrelation" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1909,9 +1885,9 @@
                                                 <label id="labelhighschoolcontactEmail" runat="server" for="highschoolcontactEmail">Email ID of Contact who can verify your qualification  </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolcontactEmail" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1933,9 +1909,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelhighschoolcontactMobile" runat="server" for="highschoolcontactMobile">Mobile/Cellular Number of Contact who can verify your qualification</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhighschoolcontactMobile" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1960,9 +1936,9 @@
                                                 <label id="labelSecondary" runat="server" for="Secondary">Have you completed Senior Secondary school? (Year 12)?</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondary" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -1983,9 +1959,9 @@
                                                 <label id="labelSecondaryCountry" runat="server" for="SecondaryCountry">Country of Secondary Education</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondaryCountry" runat="server"></asp:Label>
 
                                                         </td>
@@ -2006,9 +1982,9 @@
                                                 <label id="labelSecondarystartDate" runat="server" for="SecondarystartDate">Start Date </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondarystartDate" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2028,9 +2004,9 @@
                                                 <label id="labelSecondaryendDate" runat="server" for="SecondaryendDate">End Date </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondaryendDate" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2052,9 +2028,9 @@
                                                 <label id="labelSecondaryName" runat="server" for="SecondaryName">Name of School</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondaryName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2076,9 +2052,9 @@
                                                 <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype">Qualification Name</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondaryQualificationtype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2098,9 +2074,9 @@
                                                 <label id="labelSecondarystudymode" runat="server" for="Secondarystudymode">Mode of study</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondarystudymode" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2120,9 +2096,9 @@
                                                 <label id="labelSecondarylanguage" runat="server" for="Secondarylanguage">Language (Medium) of Study</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondarylanguage" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2142,9 +2118,9 @@
                                                 <label id="labelSecondarygradetype" runat="server" for="Secondarygradetype">Grade Type</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondarygradetype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2164,9 +2140,9 @@
                                                 <label id="labelSecondarygradeachieved" runat="server" for="Secondarygradeachieved">Final Grade Achieved </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondarygradeachieved" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2186,9 +2162,9 @@
                                                 <label id="labelExpectedSecondaryDategrade" runat="server" for="EnglishCourse">Expected dates when results will be declared </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblExpectedSecondaryDategrade" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2211,9 +2187,9 @@
                                                 <label id="labelSecondaryverify" runat="server" for="Secondaryverify">Name of Contact who can verify this qualification </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondaryverify" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2236,9 +2212,9 @@
                                                 <label id="labelSecondaryrelation" runat="server" for="Secondaryrelation">Relationship with the Contact </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondaryrelation" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2261,9 +2237,9 @@
                                                 <label id="labelSecondarycontactEmail" runat="server" for="SecondarycontactEmail">Email ID of Contact who can verify your qualification  </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondarycontactEmail" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2285,9 +2261,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelSecondarycontactMobile" runat="server" for="SecondarycontactMobile">Mobile/Cellular Number of Contact who can verify your qualification</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblSecondarycontactMobile" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2313,9 +2289,9 @@
 ?</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhigher" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -2339,9 +2315,9 @@
                                                             <label id="labelhighercourse" runat="server" for="highercourse">Higher Course</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercourse" runat="server"></asp:Label>
 
                                                                     </td>
@@ -2362,9 +2338,9 @@
                                                             <label id="labelhigherCountry" runat="server" for="higherCountry">Country of Higher Education</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherCountry" runat="server"></asp:Label>
 
                                                                     </td>
@@ -2385,9 +2361,9 @@
                                                             <label id="labelhigherstartDate" runat="server" for="higherstartDate">Start Date </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherstartDate" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2407,9 +2383,9 @@
                                                             <label id="labelhigherendDate" runat="server" for="higherendDate">End Date </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherendDate" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2431,9 +2407,9 @@
                                                             <label id="labelhigherName" runat="server" for="higherName">Name of School</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherName" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2455,9 +2431,9 @@
                                                             <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype">Qualification Name</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherQualificationtype" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2477,9 +2453,9 @@
                                                             <label id="labelhigherstudymode" runat="server" for="higherstudymode">Mode of study</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherstudymode" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2499,9 +2475,9 @@
                                                             <label id="labelhigherlanguage" runat="server" for="higherlanguage">Language (Medium) of Study</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherlanguage" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2521,9 +2497,9 @@
                                                             <label id="labelhighergradetype" runat="server" for="highergradetype">Grade Type</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighergradetype" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2543,9 +2519,9 @@
                                                             <label id="labelhighergradeachieved" runat="server" for="highergradeachieved">Final Grade Achieved </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighergradeachieved" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2565,9 +2541,9 @@
                                                             <label id="labelExpectedhigherDategrade" runat="server" for="EnglishCourse">Expected dates when results will be declared </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblExpectedhigherDategrade" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2590,9 +2566,9 @@
                                                             <label id="labelhigherverify" runat="server" for="higherverify">Name of Contact who can verify this qualification </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherverify" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2615,9 +2591,9 @@
                                                             <label id="labelhigherrelation" runat="server" for="higherrelation">Relationship with the Contact </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherrelation" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2640,9 +2616,9 @@
                                                             <label id="labelhighercontactEmail" runat="server" for="highercontactEmail">Email ID of Contact who can verify your qualification  </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercontactEmail" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2664,9 +2640,9 @@
                                                         <td class="width30 td-rightlabel">
                                                             <label id="labelhighercontactMobile" runat="server" for="highercontactMobile">Mobile/Cellular Number of Contact who can verify your qualification</label></td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercontactMobile" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2696,9 +2672,9 @@
                                                             <label id="labelhighercoursePG" runat="server" for="highercourse">Higher Course</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercoursePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2719,9 +2695,9 @@
                                                             <label id="labelhigherCountryPG" runat="server" for="higherCountry">Country of Higher Education</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherCountryPG" runat="server"></asp:Label>
 
                                                                     </td>
@@ -2742,9 +2718,9 @@
                                                             <label id="labelhigherstartDatePG" runat="server" for="higherstartDate">Start Date </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherstartDatePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2764,9 +2740,9 @@
                                                             <label id="labelhigherendDatePG" runat="server" for="higherendDate">End Date </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherendDatePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2788,9 +2764,9 @@
                                                             <label id="labelhigherNamePG" runat="server" for="higherName">Name of School</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherNamePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2812,9 +2788,9 @@
                                                             <label id="labelhigherQualificationtypePG" runat="server" for="higherQualificationtype">Qualification Name</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherQualificationtypePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2834,9 +2810,9 @@
                                                             <label id="labelhigherstudymodePG" runat="server" for="higherstudymode">Mode of study</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherstudymodePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2856,9 +2832,9 @@
                                                             <label id="labelhigherlanguagePG" runat="server" for="higherlanguage">Language (Medium) of Study</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherlanguagePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2878,9 +2854,9 @@
                                                             <label id="labelhighergradetypePG" runat="server" for="highergradetype">Grade Type</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighergradetypePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2900,9 +2876,9 @@
                                                             <label id="labelhighergradeachievedPG" runat="server" for="highergradeachieved">Final Grade Achieved </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighergradeachievedPG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2922,9 +2898,9 @@
                                                             <label id="labelExpectedhigherDategradePG" runat="server" for="EnglishCourse">Expected dates when results will be declared </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblExpectedhigherDategradePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2947,9 +2923,9 @@
                                                             <label id="labelhigherverifyPG" runat="server" for="higherverify">Name of Contact who can verify this qualification </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherverifyPG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2972,9 +2948,9 @@
                                                             <label id="labelhigherrelationPG" runat="server" for="higherrelation">Relationship with the Contact </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherrelationPG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -2997,9 +2973,9 @@
                                                             <label id="labelhighercontactEmailPG" runat="server" for="highercontactEmail">Email ID of Contact who can verify your qualification  </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercontactEmailPG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3021,9 +2997,9 @@
                                                         <td class="width30 td-rightlabel">
                                                             <label id="labelhighercontactMobilePG" runat="server" for="highercontactMobile">Mobile/Cellular Number of Contact who can verify your qualification</label></td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercontactMobilePG" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3053,9 +3029,9 @@
                                                             <label id="labelhighercoursePhd" runat="server" for="highercourse">Higher Course</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercoursePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3076,9 +3052,9 @@
                                                             <label id="labelhigherCountryPhd" runat="server" for="higherCountry">Country of Higher Education</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherCountryPhd" runat="server"></asp:Label>
 
                                                                     </td>
@@ -3099,9 +3075,9 @@
                                                             <label id="labelhigherstartDatePhd" runat="server" for="higherstartDate">Start Date </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherstartDatePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3121,9 +3097,9 @@
                                                             <label id="labelhigherendDatePhd" runat="server" for="higherendDate">End Date </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherendDatePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3145,9 +3121,9 @@
                                                             <label id="labelhigherNamePhd" runat="server" for="higherName">Name of School</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherNamePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3169,9 +3145,9 @@
                                                             <label id="labelhigherQualificationtypePhd" runat="server" for="higherQualificationtype">Qualification Name</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherQualificationtypePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3191,9 +3167,9 @@
                                                             <label id="labelhigherstudymodePhd" runat="server" for="higherstudymode">Mode of study</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherstudymodePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3213,9 +3189,9 @@
                                                             <label id="labelhigherlanguagePhd" runat="server" for="higherlanguage">Language (Medium) of Study</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherlanguagePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3235,9 +3211,9 @@
                                                             <label id="labelhighergradetypePhd" runat="server" for="highergradetype">Grade Type</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighergradetypePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3257,9 +3233,9 @@
                                                             <label id="labelhighergradeachievedPhd" runat="server" for="highergradeachieved">Final Grade Achieved </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighergradeachievedPhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3279,9 +3255,9 @@
                                                             <label id="labelExpectedhigherDategradePhd" runat="server" for="EnglishCourse">Expected dates when results will be declared </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblExpectedhigherDategradePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3304,9 +3280,9 @@
                                                             <label id="labelhigherverifyPhd" runat="server" for="higherverify">Name of Contact who can verify this qualification </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherverifyPhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3329,9 +3305,9 @@
                                                             <label id="labelhigherrelationPhd" runat="server" for="higherrelation">Relationship with the Contact </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherrelationPhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3354,9 +3330,9 @@
                                                             <label id="labelhighercontactEmailPhd" runat="server" for="highercontactEmail">Email ID of Contact who can verify your qualification  </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercontactEmailPhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3378,9 +3354,9 @@
                                                         <td class="width30 td-rightlabel">
                                                             <label id="labelhighercontactMobilePhd" runat="server" for="highercontactMobile">Mobile/Cellular Number of Contact who can verify your qualification</label></td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercontactMobilePhd" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3410,9 +3386,9 @@
                                                             <label id="labelhighercourseOther" runat="server" for="highercourse">Higher Course</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercourseOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3433,9 +3409,9 @@
                                                             <label id="labelhigherCountryOther" runat="server" for="higherCountry">Country of Higher Education</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherCountryOther" runat="server"></asp:Label>
 
                                                                     </td>
@@ -3456,9 +3432,9 @@
                                                             <label id="labelhigherstartDateOther" runat="server" for="higherstartDate">Start Date </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherstartDateOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3478,9 +3454,9 @@
                                                             <label id="labelhigherendDateOther" runat="server" for="higherendDate">End Date </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherendDateOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3502,9 +3478,9 @@
                                                             <label id="labelhigherNameOther" runat="server" for="higherName">Name of School</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherNameOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3526,9 +3502,9 @@
                                                             <label id="labelhigherQualificationtypeOther" runat="server" for="higherQualificationtype">Qualification Name</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherQualificationtypeOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3548,9 +3524,9 @@
                                                             <label id="labelhigherstudymodeOther" runat="server" for="higherstudymode">Mode of study</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherstudymodeOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3570,9 +3546,9 @@
                                                             <label id="labelhigherlanguageOther" runat="server" for="higherlanguage">Language (Medium) of Study</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherlanguageOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3592,9 +3568,9 @@
                                                             <label id="labelhighergradetypeOther" runat="server" for="highergradetype">Grade Type</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighergradetypeOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3614,9 +3590,9 @@
                                                             <label id="labelhighergradeachievedOther" runat="server" for="highergradeachieved">Final Grade Achieved </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighergradeachievedOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3636,9 +3612,9 @@
                                                             <label id="labelExpectedhigherDategradeOther" runat="server" for="EnglishCourse">Expected dates when results will be declared </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblExpectedhigherDategradeOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3661,9 +3637,9 @@
                                                             <label id="labelhigherverifyOther" runat="server" for="higherverify">Name of Contact who can verify this qualification </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherverifyOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3686,9 +3662,9 @@
                                                             <label id="labelhigherrelationOther" runat="server" for="higherrelation">Relationship with the Contact </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhigherrelationOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3711,9 +3687,9 @@
                                                             <label id="labelhighercontactEmailOther" runat="server" for="highercontactEmail">Email ID of Contact who can verify your qualification  </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercontactEmailOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3735,9 +3711,9 @@
                                                         <td class="width30 td-rightlabel">
                                                             <label id="labelhighercontactMobileOther" runat="server" for="highercontactMobile">Mobile/Cellular Number of Contact who can verify your qualification</label></td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblhighercontactMobileOther" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -3764,9 +3740,9 @@
                                                 <label id="labeldiploma" runat="server" for="diploma">Have you completed any Diploma or Certificate Programs ?</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiploma" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3787,9 +3763,9 @@
                                                 <label id="labeldiplomaCountry" runat="server" for="diplomaCountry">Country of Diploma or Certificate Programs</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomaCountry" runat="server"></asp:Label>
 
                                                         </td>
@@ -3810,9 +3786,9 @@
                                                 <label id="labeldiplomastartDate" runat="server" for="diplomastartDate">Start Date </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomastartDate" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3832,9 +3808,9 @@
                                                 <label id="labeldiplomaendDate" runat="server" for="diplomaendDate">End Date </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomaendDate" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3856,9 +3832,9 @@
                                                 <label id="labeldiplomaName" runat="server" for="diplomaName">Name of School</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomaName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3880,9 +3856,9 @@
                                                 <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype">Qualification Name</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomaQualificationtype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3902,9 +3878,9 @@
                                                 <label id="labeldiplomastudymode" runat="server" for="diplomastudymode">Mode of study</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomastudymode" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3924,9 +3900,9 @@
                                                 <label id="labeldiplomalanguage" runat="server" for="diplomalanguage">Language (Medium) of Study</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomalanguage" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3946,9 +3922,9 @@
                                                 <label id="labeldiplomagradetype" runat="server" for="diplomagradetype">Grade Type</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomagradetype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3968,9 +3944,9 @@
                                                 <label id="labeldiplomagradeachieved" runat="server" for="gradeachieved">Final Grade Achieved </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomagradeachieved" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -3990,9 +3966,9 @@
                                                 <label id="labelExpecteddiplomaDategrade" runat="server" for="EnglishCourse">Expected dates when results will be declared </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblExpecteddiplomaDategrade" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4015,9 +3991,9 @@
                                                 <label id="labeldiplomaverify" runat="server" for="diplomaverify">Name of Contact who can verify this qualification </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomaverify" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4040,9 +4016,9 @@
                                                 <label id="labeldiplomarelation" runat="server" for="diplomarelation">Relationship with the Contact </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomarelation" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4065,9 +4041,9 @@
                                                 <label id="labeldiplomacontactEmail" runat="server" for="diplomacontactEmail">Email ID of Contact who can verify your qualification  </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomacontactEmail" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4089,9 +4065,9 @@
                                             <td class="width30 td-rightlabel">
                                                 <label id="labeldiplomacontactMobile" runat="server" for="diplomacontactMobile">Mobile/Cellular Number of Contact who can verify your qualification</label></td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbldiplomacontactMobile" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4125,16 +4101,16 @@
                                                 <label id="labelcustom<%= CustomControlsEdu[edu].customfieldid%>"><%=  CustomControlsEdu[edu].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=objCom.GetCustomFieldValue(ApplicantID,4,CustomControlsEdu[edu].customfieldid) %></span>
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsEdu[edu].customfieldid %>" style='<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsEdu[edu].customfieldid %>" style:'<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsEdu[edu].customfieldid %>" style='<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsEdu[edu].customfieldid %>" style:'<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
                                                         </td>
                                                         <td class="width30 td-rightlabel">
                                                             <span><%=Admincomments %></span>
@@ -4145,11 +4121,7 @@
                                         </tr>
                                         <%} %>
                                     </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									 <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30 td-rightlabel">SUPERVISIOR REVIEW & COMMENTS
 
@@ -4159,22 +4131,14 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </td>
-                            </tr>
-                            <!-- Education Detail End-->
+									 <!-- Education Detail End-->
                             <!-- Language Information -->
-                            <tr>
-                                <td>
-                                    <div class="frm-ttle">Language Detail</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="100%" class="width100">
-                                    <table cellpadding="0" cellspacing="0" class="table">
+							<div class="frm-ttle">Language Detail</div>
+							 <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30"></td>
                                             <td class="width70 bg-gry-head text-right">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
                                                         <td class="width50">STUDENT RESPONSE
                                                         </td>
@@ -4196,9 +4160,9 @@
                                                 <label id="labelhomelanguage" runat="server" for="homelanguage">What language do you speak at home</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblhomelanguage" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4219,9 +4183,9 @@
                                                 <label id="labelEnglishBackground" runat="server" for="EnglishBackground">Have you studied an English Language Intensive Course for students from non-English speaking backgrounds</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblEnglishBackground" runat="server"></asp:Label>
 
                                                         </td>
@@ -4242,9 +4206,9 @@
                                                 <label id="labelLanguage" runat="server" for="Language">Country of English Language Intensive Course</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblLanguage" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4264,9 +4228,9 @@
                                                 <label id="labelYearCompletion" runat="server" for="YearCompletion">Year of Completion/Expected </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblYearCompletion" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4288,9 +4252,9 @@
                                                 <label id="labelNameCollege" runat="server" for="NameCollege">Name of College or University</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblNameCollege" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4312,9 +4276,9 @@
                                                 <label id="labelstudymode" runat="server" for="studymode">Mode of study</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblstudymode" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4334,9 +4298,9 @@
                                                 <label id="labelQualificationType" runat="server" for="QualificationType">Qualification Type</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblQualificationType" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4356,9 +4320,9 @@
                                                 <label id="labelQualificationName" runat="server" for="QualificationName">Qualification Name</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblQualificationName" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4378,9 +4342,9 @@
                                                 <label id="labelLanggradetype" runat="server" for="EnglishCourse">Grade Type</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblLanggradetype" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4400,9 +4364,9 @@
                                                 <label id="labelLanggradeachieved" runat="server" for="gradeachieved">Final Grade Achieved </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblLanggradeachieved" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4422,9 +4386,9 @@
                                                 <label id="labelExpectedDategrade" runat="server" for="EnglishCourse">Expected dates when results will be declared </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblExpectedDategrade" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4442,14 +4406,37 @@
                                             </td>
 
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="EnglishTest" runat="server" visible="false">
+                                        <tr class="adm-form-row-tr" id="isgiventest_yes_or_no" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelEnglishTest" runat="server" for="EnglishTest">Have you sat any one of the following English Language competency tests</label>
+                                                <label id="lbl_isgiventest_yes_or_no" runat="server" for="isgiventest_yes_or_no">HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
+                                                            <asp:Label ID="lblisgiventest_yes_or_no" runat="server"></asp:Label>
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/check.png" visible="false" id="isgiventest_yes" runat="server" class="bdy-check-icon">
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/cross.png" visible="false" id="isgiventest_no" runat="server" class="bdy-cross-icon">
+                                                        </td>
+                                                        <td class="width30 td-rightlabel">
+                                                            <asp:Label ID="lblisgiventest_yes_or_noComment" runat="server"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr class="adm-form-row-tr" id="EnglishTest" runat="server" visible="false">
+                                            <td class="width30 td-rightlabel">
+                                                <label id="labelEnglishTest" runat="server" for="EnglishTest">Test Name</label>
+                                            </td>
+                                            <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblEnglishTest" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -4465,42 +4452,42 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="testName" runat="server" visible="false">
-                                            <td class="width30 td-rightlabel">
-                                                <label id="labeltestName" runat="server" for="testName">Test Name </label>
-                                            </td>
-                                            <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
-                                                    <tr>
-                                                        <td class="width50">
-                                                            <asp:Label ID="lbltestName" runat="server"></asp:Label>
-
-                                                        </td>
-                                                        <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" visible="false" id="imgtestNameYes" runat="server" class="bdy-check-icon">
-                                                        </td>
-                                                        <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" visible="false" id="imgtestNameNo" runat="server" class="bdy-cross-icon">
-                                                        </td>
-                                                        <td class="width30">
-                                                            <asp:Label ID="lbltestNameComments" runat="server"></asp:Label></td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-
+                                        
                                         <tr id="Ilet" runat="server" visible="false" class="adm-form-row-tr">
                                             <td colspan="6">
                                                 <table cellpadding="0" cellspacing="0" class="table">
+                                                            <tr class="adm-form-row-tr" id="testName" runat="server" visible="false">
+                                                    <td class="width30 td-rightlabel">
+                                                        <label id="labeltestName" runat="server" for="testName">Test Name </label>
+                                                    </td>
+                                                    <td class="width70">
+                                                        <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                            <tr>
+                                                                <td class="width50 bgcol">
+                                                                    <asp:Label ID="lbltestName" runat="server"></asp:Label>
+
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/check.png" visible="false" id="imgtestNameYes" runat="server" class="bdy-check-icon">
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/cross.png" visible="false" id="imgtestNameNo" runat="server" class="bdy-cross-icon">
+                                                                </td>
+                                                                <td class="width30">
+                                                                    <asp:Label ID="lbltestNameComments" runat="server"></asp:Label></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>   
 
                                                     <tr class="adm-form-row-tr" id="CandidateID" runat="server" visible="false">
                                                         <td class="width30 td-rightlabel">
                                                             <label id="labelCandidateID" runat="server" for="CandidateID">Candidate ID </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblCandidateID" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4520,9 +4507,9 @@
                                                             <label id="labelCandidateNo" runat="server" for="CandidateNo">Candidate No </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblCandidateNo" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4544,9 +4531,9 @@
                                                             <label id="labelieltsTestDate" runat="server" for="ieltsTestDate">Test Date</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblieltsTestDate" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4568,9 +4555,9 @@
                                                             <label id="labelCentreNo" runat="server" for="testName">Test Centre No </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblCentreNo" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4590,9 +4577,9 @@
                                                             <label id="labelReadingScore" runat="server" for="ReadingScore">Reading Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblReadingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4612,9 +4599,9 @@
                                                             <label id="labelListeningScore" runat="server" for="ListeningScore">Listening Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblListeningScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4634,9 +4621,9 @@
                                                             <label id="labelSpeakingScore" runat="server" for="SpeakingScore">Speaking Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblSpeakingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4656,9 +4643,9 @@
                                                             <label id="labelWritingScore" runat="server" for="WritingScore">Writing Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblWritingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4677,9 +4664,9 @@
                                                         <td class="width30 td-rightlabel">
                                                             <label id="labelLanguageScore" runat="server" for="LanguageScore">Total Score</label></td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblLanguageScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4708,9 +4695,9 @@
                                                             <label id="labelptetesttaker" runat="server" for="ptetesttaker">Test Taker ID</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblptetesttaker" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4731,9 +4718,9 @@
                                                             <label id="labelpteregistrationno" runat="server" for="pteregistrationno">Registration Number </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblpteregistrationno" runat="server"></asp:Label>
 
                                                                     </td>
@@ -4754,9 +4741,9 @@
                                                             <label id="labelpteTestDate" runat="server" for="pteTestDate">Test Date</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblpteTestDate" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4776,9 +4763,9 @@
                                                             <label id="labelptecentercountry" runat="server" for="ptecentercountry">Test Center Country</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblptecentercountry" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4800,9 +4787,9 @@
                                                             <label id="labelptetestcenterNo" runat="server" for="ptetestcenterNo">Test Centre No </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblptetestcenterNo" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4824,9 +4811,9 @@
                                                             <label id="labelpteReadingScore" runat="server" for="pteReadingScore">Reading Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblpteReadingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4846,9 +4833,9 @@
                                                             <label id="labelpteListeningScore" runat="server" for="pteListeningScore">Listening Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblpteListeningScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4868,9 +4855,9 @@
                                                             <label id="labelpteSpeakingScore" runat="server" for="pteSpeakingScore">Speaking Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblpteSpeakingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4890,9 +4877,9 @@
                                                             <label id="labelpteWritingScore" runat="server" for="pteWritingScore">Writing Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblpteWritingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4912,9 +4899,9 @@
                                                             <label id="labelpteTotalScore" runat="server" for="pteTotalScore">Total Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lblpteTotalScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4940,9 +4927,9 @@
                                                             <label id="labeltofelregistrationno" runat="server" for="tofelregistrationno">Registration Number </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelregistrationno" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4965,9 +4952,9 @@
                                                             <label id="labeltofelTestDate" runat="server" for="tofelTestDate">Test Date</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelTestDate" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -4987,9 +4974,9 @@
                                                             <label id="labeltofelcentercountry" runat="server" for="tofelcentercountry">Test Center Country</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelcentercountry" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -5009,9 +4996,9 @@
                                                             <label id="labeltofelcenterNo" runat="server" for="tofelcenterNo">Test Centre No </label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelcenterNo" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -5031,9 +5018,9 @@
                                                             <label id="labeltofelReadingScore" runat="server" for="tofelReadingScore">Reading Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelReadingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -5053,9 +5040,9 @@
                                                             <label id="labeltofelListeningScore" runat="server" for="tofelListeningScore">Listening Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelListeningScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -5078,9 +5065,9 @@
                                                             <label id="labeltofelSpeakingScore" runat="server" for="tofelSpeakingScore">Speaking Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelSpeakingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -5100,9 +5087,9 @@
                                                             <label id="labeltofelWritingScore" runat="server" for="tofelWritingScore">Writing Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelWritingScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -5122,9 +5109,9 @@
                                                             <label id="labeltofelTotalScore" runat="server" for="tofelTotalScore">Total Score</label>
                                                         </td>
                                                         <td class="width70">
-                                                            <table cellpadding="0" cellspacing="0" class="table">
+                                                            <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                                 <tr>
-                                                                    <td class="width50">
+                                                                    <td class="width50 bgcol">
                                                                         <asp:Label ID="lbltofelTotalScore" runat="server"></asp:Label>
                                                                     </td>
                                                                     <td class="width10">
@@ -5147,9 +5134,9 @@
                                                 <label id="labelCEFR" runat="server" for="CEFR">CEFR Level </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblCEFR" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -5169,9 +5156,9 @@
                                                 <label id="labeltestRefno" runat="server" for="testRefno">Test Report Reference No </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lbltestRefno" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -5206,16 +5193,16 @@
                                                 <label id="labelcustom<%= CustomControlsLang[lang].customfieldid%>"><%=  CustomControlsLang[lang].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=objCom.GetCustomFieldValue(ApplicantID,5,CustomControlsLang[lang].customfieldid) %></span>
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsLang[lang].customfieldid %>" style='<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsLang[lang].customfieldid %>" style:'<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsLang[lang].customfieldid %>" style='<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsLang[lang].customfieldid %>" style:'<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
                                                         </td>
                                                         <td class="width30 td-rightlabel">
                                                             <span><%=Admincomments %></span>
@@ -5226,11 +5213,7 @@
                                         </tr>
                                         <%} %>
                                     </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									<table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30 td-rightlabel">SUPERVISIOR REVIEW & COMMENTS
 
@@ -5240,23 +5223,14 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </td>
-                            </tr>
-                            <!-- Language information End-->
+									 <!-- Language information End-->
                             <!-- Employment Information-->
-
-                            <tr>
-                                <td>
-                                    <div class="frm-ttle">Employer Detail</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="100%" class="width100">
-                                    <table cellpadding="0" cellspacing="0" class="table">
+							<div class="frm-ttle">Employer Detail</div>
+							  <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30"></td>
                                             <td class="width70 bg-gry-head text-right">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
                                                         <td class="width50">STUDENT RESPONSE
                                                         </td>
@@ -5277,14 +5251,73 @@
                                             {
 
                                         %>
-                                        <tr class="adm-form-row-tr" id="employer" style='<%= employer == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="employmentInfo_count" style:'<%= employmentInfo == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                            <td class="width30 td-rightlabel">                                                
+                                            </td>
+                                            <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol" colspan="3">
+                                                            <span>Employment Record:<%=k + 1 %></span>
+                                                        </td>                                                        
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                   <tr class="adm-form-row-tr" id="employmentInfo" style:'<%= employmentInfo == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                            <td class="width30 td-rightlabel">
+                                                <label id="lblemploymentInfo" for="employer"><%=employmentInfo %> </label>
+                                            </td>
+                                            <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol">                                                            
+                                                            <span><%=EmployersDetail[k].wishtoaddemployer  == 1 ? "Yes" : "No" %></span>
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="wishtoaddemployerYes" + k %>" style="visibility: hidden" class="bdy-check-icon">
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="wishtoaddemployerNo" + k %>" style="visibility: hidden" class="bdy-cross-icon">
+                                                        </td>
+                                                        <td class="width30 td-rightlabel">
+                                                            <span id="<%="lblwishtoaddemployerComment" + k %>"></span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                  <%-- <tr class="adm-form-row-tr" id="yearsOfexp" style:'<%= yearsOfexp == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                            <td class="width30 td-rightlabel">
+                                                <label id="lblyearsOfexp" for="employer"><%=yearsOfexp %> </label>
+                                            </td>
+                                            <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol">
+                                                            <span><%=EmployersDetail[k].to %></span>
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="yearsOfexpYes" + k %>" style="visibility: hidden" class="bdy-check-icon">
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="yearsOfexpNo" + k %>" style="visibility: hidden" class="bdy-cross-icon">
+                                                        </td>
+                                                        <td class="width30 td-rightlabel">
+                                                            <span id="<%="lblyearsOfexpComment" + k %>"></span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>--%>
+                                        <tr class="adm-form-row-tr" id="employer" style:'<%= employer == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelemployer" for="employer"><%=employer %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].organization %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5300,15 +5333,15 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="employerwebsite" style='<%= employerwebsite == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="employerwebsite" style:'<%= employerwebsite == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelemployerwebsite" for="employerwebsite"><%=employerwebsite %></label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
-                                                            <span><%=EmployersDetail[k].website %></span>
+                                                        <td class="width50 bgcol">
+                                                            <span><%=EmployersDetail[k].website == null?"DOES NOT HAVE WEBSITE":EmployersDetail[k].website %></span>
                                                         </td>
                                                         <td class="width10">
                                                             <img src="/assets/dashboard/img/check.png" id="<%="imgemployerwebsiteYes" + k %>" style="visibility: hidden" class="bdy-check-icon">
@@ -5323,14 +5356,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="employercity" style='<%= employercity == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="employercity" style:'<%= employercity == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelemployercity" for="employercity"><%=employercity %></label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].city %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5346,14 +5379,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="employercountry" style='<%= employercountry == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="employercountry" style:'<%= employercountry == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelemployercountry" for="employercountry"><%=employercountry %></label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].country == null ? "" : objCom.GetCountryDiscription(Convert.ToInt32(EmployersDetail[k].country)) %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5369,14 +5402,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="position" style='<%= position == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="position" style:'<%= position == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelposition" for="position"><%=position %></label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].designation %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5392,14 +5425,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="startdate" style='<%= startdate == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="startdate" style:'<%= startdate == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelstartdate" for="startdate"><%=startdate %></label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=Convert.ToDateTime(EmployersDetail[k].durationfrom).ToString("yyyy-MM-dd") %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5415,15 +5448,15 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="endate" style='<%= enddate == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="endate" style:'<%= enddate == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
-                                                <label id="label7" runat="server" for="passportno">Passport Number </label>
+                                                <label id="label7" runat="server" for="passportno"><%=enddate %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
-                                                            <label id="labelendate" for="endate"><%=enddate %></label>
+                                                        <td class="width50 bgcol">
+                                                            <label id="labelendate" for="endate"><%=EmployersDetail[k].durationto == null ?"Currently Working" : Convert.ToDateTime(EmployersDetail[k].durationto).ToString("yyyy-MM-dd") %></label>
                                                         </td>
                                                         <td class="width10">
                                                             <img src="/assets/dashboard/img/check.png" id="<%="imgenddateYes" + k %>" style="visibility: hidden" class="bdy-check-icon">
@@ -5438,14 +5471,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="briefDescription" style='<%= BriefDescription == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="briefDescription" style:'<%= BriefDescription == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelbriefDescription" for="briefDescription"><%=BriefDescription %></label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].briefdescription %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5461,14 +5494,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="reportingmanger" style='<%= reportingmanger == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="reportingmanger" style:'<%= reportingmanger == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelreportingmanger" for="reportingmanger"><%=reportingmanger %></label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].nameofreportingmanger %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5484,14 +5517,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="employmentverification" style='<%= employmentverification == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="employmentverification" style:'<%= employmentverification == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelemploymentverification" for="employmentverification"><%=employmentverification %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].contactpersonwithdetails %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5507,14 +5540,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="relationship" style='<%= relationship == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="relationship" style:'<%= relationship == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelrelationship" for="relationship"><%=relationship %>   </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].relationshipwithcontact == null ? "" : objCom.GetRealtionship(Convert.ToInt32(EmployersDetail[k].relationshipwithcontact))%></span>
                                                         </td>
                                                         <td class="width10">
@@ -5530,14 +5563,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="emailEmployment" style='<%= emailEmployment == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="emailEmployment" style:'<%= emailEmployment == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelemail" for="email"><%=emailEmployment %>  </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].emailid %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5553,14 +5586,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="linkedin" style='<%= linkedin == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" id="linkedin" style:'<%= linkedin == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labellinkedin" for="linkedin"><%=linkedin %>  </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=EmployersDetail[k].linkedinidofcontact %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5592,16 +5625,16 @@
                                                 <label id="labelcustom<%= CustomControlsEmp[emp].customfieldid%>"><%=  CustomControlsEmp[emp].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=objCom.GetCustomFieldValue(ApplicantID,7,CustomControlsEmp[emp].customfieldid) %></span>
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsEmp[emp].customfieldid %>" style='<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsEmp[emp].customfieldid %>" style:'<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsEmp[emp].customfieldid %>" style='<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsEmp[emp].customfieldid %>" style:'<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
                                                         </td>
                                                         <td class="width30 td-rightlabel">
                                                             <span><%=Admincomments %></span>
@@ -5612,11 +5645,7 @@
                                         </tr>
                                         <%} %>
                                     </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									  <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30 td-rightlabel">SUPERVISIOR REVIEW & COMMENTS
 
@@ -5626,19 +5655,10 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </td>
-                            </tr>
-                            <!-- Employement information End-->
+									 <!-- Employement information End-->
                             <!-- Reference Check Information-->
-
-                            <tr>
-                                <td>
-                                    <div class="frm-ttle">Reference Check Detail</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="100%" class="width100">
-                                    <table cellpadding="0" cellspacing="0" class="table">
+							 <div class="frm-ttle">Reference Check Detail</div>
+							  <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30"></td>
                                             <td class="width70 bg-gry-head text-right">
@@ -5663,14 +5683,14 @@
                                             {
 
                                         %>
-                                        <tr class="adm-form-row-tr" style='<%= Name == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" style:'<%= Name == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelname" for="name"><%=Name %></label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=referenccheckList[k].name %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5686,14 +5706,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" style='<%= RefrenceMobile == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" style:'<%= RefrenceMobile == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelmobile" for="name"><%=RefrenceMobile %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=referenccheckList[k].mobile %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5709,14 +5729,14 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" style='<%= RefrenceEmail == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" style:'<%= RefrenceEmail == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelEmail" for="Email"><%=RefrenceEmail %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=referenccheckList[k].email %></span>
                                                         </td>
                                                         <td class="width10">
@@ -5749,16 +5769,16 @@
                                                 <label id="labelcustom<%= CustomControlsRef[refcnt].customfieldid%>"><%=  CustomControlsRef[refcnt].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=objCom.GetCustomFieldValue(ApplicantID,6,CustomControlsRef[refcnt].customfieldid) %></span>
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsRef[refcnt].customfieldid %>" style='<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsRef[refcnt].customfieldid %>" style:'<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsRef[refcnt].customfieldid %>" style='<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsRef[refcnt].customfieldid %>" style:'<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
                                                         </td>
                                                         <td class="width30 td-rightlabel">
                                                             <span><%=Admincomments %></span>
@@ -5769,11 +5789,7 @@
                                         </tr>
                                         <%} %>
                                     </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									   <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30 td-rightlabel">SUPERVISIOR REVIEW & COMMENTS
 
@@ -5783,24 +5799,15 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </td>
-                            </tr>
-
-                            <!-- Reference Check Information End-->
+									 <!-- Reference Check Information End-->
                             <!-- Socail  Information-->
-
-                            <tr>
-                                <td>
+							
                                     <div class="frm-ttle">Social  Detail</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="100%" class="width100">
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									  <table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30"></td>
                                             <td class="width70 bg-gry-head text-right">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
                                                         <td class="width50">STUDENT RESPONSE
                                                         </td>
@@ -5822,9 +5829,9 @@
                                                 <label id="labellinked" runat="server" for="linked">Link to your LinkedIn profile</label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblLinkedin" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -5847,9 +5854,9 @@
                                                 <label id="labelfacebook" runat="server" for="employer">Link to your Facebook profile </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblFacebook" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -5872,9 +5879,9 @@
                                                 <label id="labeltwitter" runat="server" for="twitter">Link to your twitter handle </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <asp:Label ID="lblTwitter" runat="server"></asp:Label>
                                                         </td>
                                                         <td class="width10">
@@ -5908,16 +5915,16 @@
                                                 <label id="labelcustom<%= CustomControlsSocial[social].customfieldid%>"><%=  CustomControlsSocial[social].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
-                                                        <td class="width50">
+                                                        <td class="width50 bgcol">
                                                             <span><%=objCom.GetCustomFieldValue(ApplicantID,8,CustomControlsSocial[social].customfieldid) %></span>
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsSocial[social].customfieldid %>" style='<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
+                                                            <img src="/assets/dashboard/img/check.png" id="<%="imgYes"+ CustomControlsSocial[social].customfieldid %>" style:'<%= Adminaction == "1" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-check-icon">
                                                         </td>
                                                         <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsSocial[social].customfieldid %>" style='<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
+                                                            <img src="/assets/dashboard/img/cross.png" id="<%="imgNo"+ CustomControlsSocial[social].customfieldid %>" style:'<%= Adminaction == "0" ? "visibility: visible;": "visibility:hidden;"  %>' class="bdy-cross-icon">
                                                         </td>
                                                         <td class="width30 td-rightlabel">
                                                             <span><%=Admincomments %></span>
@@ -5928,11 +5935,7 @@
                                         </tr>
                                         <%} %>
                                     </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <table cellpadding="0" cellspacing="0" class="table">
+									<table cellpadding="0" cellspacing="0" class="table">
                                         <tr>
                                             <td class="width30 td-rightlabel">SUPERVISIOR REVIEW & COMMENTS
 
@@ -5942,13 +5945,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </td>
-                            </tr>
-                            <!-- Employement information End-->
-                        </table>
-                    </td>
-                </tr>
-            </table>
+									 <!-- Employement information End-->
         </div>
         <script>
 
