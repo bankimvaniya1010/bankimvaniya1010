@@ -69,13 +69,16 @@ public partial class admin_gtereport : System.Web.UI.Page
                     if (applicantdoc != null)
                         studentphoto = webURL + "/Docs/" + ApplicantID + "/Documents/" + applicantdoc;
                     //other details
-                    var applicantdetail = db.applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).Select(x => new { x.nationality, x.residentialcountry, x.dateofbirth }).FirstOrDefault();
+                    var applicantdetail = db.applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).Select(x => new { x.nationality, x.residentialcountry, x.dateofbirth ,x.postalcountry ,x.issameaspostal}).FirstOrDefault();
                     var coursedetails = db.applicationmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && x.preferenceid == 1).Select(x => new { x.course }).FirstOrDefault();
 
                     if (applicantdetail != null)
                     {
                         lblnationality.Text = objCom.GetCountryDiscription(Convert.ToInt32(applicantdetail.nationality));
-                        lblcountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(applicantdetail.residentialcountry));
+                        if(applicantdetail.issameaspostal != null && applicantdetail.issameaspostal == 1)
+                            lblcountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(applicantdetail.postalcountry));
+                        else
+                            lblcountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(applicantdetail.residentialcountry));
                         DateTime Dob = Convert.ToDateTime(applicantdetail.dateofbirth);
                         Age objAge = new Age(Dob, DateTime.Now);
                         lblage.Text = Convert.ToString(objAge.Years);

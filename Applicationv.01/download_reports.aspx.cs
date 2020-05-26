@@ -39,7 +39,7 @@ public partial class download_reports : System.Web.UI.Page
         else
         {
             lblmsg.Visible = true;
-            lblmsg.Text = "Please complete statement of purpose to download.";
+            lblmsg.Text = "Please complete Real-time SOP Builder to download.";
         }
         if (!IsPostBack)
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);

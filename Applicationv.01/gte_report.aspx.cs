@@ -65,7 +65,7 @@ public partial class gte_report : System.Web.UI.Page
                 lblapplicantid.Text = Convert.ToString(ApplicantID);
                 if (universityDetails.full_service)
                 {
-                    var applicantdoc = db.applicantdocumentmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && x.documentname == "Profile Photo").Select(x => x.filename).FirstOrDefault();
+                    var applicantdoc = db.applicantdocumentmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && x.documentname == "Profile Photo for Application Centre").Select(x => x.filename).FirstOrDefault();
                     if (applicantdoc != null)
                         studentphoto = webURL + "/Docs/" + ApplicantID + "/Documents/" + applicantdoc;
                     //other details
