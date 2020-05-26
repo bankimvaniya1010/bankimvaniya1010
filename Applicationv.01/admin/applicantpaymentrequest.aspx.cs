@@ -14,7 +14,8 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
     Common objCommon = new Common();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-
+    int applicantID;
+    int universityID;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -25,11 +26,11 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
         {
             if (Request.QueryString["applicantId"] != null && Request.QueryString["universityId"] != null)
             {
-                int applicantID;
+                
                 if (!Int32.TryParse(Request.QueryString["applicantId"], out applicantID))
                     Response.Redirect(webURL + "admin/default.aspx", true);
 
-                int universityID;
+                
                 if (!Int32.TryParse(Request.QueryString["universityId"], out universityID))
                     Response.Redirect(webURL + "admin/default.aspx", true);
 
@@ -58,8 +59,9 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select Course", "0");
-            int offer_accepted_status = db.application_status_master.Where(x => x.status_description.ToUpper() == "OFFER ACCEPTED").Select(x => x.id).FirstOrDefault();
-            var applicationMasterCourse = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId && x.current_status == offer_accepted_status)
+            List<int?> offer_accepted_status = db.application_status_master.Where(x => x.status_description.ToUpper().Contains("OFFER ACCEPTED")).Select(x => x.id ).Cast<int?>().ToList();
+
+            var applicationMasterCourse = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId && offer_accepted_status.Contains(x.current_status))
                                    .Join(db.coursemaster, applicationmaster => applicationmaster.course, coursemaster => coursemaster.courseid,
                                     (applicationmaster, coursemaster) => new { applicationmaster.applicationmasterid , coursemaster.coursename }).ToList();
 
@@ -68,7 +70,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
             ddlStudentCourse.DataValueField = "applicationmasterid";
             ddlStudentCourse.DataBind();
             ddlStudentCourse.Items.Insert(0, lst);
-            ddlStudentCourse.SelectedIndex = 0;
+            //ddlStudentCourse.SelectedIndex = 0;
         }
         catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
@@ -96,8 +98,13 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
 
                 if (existingPaymentDetail.currency_id > 0)
                 {
-                    ddlCurrency.ClearSelection();
+                    ddlCurrency.ClearSelection();                    
                     ddlCurrency.Items.FindByValue(existingPaymentDetail.currency_id.ToString()).Selected = true;
+                }
+                if (existingPaymentDetail.applicationmaster_id > 0)
+                {
+                    ddlStudentCourse.ClearSelection();                    
+                    ddlStudentCourse.Items.FindByValue(existingPaymentDetail.applicationmaster_id.ToString()).Selected = true;
                 }
                 if (!String.IsNullOrEmpty(existingPaymentDetail.instruction))
                     txtPaymentInstruction.Text = existingPaymentDetail.instruction;
@@ -150,6 +157,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
             int paymentDetailsId;
             Int32.TryParse(Convert.ToString(ViewState["paymentDetailId"]), out paymentDetailsId);
             int paymentFor = Convert.ToInt32(ddlPaymentDescription.SelectedItem.Value);
+            int applicationmasterId = Convert.ToInt32(ddlStudentCourse.SelectedItem.Value);
             string paymentForDescription = ddlPaymentDescription.SelectedItem.Text;
             var existingPayment = db.payment_details.Where(x => x.university_id == universityId && x.applicant_id == applicantId && x.id == paymentDetailsId).FirstOrDefault();
             var mode = "new";
@@ -160,9 +168,9 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
                 objPaymentDetail = existingPayment;
             }
 
-            if (paymentForDescription.ToUpper().Contains("ACCEPTANCE FEE"))
+            if (paymentForDescription.ToUpper().Contains("ACCEPTANCE FEE" ))
             {
-                int applicationmasterId = Convert.ToInt32(ddlStudentCourse.SelectedItem.Value);
+                
                 var acceptanceForApplicationPresent = db.payment_details.Any(x => x.applicant_id == applicantId && x.university_id == universityId && x.applicationmaster_id == applicationmasterId);
                 if (acceptanceForApplicationPresent && mode != "update")
                 {
@@ -190,7 +198,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
             objPaymentDetail.currency_id = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
             objPaymentDetail.university_id = universityId;
             objPaymentDetail.applicant_id = applicantId;
-
+            objPaymentDetail.applicationmaster_id = applicationmasterId;
             var dateArr = hidPaymentDueDate.Value.Trim().Split(Convert.ToChar("-"));
             objPaymentDetail.due_date = Convert.ToDateTime(string.Concat(dateArr[2], "-", dateArr[1], "-", dateArr[0]));
 
@@ -206,10 +214,12 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
             if (mode == "new")
             {
                 sendStudentEmail(applicantId, universityId);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Record Inserted Successfully.');window.location='" + Request.ApplicationPath + "admin/processpaymentrequest.aspx?applicantId="+objPaymentDetail.applicant_id+"&universityId="+objPaymentDetail.university_id+"';", true);
             }
             else
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Updated Successfully');", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Record Updated Successfully');window.location='" + Request.ApplicationPath + "admin/processpaymentrequest.aspx?applicantId=" + objPaymentDetail.applicant_id + "&universityId=" + objPaymentDetail.university_id + "';", true);
         }
         catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
