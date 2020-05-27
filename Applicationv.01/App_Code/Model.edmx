@@ -296,6 +296,7 @@
           <Property Name="passportissuecountry" Type="varchar" MaxLength="5" />
           <Property Name="havewhatsup" Type="int" />
           <Property Name="agentid" Type="int" />
+          <Property Name="registeragent_email" Type="varchar" MaxLength="100" />
           <Property Name="isstudentreferbyagent" Type="int" />
           <Property Name="motivationreason" Type="varchar" MaxLength="50" />
           <Property Name="haveworkexperience" Type="bit" />
@@ -1440,6 +1441,7 @@
           <Property Name="cityofeducationInstitution" Type="int" />
           <Property Name="isstudentreferbyagent" Type="int" />
           <Property Name="agentid" Type="int" />
+          <Property Name="registeragent_email" Type="varchar" MaxLength="100" />
           <Property Name="profilepicturepath" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="gte_applicantdocument">
@@ -2194,6 +2196,7 @@
           </Key>
           <Property Name="universityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="university_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="hosturl" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="address" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="website" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="contact_person" Type="varchar" MaxLength="100" Nullable="false" />
@@ -2233,7 +2236,6 @@
           <Property Name="withdrawn_terms" Type="varchar" MaxLength="2000" />
           <Property Name="supprot_service_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="visa_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="hosturl" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="university_gtm_code" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="proctor1_name" Type="varchar" MaxLength="100" />
           <Property Name="proctor1_email" Type="varchar" MaxLength="50" />
@@ -5667,6 +5669,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="visagranted" Type="Int32" />
           <Property Name="visaremarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdetails_students" FromRole="applicantdetails" ToRole="students" />
+          <Property Name="registeragent_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -6897,6 +6900,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="isstudentreferbyagent" Type="Int32" />
           <Property Name="agentid" Type="Int32" />
           <Property Name="profilepicturepath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="registeragent_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gte_applicantdocument">
           <Key>
@@ -9765,6 +9769,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
+                <ScalarProperty Name="registeragent_email" ColumnName="registeragent_email" />
                 <ScalarProperty Name="visaremarks" ColumnName="visaremarks" />
                 <ScalarProperty Name="visagranted" ColumnName="visagranted" />
                 <ScalarProperty Name="visadecisionreceived_date" ColumnName="visadecisionreceived_date" />
@@ -11028,6 +11033,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.gte_applicantdetails">
               <MappingFragment StoreEntitySet="gte_applicantdetails">
+                <ScalarProperty Name="registeragent_email" ColumnName="registeragent_email" />
                 <ScalarProperty Name="profilepicturepath" ColumnName="profilepicturepath" />
                 <ScalarProperty Name="agentid" ColumnName="agentid" />
                 <ScalarProperty Name="isstudentreferbyagent" ColumnName="isstudentreferbyagent" />

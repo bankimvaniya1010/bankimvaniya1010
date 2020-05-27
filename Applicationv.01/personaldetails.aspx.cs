@@ -397,6 +397,7 @@ public partial class personaldetails : System.Web.UI.Page
                     ddlAgent.ClearSelection();
                     ddlAgent.Items.FindByValue(profileInfo.agentid.ToString()).Selected = true;
                 }
+                txtAgentname.Text = profileInfo.registeragent_email;
 
                 if (profileInfo.ispassportfirstname.HasValue && profileInfo.ispassportfirstname.Value)
                     passportFirstName.Checked = profileInfo.ispassportfirstname.Value;
@@ -517,6 +518,7 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.isstudentreferbyagent = 0;
             if (ddlAgent.SelectedValue != "")
                 objapplicantDetail.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
+            objapplicantDetail.registeragent_email = txtAgentname.Text.Trim();
             objapplicantDetail.applicantid = userID;
             objapplicantDetail.universityid = universityID;
             objapplicantDetail.personaldetailsavedtime = DateTime.Now;

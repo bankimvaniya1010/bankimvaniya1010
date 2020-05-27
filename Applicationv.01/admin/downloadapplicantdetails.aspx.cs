@@ -163,7 +163,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 if (profileInfo.nationality != null)
                 {
                     NationalityValue = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality));
-                    //  lblNationality.Text = Nationality;
+                    lblNationality.Text = NationalityValue;
                 }
                 if (profileInfo.nationality != null)
                 {
@@ -359,7 +359,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         marital.Visible = true;
                         labelMarital.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT, OR A LONG TERM CONDITION":
+                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT OR LONG-TERM CONDITION? ":
                         disability.Visible = true;
                         labeldisability.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -375,10 +375,26 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         agentList.Visible = true;
                         labelagentList.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Highest study level successfully completed":
+                    case "HIGHEST LEVEL OF STUDY SUCCESSFULLY COMPLETED":
                         higheststudy.Visible = true;
                         labelhigheststudy.InnerHtml = setInnerHtml(fields[k]);
                         break;
+                    //case "IF YOU DIDN’T FIND YOUR AGENT NAME IN THE LIST, ADD YOUR AGENT’S EMAILL ID TO SEND THEM A REGISTRATION LINK":
+                    //    addnewagent.Attributes.Add("style", "display:block;");
+                    //    labeladdnewagent.InnerHtml = setInnerHtml(fields[k]);
+                    //    break;                    
+                    //case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
+                    //    fieldstudy.Attributes.Add("style", "display:block;");
+                    //    lblfieldstudy.InnerHtml = setInnerHtml(fields[k]);
+                    //    break;
+                    //case "Country of highest qualification":
+                    //    highestQualificationCountry.Attributes.Add("style", "display:block;");
+                    //    labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
+                    //    break;
+                    //case "Year and Month of highest qualification":
+                    //    highQualificationCompleteDate.Attributes.Add("style", "display:block;");
+                    //    lblhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
+                    //    break;
                     default:
                         break;
 
@@ -1341,7 +1357,11 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lblhighschool.Text = "No- I am currently studying for my high school qualification";
                     BindHighSchoolDetails(EducationInfo);
-                   // higestEducation.Visible = false;
+                    // higestEducation.Visible = false;
+                    highschoolverify.Visible = false;
+                    highschoolrelation.Visible = false;
+                    highschoolcontactEmail.Visible = false;
+                    highschoolcontactMobile.Visible = false;
                 }
                 else
                 {
@@ -1363,6 +1383,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lblSecondary.Text = "No - I am currently still studying for my Senior Secondary";
                     BindSecondary(EducationInfo);
+                    Secondaryverify.Visible = false;
+                    Secondaryrelation.Visible = false;
+                    SecondarycontactEmail.Visible = false;
+                    SecondarycontactMobile.Visible = false;
                 }
                 else
                 {
@@ -1388,6 +1412,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lbldiploma.Text = "No - I do not have a Diploma/Certificate qualification";
                     HideDiploma();
+                    diplomaverify.Visible = false;
+                    diplomarelation.Visible = false;
+                    diplomacontactEmail.Visible = false;
+                    diplomacontactMobile.Visible = false;
                 }
 
 
@@ -1444,9 +1472,6 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     }
     private void HideHighSchool()
     {
-
-
-
         highschoolCountry.Visible = false;
         highschoolstartDate.Visible = false;
         highschoolendDate.Visible = false;
@@ -1507,11 +1532,11 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "HAVE YOU COMPLETED HIGH SCHOOL":
+                    case "HAVE YOU COMPLETED HIGH SCHOOL?":
                         highschool.Visible = true;
                         labelhighschool.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY OF HIGH SCHOOL":
+                    case "COUNTRY WHERE YOU HAVE STUDIED HIGH SCHOOL":
                         highschoolCountry.Visible = true;
                         labelhighschoolCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -1563,9 +1588,11 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         higherNameOther.Visible = true;
                         labelhigherNameOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "QUALIFICATION TYPE":
+                    case "NAME OF HIGH SCHOOL QUALIFICATION":
                         highschoolQualificationtype.Visible = true;
                         labelhighschoolQualificationtype.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "QUALIFICATION NAME":                        
                         SecondaryQualificationtype.Visible = true;
                         labelSecondaryQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         diplomaQualificationtype.Visible = true;
@@ -1725,7 +1752,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         labelhighercontactMobileOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
-                    case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
+                    case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL (YEAR 12)?":
                         Secondary.Visible = true;
                         labelSecondary.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -1743,7 +1770,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     //    diplomagrade.Visible = true;
                     //    btndiploma.Value = setInnerHtml(fields[k]);
                     //    break;
-                    case "HAVE YOU COMPLETED ANY HIGHER (UNDER GRADUATE, MASTERS OR PHD) DEGREE":
+                    case "HAVE YOU COMPLETED A DEGREE HIGHER THAN YEAR 12?":
                         higher.Visible = true;
                         labelhigher.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -1757,7 +1784,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         higherCountry.Visible = true;
                         labelhigherCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAMS":
+                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAM(S)?":
                         diploma.Visible = true;
                         labeldiploma.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -3419,8 +3446,11 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
             lblgradeachieved.Text = "Results Declared";
         else if (EducationInfo.highschoolgradedeclared == 2)
             lblgradeachieved.Text = "Examination not conducted yet";
-        else
+        else if (EducationInfo.highschoolgradedeclared == 3)
             lblgradeachieved.Text = "Examination Conducted, but Result not declared";
+        if (EducationInfo.highschoolgradedeclared == 1 || EducationInfo.highschoolgradedeclared == 2)
+            ExpectedHighSchoolDategrade.Visible = false;
+
         if (EducationInfo.highschoolreusltdate != null)
             lblExpectedHighSchoolDategrade.Text = Convert.ToDateTime(EducationInfo.highschoolreusltdate).ToString("yyyy-MM-dd");
         lblhighschoolverify.Text = EducationInfo.highschoolverificationname;
@@ -3474,10 +3504,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
             lblSecondarygradeachieved.Text = "Results Declared";
         else if (EducationInfo.secondarygradedeclared == 2)
             lblSecondarygradeachieved.Text = "Examination not conducted yet";
-        else
+        else if (EducationInfo.secondarygradedeclared == 3)
             lblSecondarygradeachieved.Text = "Examination Conducted, but Result not declared";
-
-
+        if (EducationInfo.secondarygradedeclared == 1 || EducationInfo.secondarygradedeclared == 2)
+            ExpectedSecondaryDategrade.Visible = false;
         lblSecondaryverify.Text = EducationInfo.secondaryverificationname;
         if (EducationInfo.secondaryverificationrelationship != null)
         {
@@ -3527,9 +3557,11 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
             lbldiplomagradeachieved.Text = "Results Declared";
         else if (EducationInfo.diplomagradeachieved == 2)
             lbldiplomagradeachieved.Text = "Examination not conducted yet";
-        else
+        else if (EducationInfo.diplomagradeachieved == 3)
             lbldiplomagradeachieved.Text = "Examination Conducted, but Result not declared";
 
+        if (EducationInfo.diplomagradeachieved == 1 || EducationInfo.diplomagradeachieved == 2)
+            ExpecteddiplomaDategrade.Visible = true;
 
         if (EducationInfo.diplomaresultdate != null)
             lblExpecteddiplomaDategrade.Text = Convert.ToDateTime(EducationInfo.diplomaresultdate).ToString("yyyy-MM-dd");
@@ -3586,10 +3618,11 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblhighergradeachievedPG.Text = "Results Declared";
                 else if (EducationInfo[k].finalgradeacheived == 2)
                     lblhighergradeachievedPG.Text = "Examination not conducted yet";
-                else
+                else if (EducationInfo[k].finalgradeacheived == 3)
                     lblhighergradeachievedPG.Text = "Examination Conducted, but Result not declared";
 
-
+                if (EducationInfo[k].finalgradeacheived == 1 || EducationInfo[k].finalgradeacheived == 2)
+                    labelExpectedhigherDategradePG.Visible = false;
                 if (EducationInfo[k].resultdate != null)
                     lblExpectedhigherDategradePG.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
                 lblhigherverifyPG.Text = EducationInfo[k].verificationname;
@@ -3641,9 +3674,11 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblhighergradeachievedPhd.Text = "Results Declared";
                 else if (EducationInfo[k].finalgradeacheived == 2)
                     lblhighergradeachievedPhd.Text = "Examination not conducted yet";
-                else
+                else if (EducationInfo[k].finalgradeacheived == 9)
                     lblhighergradeachievedPhd.Text = "Examination Conducted, but Result not declared";
 
+                if (EducationInfo[k].finalgradeacheived == 1 || EducationInfo[k].finalgradeacheived == 2)
+                    ExpectedhigherDategradePhd.Visible = false;
 
                 if (EducationInfo[k].resultdate != null)
                     lblExpectedhigherDategradePhd.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
@@ -3696,9 +3731,8 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblhighergradeachieved.Text = "Results Declared";
                 else if (EducationInfo[k].finalgradeacheived == 2)
                     lblhighergradeachieved.Text = "Examination not conducted yet";
-                else
+                else if (EducationInfo[k].finalgradeacheived == 3)
                     lblhighergradeachieved.Text = "Examination Conducted, but Result not declared";
-
 
 
                 if (EducationInfo[k].resultdate != null)
@@ -3752,8 +3786,11 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblhighergradeachievedOther.Text = "Results Declared";
                 else if (EducationInfo[k].finalgradeacheived == 2)
                     lblhighergradeachievedOther.Text = "Examination not conducted yet";
-                else
+                else if (EducationInfo[k].finalgradeacheived == 3)
                     lblhighergradeachievedOther.Text = "Examination Conducted, but Result not declared";
+
+                if (EducationInfo[k].finalgradeacheived == 1 || EducationInfo[k].finalgradeacheived == 2)
+                    labelExpectedhigherDategradeOther.Visible = false;
 
                 if (EducationInfo[k].resultdate != null)
                     lblExpectedhigherDategradeOther.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
