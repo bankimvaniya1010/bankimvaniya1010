@@ -161,6 +161,20 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="sidebar-menu-item" id="counsellingcenter_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#counsellingcenter">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/message board.png" /></i>
+                                           Counselling Center
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="counsellingcenter">
+                                            <li class="sidebar-menu-item" id="counselling_center">
+                                                <a class="sidebar-menu-button" href="counselling_center.aspx?name=<%=username %>&email=<%=useremail%>">
+                                                    <span class="sidebar-menu-text">Counselling Center</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li class="sidebar-menu-item" id="profile_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#profile">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/profile.png" /></i>
@@ -730,8 +744,8 @@
 
                 }
                 if (fullService) {
-                    if (!GteDeclarationDoneByApplicant) {
-                        if (!studentDetailsCompleted) {
+                    if (studentDetailsCompleted) {
+                        if (!GteDeclarationDoneByApplicant) {
                             $("#gteevalution_list").hide();
                             $("#gtepart1").hide();
                             $("#gtepart2").hide();

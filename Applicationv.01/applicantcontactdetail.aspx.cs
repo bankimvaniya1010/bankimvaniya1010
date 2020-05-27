@@ -125,7 +125,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                     rblAddressYes.Checked = true;
                 else if (profileInfo.issameaspostal == 2)
                 {
-                    rblAddressNo.Checked = false;
+                    rblAddressNo.Checked = true;
                     txtResidentialAddress1.Value = profileInfo.residentialaddress1;
                     txtResidentialAddress2.Value = profileInfo.residentialaddress2;
                     txtResidentialAddress3.Value = profileInfo.residentialaddress3;

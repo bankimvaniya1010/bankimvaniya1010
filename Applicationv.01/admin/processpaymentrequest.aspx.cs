@@ -167,7 +167,8 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
                     applicationmaster.current_status = applicationStatus.First(x => x.status_description.ToUpper().Contains("OFFER ACCEPTED, PAYMENT MADE")).id;
                 }
                 db.SaveChanges();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Payment details updated successfully.');window.location='" + webURL + "/admin/default.aspx';", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Payment details updated successfully.');window.location='" + Request.ApplicationPath + "admin/processpaymentrequest.aspx?applicantId=" + applicantID + "&universityId=" + universityId + "';", true);                
                 if (ddlPaymentStatus.SelectedItem.Text.ToUpper().Contains("PAYMENT VERIFIED"))
                     sendEmailsNotificationForPaymentVerified(applicantID, universityId);
                 else if (ddlPaymentStatus.SelectedItem.Text.ToUpper().Contains("PAYMENT REJECTED"))
