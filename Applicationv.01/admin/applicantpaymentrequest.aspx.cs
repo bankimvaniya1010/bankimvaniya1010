@@ -59,7 +59,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select Course", "0");
-            List<int?> offer_accepted_status = db.application_status_master.Where(x => x.status_description.ToUpper().Contains("OFFER ACCEPTED")).Select(x => x.id ).Cast<int?>().ToList();
+            List<int?> offer_accepted_status = db.application_status_master.Where(x => x.status_description.ToUpper().Contains("OFFER ACCEPTED") || x.status_description.ToUpper().Contains("CONFIRMATION OF ENROLMENT GENERATED")).Select(x => x.id ).Cast<int?>().ToList();
 
             var applicationMasterCourse = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId && offer_accepted_status.Contains(x.current_status))
                                    .Join(db.coursemaster, applicationmaster => applicationmaster.course, coursemaster => coursemaster.courseid,
