@@ -332,6 +332,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 objgte_applicantdetails.isstudentreferbyagent = 0;
                 objgte_applicantdetails.agentid = null;
             }
+            objgte_applicantdetails.registeragent_email = txtAgentname.Text;
 
             //profile pic
             if (FileUpload.HasFile)
@@ -528,6 +529,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                     ddlAgent.ClearSelection();
                     ddlAgent.Items.FindByValue(studentInfo.agentid.ToString()).Selected = true;
                 }
+                txtAgentname.Text = studentInfo.registeragent_email;
                 //profile pic
                 if (studentInfo.profilepicturepath != null)
                 {

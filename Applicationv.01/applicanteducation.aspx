@@ -1399,17 +1399,17 @@
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$HighschoolGrade']").click(function () {
-                if ($("#<%=rblYes.ClientID%>").is(":checked")) {
+                if ($("#<%=rblYes.ClientID%>").is(":checked") || $("#<%=rblYetToConduct.ClientID%>").is(":checked")) {
                     $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
                 }
                 else {
                     $("#<%=ExpectedHighSchoolDategrade.ClientID%>").show();
                 }
             });
-        });
+        });      
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$DiplomaGrade']").click(function () {
-                if ($("#<%=rblDiplomaGradeYes.ClientID%>").is(":checked")) {
+                if ($("#<%=rblDiplomaGradeYes.ClientID%>").is(":checked") || $("#<%=rblDiplomaGradeYet.ClientID%>").is(":checked")) {
                     $("#<%=ExpectedDiplomaDategrade.ClientID%>").hide();
                 }
                 else {
@@ -1419,7 +1419,7 @@
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$Secondarygradeachieved']").click(function () {
-                if ($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(":checked")) {
+                if ($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(":checked") || $("#<%=SecondarygradeachievedYet.ClientID%>").is(":checked")) {
                     $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
                 }
                 else {
@@ -1429,7 +1429,7 @@
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$highergradeachieved']").click(function () {
-                if ($("#<%=rblhighergradeachievedYes.ClientID%>").is(":checked")) {
+                if ($("#<%=rblhighergradeachievedYes.ClientID%>").is(":checked") || $("#<%=rblhighergradeachievedYet.ClientID%>").is(":checked")) {
                     $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
                 }
                 else {

@@ -1570,6 +1570,31 @@ public partial class applicanteducation : System.Web.UI.Page
             /// High School Details End-----
 
             /// Secondary Details
+            if (rblHighNo.Checked == true || rblHighNot.Checked == true)
+            {
+                objEdu.issecondarydone = null;
+                objEdu.secondarycountry = null;
+                objEdu.secondarystartdate = null;
+                objEdu.secondaryendate = null;
+                objEdu.secondaryname = null;
+                objEdu.secondaryqualificationtype = null;
+                objEdu.secondarymodestudy = null;
+                objEdu.secondarymediumstudy = null;
+                objEdu.secondarygradetypeid = null;
+                objEdu.secondarygradedeclared = null;
+                objEdu.secondaryresultdate = null;
+                objEdu.secondaryverificationname = "";
+                objEdu.secondaryverificationrelationship = null;
+                objEdu.secondaryverificationemail = "";
+                objEdu.secondaryverificationmobile = "";
+                //SUBJECT & GRADE
+                var secondaryrecord = db.applicantsubjectwisegrade.Where(c => c.applicantid == userID && c.coursename == "twelth").ToList();
+                for (var i = 0; i < secondaryrecord.Count; i++)
+                    db.applicantsubjectwisegrade.Remove(db.applicantsubjectwisegrade.Find(secondaryrecord[i].applicantgradeid));
+                rblSecondaryYes.Checked = false;
+                rblSecondaryNo.Checked = false;
+                rblSecondaryNot.Checked = false;
+            }
             if (rblSecondaryYes.Checked)
             {
                 objEdu.issecondarydone = 1;
@@ -1718,7 +1743,7 @@ public partial class applicanteducation : System.Web.UI.Page
             else if (rblhigherNo.Checked)
                 objEdu.ishighereducation = 3;
             objEdu.universityid = universityID;
-
+            db.SaveChanges();
             if (mode == "new")
                 db.applicanteducationdetails.Add(objEdu);
 
@@ -1902,6 +1927,7 @@ public partial class applicanteducation : System.Web.UI.Page
     protected void btn_Save_Click(object sender, EventArgs e)
     {
         SaveEducationData();
+        EducationDetails();
     }
     
     protected void gotoNextPage_Click(object sender, EventArgs e)

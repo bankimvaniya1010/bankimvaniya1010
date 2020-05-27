@@ -158,7 +158,7 @@
                 $('.sidebar-menu-item').removeClass('open');
                 $('#managemeeting_schedule_list').addClass('open');
                 $('.sidebar-menu-item').removeClass('active');
-                $('#managemeeting_schedule').addClass('active');
+                $('#scheduledapplicant_list').addClass('active');
 
             });
             $("#<%=ddlproctor.ClientID%>").change(function () {
