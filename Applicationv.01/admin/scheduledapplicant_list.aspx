@@ -163,10 +163,10 @@
         </div>
     <script>
 		$(document).ready(function () {
-            $('.sidebar-menu-item').removeClass('open');
-            $('#managemeeting_schedule_list').addClass('open');
-            $('.sidebar-menu-item').removeClass('active');
-            $('#managemeeting_schedule').addClass('active');
+                $('.sidebar-menu-item').removeClass('open');
+                $('#managemeeting_schedule_list').addClass('open');
+                $('.sidebar-menu-item').removeClass('active');
+                $('#scheduledapplicant_list').addClass('active');
         });
 	</script>
 </asp:Content>

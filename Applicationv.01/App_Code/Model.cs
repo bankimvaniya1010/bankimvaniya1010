@@ -339,6 +339,7 @@ public partial class applicantdetails
     public Nullable<System.DateTime> visadecisionreceived_date { get; set; }
     public Nullable<int> visagranted { get; set; }
     public string visaremarks { get; set; }
+    public string registeragent_email { get; set; }
 
     public virtual students students { get; set; }
 }
@@ -1706,6 +1707,7 @@ public partial class gte_applicantdetails
     public Nullable<int> isstudentreferbyagent { get; set; }
     public Nullable<int> agentid { get; set; }
     public string profilepicturepath { get; set; }
+    public string registeragent_email { get; set; }
 }
 
 public partial class gte_applicantdocument
