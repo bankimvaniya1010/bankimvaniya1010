@@ -702,6 +702,8 @@ public partial class australiavisadetail : System.Web.UI.Page
                 }              
                 
             }
+            //prepopulate 
+            var applicantdetail = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
 
             var visaInfo = (from vInfo in db.australiavisadetailmaster
                             where vInfo.applicantid == userID && vInfo.universityid == universityID
@@ -711,31 +713,62 @@ public partial class australiavisadetail : System.Web.UI.Page
                 txtnoOfPeople.Value = visaInfo.noofpeopleincluded;
                 if (visaInfo.applyingfor == 1)
                     rbasStudent.Checked = true;
-                else if(visaInfo.applyingfor == 2)
+                else if (visaInfo.applyingfor == 2)
                     rbasFamily.Checked = true;
-                else if(visaInfo.applyingfor == 3)
+                else if (visaInfo.applyingfor == 3)
                     rbasFamilyUnit.Checked = true;
-                txtfamilyname.Value = visaInfo.familyname;
+
+                if (visaInfo.familyname == null)
+                    txtfamilyname.Value = applicantdetail.firstname + " " + applicantdetail.middlename + " " + applicantdetail.lastname;
+                else
+                    txtfamilyname.Value = visaInfo.familyname;
                 txtgivenName.Value = visaInfo.givenname;
-                txtownLanguageName.Value = visaInfo.ownlanguagename1 ;              
+                txtownLanguageName.Value = visaInfo.ownlanguagename1;
                 if (visaInfo.knownbyanothername == 0)
                     rbanothernameNo.Checked = true;
-                else if (visaInfo.knownbyanothername == 1) {
+                else if (visaInfo.knownbyanothername == 1)
+                {
                     rbanothernameYes.Checked = true;
                     txtanotherfamilyname.Value = visaInfo.anotherfamilyname;
                     txtanothergivenname.Value = visaInfo.anothergivenname;
                 }
-                if (visaInfo.gender == 1)
-                    rbMale.Checked = true;
-                else if (visaInfo.gender == 0)
-                    rbFemale.Checked = true;
+                if (visaInfo.gender == null)
+                {
+                    if (applicantdetail.gender != null)
+                    {
+                        if (applicantdetail.gender == 1)
+                            rbMale.Checked = true;
+                        else if (applicantdetail.gender == 0)
+                            rbFemale.Checked = true;
+                    }
+                }
+                else
+                {
+                    if (visaInfo.gender == 1)
+                        rbMale.Checked = true;
+                    else if (visaInfo.gender == 0)
+                        rbFemale.Checked = true;
+                }
                 if (visaInfo.dateofbirth != null)
                     txtdob.Value = Convert.ToDateTime(visaInfo.dateofbirth).ToString("yyyy-MM-dd");
+                else
+                {
+                    if (applicantdetail.dateofbirth != null)
+                        txtdob.Value = Convert.ToDateTime(applicantdetail.dateofbirth).ToString("yyyy-MM-dd");
+                }
                 txtcity.Value = visaInfo.cityofbirth;
                 if (visaInfo.countryofbirth != null)
                 {
                     ddlcountryofBirth.ClearSelection();
                     ddlcountryofBirth.Items.FindByValue(visaInfo.countryofbirth.ToString()).Selected = true;
+                }
+                else
+                {
+                    if (applicantdetail.countryofbirth != null)
+                    {
+                        ddlcountryofBirth.ClearSelection();
+                        ddlcountryofBirth.Items.FindByValue(applicantdetail.countryofbirth.ToString()).Selected = true;
+                    }
                 }
 
                 if (visaInfo.maritalstatus == 1)
@@ -758,35 +791,78 @@ public partial class australiavisadetail : System.Web.UI.Page
                     ddlcitizenshipcountry.ClearSelection();
                     ddlcitizenshipcountry.Items.FindByValue(visaInfo.countryofcitizenship.ToString()).Selected = true;
                 }
-
-                if (visaInfo.holdothercitizenship == 0)
-                    rbanothercitizenNo.Checked = true;
-                else if (visaInfo.holdothercitizenship == 1)
-                {
-                    rbanothercitizenYes.Checked = true;
-                    if (visaInfo.anothercountryofcitizenship != null)
+                else {
+                    if (applicantdetail.nationality != null)
                     {
-                        ddlanothercitizenshipcountry.ClearSelection();
-                        ddlanothercitizenshipcountry.Items.FindByValue(visaInfo.anothercountryofcitizenship.ToString()).Selected = true;
+                        ddlcitizenshipcountry.ClearSelection();
+                        ddlcitizenshipcountry.Items.FindByValue(applicantdetail.nationality.ToString()).Selected = true;
                     }
                 }
 
-                if (visaInfo.havepassport == 0)
-                    rbPassportNo.Checked = true;
-                else if (visaInfo.havepassport == 1) {
+                if (visaInfo.holdothercitizenship != null)
+                {
+                    if (visaInfo.holdothercitizenship == 0)
+                        rbanothercitizenNo.Checked = true;
+                    else if (visaInfo.holdothercitizenship == 1)
+                    {
+                        rbanothercitizenYes.Checked = true;
+                        if (visaInfo.anothercountryofcitizenship != null)
+                        {
+                            ddlanothercitizenshipcountry.ClearSelection();
+                            ddlanothercitizenshipcountry.Items.FindByValue(visaInfo.anothercountryofcitizenship.ToString()).Selected = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (applicantdetail.hasdualcitizenship != null && applicantdetail.hasdualcitizenship == true)
+                    {
+                        rbanothercitizenYes.Checked = true;
+                        if (applicantdetail.nationality2 != null)
+                        {
+                            ddlanothercitizenshipcountry.ClearSelection();
+                            ddlanothercitizenshipcountry.Items.FindByValue(applicantdetail.nationality2.ToString()).Selected = true;
+                        }
+                    }
+                    else if (applicantdetail.hasdualcitizenship != null && applicantdetail.hasdualcitizenship == false)
+                        rbanothercitizenNo.Checked = true;
+                }
+
+
+                if (visaInfo.havepassport != null)
+                {
+                    if (visaInfo.havepassport == 0)
+                        rbPassportNo.Checked = true;
+                    else if (visaInfo.havepassport == 1)
+                    {
+                        rbPassportYes.Checked = true;
+                        txtpassportno.Value = visaInfo.passportno;
+                        if (visaInfo.countryofpassport != null)
+                        {
+                            ddlcountryofissue.ClearSelection();
+                            ddlcountryofissue.Items.FindByValue(visaInfo.countryofpassport.ToString()).Selected = true;
+                        }
+                        if (visaInfo.dateofissue != null)
+                            txtdateofissue.Value = Convert.ToDateTime(visaInfo.dateofissue).ToString("yyyy-MM-dd");
+                        if (visaInfo.dateofexpiry != null)
+                            txtexpirydate.Value = Convert.ToDateTime(visaInfo.dateofexpiry).ToString("yyyy-MM-dd");
+                    }
+                    txtplaceofissue1.Value = visaInfo.placeofissue;
+                }
+                else
+                {
                     rbPassportYes.Checked = true;
-                    txtpassportno.Value= visaInfo.passportno;
-                    if (visaInfo.countryofpassport != null)
+                    txtpassportno.Value = applicantdetail.passportno;
+                    if (applicantdetail.passportissuecountry != null)
                     {
                         ddlcountryofissue.ClearSelection();
-                        ddlcountryofissue.Items.FindByValue(visaInfo.countryofpassport.ToString()).Selected = true;
+                        ddlcountryofissue.Items.FindByValue(applicantdetail.passportissuecountry.ToString()).Selected = true;
                     }
-                    if (visaInfo.dateofissue != null)
-                        txtdateofissue.Value = Convert.ToDateTime(visaInfo.dateofissue).ToString("yyyy-MM-dd");
-                    if (visaInfo.dateofexpiry != null)
-                        txtexpirydate.Value = Convert.ToDateTime(visaInfo.dateofexpiry).ToString("yyyy-MM-dd");                                       
+                    if (applicantdetail.passportissuedate != null)
+                        txtdateofissue.Value = Convert.ToDateTime(applicantdetail.passportissuedate).ToString("yyyy-MM-dd");
+                    if (applicantdetail.passportexpirydate != null)
+                        txtexpirydate.Value = Convert.ToDateTime(applicantdetail.passportexpirydate).ToString("yyyy-MM-dd");
                 }
-                txtplaceofissue1.Value = visaInfo.placeofissue;
 
                 txtapplicableidentificationno.Value = visaInfo.applicableidentificationno;
                 anotherIdentitytype1.Value = visaInfo.anotherIdentitytype1;
@@ -799,13 +875,29 @@ public partial class australiavisadetail : System.Web.UI.Page
                     ddlresidencecountry.ClearSelection();
                     ddlresidencecountry.Items.FindByValue(visaInfo.residencecountry.ToString()).Selected = true;
                 }
+                if (visaInfo.residenceaddressLine1 != null)
+                    txtAddressLine1.Value = visaInfo.residenceaddressLine1;
+                else 
+                    txtAddressLine1.Value = applicantdetail.postaladdrees1 +", "+applicantdetail.postaladdrees2;
 
-                txtAddressLine1.Value = visaInfo.residenceaddressLine1;
-                txtAddressLine2.Value = visaInfo.residenceaddressLine2;
-                 txtPostal.Value = visaInfo.residenceaddresspostalcode;
+                if (visaInfo.residenceaddressLine2 != null)
+                    txtAddressLine2.Value = visaInfo.residenceaddressLine2;
+                else
+                    txtAddressLine2.Value = applicantdetail.postaladdrees3 +","+ applicantdetail.postalcity;
 
+                if (visaInfo.residenceaddresspostalcode != null)
+                    txtPostal.Value = visaInfo.residenceaddresspostalcode;
+                else
+                    txtPostal.Value = applicantdetail.postalstate+","+applicantdetail.postalpostcode;
+
+                
                 officehrContactNo.Value = visaInfo.officehoursContactNoOutsideaustralia;
-                afterhrContactNo.Value = visaInfo.afterhoursContactNoOutsideaustralia;
+                if (visaInfo.afterhoursContactNoOutsideaustralia != null)
+                {
+                    afterhrContactNo.Value = visaInfo.afterhoursContactNoOutsideaustralia;
+                }
+                else
+                    afterhrContactNo.Value = applicantdetail.mobileno;
 
                 australiaresidentialaddline1.Value = visaInfo.australiaresidentialaddline1;
                 australiaresidentialaddline2.Value = visaInfo.australiaresidentialaddline2;
@@ -820,16 +912,17 @@ public partial class australiavisadetail : System.Web.UI.Page
 
                 if (visaInfo.agreetocommunicate == 0)
                     agreetocommunicateNo.Checked = true;
-                else if (visaInfo.agreetocommunicate == 1) {
+                else if (visaInfo.agreetocommunicate == 1)
+                {
                     agreetocommunicateYes.Checked = true;
                     faxno.Value = visaInfo.faxno;
-                    emailaddress.Value= visaInfo.emailaddress;
+                    emailaddress.Value = visaInfo.emailaddress;
                 }
-                
+
                 //23
                 if (visaInfo.applicationentrolledinschool == 0)
                     enrolledonscoolNO.Checked = true;
-                else if(visaInfo.applicationentrolledinschool == 1)
+                else if (visaInfo.applicationentrolledinschool == 1)
                     enrolledonscoolYes.Checked = true;
                 //24
                 if (visaInfo.solelegalrights == 1)
@@ -852,7 +945,7 @@ public partial class australiavisadetail : System.Web.UI.Page
                     txtguardiansresidentialaddress1.Value = visaInfo.guardiansresidentialaddress1;
                     txtguardianspostalcode1.Value = visaInfo.guardianspostalcode1;
                     txtguardianscontactno1.Value = visaInfo.guardianscontactnumber1;
-                     txtguardiansrelationship1.Value = visaInfo.guardiansrealtionwithstudent1;
+                    txtguardiansrelationship1.Value = visaInfo.guardiansrealtionwithstudent1;
                     txtguardianslegalrights1.Value = visaInfo.guardiansnatureoflegalrights1;
                     if (visaInfo.guardiansstatutorydeclartion1 == 0)
                         rbguardiansdeclarationNo1.Checked = true;
@@ -886,8 +979,8 @@ public partial class australiavisadetail : System.Web.UI.Page
 
                 if (visaInfo.appliesforAustalianvisa == 1 || visaInfo.currentlyholdaustralianvisa == 1 || visaInfo.awaitingforaustralianvisa == 1)
                 {
-                    visaname.Value = visaInfo.nameonvisa ;
-                    typeofvisa.Value = visaInfo.typeofvisa ;
+                    visaname.Value = visaInfo.nameonvisa;
+                    typeofvisa.Value = visaInfo.typeofvisa;
                     placeofvisa.Value = visaInfo.placeofissuevisa;
                     if (visaInfo.dateissuevisa != null)
                         visadateofissue.Value = Convert.ToDateTime(visaInfo.dateissuevisa).ToString("yyyy-MM-dd");
@@ -904,16 +997,17 @@ public partial class australiavisadetail : System.Web.UI.Page
                     visaname1.Value = visaInfo.nameonvisa1;
                     typeofvisa1.Value = visaInfo.typeofvisa1;
                     placeofvisa1.Value = visaInfo.placeofissuevisa1;
-                    if(visaInfo.dateissuevisa1 != null)
+                    if (visaInfo.dateissuevisa1 != null)
                         visadateofissue1.Value = Convert.ToDateTime(visaInfo.dateissuevisa1).ToString("yyyy-MM-dd");
                     if (visaInfo.applicationrefusedorgranted1 == 1)
                         refusevisa1.Checked = true;
-                    else if (visaInfo.applicationrefusedorgranted1 == 2) {
+                    else if (visaInfo.applicationrefusedorgranted1 == 2)
+                    {
                         grantedvisa1.Checked = true;
                         visalabelno1.Value = visaInfo.grantedvisalabelno1;
                         visagrantedNo1.Value = visaInfo.visagrantnumber1;
                     }
-                       
+
                 }
                 //27
 
@@ -922,8 +1016,9 @@ public partial class australiavisadetail : System.Web.UI.Page
                 else if (visaInfo.applyingfortype == 2)
                     othercases.Checked = true;
 
-               
+
             }
+            
         }
 
         catch (Exception ex) {

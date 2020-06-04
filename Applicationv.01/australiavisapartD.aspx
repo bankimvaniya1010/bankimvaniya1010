@@ -601,7 +601,7 @@
     
                                  <%--62--%>
                                   <div class="form-group" runat="server" id="question62">
-                                    <label><b class="ques-lbl">62)</b> Will your relative reside in Australia as:</label>
+                                    <label><b class="ques-lbl">62)</b> Will your relative reside in Australia as:</label><br>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                         <input type="radio" class="form-check-input" name="relativeresideas" runat="server" id="permanentresident">an Australian citizen or permanent resident
@@ -620,12 +620,19 @@
                                         <div class="form-group">
                                             <label>OR until</label>
                                              <input id="txtuntildate" runat="server" type="text" class="form-control" placeholder="DAY/MONTH/YEAR" data-toggle="flatpickr" value="">
-                                        </div> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label>You <b>must</b> attach evidence</label>
+                                            <ul>
+                                                <li>that your relatives is of good character eg.police clearence; and</li>
+                                                <li>of your relatives residence status  in australia.</li>
+                                            </ul>
+                                        </div>
                                     </div>  
                                 </div>
                                  <%--63--%>
                                  <div class="form-group" runat="server" id="question63">
-                                    <label><b class="ques-lbl">63)</b>Give details of your relative’s Student Guardian visa application?</label>
+                                    <label><b class="ques-lbl">63)</b>Give details of your relative’s Student Guardian visa application?</label><br>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                         <input type="radio" class="form-check-input" name="guardianvisasatus" runat="server" id="rbguardianvisagranted">granted
@@ -689,7 +696,7 @@
                                       <ul>
                                       <li>
                                       <div class="form-group">
-                                          <label>Signature of parent/person who has legal custody</label>
+                                          <label><b>Signature of parent/person who has legal custody</b></label>
                                           <textarea runat="server" class="form-control" id="parentsignature"></textarea>
                                       </div>
                                       <div class="form-group">
@@ -728,7 +735,7 @@
                                  <%-- 66--%>
                                  <div class="form-group" runat="server" id="question66">
                                      <div class="frm-lblttl">Custody arrangements for students under 18 years of age</div>
-                                     <label> <b class="ques-lbl">66)</b>	Do you have the sole legal right to determine where the applicant will live or to remove the applicant from their country of usual residence?</label>                                    
+                                     <label> <b class="ques-lbl">66)</b>	Do you have the <b>sole legal right</b> to determine where the applicant will live or to remove the applicant from their country of usual residence?</label>                                    
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                         <input type="radio" class="form-check-input" name="solelegalrights" runat="server" id="rbsolelegalrightsNo">No
@@ -883,7 +890,7 @@
                                  </div>
                                  <%--69--%>
                                  <div class="form-group" runat="server" id="question69">
-                                     <label> <b class="ques-lbl">69)</b>Is your agent registered with the Migration Agents Registration Authority (MARA)?</label>                                    
+                                     <label> <b class="ques-lbl">69)</b>Is your agent registered with the Migration Agents Registration Authority (MARA)?</label>  <br>                                  
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                         <input type="radio" class="form-check-input" name="mara" runat="server" id="maraNO">No
@@ -897,7 +904,7 @@
                                   </div>
                                     <%--70--%>
                                  <div class="form-group" runat="server" id="question70">
-                                     <label> <b class="ques-lbl">70)</b> Is the person an education agent? </label>                                    
+                                     <label> <b class="ques-lbl">70)</b> Is the person an education agent? </label>   <br>                                 
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                         <input type="radio" class="form-check-input" name="educationagent" runat="server" id="rbeducationagentNo">No
@@ -941,7 +948,7 @@
                                  </div>
                                  <%--71--%>
                                   <div class="form-group" runat="server" id="question71">
-                                     <label> <b class="ques-lbl">71)</b> Is your agent in Australia?</label>                                    
+                                     <label> <b class="ques-lbl">71)</b> Is your agent in Australia?</label>    <br>                                
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                         <input type="radio" class="form-check-input" name="agentinauttalia" runat="server" id="rbagentinauttaliaNo">No
@@ -955,7 +962,7 @@
                                   </div>
                                  <%--72--%>
                                  <div class="form-group" runat="server" id="question72">
-                                     <label> <b class="ques-lbl">72)</b> Did you pay the person and/or give a gift for this assistance? </label>                                    
+                                     <label> <b class="ques-lbl">72)</b> Did you pay the person and/or give a gift for this assistance? </label> <br>                                   
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                         <input type="radio" class="form-check-input" name="paytoassistance" runat="server" id="rbpaytoassistanceNo">No
