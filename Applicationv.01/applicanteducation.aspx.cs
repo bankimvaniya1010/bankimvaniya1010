@@ -1557,14 +1557,22 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEdu.highschoolmediumid = Convert.ToInt32(ddlHighschoolMedium.SelectedValue);
                 if (ddlHighSchoolGrade.SelectedValue != "")
                     objEdu.highschoolgradetypeid = Convert.ToInt32(ddlHighSchoolGrade.SelectedValue);
-                if (txtExpectedHighSchoolResult.Value != "")
-                    objEdu.highschoolreusltdate = Convert.ToDateTime(txtExpectedHighSchoolResult.Value);
-                if (rblYes.Checked)
+
+                if (rblYes.Checked) {
                     objEdu.highschoolgradedeclared = 1;
-                else if (rblYetToConduct.Checked)
+                    objEdu.highschoolreusltdate = null;
+                }
+                else if (rblYetToConduct.Checked) {
                     objEdu.highschoolgradedeclared = 2;
+                    objEdu.highschoolreusltdate = null;
+
+                }
                 else if (rblNot.Checked)
+                {
                     objEdu.highschoolgradedeclared = 3;
+                    if (txtExpectedHighSchoolResult.Value != "")
+                        objEdu.highschoolreusltdate = Convert.ToDateTime(txtExpectedHighSchoolResult.Value);
+                }
             }
 
             /// High School Details End-----
@@ -1654,13 +1662,22 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (ddlSecondaryGrade.SelectedValue != "")
                     objEdu.secondarygradetypeid = Convert.ToInt32(ddlSecondaryGrade.SelectedValue);
                 if (rblSecondarygradeachievedYes.Checked)
+                {
                     objEdu.secondarygradedeclared = 1;
+                    objEdu.secondaryresultdate = null;
+                }
                 else if (SecondarygradeachievedYet.Checked)
+                {
                     objEdu.secondarygradedeclared = 2;
+                    objEdu.secondaryresultdate = null;
+                }
                 else if (SecondarygradeachievedNo.Checked)
+                {
                     objEdu.secondarygradedeclared = 3;
-                if (txtExpectedSecondaryResult.Value != "")
-                    objEdu.secondaryresultdate = Convert.ToDateTime(txtExpectedSecondaryResult.Value);
+                    if (txtExpectedSecondaryResult.Value != "")
+                        objEdu.secondaryresultdate = Convert.ToDateTime(txtExpectedSecondaryResult.Value);
+                }
+                
             }
 
             /// Secondary Details End-----
@@ -1724,13 +1741,22 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (ddlDiplomaGrade.SelectedValue != "")
                     objEdu.diplomagradetypeid = Convert.ToInt32(ddlDiplomaGrade.SelectedValue);
                 if (rblDiplomaGradeYes.Checked)
+                {
                     objEdu.diplomagradeachieved = 1;
+                    objEdu.diplomaresultdate = null;
+                }
                 else if (rblDiplomaGradeYet.Checked)
+                {
                     objEdu.diplomagradeachieved = 2;
+                    objEdu.diplomaresultdate = null;
+                }
                 else if (rblDiplomaGradeNot.Checked)
+                {
                     objEdu.diplomagradeachieved = 3;
-                if (txtExpectedDiplomaResult.Value != "")
-                    objEdu.diplomaresultdate = Convert.ToDateTime(txtExpectedDiplomaResult.Value);
+                    if (txtExpectedDiplomaResult.Value != "")
+                        objEdu.diplomaresultdate = Convert.ToDateTime(txtExpectedDiplomaResult.Value);
+                }
+                
             }
             objEdu.lastsavetime = DateTime.Now;
             objEdu.iseducationdetailspresent = true;
@@ -1825,13 +1851,22 @@ public partial class applicanteducation : System.Web.UI.Page
                     if (ddlHigherGrade.SelectedValue != "")
                         objEducation.gradetypeid = Convert.ToInt32(ddlHigherGrade.SelectedValue);
                     if (rblhighergradeachievedYes.Checked)
+                    {
                         objEducation.finalgradeacheived = 1;
+                        objEducation.resultdate = null;
+                    }
                     else if (rblhighergradeachievedYet.Checked)
+                    {
                         objEducation.finalgradeacheived = 2;
+                        objEducation.resultdate = null;
+                    }
                     else if (rblhighergradeachievedNo.Checked)
+                    {
                         objEducation.finalgradeacheived = 3;
-                    if (txtExpectedHigherDategrade.Value != "")
-                        objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
+                        if (txtExpectedHigherDategrade.Value != "")
+                            objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
+                    }
+                    
                 }
                 objEducation.universityid = universityID;
                 if (mode == "new")
