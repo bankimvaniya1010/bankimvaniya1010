@@ -747,7 +747,7 @@
                                         </label>
                                     </div>
                                     <div runat="server" id="solelegalrightscontrols">
-                                        <label>Provide details of ALL other people who have custody, access or guardianship rights in relation to the applicantIf there is more than one person, please attach details.</label>
+                                        <label>Provide details of ALL other people who have custody, access or guardianship rights in relation to the applicant<br/><i> If there is more than one person, please attach </i>.</label>
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" name="" class="form-control" runat="server" id="txtpersonname"/>
@@ -768,18 +768,27 @@
                                             <label>Nature of legal rights</label>
                                             <input type="text" name="" class="form-control" runat="server" id="txtpersonnatureoflegalrights"/>
                                          </div>
+                                        <div class="form-group">
+                                            <label>You must signed the declaration at  Question 67.</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>All other people who have custody, access or guardianship rights in a relation to the applicant must also sign in the declaration at Question 67.</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><i> If any of this people are enable to complete the declaration at Quesion 67 for any reason, you must attach a statutory declaration from them giving permission for the applicant to travel to australia as a student.</i></label>
+                                        </div>
                                      </div>
                                  </div>
 
                                  <%--67--%>
                                  <div class="form-group" runat="server" id="question67">
-                                      <label><b class="ques-lbl">67)</b>	Declaration by the parent(s) or person(s) with legal custody of a student visa applicant under 18 years of age
+                                      <label><b class="ques-lbl">67)</b>	<b>Declaration by the parent(s) or person(s) with legal custody of a student visa applicant under 18 years of age</b><br/>
                                           I am not aware of any reason why the visa applicant should not travel to Australia (the custody/access/guardianship rights of another person are not affected).
                                       </label>
                                   <ul>
                                      <li>
                                       <div class="form-group">
-                                          <label>Signature of parent/person who has legal custody</label>
+                                          <label><b>Signature of parent/person who has legal custody</b></label>
                                           <input type="text" runat="server" class="form-control" id="txtparentsignatur67"/>
                                       </div>
                                       <div class="form-group">
@@ -814,6 +823,9 @@
                                      </div>
                                     </li>
                                   </ul>
+                                     <div class="form-group">
+                                        <label><i> If more than 2 people have custody, access or guardianship rights in a relation to the applicant, please attach a statutory declaration from them giving permission for the applicant to travel to australia as a student.</i></label>
+                                    </div>
                                  </div>
                                  <div class="frm-lblttl">Assistance with this form</div>
                                  <%--68--%>

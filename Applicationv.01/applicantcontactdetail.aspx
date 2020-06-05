@@ -289,10 +289,10 @@
     <script>        
         $('#ContentPlaceHolder1_txtPrevAddStartDate').flatpickr({
 
-            dateFormat: 'Y-m-d', defaultDate: ""
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
         });
         $('#ContentPlaceHolder1_txtPrevAddEndDate').flatpickr({
-            dateFormat: 'Y-m-d', defaultDate: ""
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
         });
 
         function isvalidPreviousResidentialAddressDates() {

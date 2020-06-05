@@ -1095,10 +1095,10 @@
             else
                 $("#<%=question42.ClientID%>").show();
 
-            if ($("#<%=leastyearsincountriesNo.ClientID%>").is(":checked"))
-                $("#<%=yes_35.ClientID%>").hide();
-            else
+            if ($("#<%=leastyearsincountriesYes.ClientID%>").is(":checked"))
                 $("#<%=yes_35.ClientID%>").show();
+            else
+                $("#<%=yes_35.ClientID%>").hide();
             if ($("#<%=holdvisaNo.ClientID%>").is(":checked"))
                 $("#<%=div_29_no.ClientID%>").show();
             else
@@ -1115,10 +1115,10 @@
         });         
         $(function () {
          $("input[name='ctl00$ContentPlaceHolder1$countries']").click(function () {
-             if ($("#<%=leastyearsincountriesNo.ClientID%>").is(":checked"))
-                 $("#<%=yes_35.ClientID%>").hide();
-             else
+             if ($("#<%=leastyearsincountriesYes.ClientID%>").is(":checked"))
                  $("#<%=yes_35.ClientID%>").show();
+             else
+                 $("#<%=yes_35.ClientID%>").hide();
              });
         });
 

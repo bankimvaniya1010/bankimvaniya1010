@@ -994,17 +994,17 @@
 
         $('#ContentPlaceHolder1_txtieltsTestDate').flatpickr({
 
-            dateFormat: 'Y-m-d', defaultDate: ""//,maxDate:"today"
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
         });
         
         $('#ContentPlaceHolder1_txtpteTestDate').flatpickr({
 
-            dateFormat: 'Y-m-d', defaultDate: ""//,maxDate:"today"
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
         });
 
         $('#ContentPlaceHolder1_txttofelTestDate').flatpickr({
 
-            dateFormat: 'Y-m-d', defaultDate: ""//,maxDate:"today"
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
         });
 
         $('#ContentPlaceHolder1_txtYearCompletion').flatpickr({

@@ -757,11 +757,16 @@
 							  </label>
 							</div>
 							<div class="collpse-div" id="div25yes" runat="server">
-								<div class="comm-txt">Attach a certified copy of the court order(s)</div>
-								<div class="comm-txt"><b>Warning</b> — In general, a person can only hold one visa at a time. If you are granted a visa while you already have another, the first visa will cease automatically when the new visa is granted.</div>
+								<div class="comm-txt">Attach a certified copy of the court order(s)</div>								
 							</div>
 						</div>
 					</div>
+                    <div>
+                        <div class="form-group">
+				        <div class="frm-lblttl">Previous Visa Application</div>
+                        <div class="comm-txt"><b>Warning</b> — In general, a person can only hold one visa at a time. If you are granted a visa while you already have another, the first visa will cease automatically when the new visa is granted.</div>
+                    </div>
+                        </div>
 					<!-- ques 25 end -->
 					<!-- ques 26 start -->
 					<div>
@@ -1088,7 +1093,7 @@
            $("#<%=div25yes.ClientID%>").hide();
      });
      $(function () {
-        $("input[name='ContentPlaceHolder1_subjectofcourtorderYes']").click(function () {
+        $("input[name='ctl00$ContentPlaceHolder1$court-order']").click(function () {
             if ($("#<%=subjectofcourtorderYes.ClientID%>").is(":checked")) 
                 $("#<%=div25yes.ClientID%>").show();                
             else 

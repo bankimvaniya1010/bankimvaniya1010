@@ -12,7 +12,7 @@ public partial class australiavisapartB : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
-    int userID = 0, ApplicantID = 0, universityID;
+    int userID = 0, universityID;
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -530,7 +530,7 @@ public partial class australiavisapartB : System.Web.UI.Page
                     }
                 }
                 else {
-                    var employerdetails = db.applicantemployerdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
+                    var employerdetails = db.applicantemployerdetails.Where(x => x.applicantid == userID && x.universityid == universityID && x.iscurrentworking == 1).FirstOrDefault();
                     if (employerdetails != null)
                     {
                         currentlyemployedYes.Checked = true;

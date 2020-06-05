@@ -771,21 +771,35 @@ public partial class australiavisadetail : System.Web.UI.Page
                     }
                 }
 
-                if (visaInfo.maritalstatus == 1)
-                    rbMarried.Checked = true;
-                else if (visaInfo.maritalstatus == 2)
-                    rbSeperated.Checked = true;
-                else if (visaInfo.maritalstatus == 3)
-                    rbWidowed.Checked = true;
-                else if (visaInfo.maritalstatus == 4)
-                    rbEngaged.Checked = true;
-                else if (visaInfo.maritalstatus == 5)
-                    rbDivorced.Checked = true;
-                else if (visaInfo.maritalstatus == 6)
-                    rbNeverMarried.Checked = true;
-                else if (visaInfo.maritalstatus == 7)
-                    rbDeFacto.Checked = true;
-
+                if (visaInfo.maritalstatus != null)
+                {
+                    if (visaInfo.maritalstatus == 1)
+                        rbMarried.Checked = true;
+                    else if (visaInfo.maritalstatus == 2)
+                        rbSeperated.Checked = true;
+                    else if (visaInfo.maritalstatus == 3)
+                        rbWidowed.Checked = true;
+                    else if (visaInfo.maritalstatus == 4)
+                        rbEngaged.Checked = true;
+                    else if (visaInfo.maritalstatus == 5)
+                        rbDivorced.Checked = true;
+                    else if (visaInfo.maritalstatus == 6)
+                        rbNeverMarried.Checked = true;
+                    else if (visaInfo.maritalstatus == 7)
+                        rbDeFacto.Checked = true;
+                }
+                else {
+                    if (applicantdetail.maritalstatus != null) {
+                        if(applicantdetail.maritalstatus == 3)
+                            rbMarried.Checked = true;
+                        else if (applicantdetail.maritalstatus == 4)
+                            rbSeperated.Checked = true;
+                        else if (applicantdetail.maritalstatus == 5)
+                            rbDivorced.Checked = true;
+                        else if (applicantdetail.maritalstatus == 6)
+                            rbWidowed.Checked = true;
+                    }
+                }
                 if (visaInfo.countryofcitizenship != null)
                 {
                     ddlcitizenshipcountry.ClearSelection();
@@ -890,14 +904,15 @@ public partial class australiavisadetail : System.Web.UI.Page
                 else
                     txtPostal.Value = applicantdetail.postalstate+","+applicantdetail.postalpostcode;
 
-                
-                officehrContactNo.Value = visaInfo.officehoursContactNoOutsideaustralia;
-                if (visaInfo.afterhoursContactNoOutsideaustralia != null)
-                {
-                    afterhrContactNo.Value = visaInfo.afterhoursContactNoOutsideaustralia;
-                }
+                if (visaInfo.officehoursContactNoOutsideaustralia != null)
+                    officehrContactNo.Value = visaInfo.officehoursContactNoOutsideaustralia;
                 else
-                    afterhrContactNo.Value = applicantdetail.mobileno;
+                    officehrContactNo.Value = applicantdetail.mobileno;
+
+                if (visaInfo.afterhoursContactNoOutsideaustralia != null)
+                    afterhrContactNo.Value = visaInfo.afterhoursContactNoOutsideaustralia;
+                else
+                    afterhrContactNo.Value = applicantdetail.homephone;
 
                 australiaresidentialaddline1.Value = visaInfo.australiaresidentialaddline1;
                 australiaresidentialaddline2.Value = visaInfo.australiaresidentialaddline2;
