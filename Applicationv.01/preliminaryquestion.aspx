@@ -16,7 +16,16 @@
         <div class="row">
             <div class="col-md-8">
               
-                <div class="card" id="questions" runat="server" visible ="true">
+                <div class="list-group-item" id="messagediv1" style="display:none" runat="server">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                        <div class="form-row">                                                            
+                            <div class="col-md-10">
+                                <asp:Label ID="ifnotset" runat="server" Text="No questions have been upload for you by the Institution."></asp:Label>                                            
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div class="card" id="questions" runat="server" visible ="true">                    
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
@@ -72,17 +81,18 @@
                         </ItemTemplate>
                     </asp:DataList>
                     <div class="card-footer" id="button" runat="server">
-
+                        <div class="form-row justify-content-between">
                         <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
-
-                        <%-- <a href="#" class="btn btn-white">Skip</a>
+                        <asp:Button ID="btnnext" runat="server" CssClass="btn btn-success" Text="Go To Next" OnClick="btnnext_Click1"/>
+                        </div>
+                            <%-- <a href="#" class="btn btn-white">Skip</a>
                         <a href="#" class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a>--%>
                     </div>
                 </div>
-                <div class="list-group-item" id="messagediv">
+                <div class="list-group-item" id="messagediv" style="display:none" runat="server">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">                                                            
-                            <div class="col-md-6">
+                            <div class="col-md-10">                                
                                 <asp:Label ID="LabelMessage" runat="server" Text=""></asp:Label>                                            
                             </div>
                         </div>
