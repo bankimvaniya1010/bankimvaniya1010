@@ -1284,6 +1284,25 @@
             else
                 $("#<%=studentID.ClientID%>").hide();
 
+            if ($("#<%=rblYes.ClientID%>").is(":checked") || $("#<%=rblYetToConduct.ClientID%>").is(":checked")) 
+                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
+            else 
+                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").show();
+
+            if ($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(":checked") || $("#<%=SecondarygradeachievedYet.ClientID%>").is(":checked")) 
+                $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
+            else 
+                $("#<%=ExpectedSecondaryDategrade.ClientID%>").show();
+
+            if ($("#<%=rblhighergradeachievedYes.ClientID%>").is(":checked") || $("#<%=rblhighergradeachievedYet.ClientID%>").is(":checked")) 
+                $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
+            else 
+                $("#<%=ExpectedHigherDategrade.ClientID%>").show();
+            if ($("#<%=rblDiplomaGradeYes.ClientID%>").is(":checked") || $("#<%=rblDiplomaGradeYet.ClientID%>").is(":checked")) 
+                $("#<%=ExpectedDiplomaDategrade.ClientID%>").hide();
+            else 
+                $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
+
         });
         //USI NUmber
          $(function () {
@@ -1605,6 +1624,8 @@
                 alert("Please select high school start date");
             else if ((!$("#<%=highschoolendDate.ClientID%>").is(':hidden')) && (($("#<%=ddlHighSchoolEndDateMonth.ClientID%>").val() == "0") || ($("#<%=ddlHighSchoolEndDateYear.ClientID%>").val() == "0")))
                 alert("Please select high school end date");
+           <%-- else if (!$("#<%=highschoolendDate.ClientID%>").is(':hidden') && !$("#<%=highschoolstartDate.ClientID%>").is(':hidden') && ($("#<%=ddlHighSchoolStartDateYear.ClientID%>").val() == $("#<%=ddlHighSchoolEndDateYear.ClientID%>").val()))
+                alert("Please select valid end date. High school start year & end year cannot be same.");--%>
             else if ((!$("#<%=highschoolName.ClientID%>").is(':hidden')) && ($("#<%=txthighschoolName.ClientID%>").val() == ""))
                 alert("Please enter high school name");
             else if ((!$("#<%=highschoolQualificationtype.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolQualificationType.ClientID%>").val() == "0"))
@@ -1645,7 +1666,7 @@
                 alert("Please select secondary medium");
             else if ((!$("#<%=Secondarygradetype.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryGrade.ClientID%>").val() == "0"))
                 alert("Please select secondary grade type");
-            else if (!$("#<%=Secondarygradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(':checked') || $("#<%=SecondarygradeachievedYet.ClientID%>").is(':checked') || $("#<%=SecondarygradeachievedYet.ClientID%>").is(':checked')))
+            else if (!$("#<%=Secondarygradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(':checked') || $("#<%=SecondarygradeachievedYet.ClientID%>").is(':checked') || $("#<%=SecondarygradeachievedNo.ClientID%>").is(':checked')))
                 alert("Please select have you achieved secondary final grade");
             else if ((!$("#<%=ExpectedSecondaryDategrade.ClientID%>").is(':hidden')) && ($("#<%=txtExpectedSecondaryResult.ClientID%>").val() == ""))
                 alert("Please enter secondary grade declaration date");

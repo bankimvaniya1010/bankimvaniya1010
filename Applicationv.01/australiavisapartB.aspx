@@ -58,7 +58,7 @@
                <input type="radio" class="form-check-input" name="hold-visa" runat="server" id="holdvisaYes">Yes
              </label>
             </div>
-            <div class="collpse-div">
+            <div class="collpse-div" id="div_29_no" runat="server">
             If you are in Assessment Level 2, 3, 4 or 5 you will be required at Question 43 to provide exceptional reasons why you should be granted a student visa in Australia.
             </div>
             </div>
@@ -67,7 +67,7 @@
             <!-- ques 30 start -->
             <div runat="server" id="question30">
             <label><b class="ques-lbl">30)</b>Provide details of your highest qualification obtained outside Australia, as well as all other studies and training obtained outside Australia.</label>
-            <div class="comm-txt">You must provide evidence of your study and training, including academic records, if you are:
+            <div class="comm-txt">You <b>must</b> provide <b>evidence</b> of your study and training, including academic records, if you are:
             <ul>
             <li>in Assessment Level 3, 4 or 5; or</li>
             <li>in Assessment Level 2 seeking to undertake studies in the postgraduate research sector.</li>
@@ -360,7 +360,7 @@
             </div>
 
             <div class="form-group" runat="server">
-            <label></label>
+            <label>Have you entrolled?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
                <input type="radio" class="form-check-input" name="enrolment1" runat="server" id="rbentrolmentNo1">No
@@ -372,10 +372,10 @@
              </label>
             </div>
              </div>
-            <div id="showlbl1">
+            <div id="showlbl1" runat="server">
             <div class="comm-txt">Attach letter of ‘offer of a place in a course</div>
             </div>
-            <div id="showoption1">
+            <div id="showoption1" runat="server">
             <div class="form-group">
                 <%--code to upload attachement document pending--%>
             <label>Is evidence of enrolment attached?</label>
@@ -411,7 +411,7 @@
             </div>
 
             <div class="form-group">
-            <label></label>
+            <label>Have you entrolled?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
                <input type="radio" class="form-check-input" name="enrolment2" runat="server" id="rbentrolmentNo2">No
@@ -423,10 +423,10 @@
              </label>
             </div>
              </div>
-            <div id="showlbl2">
+            <div id="showlbl2" runat="server">
             <div class="comm-txt">Attach letter of ‘offer of a place in a course</div>
             </div>
-            <div id="showoption2">
+            <div id="showoption2" runat="server">
             <div class="form-group">
             <label>Is evidence of enrolment attached?</label>
             <div class="form-check-inline">
@@ -522,7 +522,7 @@
                <input type="radio" class="form-check-input" name="countries" runat="server" id="leastyearsincountriesYes">Yes
              </label>
             </div>
-            <div class="collpse-div">
+            <div class="collpse-div" id="yes_35" runat="server">
             <div class="comm-txt">Attach evidence</div>
             </div>
             </div>
@@ -862,7 +862,7 @@
             <div runat="server" id="question41">
             <div class="frm-lblttl">Financial details</div>
             <div class="form-group">
-            <label><b class="ques-lbl">41)</b>Are you applying to study in Australia as a secondary school exchange student?</label>
+            <label><b class="ques-lbl">41)</b>Are you applying to study in Australia as a secondary school exchange student?</label><br/>
             <div class="form-check-inline">
              <label class="form-check-label">
                <input type="radio" class="form-check-input" name="studyin" runat="server" id="applytostudyinausstraliaNO">No
@@ -991,11 +991,31 @@
                 $("#<%=showoption.ClientID%>").show();
             else 
                 $("#<%=showoption.ClientID%>").hide();
+
+            if ($("#<%=rbentrolmentYes1.ClientID%>").is(":checked")) 
+                $("#<%=showoption1.ClientID%>").show();
+            else 
+                $("#<%=showoption1.ClientID%>").hide();
+
+            if ($("#<%=rbentrolmentYes2.ClientID%>").is(":checked")) 
+                $("#<%=showoption2.ClientID%>").show();
+            else 
+                $("#<%=showoption2.ClientID%>").hide();
              
             if ($("#<%=rbentrolmentNo.ClientID%>").is(":checked")) 
                 $("#<%=showlbl.ClientID%>").show();
             else 
                 $("#<%=showlbl.ClientID%>").hide();
+
+            if ($("#<%=rbentrolmentNo1.ClientID%>").is(":checked")) 
+                $("#<%=showlbl1.ClientID%>").show();
+            else 
+                $("#<%=showlbl1.ClientID%>").hide();
+
+            if ($("#<%=rbentrolmentNo2.ClientID%>").is(":checked")) 
+                $("#<%=showlbl2.ClientID%>").show();
+            else 
+                $("#<%=showlbl2.ClientID%>").hide();
             //37
             if ($("#<%=currentlyemployedNo.ClientID%>").is(":checked")) 
                     $("#<%=ifNOShow.ClientID%>").show();
@@ -1069,11 +1089,48 @@
                  $("#<%=que1.ClientID%>").hide();
                  $("#<%=question34.ClientID%>").show();
                  $("#<%=question35.ClientID%>").show();
-             }
+            }
+            if ($("#<%=applytostudyinausstraliaYes.ClientID%>").is(":checked")) 
+                $("#<%=question42.ClientID%>").hide();
+            else
+                $("#<%=question42.ClientID%>").show();
+
+            if ($("#<%=leastyearsincountriesYes.ClientID%>").is(":checked"))
+                $("#<%=yes_35.ClientID%>").show();
+            else
+                $("#<%=yes_35.ClientID%>").hide();
+            if ($("#<%=holdvisaNo.ClientID%>").is(":checked"))
+                $("#<%=div_29_no.ClientID%>").show();
+            else
+                $("#<%=div_29_no.ClientID%>").hide();
+        });
+        //29
+        $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$hold-visa']").click(function () {
+             if ($("#<%=holdvisaNo.ClientID%>").is(":checked"))
+                 $("#<%=div_29_no.ClientID%>").show();
+             else
+                 $("#<%=div_29_no.ClientID%>").hide();
+             });
+        });         
+        $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$countries']").click(function () {
+             if ($("#<%=leastyearsincountriesYes.ClientID%>").is(":checked"))
+                 $("#<%=yes_35.ClientID%>").show();
+             else
+                 $("#<%=yes_35.ClientID%>").hide();
+             });
         });
 
-        //28  
-        
+        $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$studyin']").click(function () {
+             if ($("#<%=applytostudyinausstraliaYes.ClientID%>").is(":checked")) 
+                 $("#<%=question42.ClientID%>").hide();
+             else
+                 $("#<%=question42.ClientID%>").show();
+             });
+        });
+
          $(function () {
          $("input[name='ctl00$ContentPlaceHolder1$apply-aust']").click(function () {
              if ($("#<%=applyinAustraliaNo.ClientID%>").is(":checked")) {
@@ -1137,12 +1194,46 @@
                  $("#<%=showoption.ClientID%>").hide();
              });
         });
+
+        $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$enrolment1']").click(function () {
+             if ($("#<%=rbentrolmentYes1.ClientID%>").is(":checked")) 
+                 $("#<%=showoption1.ClientID%>").show();
+             else 
+                 $("#<%=showoption1.ClientID%>").hide();
+             });
+        });
+
+        $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$enrolment2']").click(function () {
+             if ($("#<%=rbentrolmentYes2.ClientID%>").is(":checked")) 
+                 $("#<%=showoption2.ClientID%>").show();
+             else 
+                 $("#<%=showoption2.ClientID%>").hide();
+             });
+        });
         $(function () {
          $("input[name='ctl00$ContentPlaceHolder1$enrolment']").click(function () {
              if ($("#<%=rbentrolmentNo.ClientID%>").is(":checked")) 
                  $("#<%=showlbl.ClientID%>").show();
              else 
                  $("#<%=showlbl.ClientID%>").hide();
+             });
+        });
+         $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$enrolment1']").click(function () {
+             if ($("#<%=rbentrolmentNo1.ClientID%>").is(":checked")) 
+                 $("#<%=showlbl1.ClientID%>").show();
+             else 
+                 $("#<%=showlbl1.ClientID%>").hide();
+             });
+        });
+         $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$enrolment2']").click(function () {
+             if ($("#<%=rbentrolmentNo2.ClientID%>").is(":checked")) 
+                 $("#<%=showlbl2.ClientID%>").show();
+             else 
+                 $("#<%=showlbl2.ClientID%>").hide();
              });
         });
         
@@ -1328,9 +1419,9 @@
                 //41 42
             else if (!($("#<%=applytostudyinausstraliaNO.ClientID%>").is(':checked') || $("#<%=applytostudyinausstraliaYes.ClientID%>").is(':checked')))
                 alert("Please select Are you applying to study in Australia as a secondary school exchange student of field 41");
-            else if (!($("#<%=sufficientfundNo.ClientID%>").is(':checked') || $("#<%=sufficientfundYes.ClientID%>").is(':checked')))
+            else if ($("#<%=applytostudyinausstraliaNO.ClientID%>").is(':checked') && !($("#<%=sufficientfundNo.ClientID%>").is(':checked') || $("#<%=sufficientfundYes.ClientID%>").is(':checked')))
                 alert("Please select Do you have access to sufficient funds to support you and your family unit members for the TOTAL period of your stay in Australia (including proposed course fees for you and any school-age family members, living costs and travel costs, regardless of whether your dependants intend to accompany you to Australia)enter  of field 42");
-             else if ($("#<%=sufficientfundYes.ClientID%>").is(':checked') && $("#<%=sufficientfunddateofissue.ClientID%>").val() == "")
+             else if ($("#<%=applytostudyinausstraliaNO.ClientID%>").is(':checked') && $("#<%=sufficientfundYes.ClientID%>").is(':checked') && $("#<%=sufficientfunddateofissue.ClientID%>").val() == "")
                 alert("please select date of field 42");
             else
                 flag = true;

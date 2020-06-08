@@ -43,7 +43,7 @@
                        <tr>
                            <td class="width25">
                                <a href="#" class="d-inline-block canning-logo">
-                                   <img src="/Docs/1/ABC.png" class="img-fluid">
+                                  <img src="<%=logoURL %>" class="img-fluid">
                                </a>
                            </td>
                            <td class="width75 text-right">

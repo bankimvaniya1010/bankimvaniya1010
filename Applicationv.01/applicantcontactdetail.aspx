@@ -289,10 +289,10 @@
     <script>        
         $('#ContentPlaceHolder1_txtPrevAddStartDate').flatpickr({
 
-            dateFormat: 'Y-m-d', defaultDate: ""
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
         });
         $('#ContentPlaceHolder1_txtPrevAddEndDate').flatpickr({
-            dateFormat: 'Y-m-d', defaultDate: ""
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
         });
 
         function isvalidPreviousResidentialAddressDates() {
@@ -428,13 +428,14 @@
 
         function validateForm() {
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
+            var checOnlykNum = /^[0-9]*$/;
             var flag = false;
             if (!$("#<%=email.ClientID%>").is(':hidden') && ($("#<%=txtEmail.ClientID%>").val() == "" || !(emailRegex.test($("#<%=txtEmail.ClientID%>").val()))))
                 alert("Please enter Valid e-mail address");
             else if (!$("#<%=mobile.ClientID%>").is(':hidden') && $("#<%=txtMobile.ClientID%>").val() == "")
                 alert("Please enter mobile no");
             else if (!$("#<%=phone.ClientID%>").is(':hidden') && $("#<%=txtHomePhone.ClientID%>").val() == "")
-                alert("Please enter home phone");          
+                alert("Please enter home phone");
             else if (!$("#<%=skype.ClientID%>").is(':hidden') && !($("#<%=rblSkypeYes.ClientID%>").is(':checked') || $("#<%=rblSkypeNo.ClientID%>").is(':checked')))
                 alert("Please Select Option to record your Skype ID");
             else if (!$("#<%=skype.ClientID%>").is(':hidden') && $("#<%=rblSkypeYes.ClientID%>").is(':checked') && $("#<%=txtSkype.ClientID%>").val() == "")
@@ -458,8 +459,8 @@
                 alert("Please enter postal city");
             else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtState.ClientID%>").val() == "")
                 alert("Please enter postal state");
-            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtPostal.ClientID%>").val() == "")
-                alert("Please enter postal postal code");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && ($("#<%=txtPostal.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtPostal.ClientID%>").val()))))
+                alert("Please enter valid postal postal code");
             else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=ddlpostalCountry.ClientID%>").val() == "0")
                  alert("Please select valid postal country");
             else if (!$("#<%=address.ClientID%>").is(':hidden') && !($("#<%=rblAddressYes.ClientID%>").is(':checked') || $("#<%=rblAddressNo.ClientID%>").is(':checked')))
@@ -474,8 +475,8 @@
                 alert("Please enter residential city");
             else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialState.ClientID%>").val() == ""))
                 alert("Please enter residential state");
-            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialpostal.ClientID%>").val() == ""))
-                alert("Please enter residential postal code");
+            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && !$("#<%=residential.ClientID%>").is(':hidden') && ($("#<%=txtResidentialpostal.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtResidentialpostal.ClientID%>").val()))))            
+                alert("Please enter valid residential postal code");
             else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=ddlResidentialCountry.ClientID%>").val() == "0"))
                 alert("Please enter residential Country");            
             else if (!$("#<%=addressHistory.ClientID%>").is(':hidden') && !($("#<%=rblCurrentAddYes.ClientID%>").is(':checked') || $("#<%=rblCurrentAddNo.ClientID%>").is(':checked')))

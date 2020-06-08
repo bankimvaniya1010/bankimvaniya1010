@@ -178,7 +178,7 @@
 							    <input type="radio" runat="server" id="rbanothercitizenYes" class="form-check-input" name="citizenship">Yes
 							  </label>
 							</div>
-							<div id="ddanothercitizenship"><br>
+							<div id="ddanothercitizenship" runat="server"><br>
 								<div class="form-group">
 									<label>Which countries?</label>
 									 <asp:DropDownList ID="ddlanothercitizenshipcountry" CssClass="form-control" runat="server">
@@ -270,7 +270,7 @@
                     <%--16--%>
                      <div class="form-group" id="residenceaddress" runat="server">
 						  <label><b class="ques-lbl">16)</b>Your residential address in your Home country
-                              Note:A post office box address is not applicable as residential address .Failure to give your residential address  will result
+                             <br/><b> Note:</b>A post office box address is not applicable as residential address .Failure to give your residential address  will result
                               in your application being invalid.
 						  </label>
 						  <div class="mart-stustwrp">							
@@ -323,7 +323,7 @@
 					</div>
                     <%--20--%>
                       <div class="form-group" id="correspondenceaddress" runat="server">
-						  <label><b class="ques-lbl">20)</b>(Address of Correspondence
+						  <label><b class="ques-lbl">20)</b>Address of Correspondence
 						  </label>
 						  <div class="mart-stustwrp">							
 							<div class="">
@@ -361,8 +361,9 @@
 									<label>E-mail address</label>
 								    <input type="text" id="emailaddress" runat="server"  name="" class="form-control" >
 								</div>
+                                <label>If this visa application is refuse ,you will be notified by  mail.</label>
 							</div>
-                            <label>If this visa application is refuse ,you will be notified by  mail.</label>
+                            
 						</div>
 					</div>
  <!-- ques 22 start -->
@@ -430,7 +431,7 @@
 										<textarea class="form-control" rows="3" runat="server" id="txtfamilypassportplaceofissue"></textarea>
 									</div>
 									<div class="form-group" runat="server">
-										<label>Does this person intend to study in Australia for more than 3 months?</label>
+										<label>Does this person intend to study in Australia for more than 3 months?</label><br/>
 										<div class="form-check-inline">
 										  <label class="form-check-label">
 										    <input type="radio" class="form-check-input" name="studyinaustralia" runat="server" id="studyinaustraliaNo">No
@@ -506,7 +507,7 @@
 										<textarea class="form-control" rows="3" runat="server" id="txtfamilypassportplaceofissue1"></textarea>
 									</div>
 									<div class="form-group">
-										<label>Does this person intend to study in Australia for more than 3 months?</label>
+										<label>Does this person intend to study in Australia for more than 3 months?</label><br/>
 										<div class="form-check-inline">
 										  <label class="form-check-label">
 										    <input type="radio" class="form-check-input" name="month3" runat="server" id="studyinaustralia1No">No
@@ -565,7 +566,7 @@
 									</div>
 									<div class="form-group">
 										<label>Country of passport</label>
-										<asp:DropDownList runat="server" ID="ddlfamilypassportcountry2"> 
+										<asp:DropDownList runat="server" ID="ddlfamilypassportcountry2" CssClass="form-control"> 
                                         </asp:DropDownList>
 									</div>
 									<div class="form-group">
@@ -581,7 +582,7 @@
 										<textarea class="form-control" rows="3" runat="server" id="txtfamilypassportplaceofissue2"></textarea>
 									</div>
 									<div class="form-group">
-										<label>Does this person intend to study in Australia for more than 3 months?</label>
+										<label>Does this person intend to study in Australia for more than 3 months?</label><br/>
 										<div class="form-check-inline">
 										  <label class="form-check-label">
 										    <input type="radio" class="form-check-input" name="month3" runat="server"  id="studyinaustraliaNo2">No
@@ -615,7 +616,7 @@
 							    <input type="radio" class="form-check-input" name="agedependt" runat="server" id="enrolledonscoolYes">yes
 							  </label>
 							</div>
-							<div>
+							<div id="onyes" runat="server">
 								<div class="comm-txt">You must provide evidence (eg. enrolment advice, offer letter)</div>
 							</div>
 						</div>
@@ -755,12 +756,17 @@
 							    <input type="radio" class="form-check-input" name="court-order" runat="server" id="subjectofcourtorderYes">Yes
 							  </label>
 							</div>
-							<div class="collpse-div">
-								<div class="comm-txt">Attach a certified copy of the court order(s)</div>
-								<div class="comm-txt"><b>Warning</b> — In general, a person can only hold one visa at a time. If you are granted a visa while you already have another, the first visa will cease automatically when the new visa is granted.</div>
+							<div class="collpse-div" id="div25yes" runat="server">
+								<div class="comm-txt">Attach a certified copy of the court order(s)</div>								
 							</div>
 						</div>
 					</div>
+                    <div>
+                        <div class="form-group">
+				        <div class="frm-lblttl">Previous Visa Application</div>
+                        <div class="comm-txt"><b>Warning</b> — In general, a person can only hold one visa at a time. If you are granted a visa while you already have another, the first visa will cease automatically when the new visa is granted.</div>
+                    </div>
+                        </div>
 					<!-- ques 25 end -->
 					<!-- ques 26 start -->
 					<div>
@@ -974,7 +980,7 @@
         dateFormat: 'Y-m-d', defaultDate: ""
     });
     $('#ContentPlaceHolder1_txtdob').flatpickr({
-        dateFormat: 'Y-m-d', defaultDate: ""
+        dateFormat: 'Y-m-d', defaultDate: "",maxDate: "today"
     });
      $('#ContentPlaceHolder1_txtfamilymemberdob').flatpickr({
         dateFormat: 'Y-m-d', defaultDate: ""
@@ -1018,10 +1024,10 @@
         else 
              $("#<%=passportControls.ClientID%>").hide(); 
          //citizencountry
-        if ($("#<%=rbanothercitizenYes.ClientID%>").is(":checked")) 
-            $("#<%=ddlanothercitizenshipcountry.ClientID%>").show();                
+        if ($("#<%=rbanothercitizenYes.ClientID%>").is(":checked"))
+            $("#<%=ddanothercitizenship.ClientID%>").show();                
         else 
-           $("#<%=ddlanothercitizenshipcountry.ClientID%>").hide();
+           $("#<%=ddanothercitizenship.ClientID%>").hide();
        //agreetocommunicate
        if ($("#<%=agreetocommunicateYes.ClientID%>").is(":checked")) {
             $("#<%=faxnumber.ClientID%>").show();
@@ -1075,10 +1081,34 @@
        if ($("#<%=solelegalrightsNo.ClientID%>").is(":checked")) 
             $("#<%=showdetails.ClientID%>").show();
        else 
-            $("#<%=showdetails.ClientID%>").hide();  
+           $("#<%=showdetails.ClientID%>").hide();  
+       if ($("#<%=enrolledonscoolYes.ClientID%>").is(":checked")) 
+           $("#<%=onyes.ClientID%>").show();
+       else
+           $("#<%=onyes.ClientID%>").hide(); 
+
+       if ($("#<%=subjectofcourtorderYes.ClientID%>").is(":checked")) 
+           $("#<%=div25yes.ClientID%>").show();
+       else
+           $("#<%=div25yes.ClientID%>").hide();
+     });
+     $(function () {
+        $("input[name='ctl00$ContentPlaceHolder1$court-order']").click(function () {
+            if ($("#<%=subjectofcourtorderYes.ClientID%>").is(":checked")) 
+                $("#<%=div25yes.ClientID%>").show();                
+            else 
+                $("#<%=div25yes.ClientID%>").hide(); 
+        });
      });
 
-
+      $(function () {
+        $("input[name='ctl00$ContentPlaceHolder1$agedependt']").click(function () {
+            if ($("#<%=enrolledonscoolYes.ClientID%>").is(":checked")) 
+                $("#<%=onyes.ClientID%>").show();                
+            else 
+                $("#<%=onyes.ClientID%>").hide(); 
+        });
+      });
      
       $(function () {
         $("input[name='ctl00$ContentPlaceHolder1$passport']").click(function () {
@@ -1092,9 +1122,9 @@
      $(function () {
          $("input[name='ctl00$ContentPlaceHolder1$citizenship']").click(function () {
              if ($("#<%=rbanothercitizenYes.ClientID%>").is(":checked"))
-                 $("#<%=ddlanothercitizenshipcountry.ClientID%>").show();
+                 $("#<%=ddanothercitizenship.ClientID%>").show();
              else
-                 $("#<%=ddlanothercitizenshipcountry.ClientID%>").hide();
+                 $("#<%=ddanothercitizenship.ClientID%>").hide();
          });
      });
      $(function () {
@@ -1238,9 +1268,9 @@
         else if ($("#<%=txtapplicableidentificationno.ClientID%>").val() == "")
             alert("Please enter Where applicable, give your identification number of filed 14");
         else if ($("#<%=anotherIdentitytype1.ClientID%>").val() == "")
-            alert("Please If you have any other type numbers required by your government ");
+            alert("Please If you have any other type numbers required by your government of filed 14 ");
         else if ($("#<%=anotherIdentityNo1.ClientID%>").val() == "")
-            alert("Please enter If you have any other identity numbers required by your government");              
+            alert("Please enter If you have any other identity numbers required by your government of filed 14");              
         else if ($("#<%=ddlresidencecountry.ClientID%>").val() == "0")
             alert("Pleas select country of usual residence of field 15");        
         else if ($("#<%=txtAddressLine1.ClientID%>").val() == "" && $("#<%=txtAddressLine2.ClientID%>").val() == "" && $("#<%=txtPostal.ClientID%>").val() == "")
@@ -1265,7 +1295,7 @@
             alert("Please select Do you Agree to the department communicating with you by fax ,e-mail or other electronic means? of field 21");
         else if ($("#<%=agreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=faxno.ClientID%>").val() == "")
             alert("Please enter Fax number of field 21");
-        else if (($("#<%=agreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=emailaddress.ClientID%>").val() == "") || !(emailRegex.test($("#<%=emailaddress.ClientID%>").val())))
+        else if ($("#<%=agreetocommunicateYes.ClientID%>").is(':checked') && ($("#<%=emailaddress.ClientID%>").val() == "" || !(emailRegex.test($("#<%=emailaddress.ClientID%>").val()))) )
             alert("Please enter valid E-mail Address of field 21");
         //22 validation
         else if ($("#<%=txtaboutfamilyname.ClientID%>").val() == "")
