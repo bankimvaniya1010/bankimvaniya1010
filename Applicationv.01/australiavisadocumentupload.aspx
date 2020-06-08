@@ -19,12 +19,13 @@
                      <div class="card">
                         <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
                             <li class="col-sm-8 offset-sm-3" style="font-weight:bold">
-                                <a class="nav-link active" href="#first" data-toggle="tab">Visa - Documentary Evidence List</a>
+                                <a class="nav-link active" href="#first" data-toggle="tab">Visa - Documentary Evidence List</a>                                
+                                <label>( *Please upload document of type .pdf and .jpg )</label>
                             </li>
                         </ul>
+                         
                         <div class="tab-content card-body font-colr">
                             <div class="tab-pane active" id="first">
-                                                     
                                 <div class="form-group row" id="identitydoc" runat="server">
                                     <label for="identitydoc" id="lblidentitydoc" runat="server" class="col-sm-12"><b>1)</b> Attach a copy of Evidence of your identity</label>
                                     <div class="col-sm-12">

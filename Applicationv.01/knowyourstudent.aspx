@@ -200,7 +200,7 @@
     <script>
         $('#ContentPlaceHolder1_txtdateofissue').flatpickr({
        
-            dateFormat: 'Y-m-d', defaultDate: ""
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
         });
         $('#ContentPlaceHolder1_txtexpirydate').flatpickr({
 

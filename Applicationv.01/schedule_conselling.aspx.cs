@@ -78,20 +78,23 @@ public partial class schedule_conselling : System.Web.UI.Page
                 db1.SaveChanges();
 
                 //send email to proctor
-                var university = db1.university_master.Where(x => x.universityid == UniversityID).FirstOrDefault();
-                var studentname = db1.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.firstname + " " + x.lastname).FirstOrDefault();
-                var proctordata = db1.proctor_master.Where(x => x.proctorID == proctor_id).FirstOrDefault();
+                if (proctor_id != 0)
+                {
+                    var university = db1.university_master.Where(x => x.universityid == UniversityID).FirstOrDefault();
+                    var studentname = db1.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.firstname + " " + x.lastname).FirstOrDefault();
+                    var proctordata = db1.proctor_master.Where(x => x.proctorID == proctor_id).FirstOrDefault();
 
-                string html = File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("/assets/Emailtemplate/proctorNotificationwithotp.html"));
+                    string html = File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("/assets/Emailtemplate/proctorNotificationwithotp.html"));
 
-                html = html.Replace("@proctorName", proctordata.name);
-                html = html.Replace("@studentname", studentname);
-                html = html.Replace("@eventtype", objSchedule.event_type_name);
-                html = html.Replace("@passkey", objSchedule.otp);
-                html = html.Replace("@virtuallink", objSchedule.virtualmeetinginfo);
-                html = html.Replace("@utcmeetingtime", objSchedule.utc_meeting_time.ToString("dd/MM/yyyy hh:mm tt"));
-                html = html.Replace("@meetingtime", objSchedule.applicant_time_zone.ToString("dd/MM/yyyy hh:mm tt"));
-                objCom.SendMail(proctordata.email, html, "Assessment ReSchedule for " + studentname + " at " + objSchedule.applicant_time_zone.ToString("dd/MM/yyyy hh:mm tt"));
+                    html = html.Replace("@proctorName", proctordata.name);
+                    html = html.Replace("@studentname", studentname);
+                    html = html.Replace("@eventtype", objSchedule.event_type_name);
+                    html = html.Replace("@passkey", objSchedule.otp);
+                    html = html.Replace("@virtuallink", objSchedule.virtualmeetinginfo);
+                    html = html.Replace("@utcmeetingtime", objSchedule.utc_meeting_time.ToString("dd/MM/yyyy hh:mm tt"));
+                    html = html.Replace("@meetingtime", objSchedule.applicant_time_zone.ToString("dd/MM/yyyy hh:mm tt"));
+                    objCom.SendMail(proctordata.email, html, "Assessment ReSchedule for " + studentname + " at " + objSchedule.applicant_time_zone.ToString("dd/MM/yyyy hh:mm tt"));
+                }
                 }
         }
         else if (schedule_data_list.Count == 0)

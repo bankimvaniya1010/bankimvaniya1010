@@ -712,6 +712,7 @@
                 }
                 else {
                     $("#<%=dualNationality.ClientID%>").hide();
+                    $("#<%=secondNation.ClientID%>").hide();
                     $("#<%=dualNationality.ClientID %> input[type='radio']").prop('checked', false);
                     $("#<%=ddlOtherNation.ClientID %>")[0].selectedIndex = 0;
                 }

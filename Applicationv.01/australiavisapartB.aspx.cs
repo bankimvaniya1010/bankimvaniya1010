@@ -12,7 +12,7 @@ public partial class australiavisapartB : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
-    int userID = 0, ApplicantID = 0, universityID;
+    int userID = 0, universityID;
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -499,31 +499,47 @@ public partial class australiavisapartB : System.Web.UI.Page
                 else if (visaInfo.leavingdocAttch1 == 1)
                     rbdocattachedYes1.Checked = true;
                 //37
-                if (visaInfo.currentlyemployed == 0)
+                if (visaInfo.currentlyemployed != null)
                 {
-                    currentlyemployedNo.Checked = true;
-                    if (visaInfo.ifnoThenOption == 1)
-                        rbstudent.Checked = true;
-                    else if (visaInfo.ifnoThenOption == 2)
-                        rbunemployed.Checked = true;
-                    else if (visaInfo.ifnoThenOption == 3)
+
+                    if (visaInfo.currentlyemployed == 0)
                     {
-                        rbother.Checked = true;
-                        txtotherdescription1.Value = visaInfo.otherdescription1;
-                        txtotherdescription2.Value = visaInfo.otherdescription2;
+                        currentlyemployedNo.Checked = true;
+                        if (visaInfo.ifnoThenOption == 1)
+                            rbstudent.Checked = true;
+                        else if (visaInfo.ifnoThenOption == 2)
+                            rbunemployed.Checked = true;
+                        else if (visaInfo.ifnoThenOption == 3)
+                        {
+                            rbother.Checked = true;
+                            txtotherdescription1.Value = visaInfo.otherdescription1;
+                            txtotherdescription2.Value = visaInfo.otherdescription2;
+                        }
+                    }
+                    else if (visaInfo.currentlyemployed == 1)
+                    {
+                        currentlyemployedYes.Checked = true;
+                        txtposition.Value = visaInfo.position;
+                        txtemployername.Value = visaInfo.employername;
+                        txtemployeraddress.Value = visaInfo.employeraddress;
+                        employercontactno.Value = visaInfo.employercontactno;
+                        if (visaInfo.evidenceofemployement == 0)
+                            evidenceofemployementNO.Checked = true;
+                        else if (visaInfo.evidenceofemployement == 1)
+                            evidenceofemployementYes.Checked = true;
                     }
                 }
-                else if (visaInfo.currentlyemployed == 1)
-                {
-                    currentlyemployedYes.Checked = true;
-                    txtposition.Value = visaInfo.position;
-                    txtemployername.Value = visaInfo.employername;
-                    txtemployeraddress.Value = visaInfo.employeraddress;
-                    employercontactno.Value = visaInfo.employercontactno;
-                    if (visaInfo.evidenceofemployement == 0)
-                        evidenceofemployementNO.Checked = true;
-                    else if (visaInfo.evidenceofemployement == 1)
-                        evidenceofemployementYes.Checked = true;
+                else {
+                    var employerdetails = db.applicantemployerdetails.Where(x => x.applicantid == userID && x.universityid == universityID && x.iscurrentworking == 1).FirstOrDefault();
+                    if (employerdetails != null)
+                    {
+                        currentlyemployedYes.Checked = true;
+                        txtposition.Value = employerdetails.designation;
+                        txtemployername.Value = employerdetails.organization;
+                        if(employerdetails.country != null)
+                            txtemployeraddress.Value = employerdetails.city + " "+objCom.GetCountryDiscription(Convert.ToInt32(employerdetails.country));
+                                                                      
+                    }
                 }
 
                 //38
