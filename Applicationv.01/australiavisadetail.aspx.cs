@@ -865,17 +865,20 @@ public partial class australiavisadetail : System.Web.UI.Page
                 }
                 else
                 {
-                    rbPassportYes.Checked = true;
-                    txtpassportno.Value = applicantdetail.passportno;
-                    if (applicantdetail.passportissuecountry != null)
+                    if (applicantdetail.passportno != null)
                     {
-                        ddlcountryofissue.ClearSelection();
-                        ddlcountryofissue.Items.FindByValue(applicantdetail.passportissuecountry.ToString()).Selected = true;
+                        rbPassportYes.Checked = true;
+                        txtpassportno.Value = applicantdetail.passportno;
+                        if (applicantdetail.passportissuecountry != null)
+                        {
+                            ddlcountryofissue.ClearSelection();
+                            ddlcountryofissue.Items.FindByValue(applicantdetail.passportissuecountry.ToString()).Selected = true;
+                        }
+                        if (applicantdetail.passportissuedate != null)
+                            txtdateofissue.Value = Convert.ToDateTime(applicantdetail.passportissuedate).ToString("yyyy-MM-dd");
+                        if (applicantdetail.passportexpirydate != null)
+                            txtexpirydate.Value = Convert.ToDateTime(applicantdetail.passportexpirydate).ToString("yyyy-MM-dd");
                     }
-                    if (applicantdetail.passportissuedate != null)
-                        txtdateofissue.Value = Convert.ToDateTime(applicantdetail.passportissuedate).ToString("yyyy-MM-dd");
-                    if (applicantdetail.passportexpirydate != null)
-                        txtexpirydate.Value = Convert.ToDateTime(applicantdetail.passportexpirydate).ToString("yyyy-MM-dd");
                 }
 
                 txtapplicableidentificationno.Value = visaInfo.applicableidentificationno;
@@ -891,19 +894,26 @@ public partial class australiavisadetail : System.Web.UI.Page
                 }
                 if (visaInfo.residenceaddressLine1 != null)
                     txtAddressLine1.Value = visaInfo.residenceaddressLine1;
-                else 
-                    txtAddressLine1.Value = applicantdetail.postaladdrees1 +", "+applicantdetail.postaladdrees2;
+                else
+                {
+                    if(applicantdetail.postaladdrees1 != null)
+                        txtAddressLine1.Value = applicantdetail.postaladdrees1 + ", " + applicantdetail.postaladdrees2;
+                }
 
                 if (visaInfo.residenceaddressLine2 != null)
                     txtAddressLine2.Value = visaInfo.residenceaddressLine2;
                 else
-                    txtAddressLine2.Value = applicantdetail.postaladdrees3 +","+ applicantdetail.postalcity;
-
+                {
+                    if(applicantdetail.postaladdrees3 != null)
+                        txtAddressLine2.Value = applicantdetail.postaladdrees3 + "," + applicantdetail.postalcity;
+                }
                 if (visaInfo.residenceaddresspostalcode != null)
                     txtPostal.Value = visaInfo.residenceaddresspostalcode;
                 else
-                    txtPostal.Value = applicantdetail.postalstate+","+applicantdetail.postalpostcode;
-
+                {
+                    if(applicantdetail.postalstate != null)
+                        txtPostal.Value = applicantdetail.postalstate + "," + applicantdetail.postalpostcode;
+                }
                 if (visaInfo.officehoursContactNoOutsideaustralia != null)
                     officehrContactNo.Value = visaInfo.officehoursContactNoOutsideaustralia;
                 else
