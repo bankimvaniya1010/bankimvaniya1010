@@ -15,10 +15,11 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected List<admincomments> Comments = new List<admincomments>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();        
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
@@ -36,12 +37,13 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, universityID);
+        Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         if (CustomControls.Count > 0)
-            objCom.AddCustomControl(CustomControls, mainDiv);
+            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv, Comments);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomData(formId, ApplicantID, CustomControls, mainDiv);
+                objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
             PopulateSupervisorComments();
             PopulatePersonalInfo();
             SetControlsUniversitywise();

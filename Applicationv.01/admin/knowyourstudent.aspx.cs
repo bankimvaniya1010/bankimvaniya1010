@@ -77,7 +77,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
                 }
                 if (profileInfo.alternativeresidenceproofId != null)
                 {
-                    lblalternateresidenceIdentitytype.Text = objCom.GetAddressProof(Convert.ToInt32(profileInfo.alternativeIdentityproofId));
+                    lblalternateresidenceIdentitytype.Text = objCom.GetAddressProof(Convert.ToInt32(profileInfo.alternativeresidenceproofId));
                 }
                 if (profileInfo.alternativeIdentityproofId != null)
                 {

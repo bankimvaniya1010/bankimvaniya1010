@@ -1013,7 +1013,7 @@ public class Common
         }
 
     }
-    public void AddCustomControlForSupervisor(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv)
+    public void AddCustomControlForSupervisor(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv , List<admincomments> Comments)
     {
         try
         {
@@ -1057,11 +1057,36 @@ public class Common
                     //  lblinput.Attributes["class"] = "form-control";
                     // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
                     mycontrol.Controls.Add(lblinput);
+                                      
 
+                    RadioButton rbYes = new RadioButton();
+                    RadioButton rbNo = new RadioButton();
+                    rbYes.Text = "Yes";
+                    rbNo.Text = "No";
+                    rbYes.ID = "rblYes" + ControlsList[k].customfieldid;
+                    rbYes.Attributes.Add("value", "1");
+                    rbNo.Attributes.Add("value", "0");
+                    rbNo.ID = "rblNo" + ControlsList[k].customfieldid;
+                    rbNo.GroupName = ControlsList[k].customfieldid.ToString();
+                    rbYes.GroupName = ControlsList[k].customfieldid.ToString();
+
+                    //
+
+                    for (int c = 0; c < Comments.Count; c++)
+                    {
+                        if (Comments[c].fieldname == ControlsList[k].labeldescription)
+                        {
+                            if (Comments[c].adminaction == 1)
+                                rbYes.Checked = true;
+                            else if (Comments[c].adminaction == 0)
+                                rbNo.Checked = true;
+                        }
+                    }
+                    adminControl.Controls.Add(rbYes);
+                    adminControl.Controls.Add(rbNo);
                     Label lblinputComments = new Label();
                     lblinputComments.ID = "lblComments" + ControlsList[k].customfieldid;
-
-                   // lblinputComments.Attributes["class"] = "form-control";
+                    // lblinputComments.Attributes["class"] = "form-control";
                     // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
                     adminControl.Controls.Add(lblinputComments);
                 }

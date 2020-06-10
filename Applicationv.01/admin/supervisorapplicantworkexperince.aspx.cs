@@ -9,7 +9,7 @@ public partial class admin_supervisorapplicantworkexperince : System.Web.UI.Page
 {
     int formId = 0;
     protected Common objCom = new Common();
-    int userID = 0, ApplicantID = 0, universityID;
+    int SupervisorID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     protected List<applicantemployerdetails> EmployersDetail = new List<applicantemployerdetails>();
@@ -20,6 +20,7 @@ public partial class admin_supervisorapplicantworkexperince : System.Web.UI.Page
 
     protected string employmentInfoToolTips = "", employerwebsiteToolTips = "", employerToolTips = "", employercityToolTips = "", employercountryToolTips = "", positionToolTips = "", startdateToolTips = "", enddateToolTips = "", BriefDescriptionToolTips = "", reportingmangerToolTips = "", employmentverificationToolTips = "", relationshipToolTips = "", emailToolTips = "", linkedinToolTips = "";
     protected string employmentInfo = "", employerwebsite = "", employer = "", employercity = "", employercountry = "", position = "", startdate = "", enddate = "", BriefDescription = "", reportingmanger = "", employmentverification = "", relationship = "", email = "", linkedin = "";
+    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,7 +28,7 @@ public partial class admin_supervisorapplicantworkexperince : System.Web.UI.Page
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
-        userID = Convert.ToInt32(Session["UserID"]);
+        SupervisorID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -40,9 +41,9 @@ public partial class admin_supervisorapplicantworkexperince : System.Web.UI.Page
         }
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
-        CustomControls = objCom.CustomControlist(formId, universityID);
+        CustomControls = objCom.CustomControlist(formId, universityID);        
         if (CustomControls.Count > 0)
-            objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
+            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv, Comments);
         EmployersDetail = db.applicantemployerdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
       
         SetControlsUniversitywise();
@@ -94,26 +95,26 @@ public partial class admin_supervisorapplicantworkexperince : System.Web.UI.Page
                     case "WEBSITE":
                         employerwebsite = setInnerHtml(fields[k]);
                         break;
-                    case "NAME OF ORGANIZATION":
+                    case "NAME OF EMPLOYER ORGANISATION":
                         employer = setInnerHtml(fields[k]);
                         break;
 
-                    case "CITY":
+                    case "CITY OF EMPLOYER’S LOCATION":
                         employercity = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY":
+                    case "COUNTRY OF EMPLOYER’S LOCATION":
                         employercountry = setInnerHtml(fields[k]);
                         break;
                     case "POSITION/ROLE IN":
                         position = setInnerHtml(fields[k]);
                         break;
-                    case "START DATE":
+                    case "START DATE OF EMPLOYMENT":
                         startdate = setInnerHtml(fields[k]);
                         break;
-                    case "END DATE":
+                    case "END DATE OF EMPLOYMENT":
                         enddate = setInnerHtml(fields[k]);
                         break;
-                    case "BRIEF DESCRIPTION OF WHAT YOU DID":
+                    case "BRIEF JOB DESCRIPTION":
                         BriefDescription = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF YOUR REPORTING MANAGER":
@@ -164,7 +165,7 @@ public partial class admin_supervisorapplicantworkexperince : System.Web.UI.Page
                 ActionValue = 1;
             else if (rbDenied.Checked)
                 ActionValue = 2;
-            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, userID, txtComments.Text, ActionValue);
+            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, SupervisorID, txtComments.Text, ActionValue);
         }
         catch (Exception ex)
         {
