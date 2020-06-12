@@ -16,7 +16,8 @@ public partial class applicantsocial : System.Web.UI.Page
     Logger objLog = new Logger();
     protected  static List<faq> allQuestions = new List<faq>();
     protected int isStudyBefore = 0, isApplyBefore = 0;
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
+    bool? is_review = null;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -37,6 +38,9 @@ public partial class applicantsocial : System.Web.UI.Page
         CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
+        is_review = objCom.is_review(userID, universityID);
+        if (is_review != null && is_review == true)
+            btnsocial.Visible = false;
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
@@ -279,7 +283,12 @@ public partial class applicantsocial : System.Web.UI.Page
 
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
-        SaveSocialDetails();
-        Response.Redirect(webURL + "applicantreview.aspx", true);
+        if (is_review != null && is_review == true)
+            Response.Redirect(webURL + "applicantreview.aspx", true);
+        else
+        {
+            SaveSocialDetails();
+            Response.Redirect(webURL + "applicantreview.aspx", true);
+        }
     }
 }

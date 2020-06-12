@@ -24,7 +24,7 @@ public partial class knowyourstudent : System.Web.UI.Page
 
     public static string StudentName { get; set; }
     public static string StudentDOB { get; set; }
-
+    bool? is_review = null;
     string webURL = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -45,6 +45,9 @@ public partial class knowyourstudent : System.Web.UI.Page
         CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
+        is_review = objCom.is_review(userID, universityID);
+        if (is_review != null && is_review == true)
+            btnidentification.Visible = false;
         if (!IsPostBack)
         {
             var obj = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { Name = x.firstname + " " + x.middlename + " " +x.lastname, dob = x.dateofbirth, verifiedDetails = x.verifiedpassportnamedob }).FirstOrDefault();
@@ -463,7 +466,12 @@ public partial class knowyourstudent : System.Web.UI.Page
 
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
-        SaveIdentificationDetails();
-        Response.Redirect(webURL + "applicanteducation.aspx?formid=4", true);
+        if (is_review != null && is_review == true)
+            Response.Redirect(webURL + "applicanteducation.aspx?formid=4", true);
+        else
+        {
+            SaveIdentificationDetails();
+            Response.Redirect(webURL + "applicanteducation.aspx?formid=4", true);
+        }
     }
 }

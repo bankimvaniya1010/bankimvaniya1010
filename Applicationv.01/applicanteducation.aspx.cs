@@ -15,7 +15,7 @@ using System.Web.UI.WebControls;
 public partial class applicanteducation : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0, universityID;
+    int userID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -23,7 +23,7 @@ public partial class applicanteducation : System.Web.UI.Page
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
-
+    bool? is_review = null;
     public List<grades> grade10 = new List<grades>(), gradeSecondary = new List<grades>(), gradehigher = new List<grades>(), gradediploma = new List<grades>();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -44,6 +44,9 @@ public partial class applicanteducation : System.Web.UI.Page
         CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
+        is_review = objCom.is_review(userID, universityID);
+        if (is_review != null && is_review == true)
+            btn_Save.Visible = false;
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
@@ -1972,8 +1975,13 @@ public partial class applicanteducation : System.Web.UI.Page
     
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
-        SaveEducationData();       
-        Response.Redirect(webURL + "applicantlanguage.aspx?formid=5", true);
+        if (is_review != null && is_review == true)
+            Response.Redirect(webURL + "applicantlanguage.aspx?formid=5", true);
+        else
+        {
+            SaveEducationData();
+            Response.Redirect(webURL + "applicantlanguage.aspx?formid=5", true);
+        }
     }
 
     public class grades

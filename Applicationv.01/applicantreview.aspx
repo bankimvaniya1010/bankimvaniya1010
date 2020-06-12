@@ -1041,7 +1041,7 @@
                                     <div class="form-row">
 
                                         <div class="col-md-12">
-                                           <asp:CheckBox ID="chkDeclration" runat="server" />  <label id="applicant" runat="server" class="d-inline">1. I, #NameofApplicant#, declare that the information provided in this application is true and complete in every detail</label><br />
+                                           <label id="applicant" runat="server" class="d-inline">1. I, #NameofApplicant#, declare that the information provided in this application is true and complete in every detail</label><br />
                                              <label id="applicantverify" runat="server">2. I authorise #NameofInstitution# to verify information about me from educational and other institutions which I can included in this application and/or accompanying documentation.</label>
                                             <br />
                                             <label id="applicantacknowledge" runat="server"> 3. I acknowledge that  #NameofInstitution# reserves the right at any stage to vary or reverse any decision regarding admission or enrolment made on the basis of incorrect or incomplete information</label>
@@ -1051,7 +1051,7 @@
                                            <label id="applicantawareConfirm" runat="server">  5. I acknowledge that  #NameofInstitution# may require me to submit or show evidence of original documents at a later date for any documents that I have submitted electronically. As such, I will maintain original copies and make them available if requested. Failure to do so may result in withdrawal of any offer of a place and, if admitted to  #NameofInstitution#, cancellation of my enrolment</label>
                                             <br />
                                            <label id="applicantresponsible" runat="server">  6. I acknowledge that I am responsible for keeping  #NameofInstitution# up-to-date with any change to my contact details</label><br />
-                                            
+                                            <asp:CheckBox ID="chkDeclration" runat="server" />  <label id="lblchk" runat="server"> I accept</label>
                                         </div>
                                     </div>
                                 </div>
@@ -1060,7 +1060,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" />
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
                                         <div class="col-md-6">
                                         </div>
                                     </div>
