@@ -119,6 +119,11 @@ public class Common
         }
         return title;
     }
+    public bool? is_review(int applicantid, int universityid)
+    {       
+        var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityid).Select(x=>x.is_review).FirstOrDefault();
+        return data;
+    }
     public string GetCourseName(int id)
     {
         string CourseName = "";

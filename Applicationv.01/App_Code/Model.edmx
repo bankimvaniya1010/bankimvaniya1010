@@ -308,6 +308,7 @@
           <Property Name="visadecisionreceived_date" Type="datetime" Precision="0" />
           <Property Name="visagranted" Type="int" />
           <Property Name="visaremarks" Type="varchar" MaxLength="2000" />
+          <Property Name="is_review" Type="bit" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -5671,6 +5672,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="visaremarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdetails_students" FromRole="applicantdetails" ToRole="students" />
           <Property Name="registeragent_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="is_review" Type="Boolean" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -9771,6 +9773,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
+                <ScalarProperty Name="is_review" ColumnName="is_review" />
                 <ScalarProperty Name="registeragent_email" ColumnName="registeragent_email" />
                 <ScalarProperty Name="visaremarks" ColumnName="visaremarks" />
                 <ScalarProperty Name="visagranted" ColumnName="visagranted" />

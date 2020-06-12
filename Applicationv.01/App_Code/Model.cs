@@ -340,6 +340,7 @@ public partial class applicantdetails
     public Nullable<int> visagranted { get; set; }
     public string visaremarks { get; set; }
     public string registeragent_email { get; set; }
+    public Nullable<bool> is_review { get; set; }
 
     public virtual students students { get; set; }
 }
