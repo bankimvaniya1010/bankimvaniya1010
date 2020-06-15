@@ -32,7 +32,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected Common objCom = new Common();
     protected List<applicanthighereducation> HigherEducation = new List<applicanthighereducation>();
     public List<applicantresidencehistory> lstOfResidences = new List<applicantresidencehistory>();
-
+    public string universitycountry, nameofinstitue;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.QueryString["id"] == null || Request.QueryString["id"].ToString() == "" || Request.QueryString["downloadPdf"] == null || Request.QueryString["downloadPdf"].ToString() == "")
@@ -47,6 +47,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
             {
                 universityID = Utility.GetUniversityId();
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
+
+                nameofinstitue = Convert.ToString(Session["universityName"]);
+                int unicountryID = Convert.ToInt32(Session["universityCountry"]);
+                universitycountry = objCom.GetCountryDiscription(unicountryID);
 
                 CustomControlsPersonal = objCom.CustomControlist(1, universityID);
                 CustomControlsConatct = objCom.CustomControlist(2, universityID);
@@ -1384,21 +1388,51 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                                  select pInfo).FirstOrDefault();
             if (EducationInfo != null)
             {
+                //USI
+                if (EducationInfo.haveyoustudiedbefore == 1)
+                {
+                    lblstudiedbefore.Text = "Yes";
+                    HaveUSINo.Visible = true;
+                    if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 1)
+                    {
+                        lblHaveUSINo.Text = "Yes";
+                        USINumber.Visible = true;
+                        lblUSINumber.Text = EducationInfo.usi_number;
+                    }
+                    else if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 2)
+                        lblHaveUSINo.Text = "No";
+                    else if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 3)
+                        lblHaveUSINo.Text = "I am not sure";
+                }
+                else if (EducationInfo.haveyoustudiedbefore == 0)
+                {
+                    lblstudiedbefore.Text = "No";
+                }
+                if (EducationInfo.haveusi_number != null && (EducationInfo.haveusi_number == 2 || EducationInfo.haveusi_number == 3))
+                {
+                    haveyoustudiedininstitution.Visible = true;
+                    if (EducationInfo.studentinstitutionID != null)
+                    {
+                        lblhaveyoustudiedininstitution.Text = "Yes";
+                        studentID.Visible = true;
+                        lblstudentID.Text = EducationInfo.studentinstitutionID;
+                    }
+                    else
+                        lblhaveyoustudiedininstitution.Text = "No";
+
+                }
+                //
                 if (EducationInfo.ishighschooldone == 1)
                 {
                     lblhighschool.Text = "Yes";
                     BindHighSchoolDetails(EducationInfo);
-                    //higestEducation.Visible = false;
+                    // higestEducation.Visible = false;
                 }
                 else if (EducationInfo.ishighschooldone == 2)
                 {
                     lblhighschool.Text = "No- I am currently studying for my high school qualification";
                     BindHighSchoolDetails(EducationInfo);
-                    // higestEducation.Visible = false;
-                    highschoolverify.Visible = false;
-                    highschoolrelation.Visible = false;
-                    highschoolcontactEmail.Visible = false;
-                    highschoolcontactMobile.Visible = false;
+                    //  higestEducation.Visible = false;
                 }
                 else
                 {
@@ -1406,38 +1440,39 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     // lblhigestEducation.Text = EducationInfo.highestdegree;
                     HideHighSchool();
                 }
+                highschool.Attributes.Add("style", "display:block");
+                highschoolstudymode.Attributes.Add("style", "display:none");//as in student it is hidden
 
                 /// High School Details End-----
 
                 /// Secondary Details
                 /// 
-                if (EducationInfo.issecondarydone == 1)
+                if (EducationInfo.ishighschooldone == 1 || EducationInfo.ishighschooldone == 2)
                 {
-                    lblSecondary.Text = "Yes";
-                    BindSecondary(EducationInfo);
+                    if (EducationInfo.issecondarydone == 1)
+                    {
+                        lblSecondary.Text = "Yes";
+                        BindSecondary(EducationInfo);
+                    }
+                    else if (EducationInfo.issecondarydone == 2)
+                    {
+                        lblSecondary.Text = "No - I am currently still studying for my Senior Secondary";
+                        BindSecondary(EducationInfo);
+                    }
+                    else
+                    {
+                        lblSecondary.Text = "No - I do not have a Senior Secondary qualification";
+                        HideSecondary();
+                    }
+                    Secondary.Attributes.Add("style", "display:block");
                 }
-                else if (EducationInfo.issecondarydone == 2)
-                {
-                    lblSecondary.Text = "No - I am currently still studying for my Senior Secondary";
-                    BindSecondary(EducationInfo);
-                    Secondaryverify.Visible = false;
-                    Secondaryrelation.Visible = false;
-                    SecondarycontactEmail.Visible = false;
-                    SecondarycontactMobile.Visible = false;
-                }
-                else
-                {
-                    lblSecondary.Text = "No - I do not have a Senior Secondary qualification";
-                    HideSecondary();
-                }
-
 
                 /// Secondary Details End-----
                 /// Diploma
                 /// 
                 if (EducationInfo.isdiplomadone == 1)
                 {
-                   BindDiploma(EducationInfo);
+                    BindDiploma(EducationInfo);
                     lbldiploma.Text = "Yes";
                 }
                 else if (EducationInfo.isdiplomadone == 2)
@@ -1449,13 +1484,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lbldiploma.Text = "No - I do not have a Diploma/Certificate qualification";
                     HideDiploma();
-                    diplomaverify.Visible = false;
-                    diplomarelation.Visible = false;
-                    diplomacontactEmail.Visible = false;
-                    diplomacontactMobile.Visible = false;
                 }
+                diploma.Attributes.Add("style", "display:block");
 
-
+                higher.Attributes.Add("style", "display:block");
                 if (EducationInfo.ishighereducation == 1)
                     lblhigher.Text = "Yes";
                 else if (EducationInfo.ishighereducation == 2)
@@ -2594,7 +2626,46 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
 
                     lblhighercontactMobileOtherComments.Text = setComments(Comments[k]);
                     break;
-                
+                case "Have you studied IN before?":
+                    if (Comments[k].adminaction == 0)
+                        studiedNo.Visible = true;
+                    else
+                        studiedYes.Visible = true;
+
+                    txtstudiedbefore.Text = setComments(Comments[k]);
+                    break;
+                case "Do You have an Australian  Unique Student Identifier (USI) Number?":
+                    if (Comments[k].adminaction == 0)
+                        USINumberNo.Visible = true;
+                    else
+                        USINumberYes.Visible = true;
+
+                    txtHaveUSINo.Text = setComments(Comments[k]);
+                    break;
+                case "Enter Your Australian Unique Student Identifier (USI) Number Here":
+                    if (Comments[k].adminaction == 0)
+                        USINoNo.Visible = true;
+                    else
+                        USINoYes.Visible = true;
+
+                    txtUSINumber.Text = setComments(Comments[k]);
+                    break;
+                case "Have you STUDIED at nameofinstitue before?":
+                    if (Comments[k].adminaction == 0)
+                        studiedininstitutionNo.Visible = true;
+                    else
+                        studiedininstitutionYes.Visible = true;
+
+                    txthaveyoustudiedininstitution.Text = setComments(Comments[k]);
+                    break;
+                case "Enter Your Student Number/ Student ID":
+                    if (Comments[k].adminaction == 0)
+                        studentIDNO.Visible = true;
+                    else
+                        studentIDYes.Visible = true;
+
+                    txtstudentID.Text = setComments(Comments[k]);
+                    break;
                 default:
                     break;
 

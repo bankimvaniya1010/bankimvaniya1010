@@ -1660,8 +1660,123 @@
                                                     </tr>
                                                 </table>
                                             </td>
+                                        </tr>                                
+                                         <tr class="adm-form-row-tr" id="studiedbefore" runat="server">
+                                                    <td class="width30 td-rightlabel">
+                                                        <label id="label1" runat="server" for="highschool">Have you studied IN <%=universitycountry %> before?</label>
+                                                    </td>
+                                                    <td class="width70">
+                                                        <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                            <tr>
+                                                                <td class="width50 bgcol">
+                                                                    <asp:Label ID="lblstudiedbefore" runat="server"></asp:Label>
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/check.png" visible="false" id="studiedYes" runat="server" class="bdy-check-icon">
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/cross.png" visible="false" id="studiedNo" runat="server" class="bdy-cross-icon">
+                                                                </td>
+                                                                <td class="width30 td-rightlabel">
+                                                                    <asp:Label ID="txtstudiedbefore" runat="server"></asp:Label>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                         <tr class="adm-form-row-tr" id="HaveUSINo" runat="server" visible="false">
+                                                    <td class="width30 td-rightlabel">
+                                                        <label id="label4" runat="server" for="highschool">Do You have an Australian  Unique Student Identifier (USI) Number?</label>
+                                                    </td>
+                                                    <td class="width70">
+                                                        <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                            <tr>
+                                                                <td class="width50 bgcol">
+                                                                    <asp:Label ID="lblHaveUSINo" runat="server"></asp:Label>
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/check.png" visible="false" id="USINumberYes" runat="server" class="bdy-check-icon">
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/cross.png" visible="false" id="USINumberNo" runat="server" class="bdy-cross-icon">
+                                                                </td>
+                                                                <td class="width30 td-rightlabel">
+                                                                    <asp:Label ID="txtHaveUSINo" runat="server"></asp:Label>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                         <tr class="adm-form-row-tr" id="USINumber" runat="server" visible="false">
+                                                    <td class="width30 td-rightlabel">
+                                                        <label id="label8" runat="server" for="highschool">Enter Your Australian Unique Student Identifier (USI) Number Here</label>
+                                                    </td>
+                                                    <td class="width70">
+                                                        <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                            <tr>
+                                                                <td class="width50 bgcol">
+                                                                    <asp:Label ID="lblUSINumber" runat="server"></asp:Label>
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/check.png" visible="false" id="USINoYes" runat="server" class="bdy-check-icon">
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/cross.png" visible="false" id="USINoNo" runat="server" class="bdy-cross-icon">
+                                                                </td>
+                                                                <td class="width30 td-rightlabel">
+                                                                    <asp:Label ID="txtUSINumber" runat="server"></asp:Label>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                         <tr class="adm-form-row-tr" id="haveyoustudiedininstitution" runat="server" visible="false">
+                                                    <td class="width30 td-rightlabel">
+                                                        <label id="label11" runat="server" for="highschool">Have you STUDIED at <%=nameofinstitue %> before?</label>
+                                                    </td>
+                                                    <td class="width70">
+                                                        <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                            <tr>
+                                                                <td class="width50 bgcol">
+                                                                    <asp:Label ID="lblhaveyoustudiedininstitution" runat="server"></asp:Label>
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/check.png" visible="false" id="studiedininstitutionYes" runat="server" class="bdy-check-icon">
+                                                                </td>
+                                                                <td class="width10">
+                                                                    <img src="/assets/dashboard/img/cross.png" visible="false" id="studiedininstitutionNo" runat="server" class="bdy-cross-icon">
+                                                                </td>
+                                                                <td class="width30 td-rightlabel">
+                                                                    <asp:Label ID="txthaveyoustudiedininstitution" runat="server"></asp:Label>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                         <tr class="adm-form-row-tr" id="studentID" runat="server" visible="false">
+                                            <td class="width30 td-rightlabel">
+                                                <label id="label14" runat="server" for="highschool">Enter Your Student Number/ Student ID from <%=nameofinstitue %>here</label>
+                                            </td>
+                                            <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol">
+                                                            <asp:Label ID="lblstudentID" runat="server"></asp:Label>
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/check.png" visible="false" id="studentIDYes" runat="server" class="bdy-check-icon">
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/cross.png" visible="false" id="studentIDNO" runat="server" class="bdy-cross-icon">
+                                                        </td>
+                                                        <td class="width30 td-rightlabel">
+                                                            <asp:Label ID="txtstudentID" runat="server"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
                                         </tr>
-
+                                
                                         <tr class="adm-form-row-tr" id="highschool" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelhighschool" runat="server" for="highschool">Have you completed high school?</label>
