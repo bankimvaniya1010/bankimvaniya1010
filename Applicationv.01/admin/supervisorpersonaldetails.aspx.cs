@@ -46,8 +46,9 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
 
-            PopulatePersonalInfo();
+            
             SetControlsUniversitywise();
+            PopulatePersonalInfo();
             SetAdminComments();
             PopulateSupervisorComments();
         }
@@ -103,6 +104,20 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                 if (profileInfo.higheststudycompleted != null)
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
+                }
+                if (profileInfo.fieldofhigheststudy != null)
+                {
+                    lblfieldstudy.Text = objCom.GetHighestStudyField(Convert.ToInt32(profileInfo.fieldofhigheststudy));
+                }
+                if (profileInfo.studycompletedate != null)
+                {
+                    lblhighQualificationCompleteDate.Text = profileInfo.studycompletedate;
+                }
+                String qualificationCountry = "";
+                if (profileInfo.countryofhigheststudy != null)
+                {
+                    qualificationCountry = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.countryofhigheststudy));
+                    lblhighestQualificationCountry.Text = qualificationCountry;
                 }
                 String Nationality = "";
                 if (profileInfo.nationality != null)
@@ -321,11 +336,23 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         agentList.Attributes.Add("style", "display:block;");
                         labelagentList.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Highest study level successfully completed":
+                    case "HIGHEST LEVEL OF STUDY SUCCESSFULLY COMPLETED":
                         higheststudy.Attributes.Add("style", "display:block;");
                         labelhigheststudy.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                        
+                    case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
+                        fieldstudy.Attributes.Add("style", "display:block;");
+                        labelfieldstudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Country of highest qualification":
+                        highestQualificationCountry.Attributes.Add("style", "display:block;");
+                        labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Year and Month of highest qualification":
+                        highQualificationCompleteDate.Attributes.Add("style", "display:block;");
+                        labelhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+
                     default:
                         break;
 
@@ -536,6 +563,27 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         rblhigheststudyNo.Checked = true;
                     else
                         rblhigheststudyYes.Checked = true;
+                    break;
+                case "Highest study successfully completed field":
+                    txtfieldstudy.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbfieldstudyNo.Checked = true;
+                    else
+                        rbfieldstudyYes.Checked = true;
+                    break;
+                case "Country of Highest Qualificatiion Achieved":
+                    txthighestQualificationCountry.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbhighestQualificationCountryNo.Checked = true;
+                    else
+                        rbhighestQualificationCountryYes.Checked = true;
+                    break;
+                case "Year and Month of highest qualification":
+                    txthighQualificationCompleteDate.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbhighQualificationCompleteDateNo.Checked = true;
+                    else
+                        rbhighQualificationCompleteDateYes.Checked = true;
                     break;
                 default:
                     break;

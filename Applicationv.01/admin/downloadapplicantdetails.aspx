@@ -615,6 +615,79 @@
                                             </td>
 
                                         </tr>
+                                        <tr class="adm-form-row-tr" id="fieldstudy" runat="server" visible="false">
+                                            <td class="width30 td-rightlabel">
+                                                <label id="lblfieldstudy" runat="server" for="fieldstudy">HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED</label>
+                                            </td>
+                                                <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol">
+                                                            <asp:Label ID="lblfieldofhigheststudy" runat="server"></asp:Label>
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/check.png" visible="false" id="imghigheststudyfieldYes" runat="server" class="bdy-check-icon">
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/cross.png" visible="false" id="imghigheststudyfieldNo" runat="server" class="bdy-cross-icon">
+                                                        </td>
+                                                        <td class="width30">
+                                                            <asp:Label ID="lblhigheststudyfieldComments" runat="server"></asp:Label>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr class="adm-form-row-tr" id="highestQualificationCountry" runat="server" visible="false">
+                                            <td class="width30 td-rightlabel">
+                                                <label id="labelhighestQualificationCountry" runat="server" for="highestQualificationCountry">Country of highest qualification</label>
+                                            </td>
+                                                <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol">
+                                                            <asp:Label ID="lblhighestQualificationCountry" runat="server"></asp:Label>
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/check.png" visible="false" id="highestQualificationCountryYes" runat="server" class="bdy-check-icon">
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/cross.png" visible="false" id="highestQualificationCountryNo" runat="server" class="bdy-cross-icon">
+                                                        </td>
+                                                        <td class="width30">
+                                                            <asp:Label ID="lblhighestQualificationCountrycomment" runat="server"></asp:Label>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    <tr class="adm-form-row-tr" id="highQualificationCompleteDate" runat="server" visible="false">
+                                            <td class="width30 td-rightlabel">
+                                                <label id="lblhighQualificationCompleteDate" runat="server" for="highQualificationCompleteDate">Country of highest qualification</label>
+                                            </td>
+                                                <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol">
+                                                            <asp:Label ID="lblehighQualificationCompleteDate" runat="server"></asp:Label>
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/check.png" visible="false" id="highQualificationCompleteDateYes" runat="server" class="bdy-check-icon">
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/cross.png" visible="false" id="highQualificationCompleteDateNo" runat="server" class="bdy-cross-icon">
+                                                        </td>
+                                                        <td class="width30">
+                                                            <asp:Label ID="lblhighQualificationCompleteDatecomments" runat="server"></asp:Label>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+
                                         <tr class="adm-form-row-tr" id="disability" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
                                                 <label id="labeldisability" runat="server" for="disability">Do you have any disability, impairment, or a long term condition</label></td>
@@ -1007,30 +1080,6 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" id="CurrentAddress" runat="server" visible="false">
-                                            <td class="width30 td-rightlabel">
-                                                <label id="labelCurrentAddress" runat="server" for="currentAddressSelection">Have you been living in the current address for Less than 1 year?</label></td>
-                                            <td class="width70">
-                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
-                                                    <tr>
-                                                        <td class="width50 bgcol">
-                                                            <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
-                                                        </td>
-                                                        <td class="width10">
-                                                            <img src="/assets/dashboard/img/check.png" visible="false" id="imgCurrentAddressYes" runat="server" class="bdy-check-icon">
-                                                        </td>
-                                                        <td class="width10">
-                                                            <img src="/assets/dashboard/img/cross.png" visible="false" id="imgCurrentAddressNo" runat="server" class="bdy-cross-icon">
-                                                        </td>
-                                                        <td class="width30">
-                                                            <asp:Label ID="lblCurrentAddressComments" runat="server"></asp:Label>
-
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-
-                                        </tr>
                                         <tr class="adm-form-row-tr" id="residential" runat="server" role="group" aria-labelledby="label-chineseCommercialCode" visible="false">
                                             <td class="width30 td-rightlabel">
                                                 <label id="labelResidential" runat="server" for="title">Current Residential  Address</label>
@@ -1056,7 +1105,32 @@
                                             </td>
 
                                         </tr>
-                                        <tr class="adm-form-row-tr" runat="server" id="addressHistory" visible="false">
+                                  <tr class="adm-form-row-tr" id="CurrentAddress" runat="server" visible="false">
+                                            <td class="width30 td-rightlabel">
+                                                <label id="labelCurrentAddress" runat="server" for="currentAddressSelection">Have you been living in the current address for Less than 1 year?</label></td>
+                                            <td class="width70">
+                                                <table cellpadding="0" cellspacing="0" class="table inner-table">
+                                                    <tr>
+                                                        <td class="width50 bgcol">
+                                                            <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/check.png" visible="false" id="imgCurrentAddressYes" runat="server" class="bdy-check-icon">
+                                                        </td>
+                                                        <td class="width10">
+                                                            <img src="/assets/dashboard/img/cross.png" visible="false" id="imgCurrentAddressNo" runat="server" class="bdy-cross-icon">
+                                                        </td>
+                                                        <td class="width30">
+                                                            <asp:Label ID="lblCurrentAddressComments" runat="server"></asp:Label>
+
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+
+                                        </tr>
+                                        <tr class="adm-form-row-tr" runat="server" id="addressHistory" visible="false">                                            
+                                            
                                             <td class="width30 td-rightlabel">
                                                 <asp:HiddenField ID="hidAddressHistory" runat="server" Value="0" />
                                                 <asp:HiddenField ID="hidAddressStartDate" runat="server" Value="" />
@@ -1070,10 +1144,18 @@
                                                 <asp:HiddenField ID="hidAddressCountry" runat="server" Value="" />
                                                 <label id="lblPrevAddress" runat="server" for="prevaddress">Previous Address History Details</label></td>
                                             <td class="width70">
+                                                 <%if (lstOfResidences.Count > 0)
+                                                {
+                                                    for (var i = 0; i < lstOfResidences.Count; i++)
+                                                    { %>
                                                 <table cellpadding="0" cellspacing="0" class="table inner-table">
                                                     <tr>
                                                         <td class="width50 bgcol">
-                                                            <asp:Label ID="Label38" runat="server"></asp:Label>
+                                                             <span>Date <%=Convert.ToDateTime(lstOfResidences[i].residencestartdate).ToString("yyyy-MM-dd") %> </span> - 
+                                                            <span><%=Convert.ToDateTime(lstOfResidences[i].residenceenddate).ToString("yyyy-MM-dd") %> </span><br/>
+                                                            <span><%=lstOfResidences[i].residenceaddress1 %>, <%=lstOfResidences[i].residenceaddress2%>, <%=lstOfResidences[i].residenceaddress3 %></span>
+                                                            <span><%=lstOfResidences[i].residencepostcode %>, <%=lstOfResidences[i].residentialstate%></span>
+                                                           
                                                         </td>
                                                         <td class="width10">
                                                             <img src="/assets/dashboard/img/check.png" visible="false" id="imgAddressHistoryYes" runat="server" class="bdy-check-icon">
@@ -1087,6 +1169,7 @@
                                                         </td>
                                                     </tr>
                                                 </table>
+                                                <%}}%>
                                             </td>
 
                                         </tr>

@@ -31,9 +31,12 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblLinkedin" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblLinkedinYes" GroupName="Linkedin" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblLinkedinNo" GroupName="Linkedin" Text="No" runat="server" /><asp:Label ID="lblLinkedinComments" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblLinkedinNo" GroupName="Linkedin" Text="No" runat="server" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:Label ID="lblLinkedinComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -45,9 +48,12 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblFacebook" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblFacebookYes" GroupName="Facebook" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblFacebookNo" GroupName="Facebook" Text="No" runat="server" /><asp:Label ID="lblFacebookComments" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblFacebookNo" GroupName="Facebook" Text="No" runat="server" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:Label ID="lblFacebookComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -59,9 +65,12 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblTwitter" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblTwitterYes" GroupName="twitter" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblTwitterNo" GroupName="twitter" Text="No" runat="server" /><asp:Label ID="lblTwitterComments" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblTwitterNo" GroupName="twitter" Text="No" runat="server" />
+                            </div>
+                            <div class="col-md-3">
+                                <asp:Label ID="lblTwitterComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>

@@ -31,6 +31,8 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected string employmentInfo = "", yearsOfexp = "", employerwebsite = "", employer = "", employercity = "", employercountry = "", position = "", startdate = "", enddate = "", BriefDescription = "", reportingmanger = "", employmentverification = "", relationship = "", emailEmployment = "", linkedin = "";
     protected Common objCom = new Common();
     protected List<applicanthighereducation> HigherEducation = new List<applicanthighereducation>();
+    public List<applicantresidencehistory> lstOfResidences = new List<applicantresidencehistory>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.QueryString["id"] == null || Request.QueryString["id"].ToString() == "" || Request.QueryString["downloadPdf"] == null || Request.QueryString["downloadPdf"].ToString() == "")
@@ -159,7 +161,19 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
                 }
-              
+                if (profileInfo.fieldofhigheststudy != null)
+                {
+                    lblfieldofhigheststudy.Text = objCom.GetHighestStudyField(Convert.ToInt32(profileInfo.fieldofhigheststudy));
+                }
+                if (profileInfo.countryofhigheststudy != null)
+                {
+                    lblhighestQualificationCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.countryofhigheststudy));
+                }
+                if (profileInfo.studycompletedate != null)
+                {
+                    lblehighQualificationCompleteDate.Text = profileInfo.studycompletedate;                    
+                }
+                
                 if (profileInfo.nationality != null)
                 {
                     NationalityValue = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality));
@@ -382,19 +396,19 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     //case "IF YOU DIDN’T FIND YOUR AGENT NAME IN THE LIST, ADD YOUR AGENT’S EMAILL ID TO SEND THEM A REGISTRATION LINK":
                     //    addnewagent.Attributes.Add("style", "display:block;");
                     //    labeladdnewagent.InnerHtml = setInnerHtml(fields[k]);
-                    //    break;                    
-                    //case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
-                    //    fieldstudy.Attributes.Add("style", "display:block;");
-                    //    lblfieldstudy.InnerHtml = setInnerHtml(fields[k]);
                     //    break;
-                    //case "Country of highest qualification":
-                    //    highestQualificationCountry.Attributes.Add("style", "display:block;");
-                    //    labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
-                    //    break;
-                    //case "Year and Month of highest qualification":
-                    //    highQualificationCompleteDate.Attributes.Add("style", "display:block;");
-                    //    lblhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
-                    //    break;
+                    case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
+                        fieldstudy.Visible = true;
+                        lblfieldstudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Country of highest qualification":
+                        highestQualificationCountry.Visible = true;
+                        labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Year and Month of highest qualification":
+                        highQualificationCompleteDate.Visible = true;
+                        lblhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
+                        break;
                     default:
                         break;
 
@@ -585,6 +599,28 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imghigheststudyYes.Visible = true;
                     lblhigheststudyComments.Text = setComments(Comments[k]);
                     break;
+                case "Highest study successfully completed field":
+                    if (Comments[k].adminaction == 0)
+                        imghigheststudyfieldNo.Visible = true;
+                    else
+                        imghigheststudyfieldYes.Visible = true;
+                    lblhigheststudyfieldComments.Text = setComments(Comments[k]);
+                    break;
+                case "Country of Highest Qualificatiion Achieved":
+                    if (Comments[k].adminaction == 0)
+                        highestQualificationCountryNo.Visible = true;
+                    else
+                        highestQualificationCountryYes.Visible = true;
+                    lblhighestQualificationCountrycomment.Text = setComments(Comments[k]);
+                    break;
+                case "Year and Month of highest qualification":
+                    if (Comments[k].adminaction == 0)
+                        highQualificationCompleteDateNo.Visible = true;
+                    else
+                        highQualificationCompleteDateYes.Visible = true;
+                    lblhighQualificationCompleteDatecomments.Text = setComments(Comments[k]);
+                    break;
+
                 default:
                     break;
 
@@ -634,13 +670,13 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblWhatsapp.Text = "Yes";
                     if (profileInfo.isdifferentwhatsapp == 1)
                     {
-                        lblWhatsapphave.Text = "No";
-                        lblWhastappDesription.Text = profileInfo.whatsappno;
+                        lblWhatsapphave.Text = "Yes";
+                        whatsappDesc.Visible = false;
                     }
                     else if (profileInfo.isdifferentwhatsapp == 2)
                     {
-                        lblWhatsapphave.Text = "Yes";
-                        whatsappDesc.Visible = false;
+                        lblWhatsapphave.Text = "No";
+                        lblWhastappDesription.Text = profileInfo.whatsappno;                        
                     }
                 }
                 else if (profileInfo.havewhatsup == 2)
@@ -676,8 +712,8 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 if (profileInfo.haspreviousresidence.HasValue && profileInfo.haspreviousresidence.Value)
                 {
                     lblCurrentAddress.Text = "Yes";
-
-                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
+                    CurrentAddress.Visible = true;
+                    lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
 
                     //lblPrevAddStartDate.Text = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
                     //lblPrevAddEndDate.Text = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
@@ -693,7 +729,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     //    lblPrevAddressCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(lstOfResidences[0].residentialcountry));
                     //}
 
-                    //addressHistory.Style.Remove("display");
+                    addressHistory.Visible = true;
 
                     for (int i = 1; i < lstOfResidences.Count; i++)
                     {
@@ -806,6 +842,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         break;
                     case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                         address.Visible = true;
+                        //previousaddress.Visible = true;
                         labeladdress.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "CURRENT RESIDENTIAL ADDRESS":
