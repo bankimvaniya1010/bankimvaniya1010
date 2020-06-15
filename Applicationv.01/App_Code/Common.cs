@@ -1051,8 +1051,11 @@ public class Common
                 mycontrol.Attributes["class"] = "col-md-4";
                 divFormRow.Controls.Add(mycontrol);
                 System.Web.UI.HtmlControls.HtmlGenericControl adminControl = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                adminControl.Attributes["class"] = "col-md-4";
+                adminControl.Attributes["class"] = "col-md-2";
                 divFormRow.Controls.Add(adminControl);
+                System.Web.UI.HtmlControls.HtmlGenericControl admincommentControl = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                admincommentControl.Attributes["class"] = "col-md-3";
+                divFormRow.Controls.Add(admincommentControl);
 
                 if (ControlsList[k].type.ToLower() == "textbox")
                 {
@@ -1085,15 +1088,15 @@ public class Common
                                 rbYes.Checked = true;
                             else if (Comments[c].adminaction == 0)
                                 rbNo.Checked = true;
+
+                            Label lblinputComments = new Label();
+                            lblinputComments.ID = "lblComments" + ControlsList[k].customfieldid;
+                            lblinputComments.Text = Comments[c].comments;
+                            admincommentControl.Controls.Add(lblinputComments);
                         }
                     }
                     adminControl.Controls.Add(rbYes);
-                    adminControl.Controls.Add(rbNo);
-                    Label lblinputComments = new Label();
-                    lblinputComments.ID = "lblComments" + ControlsList[k].customfieldid;
-                    // lblinputComments.Attributes["class"] = "form-control";
-                    // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
-                    adminControl.Controls.Add(lblinputComments);
+                    adminControl.Controls.Add(rbNo);                    
                 }
             }
 

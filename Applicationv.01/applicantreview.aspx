@@ -1060,7 +1060,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return ConfirmOnDelete()"/>
                                         <div class="col-md-6">
                                         </div>
                                     </div>
@@ -1109,6 +1109,16 @@
     </div>
 
     <script>
+        function ConfirmOnDelete() {
+            if (!$("#<%=chkDeclration.ClientID%>").is(":checked")) {
+                alert("Please select checkbox");
+                return false;
+            }
+            if (confirm("Are you sure to submit review. as you wont be able to edit you detail section") == true)
+                return true;
+            else
+                return false;
+        }
         $("#studentID").hide();
         $("#studentcoursename").hide();
         $("#coursenstartDate").hide();
