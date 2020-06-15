@@ -1296,7 +1296,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgDateOfissueYes.Visible = true;
                     lblDateOfissueComments.Text = setComments(Comments[k]);
                     break;
-                case "PASSPORT Expiry Date":
+                case "PASSPORT EXPIRY DATE":
                     if (Comments[k].adminaction == 0)
                         imgExpiryDateNo.Visible = true;
                     else
@@ -3085,63 +3085,63 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgEnglishBackgroundYes.Visible = true;
                     lblEnglishBackgroundComments.Text = setComments(Comments[k]);
                     break;
-                case "COUNTRY OF ENGLISH LANGUAGE INTENSIVE COURSE":
+                case "Country of English Language Intensive Course":
                     if (Comments[k].adminaction == 0)
                         imgLanguageNo.Visible = true;
                     else
                         imgLanguageYes.Visible = true;
                     lblLanguageComments.Text = setComments(Comments[k]);
                     break;
-                case "YEAR OF COMPLETION/EXPECTED":
+                case "Year of Completion/Expected":
                     if (Comments[k].adminaction == 0)
                         imgYearCompletionNo.Visible = true;
                     else
                         imgYearCompletionYes.Visible = true;
                     lblYearCompletionComments.Text = setComments(Comments[k]);
                     break;
-                case "NAME OF COLLEGE OR UNIVERSITY":
+                case "Name of College or University":
                     if (Comments[k].adminaction == 0)
                         imgNameCollegeYes.Visible = true;
                     else
                         imgNameCollegeNo.Visible = true;
                     lblNameCollegeComments.Text = setComments(Comments[k]);
                     break;
-                case "MODE OF STUDY":
+                case "Mode of study":
                     if (Comments[k].adminaction == 0)
                         imgstudymodeNo.Visible = true;
                     else
                         imgstudymodeYes.Visible = true;
                     lblstudymodeComments.Text = setComments(Comments[k]);
                     break;
-                case "QUALIFICATION TYPE":
+                case "Qualification Type":
                     if (Comments[k].adminaction == 0)
                         imgQualificationTypeNo.Visible = true;
                     else
                         imgQualificationTypeYes.Visible = true;
                     lblQualificationTypeComments.Text = setComments(Comments[k]);
                     break;
-                case "Name of Qualification":
+                case "Qualification Name":
                     if (Comments[k].adminaction == 0)
                         imgQualificationNameNo.Visible = true;
                     else
                         imgQualificationNameYes.Visible = true;
                     lblQualificationNameComments.Text = setComments(Comments[k]);
                     break;
-                case "GRADE TYPE":
+                case "Grade Type":
                     if (Comments[k].adminaction == 0)
                         imgLanggradetypeNo.Visible = true;
                     else
                         imgLanggradetypeYes.Visible = true;
                     lblLanggradetypeComments.Text = setComments(Comments[k]);
                     break;
-                case "FINAL GRADE ACHIEVED":
+                case "Final Grade Achieved":
                     if (Comments[k].adminaction == 0)
                         imggradeachievedNo.Visible = true;
                     else
                         imggradeachievedYes.Visible = true;
                     lblLanggradeachievedComments.Text = setComments(Comments[k]);
                     break;
-                case "EXPECTED DATE WHEN RESULTS WILL BE DECLARED":
+                case "Expected dates when results will be declared":
                     if (Comments[k].adminaction == 0)
                         imgExpectedDategradeNo.Visible = true;
                     else
@@ -3162,29 +3162,35 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblisgiventest_yes_or_noComment.Text = setComments(Comments[k]);
                     lblEnglishTestComments.Text = setComments(Comments[k]);
                     break;
-                case "TEST NAME":
+                case "Test Name":
                     if (Comments[k].adminaction == 0)
                         imgtestNameNo.Visible = true;
                     else
                         imgtestNameYes.Visible = true;
                     lbltestNameComments.Text = setComments(Comments[k]);
                     break;
-                case "CENTER NUMBER":
-                    if (Comments[k].adminaction == 0)
-                        imgCentreNoNo.Visible = true;
-                    else
-                        imgCentreNoYes.Visible = true;
-                    if (Comments[k].adminaction == 0)
-                        imgptetestcenterNoNo.Visible = true;
-                    else
-                        imgptetestcenterNoYes.Visible = true;
+                case "Test Centre No tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelcenterNoNo.Visible = true;
                     else
                         imgtofelcenterNoYes.Visible = true;
-                    lblCentreNoComments.Text = setComments(Comments[k]);
-                    lblptetestcenterNoComments.Text = setComments(Comments[k]);
                     lbltofelcenterNoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Centre No ielts":
+
+                    if (Comments[k].adminaction == 0)
+                        imgCentreNoNo.Visible = true;
+                    else
+                        imgCentreNoYes.Visible = true;
+                    lblCentreNoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Centre No pte":
+                    if (Comments[k].adminaction == 0)
+                        imgptetestcenterNoNo.Visible = true;
+                    else
+                        imgptetestcenterNoYes.Visible = true;
+                    lblptetestcenterNoComments.Text = setComments(Comments[k]);
+                    
                     break;
                 case "CANDIDATE NUMBER":
                     if (Comments[k].adminaction == 0)
@@ -3193,139 +3199,169 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgCandidateNoYes.Visible = true;
                     lblCandidateNoComments.Text = setComments(Comments[k]);
                     break;
-                case "CANDIDATE ID":
+                case "Candidate ID":
                     if (Comments[k].adminaction == 0)
                         imgCandidateIDNo.Visible = true;
                     else
                         imgCandidateIDYes.Visible = true;
                     lblCandidateIDComments.Text = setComments(Comments[k]);
                     break;
-                case "TEST DATE":
-                    if (Comments[k].adminaction == 0)
-                        imgieltsTestDateNo.Visible = true;
-                    else
-                        imgieltsTestDateYes.Visible = true;
-                    if (Comments[k].adminaction == 0)
-                        imgpteTestDateNo.Visible = true;
-                    else
-                        imgpteTestDateYes.Visible = true;
+                case "Test Date tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelTestDateNo.Visible = true;
                     else
                         imgtofelTestDateYes.Visible = true;
-                    lblieltsTestDateComments.Text = setComments(Comments[k]);
-                    lblpteTestDateComments.Text = setComments(Comments[k]);
                     lbltofelTestDateComments.Text = setComments(Comments[k]);
                     break;
-                case "TOTAL SCORE":
+                case "Test Date pte":
                     if (Comments[k].adminaction == 0)
+                        imgpteTestDateNo.Visible = true;
+                    else
+                        imgpteTestDateYes.Visible = true;
+                    lblpteTestDateComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Date ielts":
+                    if (Comments[k].adminaction == 0)
+                        imgieltsTestDateNo.Visible = true;
+                    else
+                        imgieltsTestDateYes.Visible = true;
+                    lblieltsTestDateComments.Text = setComments(Comments[k]);
+                    break;
+                case "Total Score ielts":
+                    if(Comments[k].adminaction == 0)
                         imgLanguageScoreNo.Visible = true;
                     else
                         imgLanguageScoreYes.Visible = true;
+                    lblLanguageScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Total Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteTotalScoreNo.Visible = true;
                     else
                         imgpteTotalScoreYes.Visible = true;
+                    lblpteTotalScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Total Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelTotalScoreNo.Visible = true;
                     else
                         imgtofelTotalScoreYes.Visible = true;
-                    lblLanguageScoreComments.Text = setComments(Comments[k]);
-                    lblpteTotalScoreComments.Text = setComments(Comments[k]);
                     lbltofelTotalScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "SPEAKING SCORE":
-                    if (Comments[k].adminaction == 0)
-                        imgSpeakingScoreIletNo.Visible = true;
-                    else
-                        imgSpeakingScoreIletYes.Visible = true;
+                case "Speaking Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteSpeakingScoreNo.Visible = true;
                     else
                         imgpteSpeakingScoreYes.Visible = true;
+                    lblpteSpeakingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Speaking Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelSpeakingScoreNo.Visible = true;
                     else
                         imgtofelSpeakingScoreYes.Visible = true;
-                    lblSpeakingScoreComments.Text = setComments(Comments[k]);
-                    lblpteSpeakingScoreComments.Text = setComments(Comments[k]);
                     lbltofelSpeakingScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "LISTENING SCORE":
+                case "Speaking Score ielts":
+                    if (Comments[k].adminaction == 0)
+                        imgSpeakingScoreIletNo.Visible = true;
+                    else
+                        imgSpeakingScoreIletYes.Visible = true;
+                    lblSpeakingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score ielts":
                     if (Comments[k].adminaction == 0)
                         imgListeningScoreIletNo.Visible = true;
                     else
                         imgListeningScoreIletYes.Visible = true;
+                    lblListeningScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteListeningScoreNo.Visible = true;
                     else
                         imgpteListeningScoreYes.Visible = true;
+                    lblpteListeningScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelListeningScoreNo.Visible = true;
                     else
                         imgtofelListeningScoreYes.Visible = true;
-                    lblListeningScoreComments.Text = setComments(Comments[k]);
-                    lblpteListeningScoreComments.Text = setComments(Comments[k]);
                     lbltofelListeningScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "READING SCORE":
-                    if (Comments[k].adminaction == 0)
+                case "Reading Score ielts":
+                    if(Comments[k].adminaction == 0)
                         imgReadingScoreIeltNo.Visible = true;
                     else
                         imgReadingScoreIeltYes.Visible = true;
+                    lblReadingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Reading Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteReadingScoreNo.Visible = true;
                     else
                         imgpteReadingScoreYes.Visible = true;
+
+                    lblpteReadingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Reading Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelReadingScoreNo.Visible = true;
                     else
                         imgtofelReadingScoreYes.Visible = true;
-                    lblReadingScoreComments.Text = setComments(Comments[k]);
-                    lblpteReadingScoreComments.Text = setComments(Comments[k]);
                     lbltofelReadingScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "WRITING SCORE":
-                    if (Comments[k].adminaction == 0)
-                        imgWritingScoreIletNo.Visible = true;
-                    else
-                        imgWritingScoreIletYes.Visible = true;
+                case "Writing Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteWritingScoreNo.Visible = true;
                     else
                         imgpteWritingScoreYes.Visible = true;
+                    lblpteWritingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Writing Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelWritingScoreNo.Visible = true;
                     else
                         imgtofelWritingScoreYes.Visible = true;
-                    lblWritingScoreComments.Text = setComments(Comments[k]);
-                    lblpteWritingScoreComments.Text = setComments(Comments[k]);
                     lbltofelWritingScoreComments.Text = setComments(Comments[k]);
                     break;
-
-                case "REGISTRATION NUMBER":
+                case "Writing Score ielts":
                     if (Comments[k].adminaction == 0)
-                        imgpteregistrationnoNo.Visible = true;
+                        imgWritingScoreIletNo.Visible = true;
                     else
-                        imgpteregistrationnoYes.Visible = true;
+                        imgWritingScoreIletYes.Visible = true;
+                    lblWritingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Registration Number tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelregistrationnoNo.Visible = true;
                     else
                         imgtofelregistrationnoYes.Visible = true;
-                    lblpteregistrationnoComments.Text = setComments(Comments[k]);
                     lbltofelregistrationnoComments.Text = setComments(Comments[k]);
                     break;
-                case "TEST CENTER COUNTRY":
+
+                case "Registration Number pte":
                     if (Comments[k].adminaction == 0)
-                        imgptecentercountryNo.Visible = true;
+                        imgpteregistrationnoNo.Visible = true;
                     else
-                        imgptecentercountryYes.Visible = true;
+                        imgpteregistrationnoYes.Visible = true;
+                    lblpteregistrationnoComments.Text = setComments(Comments[k]);
+
+                    break;
+                case "Test Center Country tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelcentercountryNo.Visible = true;
                     else
                         imgtofelcentercountryYes.Visible = true;
-                    lblptecentercountryComments.Text = setComments(Comments[k]);
                     lbltofelcentercountryComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Center Country pte":
+                    if (Comments[k].adminaction == 0)
+                        imgptecentercountryNo.Visible = true;
+                    else
+                        imgptecentercountryYes.Visible = true;
+                    lblptecentercountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Test Taker ID":
                     lblptetesttakerComments.Text = setComments(Comments[k]);

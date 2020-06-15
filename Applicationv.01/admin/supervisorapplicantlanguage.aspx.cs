@@ -426,7 +426,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
-                case "What language do you speak at home":
+                case "WHICH LANGUAGE DO YOU SPEAK AT HOME?":
                     if (Comments[k].adminaction == 0)
                         rblhomelanguageNo.Checked = true;
                     else
@@ -517,21 +517,25 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                         rbltestNameYes.Checked = true;
                     lbltestNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Centre No":
-                    if (Comments[k].adminaction == 0)
-                        rblCentreNoNo.Checked = true;
-                    else
-                        rblCentreNoYes.Checked = true;
+                case "Test Centre No pte":
                     if (Comments[k].adminaction == 0)
                         rblptetestcenterNoNo.Checked = true;
                     else
                         rblptetestcenterNoYes.Checked = true;
+                    lblptetestcenterNoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Centre No ielts":
+                    if (Comments[k].adminaction == 0)
+                        rblCentreNoNo.Checked = true;
+                    else
+                        rblCentreNoYes.Checked = true;
+                    lblCentreNoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Centre No tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelcenterNo.Checked = true;
                     else
                         rblptetestcenterNoYes.Checked = true;
-                    lblCentreNoComments.Text = setComments(Comments[k]);
-                    lblptetestcenterNoComments.Text = setComments(Comments[k]);
                     lbltofelcenterNoComments.Text = setComments(Comments[k]);
                     break;
                 case "Candidate No":
@@ -548,131 +552,164 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                         rblCandidateIDYes.Checked = true;
                     lblCandidateIDComments.Text = setComments(Comments[k]);
                     break;
-                case "Test Date":
-                    if (Comments[k].adminaction == 0)
-                        rblieltsTestDateNo.Checked = true;
-                    else
-                        rblieltsTestDateYes.Checked = true;
+                case "Test Date pte":
                     if (Comments[k].adminaction == 0)
                         rblpteTestDateNo.Checked = true;
                     else
                         rblpteTestDateYes.Checked = true;
+                    lblpteTestDateComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Date tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelTestDateNo.Checked = true;
                     else
                         rbltofelTestDateYes.Checked = true;
-                    lblieltsTestDateComments.Text = setComments(Comments[k]);
-                    lblpteTestDateComments.Text = setComments(Comments[k]);
                     lbltofelTestDateComments.Text = setComments(Comments[k]);
                     break;
-                case "Total Score":
+                case "Test Date ielts":
                     if (Comments[k].adminaction == 0)
-                        rblLanguageScoreNo.Checked = true;
+                        rblieltsTestDateNo.Checked = true;
                     else
-                        rblLanguageScoreYes.Checked = true;
+                        rblieltsTestDateYes.Checked = true;
+                    lblieltsTestDateComments.Text = setComments(Comments[k]);
+                    
+                    break;
+                case "Total Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteTotalScoreNo.Checked = true;
                     else
                         rblpteTotalScoreYes.Checked = true;
+                    lblpteTotalScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Total Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelTotalScoreNo.Checked = true;
                     else
                         rbltofelTotalScoreYes.Checked = true;
-                    lblLanguageScoreComments.Text = setComments(Comments[k]);
-                    lblpteTotalScoreComments.Text = setComments(Comments[k]);
                     lbltofelTotalScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "Speaking Score":
+                case "Total Score ielts":
                     if (Comments[k].adminaction == 0)
-                        rblSpeakingScoreNo.Checked = true;
+                        rblLanguageScoreNo.Checked = true;
                     else
-                        rblSpeakingScoreYes.Checked = true;
+                        rblLanguageScoreYes.Checked = true;
+                    lblLanguageScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Speaking Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteSpeakingScoreNo.Checked = true;
                     else
                         rblpteSpeakingScoreYes.Checked = true;
+                    lblpteSpeakingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Speaking Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelSpeakingScoreNo.Checked = true;
                     else
                         rbltofelSpeakingScoreYes.Checked = true;
-                    lblSpeakingScoreComments.Text = setComments(Comments[k]);
-                    lblpteSpeakingScoreComments.Text = setComments(Comments[k]);
                     lbltofelSpeakingScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "Listening Score":
+                case "Speaking Score ielts":
+                    if (Comments[k].adminaction == 0)
+                        rblSpeakingScoreNo.Checked = true;
+                    else
+                        rblSpeakingScoreYes.Checked = true;
+                    lblSpeakingScoreComments.Text = setComments(Comments[k]);
+                    break;
+
+                case "Listening Score ielts":
                     if (Comments[k].adminaction == 0)
                         rblListeningScoreNo.Checked = true;
                     else
                         rblListeningScoreYes.Checked = true;
+
+                    lblListeningScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteListeningScoreNo.Checked = true;
                     else
                         rblpteListeningScoreYes.Checked = true;
+                    lblpteListeningScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelListeningScoreNo.Checked = true;
                     else
                         rbltofelListeningScoreYes.Checked = true;
-                    lblListeningScoreComments.Text = setComments(Comments[k]);
-                    lblpteListeningScoreComments.Text = setComments(Comments[k]);
                     lbltofelListeningScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "Reading Score":
+                case "Reading Score ielts":
                     if (Comments[k].adminaction == 0)
                         rblReadingScoreNo.Checked = true;
                     else
                         rblReadingScoreYes.Checked = true;
+                    lblReadingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Reading Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteReadingScoreNo.Checked = true;
                     else
                         rblpteReadingScoreYes.Checked = true;
+
+                    lblpteReadingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Reading Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelReadingScoreNo.Checked = true;
                     else
                         rbltofelReadingScoreYes.Checked = true;
-                    lblReadingScoreComments.Text = setComments(Comments[k]);
-                    lblpteReadingScoreComments.Text = setComments(Comments[k]);
                     lbltofelReadingScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "Writing Score":
-                    if (Comments[k].adminaction == 0)
-                        rblWritingScoreNo.Checked = true;
-                    else
-                        rblWritingScoreYes.Checked = true;
+
+                case "Writing Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteWritingScoreNo.Checked = true;
                     else
                         rblpteWritingScoreYes.Checked = true;
+                    lblpteWritingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Writing Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelWritingScoreNo.Checked = true;
                     else
                         rbltofelWritingScoreYes.Checked = true;
-                    lblWritingScoreComments.Text = setComments(Comments[k]);
-                    lblpteWritingScoreComments.Text = setComments(Comments[k]);
                     lbltofelWritingScoreComments.Text = setComments(Comments[k]);
                     break;
-
-                case "Registration Number":
+                case "Writing Score ielts":
                     if (Comments[k].adminaction == 0)
-                        rblpteregistrationnoNo.Checked = true;
+                        rblWritingScoreNo.Checked = true;
                     else
-                        rblpteregistrationnoYes.Checked = true;
+                        rblWritingScoreYes.Checked = true;
+                    lblWritingScoreComments.Text = setComments(Comments[k]);
+                    break;
+
+                case "Registration Number tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelregistrationnoNo.Checked = true;
                     else
                         rbltofelregistrationnoYes.Checked = true;
-                    lblpteregistrationnoComments.Text = setComments(Comments[k]);
                     lbltofelregistrationnoComments.Text = setComments(Comments[k]);
                     break;
-                case "Test Center Country":
+                case "Registration Number pte":
+                    if (Comments[k].adminaction == 0)
+                        rblpteregistrationnoNo.Checked = true;
+                    else
+                        rblpteregistrationnoYes.Checked = true;                    
+                    lblpteregistrationnoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Center Country pte":
                     if (Comments[k].adminaction == 0)
                         rblptecentercountryNo.Checked = true;
                     else
                         rblptecentercountryYes.Checked = true;
+                    lblptecentercountryComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Center Country tofel":                   
                     if (Comments[k].adminaction == 0)
                         rbltofelcentercountryNo.Checked = true;
                     else
-                        rbltofelcentercountryYes.Checked = true;
-                    lblptecentercountryComments.Text = setComments(Comments[k]);
+                        rbltofelcentercountryYes.Checked = true;                    
                     lbltofelcentercountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Test Taker ID":
