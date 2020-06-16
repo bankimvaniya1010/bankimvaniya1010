@@ -18,6 +18,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
+    bool? is_review = null;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -38,6 +39,9 @@ public partial class applicantcontactdetail : System.Web.UI.Page
         CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
+        is_review = objCom.is_review(userID, universityID);
+        if (is_review != null && is_review == true)
+            btn_Save.Visible = false;
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
@@ -612,7 +616,12 @@ public partial class applicantcontactdetail : System.Web.UI.Page
 
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
-        SavePersonalInfo();
-        Response.Redirect(webURL + "knowyourstudent.aspx?formid=3", true);
+        if (is_review != null && is_review == true)
+            Response.Redirect(webURL + "knowyourstudent.aspx?formid=3", true);
+        else
+        {
+            SavePersonalInfo();
+            Response.Redirect(webURL + "knowyourstudent.aspx?formid=3", true);
+        }
     }
 }

@@ -237,12 +237,14 @@
         <h1 class="h2">Applicant Work Experince</h1>
 
         <div class="card">
+            
             <% 
                 for (int k = 0; k < EmployersDetail.Count; k++)
                 {
 
             %>
             <div id="employment">
+                 <div class="list-group list-group-fit">
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employment">
                         <div class="form-row">
@@ -343,7 +345,7 @@
                             <div class="form-row">
                                 <label id="labelendate" for="endate" class="col-md-3 col-form-label form-label"><%=enddate %></label>
                                 <div class="col-md-4">
-                                    <span><%=Convert.ToDateTime(EmployersDetail[k].durationto).ToString("yyyy-MM-dd") %></span>
+                                    <span><%=EmployersDetail[k].iscurrentworking == 1 ?"Currently working":Convert.ToDateTime(EmployersDetail[k].durationto).ToString("yyyy-MM-dd") %></span>
                                 </div>
                                 <div class="col-md-4">
                                     <input type="radio" id="<%="rblenddateYes" + k %>" name="<%="enddate" + k %>" value="1">Yes
@@ -470,8 +472,9 @@
                         </div>
                     </div>
                 </div>
+                      </div>
             </div>
-
+           
         </div>
 
 

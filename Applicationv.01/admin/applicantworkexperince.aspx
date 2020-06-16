@@ -722,7 +722,7 @@
                                 <label id="labelendate" for="endate" class="col-md-2 col-form-label form-label"><%=enddate %></label>
                                 <div class="col-md-6">
                                     <div class="prdtl-ans">
-                                        <span><%=Convert.ToDateTime(EmployersDetail[k].durationto).ToString("yyyy-MM-dd") %></span>
+                                        <span><%=EmployersDetail[k].iscurrentworking == 1 ?"Currently working":Convert.ToDateTime(EmployersDetail[k].durationto).ToString("yyyy-MM-dd") %></span>
                                     </div>
                                     <div class="prdtl-vrfy">
                                         <input type="radio" id="<%="rblenddateYes" + k %>" name="<%="enddate" + k %>" value="1">Yes

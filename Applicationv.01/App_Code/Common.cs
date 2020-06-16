@@ -119,6 +119,11 @@ public class Common
         }
         return title;
     }
+    public bool? is_review(int applicantid, int universityid)
+    {       
+        var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityid).Select(x=>x.is_review).FirstOrDefault();
+        return data;
+    }
     public string GetCourseName(int id)
     {
         string CourseName = "";
@@ -1013,7 +1018,7 @@ public class Common
         }
 
     }
-    public void AddCustomControlForSupervisor(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv)
+    public void AddCustomControlForSupervisor(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv , List<admincomments> Comments)
     {
         try
         {
@@ -1046,8 +1051,11 @@ public class Common
                 mycontrol.Attributes["class"] = "col-md-4";
                 divFormRow.Controls.Add(mycontrol);
                 System.Web.UI.HtmlControls.HtmlGenericControl adminControl = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                adminControl.Attributes["class"] = "col-md-4";
+                adminControl.Attributes["class"] = "col-md-2";
                 divFormRow.Controls.Add(adminControl);
+                System.Web.UI.HtmlControls.HtmlGenericControl admincommentControl = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                admincommentControl.Attributes["class"] = "col-md-3";
+                divFormRow.Controls.Add(admincommentControl);
 
                 if (ControlsList[k].type.ToLower() == "textbox")
                 {
@@ -1057,13 +1065,38 @@ public class Common
                     //  lblinput.Attributes["class"] = "form-control";
                     // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
                     mycontrol.Controls.Add(lblinput);
+                                      
 
-                    Label lblinputComments = new Label();
-                    lblinputComments.ID = "lblComments" + ControlsList[k].customfieldid;
+                    RadioButton rbYes = new RadioButton();
+                    RadioButton rbNo = new RadioButton();
+                    rbYes.Text = "Yes";
+                    rbNo.Text = "No";
+                    rbYes.ID = "rblYes" + ControlsList[k].customfieldid;
+                    rbYes.Attributes.Add("value", "1");
+                    rbNo.Attributes.Add("value", "0");
+                    rbNo.ID = "rblNo" + ControlsList[k].customfieldid;
+                    rbNo.GroupName = ControlsList[k].customfieldid.ToString();
+                    rbYes.GroupName = ControlsList[k].customfieldid.ToString();
 
-                   // lblinputComments.Attributes["class"] = "form-control";
-                    // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
-                    adminControl.Controls.Add(lblinputComments);
+                    //
+
+                    for (int c = 0; c < Comments.Count; c++)
+                    {
+                        if (Comments[c].fieldname == ControlsList[k].labeldescription)
+                        {
+                            if (Comments[c].adminaction == 1)
+                                rbYes.Checked = true;
+                            else if (Comments[c].adminaction == 0)
+                                rbNo.Checked = true;
+
+                            Label lblinputComments = new Label();
+                            lblinputComments.ID = "lblComments" + ControlsList[k].customfieldid;
+                            lblinputComments.Text = Comments[c].comments;
+                            admincommentControl.Controls.Add(lblinputComments);
+                        }
+                    }
+                    adminControl.Controls.Add(rbYes);
+                    adminControl.Controls.Add(rbNo);                    
                 }
             }
 

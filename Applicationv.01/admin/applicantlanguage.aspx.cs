@@ -561,77 +561,86 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                     {
                         lblQualificationType.Text = objCom.GetGrade(Convert.ToInt32(LanguageInfo.qualificationtype));
                     }                        
-                }                   
-
-                if (LanguageInfo.giveenglishtest == 1)
-                {
-                    ieltsfieldContainer.Attributes.Add("style", "display:block");
-                    lblEnglishTest.Text = "Yes";
-                    lbltestName.Text = LanguageInfo.testname;
-                    lblCentreNo.Text = LanguageInfo.centerno;
-                    lblCandidateNo.Text = LanguageInfo.candidateno;
-                    lblCandidateID.Text = LanguageInfo.candidateid;
-                    if (LanguageInfo.examdate != null)
-                        lblieltsTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
-
-                    lblLanguageScore.Text = LanguageInfo.overallscore;
-                    lblSpeakingScore.Text = LanguageInfo.speakingscore;
-                    lblListeningScore.Text = LanguageInfo.listeningscore;
-                    lblWritingScore.Text = LanguageInfo.writingscore;
-                    lblReadingScore.Text = LanguageInfo.readingscore;
-
                 }
-                else if (LanguageInfo.giveenglishtest == 2)
+                if (LanguageInfo.isgiventest_yes_or_no == 1)
                 {
-                    ptefieldContainer.Attributes.Add("style","display : block");
-                    lblEnglishTest.Text = "Yes";
-                    lbltestName.Text = LanguageInfo.testname;
-                    lblptetesttaker.Text = LanguageInfo.testtakerId;
-                    lblpteregistrationno.Text = LanguageInfo.registrationNo;
-                    lblptetestcenterNo.Text = LanguageInfo.centerno;
-                    if (LanguageInfo.examdate != null)
-                        lblpteTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
-                    if (LanguageInfo.testcentercountrty != null)
+                    if (LanguageInfo.giveenglishtest == 1)
                     {
-                        lblptecentercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.testcentercountrty));
+                        ieltsfieldContainer.Attributes.Add("style", "display:block");
+                        lblEnglishTest.Text = "Yes, IELTS";
+                        lbltestName.Text = LanguageInfo.testname;
+                        lblCentreNo.Text = LanguageInfo.centerno;
+                        lblCandidateNo.Text = LanguageInfo.candidateno;
+                        lblCandidateID.Text = LanguageInfo.candidateid;
+                        if (LanguageInfo.examdate != null)
+                            lblieltsTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+
+                        lblLanguageScore.Text = LanguageInfo.overallscore;
+                        lblSpeakingScore.Text = LanguageInfo.speakingscore;
+                        lblListeningScore.Text = LanguageInfo.listeningscore;
+                        lblWritingScore.Text = LanguageInfo.writingscore;
+                        lblReadingScore.Text = LanguageInfo.readingscore;
+
+                    }
+                    else if (LanguageInfo.giveenglishtest == 2)
+                    {
+                        ptefieldContainer.Attributes.Add("style", "display : block");
+                        lblEnglishTest.Text = "Yes, PTE";
+                        lbltestName.Text = LanguageInfo.testname;
+                        lblptetesttaker.Text = LanguageInfo.testtakerId;
+                        lblpteregistrationno.Text = LanguageInfo.registrationNo;
+                        lblptetestcenterNo.Text = LanguageInfo.centerno;
+                        if (LanguageInfo.examdate != null)
+                            lblpteTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+                        if (LanguageInfo.testcentercountrty != null)
+                        {
+                            lblptecentercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.testcentercountrty));
+                        }
+
+                        lblpteTotalScore.Text = LanguageInfo.overallscore;
+                        lblpteSpeakingScore.Text = LanguageInfo.speakingscore;
+                        lblpteListeningScore.Text = LanguageInfo.listeningscore;
+                        lblpteWritingScore.Text = LanguageInfo.writingscore;
+                        lblpteReadingScore.Text = LanguageInfo.readingscore;
+
                     }
 
-                    lblpteTotalScore.Text = LanguageInfo.overallscore;
-                    lblpteSpeakingScore.Text = LanguageInfo.speakingscore;
-                    lblpteListeningScore.Text = LanguageInfo.listeningscore;
-                    lblpteWritingScore.Text = LanguageInfo.writingscore;
-                    lblpteReadingScore.Text = LanguageInfo.readingscore;
-
-                }
-
-                else if (LanguageInfo.giveenglishtest == 3)
-                {
-                    tofelfieldContainer.Attributes.Add("style","display:block");
-                    lblEnglishTest.Text = "Yes";
-                    lbltestName.Text = LanguageInfo.testname;
-                    lbltofelregistrationno.Text = LanguageInfo.registrationNo;
-                    lbltofelcenterNo.Text = LanguageInfo.centerno;
-                    if (LanguageInfo.examdate != null)
-                        lbltofelTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
-                    if (LanguageInfo.testcentercountrty != null)
+                    else if (LanguageInfo.giveenglishtest == 3)
                     {
-                        lbltofelcentercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.testcentercountrty));
+                        tofelfieldContainer.Attributes.Add("style", "display:block");
+                        lblEnglishTest.Text = "Yes, TOEFL iBT";                        
+                        lbltestName.Text = LanguageInfo.testname;
+                        lbltofelregistrationno.Text = LanguageInfo.registrationNo;
+                        lbltofelcenterNo.Text = LanguageInfo.centerno;
+                        if (LanguageInfo.examdate != null)
+                            lbltofelTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+                        if (LanguageInfo.testcentercountrty != null)
+                        {
+                            lbltofelcentercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.testcentercountrty));
+                        }
+
+                        lbltofelTotalScore.Text = LanguageInfo.overallscore;
+                        lbltofelSpeakingScore.Text = LanguageInfo.speakingscore;
+                        lbltofelListeningScore.Text = LanguageInfo.listeningscore;
+                        lbltofelWritingScore.Text = LanguageInfo.writingscore;
+                        lbltofelReadingScore.Text = LanguageInfo.readingscore;
                     }
-
-                    lbltofelTotalScore.Text = LanguageInfo.overallscore;
-                    lbltofelSpeakingScore.Text = LanguageInfo.speakingscore;
-                    lbltofelListeningScore.Text = LanguageInfo.listeningscore;
-                    lbltofelWritingScore.Text = LanguageInfo.writingscore;
-                    lbltofelReadingScore.Text = LanguageInfo.readingscore;
+                    CEFR.Attributes.Add("style", "display:none");
+                    testRefno.Attributes.Add("style", "display:none");
                 }
-
-                lbltestRefno.Text = LanguageInfo.testreportreferenceno;
-                if (LanguageInfo.cefrlevel != null)
+                else
                 {
-                    lblCEFR.Text = objCom.GetCEFR(Convert.ToInt32(LanguageInfo.cefrlevel));
+                    tofelfieldContainer.Attributes.Add("style", "display:none");
+                    ptefieldContainer.Attributes.Add("style", "display:none");
+                    ieltsfieldContainer.Attributes.Add("style", "display:none");
+                    lblEnglishTest.Text = "No";
+                    lbltestRefno.Text = LanguageInfo.testreportreferenceno;
+                    if (LanguageInfo.cefrlevel != null)
+                    {
+                        lblCEFR.Text = objCom.GetCEFR(Convert.ToInt32(LanguageInfo.cefrlevel));
 
+                    }
                 }
-
 
             }
         }
@@ -934,7 +943,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        Hashtable adminInputs = new Hashtable();
+         Hashtable adminInputs = new Hashtable();
         try
         {
             if (homelanguage.Style.Value != "display: none")
@@ -959,8 +968,11 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                 adminInputs.Add("Final Grade Achieved", txtgradeachieved.Value.Trim() + "~" + (rblgradeachievedNo.Checked == true ? 0 : 1));
             if (ExpectedDategrade.Style.Value != "display: none")
                 adminInputs.Add("Expected dates when results will be declared", txtExpectedDategrade.Value.Trim() + "~" + (rblExpectedDategradeNo.Checked == true ? 0 : 1));
+
+
             if (EnglishTest.Style.Value != "display: none")
                 adminInputs.Add("HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?", txtEnglishTest.Value.Trim() + "~" + (rblEnglishTestNo.Checked == true ? 0 : 1));
+
             if (testName.Style.Value != "display: none")
                 adminInputs.Add("Test Name", txttestName.Value.Trim() + "~" + (rbltestNameNo.Checked == true ? 0 : 1));
             if (CentreNo.Style.Value != "display: none")
@@ -1002,6 +1014,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                 adminInputs.Add("Reading Score", txtpteReadingScore.Value.Trim() + "~" + (rblpteReadingScoreNo.Checked == true ? 0 : 1));
             if (pteWritingScore.Style.Value != "display: none")
                 adminInputs.Add("Writing Score", txtpteWritingScore.Value.Trim() + "~" + (rblpteWritingScoreNo.Checked == true ? 0 : 1));
+
             if (tofelregistrationno.Style.Value != "display: none")
                 adminInputs.Add("Registration Number", txttofelregistrationno.Value.Trim() + "~" + (rbltofelregistrationnoNo.Checked == true ? 0 : 1));
             if (tofelTestDate.Style.Value != "display: none")

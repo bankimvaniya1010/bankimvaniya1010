@@ -37,7 +37,8 @@ public partial class preliminary : System.Web.UI.Page
             applicantprogressbar = db.applicantprogressbar.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
             if (applicantprogressbar != null) {
                 if (applicantprogressbar.question == 1)
-                {                   
+                {
+                    messagediv.Attributes.Add("style", "display:block");
                     LabelMessage.Text = "All questions have been answered in this part.";
                     questions.Visible = false;
                 }
@@ -78,23 +79,18 @@ public partial class preliminary : System.Web.UI.Page
                              }).ToList();
             if (QuestionsList.Count == 0)
             {
-                QuestionsList = (from  pqm in db.preliminary_questionmaster 
-                                 select new
-                                 {
-                                     preliminaryid = pqm.preliminaryid,
-                                     question = pqm.question,
-                                     answer1 = pqm.answer1,
-                                     answer2 = pqm.answer2,
-                                     answer3 = pqm.answer3,
-                                     answer4 = pqm.answer4,
-                                 }).ToList();
+                messagediv1.Attributes.Add("style", "display:block");
+                button.Visible = false;
             }
-            QuestionsCount = QuestionsList.Count;
-            QuestionsList = Randomize(QuestionsList);
-            QuestionsList = QuestionsList.Skip(0).Take(5).ToList();
-            Session["Questions"] = QuestionsList;
-            questionList.DataSource = QuestionsList;
-            questionList.DataBind();
+            else
+            {
+                QuestionsCount = QuestionsList.Count;
+                QuestionsList = Randomize(QuestionsList);
+                QuestionsList = QuestionsList.Skip(0).Take(5).ToList();
+                Session["Questions"] = QuestionsList;
+                questionList.DataSource = QuestionsList;
+                questionList.DataBind();
+            }
         }
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }
@@ -176,6 +172,7 @@ public partial class preliminary : System.Web.UI.Page
                 int answerID = Convert.ToInt32(val);
                 objAnswer.answer = UserValues[val].ToString();
                 objAnswer.applicantid = UserID;
+                objAnswer.universityid = UniversityID;
                 objAnswer.preliminaryid = answerID;
                 objAnswer.answersubmittedtime = DateTime.Now;
                 db.preliminaryapplicantanswers.Add(objAnswer);
@@ -216,5 +213,10 @@ public partial class preliminary : System.Web.UI.Page
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }
         return correctAns;
+    }
+       
+    protected void btnnext_Click1(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "applicantdeclaration.aspx", true);
     }
 }

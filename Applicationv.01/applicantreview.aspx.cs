@@ -19,6 +19,7 @@ public partial class applicantreview : System.Web.UI.Page
     protected string PostalAddress = "";
     protected string ResidentailAddress = "";
     protected Common objComm = new Common();
+    protected Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
     protected static string pageDetail = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
@@ -44,6 +45,12 @@ public partial class applicantreview : System.Web.UI.Page
                 var institute = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
                 if (institute != null)
                     Institutename = institute.university_name;
+            }
+            if (objApplicant[0].is_review != null && objApplicant[0].is_review == true)
+            {
+                chkDeclration.Visible = false;
+                lblchk.Visible = false;
+                btn_login.Visible = false;
             }
             applicant.InnerText = applicant.InnerText.Replace("#NameofApplicant#", objUser.name);
             applicantverify.InnerText = applicantverify.InnerText.Replace("#NameofInstitution#", Institutename);
@@ -133,5 +140,31 @@ public partial class applicantreview : System.Web.UI.Page
             }
         }
     }
-   
+
+
+    protected void btn_login_Click(object sender, EventArgs e)
+    {
+        try {
+
+            var mode = "new";
+            applicantdetails objapplicantdetails = new applicantdetails();
+
+            var data = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+            if (data != null) {
+                mode = "update";
+                objapplicantdetails = data;
+            }
+           if(chkDeclration.Checked == true)
+                objapplicantdetails.is_review = true;
+           else
+                objapplicantdetails.is_review = false;
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicantdetails);
+            db.SaveChanges();
+            chkDeclration.Visible = false;
+            lblchk.Visible = false;
+            btn_login.Visible = false;
+
+        } catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
 }

@@ -340,6 +340,7 @@ public partial class applicantdetails
     public Nullable<int> visagranted { get; set; }
     public string visaremarks { get; set; }
     public string registeragent_email { get; set; }
+    public Nullable<bool> is_review { get; set; }
 
     public virtual students students { get; set; }
 }
@@ -2263,6 +2264,7 @@ public partial class preliminaryapplicantanswers
     public Nullable<int> preliminaryid { get; set; }
     public string answer { get; set; }
     public Nullable<System.DateTime> answersubmittedtime { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class primaryfieldmaster

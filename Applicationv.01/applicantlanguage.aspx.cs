@@ -17,6 +17,8 @@ public partial class applicantlanguage : System.Web.UI.Page
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     string webURL = String.Empty;
+    bool? is_review = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -36,6 +38,9 @@ public partial class applicantlanguage : System.Web.UI.Page
         CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
+        is_review = objCom.is_review(userID, universityID);
+        if (is_review != null && is_review == true)
+            btnlanguagecompetency.Visible = false;
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
@@ -951,8 +956,13 @@ public partial class applicantlanguage : System.Web.UI.Page
 
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
-        SaveLanguageDetails();
-        Response.Redirect(webURL + "applicantworkexperience.aspx?formid=7", true);
+        if (is_review != null && is_review == true)
+            Response.Redirect(webURL + "applicantworkexperience.aspx?formid=7", true);
+        else
+        {
+            SaveLanguageDetails();
+            Response.Redirect(webURL + "applicantworkexperience.aspx?formid=7", true);
+        }
     }
 }
 
