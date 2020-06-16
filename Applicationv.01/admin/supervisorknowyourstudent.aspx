@@ -22,9 +22,9 @@
                             </div>
                             <div class="col-md-4">
                                 <asp:RadioButton ID="rblPassportNoYes" GroupName="PassportNo" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblPassportNoNo" GroupName="PassportNo" Text="No" runat="server" />
-                                <asp:Label ID="labelpassportnoComments" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblPassportNoNo" GroupName="PassportNo" Text="No" runat="server" />                                
                             </div>
+                            <asp:Label ID="labelpassportnoComments" runat="server"></asp:Label>
                         </div>
                     </div>
                 </div>

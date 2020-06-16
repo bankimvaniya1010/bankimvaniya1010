@@ -273,42 +273,64 @@ public partial class courseapplication : System.Web.UI.Page
         {
             applicationmaster objapplicationmaster = new applicationmaster();
 
-            objapplicationmaster.college_universityname = HidInstitutionId.Value;
-            objapplicationmaster.campus = Convert.ToInt32(HidCampusID.Value);
-            objapplicationmaster.city = Convert.ToInt32(HidCampusCityID.Value);
-            objapplicationmaster.country = Convert.ToInt32(HidCampusCountryID.Value);
-            objapplicationmaster.modeofstudy = Convert.ToInt32(HidstudymodeID.Value);
-            objapplicationmaster.majorofdiscipline = Convert.ToInt32(HidMajorID.Value);
-            objapplicationmaster.coursetype = Convert.ToInt32(HidStudylevelID.Value);
-            objapplicationmaster.course = Convert.ToInt32(HidCourseid.Value);
-            objapplicationmaster.commencementdate = HidSelectedDateID.Value;
-            objapplicationmaster.preferenceid = Convert.ToInt32(HidpreferenceID.Value);
-            if (yesRB.Checked == true)
-                objapplicationmaster.eligibility_response = 1;
-            else
-                objapplicationmaster.eligibility_response = 0;
-            objapplicationmaster.applicantid = userID;
-            objapplicationmaster.universityid = universityID;
-            objapplicationmaster.current_status = 1;
-            db.applicationmaster.Add(objapplicationmaster);
-            db.SaveChanges();
+            int college_universityname = Convert.ToInt32(HidInstitutionId.Value);
+            int campus = Convert.ToInt32(HidCampusID.Value);
+            int city = Convert.ToInt32(HidCampusCityID.Value);
+            int country = Convert.ToInt32(HidCampusCountryID.Value);
+            int modeofstudy = Convert.ToInt32(HidstudymodeID.Value);
+            int majorofdiscipline = Convert.ToInt32(HidMajorID.Value);
+            int coursetype = Convert.ToInt32(HidStudylevelID.Value);
+            int course = Convert.ToInt32(HidCourseid.Value);
+            string commencementdate = HidSelectedDateID.Value;
 
-            //clearselection of grid radiobutton
-            for (int i = 0; i <= courseGridView.Rows.Count - 1; i++)
+            var exsisitingdata = db.applicationmaster.Where(x => x.applicantid == userID && x.universityid == universityID
+                                    && x.campus == campus && x.city == city && x.country == country
+                                    && x.modeofstudy == modeofstudy && x.majorofdiscipline == majorofdiscipline && x.coursetype == coursetype
+                                    && x.course == course).FirstOrDefault();
+            if (exsisitingdata != null)
             {
-                RadioButton rdbChoice = (RadioButton)courseGridView.Rows[i].FindControl("selectedRB");
-                rdbChoice.Checked = false;
+                objapplicationmaster.college_universityname = HidInstitutionId.Value;
+                objapplicationmaster.campus = Convert.ToInt32(HidCampusID.Value);
+                objapplicationmaster.city = Convert.ToInt32(HidCampusCityID.Value);
+                objapplicationmaster.country = Convert.ToInt32(HidCampusCountryID.Value);
+                objapplicationmaster.modeofstudy = Convert.ToInt32(HidstudymodeID.Value);
+                objapplicationmaster.majorofdiscipline = Convert.ToInt32(HidMajorID.Value);
+                objapplicationmaster.coursetype = Convert.ToInt32(HidStudylevelID.Value);
+                objapplicationmaster.course = Convert.ToInt32(HidCourseid.Value);
+                objapplicationmaster.commencementdate = HidSelectedDateID.Value;
+                objapplicationmaster.preferenceid = Convert.ToInt32(HidpreferenceID.Value);
+                if (yesRB.Checked == true)
+                    objapplicationmaster.eligibility_response = 1;
+                else
+                    objapplicationmaster.eligibility_response = 0;
+                objapplicationmaster.applicantid = userID;
+                objapplicationmaster.universityid = universityID;
+                objapplicationmaster.current_status = 1;
+                db.applicationmaster.Add(objapplicationmaster);
+                db.SaveChanges();
+
+                //clearselection of grid radiobutton
+                for (int i = 0; i <= courseGridView.Rows.Count - 1; i++)
+                {
+                    RadioButton rdbChoice = (RadioButton)courseGridView.Rows[i].FindControl("selectedRB");
+                    rdbChoice.Checked = false;
+                }
+                recordsaveDateTime.Value = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
+                int? remainingcoursecount = 5 - objapplicationmaster.preferenceid;
+                if (remainingcoursecount != 0)
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Congratulations! Your course application for " + Hidcoursename.Value + " at " + HidCampusname.Value + " of " + HidUniversityName.Value + " for course commencement date as " + HidSelectedDateText.Value + " has been successfully submitted. You can submit " + remainingcoursecount + " more course application in the Application Centre.')", true);
+                else
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Congratulations! Your course application for " + Hidcoursename.Value + " at " + HidCampusname.Value + " of " + HidUniversityName.Value + " for course commencement date as " + HidSelectedDateText.Value + " has been successfully submitted. Course Application limit Exhausted.')", true);
+                populateAppliedCourseData();
+                BindCountry();
+                Bindlevelofstudy();
+                BindMajor();
             }
-            recordsaveDateTime.Value = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
-            int? remainingcoursecount = 5 - objapplicationmaster.preferenceid;
-            if (remainingcoursecount != 0)
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Congratulations! Your course application for " + Hidcoursename.Value + " at " + HidCampusname.Value + " of " + HidUniversityName.Value +" for course commencement date as " + HidSelectedDateText.Value + " has been successfully submitted. You can submit " + remainingcoursecount +" more course application in the Application Centre.')", true);
             else
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Congratulations! Your course application for " + Hidcoursename.Value + " at " + HidCampusname.Value + " of " + HidUniversityName.Value +" for course commencement date as " + HidSelectedDateText.Value + " has been successfully submitted. Course Application limit Exhausted.')", true);
-            populateAppliedCourseData();
-            BindCountry();
-            Bindlevelofstudy();
-            BindMajor();
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You have already applied for this course.')", true);
+            }
+            
         }
         catch (Exception ex)
         {

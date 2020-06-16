@@ -16,6 +16,8 @@ public partial class applicantworkexperience : System.Web.UI.Page
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
     string webURL = String.Empty;
+    bool? is_review = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -30,6 +32,9 @@ public partial class applicantworkexperience : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        is_review = objCom.is_review(userID, universityID);
+        if (is_review != null && is_review == true)
+            btn_Save.Visible = false;
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
@@ -450,8 +455,13 @@ public partial class applicantworkexperience : System.Web.UI.Page
 
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
-        SaveEmploymentDetails();
-        Response.Redirect(webURL + "applicantsocial.aspx?formid=8",true);
+        if (is_review != null && is_review == true)
+            Response.Redirect(webURL + "applicantsocial.aspx?formid=8", true);
+        else
+        {
+            SaveEmploymentDetails();
+            Response.Redirect(webURL + "applicantsocial.aspx?formid=8", true);
+        }
     }
 
     private void BindEmploymentDetails()

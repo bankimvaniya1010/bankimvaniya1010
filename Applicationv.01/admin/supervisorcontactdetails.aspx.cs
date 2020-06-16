@@ -9,20 +9,21 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
 {
     int formId = 0;
     Common objCom = new Common();
-    int userID = 0, ApplicantID = 0, universityID;
+    int SupervisorID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected List<admincomments> Comments = new List<admincomments>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();        
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
-        userID = Convert.ToInt32(Session["UserID"]);
+        SupervisorID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -35,10 +36,10 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
         }
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
-
         CustomControls = objCom.CustomControlist(formId, universityID);
+        Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         if (CustomControls.Count > 0)
-            objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
+            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv, Comments);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
@@ -123,7 +124,7 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
                 {
                     lblCurrentAddress.Text = "Yes";
 
-                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
 
                     lblPrevAddStartDate.Text = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
                     lblPrevAddEndDate.Text = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
@@ -291,7 +292,7 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
     }
     private void SetAdminComments()
     {
-        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, userID);
+        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         for (int k = 0; k < Comments.Count; k++)
         {
             switch (Comments[k].fieldname)
@@ -447,7 +448,7 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
                 ActionValue = 1;
             else if (rbDenied.Checked)
                 ActionValue = 2;
-            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, userID, txtComments.Text, ActionValue);
+            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, SupervisorID, txtComments.Text, ActionValue);
         }
         catch (Exception ex)
         {

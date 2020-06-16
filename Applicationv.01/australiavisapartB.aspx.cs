@@ -472,18 +472,34 @@ public partial class australiavisapartB : System.Web.UI.Page
                     leastyearsincountriesYes.Checked = true;
                 //36
                 if (visaInfo.employmenthistoryFromDate != null)
-                    employmenthistoryFrom.Value = Convert.ToDateTime(visaInfo.employmenthistoryFromDate).ToString("yyyy-MM-dd");
-                if (visaInfo.employmenthistoryToDate != null)
-                    employmenthistoryTo.Value = Convert.ToDateTime(visaInfo.employmenthistoryToDate).ToString("yyyy-MM-dd");
-                employerInfoL0.Value = visaInfo.employerInfoL0 ;
-                employerInfoL1.Value = visaInfo.employerInfoL1 ;
-                txttypeofbusiness.Value = visaInfo.typeofbusiness;
-                txtemployeroccupation.Value = visaInfo.employeroccupation;
-                txtsalarylevel.Value = visaInfo.salarylevel;
-                if (visaInfo.leavingdocAttch == 0)
-                    rbdocattachedNo.Checked = true;
-                else if (visaInfo.leavingdocAttch == 1)
-                    rbdocattachedYes.Checked = true;
+                {
+                    if (visaInfo.employmenthistoryFromDate != null)
+                        employmenthistoryFrom.Value = Convert.ToDateTime(visaInfo.employmenthistoryFromDate).ToString("yyyy-MM-dd");
+                    if (visaInfo.employmenthistoryToDate != null)
+                        employmenthistoryTo.Value = Convert.ToDateTime(visaInfo.employmenthistoryToDate).ToString("yyyy-MM-dd");
+                    employerInfoL0.Value = visaInfo.employerInfoL0;
+                    employerInfoL1.Value = visaInfo.employerInfoL1;
+                    txttypeofbusiness.Value = visaInfo.typeofbusiness;
+                    txtemployeroccupation.Value = visaInfo.employeroccupation;
+                    txtsalarylevel.Value = visaInfo.salarylevel;
+                    if (visaInfo.leavingdocAttch == 0)
+                        rbdocattachedNo.Checked = true;
+                    else if (visaInfo.leavingdocAttch == 1)
+                        rbdocattachedYes.Checked = true;
+                }
+                else {
+                    var previous_employerdetails = db.applicantemployerdetails.Where(x => x.applicantid == userID && x.universityid == universityID && x.iscurrentworking == 0).FirstOrDefault();
+
+                    if (previous_employerdetails != null) {
+                        if (previous_employerdetails.durationfrom != null)
+                            employmenthistoryFrom.Value = Convert.ToDateTime(previous_employerdetails.durationfrom).ToString("yyyy-MM-dd");
+                        if (previous_employerdetails.durationto != null)
+                            employmenthistoryTo.Value = Convert.ToDateTime(previous_employerdetails.durationto).ToString("yyyy-MM-dd");
+                        employerInfoL0.Value = previous_employerdetails.organization;
+                        employerInfoL1.Value = previous_employerdetails.city + " "+ objCom.GetCountryDiscription(Convert.ToInt32(previous_employerdetails.country));                        
+                        txtemployeroccupation.Value = previous_employerdetails.designation;
+                    }
+                }
                 //set1
                 if (visaInfo.employmenthistoryFromDate1 != null)
                     employmenthistoryFrom1.Value = Convert.ToDateTime(visaInfo.employmenthistoryFromDate1).ToString("yyyy-MM-dd");

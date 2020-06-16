@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
 {
-    int userID = 0, ApplicantID = 0, universityID;
+    int SupervisorID = 0, ApplicantID = 0, universityID;
     bool isAgent = false;
     int formId = 0;
     private GTEEntities db = new GTEEntities();
@@ -16,7 +16,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
-
+    protected List<admincomments> Comments = new List<admincomments>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,7 +24,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
-        userID = Convert.ToInt32(Session["UserID"]);
+        SupervisorID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -38,8 +38,9 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, universityID);
+        Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         if (CustomControls.Count > 0)
-            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv);
+            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv, Comments);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
@@ -568,7 +569,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                 ActionValue = 1;
             else if (rbDenied.Checked)
                 ActionValue = 2;
-            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, userID, txtComments.Text, ActionValue);
+            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, SupervisorID, txtComments.Text, ActionValue);
         }
         catch (Exception ex)
         {
