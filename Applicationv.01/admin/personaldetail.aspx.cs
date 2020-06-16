@@ -46,8 +46,8 @@ public partial class admin_personaldetail : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
             SetToolTips();
-            PopulatePersonalInfo();
             SetControlsUniversitywise();
+            PopulatePersonalInfo();            
             SetAdminComments();
 
         }
@@ -451,11 +451,11 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         agentList.Attributes.Add("style", "display:block;");
                         labelagentList.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Highest study level successfully completed":
+                    case "HIGHEST LEVEL OF STUDY SUCCESSFULLY COMPLETED":
                         higheststudy.Attributes.Add("style", "display:block;");
                         labelhigheststudy.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Highest study successfully completed field":
+                    case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
                         fieldstudy.Attributes.Add("style", "display:block;");
                         labelfieldstudy.InnerHtml = setInnerHtml(fields[k]);
                         break;

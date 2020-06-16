@@ -16,22 +16,13 @@
         <div class="container page__container">
             <div class="row m-0">
                 <div class="col-md-8">
-                    <!-- ScheduleOnce embed START -->
+                   <!-- ScheduleOnce embed START -->
 
-                    <div id="SOIDIV_ecu-gte" data-so-page="ecu-gte" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="10"></div>
+                <div id="SOIDIV_gte-direct" data-so-page="gte-direct" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="10"></div>
 
-                    <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
+                <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
 
-                    <!-- ScheduleOnce embed END -->
-
-                    <%--<!-- ScheduleOnce embed START -->
-
-                    <div id="SOIDIV_FreeCounselling" data-so-page="FreeCounselling" data-height="550" data-style="border: 1px solid #d8d8d8; min-width: 290px; max-width: 900px;" data-psz="10">
-                    </div>
-
-                    <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
-
-                    <!-- ScheduleOnce embed END -->--%>
+                <!-- ScheduleOnce embed END -->
                 </div>
                 <div class="col-md-4">
                     <div class="banImg-wrp">

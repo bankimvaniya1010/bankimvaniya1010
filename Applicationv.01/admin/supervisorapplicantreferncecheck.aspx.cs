@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class admin_supervisorapplicantreferncecheck : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0, universityID;
+    int SupervisorID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -25,7 +25,7 @@ public partial class admin_supervisorapplicantreferncecheck : System.Web.UI.Page
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
-        userID = Convert.ToInt32(Session["UserID"]);
+        SupervisorID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -40,7 +40,7 @@ public partial class admin_supervisorapplicantreferncecheck : System.Web.UI.Page
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
-            objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
+            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv, Comments);
         referenccheckList = db.applicantreferencecheck.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
         SetControlsUniversitywise();
        
@@ -126,7 +126,7 @@ public partial class admin_supervisorapplicantreferncecheck : System.Web.UI.Page
                 ActionValue = 1;
             else if (rbDenied.Checked)
                 ActionValue = 2;
-            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, userID, txtComments.Text, ActionValue);
+            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, SupervisorID, txtComments.Text, ActionValue);
         }
         catch (Exception ex)
         {

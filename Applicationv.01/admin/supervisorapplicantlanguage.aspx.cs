@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
 {
-    int userID = 0, ApplicantID = 0, universityID;
+    int SupervisorID = 0, ApplicantID = 0, universityID;
     bool isAgent = false;
     int formId = 0;
     private GTEEntities db = new GTEEntities();
@@ -16,13 +16,15 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
+    protected List<admincomments> Comments = new List<admincomments>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();        
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
-        userID = Convert.ToInt32(Session["UserID"]);
+        SupervisorID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -36,8 +38,9 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, universityID);
+        Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         if (CustomControls.Count > 0)
-            objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
+            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv, Comments);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
@@ -82,11 +85,11 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
 
                 switch (fields[k].primaryfiledname)
                 {
-                    case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
+                    case "WHICH LANGUAGE DO YOU SPEAK AT HOME?":
                         homelanguage.Attributes.Add("style", "display:block;");
                         labelhomelanguage.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
+                    case "HAVE YOU STUDIED AN ELICOS COURSE?":
                         EnglishBackground.Attributes.Add("style", "display:block;");
                         labelEnglishBackground.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -126,7 +129,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                         ExpectedDategrade.Attributes.Add("style", "display:block;");
                         labelExpectedDategrade.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
+                    case "HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?":
                         EnglishTest.Attributes.Add("style", "display:block;");
                         labelEnglishTest.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -289,11 +292,11 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                     lblhomelanguage.Text = objCom.GetStudyMedium(LanguageInfo.homelanuage.Value);
 
                 if (LanguageInfo.isenglishintesive == 1)
-                    lblEnglishBackground.Text = "";
+                    lblEnglishBackground.Text = "Yes";
                 else if (LanguageInfo.isenglishintesive == 2)
-                    lblEnglishBackground.Text = "";
-                else
-                    lblEnglishBackground.Text = "";
+                    lblEnglishBackground.Text = "No, I am currently studying an ELICOS course";
+                else if (LanguageInfo.isenglishintesive == 3)
+                    lblEnglishBackground.Text = "No, I am not studying / have not studied an ELICOS course";
                 if (LanguageInfo.countryofcourse != null)
                     lblLanguage.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.countryofcourse));
 
@@ -323,74 +326,86 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                 else if (LanguageInfo.isfinalgradeachieved == 3)
                     lblgradeachieved.Text = "Examination Conducted, but Result not declared";
 
-                if (LanguageInfo.giveenglishtest == 1)
+                if (LanguageInfo.isgiventest_yes_or_no == 1)
                 {
-                    ieltsfieldContainer.Visible = true;
-                    lblEnglishTest.Text = "Yes";
-                    lbltestName.Text = LanguageInfo.testname;
-                    lblCentreNo.Text = LanguageInfo.centerno;
-                    lblCandidateNo.Text = LanguageInfo.candidateno;
-                    lblCandidateID.Text = LanguageInfo.candidateid;
-                    if (LanguageInfo.examdate != null)
-                        lblieltsTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
 
-                    lblLanguageScore.Text = LanguageInfo.overallscore;
-                    lblSpeakingScore.Text = LanguageInfo.speakingscore;
-                    lblListeningScore.Text = LanguageInfo.listeningscore;
-                    lblWritingScore.Text = LanguageInfo.writingscore;
-                    lblReadingScore.Text = LanguageInfo.readingscore;
-
-                }
-
-                else if (LanguageInfo.giveenglishtest == 2)
-                {
-                    ptefieldContainer.Visible = true;
-                    lblEnglishTest.Text = "Yes";
-                    lbltestName.Text = LanguageInfo.testname;
-                    lblptetesttaker.Text = LanguageInfo.testtakerId;
-                    lblpteregistrationno.Text = LanguageInfo.registrationNo;
-                    lblptetestcenterNo.Text = LanguageInfo.centerno;
-                    if (LanguageInfo.examdate != null)
-                        lblpteTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
-                    if (LanguageInfo.testcentercountrty != null)
+                    if (LanguageInfo.giveenglishtest == 1)
                     {
-                        lblptecentercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.testcentercountrty));
+                        ieltsfieldContainer.Visible = true;
+                        lblEnglishTest.Text = "Yes, IELTS";
+                        lbltestName.Text = LanguageInfo.testname;
+                        lblCentreNo.Text = LanguageInfo.centerno;
+                        lblCandidateNo.Text = LanguageInfo.candidateno;
+                        lblCandidateID.Text = LanguageInfo.candidateid;
+                        if (LanguageInfo.examdate != null)
+                            lblieltsTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+
+                        lblLanguageScore.Text = LanguageInfo.overallscore;
+                        lblSpeakingScore.Text = LanguageInfo.speakingscore;
+                        lblListeningScore.Text = LanguageInfo.listeningscore;
+                        lblWritingScore.Text = LanguageInfo.writingscore;
+                        lblReadingScore.Text = LanguageInfo.readingscore;
+
                     }
 
-                    lblpteTotalScore.Text = LanguageInfo.overallscore;
-                    lblpteSpeakingScore.Text = LanguageInfo.speakingscore;
-                    lblpteListeningScore.Text = LanguageInfo.listeningscore;
-                    lblpteWritingScore.Text = LanguageInfo.writingscore;
-                    lblpteReadingScore.Text = LanguageInfo.readingscore;
-
-                }
-
-                else if (LanguageInfo.giveenglishtest == 3)
-                {
-                    tofelfieldContainer.Visible = true;
-                    lblEnglishTest.Text = "Yes";
-                    lbltestName.Text = LanguageInfo.testname;
-                    lbltofelregistrationno.Text = LanguageInfo.registrationNo;
-                    lbltofelcenterNo.Text = LanguageInfo.centerno;
-                    if (LanguageInfo.examdate != null)
-                        lbltofelTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
-                    if (LanguageInfo.testcentercountrty != null)
+                    else if (LanguageInfo.giveenglishtest == 2)
                     {
-                        lbltofelcentercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.testcentercountrty));
+                        ptefieldContainer.Visible = true;
+                        lblEnglishTest.Text = "Yes, PTE";
+                        lbltestName.Text = LanguageInfo.testname;
+                        lblptetesttaker.Text = LanguageInfo.testtakerId;
+                        lblpteregistrationno.Text = LanguageInfo.registrationNo;
+                        lblptetestcenterNo.Text = LanguageInfo.centerno;
+                        if (LanguageInfo.examdate != null)
+                            lblpteTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+                        if (LanguageInfo.testcentercountrty != null)
+                        {
+                            lblptecentercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.testcentercountrty));
+                        }
+
+                        lblpteTotalScore.Text = LanguageInfo.overallscore;
+                        lblpteSpeakingScore.Text = LanguageInfo.speakingscore;
+                        lblpteListeningScore.Text = LanguageInfo.listeningscore;
+                        lblpteWritingScore.Text = LanguageInfo.writingscore;
+                        lblpteReadingScore.Text = LanguageInfo.readingscore;
+
                     }
 
-                    lbltofelTotalScore.Text = LanguageInfo.overallscore;
-                    lbltofelSpeakingScore.Text = LanguageInfo.speakingscore;
-                    lbltofelListeningScore.Text = LanguageInfo.listeningscore;
-                    lbltofelWritingScore.Text = LanguageInfo.writingscore;
-                    lbltofelReadingScore.Text = LanguageInfo.readingscore;
+                    else if (LanguageInfo.giveenglishtest == 3)
+                    {
+                        tofelfieldContainer.Visible = true;
+                        lblEnglishTest.Text = "Yes, TOEFL iBT";
+                        lbltestName.Text = LanguageInfo.testname;
+                        lbltofelregistrationno.Text = LanguageInfo.registrationNo;
+                        lbltofelcenterNo.Text = LanguageInfo.centerno;
+                        if (LanguageInfo.examdate != null)
+                            lbltofelTestDate.Text = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+                        if (LanguageInfo.testcentercountrty != null)
+                        {
+                            lbltofelcentercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.testcentercountrty));
+                        }
+
+                        lbltofelTotalScore.Text = LanguageInfo.overallscore;
+                        lbltofelSpeakingScore.Text = LanguageInfo.speakingscore;
+                        lbltofelListeningScore.Text = LanguageInfo.listeningscore;
+                        lbltofelWritingScore.Text = LanguageInfo.writingscore;
+                        lbltofelReadingScore.Text = LanguageInfo.readingscore;
+                    }
+                    CEFR.Attributes.Add("style", "display:none");
+                    testRefno.Attributes.Add("style", "display:none");
                 }
-
-                lbltestRefno.Text = LanguageInfo.testreportreferenceno;
-                if (LanguageInfo.cefrlevel != null)
+                else
                 {
-                    lblCEFR.Text = objCom.GetCEFR(Convert.ToInt32(LanguageInfo.cefrlevel));
+                    tofelfieldContainer.Attributes.Add("style", "display:none");
+                    ptefieldContainer.Attributes.Add("style", "display:none");
+                    ieltsfieldContainer.Attributes.Add("style", "display:none");
+                    lblEnglishTest.Text = "No";
+                    lbltestRefno.Text = LanguageInfo.testreportreferenceno;
+                    if (LanguageInfo.cefrlevel != null)
+                    {
+                        lblCEFR.Text = objCom.GetCEFR(Convert.ToInt32(LanguageInfo.cefrlevel));
 
+                    }
                 }
             }
         }
@@ -411,14 +426,14 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
-                case "What language do you speak at home":
+                case "WHICH LANGUAGE DO YOU SPEAK AT HOME?":
                     if (Comments[k].adminaction == 0)
                         rblhomelanguageNo.Checked = true;
                     else
                         rblhomelanguageYes.Checked = true;
                     lblhomelanguageComments.Text = setComments(Comments[k]);
                     break;
-                case "Have you studied an English Language Intensive Course for students from non-English speaking backgrounds":
+                case "HAVE YOU STUDIED AN ELICOS COURSE?":
                     if (Comments[k].adminaction == 0)
                         rblEnglishBackgroundNo.Checked = true;
                     else
@@ -488,7 +503,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                         rblExpectedDategradeYes.Checked = true;
                     lblExpectedDategradeComments.Text = setComments(Comments[k]);
                     break;
-                case "Have you sat any one of the following English Language competency tests":
+                case "HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?":
                     if (Comments[k].adminaction == 0)
                         rblEnglishTestNo.Checked = true;
                     else
@@ -502,21 +517,25 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                         rbltestNameYes.Checked = true;
                     lbltestNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Centre No":
-                    if (Comments[k].adminaction == 0)
-                        rblCentreNoNo.Checked = true;
-                    else
-                        rblCentreNoYes.Checked = true;
+                case "Test Centre No pte":
                     if (Comments[k].adminaction == 0)
                         rblptetestcenterNoNo.Checked = true;
                     else
                         rblptetestcenterNoYes.Checked = true;
+                    lblptetestcenterNoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Centre No ielts":
+                    if (Comments[k].adminaction == 0)
+                        rblCentreNoNo.Checked = true;
+                    else
+                        rblCentreNoYes.Checked = true;
+                    lblCentreNoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Centre No tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelcenterNo.Checked = true;
                     else
                         rblptetestcenterNoYes.Checked = true;
-                    lblCentreNoComments.Text = setComments(Comments[k]);
-                    lblptetestcenterNoComments.Text = setComments(Comments[k]);
                     lbltofelcenterNoComments.Text = setComments(Comments[k]);
                     break;
                 case "Candidate No":
@@ -533,131 +552,164 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                         rblCandidateIDYes.Checked = true;
                     lblCandidateIDComments.Text = setComments(Comments[k]);
                     break;
-                case "Test Date":
-                    if (Comments[k].adminaction == 0)
-                        rblieltsTestDateNo.Checked = true;
-                    else
-                        rblieltsTestDateYes.Checked = true;
+                case "Test Date pte":
                     if (Comments[k].adminaction == 0)
                         rblpteTestDateNo.Checked = true;
                     else
                         rblpteTestDateYes.Checked = true;
+                    lblpteTestDateComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Date tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelTestDateNo.Checked = true;
                     else
                         rbltofelTestDateYes.Checked = true;
-                    lblieltsTestDateComments.Text = setComments(Comments[k]);
-                    lblpteTestDateComments.Text = setComments(Comments[k]);
                     lbltofelTestDateComments.Text = setComments(Comments[k]);
                     break;
-                case "Total Score":
+                case "Test Date ielts":
                     if (Comments[k].adminaction == 0)
-                        rblLanguageScoreNo.Checked = true;
+                        rblieltsTestDateNo.Checked = true;
                     else
-                        rblLanguageScoreYes.Checked = true;
+                        rblieltsTestDateYes.Checked = true;
+                    lblieltsTestDateComments.Text = setComments(Comments[k]);
+                    
+                    break;
+                case "Total Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteTotalScoreNo.Checked = true;
                     else
                         rblpteTotalScoreYes.Checked = true;
+                    lblpteTotalScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Total Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelTotalScoreNo.Checked = true;
                     else
                         rbltofelTotalScoreYes.Checked = true;
-                    lblLanguageScoreComments.Text = setComments(Comments[k]);
-                    lblpteTotalScoreComments.Text = setComments(Comments[k]);
                     lbltofelTotalScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "Speaking Score":
+                case "Total Score ielts":
                     if (Comments[k].adminaction == 0)
-                        rblSpeakingScoreNo.Checked = true;
+                        rblLanguageScoreNo.Checked = true;
                     else
-                        rblSpeakingScoreYes.Checked = true;
+                        rblLanguageScoreYes.Checked = true;
+                    lblLanguageScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Speaking Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteSpeakingScoreNo.Checked = true;
                     else
                         rblpteSpeakingScoreYes.Checked = true;
+                    lblpteSpeakingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Speaking Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelSpeakingScoreNo.Checked = true;
                     else
                         rbltofelSpeakingScoreYes.Checked = true;
-                    lblSpeakingScoreComments.Text = setComments(Comments[k]);
-                    lblpteSpeakingScoreComments.Text = setComments(Comments[k]);
                     lbltofelSpeakingScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "Listening Score":
+                case "Speaking Score ielts":
+                    if (Comments[k].adminaction == 0)
+                        rblSpeakingScoreNo.Checked = true;
+                    else
+                        rblSpeakingScoreYes.Checked = true;
+                    lblSpeakingScoreComments.Text = setComments(Comments[k]);
+                    break;
+
+                case "Listening Score ielts":
                     if (Comments[k].adminaction == 0)
                         rblListeningScoreNo.Checked = true;
                     else
                         rblListeningScoreYes.Checked = true;
+
+                    lblListeningScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteListeningScoreNo.Checked = true;
                     else
                         rblpteListeningScoreYes.Checked = true;
+                    lblpteListeningScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelListeningScoreNo.Checked = true;
                     else
                         rbltofelListeningScoreYes.Checked = true;
-                    lblListeningScoreComments.Text = setComments(Comments[k]);
-                    lblpteListeningScoreComments.Text = setComments(Comments[k]);
                     lbltofelListeningScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "Reading Score":
+                case "Reading Score ielts":
                     if (Comments[k].adminaction == 0)
                         rblReadingScoreNo.Checked = true;
                     else
                         rblReadingScoreYes.Checked = true;
+                    lblReadingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Reading Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteReadingScoreNo.Checked = true;
                     else
                         rblpteReadingScoreYes.Checked = true;
+
+                    lblpteReadingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Reading Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelReadingScoreNo.Checked = true;
                     else
                         rbltofelReadingScoreYes.Checked = true;
-                    lblReadingScoreComments.Text = setComments(Comments[k]);
-                    lblpteReadingScoreComments.Text = setComments(Comments[k]);
                     lbltofelReadingScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "Writing Score":
-                    if (Comments[k].adminaction == 0)
-                        rblWritingScoreNo.Checked = true;
-                    else
-                        rblWritingScoreYes.Checked = true;
+
+                case "Writing Score pte":
                     if (Comments[k].adminaction == 0)
                         rblpteWritingScoreNo.Checked = true;
                     else
                         rblpteWritingScoreYes.Checked = true;
+                    lblpteWritingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Writing Score tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelWritingScoreNo.Checked = true;
                     else
                         rbltofelWritingScoreYes.Checked = true;
-                    lblWritingScoreComments.Text = setComments(Comments[k]);
-                    lblpteWritingScoreComments.Text = setComments(Comments[k]);
                     lbltofelWritingScoreComments.Text = setComments(Comments[k]);
                     break;
-
-                case "Registration Number":
+                case "Writing Score ielts":
                     if (Comments[k].adminaction == 0)
-                        rblpteregistrationnoNo.Checked = true;
+                        rblWritingScoreNo.Checked = true;
                     else
-                        rblpteregistrationnoYes.Checked = true;
+                        rblWritingScoreYes.Checked = true;
+                    lblWritingScoreComments.Text = setComments(Comments[k]);
+                    break;
+
+                case "Registration Number tofel":
                     if (Comments[k].adminaction == 0)
                         rbltofelregistrationnoNo.Checked = true;
                     else
                         rbltofelregistrationnoYes.Checked = true;
-                    lblpteregistrationnoComments.Text = setComments(Comments[k]);
                     lbltofelregistrationnoComments.Text = setComments(Comments[k]);
                     break;
-                case "Test Center Country":
+                case "Registration Number pte":
+                    if (Comments[k].adminaction == 0)
+                        rblpteregistrationnoNo.Checked = true;
+                    else
+                        rblpteregistrationnoYes.Checked = true;                    
+                    lblpteregistrationnoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Center Country pte":
                     if (Comments[k].adminaction == 0)
                         rblptecentercountryNo.Checked = true;
                     else
                         rblptecentercountryYes.Checked = true;
+                    lblptecentercountryComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Center Country tofel":                   
                     if (Comments[k].adminaction == 0)
                         rbltofelcentercountryNo.Checked = true;
                     else
-                        rbltofelcentercountryYes.Checked = true;
-                    lblptecentercountryComments.Text = setComments(Comments[k]);
+                        rbltofelcentercountryYes.Checked = true;                    
                     lbltofelcentercountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Test Taker ID":
@@ -711,7 +763,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                 ActionValue = 1;
             else if (rbDenied.Checked)
                 ActionValue = 2;
-            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, userID, txtComments.Text, ActionValue);
+            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, SupervisorID, txtComments.Text, ActionValue);
         }
         catch (Exception ex)
         {

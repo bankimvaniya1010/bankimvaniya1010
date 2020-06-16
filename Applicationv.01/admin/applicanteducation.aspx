@@ -22,6 +22,116 @@
 
         <div class="card">
             <div class="list-group list-group-fit">
+                 <!--USI Fields -->
+
+                        <div id="USIFields">
+                             <div class="list-group-item" id="studiedbefore" runat="server" style="display:block">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                <div class="form-row">
+                                    <label id="label1" runat="server" for="studiedbefore" class="col-md-2 col-form-label form-label">Have you studied IN <asp:label id="nameofcountry" runat="server"></asp:label> before?</label>
+                                    <div class="col-md-6">
+                                        <div class="prdtl-ans">
+                                            <asp:Label ID="lblstudiedbefore" runat="server"></asp:Label>
+                                        </div>
+                                        <div class="prdtl-vrfy">
+                                            <asp:RadioButton ID="studiedYes" GroupName="studied" Text="Yes" runat="server" Checked="true"/>
+                                            <asp:RadioButton ID="studiedNo" GroupName="studied" Text="No" runat="server" />
+                                        </div>
+                                        <span class="helpicon"><i id="i1" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="button" value="Add Remarks" id="btnstudiedbefore" />
+                                        <input id="txtstudiedbefore" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                             <div class="list-group-item" id="HaveUSINo" runat="server" style="display:none">
+                        <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                            <div class="form-row">
+                                <label id="label3" runat="server" for="HaveUSINo" class="col-md-2 col-form-label form-label">Do You have an Australian  Unique Student Identifier (USI) Number?</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblHaveUSINo" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="USINumberYes" GroupName="USINumber" Text="Yes" runat="server" Checked="true"/>
+                                        <asp:RadioButton ID="USINumberNo" GroupName="USINumber" Text="No" runat="server" />
+                                    </div>
+                                    <span class="helpicon"><i id="i2" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="button" value="Add Remarks" id="btnHaveUSINo" />
+                                    <input id="txtHaveUSINo" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                             <div class="list-group-item" id="USINumber" runat="server" style="display:none">
+                        <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                            <div class="form-row">
+                                <label id="label2" runat="server" for="USINumber" class="col-md-2 col-form-label form-label">Enter Your Australian Unique Student Identifier (USI) Number Here</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblUSINumber" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="USINoYes" GroupName="USINo" Text="Yes" runat="server" Checked="true"/>
+                                        <asp:RadioButton ID="USINoNo" GroupName="USINo" Text="No" runat="server" />
+                                    </div>
+                                    <span class="helpicon"><i id="i3" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="button" value="Add Remarks" id="btnUSINumber" />
+                                    <input id="txtUSINumber" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                             <div class="list-group-item" id="haveyoustudiedininstitution" runat="server" style="display:none">
+                        <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                            <div class="form-row">
+                                <label id="label4" runat="server" for="UShaveyoustudiedininstitutionINumber" class="col-md-2 col-form-label form-label">Have you STUDIED at <%=nameofinstitue %> before?</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblhaveyoustudiedininstitution" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="studiedininstitutionYes" GroupName="studiedininstitution" Text="Yes" runat="server" Checked="true"/>
+                                        <asp:RadioButton ID="studiedininstitutionNo" GroupName="studiedininstitution" Text="No" runat="server" />
+                                    </div>
+                                    <span class="helpicon"><i id="i4" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="button" value="Add Remarks" id="btnhaveyoustudiedininstitution" />
+                                    <input id="txthaveyoustudiedininstitution" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                             <div class="list-group-item" id="studentID" runat="server" style="display:none">
+                        <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                            <div class="form-row">
+                                <label id="label5" runat="server" for="studentID" class="col-md-2 col-form-label form-label">Enter Your Student Number/ Student ID from <%=nameofinstitue %>here</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblstudentID" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="studentIDYes" GroupName="studentID" Text="Yes" runat="server" Checked="true"/>
+                                        <asp:RadioButton ID="studentIDNO" GroupName="studentID" Text="No" runat="server" />
+                                    </div>
+                                    <span class="helpicon"><i id="i5" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="button" value="Add Remarks" id="btnstudentID" />
+                                    <input id="txtstudentID" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        </div>
                 <!----High School Start------>
                 <div class="list-group-item" id="highschool" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
@@ -2482,8 +2592,18 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            //all comment box
-                      
+            //all comment box btnstudiedbefore
+
+           if ($("#<%=txtstudiedbefore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtstudiedbefore.ClientID%>', 'btnstudiedbefore');
+           if ($("#<%=txtHaveUSINo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtHaveUSINo.ClientID%>', 'btnHaveUSINo');
+           if ($("#<%=txtUSINumber.ClientID%>").val() != "")
+               ManageRemarksIfNoCheked('<%=txtUSINumber.ClientID%>', 'btnUSINumber');
+           if ($("#<%=txthaveyoustudiedininstitution.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthaveyoustudiedininstitution.ClientID%>', 'btnhaveyoustudiedininstitution');
+           if ($("#<%=txtstudentID.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtstudentID.ClientID%>', 'btnstudentID');
            if ($("#<%=txthighschool.ClientID%>").val() != "")
                 ManageRemarksIfNoCheked('<%=txthighschool.ClientID%>', 'btnhighschool');
            if ($("#<%=txthighschoolCountry.ClientID%>").val() != "")
@@ -2698,6 +2818,40 @@
            if ($("#<%=txthighercontactMobileOther.ClientID%>").val() != "")
                 ManageRemarksIfNoCheked('<%=txthighercontactMobileOther.ClientID%>', 'btnhighercontactMobileOther');
 
+            $("#btnstudiedbefore").click(function () {
+                ManageRemarks('<%=txtstudiedbefore.ClientID%>', 'btnstudiedbefore');
+            });
+            $("#<%=rblhighschoolNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtstudiedbefore.ClientID%>', 'btnstudiedbefore');
+            });
+            //1
+             $("#btnHaveUSINo").click(function () {
+                ManageRemarks('<%=txtHaveUSINo.ClientID%>', 'btnHaveUSINo');
+            });
+            $("#<%=rblhighschoolNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtHaveUSINo.ClientID%>', 'btnHaveUSINo');
+            });
+
+             $("#btnUSINumber").click(function () {
+                ManageRemarks('<%=txtUSINumber.ClientID%>', 'btnUSINumber');
+            });
+            $("#<%=rblhighschoolNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtUSINumber.ClientID%>', 'btnUSINumber');
+            });
+
+             $("#btnhaveyoustudiedininstitution").click(function () {
+                ManageRemarks('<%=txthaveyoustudiedininstitution.ClientID%>', 'btnhaveyoustudiedininstitution');
+            });
+            $("#<%=rblhighschoolNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txthaveyoustudiedininstitution.ClientID%>', 'btnhaveyoustudiedininstitution');
+            });
+
+             $("#btnstudentID").click(function () {
+                ManageRemarks('<%=txtstudentID.ClientID%>', 'btnstudentID');
+            });
+            $("#<%=rblhighschoolNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtstudentID.ClientID%>', 'btnstudentID');
+            });
             // High School
             $("#btnhighschool").click(function () {
                 ManageRemarks('<%=txthighschool.ClientID%>', 'btnhighschool');
@@ -3367,6 +3521,17 @@
                 ManageRemarks('<%=txthighercontactMobileOther.ClientID%>', 'btnhighercontactMobileOther');
             });
 
+            if ($('#<%=studiedNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtstudiedbefore.ClientID%>', 'btnstudiedbefore');
+            if ($('#<%=USINumberNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtHaveUSINo.ClientID%>', 'btnHaveUSINo');
+            if ($('#<%=USINoNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtUSINumber.ClientID%>', 'btnUSINumber');
+            if ($('#<%=studiedininstitutionNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txthaveyoustudiedininstitution.ClientID%>', 'btnhaveyoustudiedininstitution');
+            if ($('#<%=studentIDNO.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtstudentID.ClientID%>', 'btnstudentID');
+
            if ($('#<%=rblhighschoolNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txthighschool.ClientID%>', 'btnhighschool');
            if ($('#<%=rblhighschoolCountryNo.ClientID%>').prop('checked') == true)
@@ -3684,8 +3849,8 @@
                 //higher UG
             else if (!$("#<%=higher.ClientID%>").is(':hidden') && !($("#<%=rblhigherYes.ClientID%>").is(':checked') || $("#<%=rblhigherNo.ClientID%>").is(':checked'))) 
                 alert("Please select option for Have you completed Senior Secondary school? (Year 12)?");
-            else if (!$("#<%=highercourse.ClientID%>").is(':hidden') && !($("#<%=rblhighercourseYes.ClientID%>").is(':checked') || $("#<%=rblhighercourseNo.ClientID%>").is(':checked'))) 
-                alert("Please select option for Higher Course");
+            <%--else if (!$("#<%=highercourse.ClientID%>").is(':hidden') && !($("#<%=rblhighercourseYes.ClientID%>").is(':checked') || $("#<%=rblhighercourseNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Higher Course");--%>
             else if (!$("#<%=higherCountry.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryNo.ClientID%>").is(':checked'))) 
                 alert("Please select option for Higher EducationCountry of High School");
             else if (!$("#<%=higherstartDate.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDateYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDateNo.ClientID%>").is(':checked'))) 

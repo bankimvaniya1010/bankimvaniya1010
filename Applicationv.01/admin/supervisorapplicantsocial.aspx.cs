@@ -9,20 +9,21 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
 {
     int formId = 0;
     Common objCom = new Common();
-    int userID = 0, ApplicantID = 0, universityID;
+    int SupervisorID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected List<admincomments> Comments = new List<admincomments>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();        
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
-        userID = Convert.ToInt32(Session["UserID"]);
+        SupervisorID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -36,12 +37,13 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, universityID);
+        Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         if (CustomControls.Count > 0)
-            objCom.AddCustomControl(CustomControls, mainDiv);
+            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv, Comments);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomData(formId, ApplicantID, CustomControls, mainDiv);
+                objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
             PopulateSupervisorComments();
             PopulatePersonalInfo();
             SetControlsUniversitywise();
@@ -60,17 +62,20 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
             if (profileInfo != null)
             {
                 if ((profileInfo.havefacebookaccount == null) || (profileInfo.havefacebookaccount == false))
-                    lblFacebook.Text = "User has opted, he has no facebook account";
-                else
                     lblFacebook.Text = profileInfo.facebookprofle;
+                else
+                    lblFacebook.Text = "User has opted, he has no facebook account";
+
                 if ((profileInfo.havelinkedinaccount == null) || (profileInfo.havelinkedinaccount == false))
-                    lblLinkedin.Text = "User has opted, he has no Linkedin  account";
-                else
                     lblLinkedin.Text = profileInfo.linkedprofile;
-                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
-                    lblTwitter.Text = "User has opted, he has no Linkedin  account";
                 else
+                    lblLinkedin.Text = "User has opted, he has no Linkedin  account";
+
+                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
                     lblTwitter.Text = profileInfo.twiterprofile;
+                else
+                    lblTwitter.Text = "User has opted, he has no Linkedin  account";
+
 
             }
 
@@ -113,15 +118,15 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "LINK TO YOUR LINKEDIN PROFILE":
+                    case "LINKEDIN PROFILE":
                         linkedin.Attributes.Add("style", "display:block;");
                         labellinked.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LINK TO YOUR FACEBOOK PROFILE":
+                    case "FACEBOOK PROFILE":
                         facebook.Attributes.Add("style", "display:block;");
                         labelfacebook.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LINK TO YOUR TWITTER HANDLE":
+                    case "TWITTER HANDLE":
                         twitter.Attributes.Add("style", "display:block;");
                         labeltwitter.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -146,21 +151,21 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
-                case "Link to your LinkedIn profile":
+                case "LINKEDIN PROFILE":
                     if (Comments[k].adminaction == 0)
                         rblLinkedinNo.Checked = true;
                     else
                         rblLinkedinYes.Checked = true;
                     lblLinkedinComments.Text = setComments(Comments[k]);
                     break;
-                case "Link to your Facebook profile":
+                case "FACEBOOK PROFILE":
                     if (Comments[k].adminaction == 0)
                         rblFacebookNo.Checked = true;
                     else
                         rblFacebookYes.Checked = true;
                     lblFacebookComments.Text = setComments(Comments[k]);
                     break;
-                case "Link to your twitter handle":
+                case "TWITTER HANDLE":
                     if (Comments[k].adminaction == 0)
                         rblTwitterNo.Checked = true;
                     else
@@ -198,7 +203,7 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
                 ActionValue = 1;
             else if (rbDenied.Checked)
                 ActionValue = 2;
-            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, userID, txtComments.Text, ActionValue);
+            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, SupervisorID, txtComments.Text, ActionValue);
         }
         catch (Exception ex)
         {

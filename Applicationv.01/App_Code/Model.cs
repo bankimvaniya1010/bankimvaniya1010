@@ -2263,6 +2263,7 @@ public partial class preliminaryapplicantanswers
     public Nullable<int> preliminaryid { get; set; }
     public string answer { get; set; }
     public Nullable<System.DateTime> answersubmittedtime { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class primaryfieldmaster

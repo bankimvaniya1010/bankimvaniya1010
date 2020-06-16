@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
 {
-    int userID = 0, ApplicantID = 0, universityID;
+    int SupervisorID = 0, ApplicantID = 0, universityID;
     bool isAgent = false;
     int formId = 0;
     private GTEEntities db = new GTEEntities();
@@ -16,7 +16,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
-
+    protected List<admincomments> Comments = new List<admincomments>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,7 +24,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
-        userID = Convert.ToInt32(Session["UserID"]);
+        SupervisorID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -38,15 +38,17 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, universityID);
+        Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         if (CustomControls.Count > 0)
-            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv);
+            objCom.AddCustomControlForSupervisor(CustomControls, mainDiv, Comments);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
                 objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
 
-            PopulatePersonalInfo();
+            
             SetControlsUniversitywise();
+            PopulatePersonalInfo();
             SetAdminComments();
             PopulateSupervisorComments();
         }
@@ -102,6 +104,20 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                 if (profileInfo.higheststudycompleted != null)
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
+                }
+                if (profileInfo.fieldofhigheststudy != null)
+                {
+                    lblfieldstudy.Text = objCom.GetHighestStudyField(Convert.ToInt32(profileInfo.fieldofhigheststudy));
+                }
+                if (profileInfo.studycompletedate != null)
+                {
+                    lblhighQualificationCompleteDate.Text = profileInfo.studycompletedate;
+                }
+                String qualificationCountry = "";
+                if (profileInfo.countryofhigheststudy != null)
+                {
+                    qualificationCountry = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.countryofhigheststudy));
+                    lblhighestQualificationCountry.Text = qualificationCountry;
                 }
                 String Nationality = "";
                 if (profileInfo.nationality != null)
@@ -320,11 +336,23 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         agentList.Attributes.Add("style", "display:block;");
                         labelagentList.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Highest study level successfully completed":
+                    case "HIGHEST LEVEL OF STUDY SUCCESSFULLY COMPLETED":
                         higheststudy.Attributes.Add("style", "display:block;");
                         labelhigheststudy.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                        
+                    case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
+                        fieldstudy.Attributes.Add("style", "display:block;");
+                        labelfieldstudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Country of highest qualification":
+                        highestQualificationCountry.Attributes.Add("style", "display:block;");
+                        labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Year and Month of highest qualification":
+                        highQualificationCompleteDate.Attributes.Add("style", "display:block;");
+                        labelhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+
                     default:
                         break;
 
@@ -536,6 +564,27 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                     else
                         rblhigheststudyYes.Checked = true;
                     break;
+                case "Highest study successfully completed field":
+                    txtfieldstudy.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbfieldstudyNo.Checked = true;
+                    else
+                        rbfieldstudyYes.Checked = true;
+                    break;
+                case "Country of Highest Qualificatiion Achieved":
+                    txthighestQualificationCountry.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbhighestQualificationCountryNo.Checked = true;
+                    else
+                        rbhighestQualificationCountryYes.Checked = true;
+                    break;
+                case "Year and Month of highest qualification":
+                    txthighQualificationCompleteDate.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbhighQualificationCompleteDateNo.Checked = true;
+                    else
+                        rbhighQualificationCompleteDateYes.Checked = true;
+                    break;
                 default:
                     break;
 
@@ -568,7 +617,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                 ActionValue = 1;
             else if (rbDenied.Checked)
                 ActionValue = 2;
-            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, userID, txtComments.Text, ActionValue);
+            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, SupervisorID, txtComments.Text, ActionValue);
         }
         catch (Exception ex)
         {

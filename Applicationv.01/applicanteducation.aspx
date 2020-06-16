@@ -60,7 +60,7 @@
                             <div class="list-group-item frm-rdbtn" id="haveyoustudiedininstitution" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                     <div class="form-row">
-                                        <label id="label4" runat="server" for="haveyoustudiedininstitution" class="col-md-3 col-form-label form-label">HAve you STUDIED at <asp:label id="nameofinstitue1" runat="server"></asp:label> before?</label>
+                                        <label id="label4" runat="server" for="haveyoustudiedininstitution" class="col-md-3 col-form-label form-label">Have you STUDIED at <asp:label id="nameofinstitue1" runat="server"></asp:label> before?</label>
                                         <div class="col-md-9">
                                             <asp:RadioButton ID="studiedininstitutionYes" CssClass="form-control" runat="server" GroupName="studiedininstitution" Text="Yes" />
                                             <asp:RadioButton ID="studiedininstitutionNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="studiedininstitution" Text="No" />

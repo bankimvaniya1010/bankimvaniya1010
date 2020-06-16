@@ -1963,6 +1963,11 @@ public partial class applicanteducation : System.Web.UI.Page
     {
         SaveEducationData();
         EducationDetails();
+        bind10grade();
+        bindSecondarygrade();
+        binddiplomagrade();
+        bindhighergrade();
+        bindhigherCourses();
     }
     
     protected void gotoNextPage_Click(object sender, EventArgs e)
