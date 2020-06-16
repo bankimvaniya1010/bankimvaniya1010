@@ -8,22 +8,20 @@
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
-            });
 
-
-       <%  
-        for (int k = 0; k < Comments.Count; k++)
-        {
-            string fieldName = Comments[k].fieldname;
+                <%  
+int EmployerCount = EmployersDetail.Count;
+        for (int i = 0; i < EmployerCount; i++)
+        {            
+            for (int k = 0; k < Comments.Count; k++)
+            {
+                string fieldName = Comments[k].fieldname;
             string AdminComments = Comments[k].comments;
             int Adminaction = Convert.ToInt32(Comments[k].adminaction);
-            int EmployerCount = EmployersDetail.Count;
-            for (int i = 0; i < EmployerCount; i++)
-            {
                 if (fieldName == employer + (i + 1))
                 {%>
 
-            $("#txtemployer<%=i%>").val('<%=AdminComments%>');
+            $("#lblemploye<%=i%>").val('<%=AdminComments%>');
                  <%   if (Adminaction == 0)
         {%>
             $('input:radio[name=employer<%=i%>]')[1].checked = true;
@@ -225,6 +223,8 @@
 
         %>
         }
+            });
+                     
 
     </script>
 </asp:Content>
@@ -264,7 +264,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <input type="radio" id="<%="rblemployerYes" + k %>" name="<%="employer" + k %>" value="1">Yes
-                                        <input type="radio" id="<%="rblemployerNo" + k %>" name="<%="employer" + k %>" value="0">No<span id="<%="lblemploye" + k %>"></span>
+                                        <input type="radio" id="<%="rblemployerNo" + k %>" name="<%="employer" + k %>" value="0">No
+                                    <span id="<%="lblemploye" + k %>"></span>
                                 </div>
                             </div>
                         </div>

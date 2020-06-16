@@ -17,6 +17,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    public List<applicantresidencehistory> lstOfResidences = new List<applicantresidencehistory>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -38,6 +39,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
 
+        
         CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
@@ -125,21 +127,21 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                 {
                     lblCurrentAddress.Text = "Yes";
 
-                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
+                    lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
 
-                    lblPrevAddStartDate.Text = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
-                    lblPrevAddEndDate.Text = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
-                    lblprevAddress1.Text = lstOfResidences[0].residenceaddress1;
-                    lblprevAddress2.Text = lstOfResidences[0].residenceaddress2;
-                    lblprevAddress3.Text = lstOfResidences[0].residenceaddress3;
-                    lblprevAddressCity.Text = lstOfResidences[0].residentialcity;
-                    lblprevAddressState.Text = lstOfResidences[0].residentialstate;
-                    lblprevAddressPostalCode.Text = lstOfResidences[0].residencepostcode;
-                    if (lstOfResidences[0].residentialcountry != null)
-                    {
+                    //lblPrevAddStartDate.Text = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
+                    //lblPrevAddEndDate.Text = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
+                    //lblprevAddress1.Text = lstOfResidences[0].residenceaddress1;
+                    //lblprevAddress2.Text = lstOfResidences[0].residenceaddress2;
+                    //lblprevAddress3.Text = lstOfResidences[0].residenceaddress3;
+                    //lblprevAddressCity.Text = lstOfResidences[0].residentialcity;
+                    //lblprevAddressState.Text = lstOfResidences[0].residentialstate;
+                    //lblprevAddressPostalCode.Text = lstOfResidences[0].residencepostcode;
+                    //if (lstOfResidences[0].residentialcountry != null)
+                    //{
 
-                        lblPrevAddressCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(lstOfResidences[0].residentialcountry));
-                    }
+                    //    lblPrevAddressCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(lstOfResidences[0].residentialcountry));
+                    //}
 
                     addressHistory.Style.Remove("display");
 

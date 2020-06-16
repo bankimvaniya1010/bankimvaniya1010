@@ -1274,7 +1274,7 @@
                                         <% 
                                             for (int conatct = 0; conatct < CustomControlsConatct.Count; conatct++)
                                             {
-                                                string Comments = objCom.GetCustomFieldAdminComments(ApplicantID, 2, CustomControlsPersonal[conatct].labeldescription, universityID);
+                                                string Comments = objCom.GetCustomFieldAdminComments(ApplicantID, 2, CustomControlsConatct[conatct].labeldescription, universityID);
                                                 string[] com = Comments.Split('~');
 
                                                 string Admincomments = com[0];
@@ -1284,7 +1284,7 @@
                                         %>
                                         <tr class="adm-form-row-tr" id="custom<%= CustomControlsConatct[conatct].customfieldid%>">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelcustom<%= CustomControlsConatct[conatct].customfieldid%>"><%=  CustomControlsPersonal[conatct].labeldescription %> </label>
+                                                <label id="labelcustom<%= CustomControlsConatct[conatct].customfieldid%>"><%=  CustomControlsConatct[conatct].labeldescription %> </label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table inner-table">
