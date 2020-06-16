@@ -62,17 +62,20 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
             if (profileInfo != null)
             {
                 if ((profileInfo.havefacebookaccount == null) || (profileInfo.havefacebookaccount == false))
-                    lblFacebook.Text = "User has opted, he has no facebook account";
-                else
                     lblFacebook.Text = profileInfo.facebookprofle;
+                else
+                    lblFacebook.Text = "User has opted, he has no facebook account";
+
                 if ((profileInfo.havelinkedinaccount == null) || (profileInfo.havelinkedinaccount == false))
-                    lblLinkedin.Text = "User has opted, he has no Linkedin  account";
-                else
                     lblLinkedin.Text = profileInfo.linkedprofile;
-                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
-                    lblTwitter.Text = "User has opted, he has no Linkedin  account";
                 else
+                    lblLinkedin.Text = "User has opted, he has no Linkedin  account";
+
+                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
                     lblTwitter.Text = profileInfo.twiterprofile;
+                else
+                    lblTwitter.Text = "User has opted, he has no Linkedin  account";
+
 
             }
 

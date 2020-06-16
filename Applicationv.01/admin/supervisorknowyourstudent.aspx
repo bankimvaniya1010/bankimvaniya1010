@@ -20,11 +20,13 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblPassportNoYes" GroupName="PassportNo" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblPassportNoNo" GroupName="PassportNo" Text="No" runat="server" />                                
                             </div>
+                            <div class="col-md-3">
                             <asp:Label ID="labelpassportnoComments" runat="server"></asp:Label>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -36,9 +38,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblDateOfissue" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblDateOfissueYes" GroupName="DateOfissue" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblDateOfissueNo" GroupName="DateOfissue" Text="No" runat="server" />
+                                 </div>
+                            <div class="col-md-3">
                                 <asp:Label ID="lblDateOfissueComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -52,9 +56,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblExpiryDate" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblExpiryDateYes" GroupName="ExpiryDate" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblExpiryDateNo" GroupName="ExpiryDate" Text="No" runat="server" />
+                                 </div>
+                            <div class="col-md-3">
                                 <asp:Label ID="lblExpiryDateComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -67,10 +73,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblcountryIssueYes" GroupName="countryIssue" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblcountryIssueNo" GroupName="countryIssue" Text="No" runat="server" />
-                                <asp:Label ID="lblcountryIssueComments" runat="server"></asp:Label>
+                                </div>
+                            <div class="col-md-3"><asp:Label ID="lblcountryIssueComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -82,10 +89,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblissueplace" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblissueplaceYes" GroupName="issueplace" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblissueplaceNo" GroupName="issueplace" Text="No" runat="server" />
-                                <asp:Label ID="lblissueplaceComments" runat="server"></asp:Label>
+                                </div>
+                            <div class="col-md-3"><asp:Label ID="lblissueplaceComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -97,10 +105,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateIdentitytype" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblalternateIdentitytypeYes" GroupName="alternateIdentitytype" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblalternateIdentitytypeNo" GroupName="alternateIdentitytype" Text="No" runat="server" />
-                                <asp:Label ID="lblalternateIdentitytypeComments" runat="server"></asp:Label>
+                                </div>
+                            <div class="col-md-3"><asp:Label ID="lblalternateIdentitytypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -112,10 +121,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateIdentityNo" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblalternateIdentityNoYes" GroupName="alternateIdentityNo" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblalternateIdentityNoNo" GroupName="alternateIdentityNo" Text="No" runat="server" />
-                                <asp:Label ID="lblalternateIdentityNoComments" runat="server"></asp:Label>
+                                </div>
+                            <div class="col-md-3"><asp:Label ID="lblalternateIdentityNoComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -129,10 +139,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternatedobIdentitytype" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblalternatedobIdentitytypeYes" GroupName="alternatedobIdentitytype" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblalternatedobIdentitytypeNo" GroupName="alternatedobIdentitytype" Text="No" runat="server" />
-                                <asp:Label ID="lblalternatedobIdentitytypeComments" runat="server"></asp:Label>
+                                </div>
+                            <div class="col-md-3"><asp:Label ID="lblalternatedobIdentitytypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -144,10 +155,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternatedobIdentityNo" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblalternatedobIdentityNoYes" GroupName="alternatedobIdentityNo" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblalternatedobIdentityNoNo" GroupName="alternatedobIdentityNo" Text="No" runat="server" />
-                                <asp:Label ID="lblalternatedobIdentityNoComments" runat="server"></asp:Label>
+                                </div>
+                            <div class="col-md-3"><asp:Label ID="lblalternatedobIdentityNoComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -160,10 +172,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateresidenceIdentitytype" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblalternateresidenceIdentitytypeYes" GroupName="alternateresidenceIdentitytype" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblalternateresidenceIdentitytypeNo" GroupName="alternateresidenceIdentitytype" Text="No" runat="server" />
-                                <asp:Label ID="lblalternateresidenceIdentitytypeComments" runat="server"></asp:Label>
+                                </div>
+                            <div class="col-md-3"><asp:Label ID="lblalternateresidenceIdentitytypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -175,10 +188,11 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateresidenceIdentityNo" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:RadioButton ID="rblalternateresidenceIdentityNoYes" GroupName="alternateresidenceIdentityNo" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblalternateresidenceIdentityNoNo" GroupName="alternateresidenceIdentityNo" Text="No" runat="server" />
-                                <asp:Label ID="lblalternateresidenceIdentityNoComments" runat="server"></asp:Label>
+                                </div>
+                            <div class="col-md-3"><asp:Label ID="lblalternateresidenceIdentityNoComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>

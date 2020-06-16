@@ -13,6 +13,106 @@
 
         <div class="card">
             <div class="list-group list-group-fit">
+                 <div class="list-group-item" id="studiedbefore" runat="server" style="display:block">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                <div class="form-row">
+                                    <label id="label1" runat="server" for="studiedbefore" class="col-md-2 col-form-label form-label">
+                                        Have you studied IN <asp:label id="nameofcountry" runat="server"></asp:label> before?
+                                    </label>
+                                    
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblstudiedbefore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:RadioButton ID="studiedYes" GroupName="studied" Text="Yes" runat="server"/>
+                                        <asp:RadioButton ID="studiedNo" GroupName="studied" Text="No" runat="server" />                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="txtstudiedbefore" runat="server"></asp:Label>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                 <div class="list-group-item" id="HaveUSINo" runat="server" style="display:none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                <div class="form-row">
+                                    <label id="label2" runat="server" for="studiedbefore" class="col-md-2 col-form-label form-label">Do You have an Australian  Unique Student Identifier (USI) Number?</label>
+                                    
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblHaveUSINo" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:RadioButton ID="USINumberYes" GroupName="USINumber" Text="Yes" runat="server"/>
+                                        <asp:RadioButton ID="USINumberNo" GroupName="USINumber" Text="No" runat="server" />                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="txtHaveUSINo" runat="server"></asp:Label>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                 <div class="list-group-item" id="USINumber" runat="server" style="display:none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                <div class="form-row">
+                                    <label id="label5" runat="server" for="studiedbefore" class="col-md-2 col-form-label form-label">
+                                        Enter Your Australian Unique Student Identifier (USI) Number Here
+                                    </label>
+                                    
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblUSINumber" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:RadioButton ID="USINoYes" GroupName="USINo" Text="Yes" runat="server"/>
+                                        <asp:RadioButton ID="USINoNo" GroupName="USINo" Text="No" runat="server" />                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="txtUSINumber" runat="server"></asp:Label>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                 <div class="list-group-item" id="haveyoustudiedininstitution" runat="server" style="display:none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                <div class="form-row">
+                                    <label id="label8" runat="server" for="studiedbefore" class="col-md-2 col-form-label form-label">
+                                        Have you STUDIED at <%=nameofinstitue %> before?
+                                    </label>
+                                    
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhaveyoustudiedininstitution" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:RadioButton ID="studiedininstitutionYes" GroupName="studiedininstitution" Text="Yes" runat="server"/>
+                                        <asp:RadioButton ID="studiedininstitutionNo" GroupName="studiedininstitution" Text="No" runat="server" />                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="txthaveyoustudiedininstitution" runat="server"></asp:Label>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                 <div class="list-group-item" id="studentID" runat="server" style="display:none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                <div class="form-row">
+                                    <label id="label11" runat="server" for="studiedbefore" class="col-md-2 col-form-label form-label">
+                                        Enter Your Student Number/ Student ID from <%=nameofinstitue %>here
+                                    </label>
+                                    
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblstudentID" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:RadioButton ID="studentIDYes" GroupName="studentID" Text="Yes" runat="server"/>
+                                        <asp:RadioButton ID="studentIDNO" GroupName="studentID" Text="No" runat="server" />                                        
+                                    </div>
+                                    <div class="col-md-3">
+                                        <asp:Label ID="txtstudentID" runat="server"></asp:Label>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                 <!----High School Start------>
                 <div class="list-group-item" id="highschool" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschool">

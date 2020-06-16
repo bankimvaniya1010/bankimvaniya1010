@@ -31,6 +31,8 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected string employmentInfo = "", yearsOfexp = "", employerwebsite = "", employer = "", employercity = "", employercountry = "", position = "", startdate = "", enddate = "", BriefDescription = "", reportingmanger = "", employmentverification = "", relationship = "", emailEmployment = "", linkedin = "";
     protected Common objCom = new Common();
     protected List<applicanthighereducation> HigherEducation = new List<applicanthighereducation>();
+    public List<applicantresidencehistory> lstOfResidences = new List<applicantresidencehistory>();
+    public string universitycountry, nameofinstitue;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.QueryString["id"] == null || Request.QueryString["id"].ToString() == "" || Request.QueryString["downloadPdf"] == null || Request.QueryString["downloadPdf"].ToString() == "")
@@ -45,6 +47,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
             {
                 universityID = Utility.GetUniversityId();
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
+
+                nameofinstitue = Convert.ToString(Session["universityName"]);
+                int unicountryID = Convert.ToInt32(Session["universityCountry"]);
+                universitycountry = objCom.GetCountryDiscription(unicountryID);
 
                 CustomControlsPersonal = objCom.CustomControlist(1, universityID);
                 CustomControlsConatct = objCom.CustomControlist(2, universityID);
@@ -159,7 +165,19 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
                 }
-              
+                if (profileInfo.fieldofhigheststudy != null)
+                {
+                    lblfieldofhigheststudy.Text = objCom.GetHighestStudyField(Convert.ToInt32(profileInfo.fieldofhigheststudy));
+                }
+                if (profileInfo.countryofhigheststudy != null)
+                {
+                    lblhighestQualificationCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.countryofhigheststudy));
+                }
+                if (profileInfo.studycompletedate != null)
+                {
+                    lblehighQualificationCompleteDate.Text = profileInfo.studycompletedate;                    
+                }
+                
                 if (profileInfo.nationality != null)
                 {
                     NationalityValue = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality));
@@ -382,19 +400,19 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     //case "IF YOU DIDN’T FIND YOUR AGENT NAME IN THE LIST, ADD YOUR AGENT’S EMAILL ID TO SEND THEM A REGISTRATION LINK":
                     //    addnewagent.Attributes.Add("style", "display:block;");
                     //    labeladdnewagent.InnerHtml = setInnerHtml(fields[k]);
-                    //    break;                    
-                    //case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
-                    //    fieldstudy.Attributes.Add("style", "display:block;");
-                    //    lblfieldstudy.InnerHtml = setInnerHtml(fields[k]);
                     //    break;
-                    //case "Country of highest qualification":
-                    //    highestQualificationCountry.Attributes.Add("style", "display:block;");
-                    //    labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
-                    //    break;
-                    //case "Year and Month of highest qualification":
-                    //    highQualificationCompleteDate.Attributes.Add("style", "display:block;");
-                    //    lblhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
-                    //    break;
+                    case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
+                        fieldstudy.Visible = true;
+                        lblfieldstudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Country of highest qualification":
+                        highestQualificationCountry.Visible = true;
+                        labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Year and Month of highest qualification":
+                        highQualificationCompleteDate.Visible = true;
+                        lblhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
+                        break;
                     default:
                         break;
 
@@ -585,6 +603,28 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imghigheststudyYes.Visible = true;
                     lblhigheststudyComments.Text = setComments(Comments[k]);
                     break;
+                case "Highest study successfully completed field":
+                    if (Comments[k].adminaction == 0)
+                        imghigheststudyfieldNo.Visible = true;
+                    else
+                        imghigheststudyfieldYes.Visible = true;
+                    lblhigheststudyfieldComments.Text = setComments(Comments[k]);
+                    break;
+                case "Country of Highest Qualificatiion Achieved":
+                    if (Comments[k].adminaction == 0)
+                        highestQualificationCountryNo.Visible = true;
+                    else
+                        highestQualificationCountryYes.Visible = true;
+                    lblhighestQualificationCountrycomment.Text = setComments(Comments[k]);
+                    break;
+                case "Year and Month of highest qualification":
+                    if (Comments[k].adminaction == 0)
+                        highQualificationCompleteDateNo.Visible = true;
+                    else
+                        highQualificationCompleteDateYes.Visible = true;
+                    lblhighQualificationCompleteDatecomments.Text = setComments(Comments[k]);
+                    break;
+
                 default:
                     break;
 
@@ -634,13 +674,13 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblWhatsapp.Text = "Yes";
                     if (profileInfo.isdifferentwhatsapp == 1)
                     {
-                        lblWhatsapphave.Text = "No";
-                        lblWhastappDesription.Text = profileInfo.whatsappno;
+                        lblWhatsapphave.Text = "Yes";
+                        whatsappDesc.Visible = false;
                     }
                     else if (profileInfo.isdifferentwhatsapp == 2)
                     {
-                        lblWhatsapphave.Text = "Yes";
-                        whatsappDesc.Visible = false;
+                        lblWhatsapphave.Text = "No";
+                        lblWhastappDesription.Text = profileInfo.whatsappno;                        
                     }
                 }
                 else if (profileInfo.havewhatsup == 2)
@@ -676,8 +716,8 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 if (profileInfo.haspreviousresidence.HasValue && profileInfo.haspreviousresidence.Value)
                 {
                     lblCurrentAddress.Text = "Yes";
-
-                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
+                    CurrentAddress.Visible = true;
+                    lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
 
                     //lblPrevAddStartDate.Text = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
                     //lblPrevAddEndDate.Text = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
@@ -693,7 +733,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     //    lblPrevAddressCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(lstOfResidences[0].residentialcountry));
                     //}
 
-                    //addressHistory.Style.Remove("display");
+                    addressHistory.Visible = true;
 
                     for (int i = 1; i < lstOfResidences.Count; i++)
                     {
@@ -806,6 +846,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         break;
                     case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                         address.Visible = true;
+                        //previousaddress.Visible = true;
                         labeladdress.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "CURRENT RESIDENTIAL ADDRESS":
@@ -1255,7 +1296,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgDateOfissueYes.Visible = true;
                     lblDateOfissueComments.Text = setComments(Comments[k]);
                     break;
-                case "PASSPORT Expiry Date":
+                case "PASSPORT EXPIRY DATE":
                     if (Comments[k].adminaction == 0)
                         imgExpiryDateNo.Visible = true;
                     else
@@ -1347,21 +1388,51 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                                  select pInfo).FirstOrDefault();
             if (EducationInfo != null)
             {
+                //USI
+                if (EducationInfo.haveyoustudiedbefore == 1)
+                {
+                    lblstudiedbefore.Text = "Yes";
+                    HaveUSINo.Visible = true;
+                    if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 1)
+                    {
+                        lblHaveUSINo.Text = "Yes";
+                        USINumber.Visible = true;
+                        lblUSINumber.Text = EducationInfo.usi_number;
+                    }
+                    else if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 2)
+                        lblHaveUSINo.Text = "No";
+                    else if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 3)
+                        lblHaveUSINo.Text = "I am not sure";
+                }
+                else if (EducationInfo.haveyoustudiedbefore == 0)
+                {
+                    lblstudiedbefore.Text = "No";
+                }
+                if (EducationInfo.haveusi_number != null && (EducationInfo.haveusi_number == 2 || EducationInfo.haveusi_number == 3))
+                {
+                    haveyoustudiedininstitution.Visible = true;
+                    if (EducationInfo.studentinstitutionID != null)
+                    {
+                        lblhaveyoustudiedininstitution.Text = "Yes";
+                        studentID.Visible = true;
+                        lblstudentID.Text = EducationInfo.studentinstitutionID;
+                    }
+                    else
+                        lblhaveyoustudiedininstitution.Text = "No";
+
+                }
+                //
                 if (EducationInfo.ishighschooldone == 1)
                 {
                     lblhighschool.Text = "Yes";
                     BindHighSchoolDetails(EducationInfo);
-                    //higestEducation.Visible = false;
+                    // higestEducation.Visible = false;
                 }
                 else if (EducationInfo.ishighschooldone == 2)
                 {
                     lblhighschool.Text = "No- I am currently studying for my high school qualification";
                     BindHighSchoolDetails(EducationInfo);
-                    // higestEducation.Visible = false;
-                    highschoolverify.Visible = false;
-                    highschoolrelation.Visible = false;
-                    highschoolcontactEmail.Visible = false;
-                    highschoolcontactMobile.Visible = false;
+                    //  higestEducation.Visible = false;
                 }
                 else
                 {
@@ -1369,38 +1440,39 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     // lblhigestEducation.Text = EducationInfo.highestdegree;
                     HideHighSchool();
                 }
+                highschool.Attributes.Add("style", "display:block");
+                highschoolstudymode.Attributes.Add("style", "display:none");//as in student it is hidden
 
                 /// High School Details End-----
 
                 /// Secondary Details
                 /// 
-                if (EducationInfo.issecondarydone == 1)
+                if (EducationInfo.ishighschooldone == 1 || EducationInfo.ishighschooldone == 2)
                 {
-                    lblSecondary.Text = "Yes";
-                    BindSecondary(EducationInfo);
+                    if (EducationInfo.issecondarydone == 1)
+                    {
+                        lblSecondary.Text = "Yes";
+                        BindSecondary(EducationInfo);
+                    }
+                    else if (EducationInfo.issecondarydone == 2)
+                    {
+                        lblSecondary.Text = "No - I am currently still studying for my Senior Secondary";
+                        BindSecondary(EducationInfo);
+                    }
+                    else
+                    {
+                        lblSecondary.Text = "No - I do not have a Senior Secondary qualification";
+                        HideSecondary();
+                    }
+                    Secondary.Attributes.Add("style", "display:block");
                 }
-                else if (EducationInfo.issecondarydone == 2)
-                {
-                    lblSecondary.Text = "No - I am currently still studying for my Senior Secondary";
-                    BindSecondary(EducationInfo);
-                    Secondaryverify.Visible = false;
-                    Secondaryrelation.Visible = false;
-                    SecondarycontactEmail.Visible = false;
-                    SecondarycontactMobile.Visible = false;
-                }
-                else
-                {
-                    lblSecondary.Text = "No - I do not have a Senior Secondary qualification";
-                    HideSecondary();
-                }
-
 
                 /// Secondary Details End-----
                 /// Diploma
                 /// 
                 if (EducationInfo.isdiplomadone == 1)
                 {
-                   BindDiploma(EducationInfo);
+                    BindDiploma(EducationInfo);
                     lbldiploma.Text = "Yes";
                 }
                 else if (EducationInfo.isdiplomadone == 2)
@@ -1412,13 +1484,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lbldiploma.Text = "No - I do not have a Diploma/Certificate qualification";
                     HideDiploma();
-                    diplomaverify.Visible = false;
-                    diplomarelation.Visible = false;
-                    diplomacontactEmail.Visible = false;
-                    diplomacontactMobile.Visible = false;
                 }
+                diploma.Attributes.Add("style", "display:block");
 
-
+                higher.Attributes.Add("style", "display:block");
                 if (EducationInfo.ishighereducation == 1)
                     lblhigher.Text = "Yes";
                 else if (EducationInfo.ishighereducation == 2)
@@ -2557,7 +2626,46 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
 
                     lblhighercontactMobileOtherComments.Text = setComments(Comments[k]);
                     break;
-                
+                case "Have you studied IN before?":
+                    if (Comments[k].adminaction == 0)
+                        studiedNo.Visible = true;
+                    else
+                        studiedYes.Visible = true;
+
+                    txtstudiedbefore.Text = setComments(Comments[k]);
+                    break;
+                case "Do You have an Australian  Unique Student Identifier (USI) Number?":
+                    if (Comments[k].adminaction == 0)
+                        USINumberNo.Visible = true;
+                    else
+                        USINumberYes.Visible = true;
+
+                    txtHaveUSINo.Text = setComments(Comments[k]);
+                    break;
+                case "Enter Your Australian Unique Student Identifier (USI) Number Here":
+                    if (Comments[k].adminaction == 0)
+                        USINoNo.Visible = true;
+                    else
+                        USINoYes.Visible = true;
+
+                    txtUSINumber.Text = setComments(Comments[k]);
+                    break;
+                case "Have you STUDIED at nameofinstitue before?":
+                    if (Comments[k].adminaction == 0)
+                        studiedininstitutionNo.Visible = true;
+                    else
+                        studiedininstitutionYes.Visible = true;
+
+                    txthaveyoustudiedininstitution.Text = setComments(Comments[k]);
+                    break;
+                case "Enter Your Student Number/ Student ID":
+                    if (Comments[k].adminaction == 0)
+                        studentIDNO.Visible = true;
+                    else
+                        studentIDYes.Visible = true;
+
+                    txtstudentID.Text = setComments(Comments[k]);
+                    break;
                 default:
                     break;
 
@@ -2977,63 +3085,63 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgEnglishBackgroundYes.Visible = true;
                     lblEnglishBackgroundComments.Text = setComments(Comments[k]);
                     break;
-                case "COUNTRY OF ENGLISH LANGUAGE INTENSIVE COURSE":
+                case "Country of English Language Intensive Course":
                     if (Comments[k].adminaction == 0)
                         imgLanguageNo.Visible = true;
                     else
                         imgLanguageYes.Visible = true;
                     lblLanguageComments.Text = setComments(Comments[k]);
                     break;
-                case "YEAR OF COMPLETION/EXPECTED":
+                case "Year of Completion/Expected":
                     if (Comments[k].adminaction == 0)
                         imgYearCompletionNo.Visible = true;
                     else
                         imgYearCompletionYes.Visible = true;
                     lblYearCompletionComments.Text = setComments(Comments[k]);
                     break;
-                case "NAME OF COLLEGE OR UNIVERSITY":
+                case "Name of College or University":
                     if (Comments[k].adminaction == 0)
                         imgNameCollegeYes.Visible = true;
                     else
                         imgNameCollegeNo.Visible = true;
                     lblNameCollegeComments.Text = setComments(Comments[k]);
                     break;
-                case "MODE OF STUDY":
+                case "Mode of study":
                     if (Comments[k].adminaction == 0)
                         imgstudymodeNo.Visible = true;
                     else
                         imgstudymodeYes.Visible = true;
                     lblstudymodeComments.Text = setComments(Comments[k]);
                     break;
-                case "QUALIFICATION TYPE":
+                case "Qualification Type":
                     if (Comments[k].adminaction == 0)
                         imgQualificationTypeNo.Visible = true;
                     else
                         imgQualificationTypeYes.Visible = true;
                     lblQualificationTypeComments.Text = setComments(Comments[k]);
                     break;
-                case "Name of Qualification":
+                case "Qualification Name":
                     if (Comments[k].adminaction == 0)
                         imgQualificationNameNo.Visible = true;
                     else
                         imgQualificationNameYes.Visible = true;
                     lblQualificationNameComments.Text = setComments(Comments[k]);
                     break;
-                case "GRADE TYPE":
+                case "Grade Type":
                     if (Comments[k].adminaction == 0)
                         imgLanggradetypeNo.Visible = true;
                     else
                         imgLanggradetypeYes.Visible = true;
                     lblLanggradetypeComments.Text = setComments(Comments[k]);
                     break;
-                case "FINAL GRADE ACHIEVED":
+                case "Final Grade Achieved":
                     if (Comments[k].adminaction == 0)
                         imggradeachievedNo.Visible = true;
                     else
                         imggradeachievedYes.Visible = true;
                     lblLanggradeachievedComments.Text = setComments(Comments[k]);
                     break;
-                case "EXPECTED DATE WHEN RESULTS WILL BE DECLARED":
+                case "Expected dates when results will be declared":
                     if (Comments[k].adminaction == 0)
                         imgExpectedDategradeNo.Visible = true;
                     else
@@ -3054,29 +3162,35 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblisgiventest_yes_or_noComment.Text = setComments(Comments[k]);
                     lblEnglishTestComments.Text = setComments(Comments[k]);
                     break;
-                case "TEST NAME":
+                case "Test Name":
                     if (Comments[k].adminaction == 0)
                         imgtestNameNo.Visible = true;
                     else
                         imgtestNameYes.Visible = true;
                     lbltestNameComments.Text = setComments(Comments[k]);
                     break;
-                case "CENTER NUMBER":
-                    if (Comments[k].adminaction == 0)
-                        imgCentreNoNo.Visible = true;
-                    else
-                        imgCentreNoYes.Visible = true;
-                    if (Comments[k].adminaction == 0)
-                        imgptetestcenterNoNo.Visible = true;
-                    else
-                        imgptetestcenterNoYes.Visible = true;
+                case "Test Centre No tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelcenterNoNo.Visible = true;
                     else
                         imgtofelcenterNoYes.Visible = true;
-                    lblCentreNoComments.Text = setComments(Comments[k]);
-                    lblptetestcenterNoComments.Text = setComments(Comments[k]);
                     lbltofelcenterNoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Centre No ielts":
+
+                    if (Comments[k].adminaction == 0)
+                        imgCentreNoNo.Visible = true;
+                    else
+                        imgCentreNoYes.Visible = true;
+                    lblCentreNoComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Centre No pte":
+                    if (Comments[k].adminaction == 0)
+                        imgptetestcenterNoNo.Visible = true;
+                    else
+                        imgptetestcenterNoYes.Visible = true;
+                    lblptetestcenterNoComments.Text = setComments(Comments[k]);
+                    
                     break;
                 case "CANDIDATE NUMBER":
                     if (Comments[k].adminaction == 0)
@@ -3085,139 +3199,169 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgCandidateNoYes.Visible = true;
                     lblCandidateNoComments.Text = setComments(Comments[k]);
                     break;
-                case "CANDIDATE ID":
+                case "Candidate ID":
                     if (Comments[k].adminaction == 0)
                         imgCandidateIDNo.Visible = true;
                     else
                         imgCandidateIDYes.Visible = true;
                     lblCandidateIDComments.Text = setComments(Comments[k]);
                     break;
-                case "TEST DATE":
-                    if (Comments[k].adminaction == 0)
-                        imgieltsTestDateNo.Visible = true;
-                    else
-                        imgieltsTestDateYes.Visible = true;
-                    if (Comments[k].adminaction == 0)
-                        imgpteTestDateNo.Visible = true;
-                    else
-                        imgpteTestDateYes.Visible = true;
+                case "Test Date tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelTestDateNo.Visible = true;
                     else
                         imgtofelTestDateYes.Visible = true;
-                    lblieltsTestDateComments.Text = setComments(Comments[k]);
-                    lblpteTestDateComments.Text = setComments(Comments[k]);
                     lbltofelTestDateComments.Text = setComments(Comments[k]);
                     break;
-                case "TOTAL SCORE":
+                case "Test Date pte":
                     if (Comments[k].adminaction == 0)
+                        imgpteTestDateNo.Visible = true;
+                    else
+                        imgpteTestDateYes.Visible = true;
+                    lblpteTestDateComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Date ielts":
+                    if (Comments[k].adminaction == 0)
+                        imgieltsTestDateNo.Visible = true;
+                    else
+                        imgieltsTestDateYes.Visible = true;
+                    lblieltsTestDateComments.Text = setComments(Comments[k]);
+                    break;
+                case "Total Score ielts":
+                    if(Comments[k].adminaction == 0)
                         imgLanguageScoreNo.Visible = true;
                     else
                         imgLanguageScoreYes.Visible = true;
+                    lblLanguageScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Total Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteTotalScoreNo.Visible = true;
                     else
                         imgpteTotalScoreYes.Visible = true;
+                    lblpteTotalScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Total Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelTotalScoreNo.Visible = true;
                     else
                         imgtofelTotalScoreYes.Visible = true;
-                    lblLanguageScoreComments.Text = setComments(Comments[k]);
-                    lblpteTotalScoreComments.Text = setComments(Comments[k]);
                     lbltofelTotalScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "SPEAKING SCORE":
-                    if (Comments[k].adminaction == 0)
-                        imgSpeakingScoreIletNo.Visible = true;
-                    else
-                        imgSpeakingScoreIletYes.Visible = true;
+                case "Speaking Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteSpeakingScoreNo.Visible = true;
                     else
                         imgpteSpeakingScoreYes.Visible = true;
+                    lblpteSpeakingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Speaking Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelSpeakingScoreNo.Visible = true;
                     else
                         imgtofelSpeakingScoreYes.Visible = true;
-                    lblSpeakingScoreComments.Text = setComments(Comments[k]);
-                    lblpteSpeakingScoreComments.Text = setComments(Comments[k]);
                     lbltofelSpeakingScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "LISTENING SCORE":
+                case "Speaking Score ielts":
+                    if (Comments[k].adminaction == 0)
+                        imgSpeakingScoreIletNo.Visible = true;
+                    else
+                        imgSpeakingScoreIletYes.Visible = true;
+                    lblSpeakingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score ielts":
                     if (Comments[k].adminaction == 0)
                         imgListeningScoreIletNo.Visible = true;
                     else
                         imgListeningScoreIletYes.Visible = true;
+                    lblListeningScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteListeningScoreNo.Visible = true;
                     else
                         imgpteListeningScoreYes.Visible = true;
+                    lblpteListeningScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Listening Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelListeningScoreNo.Visible = true;
                     else
                         imgtofelListeningScoreYes.Visible = true;
-                    lblListeningScoreComments.Text = setComments(Comments[k]);
-                    lblpteListeningScoreComments.Text = setComments(Comments[k]);
                     lbltofelListeningScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "READING SCORE":
-                    if (Comments[k].adminaction == 0)
+                case "Reading Score ielts":
+                    if(Comments[k].adminaction == 0)
                         imgReadingScoreIeltNo.Visible = true;
                     else
                         imgReadingScoreIeltYes.Visible = true;
+                    lblReadingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Reading Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteReadingScoreNo.Visible = true;
                     else
                         imgpteReadingScoreYes.Visible = true;
+
+                    lblpteReadingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Reading Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelReadingScoreNo.Visible = true;
                     else
                         imgtofelReadingScoreYes.Visible = true;
-                    lblReadingScoreComments.Text = setComments(Comments[k]);
-                    lblpteReadingScoreComments.Text = setComments(Comments[k]);
                     lbltofelReadingScoreComments.Text = setComments(Comments[k]);
                     break;
-                case "WRITING SCORE":
-                    if (Comments[k].adminaction == 0)
-                        imgWritingScoreIletNo.Visible = true;
-                    else
-                        imgWritingScoreIletYes.Visible = true;
+                case "Writing Score pte":
                     if (Comments[k].adminaction == 0)
                         imgpteWritingScoreNo.Visible = true;
                     else
                         imgpteWritingScoreYes.Visible = true;
+                    lblpteWritingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Writing Score tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelWritingScoreNo.Visible = true;
                     else
                         imgtofelWritingScoreYes.Visible = true;
-                    lblWritingScoreComments.Text = setComments(Comments[k]);
-                    lblpteWritingScoreComments.Text = setComments(Comments[k]);
                     lbltofelWritingScoreComments.Text = setComments(Comments[k]);
                     break;
-
-                case "REGISTRATION NUMBER":
+                case "Writing Score ielts":
                     if (Comments[k].adminaction == 0)
-                        imgpteregistrationnoNo.Visible = true;
+                        imgWritingScoreIletNo.Visible = true;
                     else
-                        imgpteregistrationnoYes.Visible = true;
+                        imgWritingScoreIletYes.Visible = true;
+                    lblWritingScoreComments.Text = setComments(Comments[k]);
+                    break;
+                case "Registration Number tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelregistrationnoNo.Visible = true;
                     else
                         imgtofelregistrationnoYes.Visible = true;
-                    lblpteregistrationnoComments.Text = setComments(Comments[k]);
                     lbltofelregistrationnoComments.Text = setComments(Comments[k]);
                     break;
-                case "TEST CENTER COUNTRY":
+
+                case "Registration Number pte":
                     if (Comments[k].adminaction == 0)
-                        imgptecentercountryNo.Visible = true;
+                        imgpteregistrationnoNo.Visible = true;
                     else
-                        imgptecentercountryYes.Visible = true;
+                        imgpteregistrationnoYes.Visible = true;
+                    lblpteregistrationnoComments.Text = setComments(Comments[k]);
+
+                    break;
+                case "Test Center Country tofel":
                     if (Comments[k].adminaction == 0)
                         imgtofelcentercountryNo.Visible = true;
                     else
                         imgtofelcentercountryYes.Visible = true;
-                    lblptecentercountryComments.Text = setComments(Comments[k]);
                     lbltofelcentercountryComments.Text = setComments(Comments[k]);
+                    break;
+                case "Test Center Country pte":
+                    if (Comments[k].adminaction == 0)
+                        imgptecentercountryNo.Visible = true;
+                    else
+                        imgptecentercountryYes.Visible = true;
+                    lblptecentercountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Test Taker ID":
                     lblptetesttakerComments.Text = setComments(Comments[k]);

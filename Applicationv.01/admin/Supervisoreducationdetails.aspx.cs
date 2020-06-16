@@ -18,7 +18,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     protected List<applicanthighereducation> HigherEducation = new List<applicanthighereducation>();
     protected List<admincomments> Comments = new List<admincomments>();
-
+    public string nameofinstitue;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -38,6 +38,11 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
         }
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
+
+        nameofinstitue = Convert.ToString(Session["universityName"]);
+        int unicountryID = Convert.ToInt32(Session["universityCountry"]);
+        nameofcountry.Text = objCom.GetCountryDiscription(unicountryID);
+
         CustomControls = objCom.CustomControlist(formId, universityID);
         Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         if (CustomControls.Count > 0)
@@ -90,11 +95,11 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "HAVE YOU COMPLETED HIGH SCHOOL":
+                    case "HAVE YOU COMPLETED HIGH SCHOOL?":
                         highschool.Attributes.Add("style", "display:block;");
                         labelhighschool.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY OF HIGH SCHOOL":
+                    case "COUNTRY WHERE YOU HAVE STUDIED HIGH SCHOOL":
                         highschoolCountry.Attributes.Add("style", "display:block;");
                         labelhighschoolCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -146,9 +151,11 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         higherschoolNameOther.Attributes.Add("style", "display:block;");
                         labelhigherschoolNameOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "QUALIFICATION NAME":
+                    case "NAME OF HIGH SCHOOL QUALIFICATION":
                         highschoolQualificationtype.Attributes.Add("style", "display:block;");
                         labelhighschoolQualificationtype.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "QUALIFICATION NAME":
                         SecondaryQualificationtype.Attributes.Add("style", "display:block;");
                         labelSecondaryQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         diplomaQualificationtype.Attributes.Add("style", "display:block;");
@@ -326,7 +333,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                     //    diplomagrade.Attributes.Add("style", "display:block;");
                     //    btndiploma.Value = setInnerHtml(fields[k]);
                     //    break;
-                    case "HAVE YOU COMPLETED ANY HIGHER (UNDER GRADUATE, MASTERS OR PHD) DEGREE":
+                    case "HAVE YOU COMPLETED A DEGREE HIGHER THAN YEAR 12?":
                         higher.Attributes.Add("style", "display:block;");
                         labelhigher.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -340,7 +347,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         higherCountry.Attributes.Add("style", "display:block;");
                         labelhigherCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAMS":
+                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAM(S)?":
                         diploma.Attributes.Add("style", "display:block;");
                         labeldiploma.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -367,45 +374,84 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                                  select pInfo).FirstOrDefault();
             if (EducationInfo != null)
             {
+                //USI
+                if (EducationInfo.haveyoustudiedbefore == 1)
+                {
+                    lblstudiedbefore.Text = "Yes";
+                    HaveUSINo.Attributes.Add("style", "display:block");
+                    if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 1)
+                    {
+                        lblHaveUSINo.Text = "Yes";
+                        USINumber.Attributes.Add("style", "display:block");
+                        lblUSINumber.Text = EducationInfo.usi_number;
+                    }
+                    else if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 2)
+                        lblHaveUSINo.Text = "No";
+                    else if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 3)
+                        lblHaveUSINo.Text = "I am not sure";
+                }
+                else if (EducationInfo.haveyoustudiedbefore == 0)
+                {
+                    lblstudiedbefore.Text = "No";
+                }
+                if (EducationInfo.haveusi_number != null && (EducationInfo.haveusi_number == 2 || EducationInfo.haveusi_number == 3))
+                {
+                    haveyoustudiedininstitution.Attributes.Add("style", "display:block");
+                    if (EducationInfo.studentinstitutionID != null)
+                    {
+                        lblhaveyoustudiedininstitution.Text = "Yes";
+                        studentID.Attributes.Add("style", "display:block");
+                        lblstudentID.Text = EducationInfo.studentinstitutionID;
+                    }
+                    else
+                        lblhaveyoustudiedininstitution.Text = "No";
+
+                }
+                //
                 if (EducationInfo.ishighschooldone == 1)
                 {
                     lblhighschool.Text = "Yes";
                     BindHighSchoolDetails(EducationInfo);
-                   // higestEducation.Visible = false;
+                    // higestEducation.Visible = false;
                 }
                 else if (EducationInfo.ishighschooldone == 2)
                 {
                     lblhighschool.Text = "No- I am currently studying for my high school qualification";
                     BindHighSchoolDetails(EducationInfo);
-                  //  higestEducation.Visible = false;
+                    //  higestEducation.Visible = false;
                 }
                 else
                 {
                     lblhighschool.Text = "No- I do not have a high school qualification ";
-                   // lblhigestEducation.Text = EducationInfo.highestdegree;
+                    // lblhigestEducation.Text = EducationInfo.highestdegree;
                     HideHighSchool();
                 }
+                highschool.Attributes.Add("style", "display:block");
+                highschoolstudymode.Attributes.Add("style", "display:none");//as in student it is hidden
 
                 /// High School Details End-----
 
                 /// Secondary Details
                 /// 
-                if (EducationInfo.issecondarydone == 1)
+                if (EducationInfo.ishighschooldone == 1 || EducationInfo.ishighschooldone == 2)
                 {
-                    lblSecondary.Text = "Yes";
-                    BindSecondary(EducationInfo);
+                    if (EducationInfo.issecondarydone == 1)
+                    {
+                        lblSecondary.Text = "Yes";
+                        BindSecondary(EducationInfo);
+                    }
+                    else if (EducationInfo.issecondarydone == 2)
+                    {
+                        lblSecondary.Text = "No - I am currently still studying for my Senior Secondary";
+                        BindSecondary(EducationInfo);
+                    }
+                    else
+                    {
+                        lblSecondary.Text = "No - I do not have a Senior Secondary qualification";
+                        HideSecondary();
+                    }
+                    Secondary.Attributes.Add("style", "display:block");
                 }
-                else if (EducationInfo.issecondarydone == 2)
-                {
-                    lblSecondary.Text = "No - I am currently still studying for my Senior Secondary";
-                    BindSecondary(EducationInfo);
-                }
-                else
-                {
-                    lblSecondary.Text = "No - I do not have a Senior Secondary qualification";
-                    HideSecondary();
-                }
-
 
                 /// Secondary Details End-----
                 /// Diploma
@@ -425,8 +471,9 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                     lbldiploma.Text = "No - I do not have a Diploma/Certificate qualification";
                     HideDiploma();
                 }
+                diploma.Attributes.Add("style", "display:block");
 
-
+                higher.Attributes.Add("style", "display:block");
                 if (EducationInfo.ishighereducation == 1)
                     lblhigher.Text = "Yes";
                 else if (EducationInfo.ishighereducation == 2)
@@ -608,6 +655,8 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
             lblgradeachieved.Text = "Examination not conducted yet";
         else
             lblgradeachieved.Text = "Examination Conducted, but Result not declared";
+        if (EducationInfo.highschoolgradedeclared == 1 || EducationInfo.highschoolgradedeclared == 2)
+            ExpectedHighSchoolDategrade.Attributes.Add("style", "display:none");
         if (EducationInfo.highschoolreusltdate != null)
             lblExpectedHighSchoolDategrade.Text = Convert.ToDateTime(EducationInfo.highschoolreusltdate).ToString("yyyy-MM-dd");
         lblhighschoolverify.Text = EducationInfo.highschoolverificationname;
@@ -663,7 +712,8 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
             lblSecondarygradeachieved.Text = "Examination not conducted yet";
         else
             lblSecondarygradeachieved.Text = "Examination Conducted, but Result not declared";
-
+        if (EducationInfo.secondarygradedeclared == 1 || EducationInfo.secondarygradedeclared == 2)
+            ExpectedSecondaryDategrade.Attributes.Add("style", "display:none");
 
         lblSecondaryverify.Text = EducationInfo.secondaryverificationname;
         if (EducationInfo.secondaryverificationrelationship != null)
@@ -717,6 +767,8 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
         else
             lbldiplomagradeachieved.Text = "Examination Conducted, but Result not declared";
 
+        if (EducationInfo.diplomagradeachieved == 1 || EducationInfo.diplomagradeachieved == 2)
+            ExpectedDiplomaDategrade.Attributes.Add("style", "display:none");
 
         if (EducationInfo.diplomaresultdate != null)
             lblExpectedDiplomaDategrade.Text = Convert.ToDateTime(EducationInfo.diplomaresultdate).ToString("yyyy-MM-dd");
@@ -776,6 +828,8 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                 else
                     lblhighergradeachievedPG.Text = "Examination Conducted, but Result not declared";
 
+                if (EducationInfo[k].finalgradeacheived != 3)
+                    ExpectedHigherDategradePG.Attributes.Add("style", "display:none");
 
                 if (EducationInfo[k].resultdate != null)
                     lblExpectedHigherDategradePG.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
@@ -831,6 +885,8 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                 else
                     lblhighergradeachievedPhd.Text = "Examination Conducted, but Result not declared";
 
+                if (EducationInfo[k].finalgradeacheived == 1 || EducationInfo[k].finalgradeacheived == 2)
+                    ExpectedHigherDategradePhd.Attributes.Add("style", "display:none");
 
                 if (EducationInfo[k].resultdate != null)
                     lblExpectedHigherDategradePhd.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
@@ -886,7 +942,8 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                 else
                     lblhighergradeachieved.Text = "Examination Conducted, but Result not declared";
 
-
+                if (EducationInfo[k].finalgradeacheived == 1 || EducationInfo[k].finalgradeacheived == 2)
+                    ExpectedHigherDategrade.Attributes.Add("style", "display:none");
 
                 if (EducationInfo[k].resultdate != null)
                     lblExpectedHigherDategrade.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
@@ -942,6 +999,9 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                 else
                     lblhighergradeachievedOther.Text = "Examination Conducted, but Result not declared";
 
+                if (EducationInfo[k].finalgradeacheived == 1 || EducationInfo[k].finalgradeacheived == 2)
+                    ExpectedHigherDategradeOther.Attributes.Add("style", "display:none");
+
                 if (EducationInfo[k].resultdate != null)
                     lblExpectedHigherDategradeOther.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
                 lblhigherverify.Text = EducationInfo[k].verificationname;
@@ -955,6 +1015,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
             }
         }
     }
+
     private String setComments(dynamic obj)
     {
         return obj.comments;
@@ -966,6 +1027,46 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
+                case "Have you studied IN before?":
+                    if (Comments[k].adminaction == 0)
+                        studiedNo.Checked = true;
+                    else
+                        studiedYes.Checked = true;
+
+                    txtstudiedbefore.Text = setComments(Comments[k]);
+                    break;
+                case "Do You have an Australian  Unique Student Identifier (USI) Number?":
+                    if (Comments[k].adminaction == 0)
+                        USINumberNo.Checked = true;
+                    else
+                        USINumberYes.Checked = true;
+
+                    txtHaveUSINo.Text = setComments(Comments[k]);
+                    break;
+                case "Enter Your Australian Unique Student Identifier (USI) Number Here":
+                    if (Comments[k].adminaction == 0)
+                        USINoNo.Checked = true;
+                    else
+                        USINoYes.Checked = true;
+
+                    txtUSINumber.Text = setComments(Comments[k]);
+                    break;
+                case "Have you STUDIED at nameofinstitue before?":
+                    if (Comments[k].adminaction == 0)
+                        studiedininstitutionNo.Checked = true;
+                    else
+                        studiedininstitutionYes.Checked = true;
+
+                    txthaveyoustudiedininstitution.Text = setComments(Comments[k]);
+                    break;
+                case "Enter Your Student Number/ Student ID":
+                    if (Comments[k].adminaction == 0)
+                        studentIDNO.Checked = true;
+                    else
+                        studentIDYes.Checked = true;
+
+                    txtstudentID.Text = setComments(Comments[k]);
+                    break;
                 case "Have you completed high school":
                     if (Comments[k].adminaction == 0)
                         rblhighschoolNo.Checked = true;
@@ -1750,57 +1851,57 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
     }
     private void HideDiploma()
     {
-        diplomaCountry.Visible = false;
-        diplomastartDate.Visible = false;
-        diplomaendDate.Visible = false;
-        diplomaschoolName.Visible = false;
-        diplomaQualificationtype.Visible = false;
-        diplomastudymode.Visible = false;
-        diplomalanguage.Visible = false;
-        diplomagradetype.Visible = false;
-        diplomagradeachieved.Visible = false;
-        ExpectedDiplomaDategrade.Visible = false;
-        diplomaverify.Visible = false;
-        diplomarelation.Visible = false;
-        diplomacontactEmail.Visible = false;
-        diplomacontactMobile.Visible = false;
+        diplomaCountry.Attributes.Add("style", "display: none");
+        diplomastartDate.Attributes.Add("style", "display: none");
+        diplomaendDate.Attributes.Add("style", "display: none");
+        diplomaschoolName.Attributes.Add("style", "display: none");
+        diplomaQualificationtype.Attributes.Add("style", "display: none");
+        diplomastudymode.Attributes.Add("style", "display: none");
+        diplomalanguage.Attributes.Add("style", "display: none");
+        diplomagradetype.Attributes.Add("style", "display: none");
+        diplomagradeachieved.Attributes.Add("style", "display: none");
+        ExpectedDiplomaDategrade.Attributes.Add("style", "display: none");
+        diplomaverify.Attributes.Add("style", "display: none");
+        diplomarelation.Attributes.Add("style", "display: none");
+        diplomacontactEmail.Attributes.Add("style", "display: none");
+        diplomacontactMobile.Attributes.Add("style", "display: none");
     }
     private void HideHighSchool()
     {
 
-       
 
-        highschoolCountry.Visible = false;
-        highschoolstartDate.Visible = false;
-        highschoolendDate.Visible = false;
-        highschoolName.Visible = false;
-        highschoolQualificationtype.Visible = false;
-        highschoolstudymode.Visible = false;
-        highschoollanguage.Visible = false;
-        gradetype.Visible = false;
-        highschoolgradeachieved.Visible = false;
-        ExpectedHighSchoolDategrade.Visible = false;
-        highschoolverify.Visible = false;
-        highschoolrelation.Visible = false;
-        highschoolcontactEmail.Visible = false;
-        highschoolcontactMobile.Visible = false;
+
+        highschoolCountry.Attributes.Add("style", "display: none");
+        highschoolstartDate.Attributes.Add("style", "display: none");
+        highschoolendDate.Attributes.Add("style", "display: none");
+        highschoolName.Attributes.Add("style", "display: none");
+        highschoolQualificationtype.Attributes.Add("style", "display: none");
+        highschoolstudymode.Attributes.Add("style", "display: none");
+        highschoollanguage.Attributes.Add("style", "display: none");
+        gradetype.Attributes.Add("style", "display: none");
+        highschoolgradeachieved.Attributes.Add("style", "display: none");
+        ExpectedHighSchoolDategrade.Attributes.Add("style", "display: none");
+        highschoolverify.Attributes.Add("style", "display: none");
+        highschoolrelation.Attributes.Add("style", "display: none");
+        highschoolcontactEmail.Attributes.Add("style", "display: none");
+        highschoolcontactMobile.Attributes.Add("style", "display: none");
     }
     private void HideSecondary()
     {
-        SecondaryCountry.Visible = false;
-        SecondarystartDate.Visible = false;
-        SecondaryendDate.Visible = false;
-        SecondaryschoolName.Visible = false;
-        SecondaryQualificationtype.Visible = false;
-        Secondarystudymode.Visible = false;
-        Secondarylanguage.Visible = false;
-        Secondarygradetype.Visible = false;
-        Secondarygradeachieved.Visible = false;
-        ExpectedSecondaryDategrade.Visible = false;
-        Secondaryverify.Visible = false;
-        secondaryschoolrelation.Visible = false;
-        secondarycontactEmail.Visible = false;
-        secondarycontactMobile.Visible = false;
+        SecondaryCountry.Attributes.Add("style", "display: none");
+        SecondarystartDate.Attributes.Add("style", "display: none");
+        SecondaryendDate.Attributes.Add("style", "display: none");
+        SecondaryschoolName.Attributes.Add("style", "display: none");
+        SecondaryQualificationtype.Attributes.Add("style", "display: none");
+        Secondarystudymode.Attributes.Add("style", "display: none");
+        Secondarylanguage.Attributes.Add("style", "display: none");
+        Secondarygradetype.Attributes.Add("style", "display: none");
+        Secondarygradeachieved.Attributes.Add("style", "display: none");
+        ExpectedSecondaryDategrade.Attributes.Add("style", "display: none");
+        Secondaryverify.Attributes.Add("style", "display: none");
+        secondaryschoolrelation.Attributes.Add("style", "display: none");
+        secondarycontactEmail.Attributes.Add("style", "display: none");
+        secondarycontactMobile.Attributes.Add("style", "display: none");
     }
     private void PopulateSupervisorComments()
     {

@@ -503,28 +503,7 @@
                             <input id="txthigheststudy" runat="server" type="text" style="display: none" class="form-control" placeholder="Admin Comments">
                         </div>
                     </div>
-                </div>
-                <div class="list-group-item" id="disability" runat="server" style="display: none">
-                    <div class="form-group m-0" role="group" aria-labelledby="label-disability">
-                        <div class="form-row">
-                            <label id="labeldisability" runat="server" for="disability" class="col-md-2 col-form-label form-label">Do you have any disability, impairment, or a long term condition</label>
-                            <div class="col-md-6">
-                                <div class="prdtl-ans">
-                                    <asp:Label ID="lblDisability" runat="server"></asp:Label>
-                                </div>
-                                <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblDisabilityYes" GroupName="Disability" Text="Yes" runat="server" Checked="true"/>
-                                    <asp:RadioButton ID="rblDisabilityNo" GroupName="Disability" Text="No" runat="server" />
-                                </div>
-                                <span class="helpicon"><i id="icdisability" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="button" value="Add Remarks" id="btnDisability" />
-                                <input id="txtDisability" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div>               
                  <div class="list-group-item" role="group" id="fieldstudy" runat="server" aria-labelledby="label-fieldstudy" style="display: none">
                     <div class="form-row">
                         <label id="labelfieldstudy" runat="server" for="fieldstudy" class="col-md-2 col-form-label form-label">Completed highest study in field </label>
@@ -580,6 +559,27 @@
                             <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnhighQualificationCompleteDate" />
                                 <input id="txthighQualificationCompleteDate" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="list-group-item" id="disability" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-disability">
+                        <div class="form-row">
+                            <label id="labeldisability" runat="server" for="disability" class="col-md-2 col-form-label form-label">Do you have any disability, impairment, or a long term condition</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblDisability" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblDisabilityYes" GroupName="Disability" Text="Yes" runat="server" Checked="true"/>
+                                    <asp:RadioButton ID="rblDisabilityNo" GroupName="Disability" Text="No" runat="server" />
+                                </div>
+                                <span class="helpicon"><i id="icdisability" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" value="Add Remarks" id="btnDisability" />
+                                <input id="txtDisability" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
