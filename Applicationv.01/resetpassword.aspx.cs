@@ -16,6 +16,10 @@ public partial class Resetpassword : System.Web.UI.Page
     public string logourl = string.Empty;
     university_master university = new university_master();
     public string universityGTMCode = string.Empty;
+    bool isProfileDetailsCompletedByApplicant;
+    int isFullService;
+    bool isDeclarationCompleted;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -71,10 +75,7 @@ public partial class Resetpassword : System.Web.UI.Page
 
                 bool isDeclarationDoneByApplicant = false;
                 bool isGteDeclarationDoneByApplicant;
-                bool isProfileDetailsCompletedByApplicant;
-
-                bool isFullService;
-                bool isDeclarationCompleted;
+                
 
                 Session["LoginInfo"] = login;
                 Session["UserID"] = login.studentid;
@@ -82,13 +83,13 @@ public partial class Resetpassword : System.Web.UI.Page
                 isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(login.studentid, universityID);
                 isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
-                if (isFullService)
+                if (isFullService == 1)
                 {
                     isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(login.studentid, universityID);
                     isDeclarationCompleted = isDeclarationDoneByApplicant;
                     isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(login.studentid, universityID);
                 }
-                else
+                else if (isFullService == 0)
                 {
                     isDeclarationCompleted = isGteDeclarationDoneByApplicant;
                     isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(login.studentid, universityID);

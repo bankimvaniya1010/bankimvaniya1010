@@ -298,11 +298,12 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <select id="subscription" name="gtesubscription" runat="server" class="form-control">
-                                        <option value="" disabled="disabled">Please Select</option>
-                                        <option value="0">GTE Service</option>
-                                        <option value="1">Full Service</option>
-                                    </select>
+                                    <asp:DropDownList id="subscription" name="gtesubscription" runat="server" class="form-control">
+                                        <asp:ListItem value="" disabled="disabled">Please Select</asp:ListItem>
+                                        <asp:ListItem value="0">GTE Service</asp:ListItem>
+                                        <asp:ListItem value="1">Full Service</asp:ListItem>
+                                        <asp:ListItem value="2">Examination Module</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -528,7 +529,17 @@
                                 </div>
                             </div>
                         </div>
-                    </div>       
+                    </div>  
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label form-label">Exanination Module Instruction </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <asp:TextBox ID="txtexamInstruction" class="form-control" TextMode="MultiLine" runat="server" Style="width:300px; height:140px" ></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
@@ -620,6 +631,7 @@
             var proctoename1 = $('#<%=txtproctorname1.ClientID%>').val();
             var proctorno1 = $('#<%=txtproctorno1.ClientID%>').val();
             var proctoremail1 = $('#<%=txtproctoremail1.ClientID%>').val();
+            var examInstruction = $('#<%=txtexamInstruction.ClientID%>').val();
 
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
@@ -782,6 +794,10 @@
             }
             else if (proctoremail1 == "") {
                 alert("Please enter Proctor 1 email ID.");
+                return false;
+            }
+            else if (examInstruction == "") {
+                alert("Please enter Exam Instruction.");
                 return false;
             }
 
