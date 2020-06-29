@@ -38,10 +38,11 @@ public partial class login : System.Web.UI.Page
         universityGTMCode = universityDetails.university_gtm_code;
 
         int isfullservice = (int)Session["isfullservice"];
-        if (isfullservice == 1)
-            isfullservicethenlbl = " APPLICATION CENTER";
-        else if (isfullservice == 0)
+        
+        if (isfullservice == 0)
             isfullservicethenlbl = " GTE Online Center (GOC)";
+        else
+            isfullservicethenlbl = " APPLICATION CENTER";
 
     }
 

@@ -54,9 +54,9 @@ public partial class gte_questions2 : System.Web.UI.Page
             else
             {
                 dynamic applicantdetails;
-                var isFullService = (bool)Session["FullService"];
+                int isFullService = (int)Session["FullService"];
 
-                if (isFullService)
+                if (isFullService == 1)
                 {
                     applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
 
@@ -76,7 +76,7 @@ public partial class gte_questions2 : System.Web.UI.Page
                             ViewState["homeCountry"] = string.Empty;
                     }
                 }
-                else
+                else 
                 {
                     applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
                     if (applicantdetails != null)

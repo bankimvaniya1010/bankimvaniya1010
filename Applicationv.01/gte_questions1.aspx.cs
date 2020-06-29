@@ -56,9 +56,9 @@ public partial class gte_questions1 : System.Web.UI.Page
             else
             {
                 dynamic applicantdetails;
-                var isFullService = (bool)Session["FullService"];
+                int isFullService = (int)Session["FullService"];
 
-                if (isFullService)
+                if (isFullService == 1)
                     applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
                 else
                     applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
@@ -75,7 +75,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                         ViewState["eduCity"] = institutionDetails.cityName;
                     }
 
-                    if (isFullService)
+                    if (isFullService == 1)
                     {
                         if (applicantdetails.issameaspostal == 1)
                         {
@@ -90,7 +90,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                         else
                             ViewState["homeCountry"] = string.Empty;
                     }
-                    else
+                    else 
                         ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residencecountry);
 
                     SetQuestionList(answeredQuestion);

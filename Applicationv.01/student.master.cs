@@ -73,10 +73,11 @@ public partial class admin : System.Web.UI.MasterPage
         fontColor = (string)Session["universityfontColor"];
         headercolor = (string)Session["universityheadercolor"];
         int isfullservice = (int)Session["isfullservice"];
-        if (isfullservice == 1)
-            isfullservicethenlbl.Text = "APPLICATION CENTER";
-        else if (isfullservice == 0)
+        
+        if (isfullservice == 0)
             isfullservicethenlbl.Text = "GTE Online Center (GOC)";
+        else
+            isfullservicethenlbl.Text = "APPLICATION CENTER";
     }
 
     private void populateSelectedLanguage()
