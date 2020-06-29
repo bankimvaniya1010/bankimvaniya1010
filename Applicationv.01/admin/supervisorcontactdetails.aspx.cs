@@ -44,9 +44,9 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
         {
             if (CustomControls.Count > 0)
                 objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
-            SetAdminComments();
-            PopulatePersonalInfo();
             SetControlsUniversitywise();
+            SetAdminComments();
+            PopulatePersonalInfo();            
             PopulateSupervisorComments();
         }
     }
@@ -228,7 +228,7 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
                         phone.Attributes.Add("style", "display:block;");
                         labelphone.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE?":
                         skype.Attributes.Add("style", "display:block;");
                         labelskype.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -236,11 +236,11 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
                         skypeDesc.Attributes.Add("style", "display:block;");
                         labelskypeDesc.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP?":
                         whatsapp.Attributes.Add("style", "display:block;");
                         labelwhatsapp.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?":
                         whatsappHave.Attributes.Add("style", "display:block;");
                         labelwhatsappHave.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -252,7 +252,7 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
                         postal.Attributes.Add("style", "display:block;");
                         labelpostal.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "IS YOUR POSTAL ADDRESS SAME AS YOUR CURRENT RESIDENTIAL ADDRESS":
+                    case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                         address.Attributes.Add("style", "display:block;");
                         labeladdress.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -318,7 +318,7 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
                         rblHomePhoneYes.Checked = true;
                     lblHomePhoneComments.Text = setComments(Comments[k]);
                     break;
-                case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                case "WOULD YOU LIKE TO CONNECT VIA SKYPE?":
                     if (Comments[k].adminaction == 0)
                         rblSkypeNo.Checked = true;
                     else
@@ -332,14 +332,14 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
                         rblSkypeDescriptionYes.Checked = true;
                     lblSkypeDescriptionComments.Text = setComments(Comments[k]);
                     break;
-                case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP?":
                     if (Comments[k].adminaction == 0)
                         rblWhatsappNo.Checked = true;
                     else
                         rblWhatsappYes.Checked = true;
                     lblWhatsappComments.Text = setComments(Comments[k]);
                     break;
-                case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?":
                     if (Comments[k].adminaction == 0)
                         rblWhatsapphaveNo.Checked = true;
                     else
@@ -360,7 +360,7 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
                         rblPostalAddressYes.Checked = true;
                     lblPostalAddressComments.Text = setComments(Comments[k]);
                     break;
-                case "Is your Postal Address same as your current residential address":
+                case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                     if (Comments[k].adminaction == 0)
                         rblAddressNo.Checked = true;
                     else

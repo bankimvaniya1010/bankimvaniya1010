@@ -275,6 +275,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="list-group-item" id="addressHistory" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-prevaddress">
                         <asp:HiddenField ID="hidAddressHistory" runat="server" Value="0" />
@@ -287,26 +288,35 @@
                         <asp:HiddenField ID="hidAddressState" runat="server" Value="" />
                         <asp:HiddenField ID="hidAddressPostalCode" runat="server" Value="" />
                         <asp:HiddenField ID="hidAddressCountry" runat="server" Value="" />
+                          <%if (lstOfResidences.Count > 0)
+                    {
+                        for (var i = 0; i < lstOfResidences.Count; i++)
+                        { %>
                         <div class="form-row">
                             <label id="lblPrevAddress" runat="server" for="prevaddress" class="col-md-3 col-form-label form-label">Previous Address History Details</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblPrevAddStartDate" runat="server"></asp:Label>
-                                <asp:Label ID="lblPrevAddEndDate" runat="server"></asp:Label>
-                                <asp:Label ID="lblprevAddress1" runat="server"></asp:Label>
-                                <asp:Label ID="lblprevAddress2" runat="server"></asp:Label>
-                                <asp:Label ID="lblprevAddress3" runat="server"></asp:Label>
-                                <asp:Label ID="lblprevAddressCity" runat="server"></asp:Label>
-                                <asp:Label ID="lblprevAddressState" runat="server"></asp:Label>
-                                <asp:Label ID="lblprevAddressPostalCode" runat="server"></asp:Label>
-                                <asp:Label ID="lblPrevAddressCountry" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblAddressHistoryYes" GroupName="AddressHistory" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblAddressHistoryNo" GroupName="AddressHistory" Text="No" runat="server" />
-                                <span class="helpicon"><i id="iAddressHistory" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <span ID="lblPrevAddStartDate"><%=Convert.ToDateTime(lstOfResidences[i].residencestartdate).ToString("yyyy-MM-dd") %></span>
+                                    <span ID="lblPrevAddEndDate" ><%=Convert.ToDateTime(lstOfResidences[i].residenceenddate).ToString("yyyy-MM-dd") %></span>
+                                    <span ID="lblprevAddress1" ><%=lstOfResidences[i].residenceaddress1 %></span>
+                                    <span ID="lblprevAddress2" ><%=lstOfResidences[i].residenceaddress2 %></span>
+                                    <span ID="lblprevAddress3" ><%=lstOfResidences[i].residenceaddress3 %></span>
+                                    <span ID="lblprevAddressCity"><%=lstOfResidences[i].residentialcity%></span>
+                                    <span ID="lblprevAddressState" ><%=lstOfResidences[i].residentialstate%></span>
+                                    <span ID="lblprevAddressPostalCode" ><%=lstOfResidences[i].residencepostcode %></span>
+                                    <asp:Label ID="lblPrevAddressCountry" runat="server"></asp:Label>
+                                </div>
+                                 <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblAddressHistoryYes" GroupName="AddressHistory" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblAddressHistoryNo" GroupName="AddressHistory" Text="No" runat="server" />
+                                    <span class="helpicon"><i id="iAddressHistory" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnAddressHistory" />
                                 <input id="txtAddressHistory" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
+                  <%}}%>
                         </div>
                         <div id="container"></div>
 
