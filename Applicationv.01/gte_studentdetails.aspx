@@ -438,7 +438,7 @@
             }
         }
         $('#ContentPlaceHolder1_txtdob').flatpickr({       
-            dateFormat: 'Y-m-d', defaultDate: "", altInput: true, altFormat: 'd/m/Y'
+            dateFormat: 'Y-m-d', defaultDate: "", altInput: true, altFormat: 'd/m/Y',maxDate:"today"
         });
               
         $('#ContentPlaceHolder1_txtmarriagedob').flatpickr({

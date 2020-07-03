@@ -86,6 +86,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     hidCityField.Value = Convert.ToString(existingUninversity.cityid);
                     bindCityDropdown(existingUninversity.countryid);                    
                     ddlCity.Items.FindByValue(existingUninversity.cityid.ToString()).Selected = true;
+                    subscription.Items.FindByValue(existingUninversity.full_service.ToString()).Selected = true;
                     //ddlCity.SelectedIndex = Convert.ToInt32(existingUninversity.cityid);
                     ddlCountry.SelectedIndex = existingUninversity.countryid;
                     txtUniAcceptedMaxAge.Value = Convert.ToString(existingUninversity.acceptedmaxage);
@@ -111,16 +112,16 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtproctorname1.Text = existingUninversity.proctor1_name;
                     txtproctorno1.Text = existingUninversity.proctor1_contactno;
                     txtproctoremail1.Text = existingUninversity.proctor1_email;
-
-                    foreach (ListItem item in subscription.Items)
-                    {
-                        string value = existingUninversity.full_service ? "1" : "0";
-                        if (item.Value == value)
-                        {
-                            item.Selected = true;
-                            break;
-                        }
-                    }
+                    txtexamInstruction.Text  = existingUninversity.examInstruction;
+                    //foreach (ListItem item in subscription.Items)
+                    //{
+                    //    string value = Convert.ToString(existingUninversity.full_service) ? "1" : "0";
+                    //    if (item.Value == value)
+                    //    {
+                    //        item.Selected = true;
+                    //        break;
+                    //    }
+                    //}
                     txtNotesDisclaimer.Value = existingUninversity.notes_disclaimer;
                     imagepath =  webURL + "/Docs/" + existingUninversity.universityid + "/" + existingUninversity.logo;
                 }
@@ -188,7 +189,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
             universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
             universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
-            universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
+            universityObj.full_service = Convert.ToInt32(subscription.SelectedValue);
             universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();            
             universityObj.headerstripcolor = txtstripcolor.Value.Trim();
             universityObj.verticalnavigationcolor = txtverticalnavigationcolor.Value.Trim();
@@ -208,6 +209,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.proctor1_name = txtproctorname1.Text.Trim();
             universityObj.proctor1_contactno = txtproctorno1.Text.Trim();
             universityObj.proctor1_email = txtproctoremail1.Text.Trim();
+            universityObj.examInstruction = txtexamInstruction.Text.Trim();
 
             if (logo.HasFile)  //fileupload control contains a file  
             {

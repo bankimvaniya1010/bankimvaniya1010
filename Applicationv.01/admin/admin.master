@@ -181,6 +181,30 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="sidebar-menu-item" id="exammodule_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#exammodule_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                 Exam Module
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="exammodule_menu">
+                                    <li class="sidebar-menu-item" id="exammodule">
+                                        <a class="sidebar-menu-button" href="list_exampaper.aspx">
+                                            <span class="sidebar-menu-text">Create Exam Paper</span>
+                                        </a>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="examshedule">
+                                        <a class="sidebar-menu-button" href="exam_scheduleList.aspx">
+                                            <span class="sidebar-menu-text">Exam Schedule</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="examsassign">
+                                        <a class="sidebar-menu-button" href="exam_assignList.aspx">
+                                            <span class="sidebar-menu-text">Assign Exam</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="sidebar-menu-item" id="payment_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#payment_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -672,12 +696,35 @@
 
  <script>
         $(document).ready(function () {
+            var fullservice = '<%=fullservice %>';
             var roleName = '<%=roleName %>';
             var superviser = roleName.toLowerCase() == "university supervisor";
             var universityadmin = roleName.toLowerCase() == "university admin";
             var uniadminstaff1 = roleName.toLowerCase() == "university admin staff 1";
             var uniadminstaff2 = roleName.toLowerCase() == "university admin staff 2";
 
+            if (fullservice == 2) {
+                $("#role_list").show();
+                $("#city_list").hide();
+                $("#institution_list").hide();
+                $("#CustomizeForms_list").hide();
+                $("#FaqManage_list").hide();
+                $("#tooltipslisting").hide();
+                $("#admintooltipslisting").hide();
+                $("#Costcalculator_list").hide();
+                $("#tutorial_list").hide();
+                $("#gte_list").hide();
+                $("#Scholarships_list").hide();
+                $("#managelanguages_list").hide();
+                $("#course_list").hide();
+                $("#managetooltips_list").hide();
+                $("#careeroutcomes_list").hide();
+                $("#payment_list").hide();
+                $("#managemeeting_schedule_list").hide();
+                $("#manageapplicantions_list").hide();
+            }
+            else
+                $("#exammodule_list").hide();
             if (superviser) {
                 $("#role_list").hide();
                 $("#city_list").hide();

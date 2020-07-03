@@ -16,6 +16,9 @@ public partial class login : System.Web.UI.Page
     public string logourl = string.Empty;
     public string universityGTMCode = string.Empty;
     public string isfullservicethenlbl = string.Empty;
+    bool isProfileDetailsCompletedByApplicant;
+    int isFullService;
+    bool isDeclarationCompleted;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -34,11 +37,12 @@ public partial class login : System.Web.UI.Page
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
         universityGTMCode = universityDetails.university_gtm_code;
 
-        bool isfullservice = (bool)Session["isfullservice"];
-        if (isfullservice)
-            isfullservicethenlbl = " APPLICATION CENTER";
-        else
+        int isfullservice = (int)Session["isfullservice"];
+        
+        if (isfullservice == 0)
             isfullservicethenlbl = " GTE Online Center (GOC)";
+        else
+            isfullservicethenlbl = " APPLICATION CENTER";
 
     }
 
@@ -99,10 +103,7 @@ public partial class login : System.Web.UI.Page
 
                         bool isDeclarationDoneByApplicant = false;
                         bool isGteDeclarationDoneByApplicant;
-                        bool isProfileDetailsCompletedByApplicant;
-
-                        bool isFullService;
-                        bool isDeclarationCompleted;
+                        
 
                         pnl_warning.Visible = false;
                         Session["isDomesticStudent"] = chkUser.isDomesticStudent;
@@ -112,13 +113,13 @@ public partial class login : System.Web.UI.Page
                         isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid,universityID);
                         isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
-                        if (isFullService)
+                        if (isFullService == 1)
                         {
                             isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
                             isDeclarationCompleted = isDeclarationDoneByApplicant;
                             isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
                         }
-                        else
+                        else if (isFullService == 0)
                         {
                             isDeclarationCompleted = isGteDeclarationDoneByApplicant;
                             isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(chkUser.studentid, universityID);

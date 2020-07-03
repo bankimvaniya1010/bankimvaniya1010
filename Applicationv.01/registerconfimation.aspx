@@ -68,7 +68,7 @@
                             If an email from us is not in your Inbox, please check your 'Junk Mail' or 'Spam Folder' as it may have been redirected by your email service provider.
                         </p>                        
                         <p>
-                            To login to <%=universityName %> – <%=fullservicelbl %>, click <a href="login.aspx">here</a>.
+                            To login to <%=universityName %> – <%=fullservicelbl %>, <a href="login.aspx" target="_blank">click here</a>.
                         </p>                       
 
                     </div>

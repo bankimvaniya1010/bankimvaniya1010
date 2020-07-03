@@ -49,8 +49,8 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             else
             {
                 var details = new gte_applicantdetails();
-                var isFullService = (bool)Session["FullService"];
-                if (isFullService)
+                int isFullService = (int)Session["FullService"];
+                if (isFullService == 1)
                 {
                     var applicant_details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
                     var application_details = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID && x.preferenceid.Value == 1).FirstOrDefault();
@@ -65,7 +65,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                         details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value.ToString() : "1";
                     }
                 }
-                else
+                else if (isFullService == 0)
                     details = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
 
                 if (details.highestqualificationfield != null)

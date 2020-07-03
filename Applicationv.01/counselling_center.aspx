@@ -37,6 +37,12 @@
                     <script type="text/javascript" src="https://cdn.oncehub.com/mergedjs/so.js"></script>
                     <!-- ScheduleOnce embed END -->
                     <%} %>
+                    <%else
+                        {%>
+                    <label> Not Set By Institution</label>
+
+                        <%}
+                            %>
                 </div>
                 <div class="col-md-4">
                     <div class="banImg-wrp">

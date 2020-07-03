@@ -72,7 +72,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
                 universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
                 universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
-                universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
+                universityObj.full_service = Convert.ToInt32(subscription.SelectedValue);
                 universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
                 universityObj.logo = "";
                 universityObj.headerstripcolor = headerstripcolor.Value.Trim();
@@ -93,6 +93,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.proctor1_name = txtproctorname1.Text.Trim();
                 universityObj.proctor1_contactno = txtproctorno1.Text.Trim();
                 universityObj.proctor1_email = txtproctoremail1.Text.Trim();
+                universityObj.examInstruction = txtexamInstruction.Text.Trim();
 
                 var url = txthosturl.Value.Trim();
                 if(url.ToLower().Contains("www."))

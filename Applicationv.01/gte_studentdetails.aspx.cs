@@ -36,8 +36,8 @@ public partial class gte_studentdetails : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
-        var isFullService = (bool)Session["FullService"];
-        if (isFullService)
+        var isFullService = (int)Session["FullService"];
+        if (isFullService == 1)
             Response.Redirect(webURL + "default.aspx", true);
 
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];

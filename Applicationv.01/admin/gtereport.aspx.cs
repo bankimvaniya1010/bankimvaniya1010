@@ -63,7 +63,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                 _universityName = universityDetails.university_name;
 
                 lblapplicantid.Text = Convert.ToString(ApplicantID);
-                if (universityDetails.full_service)
+                if (universityDetails.full_service == 1)
                 {
                     var applicantdoc = db.applicantdocumentmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && x.documentname == "Profile Photo for Application Centre").Select(x=>x.filename).FirstOrDefault();
                     if (applicantdoc != null)
@@ -86,7 +86,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                     if(coursedetails!= null && coursedetails.course != null)
                         lblcoursename.Text = objCom.GetCourseName(Convert.ToInt32(coursedetails.course));
                 }
-                else
+                else if (universityDetails.full_service == 0)
                 {
                     var gte_applicantdetails = db.gte_applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).FirstOrDefault();
                     if (gte_applicantdetails != null && gte_applicantdetails.profilepicturepath != "")
