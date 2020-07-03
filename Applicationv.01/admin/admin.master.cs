@@ -11,6 +11,8 @@ public partial class admin_admin : System.Web.UI.MasterPage
     int adminID = 0 , roleid = 0;    
     string webURL = String.Empty;
     public string roleName = string.Empty;
+    public string fullservice = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -20,7 +22,7 @@ public partial class admin_admin : System.Web.UI.MasterPage
         adminID = Convert.ToInt32(Session["UserID"].ToString());
         string name = db.adminusers.Where(x => x.adminid == adminID).Select(x => x.name).FirstOrDefault();       
         lbladminname.Text = name;
-        
+        fullservice = Convert.ToString(Session["isfullservice"]);
         roleName = Utility.GetRoleName();
     }
 
