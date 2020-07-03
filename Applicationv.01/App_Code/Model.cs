@@ -1550,6 +1550,7 @@ public partial class exam_answersheet
     public Nullable<int> exampapersheetID { get; set; }
     public string anshwesheetpath { get; set; }
     public string response_time { get; set; }
+    public string extra_anshwesheetpath { get; set; }
 }
 
 public partial class exam_assign
@@ -1566,7 +1567,7 @@ public partial class exam_assign
     public string proctorpasskey { get; set; }
     public Nullable<bool> is_expired { get; set; }
     public Nullable<bool> is_verified { get; set; }
-    public Nullable<bool> is_attemptall { get; set; }
+    public string status { get; set; }
 }
 
 public partial class exam_master
