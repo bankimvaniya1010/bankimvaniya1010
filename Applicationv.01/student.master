@@ -59,6 +59,25 @@
         })(window, document, 'script', 'dataLayer', '<%=Session["universityGoogleTagID"]%>');
     </script>
     <!-- End Google Tag Manager -->
+    <script>
+            var uniFontColor = '<%=fontColor%>';
+            var uniheadercolor = '<%=headercolor%>'
+            var uniVerticalnavcolor = '<%=verticalnavigationcolor%>'
+            // setter fontcolor
+            document.documentElement.style.setProperty('--font-color', uniFontColor);
+            // getter
+            document.documentElement.style.getPropertyValue('--font-color');
+
+            // setter header color
+            document.documentElement.style.setProperty('--header-color', uniheadercolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--header-color');
+
+            // setter vertical nav color
+            document.documentElement.style.setProperty('--background-color', uniVerticalnavcolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--background-color');
+    </script>
 </head>
 
 <body class=" layout-fluid">
@@ -190,6 +209,11 @@
                                             <li class="sidebar-menu-item" id="updatepreferences">
                                                 <a class="sidebar-menu-button"  href="updateprefernces.aspx">
                                                     <span class="sidebar-menu-text">Update Preferences </span>
+                                                </a>
+                                            </li>
+                                             <li class="sidebar-menu-item" id="studedetails" style="display:none">
+                                                <a class="sidebar-menu-button"  href="student_details.aspx">
+                                                    <span class="sidebar-menu-text">Student Details</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -533,6 +557,20 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="sidebar-menu-item" id="exam_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#exam_menu">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/Support services.png" /></i>
+                                          Exam Module
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="exam_menu">
+                                            <li class="sidebar-menu-item" id="exammodule">
+                                                <a class="sidebar-menu-button" href="exam_module.aspx">
+                                                    <span class="sidebar-menu-text">Exam Paper</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -648,126 +686,150 @@
             });
         }
         $(document).ready(function () {
-            var fullService = ("<%=Session["FullService"]%>".toLowerCase() == "true");
+            var fullService = ("<%=Session["FullService"]%>");
             var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
             var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");            
             var GteDeclarationDoneByApplicant = ("<%=Session["GteDeclarationDoneByApplicant"]%>".toLowerCase() == "true");
+            var UniversityID = '<%= Utility.GetUniversityId()%>';
 
-            if (!declarationCompleted) { 
-                $("#gtepart1").hide();
-                $("#gtepart2").hide();
-                //$("#gtevideoquestion").hide();
-                $("#gtestudent_sop").hide();
-                $("#gte_downlload_your_sop").hide();
-                $("#download_gtereport").hide();
-                $("#gtedocument_list").hide();
-                $("#gtedocmentupload").hide();
-                $("#schedulecounselling").show();                
-                $("#admissionsOffer_list").hide();
-                $("#studentapplication_list").hide();
-                $("#visaapplication_list").hide();
-                $("#feepayment_list").hide();
-                $("#viewCOE_list").hide();
-                $("#predeparture_list").hide();
-                $("#personal_menu_list").hide();
-                $("#studentapplication_list").hide();
-                $("#supportservice_list").hide();
-                $("#studentapplication_finances").hide();
-                $("#admissionsOffer_list").hide();
-                if (!fullService) {
-                    $("#gtestudentdetail").show();
-                    $("#preliminary_list").hide();
-                    $("#personal_menu_list").hide();
-                    $("#studentapplication_list").hide();
-                }
-                else {
-                    $("#gteevalution_list").hide();
-                    $("#gtestudentdetail").hide();
-                    $("#preliminary_list").show();
-                }
+            if (fullService == 0) //hide when its gte service
+                $("#counsellingcenter_list").hide();
 
-                //if (isDomesticStudent)
-                //    $("#Gte_list").hide();
-            }
-            else {
-                $("#schedulecounselling").show();
-                $("#admissionsOffer_list").show();
-                $("#studentapplication_list").show();
-                $("#visaapplication_list").show();
-                $("#feepayment_list").show();
-                $("#viewCOE_list").show();
-                $("#predeparture_list").show();
-                $("#supportservice_list").show();
-                $("#gtepart1").show();
-                $("#gtepart2").show();
-                //$("#gtevideoquestion").show();
-                $("#gtestudent_sop").show();
-                $("#gte_downlload_your_sop").show();
-                $("#download_gtereport").show();
-                $("#gtedocmentupload").show();
-                $("#gtedocument_list").show();
-                $("#studentapplication_finances").show();
-                if (!fullService) {
-                    $("#gtestudentdetail").show();
-                    $("#preliminary_list").hide();
-                    $("#personal_menu_list").hide();
-                    $("#studentapplication_list").hide();
-
-                    $("#profile_list").hide();
-                    $("#studentapplication_finances").hide();
-                    $("#admissionsOffer_list").hide();
-                    $("#viewCOE_list").hide();
-                    $("#visaapplication_list").hide();
-                    $("#feepayment_list").hide();
-                    $("#predeparture_list").hide();
-                    $("#supportservice_list").hide();
-                }
-                else {
-                    $("#gtestudentdetail").hide();
-                    $("#preliminary_list").show();
-                    $("#personal_menu_list").show();   
-                    $("#studentapplication_list").show();
-               
-                }
-
-                if (!studentDetailsCompleted) {
-                    $("#gteevalution_list").hide();
+            if (fullService == 1 || fullService == 0) {
+                $("#exam_list").hide();
+                if (!declarationCompleted) {
                     $("#gtepart1").hide();
                     $("#gtepart2").hide();
                     //$("#gtevideoquestion").hide();
                     $("#gtestudent_sop").hide();
                     $("#gte_downlload_your_sop").hide();
                     $("#download_gtereport").hide();
-                    $("#gtedocmentupload").hide();
                     $("#gtedocument_list").hide();
+                    $("#gtedocmentupload").hide();
+                    $("#schedulecounselling").show();
+                    $("#admissionsOffer_list").hide();
+                    $("#studentapplication_list").hide();
+                    $("#visaapplication_list").hide();
+                    $("#feepayment_list").hide();
+                    $("#viewCOE_list").hide();
+                    $("#predeparture_list").hide();
+                    $("#personal_menu_list").hide();
+                    $("#studentapplication_list").hide();
+                    $("#supportservice_list").hide();
+                    $("#studentapplication_finances").hide();
+                    $("#admissionsOffer_list").hide();
+                    if (fullService == 0) {
+                        $("#gtestudentdetail").show();
+                        $("#preliminary_list").hide();
+                        $("#personal_menu_list").hide();
+                        $("#studentapplication_list").hide();
+                    }
+                    else if (fullService == 1) {
+                        $("#gteevalution_list").hide();
+                        $("#gtestudentdetail").hide();
+                        $("#preliminary_list").show();
+                    }
 
+                    //if (isDomesticStudent)
+                    //    $("#Gte_list").hide();
                 }
-                if (fullService) {
-                    if (studentDetailsCompleted) {
-                        if (!GteDeclarationDoneByApplicant) {
-                            $("#gteevalution_list").hide();
-                            $("#gtepart1").hide();
-                            $("#gtepart2").hide();
-                            $("#gtestudent_sop").hide();
-                            $("#gte_downlload_your_sop").hide();
-                            $("#download_gtereport").hide();
-                            $("#gtedocmentupload").hide();
-                            $("#gtedocument_list").hide();
+                else {
+                    $("#schedulecounselling").show();
+                    $("#admissionsOffer_list").show();
+                    $("#studentapplication_list").show();
+                    $("#visaapplication_list").show();
+                    $("#feepayment_list").show();
+                    $("#viewCOE_list").show();
+                    $("#predeparture_list").show();
+                    $("#supportservice_list").show();
+                    $("#gtepart1").show();
+                    $("#gtepart2").show();
+                    //$("#gtevideoquestion").show();
+                    $("#gtestudent_sop").show();
+                    $("#gte_downlload_your_sop").show();
+                    $("#download_gtereport").show();
+                    $("#gtedocmentupload").show();
+                    $("#gtedocument_list").show();
+                    $("#studentapplication_finances").show();
+                    if (fullService == 0) {
+                        $("#gtestudentdetail").show();
+                        $("#preliminary_list").hide();
+                        $("#personal_menu_list").hide();
+                        $("#studentapplication_list").hide();
+
+                        $("#profile_list").hide();
+                        $("#studentapplication_finances").hide();
+                        $("#admissionsOffer_list").hide();
+                        $("#viewCOE_list").hide();
+                        $("#visaapplication_list").hide();
+                        $("#feepayment_list").hide();
+                        $("#predeparture_list").hide();
+                        $("#supportservice_list").hide();
+                    }
+                    else if (fullService == 1) {
+                        $("#gtestudentdetail").hide();
+                        $("#preliminary_list").show();
+                        $("#personal_menu_list").show();
+                        $("#studentapplication_list").show();
+
+                    }
+
+                    if (!studentDetailsCompleted) {                       
+                        $("#gtepart1").hide();
+                        $("#gtepart2").hide();
+                        //$("#gtevideoquestion").hide();
+                        $("#gtestudent_sop").hide();
+                        $("#gte_downlload_your_sop").hide();
+                        $("#download_gtereport").hide();
+                        $("#gtedocmentupload").hide();
+                        $("#gtedocument_list").hide();
+                        if (fullService == 1)
+                             $("#gteevalution_list").hide();
+                    }
+                    if (fullService == 1) {
+                        if (studentDetailsCompleted) {
+                            if (!GteDeclarationDoneByApplicant) {
+                                $("#gteevalution_list").hide();
+                                $("#gtepart1").hide();
+                                $("#gtepart2").hide();
+                                $("#gtestudent_sop").hide();
+                                $("#gte_downlload_your_sop").hide();
+                                $("#download_gtereport").hide();
+                                $("#gtedocmentupload").hide();
+                                $("#gtedocument_list").hide();
+                            }
                         }
                     }
-                }
 
-                if (isDomesticStudent) {
-                    $("#Gte_list").hide();
-                    $("#gteevalution_list").hide();
-                    $("#gtedocument_list").hide();
-                    $("#visaapplication_list").hide();
-                    $("#predeparture_list").hide();
+                    if (isDomesticStudent) {
+                        $("#Gte_list").hide();
+                        $("#gteevalution_list").hide();
+                        $("#gtedocument_list").hide();
+                        $("#visaapplication_list").hide();
+                        $("#predeparture_list").hide();
+                    }
+
                 }
-               
             }
-
+            else if (fullService == 2) {
+                $("#studedetails").show();
+                $("#schedulecounselling").hide();
+                $("#counsellingcenter_list").hide();
+                $("#preliminary_list").hide();
+                $("#personal_menu_list").hide();
+                $("#studentapplication_list").hide();
+                $("#studentapplication_finances").hide();
+                $("#Gte_list").hide();
+                $("#gteevalution_list").hide();
+                $("#gtedocument_list").hide();
+                $("#admissionsOffer_list").hide();
+                $("#viewCOE_list").hide();
+                $("#visaapplication_list").hide();
+                $("#feepayment_list").hide();
+                $("#predeparture_list").hide();
+                $("#supportservice_list").hide();
+            }
             var questioncompleted = '<%=questioncompleted%>';
             var isclarificationquestionset = '<%=isclarificationquestionset%>'
             if (questioncompleted == 0 || isclarificationquestionset == 0)
@@ -784,24 +846,7 @@
                     dataType: "json",
                     data: "{ 'tempP': '"+selectedvalue+"' }",
                 });
-            });
-            var uniFontColor = '<%=fontColor%>';
-            var uniheadercolor = '<%=headercolor%>'
-            var uniVerticalnavcolor = '<%=verticalnavigationcolor%>'
-            // setter fontcolor
-            document.documentElement.style.setProperty('--font-color', uniFontColor);
-            // getter
-            document.documentElement.style.getPropertyValue('--font-color');
-
-            // setter header color
-            document.documentElement.style.setProperty('--header-color', uniheadercolor);
-            // getter
-            document.documentElement.style.getPropertyValue('--header-color');
-
-            // setter vertical nav color
-            document.documentElement.style.setProperty('--background-color', uniVerticalnavcolor);
-            // getter
-            document.documentElement.style.getPropertyValue('--background-color');
+            });            
         });
      
     </script>

@@ -887,21 +887,21 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
-                case "EMAIL":
+                case "Email":
                     if (Comments[k].adminaction == 0)
                         imgEmailNo.Visible = true;
                     else
                         imgEmailYes.Visible = true;
                     lblEmailComments.Text = setComments(Comments[k]);
                     break;
-                case "MOBILE/CELLULAR NUMBER":
+                case "Mobile/Cellular Number":
                     if (Comments[k].adminaction == 0)
                         imgMobileNo.Visible = true;
                     else
                         imgMobileYes.Visible = true;
                     lblMobileComments.Text = setComments(Comments[k]);
                     break;
-                case "HOME PHONE":
+                case "Home phone":
                     if (Comments[k].adminaction == 0)
                         imgHomePhoneNo.Visible = true;
                     else
@@ -915,7 +915,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgSkypeYes.Visible = true;
                     lblSkypeComments.Text = setComments(Comments[k]);
                     break;
-                case "SKYPE ID":
+                case "Skype ID":
                     if (Comments[k].adminaction == 0)
                         imgSkypeDescriptionNo.Visible = true;
                     else
@@ -936,14 +936,14 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgWhatsapphaveYes.Visible = true;
                     lblWhatsapphaveComments.Text = setComments(Comments[k]);
                     break;
-                case "WHATSAPP NUMBER":
+                case "Whatsapp Number":
                     if (Comments[k].adminaction == 0)
                         imgwhatsappDescNo.Visible = true;
                     else
                         imgwhatsappDescYes.Visible = true;
                     lblWhastappDesriptionComments.Text = setComments(Comments[k]);
                     break;
-                case "POSTAL ADDRESS":
+                case "Postal Address":
                     if (Comments[k].adminaction == 0)
                         imgPostalAddressNo.Visible = true;
                     else
@@ -957,35 +957,35 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgAddressYes.Visible = true;
                     lblAddressComments.Text = setComments(Comments[k]);
                     break;
-                case "CURRENT RESIDENTIAL ADDRESS":
+                case "Current Residential  Address":
                     if (Comments[k].adminaction == 0)
                         imgResidentialNo.Visible = true;
                     else
                         imgResidentialYes.Visible = true;
                     lblResidentialComments.Text = setComments(Comments[k]);
                     break;
-                case "GUARDIAN FULL NAME":
+                case "GUARDIAN Full Name":
                     if (Comments[k].adminaction == 0)
                         imgNominneNameNo.Visible = true;
                     else
                         imgNominneNameYes.Visible = true;
                     lblNominneNameComments.Text = setComments(Comments[k]);
                     break;
-                case "RELATIONSHIP WITH GUARDIAN":
+                case "Relationship with GUARDIAN":
                     if (Comments[k].adminaction == 0)
                         imgNomineeRealtionNo.Visible = true;
                     else
                         imgNomineeRealtionYes.Visible = true;
                     lblNomineeRealtionComments.Text = setComments(Comments[k]);
                     break;
-                case "EMAIL OF GUARDIAN":
+                case "Email of GUARDIAN":
                     if (Comments[k].adminaction == 0)
                         imgNomineeEmailNo.Visible = true;
                     else
                         imgNomineeEmailYes.Visible = true;
                     lblNomineeEmailComments.Text = setComments(Comments[k]);
                     break;
-                case "MOBILE/CELLULAR NUMBER OF GUARDIAN":
+                case "Mobile/Cellular Number of GUARDIAN":
                     if (Comments[k].adminaction == 0)
                         imgNomineeMobileNo.Visible = true;
                     else

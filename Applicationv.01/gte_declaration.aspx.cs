@@ -89,8 +89,8 @@ public partial class gte_declaration : System.Web.UI.Page
             db.SaveChanges();
 
             Session["GteDeclarationDoneByApplicant"] = true;
-            var isFullService = (bool)Session["FullService"];
-            if (isFullService)
+            int isFullService = (int)Session["FullService"];
+            if (isFullService == 1)
             {
                 var declarationCompleted = (bool)Session["DeclarationDoneByApplicant"];
                 Session["DeclarationCompleted"] = true && declarationCompleted;

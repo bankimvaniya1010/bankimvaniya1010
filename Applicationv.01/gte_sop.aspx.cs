@@ -105,8 +105,8 @@ public partial class gte_sop : System.Web.UI.Page
                 }
                 else
                 {
-                    var isFullService = (bool)Session["FullService"];
-                    if (isFullService)
+                    var isFullService = (int)Session["FullService"];
+                    if (isFullService == 1)
                     {
                         applicantdetails = new gte_applicantdetails();
                         var details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
@@ -151,7 +151,7 @@ public partial class gte_sop : System.Web.UI.Page
                         else if (applicationDetails == null)
                             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Application missing. Please complete Student Application section before proceeding.');window.location='" + webURL + "default.aspx';", true);
                     }
-                    else
+                    else if (isFullService == 0)
                     {
                         applicantdetails = db.gte_applicantdetails.AsNoTracking().Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
                         //int courseId = Convert.ToInt32(applicantdetails.coursename);

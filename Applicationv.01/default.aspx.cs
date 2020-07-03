@@ -28,11 +28,11 @@ public partial class _Default : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
 
         Session["Applicant"] = UserID;
-        //Session["isfullservice"] = false;
-        bool isfullservice = (bool)Session["isfullservice"];
-        if (isfullservice)
+        
+        int isfullservice = (int)Session["isfullservice"];
+        if (isfullservice == 1)
             isfullservicethenlbl.Text = "APPLICATION CENTER";
-        else
+        else if (isfullservice == 0)
             isfullservicethenlbl.Text = "GTE ONLINE CENTER (GOC)";
 
         if (!IsPostBack)

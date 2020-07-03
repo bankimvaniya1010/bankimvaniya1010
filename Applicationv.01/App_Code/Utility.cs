@@ -42,7 +42,7 @@ public static class Utility
                 string inBoundUrl = HttpContext.Current.Request.Url.Host.ToLower().ToString();
                 if (inBoundUrl.ToUpper().Contains("www."))
                     inBoundUrl = inBoundUrl.Replace("www.", string.Empty);
-                var details = db.university_master.Where(x => x.hosturl == inBoundUrl).Select(x => new { x.universityid, x.university_name,x.university_gtm_code,x.full_service, x.countryid }).FirstOrDefault();
+                var details = db.university_master.Where(x => x.hosturl == inBoundUrl).Select(x => new { x.universityid, x.university_name,x.university_gtm_code,x.full_service, x.countryid ,x.headerstripcolor}).FirstOrDefault();
                 if (details != null)
                 {
                     universityId = details.universityid;
@@ -52,6 +52,7 @@ public static class Utility
                         HttpContext.Current.Session["universityGoogleTagID"] = details.university_gtm_code;
                         HttpContext.Current.Session["isfullservice"] = details.full_service;
                         HttpContext.Current.Session["universityCountry"] = details.countryid;
+                        HttpContext.Current.Session["headercolor"] = details.headerstripcolor;
                         return universityId.Value;
                     }
                     else
