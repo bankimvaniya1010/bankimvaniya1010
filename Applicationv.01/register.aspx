@@ -54,7 +54,7 @@
                             <img src="<%=logourl %>" class="logo-img img-fluid"/>
                         </div>
                         <h4 class="card-title">Student Sign Up</h4>
-                        <p class="card-subtitle">Create a new account</p>
+                        <p class="card-subtitle">Create your account</p>
                     </div>
                     <div class="card-body">
 
@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <label class="form-label" for="email">Email address:</label>
                             <div class="input-group input-group-merge">
-                                <input id="email" type="text" runat="server" class="form-control form-control-prepended" placeholder="Your personal* email address">
+                                <input id="email" type="text" runat="server" class="form-control form-control-prepended" placeholder="Your personal email address">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-envelope"></span>
@@ -85,7 +85,7 @@
                                 </div>
                             </div>                           
                         </div>
-                        <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="btn btn-primary btn-block mb-3" OnClick="btnSignUp_Click" />
+                        <asp:Button ID="buttonlogin" runat="server" Text="Sign Up" CssClass="btn btn-primary btn-block mb-3" OnClick="btnSignUp_Click" target="_blank" />
                          
                         <div class="form-group text-center mb-0">
                             <div class="custom-control custom-checkbox">
@@ -93,13 +93,13 @@
                                 <label for="terms" class="custom-control-label text-black-70">I agree to the <a href="#" class="text-black-70" style="text-decoration: underline;">Terms of Use</a></label>
                             </div>
                             <br>
-                             <div style="font-size: small;">
+                             <%--<div style="font-size: small;">
                                 <label> * Please use your personal email address rather than your work or school email address because this is the email address we will use to communicate with you. So, your email address needs to be one that you will always have access to even when you leave your current employer or school.</label>
-                            </div>
+                            </div>--%>
                         </div>
 
                     </div>
-                    <div class="card-footer text-center text-black-50">Already signed up? <a href="login.aspx">Login</a></div>
+                    <div class="card-footer text-center text-black-50">Already signed up? <a href="login.aspx" target="_blank">Login</a></div>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
 
     <script language="javascript" type="text/javascript">
         $(function () {
-            $('#btnSignUp').click(function () {
+            $('#buttonlogin').click(function () {
                 var summary = "";
                 summary += isvalidname();
                 summary += isvalidemail();
@@ -184,6 +184,12 @@
                 return ("Please check terms & conditions " + "\n");
             }
         }
+         var uniheadercolor = '<%=Session["headercolor"]%>';           
+        // setter header color
+        document.documentElement.style.setProperty('--header-color', uniheadercolor);
+        // getter
+        document.documentElement.style.getPropertyValue('--header-color');
+            
     </script>
 
 </body>

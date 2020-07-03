@@ -75,7 +75,7 @@
                             </div>
                         </div>
 
-                        <asp:Button ID="btn_login" runat="server" Text="Send Password" CssClass="btn btn-primary btn-block" OnClick="btn_login_Click"  />
+                        <asp:Button ID="buttonlogin" runat="server" Text="Send Password" CssClass="btn btn-primary btn-block" OnClick="btn_login_Click"  />
                          <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                     </form>
                 </div>
@@ -114,7 +114,15 @@
         <iframe src="https://www.googletagmanager.com/ns.html?id=<%=universityGTMCode%>" height="0" width="0" style="display: none; visibility: hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-
+    <script>
+         var uniheadercolor = '<%=Session["headercolor"]%>';           
+           
+            // setter header color
+            document.documentElement.style.setProperty('--header-color', uniheadercolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--header-color');
+            
+    </script>
 </body>
 
 </html>

@@ -59,6 +59,25 @@
         })(window, document, 'script', 'dataLayer', '<%=Session["universityGoogleTagID"]%>');
     </script>
     <!-- End Google Tag Manager -->
+    <script>
+            var uniFontColor = '<%=fontColor%>';
+            var uniheadercolor = '<%=headercolor%>'
+            var uniVerticalnavcolor = '<%=verticalnavigationcolor%>'
+            // setter fontcolor
+            document.documentElement.style.setProperty('--font-color', uniFontColor);
+            // getter
+            document.documentElement.style.getPropertyValue('--font-color');
+
+            // setter header color
+            document.documentElement.style.setProperty('--header-color', uniheadercolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--header-color');
+
+            // setter vertical nav color
+            document.documentElement.style.setProperty('--background-color', uniVerticalnavcolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--background-color');
+    </script>
 </head>
 
 <body class=" layout-fluid">
@@ -190,6 +209,11 @@
                                             <li class="sidebar-menu-item" id="updatepreferences">
                                                 <a class="sidebar-menu-button"  href="updateprefernces.aspx">
                                                     <span class="sidebar-menu-text">Update Preferences </span>
+                                                </a>
+                                            </li>
+                                             <li class="sidebar-menu-item" id="studedetails" style="display:none">
+                                                <a class="sidebar-menu-button"  href="student_details.aspx">
+                                                    <span class="sidebar-menu-text">Student Details</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -667,8 +691,13 @@
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
             var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");            
             var GteDeclarationDoneByApplicant = ("<%=Session["GteDeclarationDoneByApplicant"]%>".toLowerCase() == "true");
+            var UniversityID = '<%= Utility.GetUniversityId()%>';
+
+            if (fullService == 0) //hide when its gte service
+                $("#counsellingcenter_list").hide();
 
             if (fullService == 1 || fullService == 0) {
+                $("#exam_list").hide();
                 if (!declarationCompleted) {
                     $("#gtepart1").hide();
                     $("#gtepart2").hide();
@@ -746,8 +775,7 @@
 
                     }
 
-                    if (!studentDetailsCompleted) {
-                        $("#gteevalution_list").hide();
+                    if (!studentDetailsCompleted) {                       
                         $("#gtepart1").hide();
                         $("#gtepart2").hide();
                         //$("#gtevideoquestion").hide();
@@ -756,7 +784,8 @@
                         $("#download_gtereport").hide();
                         $("#gtedocmentupload").hide();
                         $("#gtedocument_list").hide();
-
+                        if (fullService == 1)
+                             $("#gteevalution_list").hide();
                     }
                     if (fullService == 1) {
                         if (studentDetailsCompleted) {
@@ -784,7 +813,7 @@
                 }
             }
             else if (fullService == 2) {
-                
+                $("#studedetails").show();
                 $("#schedulecounselling").hide();
                 $("#counsellingcenter_list").hide();
                 $("#preliminary_list").hide();
@@ -817,24 +846,7 @@
                     dataType: "json",
                     data: "{ 'tempP': '"+selectedvalue+"' }",
                 });
-            });
-            var uniFontColor = '<%=fontColor%>';
-            var uniheadercolor = '<%=headercolor%>'
-            var uniVerticalnavcolor = '<%=verticalnavigationcolor%>'
-            // setter fontcolor
-            document.documentElement.style.setProperty('--font-color', uniFontColor);
-            // getter
-            document.documentElement.style.getPropertyValue('--font-color');
-
-            // setter header color
-            document.documentElement.style.setProperty('--header-color', uniheadercolor);
-            // getter
-            document.documentElement.style.getPropertyValue('--header-color');
-
-            // setter vertical nav color
-            document.documentElement.style.setProperty('--background-color', uniVerticalnavcolor);
-            // getter
-            document.documentElement.style.getPropertyValue('--background-color');
+            });            
         });
      
     </script>

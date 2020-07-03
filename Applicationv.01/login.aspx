@@ -136,7 +136,7 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <asp:Button ID="btn_login" runat="server" Text="Log In" CssClass="btn btn-primary btn-block" OnClick="btn_login_Click" />
+                                <asp:Button ID="buttonlogin" runat="server" Text="Log In" CssClass="margn btn btn-primary btn-block" OnClick="btn_login_Click" margin="0px"/>
                                  <asp:Label ID="lblMessage" runat="server"></asp:Label>
                             </div>
                             <div class="text-center">
@@ -180,6 +180,15 @@
             <iframe src="https://www.googletagmanager.com/ns.html?id=<%=universityGTMCode%>" height="0" width="0" style="display: none; visibility: hidden"></iframe>
         </noscript>
         <!-- End Google Tag Manager (noscript) -->
-
+        <script>
+           
+            var uniheadercolor = '<%=Session["headercolor"]%>';           
+           
+            // setter header color
+            document.documentElement.style.setProperty('--header-color', uniheadercolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--header-color');
+            
+        </script>
     </body>
     </html>
