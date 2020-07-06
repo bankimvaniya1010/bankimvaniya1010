@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -21,6 +24,8 @@ public partial class view_exampaper : System.Web.UI.Page
     public int allpapersCount, allpapersheetscount;
     public string exammarks;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
+    public DateTime examdate_time;
+    public int exampaper_id;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -41,6 +46,9 @@ public partial class view_exampaper : System.Web.UI.Page
         }
         else
             assignDate = Convert.ToDateTime(Request.QueryString["assignDate"]);
+
+        exampaper_id = exampaperid;
+        examdate_time = assignDate;
 
         var exammaster = db.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == exampaperid).FirstOrDefault();
 
@@ -113,7 +121,9 @@ public partial class view_exampaper : System.Web.UI.Page
                                  id= em.id,
                                  questionpaperID = em.exampapersid,
                                  questionpaper = webURL + "/Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/" + em.exampaper_path,
-
+                                 extrasheetpath = webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/ExtraSheet/" + em.extrasheetpath,
+                                 audiovideofilepath = webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/AnyFile/" + em.audiovideofilepath,
+                                 fileinstruction = em.fileinstruction,
                              }).ToList();
 
             allpapersCount = allpapers.Count;
@@ -222,7 +232,7 @@ public partial class view_exampaper : System.Web.UI.Page
                 lblCompleted.Text = "Thank you for answering all papersheet.";
                 //Session.Remove("totalResponseTime");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('Thank you for answering .');window.location='" + Request.ApplicationPath + "exam_module.aspx';", true);
+                        "alert('Thank you for answering .');window.location='" + Request.ApplicationPath + "exammodule.aspx';", true);
             }
         }
         catch (Exception ex) {
@@ -247,11 +257,34 @@ public partial class view_exampaper : System.Web.UI.Page
                 db.exam_assign.Add(objexam_assign);
             db.SaveChanges();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('You have been Disqualified');window.location='" + Request.ApplicationPath + "exam_module.aspx';", true);
+                        "alert('Your exam have been disqualified');window.location='" + Request.ApplicationPath + "exammodule.aspx';", true);
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string Saveresponse(int exampaper_id, string date, int applicantid ,DateTime examdate_time)
+    {
+        GTEEntities db1 = new GTEEntities();
+        int universityID1 = Utility.GetUniversityId();
+
+        var mode = "new";
+        exam_assign objexam_assign = new exam_assign();
+        var data = db1.exam_assign.Where(x => x.applicantid == applicantid && x.universityID == universityID1 && x.exampapersid == exampaper_id && x.exam_datetime == examdate_time).FirstOrDefault();
+
+        if (data != null)
+        {
+            mode = "update";
+            objexam_assign = data;
+        }
+        objexam_assign.status = "Expired";
+        if(mode=="new")
+            db1.exam_assign.Remove(objexam_assign);
+        db1.SaveChanges();
+        return JsonConvert.SerializeObject(exampaper_id);
     }
 }

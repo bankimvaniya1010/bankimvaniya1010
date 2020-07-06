@@ -111,7 +111,7 @@
                                                                 <td>
                                                                     <asp:Label ID="lblSubject" runat="server" Text='<%#Eval("papersheetID") %>' Font-Bold="true" />
                                                                 </td>
-                                                                <td>
+                                                                <td style="visibility:visible">
                                                                     <a href="<%#Eval("exampaper_path") %>" target="_blank">View this document</a>                                                                    
                                                                 </td>
                                                                  <td>

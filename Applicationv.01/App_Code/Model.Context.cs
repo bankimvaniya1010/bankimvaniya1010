@@ -92,6 +92,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<educationverificationcontactmaster> educationverificationcontactmaster { get; set; }
     public virtual DbSet<entertainment> entertainment { get; set; }
     public virtual DbSet<exam_answersheet> exam_answersheet { get; set; }
+    public virtual DbSet<exam_applicantdetail> exam_applicantdetail { get; set; }
     public virtual DbSet<exam_assign> exam_assign { get; set; }
     public virtual DbSet<exam_master> exam_master { get; set; }
     public virtual DbSet<exam_schedule> exam_schedule { get; set; }

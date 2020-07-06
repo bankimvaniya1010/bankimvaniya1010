@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="exam_module.aspx.cs" Inherits="exam_module"  MasterPageFile="~/student.master"%>
+﻿  <%@ Page Language="C#" AutoEventWireup="true" CodeFile="exammodule.aspx.cs" Inherits="exammodule" MasterPageFile="~/student.master"%>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -22,7 +22,7 @@
                 <br/>
                    <div id="emptyChoicesDiv" runat="server" class="card" visible="false">
                        <div class="card-body">
-                           <asp:Label ID="lblEmptyList" runat="server" Text=""> No Exam Are Schedule By Institution.</asp:Label>
+                           <asp:Label ID="lblEmptyList" runat="server" Text=""> No exam are schedule by institution.</asp:Label>
                        </div>
                    </div>
                 <div class="card" id="coeCard" runat="server">
@@ -36,9 +36,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="choice" class="col-form-label form-label" style="margin-right: 60%;">Exam Name : <%# Eval("exam_name") %></label>
-                                        <div style:'<%# Eval("status") == null ? "visibility: visible;": "visibility:hidden;"  %>'>
-                                        <label for="choice" class="col-form-label form-label"> <a href="<%# Eval("exampage_link") %>" >View more</a></label>
-                                            </div>
+                                        
+                                        <label for="choice" class="col-form-label form-label"  style="<%# Eval("status") == null ? "visibility: visible;": "visibility:hidden;"  %>"> <a href="<%# Eval("exampage_link") %>" >View more</a></label>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label for="choice" class="col-form-label form-label">Date : <%# Eval("exam_datetime") %></label>

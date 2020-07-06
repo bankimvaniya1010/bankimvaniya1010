@@ -49,6 +49,23 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
+                                            <div class="form-group row" id="extrafiledocument">
+                                                <label for="avatar" class="col-sm-4 col-form-label form-label">Exam related Documents </label>
+
+                                                <div class="col-sm-8">
+                                                    <div class="media align-items-center">
+                                                        <div class="media-body">
+                                                            <div class="custom-file" style="width: auto;">
+                                                                <asp:Label runat="server" ID="lblinstruction"><%# Eval("fileinstruction") %></asp:Label><br/>
+                                                                <a href="<%# Eval("audiovideofilepath") %>" target="_blank">audiovideofilepath</a>
+                                                                
+                                                                
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="form-group row">
                                                 <label for="avatar" class="col-sm-4 col-form-label form-label">Answer sheet</label>
 
@@ -117,7 +134,10 @@
             $('#exammodule').addClass('active');
         });
         
-       
+        var applicantid = '<%=HttpContext.Current.Session["UserID"]%>';
+        var exampaper_id = '<%= exampaper_id%>';
+        var examdate_time = '<%= examdate_time%>';
+
         var hms = '<%=Session["totalResponseTime"]%>';   // your input string       
         //Convert hh:mm:ss string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
         var secondsS;
@@ -129,7 +149,9 @@
             secondsS = hms * 60;
         let time = secondsS;
         const countdownEl = document.getElementById('countdown');
+
         setInterval(updateCountdown, 1000);
+
         function updateCountdown() {
             const minutes = Math.floor(time / 60);
             let seconds = time % 60;
@@ -138,14 +160,27 @@
             countdownEl.innerHTML = `${minutes}:${seconds}`;            
             time--;
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);	
+
             if (countdownEl.innerHTML == '10:00') {
                 alert("only 10 min remaining . ");
                 return false;
-            }
-            else if (countdownEl.innerHTML == '00:00') {
-                alert("Exam time exhausted");//save to db that paper time exhausted 
-               // window.location = '/exam_module.aspx';
-                return false;
+            }            
+            else if (countdownEl.innerHTML == '00:00')
+            {  
+                $.ajax({
+                    type: "POST",
+                    url: "view_exampaper.aspx/Saveresponse",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json", 
+                    data: "{'exampaper_id': '" + exampaper_id + "','applicantid': '" + applicantid + "', 'examdate_time': '" + examdate_time + "'}",
+                    success: function (result) {
+                    if (result) {                            
+                        alert("Exam time exhausted");
+                        var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                        location.replace(hostName + "exammodule.aspx");
+                        }
+                    }                        
+                });
             }
             else
                 return true;

@@ -1342,6 +1342,32 @@
           <Property Name="response_time" Type="varchar" MaxLength="50" />
           <Property Name="extra_anshwesheetpath" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="exam_applicantdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="firstname" Type="varchar" MaxLength="200" />
+          <Property Name="middlename" Type="varchar" MaxLength="200" />
+          <Property Name="lastname" Type="varchar" MaxLength="200" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
+          <Property Name="contactno" Type="varchar" MaxLength="200" />
+          <Property Name="dateofbirth" Type="datetime" Precision="0" />
+          <Property Name="profilephoto" Type="varchar" MaxLength="200" />
+          <Property Name="countryof_citizenship" Type="int" />
+          <Property Name="countryof_birth" Type="int" />
+          <Property Name="countryof_residence" Type="int" />
+          <Property Name="idproofId" Type="int" />
+          <Property Name="idproofNumber" Type="varchar" MaxLength="50" />
+          <Property Name="copyofidproof" Type="varchar" MaxLength="100" />
+          <Property Name="institutionId" Type="int" />
+          <Property Name="campusId" Type="int" />
+          <Property Name="studentid" Type="varchar" MaxLength="100" />
+          <Property Name="classId" Type="int" />
+          <Property Name="groupId" Type="int" />
+        </EntityType>
         <EntityType Name="exam_assign">
           <Key>
             <PropertyRef Name="assignid" />
@@ -4092,6 +4118,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="educationverificationcontactmaster" EntityType="Self.educationverificationcontactmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="entertainment" EntityType="Self.entertainment" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="exam_answersheet" EntityType="Self.exam_answersheet" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="exam_applicantdetail" EntityType="Self.exam_applicantdetail" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="exam_assign" EntityType="Self.exam_assign" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="exam_master" EntityType="Self.exam_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="exam_schedule" EntityType="Self.exam_schedule" Schema="GTE" store:Type="Tables" />
@@ -4804,6 +4831,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="educationverificationcontactmaster" EntityType="GTEModel.educationverificationcontactmaster" />
           <EntitySet Name="entertainment" EntityType="GTEModel.entertainment" />
           <EntitySet Name="exam_answersheet" EntityType="GTEModel.exam_answersheet" />
+          <EntitySet Name="exam_applicantdetail" EntityType="GTEModel.exam_applicantdetail" />
           <EntitySet Name="exam_assign" EntityType="GTEModel.exam_assign" />
           <EntitySet Name="exam_master" EntityType="GTEModel.exam_master" />
           <EntitySet Name="exam_schedule" EntityType="GTEModel.exam_schedule" />
@@ -6871,6 +6899,32 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="anshwesheetpath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="response_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="extra_anshwesheetpath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="exam_applicantdetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="firstname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="middlename" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="contactno" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="dateofbirth" Type="DateTime" />
+          <Property Name="profilephoto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="countryof_citizenship" Type="Int32" />
+          <Property Name="countryof_birth" Type="Int32" />
+          <Property Name="countryof_residence" Type="Int32" />
+          <Property Name="idproofId" Type="Int32" />
+          <Property Name="idproofNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="copyofidproof" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="institutionId" Type="Int32" />
+          <Property Name="campusId" Type="Int32" />
+          <Property Name="studentid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="classId" Type="Int32" />
+          <Property Name="groupId" Type="Int32" />
         </EntityType>
         <EntityType Name="exam_assign">
           <Key>
@@ -11116,6 +11170,33 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityID" ColumnName="universityID" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="answesheetid" ColumnName="answesheetid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="exam_applicantdetail">
+            <EntityTypeMapping TypeName="GTEModel.exam_applicantdetail">
+              <MappingFragment StoreEntitySet="exam_applicantdetail">
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="studentid" ColumnName="studentid" />
+                <ScalarProperty Name="campusId" ColumnName="campusId" />
+                <ScalarProperty Name="institutionId" ColumnName="institutionId" />
+                <ScalarProperty Name="copyofidproof" ColumnName="copyofidproof" />
+                <ScalarProperty Name="idproofNumber" ColumnName="idproofNumber" />
+                <ScalarProperty Name="idproofId" ColumnName="idproofId" />
+                <ScalarProperty Name="countryof_residence" ColumnName="countryof_residence" />
+                <ScalarProperty Name="countryof_birth" ColumnName="countryof_birth" />
+                <ScalarProperty Name="countryof_citizenship" ColumnName="countryof_citizenship" />
+                <ScalarProperty Name="profilephoto" ColumnName="profilephoto" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="contactno" ColumnName="contactno" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
