@@ -1256,6 +1256,12 @@ public partial class clarificationquestionsmaster
     public virtual ICollection<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
 }
 
+public partial class class_master
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
 public partial class controlmaster
 {
     public int id { get; set; }
@@ -1293,6 +1299,20 @@ public partial class countrywisealternateidproofmaster
 
     public virtual alternateidproofmaster alternateidproofmaster { get; set; }
     public virtual countriesmaster countriesmaster { get; set; }
+}
+
+public partial class countrywiseclassmaster
+{
+    public int id { get; set; }
+    public Nullable<int> classId { get; set; }
+    public Nullable<int> countryID { get; set; }
+}
+
+public partial class countrywisegroupmaster
+{
+    public int id { get; set; }
+    public Nullable<int> groupId { get; set; }
+    public Nullable<int> countryID { get; set; }
 }
 
 public partial class course_campus_mapping
@@ -1553,6 +1573,31 @@ public partial class exam_answersheet
     public string extra_anshwesheetpath { get; set; }
 }
 
+public partial class exam_applicantdetail
+{
+    public int id { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string firstname { get; set; }
+    public string middlename { get; set; }
+    public string lastname { get; set; }
+    public string email { get; set; }
+    public string contactno { get; set; }
+    public Nullable<System.DateTime> dateofbirth { get; set; }
+    public string profilephoto { get; set; }
+    public Nullable<int> countryof_citizenship { get; set; }
+    public Nullable<int> countryof_birth { get; set; }
+    public Nullable<int> countryof_residence { get; set; }
+    public Nullable<int> idproofId { get; set; }
+    public string idproofNumber { get; set; }
+    public string copyofidproof { get; set; }
+    public Nullable<int> institutionId { get; set; }
+    public Nullable<int> campusId { get; set; }
+    public string studentid { get; set; }
+    public Nullable<int> classId { get; set; }
+    public Nullable<int> groupId { get; set; }
+}
+
 public partial class exam_assign
 {
     public int assignid { get; set; }
@@ -1722,6 +1767,12 @@ public partial class formmaster
 }
 
 public partial class grademaster
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
+public partial class group_master
 {
     public int id { get; set; }
     public string description { get; set; }
