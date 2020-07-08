@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="countrywise_groupmapping.aspx.cs" Inherits="admin_countrywise_groupmapping" MasterPageFile="~/admin/admin.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="universitywiseclassmapping.aspx.cs" Inherits="admin_universitywiseclassmapping" MasterPageFile="~/admin/admin.master"%>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="head">
      
@@ -8,9 +8,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-                <li class="breadcrumb-item"><a href="alternateIdproofcountrywiselisting.aspx"> Country Wise Group Mapping </a></li>
+                <li class="breadcrumb-item"><a href="alternateIdproofcountrywiselisting.aspx"> Country Wise Class Mapping </a></li>
         </ol>
-        <h1 class="h2">Country Wise Group Mapping </h1>
+        <h1 class="h2">Country Wise Class Mapping </h1>
 
         <div class="card">
            <div class="tab-content card-body">
@@ -18,18 +18,18 @@
 
 
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">country</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Institution</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlcountry" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlcountry_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlinstitution" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlinstitution_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                      <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Groups</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Class</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -60,8 +60,8 @@
         function validateForm()
         {
             var flag = false; 
-            if ($("#<%=ddlcountry.ClientID%>").val() == "0")
-                alert("Please Select country");                       
+            if ($("#<%=ddlinstitution.ClientID%>").val() == "0")
+                alert("Please Select institution");                       
             else 
                 flag = true;           
 

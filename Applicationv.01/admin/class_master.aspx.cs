@@ -131,7 +131,7 @@ public partial class admin_class_master : System.Web.UI.Page
             int ID = Convert.ToInt32(gvIDProof.DataKeys[e.RowIndex].Values[0]);
             class_master objID = db.class_master.Where(b => b.id == ID).First();
             var existsIndetails = db.exam_applicantdetail.Where(d => d.classId == ID).ToList();
-            var existsIncountrywisemapping = db.countrywiseclassmaster.Where(c => c.classId == ID).ToList();
+            var existsIncountrywisemapping = db.institutionwiseclassmaster.Where(c => c.classId == ID).ToList();
             if (existsIndetails.Count == 0 && existsIncountrywisemapping.Count == 0)
             {
                 db.class_master.Remove(objID);

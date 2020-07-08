@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_countrywise_classmapping : System.Web.UI.Page
+public partial class admin_universitywisegroupmapping : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
@@ -18,15 +18,15 @@ public partial class admin_countrywise_classmapping : System.Web.UI.Page
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
         {
-            objcom.BindCountries(ddlcountry);
-            Bindclass();
+            objcom.BindCountries(ddlinstitution);
+            BindGroup();
         }
     }
-    private void Bindclass()
+    private void BindGroup()
     {
         try
         {
-            var idproof = db.class_master.ToList();
+            var idproof = db.group_master.ToList();
             chkIdProof.DataSource = idproof;
             chkIdProof.DataTextField = "description";
             chkIdProof.DataValueField = "id";
@@ -42,9 +42,9 @@ public partial class admin_countrywise_classmapping : System.Web.UI.Page
     {
         try
         {
-            var countryid = Convert.ToInt32(ddlcountry.SelectedValue);
-            IEnumerable<countrywiseclassmaster> list = db.countrywiseclassmaster.Where(x => x.countryID == countryid).ToList();
-            db.countrywiseclassmaster.RemoveRange(list);
+            var institutionID = Convert.ToInt32(ddlinstitution.SelectedValue);
+            IEnumerable<institutionwisegroupmaster> list = db.institutionwisegroupmaster.Where(x => x.institutionID == institutionID).ToList();
+            db.institutionwisegroupmaster.RemoveRange(list);
             db.SaveChanges();
 
             foreach (ListItem li in chkIdProof.Items)
@@ -52,10 +52,10 @@ public partial class admin_countrywise_classmapping : System.Web.UI.Page
                 if (li.Selected)
                 {
                     int proofId = Convert.ToInt16(li.Value);
-                    countrywiseclassmaster mappingObj = new countrywiseclassmaster();
-                    mappingObj.countryID = countryid;
-                    mappingObj.classId = proofId;
-                    db.countrywiseclassmaster.Add(mappingObj);
+                    institutionwisegroupmaster mappingObj = new institutionwisegroupmaster();
+                    mappingObj.institutionID = institutionID;
+                    mappingObj.groupId = proofId;
+                    db.institutionwisegroupmaster.Add(mappingObj);
                     db.SaveChanges();
                     lblMessage.Text = "Date saved successfully";
                     lblMessage.Visible = true;
@@ -69,14 +69,14 @@ public partial class admin_countrywise_classmapping : System.Web.UI.Page
         }
     }
 
-    protected void ddlcountry_SelectedIndexChanged(object sender, EventArgs e)
+    protected void ddlinstitution_SelectedIndexChanged(object sender, EventArgs e)
     {
-        var countryid = Convert.ToInt32(ddlcountry.SelectedValue);
-        Bindclass();
-        var countrywise = db.countrywiseclassmaster.Where(x => x.countryID == countryid).ToList();
-        for (int k = 0; k < countrywise.Count; k++)
+        var institutionid = Convert.ToInt32(ddlinstitution.SelectedValue);
+        BindGroup();
+        var institutionidwise = db.institutionwisegroupmaster.Where(x => x.institutionID == institutionid).ToList();
+        for (int k = 0; k < institutionidwise.Count; k++)
         {
-            chkIdProof.Items.FindByValue(countrywise[k].classId.ToString()).Selected = true;
+            chkIdProof.Items.FindByValue(institutionidwise[k].groupId.ToString()).Selected = true;
         }
     }
 }

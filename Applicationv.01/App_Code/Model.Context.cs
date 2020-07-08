@@ -75,8 +75,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<controlmaster> controlmaster { get; set; }
     public virtual DbSet<countriesmaster> countriesmaster { get; set; }
     public virtual DbSet<countrywisealternateidproofmaster> countrywisealternateidproofmaster { get; set; }
-    public virtual DbSet<countrywiseclassmaster> countrywiseclassmaster { get; set; }
-    public virtual DbSet<countrywisegroupmaster> countrywisegroupmaster { get; set; }
     public virtual DbSet<course_campus_mapping> course_campus_mapping { get; set; }
     public virtual DbSet<course_dates> course_dates { get; set; }
     public virtual DbSet<course_defermentdates> course_defermentdates { get; set; }
@@ -131,6 +129,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gtepreliminarysection_applicantanswers> gtepreliminarysection_applicantanswers { get; set; }
     public virtual DbSet<health_insurance> health_insurance { get; set; }
     public virtual DbSet<inferencemaster> inferencemaster { get; set; }
+    public virtual DbSet<institutionwiseclassmaster> institutionwiseclassmaster { get; set; }
+    public virtual DbSet<institutionwisegroupmaster> institutionwisegroupmaster { get; set; }
     public virtual DbSet<majordiscipline_master> majordiscipline_master { get; set; }
     public virtual DbSet<manageaccomdationplan> manageaccomdationplan { get; set; }
     public virtual DbSet<manageentertainment> manageentertainment { get; set; }

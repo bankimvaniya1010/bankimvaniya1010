@@ -1301,20 +1301,6 @@ public partial class countrywisealternateidproofmaster
     public virtual countriesmaster countriesmaster { get; set; }
 }
 
-public partial class countrywiseclassmaster
-{
-    public int id { get; set; }
-    public Nullable<int> classId { get; set; }
-    public Nullable<int> countryID { get; set; }
-}
-
-public partial class countrywisegroupmaster
-{
-    public int id { get; set; }
-    public Nullable<int> groupId { get; set; }
-    public Nullable<int> countryID { get; set; }
-}
-
 public partial class course_campus_mapping
 {
     public int id { get; set; }
@@ -2126,6 +2112,20 @@ public partial class inferencemaster
 {
     public int inferenceid { get; set; }
     public string description { get; set; }
+}
+
+public partial class institutionwiseclassmaster
+{
+    public int id { get; set; }
+    public Nullable<int> classId { get; set; }
+    public Nullable<int> institutionID { get; set; }
+}
+
+public partial class institutionwisegroupmaster
+{
+    public int id { get; set; }
+    public Nullable<int> groupId { get; set; }
+    public Nullable<int> institutionID { get; set; }
 }
 
 public partial class majordiscipline_master

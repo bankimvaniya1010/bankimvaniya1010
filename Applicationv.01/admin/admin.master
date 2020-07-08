@@ -214,12 +214,12 @@
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="countrywise_classmapping">
-                                        <a class="sidebar-menu-button" href="countrywise_classmapping.aspx">
+                                        <a class="sidebar-menu-button" href="universitywise_classmapping.aspx">
                                             <span class="sidebar-menu-text">Country Wise Class Mapping</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="countrywise_groupmapping">
-                                        <a class="sidebar-menu-button" href="countrywise_groupmapping.aspx">
+                                        <a class="sidebar-menu-button" href="universitywise_groupmapping.aspx">
                                             <span class="sidebar-menu-text">Country Wise Group Mapping</span>
                                         </a>
                                     </li>

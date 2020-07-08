@@ -1168,22 +1168,6 @@
           <Property Name="alternateidproofID" Type="int" />
           <Property Name="countryID" Type="int" />
         </EntityType>
-        <EntityType Name="countrywiseclassmaster">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="classId" Type="int" />
-          <Property Name="countryID" Type="int" />
-        </EntityType>
-        <EntityType Name="countrywisegroupmaster">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="groupId" Type="int" />
-          <Property Name="countryID" Type="int" />
-        </EntityType>
         <EntityType Name="course_campus_mapping">
           <Key>
             <PropertyRef Name="id" />
@@ -1815,6 +1799,22 @@
           </Key>
           <Property Name="inferenceid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="institutionwiseclassmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="classId" Type="int" />
+          <Property Name="institutionID" Type="int" />
+        </EntityType>
+        <EntityType Name="institutionwisegroupmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupId" Type="int" />
+          <Property Name="institutionID" Type="int" />
         </EntityType>
         <EntityType Name="majordiscipline_master">
           <Key>
@@ -4131,8 +4131,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="controlmaster" EntityType="Self.controlmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="countriesmaster" EntityType="Self.countriesmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="countrywisealternateidproofmaster" EntityType="Self.countrywisealternateidproofmaster" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="countrywiseclassmaster" EntityType="Self.countrywiseclassmaster" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="countrywisegroupmaster" EntityType="Self.countrywisegroupmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="course_campus_mapping" EntityType="Self.course_campus_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="course_dates" EntityType="Self.course_dates" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="course_defermentdates" EntityType="Self.course_defermentdates" Schema="GTE" store:Type="Tables" />
@@ -4187,6 +4185,8 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="gtepreliminarysection_applicantanswers" EntityType="Self.gtepreliminarysection_applicantanswers" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="health_insurance" EntityType="Self.health_insurance" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="institutionwiseclassmaster" EntityType="Self.institutionwiseclassmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="institutionwisegroupmaster" EntityType="Self.institutionwisegroupmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="manageaccomdationplan" EntityType="Self.manageaccomdationplan" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="manageentertainment" EntityType="Self.manageentertainment" Schema="GTE" store:Type="Tables" />
@@ -4848,8 +4848,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="controlmaster" EntityType="GTEModel.controlmaster" />
           <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
           <EntitySet Name="countrywisealternateidproofmaster" EntityType="GTEModel.countrywisealternateidproofmaster" />
-          <EntitySet Name="countrywiseclassmaster" EntityType="GTEModel.countrywiseclassmaster" />
-          <EntitySet Name="countrywisegroupmaster" EntityType="GTEModel.countrywisegroupmaster" />
           <EntitySet Name="course_campus_mapping" EntityType="GTEModel.course_campus_mapping" />
           <EntitySet Name="course_dates" EntityType="GTEModel.course_dates" />
           <EntitySet Name="course_defermentdates" EntityType="GTEModel.course_defermentdates" />
@@ -4904,6 +4902,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="gtepreliminarysection_applicantanswers" EntityType="GTEModel.gtepreliminarysection_applicantanswers" />
           <EntitySet Name="health_insurance" EntityType="GTEModel.health_insurance" />
           <EntitySet Name="inferencemaster" EntityType="GTEModel.inferencemaster" />
+          <EntitySet Name="institutionwiseclassmaster" EntityType="GTEModel.institutionwiseclassmaster" />
+          <EntitySet Name="institutionwisegroupmaster" EntityType="GTEModel.institutionwisegroupmaster" />
           <EntitySet Name="majordiscipline_master" EntityType="GTEModel.majordiscipline_master" />
           <EntitySet Name="manageaccomdationplan" EntityType="GTEModel.manageaccomdationplan" />
           <EntitySet Name="manageentertainment" EntityType="GTEModel.manageentertainment" />
@@ -6732,22 +6732,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="alternateidproofmaster" Relationship="GTEModel.FK__alternateidproofmaster" FromRole="countrywisealternateidproofmaster" ToRole="alternateidproofmaster" />
           <NavigationProperty Name="countriesmaster" Relationship="GTEModel.FK__countriesmaster" FromRole="countrywisealternateidproofmaster" ToRole="countriesmaster" />
         </EntityType>
-        <EntityType Name="countrywiseclassmaster">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="classId" Type="Int32" />
-          <Property Name="countryID" Type="Int32" />
-        </EntityType>
-        <EntityType Name="countrywisegroupmaster">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="groupId" Type="Int32" />
-          <Property Name="countryID" Type="Int32" />
-        </EntityType>
         <EntityType Name="course_campus_mapping">
           <Key>
             <PropertyRef Name="id" />
@@ -7441,6 +7425,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="inferenceid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="institutionwiseclassmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classId" Type="Int32" />
+          <Property Name="institutionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="institutionwisegroupmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupId" Type="Int32" />
+          <Property Name="institutionID" Type="Int32" />
         </EntityType>
         <EntityType Name="majordiscipline_master">
           <Key>
@@ -11050,24 +11050,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="countrywiseclassmaster">
-            <EntityTypeMapping TypeName="GTEModel.countrywiseclassmaster">
-              <MappingFragment StoreEntitySet="countrywiseclassmaster">
-                <ScalarProperty Name="countryID" ColumnName="countryID" />
-                <ScalarProperty Name="classId" ColumnName="classId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="countrywisegroupmaster">
-            <EntityTypeMapping TypeName="GTEModel.countrywisegroupmaster">
-              <MappingFragment StoreEntitySet="countrywisegroupmaster">
-                <ScalarProperty Name="countryID" ColumnName="countryID" />
-                <ScalarProperty Name="groupId" ColumnName="groupId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="course_campus_mapping">
             <EntityTypeMapping TypeName="GTEModel.course_campus_mapping">
               <MappingFragment StoreEntitySet="course_campus_mapping">
@@ -11751,6 +11733,24 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="inferencemaster">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="inferenceid" ColumnName="inferenceid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="institutionwiseclassmaster">
+            <EntityTypeMapping TypeName="GTEModel.institutionwiseclassmaster">
+              <MappingFragment StoreEntitySet="institutionwiseclassmaster">
+                <ScalarProperty Name="institutionID" ColumnName="institutionID" />
+                <ScalarProperty Name="classId" ColumnName="classId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="institutionwisegroupmaster">
+            <EntityTypeMapping TypeName="GTEModel.institutionwisegroupmaster">
+              <MappingFragment StoreEntitySet="institutionwisegroupmaster">
+                <ScalarProperty Name="institutionID" ColumnName="institutionID" />
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
