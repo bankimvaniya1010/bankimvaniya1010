@@ -37,20 +37,18 @@ public partial class student_details : System.Web.UI.Page
             objCom.BindCountries(ddlcountrycitizenship);
             objCom.BindCountries(ddldob);
             objCom.BindCountries(ddlcountryresidence);
-            //BindClass();
-            //BindGroup();
-           // BindAlternateIDProof();
+            objCom.BindInstitution(ddlinstitution);            
         }
 
     }
-    public void Bind_Class(int countryofbirth)
+    public void Bind_Class(int institutionId)
     {
         try
         {
             ListItem lst = new ListItem("Please select", "0");
             var Class = (from ap in db.class_master
-                         join cwm in db.countrywiseclassmaster on ap.id equals cwm.classId
-                         where cwm.countryID == countryofbirth
+                         join cwm in db.institutionwiseclassmaster on ap.id equals cwm.classId
+                         where cwm.institutionID == institutionId
                          select new
                          {
                              description = ap.description,
@@ -68,15 +66,15 @@ public partial class student_details : System.Web.UI.Page
         }
 
     }
-    public void Bind_Group(int countryofbirth)
+    public void Bind_Group(int institutionId)
     {
         try
         {
             ListItem lst = new ListItem("Please select", "0");
             var group = (from ap in db.group_master
-                        join cwm in db.countrywisegroupmaster on ap.id equals cwm.groupId
-                        where cwm.countryID == countryofbirth
-                        select new
+                        join cwm in db.institutionwisegroupmaster on ap.id equals cwm.groupId
+                        where cwm.institutionID == institutionId
+                         select new
                         {
                             description = ap.description,
                             id = ap.id
@@ -118,6 +116,30 @@ public partial class student_details : System.Web.UI.Page
         }
 
     }
+    public void Bind_campus(int institutionId)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var temp = (from ap in db.universitycampus
+                          where ap.universityid == institutionId
+                          select new
+                          {
+                              description = ap.campusname,
+                              id = ap.campusid
+                          }).Distinct().ToList();
+            ddlcampus.DataSource = temp;
+            ddlcampus.DataTextField = "description";
+            ddlcampus.DataValueField = "id";
+            ddlcampus.DataBind();
+            ddlcampus.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+
+    }
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static string BindAlternateIDProof(int countryofbirth)
@@ -135,12 +157,28 @@ public partial class student_details : System.Web.UI.Page
     }
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public static string BindGroup(int countryofbirth)
+    public static string BindClass(int institutionId)
     {
         GTEEntities db1 = new GTEEntities();
         var temp = (from ap in db1.class_master
-                    join cwm in db1.countrywiseclassmaster on ap.id equals cwm.classId
-                    where cwm.countryID == countryofbirth
+                    join cwm in db1.institutionwiseclassmaster on ap.id equals cwm.classId
+                    where cwm.institutionID == institutionId
+                    select new
+                    {
+                        description = ap.description,
+                        id = ap.id
+                    }).Distinct().ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+    
+   [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string BindGroup(int institutionId)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = (from ap in db1.group_master
+                    join cwm in db1.institutionwisegroupmaster on ap.id equals cwm.groupId
+                    where cwm.institutionID == institutionId
                     select new
                     {
                         description = ap.description,
@@ -150,16 +188,15 @@ public partial class student_details : System.Web.UI.Page
     }
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public static string BindClass(int countryofbirth)
+    public static string BindCampus(int institutionId)
     {
         GTEEntities db1 = new GTEEntities();
-        var temp = (from ap in db1.group_master
-                    join cwm in db1.countrywisegroupmaster on ap.id equals cwm.groupId
-                    where cwm.countryID == countryofbirth
+        var temp = (from ap in db1.universitycampus
+                    where ap.universityid == institutionId
                     select new
                     {
-                        description = ap.description,
-                        id = ap.id
+                        description = ap.campusname,
+                        id = ap.campusid
                     }).Distinct().ToList();
         return JsonConvert.SerializeObject(temp);
     }
@@ -212,13 +249,15 @@ public partial class student_details : System.Web.UI.Page
                 }
                 if (profileInfo.campusId != null)
                 {
+                    Bind_campus(Convert.ToInt32(profileInfo.institutionId));
                     ddlcampus.ClearSelection();
                     ddlcampus.Items.FindByValue(profileInfo.campusId.ToString()).Selected = true;
+                    HidcampusID.Value = profileInfo.campusId.ToString();
                 }
                 txtstudentid.Value = profileInfo.studentid;
                 if (profileInfo.classId != null)
                 {
-                    Bind_Class(Convert.ToInt32(profileInfo.countryof_birth));
+                    Bind_Class(Convert.ToInt32(profileInfo.institutionId));
                     ddlcampus.ClearSelection();
                     ddlcampus.Items.FindByValue(profileInfo.classId.ToString()).Selected = true;
                     HidclassID.Value = profileInfo.classId.ToString();
@@ -230,6 +269,11 @@ public partial class student_details : System.Web.UI.Page
                     ddlgroup.Items.FindByValue(profileInfo.groupId.ToString()).Selected = true;
                     HidGroupID.Value = profileInfo.groupId.ToString();
                 }
+            }
+            else {
+                var studentdetails = db.students.Where(x => x.studentid == userID).FirstOrDefault();
+                txtfirstname.Value = studentdetails.name;
+                txtemail.Value = studentdetails.email;
             }
         }
         catch (Exception ex)
@@ -302,7 +346,7 @@ public partial class student_details : System.Web.UI.Page
             }
             if (ddlcampus.SelectedValue != null)
             {
-                objapplicantDetail.campusId = Convert.ToInt32(ddlcampus.SelectedValue);
+                objapplicantDetail.campusId = Convert.ToInt32(HidcampusID.Value);
             }
             objapplicantDetail.studentid = txtstudentid.Value;
             if (ddlclass.SelectedValue != null)

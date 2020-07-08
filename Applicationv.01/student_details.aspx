@@ -22,7 +22,7 @@
                                     <div class="form-row">
                                         <label runat="server" id="label4" for="title" class="col-md-3 col-form-label form-label">First Name</label>
                                         <div class="col-md-6">                                            
-                                            <input  id="txtfirstname" runat="server" type="text" placeholder="School ID No" value="" class="form-control">
+                                            <input  id="txtfirstname" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -32,22 +32,17 @@
                                     <div class="form-row">
                                         <label runat="server" id="label5" for="title" class="col-md-3 col-form-label form-label">Middle Name</label>
                                         <div class="col-md-6">                                            
-                                            <input  id="txtmiddlename" runat="server" type="text" placeholder="School ID No" value="" class="form-control">
+                                            <input  id="txtmiddlename" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <label></label>
-                                <img src="">
-
-                            </div>
+                            </div>                           
                             <div class="list-group-item" id="Div6" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
                                         <label runat="server" id="label6" for="title" class="col-md-3 col-form-label form-label">Last Name</label>
                                         <div class="col-md-6">                                            
-                                            <input  id="txtlastname" runat="server" type="text" placeholder="School ID No" value="" class="form-control">
+                                            <input  id="txtlastname" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -57,18 +52,18 @@
                                     <div class="form-row">
                                         <label runat="server" id="label7" for="title" class="col-md-3 col-form-label form-label">Email</label>
                                         <div class="col-md-6">                                            
-                                            <input  id="txtemail" runat="server" type="text" placeholder="School ID No" value="" class="form-control">
+                                            <input  id="txtemail" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
+                           
                             <div class="list-group-item" id="Div3" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
                                         <label runat="server" id="label3" for="title" class="col-md-3 col-form-label form-label">Contact No</label>
                                         <div class="col-md-6">                                            
-                                            <input  id="txtcontactno" runat="server" type="text" placeholder="School ID No" value="" class="form-control">
+                                            <input  id="txtcontactno" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -78,8 +73,9 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
                                         <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">Date of Birth</label>
-                                        <div class="col-md-6">                                            
-                                            <input  id="txtdob" runat="server" type="text" placeholder="" value="" class="form-control">
+                                        <div class="col-md-6"> 
+                                            <input id="txtdob" runat="server" type="text" class="form-control" placeholder="Date of Issue" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +137,7 @@
                                     <div class="form-row">
                                         <label runat="server" id="label11" for="title" class="col-md-3 col-form-label form-label">ID Proof Number</label>
                                         <div class="col-md-6">                                            
-                                          <input type="text" runat="server" id="txtidproofnumber">
+                                          <input type="text" runat="server" id="txtidproofnumber" class="form-control" >
                                         </div>
                                     </div>
                                 </div>
@@ -172,6 +168,7 @@
                                         <label runat="server" id="label14" for="title" class="col-md-3 col-form-label form-label">Campus</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlcampus"></asp:DropDownList>
+                                            <asp:HiddenField runat="server" ID="HidcampusID"/>
                                         </div>
                                     </div>
                                 </div>
@@ -208,6 +205,7 @@
                                     </div>
                                 </div>
                             </div>
+                             </div>
                                <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item" id="employerwebsite" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
@@ -225,9 +223,9 @@
                         </div>
 
                          </div>
-                    </div>
+                
                  <div class="col-md-4">
-                   <%--  <div class="banImg-wrp">
+                     <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                       </div>
                     <div class="card faq-qwrp" id="questions" runat="server">
@@ -248,8 +246,8 @@
                                      
                             </div>
                         </div>
-                   </div> --%>
-
+                   </div> 
+                        </div>
                 </div>
 
                 <div id="page-nav" class="col-lg-auto page-nav">
@@ -260,7 +258,7 @@
 
 
                 </div>
-        </div>
+        
 
 
         <div class="container page__container">
@@ -298,13 +296,17 @@
                                 $("#<%=ddlidproof.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].description));
                         }
                     }
-              });
-              $.ajax({
+              });             
+        });
+           $("#<%=ddlinstitution.ClientID%>").change(function () {            
+
+               var institutionId = $("#<%=ddlinstitution.ClientID%>").val();
+                $.ajax({
                     type: "POST",
                     url: "student_details.aspx/Bindclass",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: "{'countryofbirth': '" + countryofbirth + "'}",
+                    data: "{'institutionId': '" + institutionId + "'}",
                     success: function (response) {
                         if (response.d) {
                             var result = JSON.parse(response.d);
@@ -322,7 +324,7 @@
                     url: "student_details.aspx/BindGroup",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: "{'countryofbirth': '" + countryofbirth + "'}",
+                    data: "{'institutionId': '" + institutionId + "'}",
                     success: function (response) {
                         if (response.d) {
                             var result = JSON.parse(response.d);
@@ -334,9 +336,30 @@
                                 $("#<%=ddlgroup.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].description));
                         }
                     }
+               });
+               $.ajax({
+                    type: "POST",
+                    url: "student_details.aspx/BindCampus",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'institutionId': '" + institutionId + "'}",
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlcampus.ClientID%>").length >= 1) {
+                                $("#<%=ddlcampus.ClientID%>").empty();
+                                $("#<%=ddlcampus.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
+                            }
+                            if (result.length == 0) {
+                                $("#<%=ddlcampus.ClientID%>").empty();
+                                $("#<%=ddlcampus.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Not Applicable"));
+                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlcampus.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].description));
+                        }
+                    }
                 });
         });
-
        $("#<%=ddlidproof.ClientID%>").change(function () {
             $("#<%=HidIpProffID.ClientID%>").val($("#<%=ddlidproof.ClientID%>").val());
         });
@@ -345,9 +368,15 @@
         });
         $("#<%=ddlgroup.ClientID%>").change(function () {
             $("#<%=HidGroupID.ClientID%>").val($("#<%=ddlgroup.ClientID%>").val());
+          });
+          $("#<%=ddlcampus.ClientID%>").change(function () {
+            $("#<%=HidcampusID.ClientID%>").val($("#<%=ddlcampus.ClientID%>").val());
         });
 
-          
+          $('#ContentPlaceHolder1_txtdob').flatpickr({
+       
+            dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
+        }); 
     </script>
 
 
