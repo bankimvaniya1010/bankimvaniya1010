@@ -1410,6 +1410,7 @@
           <Property Name="exam_instruction" Type="varchar" MaxLength="2000" />
           <Property Name="shortremarks" Type="varchar" MaxLength="1000" />
           <Property Name="studentfilepath" Type="varchar" MaxLength="1000" />
+          <Property Name="checkingguidfilepath" Type="varchar" MaxLength="1000" />
           <Property Name="uploadtype" Type="int" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
@@ -7006,6 +7007,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="exam_instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="shortremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="studentfilepath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="checkingguidfilepath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="uploadtype" Type="Int32" />
           <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
@@ -11300,6 +11302,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="exam_master">
                 <ScalarProperty Name="created_at" ColumnName="created_at" />
                 <ScalarProperty Name="uploadtype" ColumnName="uploadtype" />
+                <ScalarProperty Name="checkingguidfilepath" ColumnName="checkingguidfilepath" />
                 <ScalarProperty Name="studentfilepath" ColumnName="studentfilepath" />
                 <ScalarProperty Name="shortremarks" ColumnName="shortremarks" />
                 <ScalarProperty Name="exam_instruction" ColumnName="exam_instruction" />

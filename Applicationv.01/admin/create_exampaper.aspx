@@ -139,7 +139,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
+                    <div class="form-group row" id="checkingguid">
+                        <label for="name" class="col-sm-3 col-form-label form-label">Examination Checking Guide:  </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:Label ID="Label1" runat="server" />
+                                    <asp:FileUpload ID="filecheckingguid" runat="server" ></asp:FileUpload> 
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                     </div> 
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">

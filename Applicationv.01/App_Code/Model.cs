@@ -1616,6 +1616,7 @@ public partial class exam_master
     public string exam_instruction { get; set; }
     public string shortremarks { get; set; }
     public string studentfilepath { get; set; }
+    public string checkingguidfilepath { get; set; }
     public Nullable<int> uploadtype { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
 }
