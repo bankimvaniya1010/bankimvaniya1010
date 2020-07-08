@@ -27,7 +27,12 @@ public partial class student_details : System.Web.UI.Page
         universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx", true);
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         if (!IsPostBack)
@@ -37,9 +42,96 @@ public partial class student_details : System.Web.UI.Page
             objCom.BindCountries(ddlcountrycitizenship);
             objCom.BindCountries(ddldob);
             objCom.BindCountries(ddlcountryresidence);
-            objCom.BindInstitution(ddlinstitution);            
+            objCom.BindInstitution(ddlinstitution);
+            populateDetails();
+            SetControlsUniversitywise();
         }
 
+    }
+
+    private String setInnerHtml(dynamic obj)
+    {
+        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + "  " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
+    }
+
+    private void SetControlsUniversitywise()
+    {
+        try
+        {
+
+            string SecondaryLanguage = Utility.GetSecondaryLanguage();
+
+            var fields = (from pfm in db.primaryfieldmaster
+                          join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
+                          where ufm.universityid == universityID && ufm.formid == formId
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
+                          }).ToList();
+
+            if (fields.Count == 0)
+            {
+                fields = (from pfm in db.primaryfieldmaster
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
+                          where pfm.formid == formId
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
+                          }).ToList();
+            }
+            for (int k = 0; k < fields.Count; k++)
+            {
+                switch (fields[k].primaryfiledname)
+                {                    
+                    case "Upload photo":
+                        uploadphoto.Attributes.Add("style", "display:block;");
+                        lbluploadphoto.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Country of citizenship":
+                        countrycitizenship.Attributes.Add("style", "display:block;");
+                        lblcountrycitizenship.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "Country of Birth":
+                        countryofbirth.Attributes.Add("style", "display:block;");
+                        lblcountryofbirth.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Country of Residency":
+                        countryofresidence.Attributes.Add("style", "display:block;");
+                        lblcountryofresidence.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "ID Proof Type":
+                        idprooftype.Attributes.Add("style", "display:block;");
+                        lblidprooftype.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "ID Proof Number":
+                        idprooftypenumber.Attributes.Add("style", "display:block;");
+                        lblidprooftypenumber.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Upload copy of ID Proof":
+                        idproofCopy.Attributes.Add("style", "display:block;");
+                        lblidproofCopy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
     }
     public void Bind_Class(int institutionId)
     {
@@ -53,10 +145,10 @@ public partial class student_details : System.Web.UI.Page
                          {
                              description = ap.description,
                              id = ap.id
-                         }).Distinct().ToList();
+                         }).ToList();
             ddlclass.DataSource = Class;
-            ddlclass.DataTextField = "studylevel";
-            ddlclass.DataValueField = "studylevelid";
+            ddlclass.DataTextField = "description";
+            ddlclass.DataValueField = "id";
             ddlclass.DataBind();
             ddlclass.Items.Insert(0, lst);
         }
@@ -78,10 +170,10 @@ public partial class student_details : System.Web.UI.Page
                         {
                             description = ap.description,
                             id = ap.id
-                        }).Distinct().ToList();
+                        }).ToList();
             ddlgroup.DataSource = group;
-            ddlgroup.DataTextField = "studylevel";
-            ddlgroup.DataValueField = "studylevelid";
+            ddlgroup.DataTextField = "description";
+            ddlgroup.DataValueField = "id";
             ddlgroup.DataBind();
             ddlgroup.Items.Insert(0, lst);
         }
@@ -104,11 +196,11 @@ public partial class student_details : System.Web.UI.Page
                             description = ap.description,
                             id = ap.id
                         }).Distinct().ToList();
-            ddlgroup.DataSource = temp;
-            ddlgroup.DataTextField = "description";
-            ddlgroup.DataValueField = "id";
-            ddlgroup.DataBind();
-            ddlgroup.Items.Insert(0, lst);
+            ddlidproof.DataSource = temp;
+            ddlidproof.DataTextField = "description";
+            ddlidproof.DataValueField = "id";
+            ddlidproof.DataBind();
+            ddlidproof.Items.Insert(0, lst);
         }
         catch (Exception ex)
         {
@@ -218,6 +310,12 @@ public partial class student_details : System.Web.UI.Page
                 {
                     txtdob.Value = Convert.ToDateTime(profileInfo.dateofbirth).ToString("yyyy-MM-dd");
                 }
+                if (profileInfo.profilephoto != null)
+                {
+                    hidDocumentPath.Value = profileInfo.profilephoto;
+                    uploadedFile.NavigateUrl = webURL + "/Docs/Exammodule/Studentdetails/"+universityID+"/"+userID+"/"+ profileInfo.profilephoto;
+                    uploadedFile.Text = "View File";
+                }
                 if (profileInfo.countryof_citizenship != null)
                 {
                     ddlcountrycitizenship.ClearSelection();
@@ -234,13 +332,19 @@ public partial class student_details : System.Web.UI.Page
                     ddlcountryresidence.Items.FindByValue(profileInfo.countryof_residence.ToString()).Selected = true;
                 }
                 if (profileInfo.idproofId != null)
-                {
-                    BindIDProof(Convert.ToInt32(profileInfo.countryof_birth));
+                {                    
                     ddlidproof.ClearSelection();
+                    BindIDProof(Convert.ToInt32(profileInfo.countryof_birth));
                     ddlidproof.Items.FindByValue(profileInfo.idproofId.ToString()).Selected = true;
                     HidIpProffID.Value = Convert.ToString(profileInfo.idproofId);
                 }
                 txtidproofnumber.Value = profileInfo.idproofNumber;
+                if (profileInfo.copyofidproof != null)
+                {
+                    hidproofdocumentpath.Value = profileInfo.copyofidproof;
+                    copylink.NavigateUrl = webURL + "/Docs/Exammodule/Studentdetails/" + universityID + "/" + userID + "/" + profileInfo.copyofidproof;
+                    copylink.Text = "View File";
+                }
 
                 if (profileInfo.institutionId != null)
                 {
@@ -249,23 +353,23 @@ public partial class student_details : System.Web.UI.Page
                 }
                 if (profileInfo.campusId != null)
                 {
-                    Bind_campus(Convert.ToInt32(profileInfo.institutionId));
                     ddlcampus.ClearSelection();
+                    Bind_campus(Convert.ToInt32(profileInfo.institutionId));
                     ddlcampus.Items.FindByValue(profileInfo.campusId.ToString()).Selected = true;
                     HidcampusID.Value = profileInfo.campusId.ToString();
                 }
                 txtstudentid.Value = profileInfo.studentid;
                 if (profileInfo.classId != null)
                 {
+                    ddlclass.ClearSelection();
                     Bind_Class(Convert.ToInt32(profileInfo.institutionId));
-                    ddlcampus.ClearSelection();
-                    ddlcampus.Items.FindByValue(profileInfo.classId.ToString()).Selected = true;
+                    ddlclass.Items.FindByValue(profileInfo.classId.ToString()).Selected = true;
                     HidclassID.Value = profileInfo.classId.ToString();
                 }
                 if (profileInfo.groupId != null)
                 {
-                    Bind_Group(Convert.ToInt32(profileInfo.countryof_birth));
                     ddlgroup.ClearSelection();
+                    Bind_Group(Convert.ToInt32(profileInfo.countryof_birth));
                     ddlgroup.Items.FindByValue(profileInfo.groupId.ToString()).Selected = true;
                     HidGroupID.Value = profileInfo.groupId.ToString();
                 }
@@ -357,6 +461,8 @@ public partial class student_details : System.Web.UI.Page
             {
                 objapplicantDetail.groupId = Convert.ToInt32(HidGroupID.Value);
             }
+            objapplicantDetail.applicantid = userID;
+            objapplicantDetail.universityid = universityID;
             if (mode == "new")
                 db.exam_applicantdetail.Add(objapplicantDetail);
             db.SaveChanges();

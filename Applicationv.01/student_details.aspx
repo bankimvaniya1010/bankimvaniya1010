@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="student_details.aspx.cs" Inherits="student_details" MasterPageFile="~/student.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="student_details.aspx.cs" Inherits="student_details" MasterPageFile="~/student.master" EnableEventValidation="false"%>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -69,41 +69,43 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="title" runat="server">
+                            <div class="list-group-item" id="dob" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
                                         <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">Date of Birth</label>
                                         <div class="col-md-6"> 
-                                            <input id="txtdob" runat="server" type="text" class="form-control" placeholder="Date of Issue" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtdob" runat="server" type="text" class="form-control" placeholder="Date of Birth" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="Div1" runat="server">
+                            <div class="list-group-item" id="uploadphoto" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">Upload photo</label>
-                                        <div class="col-md-6">                                            
+                                        <label runat="server" id="lbluploadphoto" for="uploadphoto" class="col-md-3 col-form-label form-label">Upload photo</label>
+                                        <div class="col-md-6">  
+                                            <input type="hidden" id="hidDocumentPath" runat="server" />
                                             <asp:FileUpload runat="server" ID="fileupload"/>
+                                             <asp:HyperLink runat="server" ID="uploadedFile" Target="_blank"></asp:HyperLink>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="Div2" runat="server">
+                            <div class="list-group-item" id="countrycitizenship" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label2" for="title" class="col-md-3 col-form-label form-label">Country of citizenship</label>
+                                        <label runat="server" id="lblcountrycitizenship" for="countrycitizenship" class="col-md-3 col-form-label form-label">Country of citizenship</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlcountrycitizenship"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                         <div class="list-group-item" id="Div8" runat="server">
+                         <div class="list-group-item" id="countryofbirth" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label8" for="title" class="col-md-3 col-form-label form-label">Country of Birth</label>
+                                        <label runat="server" id="lblcountryofbirth" for="title" class="col-md-3 col-form-label form-label">Country of Birth</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddldob"></asp:DropDownList>
                                             
@@ -111,20 +113,20 @@
                                     </div>
                                 </div>
                             </div>
-                         <div class="list-group-item" id="Div9" runat="server">
+                         <div class="list-group-item" id="countryofresidence" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label9" for="title" class="col-md-3 col-form-label form-label">Country of Residency</label>
+                                        <label runat="server" id="lblcountryofresidence" for="title" class="col-md-3 col-form-label form-label">Country of Residency</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlcountryresidence"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                          <div class="list-group-item" id="Div10" runat="server">
+                          <div class="list-group-item" id="idprooftype" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label10" for="title" class="col-md-3 col-form-label form-label">ID Proof Type</label>
+                                        <label runat="server" id="lblidprooftype" for="title" class="col-md-3 col-form-label form-label">ID Proof Type</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlidproof"></asp:DropDownList>
                                         <asp:HiddenField runat="server" ID="HidIpProffID"/>
@@ -132,22 +134,24 @@
                                     </div>
                                 </div>
                             </div>
-                         <div class="list-group-item" id="Div11" runat="server">
+                         <div class="list-group-item" id="idprooftypenumber" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label11" for="title" class="col-md-3 col-form-label form-label">ID Proof Number</label>
+                                        <label runat="server" id="lblidprooftypenumber" for="title" class="col-md-3 col-form-label form-label">ID Proof Number</label>
                                         <div class="col-md-6">                                            
                                           <input type="text" runat="server" id="txtidproofnumber" class="form-control" >
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                         <div class="list-group-item" id="Div12" runat="server">
+                         <div class="list-group-item" id="idproofCopy" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label12" for="title" class="col-md-3 col-form-label form-label">Upload copy of ID Proof</label>
+                                        <label runat="server" id="lblidproofCopy" for="title" class="col-md-3 col-form-label form-label">Upload copy of ID Proof</label>
                                         <div class="col-md-6">                                            
                                            <asp:FileUpload runat="server" ID="fileuploadcopy"/>
+                                            <input type="hidden" id="hidproofdocumentpath" runat="server" />
+                                            <asp:HyperLink runat="server" ID="copylink" Target="_blank"></asp:HyperLink>
                                         </div>
                                     </div>
                                 </div>
@@ -269,7 +273,68 @@
     </div>
       
       <script type="text/javascript">
-          
+          function validateUploadedFile(filePath,hidDocumentPath, isprofilephoto) {
+
+           if (filePath == "") {
+               filePath = hidDocumentPath;
+           }
+           if (filePath == "") {
+               alert("Please upload a file");
+               return false;
+           }           
+           var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
+           if (isprofilephoto == "yes" && fileExtension != "png" && fileExtension != "jpg" && fileExtension != "jpeg") {
+               alert("Invalid File");
+               return false;
+           }
+
+           if (isprofilephoto == "no" && fileExtension != "pdf" && fileExtension != "png" && fileExtension != "jpg" && fileExtension != "jpeg") {
+               alert("Invalid File");
+               return false;
+           } 
+           return true;
+       }
+
+           function validateForm() {
+            var flag = false;
+            if ($("#<%=txtfirstname.ClientID%>").val() == "")
+                alert("Please enter first name");
+            else if ($("#<%=txtmiddlename.ClientID%>").val() == "")
+                alert("Please enter middle name");
+            else if ($("#<%=txtlastname.ClientID%>").val() == "")
+                alert("Please enter last name");
+            else if ($("#<%=txtemail.ClientID%>").val() == "")
+                alert("Please enter email");
+            else if ($("#<%=txtcontactno.ClientID%>").val() == "")
+                alert("Please enter contact number");
+            else if ($("#<%=txtdob.ClientID%>").val() == "")
+                alert("Please select date of birth");
+            else if (!$("#<%=uploadphoto.ClientID%>").is(':hidden') && !validateUploadedFile($("#<%=fileupload.ClientID%>").val(),$("#<%=hidDocumentPath.ClientID%>").val(),"yes")) { }
+            else if (!$("#<%=countrycitizenship.ClientID%>").is(':hidden') && $("#<%=ddlcountrycitizenship.ClientID%>").val() == "0")
+                alert("Please select country of citizenship");
+            else if (!$("#<%=countryofbirth.ClientID%>").is(':hidden') && $("#<%=ddldob.ClientID%>").val() == "0")
+                alert("Please select country of birth");
+            else if (!$("#<%=countryofresidence.ClientID%>").is(':hidden') && $("#<%=ddlcountryresidence.ClientID%>").val() == "0")
+                alert("Please select country of residence");
+            else if (!$("#<%=idprooftype.ClientID%>").is(':hidden') && $("#<%=ddlidproof.ClientID%>").val() == "0")
+                alert("Please select alternate proof of id");
+            else if (!$("#<%=idprooftypenumber.ClientID%>").is(':hidden') && $("#<%=txtidproofnumber.ClientID%>").val() == "")
+                alert("Please select alternate proof of id");
+            else if (!$("#<%=idproofCopy.ClientID%>").is(':hidden') && !validateUploadedFile($("#<%=fileuploadcopy.ClientID%>").val(),$("#<%=hidproofdocumentpath.ClientID%>").val(),"no")) { }
+            else if ($("#<%=ddlinstitution.ClientID%>").val() == "0")
+                alert("Please select institution");
+            else if ($("#<%=ddlcampus.ClientID%>").val() == "0")
+                alert("Please select campus");
+            else if ($("#<%=txtstudentid.ClientID%>").val() == "")
+                alert("Please enter institution student id");
+            else if ($("#<%=ddlclass.ClientID%>").val() == "0")
+                alert("Please select class");
+            else if ($("#<%=ddlgroup.ClientID%>").val() == "0")
+                alert("Please select group");          
+            else
+                flag = true;            
+            return flag;
+        }
           $(document).ready(function () {
               $('.sidebar-menu-item').removeClass('open');
               $('#profile_list').addClass('open');
