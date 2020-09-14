@@ -64,6 +64,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
     public virtual DbSet<australiavisadocumentmaster> australiavisadocumentmaster { get; set; }
     public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
+    public virtual DbSet<bulk_registrations_master> bulk_registrations_master { get; set; }
     public virtual DbSet<careeroutcomes_master> careeroutcomes_master { get; set; }
     public virtual DbSet<careeroutcomes_position_master> careeroutcomes_position_master { get; set; }
     public virtual DbSet<careerposition_course_mapping> careerposition_course_mapping { get; set; }
@@ -93,10 +94,22 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<educationverificationcontactmaster> educationverificationcontactmaster { get; set; }
     public virtual DbSet<entertainment> entertainment { get; set; }
     public virtual DbSet<exam_answersheet> exam_answersheet { get; set; }
-    public virtual DbSet<exam_applicantdetail> exam_applicantdetail { get; set; }
+    public virtual DbSet<exam_applicant_subjectmapping> exam_applicant_subjectmapping { get; set; }
+    public virtual DbSet<exam_applicantmarks_releasedatemaster> exam_applicantmarks_releasedatemaster { get; set; }
     public virtual DbSet<exam_assign> exam_assign { get; set; }
+    public virtual DbSet<exam_buildpaper_answersheetmaster> exam_buildpaper_answersheetmaster { get; set; }
+    public virtual DbSet<exam_buildquestionbankmaster> exam_buildquestionbankmaster { get; set; }
+    public virtual DbSet<exam_marking_master> exam_marking_master { get; set; }
     public virtual DbSet<exam_master> exam_master { get; set; }
+    public virtual DbSet<exam_mcq_questionmaster> exam_mcq_questionmaster { get; set; }
+    public virtual DbSet<exam_openanswer_master> exam_openanswer_master { get; set; }
     public virtual DbSet<exam_schedule> exam_schedule { get; set; }
+    public virtual DbSet<exam_subjectmaster> exam_subjectmaster { get; set; }
+    public virtual DbSet<exam_truefalse_questionmaster> exam_truefalse_questionmaster { get; set; }
+    public virtual DbSet<exam_universitywisesubjectmapping> exam_universitywisesubjectmapping { get; set; }
+    public virtual DbSet<exam_uploadanswer_master> exam_uploadanswer_master { get; set; }
+    public virtual DbSet<examchecking_assignment> examchecking_assignment { get; set; }
+    public virtual DbSet<examiner_master> examiner_master { get; set; }
     public virtual DbSet<exampapers_master> exampapers_master { get; set; }
     public virtual DbSet<facilitiesmaster> facilitiesmaster { get; set; }
     public virtual DbSet<facility_campus_mapping> facility_campus_mapping { get; set; }
