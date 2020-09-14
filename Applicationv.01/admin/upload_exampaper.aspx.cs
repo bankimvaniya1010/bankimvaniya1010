@@ -36,8 +36,8 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         exampapers_master = db.exampapers_master.Where(x => x.exampapersid == exampapersid).ToList();
 
         docPath = docPath + "/Exammodule/" + universityID + "/" + exampapersid;
-        //if (!IsPostBack)
-        //    BindDocuments();
+        if (!IsPostBack)
+            BindDocuments();
     }
 
     protected void btnupload_Click(object sender, EventArgs e)
@@ -83,8 +83,8 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
 
             db.exampapers_master.Add(objmapping);
             db.SaveChanges();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('Papers Uploaded Successfully');window.location='" + Request.ApplicationPath + "admin/list_exampaper.aspx';", true);
+           // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                 //   "alert('Papers Uploaded Successfully');window.location='" + Request.ApplicationPath + "admin/list_exampaper.aspx';", true);
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }

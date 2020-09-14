@@ -212,7 +212,7 @@
                                                 </a>
                                             </li>
                                              <li class="sidebar-menu-item" id="studedetails" style="display:none">
-                                                <a class="sidebar-menu-button"  href="student_details.aspx">
+                                                <a class="sidebar-menu-button"  href="student_details.aspx?formid=29">
                                                     <span class="sidebar-menu-text">Student Details</span>
                                                 </a>
                                             </li>
@@ -565,7 +565,7 @@
                                         </a>
                                          <ul class="sidebar-submenu sm-indent collapse" id="exam_menu">
                                             <li class="sidebar-menu-item" id="exammodule">
-                                                <a class="sidebar-menu-button" href="exam_module.aspx">
+                                                <a class="sidebar-menu-button" href="exammodule.aspx">
                                                     <span class="sidebar-menu-text">Exam Paper</span>
                                                 </a>
                                             </li>

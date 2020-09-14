@@ -77,12 +77,6 @@ public partial class admin_create_exampaper : System.Web.UI.Page
                 objexam_master.maximummarks = txtmaximummarks.Value;
                 objexam_master.exam_instruction = txtinstrcution.Text.Trim();
                 objexam_master.shortremarks = txtshotremarks.Value;
-                
-                //if (rbupload.Checked == true)
-                //    objexam_master.uploadtype = 1;
-                //else if (rbbuild.Checked == true)
-                //    objexam_master.uploadtype = 2;
-
                 db.exam_master.Add(objexam_master);
                 db.SaveChanges();
                 
@@ -98,6 +92,16 @@ public partial class admin_create_exampaper : System.Web.UI.Page
                     studentFileUpload.PostedFile.SaveAs(filePath);
                     objexam_master.studentfilepath = fileName;
                 }
+                if (filecheckingguid.HasFile)
+                {
+                    string path = docPath + "/CheckingGuide/";
+                    string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(filecheckingguid.PostedFile.FileName));
+                    string filePath = string.Concat(path, fileName);
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    filecheckingguid.PostedFile.SaveAs(filePath);
+                    objexam_master.checkingguidfilepath = fileName;
+                }
                 db.SaveChanges();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                     "alert('Record Added Successfully');window.location='" + Request.ApplicationPath + "admin/upload_exampaper.aspx?exampapersid=" + exampapersid +"';", true);
@@ -108,38 +112,4 @@ public partial class admin_create_exampaper : System.Web.UI.Page
         } catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 
-    //protected void btnupload_Click(object sender, EventArgs e)
-    //{
-    //    try {
-
-    //        int selectuniversity = Convert.ToInt32(ddlUniversity.SelectedValue);
-            
-    //        docPath = docPath + "/Exammodule/" + selectuniversity + "/" + exampapersid;
-    //        exampapers_master objmapping = new exampapers_master();
-    //        if (FileUpload.HasFiles)
-    //        {
-    //            if (!Directory.Exists(docPath))
-    //                Directory.CreateDirectory(docPath);
-    //            foreach (HttpPostedFile uploadedFile in FileUpload.PostedFiles)
-    //            {
-    //                string extension = Path.GetExtension(uploadedFile.FileName);
-    //                string filename = Guid.NewGuid() + extension;
-
-    //                uploadedFile.SaveAs(System.IO.Path.Combine(docPath, filename));
-    //                //listofuploadedfiles.Text += String.Format("{0}<br />", uploadedFile.FileName);
-    //                // save db
-
-    //                objmapping.universityID = selectuniversity;
-    //                objmapping.exampapersid = exampapersid;
-    //                objmapping.exampaper_path = filename;
-    //                db.exampapers_master.Add(objmapping);
-    //                //db.SaveChanges();
-    //            }
-    //        }
-
-    //    }
-    //    catch (Exception ex) {
-    //        objLog.WriteLog(ex.ToString());
-    //    }
-    //}
 }

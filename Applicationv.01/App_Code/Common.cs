@@ -809,6 +809,23 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
+    public void BindInstitution(DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var institution = db.university_master.ToList();
+            ddl.DataSource = institution;
+            ddl.DataTextField = "university_name";
+            ddl.DataValueField = "universityid";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
     public void BindTimeZone(DropDownList ddl)
     {
         try

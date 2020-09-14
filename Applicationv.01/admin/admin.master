@@ -203,6 +203,26 @@
                                             <span class="sidebar-menu-text">Assign Exam</span>
                                         </a>
                                     </li>
+                                    <li class="sidebar-menu-item" id="class_master">
+                                        <a class="sidebar-menu-button" href="class_master.aspx">
+                                            <span class="sidebar-menu-text">Create class</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="groupmaster">
+                                        <a class="sidebar-menu-button" href="group_master.aspx">
+                                            <span class="sidebar-menu-text">Create Group</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="countrywise_classmapping">
+                                        <a class="sidebar-menu-button" href="universitywiseclassmapping.aspx">
+                                            <span class="sidebar-menu-text">Country Wise Class Mapping</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="countrywise_groupmapping">
+                                        <a class="sidebar-menu-button" href="universitywisegroupmapping.aspx">
+                                            <span class="sidebar-menu-text">Country Wise Group Mapping</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="payment_list">
