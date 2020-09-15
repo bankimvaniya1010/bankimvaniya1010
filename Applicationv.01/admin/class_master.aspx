@@ -122,7 +122,7 @@
 
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#exammodule_list').addClass('open');
+            $('#class_group_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#class_master').addClass('active');
         });

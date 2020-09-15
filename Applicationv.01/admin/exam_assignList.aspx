@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="exam_assignList.aspx.cs" Inherits="admin_exam_assignList" MasterPageFile="~/admin/admin.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="exam_assignList.aspx.cs" Inherits="admin_exam_assignList" MasterPageFile="~/admin/admin.master" %>
 
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
@@ -16,20 +16,63 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Exam Assigned</li>
+            <li class="breadcrumb-item active">Assign Assessment</li>
         </ol>
-        <h1 class="h2">Exam Module</h1>
-          <div class="media align-items-center">  
-            <div class="form-row">
-                <a href="exam_assign.aspx" class="btn btn-success">Add New</a>
-                                      
+        <h1 class="h2">Assign Assessment</h1>
+        <div id="validateDiv" runat="server" class="card">
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label form-label">Select Institution</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <asp:DropDownList ID="ddlUniversity" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label form-label">Select Assigner</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <asp:DropDownList ID="ddlexaminer" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlexaminer_SelectedIndexChanged"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label form-label">Enter Assigner Passkey</label>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" runat="server" id="txtpasskey" class="form-control" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-8 offset-sm-3">
+                    <div class="media align-items-center">
+                        <div class="media-left">
+                            <asp:Button ID="btn_submit" runat="server" Text="Validate" CssClass="btn btn-success" OnClick="btn_submit_Click" OnClientClick="return validateForm()" />
+                            <div class="col-md-20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card">
+        <div runat="server" id="creatediv" style="display: none">
+            <div class="media align-items-center">
+                <div class="form-row">
+                    <asp:Button ID="btn_addnew" runat="server" Text="Add New" CssClass="btn btn-success" OnClick="btn_addnew_Click"/>
+                </div>
+            </div>
+            <div class="card">
 
 
-            <div class="tab-content card-body">
-                  <div class="form-group row">
+                <div class="tab-content card-body">
+                    <%--<div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label form-label">Select Institution</label>
                         <div class="col-sm-8">
                             <div class="row">
@@ -39,46 +82,46 @@
 
                             </div>
                         </div>
-                    </div>
-               <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
-                        DataKeyNames="assignid"
-                        AllowPaging="True"
-                        CellPadding="2"
-                        PageSize="25"
-                        BorderStyle="None"
-                        BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found">
+                    </div>--%>
+                    <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                        <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
+                            DataKeyNames="assignid"
+                            AllowPaging="True"
+                            CellPadding="2"
+                            PageSize="25"
+                            BorderStyle="None"
+                            BorderWidth="1px"
+                            CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="QuestiontGridView_PageIndexChanging">
 
-                        <Columns>
+                            <Columns>
 
-                            <asp:BoundField DataField="assignid" HeaderText="Id" InsertVisible="False"
-                                ReadOnly="True" SortExpression="assignid" />
-                           
-                            <asp:TemplateField HeaderText="Institution">
-                                <ItemTemplate>
-                                    <asp:Label ID="lbluniveristy" runat="server" Text='<%# Bind("universityname") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>  
-                            <asp:TemplateField HeaderText="Exam Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblpapername" runat="server" Text='<%# Bind("paper_name") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>                            
-                             <asp:TemplateField HeaderText="Applicant ID Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lbltimezone" runat="server" Text='<%# Bind("studentname") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>  
-                           
-                             <asp:TemplateField HeaderText="Exam Time">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblutcdatetime" runat="server" Text='<%# Bind("exam_datetime") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>  
+                                <asp:BoundField DataField="assignid" HeaderText="Id" InsertVisible="False"
+                                    ReadOnly="True" SortExpression="assignid" />
+
+                                <asp:TemplateField HeaderText="Institution">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbluniveristy" runat="server" Text='<%# Bind("universityname") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Assessment Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblpapername" runat="server" Text='<%# Bind("paper_name") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Applicant ID Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbltimezone" runat="server" Text='<%# Bind("studentname") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Assessment Time">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblutcdatetime" runat="server" Text='<%# Bind("exam_datetime") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
 
-                          <%--  <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 
+                                <%--  <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 
 
                                 <EditItemTemplate>
 
@@ -99,27 +142,38 @@
                                     <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("exampapersid")%>' CommandName="Delete" Text="Delete" OnClientClick='<%# Eval("exampapersid","return ConfirmOnDelete({0})") %>'></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>--%>
-
-
-                        </Columns>
+                            </Columns>
 
 
 
-                    </asp:GridView>
-                </div>
+                        </asp:GridView>
+                    </div>
 
 
                 </div>
             </div>
-
         </div>
+    </div>
     <script>
-       $(document).ready(function () {
+        function validateForm() {
+
+            var flag = false;
+            if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
+                 alert("Please select University");
+             else if ($("#<%=ddlexaminer.ClientID%>").val() == "0")
+               alert("Please select Assigner");
+           else if ($("#<%=txtpasskey.ClientID%>").val() == "")
+                alert("Please enter passkey");
+            else
+                flag = true;
+            return flag;
+        }
+        $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#exammodule_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#examsassign').addClass('active');
         });
-        
+
     </script>
 </asp:Content>
