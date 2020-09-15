@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h3>Exam Details</h3>
+        <h3>Assessment Details</h3>
     </div>
     <div class="page ">
         <div class="container page__container">
@@ -26,12 +26,12 @@
                             </div>
                             <div class="list-group-item border" id="meetingrexpiresDiv" runat="server" style="display:none">
                                 <label runat="server">
-                                    No Show.Exam time is expired.
+                                    No Show.Assessmnent time is expired.
                                 </label>
                             </div>
                             <div class="list-group-item border" id="divexamname" runat="server">
                                 <label id="Label7" runat="server" for="divexamname">
-                                   <b>Exam Name :</b> <%=examname %>
+                                   <b>Assessmnent Name :</b> <%=examname %>
                                 </label>
                             </div>
                              <div class="list-group-item border" id="divInstruction" runat="server">
@@ -40,7 +40,7 @@
                                 </label>
                             </div>
                             <div class="list-group-item border" id="para1" runat="server">
-                                <label id="lblwithoutotp" runat="server" for="withoutotp">Your Exam Session is scheduled for </label>
+                                <label id="lblwithoutotp" runat="server" for="withoutotp">Your Assessmnent Session is scheduled for </label>
                                 <br/>
                                 <ul typeof="disc">
                                     <li>
@@ -57,7 +57,7 @@
                                     <div class="form-row">
                                         <label id="lblwithotp" runat="server" for="employer" >Enter Student Passkey :</label>&nbsp;
                                         <div class="col-md-4">
-                                            <input id="txtstudepassskey" runat="server" type="text" class="form-control" placeholder="Enter the Passkey">
+                                            <input id="txtstudepassskey" runat="server" type="text" class="form-control" placeholder="Enter the Passkey"  autocomplete="off">
                                         </div>
                                     </div>
                                     </div>
@@ -65,15 +65,15 @@
                             <div class="list-group-item border" id="para21" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group">
                                     <div class="form-row">
-                                        <label id="Label6" runat="server" for="employer" >Enter Proctor Passkey :</label>&nbsp;
+                                        <label id="Label6" runat="server" for="employer" >Enter Invigilator Passkey :</label>&nbsp;
                                         <div class="col-md-4">
-                                            <input id="txtproctorepasskey" runat="server" type="text" class="form-control" placeholder="Enter the Passkey">
+                                            <input id="txtproctorepasskey" runat="server" type="text" class="form-control" placeholder="Enter the Passkey" autocomplete="off">
                                         </div>
                                         <div class="col-md-3" style="margin-top: -1%;">
                                              <asp:Button ID="Button1" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnsubmit_Click" OnClientClick="return validateForm();"/>     
                                         </div>
                                         <br/>
-                                        <label> This would be provided to you by your assigned Proctor during the session, post verification of identity.</label>
+                                        <label> This would be provided to you by your assigned Invigilator during the session, post verification of identity.</label>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
 
                             <div class="list-group-item border" id="para6" runat="server" style="display:none">
                                 <label id="Label4" runat="server" for="employer">
-                                    Your Proctor for the session will be <%=proctorname %>. You may contact your Proctor via <u><%=proctoremail %> </u> for any assistance or clarifications.
+                                    Your Invigilator for the session will be <%=proctorname %>. You may contact your Invigilator via <u><%=proctoremail %> </u> for any assistance or clarifications.
                                 </label>
                             </div>
 
@@ -150,7 +150,7 @@
             if ($("#<%=txtstudepassskey.ClientID%>").val() == "")
                 alert("Please enter valid student passkey");
             else if ($("#<%=txtproctorepasskey.ClientID%>").val() == "")
-                 alert("Please enter valid proctor passkey");
+                 alert("Please enter valid Invigilator passkey");
             else
                 flag = true;            
             return flag;

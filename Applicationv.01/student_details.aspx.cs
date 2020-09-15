@@ -42,13 +42,29 @@ public partial class student_details : System.Web.UI.Page
             objCom.BindCountries(ddlcountrycitizenship);
             objCom.BindCountries(ddldob);
             objCom.BindCountries(ddlcountryresidence);
-            objCom.BindInstitution(ddlinstitution);
+            BindUniversity();// objCom.BindInstitution(ddlinstitution,universityID);
             populateDetails();
             SetControlsUniversitywise();
         }
 
     }
-
+    private void BindUniversity()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var Universities = db.university_master.Where(x => x.universityid == universityID).ToList();//.Where(x=>x.universityid == universityID).ToList();
+            ddlinstitution.DataSource = Universities;
+            ddlinstitution.DataTextField = "university_name";
+            ddlinstitution.DataValueField = "universityid";
+            ddlinstitution.DataBind();
+            ddlinstitution.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
     private String setInnerHtml(dynamic obj)
     {
         return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + "  " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
@@ -171,11 +187,13 @@ public partial class student_details : System.Web.UI.Page
                             description = ap.description,
                             id = ap.id
                         }).ToList();
-            ddlgroup.DataSource = group;
-            ddlgroup.DataTextField = "description";
-            ddlgroup.DataValueField = "id";
-            ddlgroup.DataBind();
-            ddlgroup.Items.Insert(0, lst);
+            
+                ddlgroup.DataSource = group;
+                ddlgroup.DataTextField = "description";
+                ddlgroup.DataValueField = "id";
+                ddlgroup.DataBind();
+                ddlgroup.Items.Insert(0, lst);
+           
         }
         catch (Exception ex)
         {
@@ -183,6 +201,34 @@ public partial class student_details : System.Web.UI.Page
         }
 
     }
+    public void Bind_Subject(int institutionId)
+    {
+        try
+        {
+            
+            var group = (from ap in db.exam_subjectmaster
+                         join cwm in db.exam_universitywisesubjectmapping on ap.id equals cwm.subjectID
+                         where cwm.universityID == institutionId
+                         select new
+                         {
+                             description = ap.description,
+                             id = ap.id
+                         }).ToList();
+
+            ddlsubject.DataSource = group;
+            ddlsubject.DataTextField = "description";
+            ddlsubject.DataValueField = "id";
+            ddlsubject.DataBind();
+           
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+
+    }
+
     public void BindIDProof(int countryofbirth)
     {
         try
@@ -212,19 +258,23 @@ public partial class student_details : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("Please select", "0");
+            ListItem lst = new ListItem("Please Select", "0");
+            ListItem lst1 = new ListItem("Not Applicable", "0");
             var temp = (from ap in db.universitycampus
                           where ap.universityid == institutionId
                           select new
                           {
                               description = ap.campusname,
                               id = ap.campusid
-                          }).Distinct().ToList();
+                          }).Distinct().ToList();            
             ddlcampus.DataSource = temp;
             ddlcampus.DataTextField = "description";
             ddlcampus.DataValueField = "id";
             ddlcampus.DataBind();
-            ddlcampus.Items.Insert(0, lst);
+            if (temp.Count == 0)
+                ddlcampus.Items.Insert(0, lst1);
+            else
+                ddlcampus.Items.Insert(0, lst);
         }
         catch (Exception ex)
         {
@@ -283,6 +333,7 @@ public partial class student_details : System.Web.UI.Page
     public static string BindCampus(int institutionId)
     {
         GTEEntities db1 = new GTEEntities();
+
         var temp = (from ap in db1.universitycampus
                     where ap.universityid == institutionId
                     select new
@@ -296,7 +347,7 @@ public partial class student_details : System.Web.UI.Page
     private void populateDetails() {
         try
         {
-            var profileInfo = (from pInfo in db.exam_applicantdetail
+            var profileInfo = (from pInfo in db.applicantdetails
                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
@@ -305,7 +356,7 @@ public partial class student_details : System.Web.UI.Page
                 txtmiddlename.Value = profileInfo.middlename;
                 txtlastname.Value = profileInfo.lastname;
                 txtemail.Value = profileInfo.email;
-                txtcontactno.Value = profileInfo.contactno;
+                txtcontactno.Value = profileInfo.mobileno;
                 if (profileInfo.dateofbirth != null)
                 {
                     txtdob.Value = Convert.ToDateTime(profileInfo.dateofbirth).ToString("yyyy-MM-dd");
@@ -321,20 +372,20 @@ public partial class student_details : System.Web.UI.Page
                     ddlcountrycitizenship.ClearSelection();
                     ddlcountrycitizenship.Items.FindByValue(profileInfo.countryof_citizenship.ToString()).Selected = true;
                 }
-                if (profileInfo.countryof_birth != null)
+                if (profileInfo.countryofbirth != null)
                 {
                     ddldob.ClearSelection();
-                    ddldob.Items.FindByValue(profileInfo.countryof_birth.ToString()).Selected = true;
+                    ddldob.Items.FindByValue(profileInfo.countryofbirth.ToString()).Selected = true;
                 }
-                if (profileInfo.countryof_residence != null)
+                if (profileInfo.countryofbirth != null)
                 {
                     ddlcountryresidence.ClearSelection();
-                    ddlcountryresidence.Items.FindByValue(profileInfo.countryof_residence.ToString()).Selected = true;
+                    ddlcountryresidence.Items.FindByValue(profileInfo.countryofbirth.ToString()).Selected = true;
                 }
                 if (profileInfo.idproofId != null)
                 {                    
                     ddlidproof.ClearSelection();
-                    BindIDProof(Convert.ToInt32(profileInfo.countryof_birth));
+                    BindIDProof(Convert.ToInt32(profileInfo.countryofbirth));
                     ddlidproof.Items.FindByValue(profileInfo.idproofId.ToString()).Selected = true;
                     HidIpProffID.Value = Convert.ToString(profileInfo.idproofId);
                 }
@@ -346,32 +397,50 @@ public partial class student_details : System.Web.UI.Page
                     copylink.Text = "View File";
                 }
 
-                if (profileInfo.institutionId != null)
+                if (profileInfo.exam_institutionId != null)
                 {
                     ddlinstitution.ClearSelection();
-                    ddlinstitution.Items.FindByValue(profileInfo.institutionId.ToString()).Selected = true;
+                    ddlinstitution.Items.FindByValue(profileInfo.exam_institutionId.ToString()).Selected = true;
                 }
-                if (profileInfo.campusId != null)
+                if (profileInfo.exam_institutionId != null)
                 {
                     ddlcampus.ClearSelection();
-                    Bind_campus(Convert.ToInt32(profileInfo.institutionId));
-                    ddlcampus.Items.FindByValue(profileInfo.campusId.ToString()).Selected = true;
-                    HidcampusID.Value = profileInfo.campusId.ToString();
+                    Bind_campus(Convert.ToInt32(profileInfo.exam_institutionId));
+                    if (profileInfo.campusId != null)
+                    {
+                        ddlcampus.Items.FindByValue(profileInfo.campusId.ToString()).Selected = true;
+                        HidcampusID.Value = profileInfo.campusId.ToString();
+                    }
+                    else
+                    {
+                        ddlcampus.Items.FindByValue("0").Selected = true;
+                        HidcampusID.Value = "0";
+                    }
                 }
                 txtstudentid.Value = profileInfo.studentid;
                 if (profileInfo.classId != null)
                 {
                     ddlclass.ClearSelection();
-                    Bind_Class(Convert.ToInt32(profileInfo.institutionId));
+                    Bind_Class(Convert.ToInt32(profileInfo.exam_institutionId));
                     ddlclass.Items.FindByValue(profileInfo.classId.ToString()).Selected = true;
                     HidclassID.Value = profileInfo.classId.ToString();
                 }
                 if (profileInfo.groupId != null)
                 {
                     ddlgroup.ClearSelection();
-                    Bind_Group(Convert.ToInt32(profileInfo.countryof_birth));
+                    Bind_Group(Convert.ToInt32(profileInfo.exam_institutionId));
                     ddlgroup.Items.FindByValue(profileInfo.groupId.ToString()).Selected = true;
                     HidGroupID.Value = profileInfo.groupId.ToString();
+                }
+                //int universityId = Convert.ToInt16(ddlUniversity.SelectedValue);
+                Bind_Subject(universityID);
+                var universityWise = (from usm in db.exam_applicant_subjectmapping
+                                      join sm in db.exam_subjectmaster on usm.subjectid equals sm.id
+                                      where usm.universityid == universityID && usm.applicantid == userID
+                                      select usm).ToList();
+                for (int k = 0; k < universityWise.Count; k++)
+                {
+                    ddlsubject.Items.FindByValue(universityWise[k].subjectid.ToString()).Selected = true;
                 }
             }
             else {
@@ -385,16 +454,26 @@ public partial class student_details : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    private void BindPreselect()
+    {
+        try {
+
+
+        }
+        catch (Exception ex) {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 
     protected void btn_login_Click(object sender, EventArgs e)
     {
         try
         {
             var mode = "new";
-            var profileInfo = (from pInfo in db.exam_applicantdetail
+            var profileInfo = (from pInfo in db.applicantdetails
                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
-            exam_applicantdetail objapplicantDetail = new exam_applicantdetail();
+            applicantdetails objapplicantDetail = new applicantdetails();
             if (profileInfo != null)
             {
                 mode = "update";
@@ -405,7 +484,7 @@ public partial class student_details : System.Web.UI.Page
             objapplicantDetail.middlename = txtmiddlename.Value;
             objapplicantDetail.lastname = txtlastname.Value;
             objapplicantDetail.email = txtemail.Value;
-            objapplicantDetail.contactno = txtcontactno.Value;
+            objapplicantDetail.mobileno = txtcontactno.Value;
             objapplicantDetail.dateofbirth = Convert.ToDateTime(txtdob.Value);
             if (fileupload.HasFile)
             {
@@ -423,13 +502,13 @@ public partial class student_details : System.Web.UI.Page
             }
             if (ddldob.SelectedValue != null)
             {
-                objapplicantDetail.countryof_birth = Convert.ToInt32(ddldob.SelectedValue);
+                objapplicantDetail.countryofbirth = Convert.ToInt32(ddldob.SelectedValue);
             }
-            if (ddlcountryresidence.SelectedValue != null)
+            if (ddlcountryresidence.SelectedValue != null )
             {
-                objapplicantDetail.countryof_residence = Convert.ToInt32(ddlcountryresidence.SelectedValue);
+                objapplicantDetail.residentialcountry = Convert.ToInt32(ddlcountryresidence.SelectedValue);
             }
-            if (ddlidproof.SelectedValue != null)
+            if (!string.IsNullOrEmpty(HidIpProffID.Value))
             {
                 objapplicantDetail.idproofId = Convert.ToInt32(HidIpProffID.Value);
             }
@@ -446,11 +525,11 @@ public partial class student_details : System.Web.UI.Page
             }
             if (ddlinstitution.SelectedValue != null)
             {
-                objapplicantDetail.institutionId = Convert.ToInt32(ddlinstitution.SelectedValue);
+                objapplicantDetail.exam_institutionId = Convert.ToInt32(ddlinstitution.SelectedValue);
             }
             if (ddlcampus.SelectedValue != null)
             {
-                objapplicantDetail.campusId = Convert.ToInt32(HidcampusID.Value);
+               objapplicantDetail.campusId = Convert.ToInt32(HidcampusID.Value);
             }
             objapplicantDetail.studentid = txtstudentid.Value;
             if (ddlclass.SelectedValue != null)
@@ -461,14 +540,42 @@ public partial class student_details : System.Web.UI.Page
             {
                 objapplicantDetail.groupId = Convert.ToInt32(HidGroupID.Value);
             }
+
+            IEnumerable<exam_applicant_subjectmapping> list = db.exam_applicant_subjectmapping.Where(x => x.universityid == universityID && x.applicantid == userID).ToList();
+            db.exam_applicant_subjectmapping.RemoveRange(list);
+            db.SaveChanges();
+
+            foreach (ListItem li in ddlsubject.Items)
+            {
+                if (li.Selected)
+                {
+                    int subjectid = Convert.ToInt16(li.Value);
+                    exam_applicant_subjectmapping mappingObj = new exam_applicant_subjectmapping();
+                    mappingObj.universityid = universityID;
+                    mappingObj.applicantid = userID;
+                    mappingObj.subjectid = subjectid;
+                    db.exam_applicant_subjectmapping.Add(mappingObj);
+                    db.SaveChanges();
+                }
+            }
+
+            //if (ddlsubject.SelectedValue != null)
+            //{
+            //    objapplicantDetail.subjectId = Convert.ToInt32(HidSubjectID.Value);
+            //}
             objapplicantDetail.applicantid = userID;
             objapplicantDetail.universityid = universityID;
             if (mode == "new")
-                db.exam_applicantdetail.Add(objapplicantDetail);
+                db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+            if(mode == "new")
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record saved successfully.')", true);
+            else if(mode == "update")
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record updated successfully.')", true);
+            populateDetails();
         }
         catch (Exception ex)
-        {
+            {
             objLog.WriteLog(ex.ToString());
         }
     }

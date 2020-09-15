@@ -209,6 +209,18 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                             <div class="list-group-item" id="Div1" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                    <div class="form-row">
+                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">Subject</label>
+                                        <div class="col-md-6">                                            
+                                           <asp:CheckBoxList ID="ddlsubject" runat="server" RepeatDirection="Horizontal" RepeatColumns="2"></asp:CheckBoxList>
+                                            <asp:HiddenField runat="server" ID="HidSubjectID"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                              </div>
                                <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item" id="employerwebsite" runat="server">
@@ -323,14 +335,16 @@
             else if (!$("#<%=idproofCopy.ClientID%>").is(':hidden') && !validateUploadedFile($("#<%=fileuploadcopy.ClientID%>").val(),$("#<%=hidproofdocumentpath.ClientID%>").val(),"no")) { }
             else if ($("#<%=ddlinstitution.ClientID%>").val() == "0")
                 alert("Please select institution");
-            else if ($("#<%=ddlcampus.ClientID%>").val() == "0")
+             else if ($("#<%=ddlcampus.ClientID%>").val() == "0" && $("#<%=ddlcampus.ClientID%>").text() == "Please Select")
                 alert("Please select campus");
             else if ($("#<%=txtstudentid.ClientID%>").val() == "")
                 alert("Please enter institution student id");
             else if ($("#<%=ddlclass.ClientID%>").val() == "0")
                 alert("Please select class");
             else if ($("#<%=ddlgroup.ClientID%>").val() == "0")
-                alert("Please select group");          
+                alert("Please select group");
+            else if ($("input[type=checkbox]:checked").length == 0)
+                 alert("Please select subject");
             else
                 flag = true;            
             return flag;
@@ -418,9 +432,12 @@
                             if (result.length == 0) {
                                 $("#<%=ddlcampus.ClientID%>").empty();
                                 $("#<%=ddlcampus.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Not Applicable"));
+                                $("#<%=HidcampusID.ClientID%>").val(0);
                             }
-                            for (var i = 0; i < result.length; i++)
-                                $("#<%=ddlcampus.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].description));
+                            else {
+                                for (var i = 0; i < result.length; i++)
+                                    $("#<%=ddlcampus.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].description));
+                            }
                         }
                     }
                 });
@@ -437,7 +454,7 @@
           $("#<%=ddlcampus.ClientID%>").change(function () {
             $("#<%=HidcampusID.ClientID%>").val($("#<%=ddlcampus.ClientID%>").val());
         });
-
+          
           $('#ContentPlaceHolder1_txtdob').flatpickr({
        
             dateFormat: 'Y-m-d', defaultDate: "",maxDate:"today"
