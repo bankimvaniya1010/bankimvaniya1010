@@ -61,17 +61,25 @@
                                     <asp:LinkButton ID="lnkVisa" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Visa" Text="View Visa |"></asp:LinkButton>
                                   <asp:LinkButton ID="LnkFunding" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Funding" Text="View Funding |"></asp:LinkButton>
                                      <%--<asp:LinkButton ID="lnkStatus" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Status" Text="View Status"></asp:LinkButton>|<asp:LinkButton ID="lnlDownloadDetails" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Download" Text="Download Applicant Details"></asp:LinkButton>|--%>
-                                     <asp:LinkButton ID="lnkGteReportFeedBack" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="FeedBackGTE" Text="GTE Report FeedBack |"></asp:LinkButton>
+                                     
+                                    <asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="DraftSOP" Text="Download Draft SOP Report|"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton5" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="DraftGTE" Text="Download Draft GTE Report |"></asp:LinkButton>                                    
+                                    <asp:LinkButton ID="lnkGteReportFeedBack" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="FeedBackGTE" Text="GTE Report FeedBack |"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkDownloadSOPReport" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="SOP" Text="Download Final SOP Report |"></asp:LinkButton>
                                     <asp:LinkButton ID="lnkDownloadGteReport" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="GTE" Text="Download GTE Report |"></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkButton8" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="GTECertificate" Text="GTE Certificate |"></asp:LinkButton>
+
+<%--                                    <asp:LinkButton ID="LinkButton9" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VerificationVideoDownload" Text="Verification Video Download |"></asp:LinkButton>--%>
                                     <asp:LinkButton ID="lnkVerificationVideo" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VerificationVideo" Text="Verification Video |"></asp:LinkButton>
+
                                       <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VisaForm" Text="Download Visa Form |"></asp:LinkButton>
                                       <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="PerDown" Text="Download Information |"></asp:LinkButton>  
                                     <asp:LinkButton ID="lnkProcessPayments" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ProcessPaymentRequest" Text="Process Payment Request |"></asp:LinkButton>
                                     <%--  <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkValidate" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ValidateData" Text="ValidateData"></asp:LinkButton>|
                                     --%>
-                                    <asp:LinkButton ID="LinkbtnvisaDates" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VisaDate" Text="Add Visa Dates Details"></asp:LinkButton>
-                                    <asp:LinkButton ID="lnkDownloadSOPReport" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="SOP" Text="Download SOP Report "></asp:LinkButton>
+                                    <asp:LinkButton ID="LinkbtnvisaDates" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VisaDate" Text="Add Visa Dates Details |"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkdocuments" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Documents" Text="View GTE Applicant Documents"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>                              
 

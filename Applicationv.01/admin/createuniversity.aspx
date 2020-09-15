@@ -46,7 +46,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="uniType" class="col-sm-3 col-form-label form-label">University Type</label>
                         <div class="col-sm-8">
@@ -538,6 +537,36 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label form-label">Notification Email 1 </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <asp:TextBox ID="txtnotification1" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label form-label">Notification Email 2  </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtnotification2" class="form-control" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="uniType" class="col-sm-3 col-form-label form-label">Number of Applicant</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtapplicantno" type="text" runat="server" class="form-control" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
@@ -628,10 +657,15 @@
             var proctorno1 = $('#<%=txtproctorno1.ClientID%>').val();
             var proctoremail1 = $('#<%=txtproctoremail1.ClientID%>').val();
             var examInstruction = $('#<%=txtexamInstruction.ClientID%>').val();
+            var notificationemail1 = $('#<%=txtnotification1.ClientID%>').val();
+            var notificationemail2 = $('#<%=txtnotification2.ClientID%>').val();
+             var nofapplicant= $('#<%=txtapplicantno.ClientID%>').val();
+
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
             var colorcodeRegex =/^#(?:[0-9a-fA-F]{3}){1,2}$/;
+            var checOnlykNum = /^[0-9]*$/;
 
             if (txtUniName == '') {
                 alert("Please enter University Name");
@@ -800,7 +834,19 @@
                 return false;
             }
             else if (examInstruction == "") {
-                alert("Please enter Exam Instruction.");
+                alert("Please enter assessment Instruction.");
+                return false;
+            }
+            else if (notificationemail1 == "" || !emailRegex.test(notificationemail1)) {
+                alert("Please enter email 1 for notification.");
+                return false;
+            }
+            else if (notificationemail2 == "" || !emailRegex.test(notificationemail2)) {
+                alert("Please enter email 2 for notification.");
+                return false;
+            }
+            else if (nofapplicant == "" || !(checOnlykNum.test(nofapplicant))) {
+                alert("Please enter valid applicant to be registered.");
                 return false;
             }
             return true;
