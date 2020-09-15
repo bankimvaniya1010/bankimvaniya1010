@@ -15,19 +15,62 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Exam Module</li>
+            <li class="breadcrumb-item active">Create Assessment</li>
         </ol>
-        <h1 class="h2">Exam Module</h1>
-          <div class="media align-items-center">  
+        <h1 class="h2">Create Assessment</h1> 
+         <div id="validateDiv" runat="server" class="card">
+                       <div class="form-group row">
+                           <label for="name" class="col-sm-3 col-form-label form-label">Select Institution</label>
+                           <div class="col-sm-8">
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <asp:DropDownList ID="ddlUniversity" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="form-group row">
+                           <label for="name" class="col-sm-3 col-form-label form-label">Select Creator</label>
+                           <div class="col-sm-8">
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <asp:DropDownList ID="ddlexaminer" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlexaminer_SelectedIndexChanged"></asp:DropDownList>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="form-group row">
+                           <label for="name" class="col-sm-3 col-form-label form-label">Enter Creator Passkey</label>
+                           <div class="col-sm-8">
+                               <div class="row">
+                                   <div class="col-md-6">
+                                       <input type="text" runat="server" id="txtpasskey" class="form-control" autocomplete="off">
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="form-group row">
+                           <div class="col-sm-8 offset-sm-3">
+                               <div class="media align-items-center">
+                                   <div class="media-left">
+                                       <asp:Button ID="btn_submit" runat="server" Text="Validate" CssClass="btn btn-success" OnClick="btn_submit_Click" OnClientClick="return validateForm()" />
+                                       <div class="col-md-20">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+         <div runat="server" id="creatediv" style="display:none">
+               <div class="media align-items-center">  
             <div class="form-row">
-                <a href="create_exampaper.aspx" class="btn btn-success">Add New</a>
-                                      
+               <asp:Button ID="btn_addnew" runat="server" Text="Create New" CssClass="btn btn-success" OnClick="btn_addnew_Click"/>
             </div>
         </div>
-        <div class="card">
-
-
-            <div class="tab-content card-body">
+               <div class="card">
+                  
+            <div class="tab-content card-body" id="gridDiv" runat="server">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                     <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
                         DataKeyNames="exampapersid"
@@ -36,7 +79,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="QuestiontGridView_PageIndexChanging">
 
                         <Columns>
 
@@ -48,18 +91,25 @@
                                     <asp:Label ID="lbluniveristy" runat="server" Text='<%# Bind("universityname") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>  
-                            <asp:TemplateField HeaderText="Exam Name">
+                            <asp:TemplateField HeaderText="Assessment Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("paper_name") %>'></asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>                            
-                             <asp:TemplateField HeaderText="Exam Name">
+                            </asp:TemplateField>  
+
+                             <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 
                                 <ItemTemplate>
-                                    <a href="/admin/upload_exampaper.aspx?exampapersid=<%# Eval("exampapersid") %>">Uploaded Exam Paper</a>
+                                     <a href="<%# Eval("editpageLink") %>">Edit</a>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                             <asp:TemplateField HeaderText="Assessment Name">
+                                <ItemTemplate>
+                                    <a href="<%# Eval("uploadpagelink") %>">Uploaded Paper</a>
                                 </ItemTemplate>
                             </asp:TemplateField>                           
 
-
+                            
                           <%--  <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 
 
                                 <EditItemTemplate>
@@ -93,7 +143,7 @@
 
                 </div>
             </div>
-
+            </div>
         </div>
     <script>
        $(document).ready(function () {
@@ -102,7 +152,19 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#exammodule').addClass('active');
         });
-        
+         function validateForm() {
+
+            var flag = false;
+            if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
+                 alert("Please select University");
+             else if ($("#<%=ddlexaminer.ClientID%>").val() == "0")
+               alert("Please select creator");
+           else if ($("#<%=txtpasskey.ClientID%>").val() == "")
+                alert("Please enter passkey");
+            else
+                flag = true;
+            return flag;
+        }
     </script>
 </asp:Content>
 
