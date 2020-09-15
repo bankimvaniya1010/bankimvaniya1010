@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 
-public partial class gte_certificate : System.Web.UI.Page
+public partial class gte_certificate1 : System.Web.UI.Page
 {
     protected string _studentName = "";
     protected string _performanceCategory = "";
@@ -20,12 +20,18 @@ public partial class gte_certificate : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        
+
         if (Request.QueryString["downloadPdf"] != null)
             downloadPdf = Convert.ToInt32(Request.QueryString["downloadPdf"]);
-        universityID = Utility.GetUniversityId();        
+
+        if (string.IsNullOrEmpty(Request.QueryString["applicantid"]))
+            Response.Redirect(webURL + "admin/default.aspx", true);
+        else
+            ApplicantID = Convert.ToInt32(Request.QueryString["applicantid"].ToString());
+
+        universityID = Utility.GetUniversityId();
         showContent();
-        
+
     }
 
     private void showContent()
@@ -34,7 +40,7 @@ public partial class gte_certificate : System.Web.UI.Page
         {
             if (downloadPdf == 1 && Request.QueryString["token"] != null && Request.QueryString["token"].ToString() == "XS7MKjHLunMAvqzCGr")
             {
-                backNavLink.Visible = false;
+                //backNavLink.Visible = false;
                 btnDownload.Visible = false;
                 btnDiv.Style.Add("display", "none");
                 int applicantId = 0;
@@ -49,10 +55,10 @@ public partial class gte_certificate : System.Web.UI.Page
             else if (downloadPdf == 0)
             {
                 btnDiv.Style.Remove("display");
-                if (Utility.CheckStudentLogin())
+                if (Utility.CheckAdminLogin())
                 {
                     universityID = Utility.GetUniversityId();
-                    ApplicantID = Convert.ToInt32(Session["UserID"].ToString());
+                   // ApplicantID = Convert.ToInt32(Session["UserID"].ToString());
 
                     if (!IsPostBack)
                     {
@@ -61,7 +67,7 @@ public partial class gte_certificate : System.Web.UI.Page
                         {
                             if (studentGteProgress.is_gte_certificate_generated.HasValue && studentGteProgress.is_gte_certificate_generated.Value)
                             {
-                                setStudentPersonalDetails(ApplicantID, universityID);                                
+                                setStudentPersonalDetails(ApplicantID, universityID);
                             }
                             else
                                 showErrorMessage();
@@ -71,7 +77,7 @@ public partial class gte_certificate : System.Web.UI.Page
                     }
                 }
                 else
-                    Response.Redirect(webURL + "/default.aspx", true);
+                    Response.Redirect(webURL + "admin/default.aspx", true);
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
@@ -79,11 +85,11 @@ public partial class gte_certificate : System.Web.UI.Page
     private void showErrorMessage()
     {
         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                                "alert('GTE Certificate not generated.');window.location='" + webURL + "default.aspx';", true);
+                                "alert('Something went wrong');window.location='" + webURL + "admin/default.aspx';", true);
     }
 
     private void setStudentPersonalDetails(int applicantId, int universityID)
-        {
+    {
         try
         {
             objLog.WriteLog("Applicant ID: " + applicantId + " University Id: " + universityID);
@@ -97,21 +103,21 @@ public partial class gte_certificate : System.Web.UI.Page
             if (applicant_gte_progress.certificate_creation_date.HasValue)
                 _certificateCreationDate = applicant_gte_progress.certificate_creation_date.Value.ToString("dd-MM-yyyy");
 
-            
+
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
-    }   
-
+    }
+     
     protected void btnDownload_Click(object sender, EventArgs e)
     {
         try
         {
-            int applicantID = Convert.ToInt32(Session["UserID"].ToString());
+            ApplicantID = Convert.ToInt32(Request.QueryString["applicantid"].ToString());
             int universityID = Utility.GetUniversityId();
 
-            if (!(applicantID == 0 || universityID == 0))
+            if (ApplicantID == 0 || universityID == 0)
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                         "alert('Invalid Student Details');window.location='" + webURL + "/gte_declaration.aspx?formid=20';", true);
+                         "alert('Invalid Details');window.location='" + webURL + "admin/default.aspx';", true);
 
             var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
             htmlToPdf.Orientation = PageOrientation.Portrait;
@@ -121,16 +127,31 @@ public partial class gte_certificate : System.Web.UI.Page
             string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
             string fileName = Guid.NewGuid() + ".pdf";
             string filePath = string.Concat(dirPath, "\\", fileName);
-            htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificate.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + applicantID + "&universityId=" + universityID, null, filePath);
             
-      
+            htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificate1.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + ApplicantID + "&universityId=" + universityID, null, filePath);
+
+            var mode = "new";
+            gte_progressbar objmapping = new gte_progressbar();
+            var data = db.gte_progressbar.Where(x => x.applicantid == ApplicantID && x.universityId == universityID).FirstOrDefault();
+
+            if (data != null)
+            {
+                mode = "update";
+                objmapping = data;
+            }
+            objmapping.certificatepath = fileName;
+            if (mode == "new")
+                db.gte_progressbar.Add(objmapping);
+            db.SaveChanges();
+
             HttpContext.Current.Response.ContentType = "application/pdf";
             HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment; filename=GTE_Certificate.pdf");
             HttpContext.Current.Response.TransmitFile(filePath);
 
             HttpContext.Current.Response.Flush();
-            if (File.Exists(filePath))
-                File.Delete(filePath);
+
+            //if (File.Exists(filePath))
+            //    File.Delete(filePath);
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }

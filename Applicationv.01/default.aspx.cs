@@ -19,6 +19,7 @@ public partial class _Default : System.Web.UI.Page
     protected static string universityName = string.Empty;
     Common objCom = new Common();
     public int UniversityID = -1;
+    public int isfullservice;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -28,12 +29,14 @@ public partial class _Default : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
 
         Session["Applicant"] = UserID;
-        
-        int isfullservice = (int)Session["isfullservice"];
+
+        isfullservice = (int)Session["isfullservice"];
         if (isfullservice == 1)
-            isfullservicethenlbl.Text = "APPLICATION CENTER";
+            isfullservicethenlbl.Text = "TO THE APPLICATION CENTER";
         else if (isfullservice == 0)
-            isfullservicethenlbl.Text = "GTE ONLINE CENTER (GOC)";
+            isfullservicethenlbl.Text = "TO THE GTE ONLINE CENTER (GOC)";
+        else if (isfullservice == 2)
+            isfullservicethenlbl.Text = "TO ASSESSMENT CENTER";
 
         if (!IsPostBack)
         {

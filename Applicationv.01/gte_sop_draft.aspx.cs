@@ -6,8 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
 using System.Text.RegularExpressions;
+using NReco.PdfGenerator;
+using System.IO;
 
-public partial class gte_sop : System.Web.UI.Page
+public partial class gte_sop_draft : System.Web.UI.Page
 {
     int UserID = 0, universityID;
     private GTEEntities db = new GTEEntities();
@@ -24,14 +26,7 @@ public partial class gte_sop : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
-        UserID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
-        {
-            Response.Redirect(webURL + "default.aspx", true);
-        }
-        else
-            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
-
+        UserID = objUser.studentid;        
 
         if (!IsPostBack)
         {
@@ -43,15 +38,15 @@ public partial class gte_sop : System.Web.UI.Page
             {
                 if (sop_details.is_sop_submitted_by_applicant)
                 {
-                    txtPara1.Text = sop_details.applicant_generated_sop_para1;
-                    txtPara2.Text = sop_details.applicant_generated_sop_para2;
-                    txtPara3.Text = sop_details.applicant_generated_sop_para3;
-                    txtPara4.Text = sop_details.applicant_generated_sop_para4;
-                    txtPara5.Text = sop_details.applicant_generated_sop_para5;
+                    txtPara1.Text = sop_details.gte_sop_para1;
+                    txtPara2.Text = sop_details.gte_sop_para2;
+                    txtPara3.Text = sop_details.gte_sop_para3;
+                    txtPara4.Text = sop_details.gte_sop_para4;
+                    txtPara5.Text = sop_details.gte_sop_para5;
 
-                    btnEdit.Style.Add("display", "none");
-                    btnSave.Style.Add("display", "none");
-                    btnsubmit.Style.Add("display", "none");
+                    //btnEdit.Style.Add("display", "none");
+                    //btnSave.Style.Add("display", "none");
+                    //btnsubmit.Style.Add("display", "none");
                 }
                 else
                 {
@@ -61,9 +56,9 @@ public partial class gte_sop : System.Web.UI.Page
                     txtPara4.Text = sop_details.gte_sop_para4;
                     txtPara5.Text = sop_details.gte_sop_para5;
 
-                    btnSave.Style.Add("display", "none");
-                    btnsubmit.Style.Remove("display");
-                    btnEdit.Style.Remove("display");
+                    //btnSave.Style.Add("display", "none");
+                    //btnsubmit.Style.Remove("display");
+                    //btnEdit.Style.Remove("display");
                 }
             }
             else
@@ -163,40 +158,33 @@ public partial class gte_sop : System.Web.UI.Page
 
                     try
                     {
-                        btnSave.Style.Add("display", "none");
-                        btnsubmit.Style.Remove("display");
-                        btnEdit.Style.Remove("display");
+                        //btnSave.Style.Add("display", "none");
+                        //btnsubmit.Style.Remove("display");
+                        //btnEdit.Style.Remove("display");
 
-                        //txtPara1.Text = construct_para(1, applicantdetails);
-                        //txtPara2.Text = construct_para(2, applicantdetails);
-                        //txtPara3.Text = construct_para(3, applicantdetails);
-                        //txtPara4.Text = construct_para(4, applicantdetails);
-                        //txtPara5.Text = construct_para(5, applicantdetails);
-                        var mode = "new";
+                        txtPara1.Text = construct_para(1, applicantdetails);
+                        txtPara2.Text = construct_para(2, applicantdetails);
+                        txtPara3.Text = construct_para(3, applicantdetails);
+                        txtPara4.Text = construct_para(4, applicantdetails);
+                        txtPara5.Text = construct_para(5, applicantdetails);
+
                         gte_student_sop sop = new gte_student_sop();
-                        var data = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
+                        sop.gte_sop_para1 = txtPara1.Text;
+                        sop.gte_sop_para2 = txtPara2.Text;
+                        sop.gte_sop_para3 = txtPara3.Text;
+                        sop.gte_sop_para4 = txtPara4.Text;
+                        sop.gte_sop_para5 = txtPara5.Text;
+                        sop.applicant_generated_sop_para1 = txtPara1.Text;
+                        sop.applicant_generated_sop_para2 = txtPara2.Text;
+                        sop.applicant_generated_sop_para3 = txtPara3.Text;
+                        sop.applicant_generated_sop_para4 = txtPara4.Text;
+                        sop.applicant_generated_sop_para5 = txtPara5.Text;
+                        sop.is_sop_submitted_draft = true;
+                        sop.applicant_id = UserID;
+                        sop.universityid = universityID;
+                        sop.created_at = DateTime.Now;
 
-                        if (data != null)
-                        {
-                            mode = "update";
-                            data = sop;
-                        }
-                        //sop.gte_sop_para1 = txtPara1.Text;
-                        //sop.gte_sop_para2 = txtPara2.Text;
-                        //sop.gte_sop_para3 = txtPara3.Text;
-                        //sop.gte_sop_para4 = txtPara4.Text;
-                        //sop.gte_sop_para5 = txtPara5.Text;
-                        //sop.applicant_generated_sop_para1 = string.Empty;
-                        //sop.applicant_generated_sop_para2 = string.Empty;
-                        //sop.applicant_generated_sop_para3 = string.Empty;
-                        //sop.applicant_generated_sop_para4 = string.Empty;
-                        //sop.applicant_generated_sop_para5 = string.Empty;
-                        sop.is_sop_submitted_by_applicant = false;
-                        //sop.applicant_id = UserID;
-                        //sop.universityid = universityID;
-                        //sop.created_at = DateTime.Now;
-                        if(mode == "new")
-                             db.gte_student_sop.Add(sop);
+                        db.gte_student_sop.Add(sop);
                         db.SaveChanges();
                     }
                     catch (Exception ex)
@@ -425,40 +413,66 @@ public partial class gte_sop : System.Web.UI.Page
         return text;
     }
 
-    protected void btnsubmit_Click(object sender, EventArgs e)
+
+    //protected void btnsubmit_Click(object sender, EventArgs e)
+    //{
+    //    gte_student_sop sop = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
+
+    //    sop.applicant_generated_sop_para1 = txtPara1.Text;
+    //    sop.applicant_generated_sop_para2 = txtPara2.Text;
+    //    sop.applicant_generated_sop_para3 = txtPara3.Text;
+    //    sop.applicant_generated_sop_para4 = txtPara4.Text;
+    //    sop.applicant_generated_sop_para5 = txtPara5.Text;
+    //    sop.is_sop_submitted_by_applicant = true;
+
+    //    db.SaveChanges();
+
+    //    //btnEdit.Style.Add("display", "none");
+    //    //btnSave.Style.Add("display", "none");
+    //    //btnsubmit.Style.Add("display", "none");
+    //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+    //        "alert('SOP saved successfully. Thank You for completing GTE SOP.');window.location='" + Request.ApplicationPath + "download_reports.aspx?formid=27';", true);
+    //}
+
+    //protected void btnSave_Click(object sender, EventArgs e)
+    //{
+    //    //btnsubmit.Style.Remove("display");
+    //    //btnEdit.Style.Remove("display");
+    //    //btnSave.Style.Add("display", "none");
+
+    //    gte_student_sop sop = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
+    //    sop.applicant_generated_sop_para1 = txtPara1.Text;
+    //    sop.applicant_generated_sop_para2 = txtPara2.Text;
+    //    sop.applicant_generated_sop_para3 = txtPara3.Text;
+    //    sop.applicant_generated_sop_para4 = txtPara4.Text;
+    //    sop.applicant_generated_sop_para5 = txtPara5.Text;
+    //    sop.edited_at = DateTime.Now;
+
+    //    db.SaveChanges();
+    //}
+
+    protected void downloaddraftsop_Click(object sender, EventArgs e)
     {
-        gte_student_sop sop = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
+        try
+        {
+            var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+            htmlToPdf.Orientation = PageOrientation.Portrait;
+            htmlToPdf.Size = PageSize.A4;
+            htmlToPdf.Grayscale = false;
+            htmlToPdf.PageWidth = 200f;
+            string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+            string fileName = Guid.NewGuid() + ".pdf";
+            string filePath = string.Concat(dirPath, "\\", fileName);
+            htmlToPdf.GeneratePdfFromFile(webURL + "sop_report.aspx?token=YKUcfdhNWwp17azByk&id=" + UserID + "&downloadPdf=1&type=draft", null, filePath);
 
-        sop.applicant_generated_sop_para1 = txtPara1.Text;
-        sop.applicant_generated_sop_para2 = txtPara2.Text;
-        sop.applicant_generated_sop_para3 = txtPara3.Text;
-        sop.applicant_generated_sop_para4 = txtPara4.Text;
-        sop.applicant_generated_sop_para5 = txtPara5.Text;
-        sop.is_sop_submitted_by_applicant = true;
+            Response.ContentType = "application/pdf";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=SOP_Report_" + fileName);
+            Response.TransmitFile(filePath);
+            Response.Flush();
+            if (File.Exists(filePath))
+                File.Delete(filePath);
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
 
-        db.SaveChanges();
-
-        btnEdit.Style.Add("display", "none");
-        btnSave.Style.Add("display", "none");
-        btnsubmit.Style.Add("display", "none");
-        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-            "alert('SOP saved successfully. Thank You for completing GTE SOP.');window.location='" + Request.ApplicationPath + "download_reports.aspx?formid=27';", true);
-    }
-
-    protected void btnSave_Click(object sender, EventArgs e)
-    {
-        btnsubmit.Style.Remove("display");
-        btnEdit.Style.Remove("display");
-        btnSave.Style.Add("display", "none");
-
-        gte_student_sop sop = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
-        sop.applicant_generated_sop_para1 = txtPara1.Text;
-        sop.applicant_generated_sop_para2 = txtPara2.Text;
-        sop.applicant_generated_sop_para3 = txtPara3.Text;
-        sop.applicant_generated_sop_para4 = txtPara4.Text;
-        sop.applicant_generated_sop_para5 = txtPara5.Text;
-        sop.edited_at = DateTime.Now;
-
-        db.SaveChanges();
     }
 }
