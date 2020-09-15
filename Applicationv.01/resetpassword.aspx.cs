@@ -45,13 +45,29 @@ public partial class Resetpassword : System.Web.UI.Page
                 login.ispasswordset = true;
                 login.isverified = true;
                 db.SaveChanges();                
-                universityID = Utility.GetUniversityId();                
+                universityID = Utility.GetUniversityId();
+                string servicename = string.Empty;
+                string statement = string.Empty;
                 string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/password.html"));
+                if (university.full_service == 2)
+                {
+                    servicename = "Assessment";
+                    statement = "login";
+                }
+                else
+                {
+                    servicename = "Application";
+                    statement = "start your application, continue an existing application, upload additional documents or check the status of a previously-submitted application.";
+                }
+               
                 html = html.Replace("@UniversityName", university.university_name);
                 html = html.Replace("@universityLogo", webURL + "/Docs/" + Utility.GetUniversityId() + "/" + university.logo);
                 html = html.Replace("@Name", login.name == "" ? "Hello" : login.name);
                 html = html.Replace("@Email", login.email);
                 html = html.Replace("@OTP", password);
+                html = html.Replace("@servicename", servicename);
+                html = html.Replace("@statement", statement);
+
                 html = html.Replace("@Loginurl", webURL + "login.aspx");
                 objCom.SendMail(login.email.Trim(), html, "Password Reset Email");
                 lblMessage.Text = "Password has been set and sent to your registered email address.";
@@ -101,7 +117,10 @@ public partial class Resetpassword : System.Web.UI.Page
                 Session["FullService"] = isFullService;
                 Session["DeclarationCompleted"] = isDeclarationCompleted;
 
-                Response.Redirect(webURL + "default.aspx");
+                if(isFullService == 2)
+                    Response.Redirect(webURL + "details.aspx?id="+login.studentid);
+                else
+                    Response.Redirect(webURL + "default.aspx");
             }
             else
             {
