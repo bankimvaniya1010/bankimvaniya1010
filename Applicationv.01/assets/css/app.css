@@ -326,3 +326,15 @@ padding: 0 1.5rem;
 font-size: 15px;
 }
 .maringbtm{margin-top: 13px;}
+.bordertb{
+    border: 1px solid black;
+}
+.card-checkbox-list {
+    max-height: 567px;
+    overflow-y: auto;
+}
+
+.card-checkbox-list .row {
+    padding: 14px 5px 5px!important;
+    margin: 0;
+}
