@@ -26,10 +26,12 @@ public partial class registerconfimation : System.Web.UI.Page
         universityName = university.university_name;
 
         int isfullservice = university.full_service;
-        if (isfullservice == 1)
+        if (isfullservice == 0)
+            fullservicelbl = "GTE Online Center (GOC)";        
+        else if (isfullservice == 1)
             fullservicelbl = "APPLICATION CENTER";
-        else if(isfullservice == 0)
-            fullservicelbl = "GTE Online Center (GOC)";
+        else if (isfullservice == 2)
+            fullservicelbl = "Assessment Center";
 
         logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         universityGTMCode = university.university_gtm_code;

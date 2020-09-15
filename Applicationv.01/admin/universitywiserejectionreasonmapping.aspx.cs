@@ -46,7 +46,7 @@ public partial class admin_universitywiserejectionreasonmapping : System.Web.UI.
 
             ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";
-            ddlUniversity.DataValueField = "universityID";
+            ddlUniversity.DataValueField = "universityid";
             ddlUniversity.DataBind();
             ddlUniversity.Items.Insert(0, lst);
         }

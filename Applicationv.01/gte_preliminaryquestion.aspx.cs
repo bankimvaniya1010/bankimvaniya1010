@@ -235,7 +235,8 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 else if (userPercentageScore > 85)
                     generateParticipationCertificate("Excellent");
                 else
-                    linkCertificate.Style.Add("display", "none");
+                    generateParticipationCertificate("Poor");
+                //linkCertificate.Style.Add("display", "none");
             }
 
             lblUserScore.InnerText = Math.Round((decimal)userScore / totalQuestion * 100, 2).ToString() + "%";
@@ -373,6 +374,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 int answerID = Convert.ToInt32(val);
                 objAnswer.answer = UserValues[val].ToString();
                 objAnswer.applicantid = UserID;
+                objAnswer.universityId = UniversityID;
                 objAnswer.gte_preliminary_question_id = answerID;
                 objAnswer.answersubmittedtime = DateTime.Now;
                 db.gte_preliminaryapplicantanswers.Add(objAnswer);

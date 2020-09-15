@@ -92,7 +92,7 @@ public partial class universityformmapping : System.Web.UI.Page
 
             ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";
-            ddlUniversity.DataValueField = "universityID";
+            ddlUniversity.DataValueField = "universityid";
             ddlUniversity.DataBind();
             ddlUniversity.Items.Insert(0, lst);
         }

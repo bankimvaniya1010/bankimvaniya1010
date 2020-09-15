@@ -287,7 +287,7 @@ public partial class courseapplication : System.Web.UI.Page
                                     && x.campus == campus && x.city == city && x.country == country
                                     && x.modeofstudy == modeofstudy && x.majorofdiscipline == majorofdiscipline && x.coursetype == coursetype
                                     && x.course == course).FirstOrDefault();
-            if (exsisitingdata != null)
+            if (exsisitingdata == null)
             {
                 objapplicationmaster.college_universityname = HidInstitutionId.Value;
                 objapplicationmaster.campus = Convert.ToInt32(HidCampusID.Value);
