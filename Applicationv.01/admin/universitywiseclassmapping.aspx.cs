@@ -11,14 +11,16 @@ public partial class admin_universitywiseclassmapping : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objcom = new Common();
     string webURL = String.Empty;
+    int universityid;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        universityid = Utility.GetUniversityId();
         if (!IsPostBack)
         {
-            objcom.BindCountries(ddlinstitution);
+            objcom.BindInstitution(ddlinstitution, universityid);
             BindClass();
         }
     }

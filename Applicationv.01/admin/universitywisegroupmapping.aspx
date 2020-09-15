@@ -8,9 +8,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-                <li class="breadcrumb-item"><a href="alternateIdproofcountrywiselisting.aspx"> Country Wise Group Mapping </a></li>
+                <li class="breadcrumb-item"><a href="alternateIdproofcountrywiselisting.aspx"> Institution Wise Group Mapping </a></li>
         </ol>
-        <h1 class="h2">Country Wise Group Mapping </h1>
+        <h1 class="h2">Institution Wise Group Mapping </h1>
 
         <div class="card">
            <div class="tab-content card-body">
@@ -70,7 +70,7 @@
        }  
        $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
-	        $('#exammodule_list').addClass('open');
+	        $('#class_group_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
 	        $('#countrywise_groupmapping').addClass('active');
 	    });

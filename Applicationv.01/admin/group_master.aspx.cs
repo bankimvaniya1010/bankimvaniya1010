@@ -130,7 +130,7 @@ public partial class admin_group_master : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvIDProof.DataKeys[e.RowIndex].Values[0]);
             group_master objID = db.group_master.Where(b => b.id == ID).First();
-            var existsIndetails = db.exam_applicantdetail.Where(d => d.groupId == ID).ToList();
+            var existsIndetails = db.applicantdetails.Where(d => d.groupId == ID).ToList();
             var existsIncountrywisemapping = db.institutionwisegroupmaster.Where(c => c.groupId == ID).ToList();
             if (existsIndetails.Count == 0 && existsIncountrywisemapping.Count == 0)
             {
