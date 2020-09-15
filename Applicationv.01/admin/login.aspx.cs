@@ -12,9 +12,28 @@ public partial class admin_login : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     string webURL = String.Empty;
+    public string isfullservicethenlbl = string.Empty;
+    int universityID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
+        if (universityID == -1)
+        {
+            Response.Redirect(Request.Url.Host.ToLower().ToString(), true);
+            return;
+        }
+        else
+            Session["universityId"] = universityID;
+        int isfullservice = (int)Session["isfullservice"];
+
+        if (isfullservice == 0)
+            isfullservicethenlbl = " GTE ONLINE CENTER (GOC)";
+        else if (isfullservice == 1)
+            isfullservicethenlbl = " APPLICATION CENTER";
+        else if (isfullservice == 2)
+            isfullservicethenlbl = " ASSESSMENT CENTER";
     }
     protected void btn_login_Click(object sender, EventArgs e)
     {

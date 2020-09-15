@@ -11,12 +11,19 @@ public partial class admin_scheduledapplicant_list : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;
     Common objCom = new Common();
+    public string roleName = string.Empty;
+    int UniversityID = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        roleName = Utility.GetRoleName();
+        if (String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
+
         if (!IsPostBack)
             BindGrid();
 
@@ -26,27 +33,56 @@ public partial class admin_scheduledapplicant_list : System.Web.UI.Page
     {
         try
         {
-            var StudentList = (from q in db.applicant_meeting_schedule
-                               join um in db.university_master on q.university_id equals um.universityid
-                               join ad in db.applicantdetails on q.applicant_id equals ad.applicantid
-                               join prom in db.proctor_master on q.proctor_id equals prom.proctorID into procdata
-                               from x in procdata.DefaultIfEmpty()
-                               where q.is_meetingtime_expires == null && ad.universityid == q.university_id
-                               select new
-                                {
-                                    id = q.id,
-                                    applicant_id = q.applicant_id,                                    
-                                    applicantname = ad.firstname + " " + ad.lastname,
-                                    universityID = q.university_id,  
-                                    UniversityName = um.university_name,
-                                    utc_meeting_time = q.utc_meeting_time,
-                                    applicant_time_zone = q.applicant_time_zone,
-                                    otp = q.proctor_id == null ? "wait for proctor to be assign" : q.otp,
-                                   proctorname =  string.IsNullOrEmpty(x.name)?"": x.name,
-                                   proctorEmail = string.IsNullOrEmpty(x.email) ? "" : x.email,
-                                   proctorMobile = string.IsNullOrEmpty(x.mobile) ? "" : x.mobile,
-                                   meetingInfo =  q.virtualmeetinginfo,
-                               }).SortBy("id").ToList();
+            dynamic StudentList;
+            if (roleName.ToLower() == "gte admin" || roleName.ToLower() == "gte user")
+            {
+                StudentList = (from q in db.applicant_meeting_schedule
+                                   join um in db.university_master on q.university_id equals um.universityid
+                                   join ad in db.applicantdetails on q.applicant_id equals ad.applicantid
+                                   join prom in db.proctor_master on q.proctor_id equals prom.proctorID into procdata
+                                   from x in procdata.DefaultIfEmpty()
+                                   where q.is_meetingtime_expires == null && ad.universityid == q.university_id && q.university_id == UniversityID
+                                   select new
+                                   {
+                                       id = q.id,
+                                       applicant_id = q.applicant_id,
+                                       applicantname = ad.firstname + " " + ad.lastname,
+                                       universityID = q.university_id,
+                                       UniversityName = um.university_name,
+                                       utc_meeting_time = q.utc_meeting_time,
+                                       applicant_time_zone = q.applicant_time_zone,
+                                       otp = q.proctor_id == null ? "wait for proctor to be assign" : q.otp,
+                                       proctorname = string.IsNullOrEmpty(x.name) ? "" : x.name,
+                                       proctorEmail = string.IsNullOrEmpty(x.email) ? "" : x.email,
+                                       proctorMobile = string.IsNullOrEmpty(x.mobile) ? "" : x.mobile,
+                                       meetingInfo = q.virtualmeetinginfo,
+                                   }).SortBy("id").ToList();
+
+            }
+            else {
+                 StudentList = (from q in db.applicant_meeting_schedule
+                                   join um in db.university_master on q.university_id equals um.universityid
+                                   join ad in db.applicantdetails on q.applicant_id equals ad.applicantid 
+                                   join prom in db.proctor_master on q.proctor_id equals prom.proctorID into procdata
+                                   from x in procdata.DefaultIfEmpty()
+                                   where q.is_meetingtime_expires == null && ad.universityid == q.university_id
+                                   select new
+                                   {
+                                       id = q.id,
+                                       applicant_id = q.applicant_id,
+                                       applicantname = ad.firstname + " " + ad.lastname,
+                                       universityID = q.university_id,
+                                       UniversityName = um.university_name,
+                                       utc_meeting_time = q.utc_meeting_time,
+                                       applicant_time_zone = q.applicant_time_zone,
+                                       otp = q.proctor_id == null ? "wait for proctor to be assign" : q.otp,
+                                       proctorname = string.IsNullOrEmpty(x.name) ? "" : x.name,
+                                       proctorEmail = string.IsNullOrEmpty(x.email) ? "" : x.email,
+                                       proctorMobile = string.IsNullOrEmpty(x.mobile) ? "" : x.mobile,
+                                       meetingInfo = q.virtualmeetinginfo,
+                                   }).SortBy("id").ToList();
+            }
+            
             if (StudentList != null)
             {
                 gvapplicantlist.DataSource = StudentList;
@@ -139,5 +175,16 @@ public partial class admin_scheduledapplicant_list : System.Web.UI.Page
     protected void gvapplicantlist_RowDataBound(object sender, GridViewRowEventArgs e)
     {
 
+    }
+
+    protected void gvapplicantlist_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        if (roleName.ToLower() == "gte admin" || roleName.ToLower() == "gte user")
+        {
+            ((DataControlField)gvapplicantlist.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "OTP")
+                .SingleOrDefault()).Visible = false;
+        }
     }
 }

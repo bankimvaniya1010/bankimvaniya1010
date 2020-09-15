@@ -20,11 +20,11 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="false" EmptyDataText="No Records Found" OnRowCancelingEdit="gvapplicantlist_RowCancelingEdit" OnRowCommand="gvapplicantlist_RowCommand" OnRowEditing="gvapplicantlist_RowEditing" OnRowUpdating="gvapplicantlist_RowUpdating" OnDataBound="gvapplicantlist_DataBound" OnRowDeleting="gvapplicantlist_RowDeleting" OnRowDataBound="gvapplicantlist_RowDataBound" OnPageIndexChanging="gvapplicantlist_PageIndexChanging">
+                        CellSpacing="2" ShowHeaderWhenEmpty="false" EmptyDataText="No Records Found" OnRowCancelingEdit="gvapplicantlist_RowCancelingEdit" OnRowCommand="gvapplicantlist_RowCommand" OnRowEditing="gvapplicantlist_RowEditing" OnRowUpdating="gvapplicantlist_RowUpdating" OnDataBound="gvapplicantlist_DataBound" OnRowDeleting="gvapplicantlist_RowDeleting" OnRowDataBound="gvapplicantlist_RowDataBound" OnPageIndexChanging="gvapplicantlist_PageIndexChanging" OnRowCreated="gvapplicantlist_RowCreated">
 
                         <Columns>
 
-                            <asp:BoundField DataField="id" HeaderText="Applicant Id" InsertVisible="False"
+                            <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />
 
                             <asp:TemplateField HeaderText="Applicant ID">
@@ -70,8 +70,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lbltimezone" runat="server" Text='<%# Bind("applicant_time_zone") %>'></asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>   
-
+                            </asp:TemplateField>                              
                             <asp:TemplateField HeaderText="OTP"> 
                                 <EditItemTemplate>
                                     <asp:Label ID="lblotp" runat="server" Text='<%# Bind("otp") %>'></asp:Label>
