@@ -17,6 +17,10 @@ public partial class logout : System.Web.UI.Page
 
         Session["meetingTime"] = null;
         Session["currentlogintime"] = null;
+        ViewState["NewList"] = null;
+        ViewState["MainList"] = null;
+        ViewState["NewPreviousList"] = null;
+        ViewState["totalResponseTime"] = null;
 
         Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
         Response.Cache.SetCacheability(HttpCacheability.NoCache);

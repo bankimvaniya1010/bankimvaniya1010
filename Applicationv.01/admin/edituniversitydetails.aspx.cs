@@ -57,7 +57,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtUniSDescription.Value = existingUninversity.short_description;
                     txtUniLDescription.Value = existingUninversity.long_description;
                     txtUniAirport.Value = existingUninversity.closest_airport;
-                    
+                    txtapplicantno.Value = existingUninversity.numberof_applicant.ToString();
                     txtUniAirportDistance.Value = airportDistanceValue[0];
                     foreach (ListItem item in airDistanceUnit.Items)
                     {
@@ -113,6 +113,9 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtproctorno1.Text = existingUninversity.proctor1_contactno;
                     txtproctoremail1.Text = existingUninversity.proctor1_email;
                     txtexamInstruction.Text  = existingUninversity.examInstruction;
+                    txtnotification1.Text = existingUninversity.emai_notification1;
+                    txtnotification2.Text = existingUninversity.emai_notification2;
+
                     //foreach (ListItem item in subscription.Items)
                     //{
                     //    string value = Convert.ToString(existingUninversity.full_service) ? "1" : "0";
@@ -210,6 +213,9 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.proctor1_contactno = txtproctorno1.Text.Trim();
             universityObj.proctor1_email = txtproctoremail1.Text.Trim();
             universityObj.examInstruction = txtexamInstruction.Text.Trim();
+            universityObj.emai_notification1 = txtnotification1.Text.Trim();
+            universityObj.emai_notification2 = txtnotification2.Text.Trim();
+            universityObj.numberof_applicant = Convert.ToInt32(txtapplicantno.Value.Trim());
 
             if (logo.HasFile)  //fileupload control contains a file  
             {

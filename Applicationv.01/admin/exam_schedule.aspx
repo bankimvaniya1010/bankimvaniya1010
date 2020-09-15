@@ -11,14 +11,14 @@
     <div class="container page__container">
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-                <li class="breadcrumb-item active">SCHEDULE EXAM</li>
+                <li class="breadcrumb-item active">Schedule Assessment</li>
         </ol>
-        <h1 class="h2">SCHEDULE EXAM</h1>
+        <h1 class="h2">Schedule Assessment</h1>
 
         <div class="card">
            <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
-                    <div class="form-group row" runat="server">
+                   <%-- <div class="form-group row" runat="server">
                         <label for="name" class="col-sm-3 col-form-label form-label">Select Institution </label>
                         <div class="col-sm-8">
                             <div class="row">
@@ -27,17 +27,27 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>--%>                    
                     <div class="form-group row" id="examname">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Select Exam</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Select Assessment</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlexam" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlexam" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlexam_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group row" id="DivifNot" style="display:none" runat="server">                        
+                        <div class="">
+                            <div class="row">
+                                
+                                  <label for="name" class="col-sm-12 col-form-label form-label">No Exam paper are uploded for selected exam paper. Please upload exam sheets in create assessment section</label>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div id="showDiv" runat="server" style="display:none">
                     <div class="form-group row" id="examcourse">
                         <label for="name" class="col-sm-3 col-form-label form-label">Time Zone</label>
                         <div class="col-sm-8">
@@ -51,8 +61,8 @@
                             </div>
                         </div>
                     </div>
-                     <div class="form-group row" id="examsubject">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Exam Date & Time (Based on time zone):</label>
+                    <div class="form-group row" id="examsubject">
+                        <label for="name" class="col-sm-3 col-form-label form-label">Assessment Date & Time (Based on time zone):</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">   
@@ -62,10 +72,9 @@
                                 </div>
                              </div>
                          </div>
-                     </div>
-                    
-                     <div class="form-group row" id="examgrade">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Exam Date & Time (Based on UTC):</label>
+                     </div>                    
+                    <div class="form-group row" id="examgrade">
+                        <label for="name" class="col-sm-3 col-form-label form-label">Assessment Date & Time (Based on UTC):</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -75,11 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                  
-                    </div> 
-         </div>
-        <div class="form-group row">
+                    <div class="form-group row">
                 <div class="col-sm-8 offset-sm-3">
                     <div class="media align-items-center">
                         <div class="media-left">                                  
@@ -91,20 +96,26 @@
                     </div>
                 </div>
             </div>
+                        </div>
+               </div>
+                  
+           </div> 
+         </div>
+      
            </div>
   
    <script>
         function loadTimeZoneList(){   
         let select = document.getElementById("dropdownTimeZone");
             select.innerHTML = "";            
-        let browserTimeZone = moment.tz.guess();
+        let browserTimeZone ="Australia/Perth";
         let timeZones = moment.tz.names();
            timeZones.forEach((timeZone) =>{
                option = document.createElement("option");               
                option.textContent = `${timeZone} (GMT${moment.tz(timeZone).format('Z')})`; 
                option.value = timeZone;               
                if (timeZone == browserTimeZone) {
-                   option.selected = false;
+                   option.selected = true;
                }               
                select.appendChild(option);
            });
@@ -125,7 +136,7 @@
        }
         function submitDate() {
 
-           var tiemzone = document.getElementById("dropdownTimeZone").value;
+           var tiemzone =$( "#dropdownTimeZone option:selected" ).text();// document.getElementById("dropdownTimeZone").value;
            $("#<%=hidTimeZone.ClientID%>").val(tiemzone);
 
            let localValue = document.getElementById('pickerDateTime').value;
@@ -139,9 +150,9 @@
                }
         function init()
            {
-            loadDefaultDateTime();
+            //loadDefaultDateTime();
             loadTimeZoneList();  
-            submitDate();
+            //submitDate();
             }
  
   
@@ -149,14 +160,14 @@
       function validateForm() {
            
            var flag = false;
-           if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-               alert("Please Select University");
-           else if ($("#<%=ddlexam.ClientID%>").val() == "0")
+           <%--if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
+               alert("Please Select University");--%>
+           if ($("#<%=ddlexam.ClientID%>").val() == "0")
                alert("Please Select Exam");           
            else if ($("#<%=hidTimeZone.ClientID%>").val() == "")
                alert("Please Select time zone");
            else if ($("#<%=selectedexamdate_time.ClientID%>").val() == "")
-               alert("Please Select Exam date time");
+               alert("Please Select assessment date time");
            else
                flag = true;
            return flag;

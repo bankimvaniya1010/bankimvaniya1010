@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mb-5 navbar-light">
-                    <a class="navbar-brand m-0">The Application Center</a>
+                     <a class="navbar-brand m-0">THE <%=isfullservicethenlbl %></a>
                 </div>
                 <div class="card navbar-shadow">
                     <div class="card-header text-center">

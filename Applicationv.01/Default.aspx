@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-        <h1 class="h2">WELCOME TO THE <asp:Label runat="server" ID="isfullservicethenlbl"></asp:Label></h1>
+        <h1 class="h2">WELCOME <asp:Label runat="server" ID="isfullservicethenlbl"></asp:Label></h1>
         <div id="domesticDiv" runat="server" class="form-group" style="display: none">
             <div class="col-lg-8 list-group-item">
                 <label class="form-label" for="password">Are you an Australian Citizen, an Australian Permanent Resident or a Citizen of New Zealand?</label>
@@ -47,23 +47,39 @@
                                 <li>Access other relevant information and support services that will be useful as you prepare to commence your studies with <%=_Default.universityName %>.</li></ol>
                         </div>
                     </div>
-                    <%--for euc.gte.stude.care i.e universityid 13 instructions--%>
-                    <div id="ecu_gteinstructions" runat="server" style="display:none">
+                    <%--for euc.gte.stude.care i.e universityid 13 instructions //#376 change for all gte services--%>
+                    <div id="service_gte_instructions" runat="server" style="display:none">
                         <div class="card-body">
-                            In the GTE-Direct Online Centre (GOC), based on your subscription you will be able to:
+                            In the GTE-Direct Online Center (GOC), based on your subscription you will be able to:
                         </div>
                         <div>
                             <ol>
-                                <li>Access the GS & GTE Tutorial </li><br>
+                                <li>Access the GS(Genuine Student) & GTE (Genuine Temporary Entrant) Tutorial </li><br>
                                 <li>On the scheduled time and day test your understanding of GS & GTE.</li><br>
                                 <li>Get Certified for your understanding of GS & GTE, download your Certificate</li><br>
-                                <li>Start and complete your proctor based 100% online GS & GTE evaluation</li><br>
+                                <li>Start and complete your Proctor based 100% online GS & GTE evaluation</li><br>
                                 <li>Upload your documents for verification and validation for GTE </li><br>
-                                <li>Use the AI driven GTE SOP builder to create your GTE SOP in minutes </li><br>
-                                <li>View and download your detailed GS & GTE Assessment report </li><br>
-                                <li>Get access to experienced counsellors for 1-on-1 GS & GTE counselling </li><br>
+                                <li>Use the AI driven GTE SOP builder to create your GTE SOP in minutes</li><br>
+                                <li>View and download your detailed GS & GTE Assessment report</li><br>
+                                <li>Get access to experienced counsellors for 1-on-1 GS & GTE counselling</li><br>
                                 <li>Get support with completing and submitting your Admission Applications</li><br>
                                 <li>Get full-service support to complete and file your student VISA Application </li></ol>
+                        </div>
+                    </div>
+                    <%--instruction for service = 2 exammodule--%>
+                    <div id="service2_instructions" runat="server" style="display:none">
+                        <div class="card-body">
+                           In the Assessment Center, you will be able to:
+                        </div>
+                        <div>
+                            <ol>
+                                <li>Create and update your profile information. </li><br>
+                                <li>Manage your account password.</li><br>
+                                <li>View list of your past and upcoming assessments.</li><br>
+                                <li>View your ratings or marks obtained along with assessor's comments.</li><br>
+                                <li>At the scheduled time and day appear for your Invigilator-based assessment.</li><br>
+                                <li>Start and complete your proctor based 100% online assessments.</li><br>
+                             </ol>
                         </div>
                     </div>
                 </div>
@@ -97,9 +113,18 @@
     </div>
     <script>
         $(document).ready(function () {
-            var universityid = '<%= UniversityID%>';
+         <%--   var universityid = '<%= UniversityID%>';
             if (universityid == 13)
-                $("#<%=ecu_gteinstructions.ClientID%>").show();
+                $("#<%=service_gte_instructions.ClientID%>").show();
+            else {
+                var isfullservice = '<%=isfullservice%>';
+                
+            }--%>
+            var isfullservice = '<%=isfullservice%>';
+            if (isfullservice == 0)
+                $("#<%=service_gte_instructions.ClientID%>").show();
+            else if (isfullservice == 2)
+                $("#<%=service2_instructions.ClientID%>").show();
             else
                 $("#<%=defaultinstructions.ClientID%>").show();
         });

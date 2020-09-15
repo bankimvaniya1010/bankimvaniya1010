@@ -64,6 +64,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
     public virtual DbSet<australiavisadocumentmaster> australiavisadocumentmaster { get; set; }
     public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
+    public virtual DbSet<bulk_registrations_master> bulk_registrations_master { get; set; }
     public virtual DbSet<careeroutcomes_master> careeroutcomes_master { get; set; }
     public virtual DbSet<careeroutcomes_position_master> careeroutcomes_position_master { get; set; }
     public virtual DbSet<careerposition_course_mapping> careerposition_course_mapping { get; set; }
@@ -71,6 +72,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<citymaster> citymaster { get; set; }
     public virtual DbSet<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
     public virtual DbSet<clarificationquestionsmaster> clarificationquestionsmaster { get; set; }
+    public virtual DbSet<class_master> class_master { get; set; }
     public virtual DbSet<controlmaster> controlmaster { get; set; }
     public virtual DbSet<countriesmaster> countriesmaster { get; set; }
     public virtual DbSet<countrywisealternateidproofmaster> countrywisealternateidproofmaster { get; set; }
@@ -92,9 +94,22 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<educationverificationcontactmaster> educationverificationcontactmaster { get; set; }
     public virtual DbSet<entertainment> entertainment { get; set; }
     public virtual DbSet<exam_answersheet> exam_answersheet { get; set; }
+    public virtual DbSet<exam_applicant_subjectmapping> exam_applicant_subjectmapping { get; set; }
+    public virtual DbSet<exam_applicantmarks_releasedatemaster> exam_applicantmarks_releasedatemaster { get; set; }
     public virtual DbSet<exam_assign> exam_assign { get; set; }
+    public virtual DbSet<exam_buildpaper_answersheetmaster> exam_buildpaper_answersheetmaster { get; set; }
+    public virtual DbSet<exam_buildquestionbankmaster> exam_buildquestionbankmaster { get; set; }
+    public virtual DbSet<exam_marking_master> exam_marking_master { get; set; }
     public virtual DbSet<exam_master> exam_master { get; set; }
+    public virtual DbSet<exam_mcq_questionmaster> exam_mcq_questionmaster { get; set; }
+    public virtual DbSet<exam_openanswer_master> exam_openanswer_master { get; set; }
     public virtual DbSet<exam_schedule> exam_schedule { get; set; }
+    public virtual DbSet<exam_subjectmaster> exam_subjectmaster { get; set; }
+    public virtual DbSet<exam_truefalse_questionmaster> exam_truefalse_questionmaster { get; set; }
+    public virtual DbSet<exam_universitywisesubjectmapping> exam_universitywisesubjectmapping { get; set; }
+    public virtual DbSet<exam_uploadanswer_master> exam_uploadanswer_master { get; set; }
+    public virtual DbSet<examchecking_assignment> examchecking_assignment { get; set; }
+    public virtual DbSet<examiner_master> examiner_master { get; set; }
     public virtual DbSet<exampapers_master> exampapers_master { get; set; }
     public virtual DbSet<facilitiesmaster> facilitiesmaster { get; set; }
     public virtual DbSet<facility_campus_mapping> facility_campus_mapping { get; set; }
@@ -104,6 +119,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<formfieldmaster> formfieldmaster { get; set; }
     public virtual DbSet<formmaster> formmaster { get; set; }
     public virtual DbSet<grademaster> grademaster { get; set; }
+    public virtual DbSet<group_master> group_master { get; set; }
     public virtual DbSet<gte_answer_master> gte_answer_master { get; set; }
     public virtual DbSet<gte_applicantdetails> gte_applicantdetails { get; set; }
     public virtual DbSet<gte_applicantdocument> gte_applicantdocument { get; set; }
@@ -126,6 +142,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gtepreliminarysection_applicantanswers> gtepreliminarysection_applicantanswers { get; set; }
     public virtual DbSet<health_insurance> health_insurance { get; set; }
     public virtual DbSet<inferencemaster> inferencemaster { get; set; }
+    public virtual DbSet<institutionwiseclassmaster> institutionwiseclassmaster { get; set; }
+    public virtual DbSet<institutionwisegroupmaster> institutionwisegroupmaster { get; set; }
     public virtual DbSet<majordiscipline_master> majordiscipline_master { get; set; }
     public virtual DbSet<manageaccomdationplan> manageaccomdationplan { get; set; }
     public virtual DbSet<manageentertainment> manageentertainment { get; set; }

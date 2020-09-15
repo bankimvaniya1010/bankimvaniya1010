@@ -287,14 +287,14 @@
                                     </div>                                    
                                     <div class="nm" style="text-align:center"><%=_studentName %></div>
                                 </div>
-                                <div class="recommndtn">
+                                <div class="recommndtn" id="div1" runat="server">
                                     <div class="text-center text-uppercase hd font-bold">Final Recommendation</div>
                                     <div class="txt text-center d-flex align-items-center justify-content-center">
                                         <div class="txt" runat="server" id="studentRecommendedPDF"> <%=_studentRecommended %> </div>
                                         <textarea runat="server" id="studentRecommended"></textarea>
                                     </div>
                                 </div>
-                                <div class="recommndtn remrk">
+                                <div class="recommndtn remrk"  id="div2" runat="server">
                                     <div class="txt text-center d-flex align-items-center justify-content-center">
                                         <div class="txt" runat="server" id="recommendationRemarkPDF"> <%=_recommendationRemark %> </div>
                                         <textarea runat="server" id="recommendationRemark" placeholder="Recommendation Remark"></textarea>

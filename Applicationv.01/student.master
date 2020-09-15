@@ -166,6 +166,32 @@
                                 <!-- Account menu -->
                                 <div class="sidebar-heading">Account</div>
                                 <ul class="sidebar-menu">
+                                      <li class="sidebar-menu-item" id="preliminary_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/before you start.png" /></i>
+                                          Before you start 
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="preliminary">
+                                            <li class="sidebar-menu-item" id="preliminarys">
+                                                <a class="sidebar-menu-button" href="preliminary.aspx">
+                                                    <span class="sidebar-menu-text">Tutorial & Instructions </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="preliminaryquestion">
+                                                <a class="sidebar-menu-button" href="preliminaryquestion.aspx">
+                                                    <span class="sidebar-menu-text">Test your Knowledge</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicantdeclaration">
+                                                <a class="sidebar-menu-button" href="applicantdeclaration.aspx">
+                                                    <span class="sidebar-menu-text">Declarations</span>
+                                                </a>
+                                            </li>
+
+
+                                        </ul>
+                                    </li>
                                       <li class="sidebar-menu-item" id="schedulecounselling">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#counselling">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/message board.png" /></i>
@@ -212,38 +238,12 @@
                                                 </a>
                                             </li>
                                              <li class="sidebar-menu-item" id="studedetails" style="display:none">
-                                                <a class="sidebar-menu-button"  href="student_details.aspx">
+                                                <a class="sidebar-menu-button"  href="student_details.aspx?formid=29">
                                                     <span class="sidebar-menu-text">Student Details</span>
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li class="sidebar-menu-item" id="preliminary_list">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/before you start.png" /></i>
-                                          Before you start 
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu sm-indent collapse" id="preliminary">
-                                            <li class="sidebar-menu-item" id="preliminarys">
-                                                <a class="sidebar-menu-button" href="preliminary.aspx">
-                                                    <span class="sidebar-menu-text">Tutorial & Instructions </span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item" id="preliminaryquestion">
-                                                <a class="sidebar-menu-button" href="preliminaryquestion.aspx">
-                                                    <span class="sidebar-menu-text">Test your Knowledge</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item" id="applicantdeclaration">
-                                                <a class="sidebar-menu-button" href="applicantdeclaration.aspx">
-                                                    <span class="sidebar-menu-text">Declarations</span>
-                                                </a>
-                                            </li>
-
-
-                                        </ul>
-                                    </li>
+                                    </li>                                  
                                     <li class="sidebar-menu-item" id="personal_menu_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#personal_menu">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/student info.png" /></i>
@@ -425,9 +425,19 @@
                                                     <span class="sidebar-menu-text">Video Upload</span>
                                                 </a>
                                             </li>--%>
+                                             <li class="sidebar-menu-item" id="gte_sop_draft">
+                                                <a class="sidebar-menu-button" href="gte_sop_draft.aspx">
+                                                    <span class="sidebar-menu-text">Draft SOP</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="draftgtereport">
+                                                <a class="sidebar-menu-button" href="gte_draft.aspx">
+                                                    <span class="sidebar-menu-text">Draft GTE Report</span>
+                                                </a>
+                                            </li>
                                             <li class="sidebar-menu-item" id="gtestudent_sop">
                                                 <a class="sidebar-menu-button" href="gte_sop.aspx?formid=26">
-                                                    <span class="sidebar-menu-text">Real-time SOP Builder</span>
+                                                    <span class="sidebar-menu-text">Final SOP Builder</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="gte_downlload_your_sop">
@@ -437,7 +447,7 @@
                                             </li>
                                             <li class="sidebar-menu-item" id="download_gtereport">
                                                 <a class="sidebar-menu-button" href="download_gtereport.aspx?formid=28">
-                                                    <span class="sidebar-menu-text">Download your GTE Report</span>
+                                                    <span class="sidebar-menu-text">Final GTE Report</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -560,13 +570,13 @@
                                     <li class="sidebar-menu-item" id="exam_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#exam_menu">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/Support services.png" /></i>
-                                          Exam Module
+                                        Assessment Module
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                          <ul class="sidebar-submenu sm-indent collapse" id="exam_menu">
                                             <li class="sidebar-menu-item" id="exammodule">
-                                                <a class="sidebar-menu-button" href="exam_module.aspx">
-                                                    <span class="sidebar-menu-text">Exam Paper</span>
+                                                <a class="sidebar-menu-button" href="exammodule.aspx">
+                                                    <span class="sidebar-menu-text">Your Assessments</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -693,9 +703,10 @@
             var GteDeclarationDoneByApplicant = ("<%=Session["GteDeclarationDoneByApplicant"]%>".toLowerCase() == "true");
             var UniversityID = '<%= Utility.GetUniversityId()%>';
 
-            if (fullService == 0) //hide when its gte service
+            if (fullService == 0) {//hide when its gte service
                 $("#counsellingcenter_list").hide();
-
+                $("#updatepreferences").hide();
+            }
             if (fullService == 1 || fullService == 0) {
                 $("#exam_list").hide();
                 if (!declarationCompleted) {
@@ -703,6 +714,8 @@
                     $("#gtepart2").hide();
                     //$("#gtevideoquestion").hide();
                     $("#gtestudent_sop").hide();
+                    $("#gte_sop_draft").hide();
+                    $("#draftgtereport").hide();
                     $("#gte_downlload_your_sop").hide();
                     $("#download_gtereport").hide();
                     $("#gtedocument_list").hide();
@@ -721,14 +734,14 @@
                     $("#admissionsOffer_list").hide();
                     if (fullService == 0) {
                         $("#gtestudentdetail").show();
-                        $("#preliminary_list").hide();
+                        //$("#preliminary_list").hide();
                         $("#personal_menu_list").hide();
                         $("#studentapplication_list").hide();
                     }
                     else if (fullService == 1) {
                         $("#gteevalution_list").hide();
                         $("#gtestudentdetail").hide();
-                        $("#preliminary_list").show();
+                        //$("#preliminary_list").show();
                     }
 
                     //if (isDomesticStudent)
@@ -747,6 +760,8 @@
                     $("#gtepart2").show();
                     //$("#gtevideoquestion").show();
                     $("#gtestudent_sop").show();
+                    $("#gte_sop_draft").show();
+                    $("#draftgtereport").show();
                     $("#gte_downlload_your_sop").show();
                     $("#download_gtereport").show();
                     $("#gtedocmentupload").show();
@@ -754,7 +769,7 @@
                     $("#studentapplication_finances").show();
                     if (fullService == 0) {
                         $("#gtestudentdetail").show();
-                        $("#preliminary_list").hide();
+                       // $("#preliminary_list").hide();
                         $("#personal_menu_list").hide();
                         $("#studentapplication_list").hide();
 
@@ -769,7 +784,7 @@
                     }
                     else if (fullService == 1) {
                         $("#gtestudentdetail").hide();
-                        $("#preliminary_list").show();
+                        //$("#preliminary_list").show();
                         $("#personal_menu_list").show();
                         $("#studentapplication_list").show();
 
@@ -780,6 +795,8 @@
                         $("#gtepart2").hide();
                         //$("#gtevideoquestion").hide();
                         $("#gtestudent_sop").hide();
+                        $("#gte_sop_draft").hide();
+                        $("#draftgtereport").hide();
                         $("#gte_downlload_your_sop").hide();
                         $("#download_gtereport").hide();
                         $("#gtedocmentupload").hide();
@@ -794,6 +811,8 @@
                                 $("#gtepart1").hide();
                                 $("#gtepart2").hide();
                                 $("#gtestudent_sop").hide();
+                                $("#gte_sop_draft").hide();
+                                $("#draftgtereport").hide();
                                 $("#gte_downlload_your_sop").hide();
                                 $("#download_gtereport").hide();
                                 $("#gtedocmentupload").hide();
@@ -815,8 +834,9 @@
             else if (fullService == 2) {
                 $("#studedetails").show();
                 $("#schedulecounselling").hide();
+                $("#updatepreferences").hide();
                 $("#counsellingcenter_list").hide();
-                $("#preliminary_list").hide();
+               // $("#preliminary_list").hide();
                 $("#personal_menu_list").hide();
                 $("#studentapplication_list").hide();
                 $("#studentapplication_finances").hide();

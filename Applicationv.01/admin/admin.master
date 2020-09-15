@@ -72,7 +72,7 @@
                              <a href="default.aspx" class="navbar-brand">
                                 <%-- <img src="assets/images/logo/white.svg" class="mr-2" alt="LearnPlus" />--%>
                                 <span class="d-none d-xs-md-block">
-                                    The Application Center Admin Portal</span>
+                                    Admin Portal</span>
                             </a>
 
                             <ul class="nav navbar-nav flex-nowrap head-nav">
@@ -132,6 +132,31 @@
                                             <span class="sidebar-menu-text">Dashboard</span>
                                         </a>
                                     </li> 
+<%--                                    <li class="sidebar-menu-item" id="registeredapplicants">
+                                        <a class="sidebar-menu-button" href="registered_applicantlist.aspx">
+                                            <span class="sidebar-menu-text">View Registrations</span>
+                                        </a>
+                                    </li> --%>
+                                </ul>
+                            </li>
+                            <li class="sidebar-menu-item" id="manageregistration_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manageregis_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    Manage Registrations
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="manageregis_menu">
+                                    
+                                    <li class="sidebar-menu-item" id="registeredapplicants">
+                                        <a class="sidebar-menu-button" href="registered_applicantlist.aspx">
+                                            <span class="sidebar-menu-text">View Registrations</span>
+                                        </a>
+                                    </li> 
+                                    <li class="sidebar-menu-item" id="bulkregistrations">
+                                        <a class="sidebar-menu-button" href="bulkregistrations.aspx">
+                                            <span class="sidebar-menu-text">Bulk Registrations</span>
+                                        </a>
+                                    </li> 
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="manageprofile_list">
@@ -181,26 +206,120 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="sidebar-menu-item" id="assessmentroles_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#assessmentroles_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                  Assessment Roles
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="assessmentroles_menu">
+                                    <li class="sidebar-menu-item" id="rolemaster">
+                                        <a class="sidebar-menu-button" href="examiner_master_lilsting.aspx">
+                                            <span class="sidebar-menu-text">View Roles</span>
+                                        </a>
+                                    </li>                                    
+                                </ul>
+                            </li>
                             <li class="sidebar-menu-item" id="exammodule_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#exammodule_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                 Exam Module
+                                 Assessment Module
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse" id="exammodule_menu">
                                     <li class="sidebar-menu-item" id="exammodule">
                                         <a class="sidebar-menu-button" href="list_exampaper.aspx">
-                                            <span class="sidebar-menu-text">Create Exam Paper</span>
+                                            <span class="sidebar-menu-text">Create Assessment</span>
                                         </a>
                                     </li>
                                      <li class="sidebar-menu-item" id="examshedule">
                                         <a class="sidebar-menu-button" href="exam_scheduleList.aspx">
-                                            <span class="sidebar-menu-text">Exam Schedule</span>
+                                            <span class="sidebar-menu-text">Schedule Assessment</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="examsassign">
                                         <a class="sidebar-menu-button" href="exam_assignList.aspx">
-                                            <span class="sidebar-menu-text">Assign Exam</span>
+                                            <span class="sidebar-menu-text">Assign Assessment</span>
+                                        </a>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="examchecking">
+                                        <a class="sidebar-menu-button" href="examchecking.aspx">
+                                            <span class="sidebar-menu-text">Assign Checker</span>
+                                        </a>
+                                    </li>
+                                      <li class="sidebar-menu-item" id="exammarking">
+                                        <a class="sidebar-menu-button" href="exam_marking.aspx">
+                                            <span class="sidebar-menu-text">Check Assessment</span>
+                                        </a>
+                                    </li>
+                                  
+                                </ul>
+                            </li>
+                             <li class="sidebar-menu-item" id="class_group_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#class_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                  Class & Group Master
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="class_menu">
+                                     <li class="sidebar-menu-item" id="class_master">
+                                        <a class="sidebar-menu-button" href="class_master.aspx">
+                                            <span class="sidebar-menu-text">Create class</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="groupmaster">
+                                        <a class="sidebar-menu-button" href="group_master.aspx">
+                                            <span class="sidebar-menu-text">Create Group</span>
+                                        </a>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="examsubjectmaster">
+                                        <a class="sidebar-menu-button" href="exam_subjectmaster.aspx">
+                                            <span class="sidebar-menu-text">Subject Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="countrywise_classmapping">
+                                        <a class="sidebar-menu-button" href="universitywiseclassmapping.aspx">
+                                            <span class="sidebar-menu-text">Institution Wise Class Mapping</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="countrywise_groupmapping">
+                                        <a class="sidebar-menu-button" href="universitywisegroupmapping.aspx">
+                                            <span class="sidebar-menu-text">Institution Wise Group Mapping</span>
+                                        </a>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="exam_subjectInstitutionmapping">
+                                        <a class="sidebar-menu-button" href="exam_subjectInstitutionmapping.aspx">
+                                            <span class="sidebar-menu-text">Institution Wise Subject Mapping</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                           <li class="sidebar-menu-item" id="buildpaper_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#build_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                 Build Question Bank
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="build_menu">
+                                    
+                                     <li class="sidebar-menu-item" id="exam_mcqset">
+                                        <a class="sidebar-menu-button" href="exam_mcqset.aspx">
+                                            <span class="sidebar-menu-text">Multiple Choice Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="exam_truefalseset">
+                                        <a class="sidebar-menu-button" href="exam_truefalseset.aspx">
+                                            <span class="sidebar-menu-text">True / False Master</span>
+                                        </a>
+                                    </li>
+                                   <li class="sidebar-menu-item" id="exam_openansset">
+                                        <a class="sidebar-menu-button" href="exam_openanswerSet.aspx">
+                                            <span class="sidebar-menu-text">Open-ended Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="exam_downloadsheetset">
+                                        <a class="sidebar-menu-button" href="exam_downloadsheetset.aspx">
+                                            <span class="sidebar-menu-text">Uploaded Master</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -222,7 +341,7 @@
                             <li class="sidebar-menu-item" id="city_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#city_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                   Setup & Manage Cities 
+                                   Setup & Manage Cities
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse" id="city_menu">
@@ -655,7 +774,7 @@
                                         <a class="sidebar-menu-button" href="scheduledapplicant_list.aspx">
                                             <span class="sidebar-menu-text">Schedule Once List</span>
                                         </a>
-                                    </li>                                    
+                                    </li>
                                 </ul>
                             </li>
                            
@@ -702,9 +821,29 @@
             var universityadmin = roleName.toLowerCase() == "university admin";
             var uniadminstaff1 = roleName.toLowerCase() == "university admin staff 1";
             var uniadminstaff2 = roleName.toLowerCase() == "university admin staff 2";
-
+            var gteadmin = roleName.toLowerCase() == "gte admin";
+            var gteuser = roleName.toLowerCase() == "gte user";
+            var assessmentadmin = roleName.toLowerCase() == "assessment admin";
+            var assessmentuser = roleName.toLowerCase() == "assessment user";
+           
+            
+            
             if (fullservice == 2) {
-                $("#role_list").show();
+                if (roleName == "Admin")
+                    $("#buildpaper_list").show();
+                if (assessmentuser) {
+                    $("#role_list").hide();
+                    $("#assessmentroles_list").hide();
+                    $("#class_group_list").hide();
+                    $("#examchecking").hide();
+                    $("#registeredapplicants").hide(); 
+                }
+                else {
+                    $("#role_list").show();
+                    $("#buildpaper_list").show();
+                }
+                
+                              
                 $("#city_list").hide();
                 $("#institution_list").hide();
                 $("#CustomizeForms_list").hide();
@@ -723,8 +862,12 @@
                 $("#managemeeting_schedule_list").hide();
                 $("#manageapplicantions_list").hide();
             }
-            else
+            else {
+                $("#buildpaper_list").hide();
                 $("#exammodule_list").hide();
+                $("#class_group_list").hide();
+                $("#assessmentroles_list").hide();// aslso question bank
+            }
             if (superviser) {
                 $("#role_list").hide();
                 $("#city_list").hide();
@@ -780,8 +923,7 @@
                 $("#payment_list").hide();
                 $("#Scholarships_list").hide();
             }
-            else if (uniadminstaff1 || uniadminstaff2)
-            {
+            else if (uniadminstaff1 || uniadminstaff2) {
                 $("#role_list").hide();
                 $("#city_list").hide();
                 $("#institution_list").hide();
@@ -799,8 +941,27 @@
                 $("#careeroutcomes_list").hide();
                 $("#payment_list").hide();
             }
+            else if (gteadmin || gteuser) {
+                $("#proctoremaster").hide();
+                $("#city_list").hide();
+                $("#institution_list").hide();
+                $("#CustomizeForms_list").hide();
+                $("#FaqManage_list").hide();
+                $("#tooltipslisting").hide();
+                $("#admintooltipslisting").hide();
+                $("#Costcalculator_list").hide();
+                $("#tutorial_list").hide();                
+                $("#Scholarships_list").hide();
+                $("#managelanguages_list").hide();
+                $("#course_list").hide();
+                $("#gte_list").hide();
+                $("#managetooltips_list").hide();
+                $("#careeroutcomes_list").hide();
+                $("#payment_list").hide();
+                $("#courseApplication").hide();
+            }
         });
-    </script>
+ </script>
    
 </body>
 

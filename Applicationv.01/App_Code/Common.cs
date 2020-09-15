@@ -124,6 +124,36 @@ public class Common
         var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityid).Select(x=>x.is_review).FirstOrDefault();
         return data;
     }
+    public int getclassid(string classname)
+    {
+        int classid= 0;
+        try
+        {
+            var Getclassid = db.class_master.Where(x => x.description.Trim().ToLower() == classname.ToLower()).FirstOrDefault();
+            if (Getclassid != null)
+                classid = Getclassid.id;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return classid;
+    }
+    public int getgroupid(string groupname)
+    {
+        int groupid = 0;
+        try
+        {
+            var Getgroupid = db.class_master.Where(x => x.description.Trim().ToLower() == groupname.Trim().ToLower()).FirstOrDefault();
+            if (Getgroupid != null)
+                groupid = Getgroupid.id;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return groupid;
+    }
     public string GetCourseName(int id)
     {
         string CourseName = "";
@@ -138,6 +168,22 @@ public class Common
             log.WriteLog(ex.ToString());
         }
         return CourseName;
+    }
+    
+    public string Get_AgentName(int id)
+    {
+        string agentName = "";
+        try
+        {
+            var GetTitle = db.agentmaster.Where(x => x.agentid == id).FirstOrDefault();
+            if (GetTitle != null)
+                agentName = GetTitle.agentname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return agentName;
     }
     public string GetAgentName(int id)
     {
@@ -244,6 +290,22 @@ public class Common
         }
         return studygrade;
     }
+    public string GetMaritalStatusDiscrition(int id)
+    {
+        string maritalstatus = "";
+        try
+        {
+            var data = db.maritalstatusmaster.Where(x => x.id == id).FirstOrDefault();
+            if (data != null)
+                maritalstatus = data.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return maritalstatus;
+    }
+
     public string GetMaritalStatus(int id)
     {
         string MaritalStatus = "";
@@ -311,6 +373,22 @@ public class Common
         }
 
         return Disability;
+    }
+    public string GetUniversityName(int id)
+    {
+        string UniversityName = "";
+        try
+        {
+            var GetUniversity = db.university_master.Where(x => x.universityid == id).FirstOrDefault();
+            if (GetUniversity != null)
+                UniversityName = GetUniversity.university_name;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+
+        return UniversityName;
     }
     public string GetQualificationType(int id)
     {
@@ -809,6 +887,30 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
+    public void BindInstitution(DropDownList ddl, int universityID)
+    {
+        try
+        {
+            string roleName = Utility.GetRoleName();
+            ListItem lst = new ListItem("Please select", "0");
+            dynamic Universities;
+            if (roleName.ToLower() == "admin")
+                Universities = db.university_master.ToList();
+            else
+                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+
+            ddl.DataSource = Universities;
+            ddl.DataTextField = "university_name";
+            ddl.DataValueField = "universityid";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
+   
     public void BindTimeZone(DropDownList ddl)
     {
         try
@@ -1562,6 +1664,52 @@ public class Common
             log.WriteLog(ex.ToString());
         }
         return HighestDegree;
+    }
+
+    public string Getworkexperience(int id)
+    {
+        string workexperienceyears = "";
+        try
+        {
+            var major = db.workexperienceyearsmaster.FirstOrDefault();
+            if (major != null)
+                workexperienceyears = major.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return workexperienceyears;
+    }
+    public string GetTypeworkexperience(int id)
+    {
+        string workexperiencetype = "";
+        try
+        {
+            var major = db.typeofworkexperiencemaster.FirstOrDefault();
+            if (major != null)
+                workexperiencetype = major.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return workexperiencetype;
+    }
+    public string GettuitionAndlivingcostmaster(int id)
+    {
+        string tuitionAndlivingcostmaster = "";
+        try
+        {
+            var major = db.tuitionAndlivingcostmaster.FirstOrDefault();
+            if (major != null)
+                tuitionAndlivingcostmaster = major.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return tuitionAndlivingcostmaster;
     }
     public string GetHighestStudyField(int id)
     {

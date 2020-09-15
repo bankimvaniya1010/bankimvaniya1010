@@ -87,6 +87,7 @@ public partial class adminusers
     public string email { get; set; }
     public string mobile { get; set; }
     public int status { get; set; }
+    public Nullable<int> examinermasterID { get; set; }
     public System.DateTime creationdate { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -181,7 +182,6 @@ public partial class applicant_meeting_schedule
     public int id { get; set; }
     public int applicant_id { get; set; }
     public int university_id { get; set; }
-    public Nullable<bool> is_meetingtime_expires { get; set; }
     public string applicant_email_id { get; set; }
     public System.DateTime utc_meeting_time { get; set; }
     public System.DateTime applicant_time_zone { get; set; }
@@ -190,6 +190,7 @@ public partial class applicant_meeting_schedule
     public Nullable<bool> is_otp_generated { get; set; }
     public string otp { get; set; }
     public Nullable<bool> is_otpverified { get; set; }
+    public Nullable<bool> is_meetingtime_expires { get; set; }
     public Nullable<int> proctor_id { get; set; }
     public string virtualmeetinginfo { get; set; }
 }
@@ -341,6 +342,17 @@ public partial class applicantdetails
     public Nullable<int> visagranted { get; set; }
     public string visaremarks { get; set; }
     public Nullable<bool> is_review { get; set; }
+    public Nullable<int> classId { get; set; }
+    public Nullable<int> groupId { get; set; }
+    public Nullable<int> subjectId { get; set; }
+    public string studentid { get; set; }
+    public Nullable<int> idproofId { get; set; }
+    public string idproofNumber { get; set; }
+    public string copyofidproof { get; set; }
+    public Nullable<int> exam_institutionId { get; set; }
+    public Nullable<int> countryof_citizenship { get; set; }
+    public Nullable<int> campusId { get; set; }
+    public string profilephoto { get; set; }
 
     public virtual students students { get; set; }
 }
@@ -541,12 +553,11 @@ public partial class applicantlanguagecompetency
     public Nullable<int> qualificationtype { get; set; }
     public string qualificationname { get; set; }
     public string gradetype { get; set; }
-    public Nullable<int> isfinalgradeachieved { get; set; }
-    public Nullable<System.DateTime> expectedgraderesult { get; set; }
-    public Nullable<int> isgiventest_yes_or_no { get; set; }
     public Nullable<int> giveenglishtest { get; set; }
     public string testname { get; set; }
     public string centerno { get; set; }
+    public Nullable<int> isfinalgradeachieved { get; set; }
+    public Nullable<System.DateTime> expectedgraderesult { get; set; }
     public string candidateno { get; set; }
     public string candidateid { get; set; }
     public Nullable<System.DateTime> examdate { get; set; }
@@ -562,6 +573,7 @@ public partial class applicantlanguagecompetency
     public string testreportreferenceno { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
     public bool islanguagecompetencypresent { get; set; }
+    public Nullable<int> isgiventest_yes_or_no { get; set; }
 
     public virtual students students { get; set; }
     public virtual university_master university_master { get; set; }
@@ -1127,6 +1139,17 @@ public partial class australiavisaFamilydetailmaster
     public virtual university_master university_master { get; set; }
 }
 
+public partial class bulk_registrations_master
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string uploadedfilepath { get; set; }
+    public string invalidfilepath { get; set; }
+    public Nullable<int> noofrecordsaved { get; set; }
+    public System.DateTime record_savedat { get; set; }
+    public Nullable<int> created_by { get; set; }
+}
+
 public partial class careeroutcomes_master
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -1254,6 +1277,12 @@ public partial class clarificationquestionsmaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
+}
+
+public partial class class_master
+{
+    public int id { get; set; }
+    public string description { get; set; }
 }
 
 public partial class controlmaster
@@ -1547,20 +1576,47 @@ public partial class exam_answersheet
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityID { get; set; }
     public Nullable<int> exampaperid { get; set; }
+    public Nullable<System.DateTime> exam_datetime { get; set; }
     public Nullable<int> exampapersheetID { get; set; }
     public string anshwesheetpath { get; set; }
     public string response_time { get; set; }
     public string extra_anshwesheetpath { get; set; }
 }
 
+public partial class exam_applicant_subjectmapping
+{
+    public int id { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> subjectid { get; set; }
+}
+
+public partial class exam_applicantmarks_releasedatemaster
+{
+    public int id { get; set; }
+    public Nullable<int> examinerid { get; set; }
+    public Nullable<int> examid { get; set; }
+    public Nullable<System.DateTime> examdate_time { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string finalmarks { get; set; }
+    public string totalmarks { get; set; }
+    public string releasedate_timezone { get; set; }
+    public Nullable<System.DateTime> releasedate { get; set; }
+    public Nullable<System.DateTime> releasedateutc { get; set; }
+    public Nullable<System.DateTime> exammarks_saved_at { get; set; }
+    public Nullable<System.DateTime> examdate_saved_at { get; set; }
+}
+
 public partial class exam_assign
 {
     public int assignid { get; set; }
     public Nullable<int> universityID { get; set; }
+    public Nullable<int> examassignerid { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> exampapersid { get; set; }
     public Nullable<System.DateTime> exam_datetime { get; set; }
-    public string proctorid { get; set; }
+    public Nullable<int> proctorid { get; set; }
     public string proctoremail { get; set; }
     public string virtuallink { get; set; }
     public string studentpasskey { get; set; }
@@ -1570,10 +1626,47 @@ public partial class exam_assign
     public string status { get; set; }
 }
 
+public partial class exam_buildpaper_answersheetmaster
+{
+    public int buildanswersheetID { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> exampaperid { get; set; }
+    public Nullable<System.DateTime> examdate_time { get; set; }
+    public Nullable<int> exampapersheetid { get; set; }
+    public string applicant_response { get; set; }
+}
+
+public partial class exam_buildquestionbankmaster
+{
+    public int questionbankID { get; set; }
+    public Nullable<int> examinerID { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> exampaperid { get; set; }
+    public Nullable<int> questionid { get; set; }
+    public string question_type { get; set; }
+    public Nullable<int> basic_setting { get; set; }
+}
+
+public partial class exam_marking_master
+{
+    public int id { get; set; }
+    public Nullable<int> examinerid { get; set; }
+    public Nullable<int> examid { get; set; }
+    public Nullable<System.DateTime> examdatetime { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> answersheetid { get; set; }
+    public string checked_answersheetPath { get; set; }
+    public Nullable<int> perquestion_marks { get; set; }
+    public string checker_comments { get; set; }
+}
+
 public partial class exam_master
 {
     public int exampapersid { get; set; }
     public int universityID { get; set; }
+    public int examinerId { get; set; }
     public string exam_name { get; set; }
     public string exam_course { get; set; }
     public string exam_subject { get; set; }
@@ -1585,18 +1678,125 @@ public partial class exam_master
     public string exam_instruction { get; set; }
     public string shortremarks { get; set; }
     public string studentfilepath { get; set; }
+    public string checkingguidfilepath { get; set; }
     public Nullable<int> uploadtype { get; set; }
+    public Nullable<int> basic_setting { get; set; }
+    public Nullable<int> download_permission { get; set; }
+    public Nullable<int> classid { get; set; }
+    public Nullable<int> groupid { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
+}
+
+public partial class exam_mcq_questionmaster
+{
+    public int questionID { get; set; }
+    public int universityID { get; set; }
+    public int examinerId { get; set; }
+    public string question { get; set; }
+    public string answer1 { get; set; }
+    public string answer2 { get; set; }
+    public string answer3 { get; set; }
+    public string answer4 { get; set; }
+    public string correctanswer { get; set; }
+    public string answer1_description { get; set; }
+    public string answer2_description { get; set; }
+    public string answer3_description { get; set; }
+    public string answer4_description { get; set; }
+    public Nullable<int> is_timelimit { get; set; }
+    public string maximummarks { get; set; }
+    public string duration { get; set; }
+}
+
+public partial class exam_openanswer_master
+{
+    public int questionid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> examinerid { get; set; }
+    public string question { get; set; }
+    public Nullable<int> type { get; set; }
+    public string answer { get; set; }
+    public string marks { get; set; }
+    public string duration { get; set; }
+    public string checking_file { get; set; }
 }
 
 public partial class exam_schedule
 {
     public int scheduleid { get; set; }
     public Nullable<int> universityid { get; set; }
+    public Nullable<int> examassignerid { get; set; }
     public Nullable<int> exampapersid { get; set; }
     public string utctimezone { get; set; }
     public Nullable<System.DateTime> exam_datetime { get; set; }
     public Nullable<System.DateTime> exam_datetime_utc { get; set; }
+}
+
+public partial class exam_subjectmaster
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
+public partial class exam_truefalse_questionmaster
+{
+    public int questionId { get; set; }
+    public Nullable<int> universityID { get; set; }
+    public Nullable<int> examinerId { get; set; }
+    public string question { get; set; }
+    public string answer1 { get; set; }
+    public string answer2 { get; set; }
+    public string answer1_description { get; set; }
+    public string answer2_description { get; set; }
+    public string correct_answer { get; set; }
+    public string maximum_marks { get; set; }
+    public Nullable<int> is_timelimit { get; set; }
+    public string duration { get; set; }
+}
+
+public partial class exam_universitywisesubjectmapping
+{
+    public int id { get; set; }
+    public Nullable<int> subjectID { get; set; }
+    public Nullable<int> universityID { get; set; }
+}
+
+public partial class exam_uploadanswer_master
+{
+    public int questionid { get; set; }
+    public Nullable<int> examinerid { get; set; }
+    public Nullable<int> univesityid { get; set; }
+    public string questiondescription { get; set; }
+    public string questionpath { get; set; }
+    public string extrasheetpath { get; set; }
+    public string extrafilepath { get; set; }
+    public string fileinstruction { get; set; }
+    public string marks { get; set; }
+    public string duration { get; set; }
+    public string checking_file { get; set; }
+}
+
+public partial class examchecking_assignment
+{
+    public int assignmentId { get; set; }
+    public Nullable<int> institutionId { get; set; }
+    public Nullable<int> ExamId { get; set; }
+    public Nullable<System.DateTime> scheduledate_time { get; set; }
+    public Nullable<int> examinerId { get; set; }
+    public string examiner_passkey { get; set; }
+}
+
+public partial class examiner_master
+{
+    public int examinerID { get; set; }
+    public Nullable<int> adminrecordID { get; set; }
+    public Nullable<int> universityId { get; set; }
+    public Nullable<int> roleid { get; set; }
+    public string examinerkey { get; set; }
+    public string name { get; set; }
+    public string username { get; set; }
+    public string email { get; set; }
+    public string mobileno { get; set; }
+    public string password { get; set; }
 }
 
 public partial class exampapers_master
@@ -1604,6 +1804,9 @@ public partial class exampapers_master
     public int id { get; set; }
     public Nullable<int> exampapersid { get; set; }
     public Nullable<int> universityID { get; set; }
+    public Nullable<int> examinerid { get; set; }
+    public Nullable<int> questionId { get; set; }
+    public string questiontype { get; set; }
     public string exampaper_path { get; set; }
     public string extrasheetpath { get; set; }
     public string audiovideofilepath { get; set; }
@@ -1722,6 +1925,12 @@ public partial class formmaster
 }
 
 public partial class grademaster
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
+public partial class group_master
 {
     public int id { get; set; }
     public string description { get; set; }
@@ -1896,6 +2105,7 @@ public partial class gte_progressbar
     public string certificate_name { get; set; }
     public Nullable<System.DateTime> certificate_creation_date { get; set; }
     public string performance_category { get; set; }
+    public string certificatepath { get; set; }
 }
 
 public partial class gte_question_master_part2
@@ -2018,6 +2228,7 @@ public partial class gte_student_sop
     public string applicant_generated_sop_para4 { get; set; }
     public string applicant_generated_sop_para5 { get; set; }
     public bool is_sop_submitted_by_applicant { get; set; }
+    public Nullable<bool> is_sop_submitted_draft { get; set; }
     public System.DateTime created_at { get; set; }
     public Nullable<System.DateTime> deleted_at { get; set; }
     public Nullable<System.DateTime> edited_at { get; set; }
@@ -2043,7 +2254,8 @@ public partial class gte_videouploadmaster
     public int id { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
-    public string videourl { get; set; }
+    public string type { get; set; }
+    public string documentpath { get; set; }
 }
 
 public partial class gtepreliminarysection_applicantanswers
@@ -2075,6 +2287,20 @@ public partial class inferencemaster
 {
     public int inferenceid { get; set; }
     public string description { get; set; }
+}
+
+public partial class institutionwiseclassmaster
+{
+    public int id { get; set; }
+    public Nullable<int> classId { get; set; }
+    public Nullable<int> institutionID { get; set; }
+}
+
+public partial class institutionwisegroupmaster
+{
+    public int id { get; set; }
+    public Nullable<int> groupId { get; set; }
+    public Nullable<int> institutionID { get; set; }
 }
 
 public partial class majordiscipline_master
@@ -2468,6 +2694,7 @@ public partial class rolemaster
 
     public int roleid { get; set; }
     public string rolename { get; set; }
+    public string forservice { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<adminusers> adminusers { get; set; }
@@ -2837,6 +3064,8 @@ public partial class university_master
     public string university_name { get; set; }
     public string hosturl { get; set; }
     public int full_service { get; set; }
+    public string emai_notification1 { get; set; }
+    public string emai_notification2 { get; set; }
     public string address { get; set; }
     public string website { get; set; }
     public string contact_person { get; set; }
@@ -2872,6 +3101,7 @@ public partial class university_master
     public string acceptance_terms { get; set; }
     public string deferment_terms { get; set; }
     public string rejection_terms { get; set; }
+    public string examInstruction { get; set; }
     public string withdrawn_terms { get; set; }
     public string supprot_service_instructions { get; set; }
     public string visa_instructions { get; set; }
@@ -2879,7 +3109,8 @@ public partial class university_master
     public string proctor1_name { get; set; }
     public string proctor1_email { get; set; }
     public string proctor1_contactno { get; set; }
-    public string examInstruction { get; set; }
+    public Nullable<int> numberof_applicant { get; set; }
+    public Nullable<System.DateTime> recordsavedat_numberof_applicant { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

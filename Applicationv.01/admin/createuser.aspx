@@ -84,6 +84,36 @@
                             </div>
                         </div>
                     </div>
+                    <div runat="server" id="subroles" style="display:none">
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-3 col-form-label form-label"></label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                          <asp:CheckBox ID="chkAll" Text="Select All" runat="server" />
+                                        <asp:CheckBoxList ID="chkroles" runat="server" name="subroles">
+                                            <%--<asp:ListItem Value="1">Exambuilder</asp:ListItem>
+                                              <asp:ListItem Value="2">Proctor</asp:ListItem>
+                                              <asp:ListItem Value="3">Exam Checker</asp:ListItem>--%>
+                                        </asp:CheckBoxList>                       
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="Divpasskey" runat="server">
+                            <label for="name" class="col-sm-3 col-form-label form-label">Passkey</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                          <input type="text" runat="server" ID="txtpasskey" class="form-control" disabled="disabled"/>
+                                        <asp:HiddenField runat="server" ID="hidpasskey"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                      </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
@@ -105,13 +135,58 @@
 
     </div>
     <script>
+            $(function () {
+        $("[id*=chkAll]").bind("click", function () {
+            if ($(this).is(":checked")) {
+                $("[id*=chkroles] input").attr("checked", "checked");
+            } else {
+                $("[id*=chkroles] input").removeAttr("checked");
+            }
+        });
+        $("[id*=chkroles] input").bind("click", function () {
+            if ($("[id*=chkroles] input:checked").length == $("[id*=chkroles] input").length) {
+                $("[id*=chkAll]").attr("checked", "checked");
+            } else {
+                $("[id*=chkAll]").removeAttr("checked");
+            }
+        });
+    });
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#role_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#createuser').addClass('active');
+            
         });
+        
+        $("#<%=ddlRole.ClientID%>").change(function () {
+             var mode = '<%=pagemode %>';
+            if ($("#<%=ddlRole.ClientID%>").val() == 13) {
+                $("#<%=subroles.ClientID%>").show();
+                if (mode == 'new') {
+                    $.ajax({
+                        type: "GET",
+                        url: "createuser.aspx/Genrateotp",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.d) {
+                                var result = JSON.parse(response.d);
+                                $("#<%=txtpasskey.ClientID%>").val(result);
+                                $("#<%=hidpasskey.ClientID%>").val(result);
+                            }
+                        }
+                    });
+                }
+                else {
+                    $("#<%=txtpasskey.ClientID%>").val($("#<%=hidpasskey.ClientID%>").val());                  
+                }
 
+            }
+            else
+                $("#<%=subroles.ClientID%>").hide();
+            
+        });
         function validateForm()
         {
             var mode = '<%=pagemode %>';
@@ -148,6 +223,10 @@
                 alert("Please select Role of user");
                 return false;
             }
+            //else if (role == 13 && $('[name="subroles"]:checked').length == 0) {
+            //    alert("Please select assessment roles.");
+            //    return false;
+            //}
             return true;
         }
 	</script>

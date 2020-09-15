@@ -9,6 +9,20 @@
             else
                 return false;
         }
+        function ConfirmOnResend(item) {
+            var txt;
+            var person = prompt("Please enter your password :", "");
+            if (person == "") {
+                alert("Please enter password");
+                return false;
+            }
+            else if (person == null)
+                return false;
+            else {
+                txt =  person ;
+            }
+            $("#<%= Hidpassword.ClientID%>").val(txt).html(txt);
+        }
     </script>
 </asp:Content>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
@@ -26,7 +40,6 @@
         </div>
         <div class="card">
 
-
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                     <asp:GridView ID="UserGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
@@ -40,28 +53,28 @@
 
                         <Columns>
 
-                            <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
+                            <asp:BoundField DataField="id" HeaderText="Admin Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />
                                                   
-                            <asp:TemplateField HeaderText="username" SortExpression="type">                                                            
+                            <asp:TemplateField HeaderText="User Name" SortExpression="type">                                                            
                                 <ItemTemplate>
                                     <asp:Label ID="lbltype" runat="server" Text='<%# Bind("username") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             
-                            <asp:TemplateField HeaderText="rolename" SortExpression="status">  
+                            <asp:TemplateField HeaderText="Role Name" SortExpression="status">  
                                 <ItemTemplate>
                                      <asp:Label ID="lblrolename" runat="server" Text='<%# Bind("rolename") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="email" SortExpression="universityid">                                                           
+                            <asp:TemplateField HeaderText="Email" SortExpression="universityid">                                                           
                                 <ItemTemplate>
                                     <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("email") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             
-                            <asp:TemplateField HeaderText="mobile" SortExpression="status">  
+                            <asp:TemplateField HeaderText="Mobile" SortExpression="status">  
                                 <ItemTemplate>
                                      <asp:Label ID="ddd" runat="server" Text='<%# Bind("mobile") %>'></asp:Label>
                                 </ItemTemplate>
@@ -89,6 +102,75 @@
 
 
                 </div>
+
+            <div id="Div2" runat="server" style="display:none">
+               <%-- <h2 id="h2heading" runat="server">Assessments Roles Master</h2>--%>
+                 <asp:HiddenField runat="server" ID="Hidpassword"/>
+            <div class="tab-content card-body">
+               <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                    <asp:GridView ID="GridView1" CssClass="table" runat="server" AutoGenerateColumns="False"
+                        DataKeyNames="id"
+                        AllowPaging="True"
+                        CellPadding="2"
+                        PageSize="25"
+                        BorderStyle="None"
+                        BorderWidth="1px"
+                        CellSpacing="2"  OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCommand="GridView1_RowCommand">
+
+                        <Columns>
+
+                           <%-- <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
+                                ReadOnly="True" SortExpression="id" />
+                                                  
+                            <asp:TemplateField HeaderText="Name">                                                            
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltype1" runat="server" Text='<%# Bind("name") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Created By">                                                            
+                                <ItemTemplate>
+                                    <asp:Label ID="lblcreatdby" runat="server" Text='<%# Bind("createdby") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Institution" >  
+                                <ItemTemplate>
+                                     <asp:Label ID="lbluniversity1" runat="server" Text='<%# Bind("universityname") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Role" >  
+                                <ItemTemplate>
+                                     <asp:Label ID="lblrolename1" runat="server" Text='<%# Bind("rolename") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="email">                                                           
+                                <ItemTemplate>
+                                    <asp:Label ID="lblemail1" runat="server" Text='<%# Bind("email") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Resend"> 
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkResend1" runat="server" CommandArgument='<%#Eval("id")%>' CommandName="resend" Text="Resend Passkey" OnClientClick='<%# Eval("id","return ConfirmOnResend({0})") %>'></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Delete" ShowHeader="False">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("id")%>' CommandName="Delete" Text="Delete" OnClientClick='<%# Eval("id","return ConfirmOnDelete({0})") %>'></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>--%>
+
+
+                        </Columns>
+
+
+
+                    </asp:GridView>
+                </div>
+
+
+                </div>
+            </div>
             </div>
 
         </div>

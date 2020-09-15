@@ -12,8 +12,7 @@ public class Logger
 {
     public  void WriteLog(string strLog)
     {
-        string univerityName = Utility.GetUniversityName();
-        string logFilePath = ConfigurationManager.AppSettings["Path"].ToString() + "\\" + univerityName + "\\Log-" + DateTime.Today.ToString("MM-dd-yyyy") + "." + "txt";
+        string logFilePath = System.Configuration.ConfigurationManager.AppSettings["Path"].ToString() +"\\Log-" + System.DateTime.Today.ToString("MM-dd-yyyy") + "." + "txt";
         FileInfo logFileInfo = new FileInfo(logFilePath);
         DirectoryInfo logDirInfo = new DirectoryInfo(logFileInfo.DirectoryName);
         if (!logDirInfo.Exists) logDirInfo.Create();

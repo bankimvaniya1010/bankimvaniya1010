@@ -22,8 +22,8 @@ public partial class exam_details : System.Web.UI.Page
     public string virtualmeetinglink = "Not Set";
     public string proctorname = "Not Set";
     public string proctoremail = "Not Set";
-    public string examinstruction = "Not Set By Exam creator.";
-    public string examname = "Not Set By Exam creator."; 
+    public string examinstruction = "Not Set By Assessmnent creator.";
+    public string examname = "Not Set By Assessmnent creator."; 
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -47,6 +47,7 @@ public partial class exam_details : System.Web.UI.Page
             assignDate = Convert.ToDateTime(Request.QueryString["assignDate"]);
 
         exam_assign = db.exam_assign.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampapersid == examid && x.exam_datetime == assignDate).FirstOrDefault();
+
         if (exam_assign.status == "Completed")
         {
             Div1.Attributes.Add("style", "display:block;");
@@ -87,16 +88,19 @@ public partial class exam_details : System.Web.UI.Page
                     {
                         if (Convert.ToDateTime(current_utcTime) <= Convert.ToDateTime(exam_utctime_plus30))
                         {
+                            toshowmeetingtime(exam_utcDate, exam_utctime, exam_time, exam_Date);
+                            para2.Attributes.Add("style", "display:block;");
+                            para21.Attributes.Add("style", "display:block;");
                             // once verified 
-                            var examverifies = db.exam_assign.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampapersid == examid && x.exam_datetime == assignDate).FirstOrDefault();
-                            if (examverifies.is_verified != true)
-                            {
-                                toshowmeetingtime(exam_utcDate, exam_utctime, exam_time, exam_Date);
-                                para2.Attributes.Add("style", "display:block;");
-                                para21.Attributes.Add("style", "display:block;");
-                            }
-                            else
-                                Response.Redirect(webURL + "view_exampaper.aspx?exampaperid=" + examid + "&assignDate=" + assignDate + "", true);
+                            //var examverifies = db.exam_assign.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampapersid == examid && x.exam_datetime == assignDate).FirstOrDefault();
+                            //if (examverifies.is_verified != true && examverifies.status != null)
+                            //{
+                            //    toshowmeetingtime(exam_utcDate, exam_utctime, exam_time, exam_Date);
+                            //    para2.Attributes.Add("style", "display:block;");
+                            //    para21.Attributes.Add("style", "display:block;");
+                            //}
+                            //else
+                            //    Response.Redirect(webURL + "exammodule.aspx", true);
                         }
                     }
                     else
@@ -112,7 +116,7 @@ public partial class exam_details : System.Web.UI.Page
                 }
                 else if (result < 0)
                 {
-                    meetingschedulrexpires();// if meeting date is expires 
+                    meetingschedulrexpires(); // if meeting date is expires 
                 }
                 else
                 {
@@ -120,9 +124,11 @@ public partial class exam_details : System.Web.UI.Page
                 }
             }
         }
+
         if (!IsPostBack)
             allQuestions = objCom.FaqQuestionList();
     }
+
     private void meetingschedulrexpires()
     {
         try
@@ -149,6 +155,7 @@ public partial class exam_details : System.Web.UI.Page
                 objexam_assign = Schedule;
             }
             objexam_assign.is_expired = true;
+            objexam_assign.status = "Expired";
             if (mode == "new")
                 db.exam_assign.Add(objexam_assign);
             db.SaveChanges();
@@ -158,6 +165,7 @@ public partial class exam_details : System.Web.UI.Page
             log.WriteLog(ex.ToString());
         }
     }
+
     private void toshowmeetingtime(string exam_utcDate, string exam_utctime, string exam_time, string exam_Date)
     {
         para1.Attributes.Add("style", "display:block;");
@@ -174,10 +182,12 @@ public partial class exam_details : System.Web.UI.Page
         para6.Attributes.Add("style", "display:block;");
 
         var assigndata = db.exam_assign.Where(x => x.exam_datetime == assignDate).FirstOrDefault();
+        int examienrid = Convert.ToInt32(assigndata.proctorid);
+        var proctordata = db.examiner_master.Where(x => x.examinerID == examienrid).FirstOrDefault();
 
         virtualmeetinglink = assigndata.virtuallink;
-        proctorname = assigndata.proctorid;
-        proctoremail = assigndata.proctoremail;
+        proctorname = proctordata.name;
+        proctoremail = proctordata.email;
     }
 
     protected void btnsubmit_Click(object sender, EventArgs e)
@@ -187,7 +197,7 @@ public partial class exam_details : System.Web.UI.Page
 
         var mode = "new";
         var Schedule = (from pInfo in db.exam_assign
-                        where pInfo.exam_datetime == assignDate && pInfo.applicantid == UserID && pInfo.universityID == UniversityID && pInfo.is_expired == null
+                        where pInfo.exampapersid == examid && pInfo.exam_datetime == assignDate && pInfo.applicantid == UserID && pInfo.universityID == UniversityID && pInfo.status == null
                         select pInfo).FirstOrDefault();
         exam_assign objexam_assign = new exam_assign();
 
@@ -199,7 +209,7 @@ public partial class exam_details : System.Web.UI.Page
         if (Schedule.studentpasskey != student_Passkey)
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(' student Passkey does not match')", true);
         else if (Schedule.proctorpasskey != proctor_Passkey)
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(' Proctor Passkey does not match')", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert(' Invigilator Passkey does not match')", true);
         else
         {
             objexam_assign.is_verified = true;
@@ -207,7 +217,14 @@ public partial class exam_details : System.Web.UI.Page
             if (mode == "new")
                 db.exam_assign.Add(objexam_assign);
             db.SaveChanges();
-            Response.Redirect(webURL + "view_exampaper.aspx?exampaperid="+ examid + "&assignDate=" + assignDate + "", true);
+
+            var examtype = db.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == examid).Select(x=>x.uploadtype).FirstOrDefault();
+            if(examtype != null && examtype == 1)
+                Response.Redirect(webURL + "view_exampaper.aspx?assignID=" + objexam_assign.assignid + "", true);
+            else if (examtype != null && examtype == 2)
+                Response.Redirect(webURL + "view_exampaper2.aspx?assignID="+objexam_assign.assignid+"", true);
+            else if (examtype != null && examtype == 3)
+                Response.Redirect(webURL + "view_exampaper3.aspx?assignID=" + objexam_assign.assignid + "", true);
         }
     }
 }

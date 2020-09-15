@@ -94,6 +94,9 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.proctor1_contactno = txtproctorno1.Text.Trim();
                 universityObj.proctor1_email = txtproctoremail1.Text.Trim();
                 universityObj.examInstruction = txtexamInstruction.Text.Trim();
+                universityObj.emai_notification1 = txtnotification1.Text.Trim();
+                universityObj.emai_notification2 = txtnotification2.Text.Trim();
+                universityObj.numberof_applicant = Convert.ToInt32(txtapplicantno.Value.Trim());
 
                 var url = txthosturl.Value.Trim();
                 if(url.ToLower().Contains("www."))

@@ -26,14 +26,14 @@
                             <div class="list-group-item" runat="server" style="display:none" id="gtedoc">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" class="col-md-6 col-form-label form-label">Download Your GTE Report</label>
+                                        <label runat="server" class="col-md-6 col-form-label form-label">Download Your Final GTE Report</label>
                                         <div class="col-md-6">
                                             <asp:Button ID="btngte" runat="server" Text="Download" CssClass="btn btn-success" OnClick="btngte_Click" />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
+                            </div>                            
+                            <div class="list-group-item" >
                                 <asp:Label runat="server" ID="lblmsg" Visible="false"></asp:Label>
                             </div>                            
                         </div>

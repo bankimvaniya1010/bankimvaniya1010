@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class admin_sopreport : System.Web.UI.Page
 {
     protected int ApplicantID = 0, universityID = 0;
-    protected string _universityName;
+    protected string _universityName, type;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -35,20 +35,37 @@ public partial class admin_sopreport : System.Web.UI.Page
             {
                 universityID = Utility.GetUniversityId();
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
+                type = Request.QueryString["type"].ToString();
 
                 if (!IsPostBack)
                 {
-                    var gte_student_sop = db.gte_student_sop
+                    if (type == "Final") {
+                        var gte_student_sop = db.gte_student_sop
                                                    .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID && x.is_sop_submitted_by_applicant == true)
                                                    .FirstOrDefault();
-                    if (gte_student_sop != null)
-                    {
-                        _genuineStudentAssesment = gte_student_sop.applicant_generated_sop_para1;
-                        _situationStudentAssesment = gte_student_sop.applicant_generated_sop_para2;
-                        _potentialStudentAssesment = gte_student_sop.applicant_generated_sop_para3;
-                        _paragraph4 = gte_student_sop.applicant_generated_sop_para4;
-                        _paragraph5 = gte_student_sop.applicant_generated_sop_para5;
+                        if (gte_student_sop != null)
+                        {
+                            _genuineStudentAssesment = gte_student_sop.applicant_generated_sop_para1;
+                            _situationStudentAssesment = gte_student_sop.applicant_generated_sop_para2;
+                            _potentialStudentAssesment = gte_student_sop.applicant_generated_sop_para3;
+                            _paragraph4 = gte_student_sop.applicant_generated_sop_para4;
+                            _paragraph5 = gte_student_sop.applicant_generated_sop_para5;
+                        }
                     }
+                    else if (type == "Draft") {
+                        var gte_student_sop = db.gte_student_sop
+                                                  .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID && x.is_sop_submitted_draft == true)
+                                                  .FirstOrDefault();
+                        if (gte_student_sop != null)
+                        {
+                            _genuineStudentAssesment = gte_student_sop.gte_sop_para1;
+                            _situationStudentAssesment = gte_student_sop.gte_sop_para2;
+                            _potentialStudentAssesment = gte_student_sop.gte_sop_para3;
+                            _paragraph4 = gte_student_sop.gte_sop_para4;
+                            _paragraph5 = gte_student_sop.gte_sop_para5;
+                        }
+                    }
+                    
                 }
             }
         }

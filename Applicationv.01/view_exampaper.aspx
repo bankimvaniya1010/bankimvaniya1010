@@ -24,7 +24,7 @@
                                 <span id="countdown"></span>                                
                                 <asp:HiddenField ID="hidTime" runat="server" />
                             </div>
-                            <div style="text-align: right">
+                            <div style="text-align: right;display:none;">
                                <asp:Button runat="server" ID="disqualifiedbtn" OnClick="disqualifiedbtn_Click" Text="DisQualified"/>
                             </div>
                             <div style="text-align: right">
@@ -43,45 +43,51 @@
                                                 <div class="media-body">
                                                     <h4 class="card-title">
                                                         <asp:Image src='<%# Eval("questionpaper") %>' Width="800" Height="750" Style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" runat="server"></asp:Image>
-
                                                     </h4>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <div class="form-group row">
-                                                <label for="avatar" class="col-sm-4 col-form-label form-label">Answer sheet</label>
-
+                                            <div class="form-group row" id="extrafiledocument" style="<%# (Eval("extrasheetpath") == null && Eval("fileinstruction") == null && Eval("audiovideofilepath") == null)? "visibility: hidden;": " "  %>">
+                                                <label for="avatar" class="col-sm-4 col-form-label form-label">Assessmnent related Documents </label>
                                                 <div class="col-sm-8">
                                                     <div class="media align-items-center">
-
+                                                        <div class="media-body">
+                                                            <div class="custom-file" style="width: auto;">
+                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("extrasheetpath") == null? "visibility: hidden;": "visibility:visible;"  %>"><b>Extra Sheet : </b> <a href="<%# Eval("extrasheetpath") %>" target="_blank" >View File</a></label><br/>
+                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("fileinstruction") == null? "visibility: hidden;": "visibility:visible;"  %>"><b>Instructions : </b> <%#Eval("fileinstruction") %></label><br/>
+                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("audiovideofilepath") == null? "visibility: hidden;": "visibility:visible;"  %>"> <b>File : </b> <a href="<%# Eval("audiovideofilepath") %>" target="_blank">View File</a></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="avatar" class="col-sm-4 col-form-label form-label">Answer sheet</label>
+                                                <div class="col-sm-8">
+                                                    <div class="media align-items-center">
                                                         <div class="media-body">
                                                             <div class="custom-file" style="width: auto;">
                                                                 <asp:Label ID="lblavatar" runat="server" />
                                                                 <asp:FileUpload ID="ansersheet" runat="server" />
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="avatar" class="col-sm-4 col-form-label form-label">Extra sheets</label>
-
                                                 <div class="col-sm-8">
                                                     <div class="media align-items-center">
-
                                                         <div class="media-body">
                                                             <div class="custom-file" style="width: auto;">
                                                                 <asp:Label ID="Label1" runat="server" />
                                                                 <asp:FileUpload ID="extrasheet" runat="server" />
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </asp:Panel>
                                 </ItemTemplate>
@@ -98,6 +104,29 @@
                             </div>
                         </div>
                     </div>
+                 <%--    <div class="col-md-4">
+                     <div class="banImg-wrp">
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                      </div>
+                    <div class="card faq-qwrp" id="Div1" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div class="star-list">                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer.Replace(Environment.NewLine, "<br />") %>')" >  <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+                   </div> --%>
                 </div>
             </div>
         </div>
@@ -110,6 +139,7 @@
     </div>
     <script>
 
+      
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#exam_list').addClass('open');
@@ -117,7 +147,9 @@
             $('#exammodule').addClass('active');
         });
         
-       
+        var applicantid = '<%=HttpContext.Current.Session["UserID"]%>';
+        
+
         var hms = '<%=Session["totalResponseTime"]%>';   // your input string       
         //Convert hh:mm:ss string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
         var secondsS;
@@ -129,7 +161,9 @@
             secondsS = hms * 60;
         let time = secondsS;
         const countdownEl = document.getElementById('countdown');
+
         setInterval(updateCountdown, 1000);
+
         function updateCountdown() {
             const minutes = Math.floor(time / 60);
             let seconds = time % 60;
@@ -138,31 +172,40 @@
             countdownEl.innerHTML = `${minutes}:${seconds}`;            
             time--;
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);	
+
             if (countdownEl.innerHTML == '10:00') {
-                alert("only 10 min remaining . ");
+                alert("Only 10 minutes remaining. ");
                 return false;
             }
-            else if (countdownEl.innerHTML == '00:00') {
-                alert("Exam time exhausted");//save to db that paper time exhausted 
-               // window.location = '/exam_module.aspx';
-                return false;
+            else {
+                if (countdownEl.innerHTML == '0:00') {
+                    countdownEl.style.display = 'none';
+                    alert("Assessmnent time exhausted");
+                    ajaxcall();
+                    var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                    location.replace(hostName + "exammodule.aspx");
+                  
+                }
+                else
+                    return true;
             }
-            else
-                return true;
         }
+        function ajaxcall() {
+            var assignID = '<%= assignID%>';
+            $.ajax({
+                       type: "POST",
+                       url: "view_exampaper.aspx/Saveresponse",
+                       contentType: "application/json; charset=utf-8",
+                       dataType: "json",
+                       data: "{'assignID': '" + assignID + "'}",
+                       success: function (response) {
+                           if (response.d) {
+                               var result = JSON.parse(response.d);
 
-
-
-        //var timeleft = 10:11;
-        //var downloadTimer = setInterval(function(){
-        //  if(timeleft <= 0){
-        //    clearInterval(downloadTimer);
-        //    document.getElementById("countdown").innerHTML = "Finished";
-        //  } else {
-        //    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-        //  }
-        //  timeleft -= 1;
-        //}, 1000);
+                           }
+                       }
+                    });
+        }
         function validateForm() {
             var allpapersCount = <%=allpapersCount%>;
             for (var i = 0; i < allpapersCount; i++) {

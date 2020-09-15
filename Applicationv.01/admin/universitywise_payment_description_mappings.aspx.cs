@@ -47,7 +47,7 @@ public partial class admin_universitywise_payment_description_mappings : System.
 
             ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";
-            ddlUniversity.DataValueField = "universityID";
+            ddlUniversity.DataValueField = "universityid";
             ddlUniversity.DataBind();
             ddlUniversity.Items.Insert(0, lst);
         }
