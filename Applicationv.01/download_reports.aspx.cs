@@ -32,14 +32,15 @@ public partial class download_reports : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
 
         var gte_student_sop = db.gte_student_sop
-                            .Where(x => x.applicant_id == applicantID && x.universityid == universityID && x.is_sop_submitted_by_applicant == true)
+                            .Where(x => x.applicant_id == applicantID && x.universityid == universityID)
                             .FirstOrDefault();
-        if (gte_student_sop != null)
-            sopdoc.Attributes.Add("style", "display:block;");
+        
+        if (gte_student_sop != null && gte_student_sop.is_sop_submitted_by_applicant == true) 
+            sopdoc.Attributes.Add("style", "display:block;");            
         else
         {
             lblmsg.Visible = true;
-            lblmsg.Text = "Please complete Real-time SOP Builder to download.";
+            lblmsg.Text = "Please complete Final SOP Builder to download.";
         }
         if (!IsPostBack)
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
@@ -49,15 +50,25 @@ public partial class download_reports : System.Web.UI.Page
     {
         try
         {
+            saveRecord("final");
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+        
+    }    
+
+    private void saveRecord(string type)
+    {
+        try
+        {
             var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
             htmlToPdf.Orientation = PageOrientation.Portrait;
             htmlToPdf.Size = PageSize.A4;
             htmlToPdf.Grayscale = false;
             htmlToPdf.PageWidth = 200f;
-            string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];            
+            string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
             string fileName = Guid.NewGuid() + ".pdf";
             string filePath = string.Concat(dirPath, "\\", fileName);
-            htmlToPdf.GeneratePdfFromFile(webURL + "sop_report.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&downloadPdf=1", null, filePath);
+            htmlToPdf.GeneratePdfFromFile(webURL + "sop_report.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&downloadPdf=1&type=" + type + "", null, filePath);
 
             Response.ContentType = "application/pdf";
             Response.AppendHeader("Content-Disposition", "attachment; filename=SOP_Report_" + fileName);
@@ -67,6 +78,6 @@ public partial class download_reports : System.Web.UI.Page
                 File.Delete(filePath);
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
-        
+
     }
 }

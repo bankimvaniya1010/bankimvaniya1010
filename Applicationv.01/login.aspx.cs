@@ -41,9 +41,10 @@ public partial class login : System.Web.UI.Page
         
         if (isfullservice == 0)
             isfullservicethenlbl = " GTE Online Center (GOC)";
-        else
+        else if(isfullservice == 1)
             isfullservicethenlbl = " APPLICATION CENTER";
-
+        else if (isfullservice == 2)
+            isfullservicethenlbl = "Assessment Center";
     }
 
     protected void btn_login_Click(object sender, EventArgs e)
@@ -140,7 +141,22 @@ public partial class login : System.Web.UI.Page
                         //        Response.Redirect(webURL + "agentdashboard.aspx");
                         //        break;
                         //    case 3:
-                        Response.Redirect(webURL + "default.aspx", true);
+                        if (isFullService == 2)
+                        {
+                            var studentdatis = db.applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
+                            var subjectcount = db.exam_applicant_subjectmapping.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).ToList().Count();
+                            if (studentdatis != null)
+                            {
+                                if(studentdatis.classId == null || studentdatis.groupId == null || subjectcount == 0)
+                                    Response.Redirect(webURL + "details.aspx?id="+chkUser.studentid, true);
+                                else
+                                    Response.Redirect(webURL + "default.aspx", true);
+                            }
+                            else
+                                Response.Redirect(webURL + "default.aspx", true);
+                        }
+                        else
+                            Response.Redirect(webURL + "default.aspx", true);
                         //            break;
                         //        case 4:
                         //            Response.Redirect(webURL + "universitydashboard.aspx");

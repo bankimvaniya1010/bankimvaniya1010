@@ -115,14 +115,34 @@ public partial class gte_report : System.Web.UI.Page
                                             .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID && x.is_sop_submitted_by_applicant == true)
                                             .FirstOrDefault();
 
+                    string type = Request.QueryString["type"].ToString();
+
                     if (gte_student_sop != null)
                     {
-                        ViewState["student_sop_id"] = gte_student_sop.id;
-                        _genuineStudentAssesment = gte_student_sop.applicant_generated_sop_para1;
-                        _situationStudentAssesment = gte_student_sop.applicant_generated_sop_para2;
-                        _potentialStudentAssesment = gte_student_sop.applicant_generated_sop_para3;
-                        _paragraph4 = gte_student_sop.applicant_generated_sop_para4;
-                        _paragraph5 = gte_student_sop.applicant_generated_sop_para5;
+                        if (type == "final")
+                        {
+                            if (gte_student_sop.is_sop_submitted_by_applicant == true)
+                            {
+                                ViewState["student_sop_id"] = gte_student_sop.id;
+                                _genuineStudentAssesment = gte_student_sop.applicant_generated_sop_para1;
+                                _situationStudentAssesment = gte_student_sop.applicant_generated_sop_para2;
+                                _potentialStudentAssesment = gte_student_sop.applicant_generated_sop_para3;
+                                _paragraph4 = gte_student_sop.applicant_generated_sop_para4;
+                                _paragraph5 = gte_student_sop.applicant_generated_sop_para5;
+                            }
+                        }
+                        else if (type == "draft")
+                        {
+                            if (gte_student_sop.is_sop_submitted_draft == true)
+                            {
+                                ViewState["student_sop_id"] = gte_student_sop.id;
+                                _genuineStudentAssesment = gte_student_sop.gte_sop_para1;
+                                _situationStudentAssesment = gte_student_sop.gte_sop_para2;
+                                _potentialStudentAssesment = gte_student_sop.gte_sop_para3;
+                                _paragraph4 = gte_student_sop.gte_sop_para4;
+                                _paragraph5 = gte_student_sop.gte_sop_para5;
+                            }
+                        }
                     }
 
                     var section2_max_score_by_tag = db.gte_answer_master
@@ -270,8 +290,23 @@ public partial class gte_report : System.Web.UI.Page
 
                         table.Clear();
                     }
-
-                    populateCommentsAndReviews();
+                    string type2 = Request.QueryString["type"].ToString();
+                    if (type2 == "final")
+                        populateCommentsAndReviews();
+                    else if(type2== "draft")
+                    {
+                        div1.Attributes.Add("style", "display:none");
+                        div2.Attributes.Add("style", "display:none");
+                        para1Comments.Attributes.Add("style", "display:none");
+                        para2Comments.Attributes.Add("style", "display:none");
+                        para3Comments.Attributes.Add("style", "display:none");
+                        para4Comments.Attributes.Add("style", "display:none");
+                        para5Comments.Attributes.Add("style", "display:none");
+                        studentVideoReview.Attributes.Add("style", "display:none");
+                        studentRecommended.Attributes.Add("style", "display:none");
+                        studentDocumentsValidations.Attributes.Add("style", "display:none");
+                        recommendationRemark.Attributes.Add("style", "display:none");
+                    }
                 }
             }
         }

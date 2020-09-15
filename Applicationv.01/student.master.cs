@@ -76,8 +76,10 @@ public partial class admin : System.Web.UI.MasterPage
         
         if (isfullservice == 0)
             isfullservicethenlbl.Text = "GTE Online Center (GOC)";
-        else
+        else if (isfullservice == 1)
             isfullservicethenlbl.Text = "APPLICATION CENTER";
+        else if (isfullservice == 2)
+            isfullservicethenlbl.Text = "Assessment Center";
     }
 
     private void populateSelectedLanguage()

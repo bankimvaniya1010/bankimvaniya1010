@@ -26,13 +26,13 @@
                             <div class="list-group-item" runat="server" style="display:none" id="sopdoc">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" class="col-md-7 col-form-label form-label">Download your GTE Statement of Purpose (SOP)</label>
+                                        <label runat="server" class="col-md-7 col-form-label form-label">Download your Final GTE Statement of Purpose (SOP)</label>
                                         <div class="col-md-5">
                                             <asp:Button ID="Button1" runat="server" Text="Download" CssClass="btn btn-success" OnClick="downloadsop_Click" />                                            
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                          
                             <div>
                                 <asp:Label runat="server" ID="lblmsg" Visible="false"></asp:Label>
                             </div>                            

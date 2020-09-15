@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="download_gtereport.aspx.cs" Inherits="download_gtereport" MasterPageFile="~/student.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_draft.aspx.cs" Inherits="gte_draft" MasterPageFile="~/student.master"%>
+
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -6,11 +7,11 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Download your GTE Report 
+            <li class="breadcrumb-item active">Download Draft GTE Report
 
             </li>
         </ol>
-        <h1 class="h2">Download your GTE Report 
+        <h1 class="h2">Download Draft GTE Report
 
         </h1>
 
@@ -22,18 +23,18 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="list-group-item" runat="server" style="display:none" id="gtedoc">
+                        <div class="card-body">                          
+                            <div class="list-group-item" runat="server" style="display:none" id="sopdraftdoc">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" class="col-md-6 col-form-label form-label">Download Your Final GTE Report</label>
-                                        <div class="col-md-6">
-                                            <asp:Button ID="btngte" runat="server" Text="Download" CssClass="btn btn-success" OnClick="btngte_Click" />
+                                        <label runat="server" class="col-md-7 col-form-label form-label">Download your draft GTE Report</label>
+                                        <div class="col-md-5">
+                                            <asp:Button ID="downloaddraftsop" runat="server" Text="Download" CssClass="btn btn-success" OnClick="downloaddraftsop_Click" />                                            
                                         </div>
                                     </div>
                                 </div>
-                            </div>                            
-                            <div class="list-group-item" >
+                            </div>
+                            <div>
                                 <asp:Label runat="server" ID="lblmsg" Visible="false"></asp:Label>
                             </div>                            
                         </div>
@@ -78,7 +79,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#gteevalution_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#download_gtereport').addClass('active');
+            $('#draftgtereport').addClass('active');
         });
     </script>
 </asp:Content>
