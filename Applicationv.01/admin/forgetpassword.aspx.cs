@@ -16,6 +16,8 @@ public partial class admin_forgetpassword : System.Web.UI.Page
     string webURL = String.Empty;
     public string logourl = string.Empty;
     university_master university = new university_master();
+    string roleName = string.Empty;
+    int isfullservice;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -68,8 +70,18 @@ public partial class admin_forgetpassword : System.Web.UI.Page
     {
         try
         {
+            dynamic roleMaster;
             ListItem lst = new ListItem("Please select", "0");
-            dynamic roleMaster = db.rolemaster.ToList();
+
+            isfullservice = (int)Session["isfullservice"];
+            if (isfullservice == 0)//gte
+                roleMaster = db.rolemaster.Where(x => x.forservice.ToLower() == "gte").ToList();
+            else if (isfullservice == 1)//fullservice
+                roleMaster = db.rolemaster.Where(x => x.forservice.ToLower() == "full").ToList();
+            else if (isfullservice == 2)//exam
+                roleMaster = db.rolemaster.Where(x => x.forservice.ToLower() == "assessment").ToList();
+            else
+                roleMaster = db.rolemaster.ToList();
 
             ddlrole.DataSource = roleMaster;
             ddlrole.DataBind();

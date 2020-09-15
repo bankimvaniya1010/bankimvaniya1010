@@ -29,7 +29,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         roleName = Utility.GetRoleName();
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        
+
         universityID = Utility.GetUniversityId();
 
         roleID = Convert.ToInt32(Session["Role"]);
@@ -176,10 +176,21 @@ public partial class admin_applicantlist : System.Web.UI.Page
             {
                 downloadApplicantDetails(ID);
             }
+            if (Comamandname.Equals("GTE Student Detail"))
+            {
+                Response.Redirect(webURL + "admin/gte_studentdetailsaspx.aspx?userid=" + ID + "&formid=" + form.formid, true);
+            }
             if (Comamandname.Equals("FeedBackGTE"))
-                Response.Redirect(webURL + "admin/gtereport.aspx?downloadPdf=0&id=" + ID, true);
+                Response.Redirect(webURL + "admin/gtereport.aspx?downloadPdf=0&type=Final&id=" + ID, true);
+            if (Comamandname.Equals("draftFeedBackGTE"))
+                Response.Redirect(webURL + "admin/gtereport.aspx?downloadPdf=0&type=Draft&id=" + ID, true);
+
+           
             if (Comamandname.Equals("GTE"))
-                downloadGTEReport(ID);
+                downloadGTEReport(ID, "Final");
+            if(Comamandname.Equals("DraftGTE"))
+                downloadGTEReport(ID, "Draft");
+
             if (Comamandname.Equals("VisaForm"))
                 downloadVisaForm(ID);
             if (Comamandname.Equals("PerDown"))
@@ -190,16 +201,68 @@ public partial class admin_applicantlist : System.Web.UI.Page
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
             if(Comamandname.Equals("VisaDate"))
                 Response.Redirect(webURL + "admin/visaDates.aspx?userid=" + ID, true);
+            if (Comamandname.Equals("Documents"))
+                Response.Redirect(webURL + "admin/view_gteapplicantdocuments.aspx?applicantid=" + ID, true);
+            if (Comamandname.Equals("GTECertificate"))
+                downloadGTECertificate(ID); //Response.Redirect(webURL + "gte_certificate1.aspx?applicantid=" + ID, true);
+            if (Comamandname.Equals("VerificationVideoDownload"))
+            {
+
+            }
             if (Comamandname.Equals("SOP"))
-                downloadSOPReport(ID);            
+                downloadSOPReport(ID,"Final");
+            if (Comamandname.Equals("DraftSOP"))
+                downloadSOPReport(ID, "Draft");
+            //Response.Redirect(webURL + "admin/gte_draftsop.aspx?applicantid=" + ID, true);
+
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
     }
+    private void downloadGTECertificate(int ApplicantID) {       
+           
+            int universityID = Utility.GetUniversityId();
 
-    private void downloadSOPReport(int applicantID)
+            if (ApplicantID == 0 || universityID == 0)
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                         "alert('Invalid Details');window.location='" + webURL + "admin/default.aspx';", true);
+
+            var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+            htmlToPdf.Orientation = PageOrientation.Portrait;
+            htmlToPdf.Size = PageSize.Default;
+            htmlToPdf.Grayscale = false;
+            htmlToPdf.PageWidth = 200f;
+            string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+            string fileName = Guid.NewGuid() + ".pdf";
+            string filePath = string.Concat(dirPath, "\\", fileName);
+
+            htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificate1.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + ApplicantID + "&universityId=" + universityID, null, filePath);
+
+            var mode = "new";
+            gte_progressbar objmapping = new gte_progressbar();
+            var data = db.gte_progressbar.Where(x => x.applicantid == ApplicantID && x.universityId == universityID).FirstOrDefault();
+
+            if (data != null)
+            {
+                mode = "update";
+                objmapping = data;
+            }
+            objmapping.certificatepath = fileName;
+            if (mode == "new")
+                db.gte_progressbar.Add(objmapping);
+            db.SaveChanges();
+
+            HttpContext.Current.Response.ContentType = "application/pdf";
+            HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment; filename=GTE_Certificate.pdf");
+            HttpContext.Current.Response.TransmitFile(filePath);
+
+            HttpContext.Current.Response.Flush();
+        
+    }
+
+    private void downloadSOPReport(int applicantID, string type)
     {
         var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
         htmlToPdf.Orientation = PageOrientation.Portrait;
@@ -209,10 +272,10 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/sopreport.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&downloadPdf=1", null, filePath);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/sopreport.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID +"&type="+type + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
-        Response.AppendHeader("Content-Disposition", "attachment; filename=SOP_Report_" + fileName);
+        Response.AppendHeader("Content-Disposition", "attachment; filename="+type+"_SOP_Report_" + fileName);
         Response.TransmitFile(filePath);
         Response.End();
     }
@@ -251,7 +314,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         Response.TransmitFile(filePath);
         Response.End();
     }
-    private void downloadGTEReport(int applicantID)
+    private void downloadGTEReport(int applicantID, string type)
     {
         var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
         htmlToPdf.Orientation = PageOrientation.Portrait;
@@ -261,10 +324,10 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/gtereport.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID + "&downloadPdf=1", null, filePath);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/gtereport.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID+"&type="+type + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
-        Response.AppendHeader("Content-Disposition", "attachment; filename=GTE_Report_" + fileName);
+        Response.AppendHeader("Content-Disposition", "attachment; filename="+type+"_GTE_Report_" + fileName);
         Response.TransmitFile(filePath);
         Response.End();
     }
@@ -333,7 +396,6 @@ public partial class admin_applicantlist : System.Web.UI.Page
             Response.WriteFile(file.FullName);
             Response.Flush();
             Response.Close();
-
         }
         else
         {
@@ -1080,8 +1142,13 @@ public partial class admin_applicantlist : System.Web.UI.Page
 
             LinkButton lnkDownloadGteReport = (LinkButton)e.Row.Cells[2].FindControl("lnkDownloadGteReport");
             LinkButton lnkVerificationVideo = (LinkButton)e.Row.Cells[2].FindControl("lnkVerificationVideo"); 
-             LinkButton lnkGteReportFeedBack = (LinkButton)e.Row.Cells[2].FindControl("lnkGteReportFeedBack");
+            LinkButton lnkGteReportFeedBack = (LinkButton)e.Row.Cells[2].FindControl("lnkGteReportFeedBack");
             LinkButton lnkDownloadSOPReport = (LinkButton)e.Row.Cells[2].FindControl("lnkDownloadSOPReport");
+
+            LinkButton LinkButton4 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton4");
+            LinkButton LinkButton5 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton5");
+            LinkButton LinkButton8 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton8");
+
             if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
             {
                 int applicant_id = Convert.ToInt32(e.Row.Cells[0].Text);
@@ -1089,13 +1156,22 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 var displayLinkButton = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
                                           .Select(x => x.is_sop_submitted_by_applicant).FirstOrDefault();
 
+                var displaygteertificate = db.gte_progressbar.Where(x => x.applicantid == applicant_id && x.universityId == universityID)
+                                          .Select(x => x.is_gte_certificate_generated).FirstOrDefault();
+                if (displaygteertificate == null || displaygteertificate == false)
+                    LinkButton8.Style.Add("display", "none");
+
                 if (!displayLinkButton)
                 {
                     lnkDownloadGteReport.Style.Add("display", "none");
                     lnkVerificationVideo.Style.Add("display", "none");
                     lnkGteReportFeedBack.Style.Add("display", "none");
                     lnkDownloadSOPReport.Style.Add("display", "none");
+                    LinkButton4.Style.Add("display", "none");
+                    LinkButton5.Style.Add("display", "none");
                 }
+
+               
             }
             if (roleName.ToLower() == "university admin staff 2")
             {
@@ -1107,6 +1183,58 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 lnkProcessPayments.Style.Add("display", "none");
                 LinkbtnvisaDates.Style.Add("display", "none");
                 lnkDownloadSOPReport.Style.Add("display", "none");
+                LinkButton4.Style.Add("display", "none");
+                LinkButton5.Style.Add("display", "none");
+            }
+            LinkButton lnkPersonal = (LinkButton)e.Row.Cells[2].FindControl("lnkPersonal");
+            LinkButton lnkContact = (LinkButton)e.Row.Cells[2].FindControl("lnkContact");
+            LinkButton lnkIdentification = (LinkButton)e.Row.Cells[2].FindControl("lnkIdentification");
+            LinkButton lnkEducation = (LinkButton)e.Row.Cells[2].FindControl("lnkEducation");
+            LinkButton lnkLanguage = (LinkButton)e.Row.Cells[2].FindControl("lnkLanguage");
+            LinkButton lnkEmployment = (LinkButton)e.Row.Cells[2].FindControl("lnkEmployment");
+            LinkButton LinkButton1 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton1");
+            LinkButton lnkSocial = (LinkButton)e.Row.Cells[2].FindControl("lnkSocial");
+            LinkButton lnkVisa = (LinkButton)e.Row.Cells[2].FindControl("lnkVisa");
+            LinkButton LnkFunding = (LinkButton)e.Row.Cells[2].FindControl("LnkFunding");            
+
+            if (roleName.ToLower() == "gte admin")
+            {
+               
+                lnkPersonal.Style.Add("display", "none");
+                lnkContact.Style.Add("display", "none");
+                lnkIdentification.Style.Add("display", "none");
+                lnkEducation.Style.Add("display", "none");
+                lnkLanguage.Style.Add("display", "none");
+                lnkEmployment.Style.Add("display", "none");
+                LinkButton1.Style.Add("display", "none");
+                lnkSocial.Style.Add("display", "none");
+                lnkVisa.Style.Add("display", "none");
+                LnkFunding.Style.Add("display", "none");
+                LinkButton2.Style.Add("display", "none");
+                LinkButton3.Style.Add("display", "none");
+                lnkProcessPayments.Style.Add("display", "none");
+                LinkbtnvisaDates.Style.Add("display", "none");
+            }
+            if (roleName.ToLower() == "gte user")
+            {
+                lnkGteReportFeedBack.Style.Add("display", "none");
+                lnkPersonal.Style.Add("display", "none");
+                lnkContact.Style.Add("display", "none");
+                lnkIdentification.Style.Add("display", "none");
+                lnkEducation.Style.Add("display", "none");
+                lnkLanguage.Style.Add("display", "none");
+                lnkEmployment.Style.Add("display", "none");
+                LinkButton1.Style.Add("display", "none");
+                lnkSocial.Style.Add("display", "none");
+                lnkVisa.Style.Add("display", "none");
+                LnkFunding.Style.Add("display", "none");
+                LinkButton2.Style.Add("display", "none");
+                LinkButton3.Style.Add("display", "none");
+                lnkProcessPayments.Style.Add("display", "none");
+                LinkbtnvisaDates.Style.Add("display", "none");
+                //LinkButton4.Style.Add("display", "none");
+                //LinkButton5.Style.Add("display", "none");
+                //LinkButton6.Style.Add("display", "none");
             }
         }
     }
