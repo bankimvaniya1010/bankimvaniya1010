@@ -121,9 +121,9 @@
                                                         <div class="media align-items-center">
                                                             <div class="media-body">
                                                                 <div class="custom-file" style="width: auto;">
-                                                                    <label for="choice" class="col-form-label form-label" style="<%# Eval("upload_extrasheetpath") == null? "display: none;": "display:block;"  %>"><b>Extra Sheet : </b><a href="<%# Eval("upload_extrasheetpath") %>" target="_blank">View File</a></label><br />
+                                                                    <label for="choice" class="col-form-label form-label" style="<%# Eval("upload_extrasheetpath") == null? "display: none;": "display:block;"  %>"><b>RESOURCE DOCUMENT: </b><a href="<%# Eval("upload_extrasheetpath") %>" target="_blank">View File</a></label><br />
                                                                     <label for="choice" class="col-form-label form-label" style="<%# Eval("upload_fileinstruction") == null? "display: none;": "display:block;"  %>"><b>Instructions : </b><%#Eval("upload_fileinstruction") %></label><br />
-                                                                    <label for="choice" class="col-form-label form-label" style="<%# Eval("upload_filepath") == null? "display: none;": "display:block;"  %>"><b>File : </b><a href="<%# Eval("upload_filepath") %>" target="_blank">View File</a></label>
+                                                                    <label for="choice" class="col-form-label form-label" style="<%# Eval("upload_filepath") == null? "display: none;": "display:block;"  %>"><b>RESOURCE AUDIO/VIDEO: </b><a href="<%# Eval("upload_filepath") %>" target="_blank">View File</a></label>
                                                                 </div>
                                                             </div>
                                                         </div>

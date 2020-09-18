@@ -23,14 +23,14 @@
                                 Question Paper <%=answeredpapersheetscount %> / <%=allpapersheetscount%>
                             </div>
                             <div style="font-size: medium; text-align: center">
-                                <span id="countdown"></span>
+                                <label>Time in minutes remaining for this assessment to end automatically </label> <span id="countdown"></span>
                                 <asp:hiddenfield id="hidTime" runat="server" />
                             </div>
                             <div style="text-align: right;display:none;">
                                 <asp:button runat="server" id="disqualifiedbtn" onclick="disqualifiedbtn_Click" text="DisQualified" />
                             </div>
                             <div style="text-align: right">
-                                <label>Marks : <%=exammarks%></label>
+                                <label style="font-size:20px;">Marks : <%=exammarks%></label>
                             </div>
                             <asp:datalist id="questionList" runat="server">
                                 <ItemTemplate>
@@ -59,9 +59,9 @@
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
                                                             <div class="custom-file" style="width: auto;">
-                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("extrasheetpath") == null? "display:none;": "display:block;"  %>"><b>Extra Sheet : </b> <a href="<%# Eval("extrasheetpath") %>" target="_blank" >View File</a></label><br/>
+                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("extrasheetpath") == null? "display:none;": "display:block;"  %>"><b>RESOURCE DOCUMENT: </b> <a href="<%# Eval("extrasheetpath") %>" target="_blank" >View File</a></label><br/>
                                                                 <label for="choice" class="col-form-label form-label" style="<%# Eval("fileinstruction") == null? "display:none;": "display:block;"  %>"><b>Instructions : </b> <%#Eval("fileinstruction") %></label>
-                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("audiovideofilepath") == null? "display:none;": "display:block;"  %>"> <b>File : </b> <a href="<%# Eval("audiovideofilepath") %>" target="_blank">View File</a></label>
+                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("audiovideofilepath") == null? "display:none;": "display:block;"  %>"> <b>RESOURCE AUDIO/VIDEO: </b> <a href="<%# Eval("audiovideofilepath") %>" target="_blank">View File</a></label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -84,15 +84,23 @@
                     
                     <div class="card" id="upload" runat="server">
                         <div class="card-body">
+                             <div class="form-group row">
+                                  <div>
+                                        In case you are using a mobile device to capture images of your answer sheets, "Use QR Code" to open the upload link on your mobile device. Ensure you select and upload all files (images) together, as you can only upload once. <br/>
+
+                                        In case you are uploading your answer sheets from your computer "Select Answer Sheet" option.  
+                                    </div>
+                             </div>
                             <div class="form-group row" id="selecttype">
                             <label for="name" class="col-sm-3 col-form-label form-label">Upload Your Answer Sheet</label>
+                                
                             <div class="col-sm-8">
-                                <div class="row">
+                                <div class="row">                                   
                                     <div class="col-md-6">
                                         <input type="radio" class="form-check-input" name="exampaper" runat="server" id="rblupload">Select Answer Sheet 
                                     <br />
                                         <div style="display:block">
-                                        <input type="radio" class="form-check-input" name="exampaper" runat="server" id="rblQR" >Use QR Code
+                                        <input type="radio" class="form-check-input" name="exampaper" runat="server" id="rblQR" >Use QR Code (upload using your mobile device)
                                             </div>                                       
                                     </div>
                                 </div>
@@ -256,12 +264,23 @@
                 }
             });
         }
+        function validateUploadedFile(Fileupload) {
+            var filePath = Fileupload;
+            var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
+            if (fileExtension != "jpg" && fileExtension != "png"&& fileExtension != "jpeg") {
+                alert("Invalid File");
+                return false;
+            }
+            return true;
+        }
+
         function validateForm() {
            var answersheet = $("#ContentPlaceHolder1_ansersheet").val();
             if (answersheet == "") {
                 alert("Please upload answer sheet.");
                 return false;
             }
+            else if (answersheet != "" && !validateUploadedFile(answersheet)) { }
             else
                 return true;
         }

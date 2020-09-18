@@ -9,6 +9,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Aspose.Words;
 
 public partial class view_exampaper3 : System.Web.UI.Page
 {
@@ -261,7 +262,30 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
                     }
                 }
+                //if multiple images there then convert to pdf 
+                var answersheets = db.exam_answersheet.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate).Select(x=>x.anshwesheetpath).ToList();
+
+                Document doc = new Document();
+                string[] files = new string[answersheets.Count];
+                for (int i = 0; i < answersheets.Count; i++)
+                {
+                    files[i] = @"" + docPath +"/"+ answersheets[i];
+                }
                 
+                Convertfromimagetopdf(files, doc);
+                string pdfname = exampaperid + "answersheets.pdf";
+                doc.Save(@""+ docPath + "/"+ pdfname);
+                
+                objexam_answersheet.universityID = UniversityID;
+                objexam_answersheet.applicantid = UserID;
+                objexam_answersheet.exampaperid = exampaperid;
+                objexam_answersheet.exam_datetime = assignDate;
+                objexam_answersheet.response_time = response_time;
+                objexam_answersheet.ispdfgenrated = 1;
+                objexam_answersheet.genratedanswerpdfPath = pdfname;
+                db.exam_answersheet.Add(objexam_answersheet);
+                db.SaveChanges();
+
                 //change status in exam_assign table
                 var mode = "new";
                 exam_assign objexam_assign = new exam_assign();
@@ -279,6 +303,32 @@ public partial class view_exampaper3 : System.Web.UI.Page
                 Session["totalResponseTime"] = response_time;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('Thank you for answering .');window.location='" + Request.ApplicationPath + "exammodule.aspx';", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+    private void Convertfromimagetopdf(string[] files, Document doc)
+    {
+        try
+        {
+            DocumentBuilder builder = new DocumentBuilder(doc);
+            for (int i = 0; i < files.Length; i++)
+            {
+                System.Drawing.Image image = System.Drawing.Image.FromFile(files[i]);
+
+                PageSetup pagesetup = builder.PageSetup;
+                pagesetup.PageWidth = ConvertUtil.PixelToPoint(image.Width, image.HorizontalResolution);
+                pagesetup.PageHeight = ConvertUtil.PixelToPoint(image.Width, image.VerticalResolution);
+
+
+                builder.InsertImage(image, Aspose.Words.Drawing.RelativeHorizontalPosition.Page, 0, Aspose.Words.Drawing.RelativeVerticalPosition.Page, 0
+                    , pagesetup.PageWidth, pagesetup.PageHeight, Aspose.Words.Drawing.WrapType.None);
+
+                if (i < files.Length - 1)
+                    builder.InsertBreak(BreakType.SectionBreakNewPage);
             }
         }
         catch (Exception ex)
