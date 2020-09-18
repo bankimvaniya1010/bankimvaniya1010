@@ -342,11 +342,11 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 exam_answersheetdata = (from exam in db.exam_answersheet
                                         join em in db.exam_marking_master on exam.answesheetid equals em.answersheetid into data
                                         from x in data.DefaultIfEmpty()
-                                        where exam.universityID == universityid && exam.exampaperid == exampaperid && exam.applicantid == studentid && exam.exam_datetime == examdate_time
+                                        where exam.universityID == universityid && exam.exampaperid == exampaperid && exam.applicantid == studentid && exam.exam_datetime == examdate_time && exam.ispdfgenrated == 1
                                         select new
                                         {
                                             answesheetid = exam.answesheetid,
-                                            anshwesheetpath = exam.anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.exampapersheetID + "/" + exam.anshwesheetpath,
+                                            anshwesheetpath = exam.anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/"+exam.exampaperid+"answersheets.pdf",
                                             extra_anshwesheetpath = exam.extra_anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.exampapersheetID + "/extrasheet/" + exam.extra_anshwesheetpath,
                                             checkedsheet = x.checked_answersheetPath == null ? null : webURL + "Docs/Exammodule/Admin_checkedsheets/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.answesheetid + "/" + x.checked_answersheetPath,
                                         }).OrderBy(x => x.answesheetid).ToList();
@@ -449,14 +449,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
 
     protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        //foreach (GridViewRow row in GridView.Rows)
-        //{
-        //    if (row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        HyperLink myHyperLink = row.FindControl("lblextraanssheet") as HyperLink;
-        //        myHyperLink.Visible = false;
-        //    }
-        //}
+       
     }
 
     protected void btnsavedatemarks_Click(object sender, EventArgs e)

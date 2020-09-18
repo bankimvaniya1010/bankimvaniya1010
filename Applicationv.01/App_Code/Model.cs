@@ -25,6 +25,13 @@ public partial class accommodationplan
     public virtual ICollection<manageaccomdationplan> manageaccomdationplan { get; set; }
 }
 
+public partial class admin_videomaster
+{
+    public int videoID { get; set; }
+    public string sectioname { get; set; }
+    public string videopath { get; set; }
+}
+
 public partial class admincomments
 {
     public int id { get; set; }
@@ -1579,8 +1586,10 @@ public partial class exam_answersheet
     public Nullable<System.DateTime> exam_datetime { get; set; }
     public Nullable<int> exampapersheetID { get; set; }
     public string anshwesheetpath { get; set; }
-    public string response_time { get; set; }
+    public Nullable<int> ispdfgenrated { get; set; }
+    public string genratedanswerpdfPath { get; set; }
     public string extra_anshwesheetpath { get; set; }
+    public string response_time { get; set; }
 }
 
 public partial class exam_applicant_subjectmapping
@@ -3212,6 +3221,13 @@ public partial class universitygrouping
 
     public virtual university_master university_master { get; set; }
     public virtual university_master university_master1 { get; set; }
+}
+
+public partial class universitywise_admin_video_mapping
+{
+    public int id { get; set; }
+    public Nullable<int> videoID { get; set; }
+    public Nullable<int> universityID { get; set; }
 }
 
 public partial class universitywise_faqmapping

@@ -144,7 +144,7 @@ public class Common
         int groupid = 0;
         try
         {
-            var Getgroupid = db.class_master.Where(x => x.description.Trim().ToLower() == groupname.Trim().ToLower()).FirstOrDefault();
+            var Getgroupid = db.group_master.Where(x => x.description.Trim().ToLower() == groupname.Trim().ToLower()).FirstOrDefault();
             if (Getgroupid != null)
                 groupid = Getgroupid.id;
         }

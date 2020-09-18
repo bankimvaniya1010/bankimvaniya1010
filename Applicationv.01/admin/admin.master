@@ -132,6 +132,11 @@
                                             <span class="sidebar-menu-text">Dashboard</span>
                                         </a>
                                     </li> 
+                                    <li class="sidebar-menu-item" id="helpingvideo">
+                                        <a class="sidebar-menu-button" href="viewVideo.aspx">
+                                            <span class="sidebar-menu-text">Tutorial</span>
+                                        </a>
+                                    </li> 
 <%--                                    <li class="sidebar-menu-item" id="registeredapplicants">
                                         <a class="sidebar-menu-button" href="registered_applicantlist.aspx">
                                             <span class="sidebar-menu-text">View Registrations</span>
@@ -250,6 +255,11 @@
                                       <li class="sidebar-menu-item" id="exammarking">
                                         <a class="sidebar-menu-button" href="exam_marking.aspx">
                                             <span class="sidebar-menu-text">Check Assessment</span>
+                                        </a>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="examdisqualify">
+                                        <a class="sidebar-menu-button" href="disqualify_applicant.aspx">
+                                            <span class="sidebar-menu-text">Disqualify Applicant</span>
                                         </a>
                                     </li>
                                   
@@ -777,7 +787,25 @@
                                     </li>
                                 </ul>
                             </li>
-                           
+                            <li class="sidebar-menu-item" id="videolist">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#video">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                   Manage Helping Videos
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="video">
+                                    <li class="sidebar-menu-item" id="uploadvideo"> 
+                                        <a class="sidebar-menu-button" href="videoupload.aspx">
+                                            <span class="sidebar-menu-text">Upload Video</span>
+                                        </a>
+                                    </li>                                   
+                                   <li class="sidebar-menu-item" id="manageuploadvideo"> 
+                                        <a class="sidebar-menu-button" href="universitywise_videoMapping.aspx">
+                                            <span class="sidebar-menu-text">Set For Institution</span>
+                                        </a>
+                                    </li>    
+                                </ul>
+                            </li>
                         </ul>
                       
                         <!-- // END Components Menu -->                        

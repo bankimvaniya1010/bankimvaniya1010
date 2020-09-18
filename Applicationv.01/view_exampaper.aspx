@@ -54,9 +54,9 @@
                                                     <div class="media align-items-center">
                                                         <div class="media-body">
                                                             <div class="custom-file" style="width: auto;">
-                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("extrasheetpath") == null? "visibility: hidden;": "visibility:visible;"  %>"><b>Extra Sheet : </b> <a href="<%# Eval("extrasheetpath") %>" target="_blank" >View File</a></label><br/>
+                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("extrasheetpath") == null? "visibility: hidden;": "visibility:visible;"  %>"><b>RESOURCE DOCUMENT:</b> <a href="<%# Eval("extrasheetpath") %>" target="_blank" >View File</a></label><br/>
                                                                 <label for="choice" class="col-form-label form-label" style="<%# Eval("fileinstruction") == null? "visibility: hidden;": "visibility:visible;"  %>"><b>Instructions : </b> <%#Eval("fileinstruction") %></label><br/>
-                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("audiovideofilepath") == null? "visibility: hidden;": "visibility:visible;"  %>"> <b>File : </b> <a href="<%# Eval("audiovideofilepath") %>" target="_blank">View File</a></label>
+                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("audiovideofilepath") == null? "visibility: hidden;": "visibility:visible;"  %>"> <b>RESOURCE AUDIO/VIDEO: </b> <a href="<%# Eval("audiovideofilepath") %>" target="_blank">View File</a></label>
                                                             </div>
                                                         </div>
                                                     </div>

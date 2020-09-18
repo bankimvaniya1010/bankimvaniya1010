@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UploadAnswerSheet.aspx.cs" Inherits="UploadAnswerSheet"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UploadAnswerSheet.aspx.cs" Inherits="UploadAnswerSheet" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,72 +8,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title></title>
-     <script src="assets/vendor/jquery.min.js"></script>
+    <script src="assets/vendor/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link href="https://fonts.googleapis.com/css?family=Parisienne&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Parisienne&display=swap" rel="stylesheet">
     <link href="assets/dashboard/css/bootstrap.min.css" rel="stylesheet">
-  <%-- <style>
-        .certificate-container {width: 960px;height: 686px;margin: 50px auto;background-image: url('../assets/images/certificate-bg.jpg');padding: 50px 80px;}
-        .certi-heading {text-align: center;position: relative;margin-top: 40px;font-size: 40px;font-family: 'Lato', sans-serif;font-weight: 700;color: #262626;}
-        .certi-heading:before, .certi-heading:after {content: '';position: absolute;background-color: transparent;border-top: 3px solid #f2f2f2;border-bottom: 3px solid #f2f2f2;width: 251px;height: 97px;left: 87px;top: 3px;}
-        .certi-heading span {font-family: 'Parisienne', cursive;font-size: 81px;display: inline-block;vertical-align: middle;margin: 0 15px;color: #653a95;}
-        .certi-heading:after {left: auto;right: 86px;width: 288px;}
-        .partici-name {font-size: 40px;font-family: 'lato';font-weight: 700;margin: 30px 0;position: relative;color: #262626;}
-        .partici-name:before {content: '';left: 0;right: 0;position: absolute;height: 3px;background-color: #f2f2f2;bottom: -9px;}
-        .gte-dcrb {font-size: 16px;text-align: center;font-family: lato;}
-        .gte-dcrb span {font-weight: 700;}
-        .usr-inf-txt {font-size: 20px;text-align: center;font-weight: 700;font-family: lato;margin-top: 16px;}
-        .usr-inf-txt1 {font-size: 16px;font-weight: 700;text-align: center;font-family: lato;}
-        .certi-info-wrpr {width: 580px;float: left;}
-        .certi-info-txt {margin-top: 20px;width: 485px;color: #262626;position: relative;}
-        .certi-info-txt-t1 {float: left;width: 200px;font-family: lato;font-weight: 700;font-size: 16px;}
-        .certi-info-txt-t2 {float: right;width: 284px;text-align: center;font-size: 16px;}
-        .certi-info-txt:before {content: '';position: absolute;left: 0;right: 0;bottom: -11px;height: 3px;background-color: #f2f2f2;width: 100%;}
-        .certi-info-txt-mt-50 {margin-top: 50px;}
-        .certi-logo-img {float: right;}
-        .certi-logo-img img {max-width: 180px;max-height: 180px;display: block;}
-    </style>--%>
-     <script>
-         <%-- $(document).ready(function () {
-            var assignID = '<%=assignID%>';
-            ConfirmOnResend(assignID);
-        });
-        function ConfirmOnResend(item) {
-            var txt;
-            var person = prompt("Please enter your password :", "");
-            if (person == "") {
-                alert("Please enter password");
-                return false;
-            }
-            else if (person == null)
-                return false;
-            else {
-                txt =  person ;
-            }
-            $("#<%= Hidpassword.ClientID%>").val(txt).html(txt);
-        }--%>
-          function validateUploadedFile() {
-           var filePath = $("#<%=fileupload.ClientID%>").val();
-           var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
-           if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "pdf" && fileExtension != "docx") {
-               alert("Invalid File");
-               return false;
-           }           
-           return true;
-         }
 
-         function validatForm() {
-             var answersheet = $("#<%=fileupload.ClientID%>").val();
-            if (answersheet == "") {
-                alert("Please select answer sheet.");
+    <script>
+
+        function validateUploadedFile() {
+            var filePath = $("#<%=FileUpload.ClientID%>").val();
+            var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
+            if (fileExtension != "jpg" && fileExtension != "png"&& fileExtension != "jpeg") {
+                alert("Invalid File");
                 return false;
             }
-           else if (answersheet != "" && !validateUploadedFile()) { }
-           else
-                return true;
+            return true;
         }
-        
+
+        function validatForm() {
+            var flag = false;
+            var answersheet = $("#<%=FileUpload.ClientID%>").val();
+             if (answersheet == "")
+                 alert("Please select answer sheet.");
+             else if (answersheet != "" && !validateUploadedFile()) { }
+             else
+                 flag = true;
+             if (flag) {
+                 $("#btnDownload").attr("disabled", "true")
+                 $("#progress").removeClass("hide");
+                 var progressEle = $("#progress");
+                 progressEle.css("background-color", "blue");
+
+                 var formData = new FormData();
+                 //var data = $("#FileUpload")[0].files[0];
+
+                 var files = $("#<%=FileUpload.ClientID%>").get(0).files;
+
+                 // Loop through files
+                    for (var i = 0; i < files.length ; i++) {
+                        var file = files[i];
+                        formData.append("files", file);
+                    }
+                 //formData.append("files", data);
+
+                 var dummyProgress = 1;
+                 var intervalId = -1;
+                 var req = new XMLHttpRequest();
+
+                 req.upload.addEventListener("progress", function (event) {
+
+                     var percent = (event.loaded / event.total) * 90;
+                     var progress = Math.round((event.loaded / event.total) * 90);
+                     console.log("progress:" + progress);
+                     if (progress < 90) {
+                         $(".status").html(progress + "%");
+                         progressEle.width(progress + "%");
+                     }
+                     else {
+                         progress = progress + dummyProgress;
+                         if (progress <= 99) {
+                             $(".status").html(progress + "%");
+                             progressEle.width(progress + "%");
+                         }
+                         if (intervalId == -1) {
+                             intervalId = setInterval(function () {
+                                 progress = progress + dummyProgress;
+                                 dummyProgress++;
+                                 if (progress <= 99) {
+                                     $(".status").html(progress + "%");
+                                     progressEle.width(progress + "%");
+                                 }
+                                 else
+                                     clearInterval(intervalId);
+                             }, 2500);
+                         }
+                     }
+                 });
+
+                 req.onreadystatechange = function () {
+                     var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                    if (req.status && req.status == 200 && (req.readyState == 4)) {
+                        $("#btnDownload").removeAttr("disabled");
+                        alert("Documents uploaded successfully");
+                        location.replace(hostName + "UploadAnswerSheet.aspx?ID"+<%=assignID%>);
+                    }
+                }
+
+                req.open("POST", 'UploadAnswerSheet.aspx/uploadVideo', true);
+                req.send(formData);
+            }
+            return false;
+        }
+
     </script>
 </head>
 <body>
@@ -81,50 +108,44 @@
 
         <div class="card">
             <div class="card-body">
-                <asp:HiddenField runat="server" ID="Hidpassword"/>
-                <div id="toshowDiv" runat="server" style="display:none">
-                     <div runat="server" id="Div3" class="form-row justify-content-between" style="margin: auto; width: auto; padding: 10px;">
-                        <label>* Select your all answersheets at once to submit response.</label><br/>
-                      
+                <asp:HiddenField runat="server" ID="Hidpassword" />
+                <div id="toshowDiv" runat="server" style="display: none">
+                    <div runat="server" id="Div3" class="form-row justify-content-between" style="margin: auto; width: auto; padding: 10px;">
+                        <label>* Select your all answersheets at once to submit response.</label><br />
+
                     </div>
                     <div runat="server" id="btnDiv" class="form-row justify-content-between" style="margin: auto; width: 50%; padding: 10px;">
                         <%-- <input id="backNavLink" runat="server" type="button" class="btn btn-success" value="Back" onclick="return window.location = '/gte_declaration.aspx?formid=20';"/>--%>
-                        <asp:FileUpload runat="server" ID="fileupload" AllowMultiple="true" /> 
-                        
+                         <asp:FileUpload runat="server" ID="FileUpload" AllowMultiple="true"/>
+
+                    </div>
+                    <div class="media-left col-md-12">
+                        <div style="position: relative; width: 202px; background: transparent; margin-bottom: 15px; height: 25px;">
+                            <div id="progress" class="hide" style="background: blue; height: 25px; width: 0; color: #fff;margin-left: 32%;">
+                                <div class="status" style="margin-left: 10px;"></div>
+                            </div>
+                        </div>
                     </div>
                     <div runat="server" id="Div2" class="form-row justify-content-between" style="margin: auto; width: 50%; padding: 10px;">
-                        
-                       <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnDownload_Click" OnClientClick="return validatForm()" Width="92%" />
-                       
+
+                        <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-success" Text="Submit" OnClientClick="return validatForm()" Width="92%" />
+
                     </div>
-                   
+
                 </div>
                 <div runat="server" id="ifanswersubmitted" style="display: none">
                     <div runat="server" id="Div1" class="form-row justify-content-between" style="margin: auto; width: 50%; padding: 10px;">
                         <label id="lblmsg" runat="server"><b></b></label>
-                         <label id="Label1" runat="server"><b></b></label>
+                        <label id="Label1" runat="server"><b></b></label>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="certificate-container">
-           <%-- <div class="certi-heading">CERTIFICATE <span>of</span> PARTICIPATION</div>
-            <div class="partici-name text-center"><%=_studentName %></div>
-            <div class="gte-dcrb">Has successfully completed the Genuine Student and Genuine Temporary Entrant Orientation program and has demonstrated <span><%=_performanceCategory %></span> understanding of the Australian Student Visa Conditions.</div>
-            <div class="usr-inf-txt">GTE DIRECT CERTIFICATE # <%=_certificateNumber %></div>
-            <%--<div class="usr-inf-txt1">PASSPORT NUMBER GH80098Y; DATE OF BIRTH 05/NOVEMBER/1976</div>
-            <div class="clearfix">
-                <div class="certi-info-wrpr">
-                    <div class="certi-info-txt certi-info-txt-mt-50 clearfix"><span class="certi-info-txt-t1">PRESENTED BY:</span><span class="certi-info-txt-t2">Richard Geddes – Principal Instructor</span></div>
-                    <div class="certi-info-txt clearfix"><span class="certi-info-txt-t1">ON THIS DAY:</span><span class="certi-info-txt-t2"><%=_certificateCreationDate %></span></div>
-                </div>
-                <div class="certi-logo-img">
-                    <img src="../assets/images/gte_direct_logo.png">
-                </div>
-            </div>--%>
-        </div>
-            
+       <%-- <div class="certificate-container">
+        
+        </div>--%>
+
     </form>
-   
+
 </body>
 </html>

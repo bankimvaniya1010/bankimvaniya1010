@@ -27,6 +27,7 @@ public partial class GTEEntities : DbContext
 
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<accommodationplan> accommodationplan { get; set; }
+    public virtual DbSet<admin_videomaster> admin_videomaster { get; set; }
     public virtual DbSet<admincomments> admincomments { get; set; }
     public virtual DbSet<admintooltips> admintooltips { get; set; }
     public virtual DbSet<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
@@ -198,6 +199,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
+    public virtual DbSet<universitywise_admin_video_mapping> universitywise_admin_video_mapping { get; set; }
     public virtual DbSet<universitywise_faqmapping> universitywise_faqmapping { get; set; }
     public virtual DbSet<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
     public virtual DbSet<universitywise_scholarshipmapping> universitywise_scholarshipmapping { get; set; }

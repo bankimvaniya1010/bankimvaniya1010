@@ -71,7 +71,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                              university_name = u.university_name,
                              firstname = ad.firstname == null ? string.Empty : ad.firstname,
                              lastname = ad.lastname == null ?string.Empty : ad.lastname,
-                             email = ad.email == null ? s.email : string.Empty,
+                             email = ad.email == null ? s.email : ad.email,
                              registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
                              mobile = ad.mobileno == null ? string.Empty : ad.mobileno,
                              countryofresidence = c.country_name == null ? string.Empty : c.country_name,
