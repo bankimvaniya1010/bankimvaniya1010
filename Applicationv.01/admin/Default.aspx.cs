@@ -20,7 +20,7 @@ public partial class admin_Default : System.Web.UI.Page
         if (isfullservice == 1)
             isfullservicethenlbl.Text = "TO THE APPLICATION CENTER";
         else if (isfullservice == 0)
-            isfullservicethenlbl.Text = "TO THE GTE ONLINE CENTER (GOC)";
+            isfullservicethenlbl.Text = "TO THE GTE DIRECT ONLINE CENTER (GOC)";
         else if (isfullservice == 2)
             isfullservicethenlbl.Text = "TO THE ASSESSMENT CENTER";
 
