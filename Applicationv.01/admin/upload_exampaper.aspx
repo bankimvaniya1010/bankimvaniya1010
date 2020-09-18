@@ -31,19 +31,20 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row" id="div1" runat="server">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Select Assessment Sheet</label>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-10">
+                    <div id="div1" runat="server">
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-3 col-form-label form-label">Select Assessment Sheet</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-10">
 
-                                    <asp:FileUpload runat="server" ID="FileUpload" onchange="showdiv()" />
-                                    <label style="font-size: small;" class="marginright">*The file formats you can upload are - .jpg, .png, .jpeg</label>
+                                        <asp:FileUpload runat="server" ID="FileUpload" onchange="showdiv()" />
+                                        <label style="font-size: small;" class="marginright" runat="server" id="lbl1"></label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div runat="server" id="showdivfield">
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label form-label">Extra sheet</label>
@@ -82,18 +83,7 @@
                     </div>
                    
                 </div>
-                 <div class="form-group row">
-                        <div class="col-sm-8 offset-sm-3">
-                            <div class="media align-items-center">
-                                <div class="media-left">
-                                    <div class="form-row justify-content-between">
-                                        <asp:Button ID="btnupload" runat="server" Text="Upload" CssClass="btn btn-success" OnClick="btnupload_Click" OnClientClick="return validateForm()" />
-                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Schedule Assessment" CssClass="btn btn-success" OnClick="gotoNextPage_Click" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+               
                 <div class="form-group row">
                     <div class="tab-content card-body">
                         <div class="tab-pane active" id="first">
@@ -114,7 +104,6 @@
                                     <asp:TemplateField HeaderText="Assessment Sheet">
                                         <EditItemTemplate>
                                             <asp:FileUpload runat="server" ID="fileupload" />
-                                            <asp:RequiredFieldValidator runat='server' ID='requiredDescEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please selct file to upload' ControlToValidate='fileupload' />
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <a runat="server" href='<%# Bind("exampaper_path") %>' target="_blank" id="exampath">View </a>
@@ -168,16 +157,6 @@
 
                     </div>
 
-
-
-
-
-
-
-
-
-
-
                     <div class="col-sm-8 offset-sm-3" style="display:none;">
                         <asp:DataList ID="rptVideo" runat="server" GridLines="Horizontal">
                             <HeaderTemplate>
@@ -200,6 +179,19 @@
                         </asp:DataList>
                     </div>
                 </div>
+
+                  <div class="form-group row">
+                        <div class="col-sm-8 offset-sm-3">
+                            <div class="media align-items-center">
+                                <div class="media-left">
+                                    <div class="form-row justify-content-between">
+                                        <asp:Button ID="btnupload" runat="server" CssClass="btn btn-success" OnClick="btnupload_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Schedule Assessment" CssClass="btn btn-success" OnClick="gotoNextPage_Click" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
             <div id="buildinpaperDiv" style="display: none" runat="server">
                 <div class="form-group row">
@@ -301,8 +293,8 @@
                 }
             }
             else if (sheettype == "assessment" && uploadtype == 3) {
-                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "jpeg" && fileExtension != "pdf") {
-                    alert("Invalid File. Please select file of type jpg, png, jpge, pdf");
+                if (fileExtension != "pdf") {
+                    alert("Invalid File. Please select file of type pdf");
                     return false;
                 }
             }

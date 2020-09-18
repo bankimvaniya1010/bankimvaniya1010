@@ -45,7 +45,7 @@
                                 <th class="bordertb">Applicant ID</th>
                                 <th class="bordertb">University Name</th>
                                 <th class="bordertb">First Name</th>
-                                <th class="bordertb">Last Name</th>
+                                <th class="bordertb">Family Name</th>
                                 <th class="bordertb">Email</th>
                                 <th class="bordertb">Mobile</th>
                                 <th class="bordertb">Enrollment Date</th>

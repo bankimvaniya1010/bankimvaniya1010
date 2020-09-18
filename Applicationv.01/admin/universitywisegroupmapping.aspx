@@ -18,7 +18,7 @@
 
 
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">country</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Institution</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
