@@ -12,6 +12,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="admin_videomaster">
+          <Key>
+            <PropertyRef Name="videoID" />
+          </Key>
+          <Property Name="videoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sectioname" Type="varchar" MaxLength="200" />
+          <Property Name="videopath" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="admincomments">
           <Key>
             <PropertyRef Name="id" />
@@ -1371,8 +1379,10 @@
           <Property Name="exam_datetime" Type="datetime" Precision="0" />
           <Property Name="exampapersheetID" Type="int" />
           <Property Name="anshwesheetpath" Type="varchar" MaxLength="2000" />
-          <Property Name="response_time" Type="varchar" MaxLength="50" />
+          <Property Name="ispdfgenrated" Type="int" />
+          <Property Name="genratedanswerpdfPath" Type="varchar" MaxLength="100" />
           <Property Name="extra_anshwesheetpath" Type="varchar" MaxLength="200" />
+          <Property Name="response_time" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="exam_applicant_subjectmapping">
           <Key>
@@ -2586,6 +2596,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="groupingheaduniversityid" Type="int" Nullable="false" />
           <Property Name="universityid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="universitywise_admin_video_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="videoID" Type="int" />
+          <Property Name="universityID" Type="int" />
         </EntityType>
         <EntityType Name="universitywise_faqmapping">
           <Key>
@@ -4276,6 +4294,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
         </Function>
         <EntityContainer Name="GTEModelStoreContainer">
           <EntitySet Name="accommodationplan" EntityType="Self.accommodationplan" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="admin_videomaster" EntityType="Self.admin_videomaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="admincomments" EntityType="Self.admincomments" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="admintooltips" EntityType="Self.admintooltips" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="adminuniversitywisetooltips" EntityType="Self.adminuniversitywisetooltips" Schema="GTE" store:Type="Tables" />
@@ -4447,6 +4466,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="university_master" EntityType="Self.university_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitycampus" EntityType="Self.universitycampus" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitygrouping" EntityType="Self.universitygrouping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="universitywise_admin_video_mapping" EntityType="Self.universitywise_admin_video_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywise_faqmapping" EntityType="Self.universitywise_faqmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywise_rejectionreasonmapping" EntityType="Self.universitywise_rejectionreasonmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywise_scholarshipmapping" EntityType="Self.universitywise_scholarshipmapping" Schema="GTE" store:Type="Tables" />
@@ -5006,6 +5026,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </FunctionImport>
           <EntitySet Name="GTE_documentverification" EntityType="GTEModel.GTE_documentverification" />
           <EntitySet Name="accommodationplan" EntityType="GTEModel.accommodationplan" />
+          <EntitySet Name="admin_videomaster" EntityType="GTEModel.admin_videomaster" />
           <EntitySet Name="admincomments" EntityType="GTEModel.admincomments" />
           <EntitySet Name="admintooltips" EntityType="GTEModel.admintooltips" />
           <EntitySet Name="adminuniversitywisetooltips" EntityType="GTEModel.adminuniversitywisetooltips" />
@@ -5177,6 +5198,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
           <EntitySet Name="universitycampus" EntityType="GTEModel.universitycampus" />
           <EntitySet Name="universitygrouping" EntityType="GTEModel.universitygrouping" />
+          <EntitySet Name="universitywise_admin_video_mapping" EntityType="GTEModel.universitywise_admin_video_mapping" />
           <EntitySet Name="universitywise_faqmapping" EntityType="GTEModel.universitywise_faqmapping" />
           <EntitySet Name="universitywise_rejectionreasonmapping" EntityType="GTEModel.universitywise_rejectionreasonmapping" />
           <EntitySet Name="universitywise_scholarshipmapping" EntityType="GTEModel.universitywise_scholarshipmapping" />
@@ -5729,6 +5751,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="manageaccomdationplan" Relationship="GTEModel.fk_manageaccomdationplan_accomation" FromRole="accommodationplan" ToRole="manageaccomdationplan" />
+        </EntityType>
+        <EntityType Name="admin_videomaster">
+          <Key>
+            <PropertyRef Name="videoID" />
+          </Key>
+          <Property Name="videoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sectioname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="videopath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="admincomments">
           <Key>
@@ -7186,8 +7216,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="exam_datetime" Type="DateTime" />
           <Property Name="exampapersheetID" Type="Int32" />
           <Property Name="anshwesheetpath" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="response_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ispdfgenrated" Type="Int32" />
+          <Property Name="genratedanswerpdfPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="extra_anshwesheetpath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="response_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="exam_applicant_subjectmapping">
           <Key>
@@ -8550,6 +8582,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="universityid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="universitygrouping" ToRole="university_master" />
           <NavigationProperty Name="university_master1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="universitygrouping" ToRole="university_master" />
+        </EntityType>
+        <EntityType Name="universitywise_admin_video_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="videoID" Type="Int32" />
+          <Property Name="universityID" Type="Int32" />
         </EntityType>
         <EntityType Name="universitywise_faqmapping">
           <Key>
@@ -10258,6 +10298,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="admin_videomaster">
+            <EntityTypeMapping TypeName="GTEModel.admin_videomaster">
+              <MappingFragment StoreEntitySet="admin_videomaster">
+                <ScalarProperty Name="videopath" ColumnName="videopath" />
+                <ScalarProperty Name="sectioname" ColumnName="sectioname" />
+                <ScalarProperty Name="videoID" ColumnName="videoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="admincomments">
             <EntityTypeMapping TypeName="GTEModel.admincomments">
               <MappingFragment StoreEntitySet="admincomments">
@@ -11675,8 +11724,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="exam_answersheet">
             <EntityTypeMapping TypeName="GTEModel.exam_answersheet">
               <MappingFragment StoreEntitySet="exam_answersheet">
-                <ScalarProperty Name="extra_anshwesheetpath" ColumnName="extra_anshwesheetpath" />
                 <ScalarProperty Name="response_time" ColumnName="response_time" />
+                <ScalarProperty Name="extra_anshwesheetpath" ColumnName="extra_anshwesheetpath" />
+                <ScalarProperty Name="genratedanswerpdfPath" ColumnName="genratedanswerpdfPath" />
+                <ScalarProperty Name="ispdfgenrated" ColumnName="ispdfgenrated" />
                 <ScalarProperty Name="anshwesheetpath" ColumnName="anshwesheetpath" />
                 <ScalarProperty Name="exampapersheetID" ColumnName="exampapersheetID" />
                 <ScalarProperty Name="exam_datetime" ColumnName="exam_datetime" />
@@ -13000,6 +13051,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="universitygrouping">
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="groupingheaduniversityid" ColumnName="groupingheaduniversityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universitywise_admin_video_mapping">
+            <EntityTypeMapping TypeName="GTEModel.universitywise_admin_video_mapping">
+              <MappingFragment StoreEntitySet="universitywise_admin_video_mapping">
+                <ScalarProperty Name="universityID" ColumnName="universityID" />
+                <ScalarProperty Name="videoID" ColumnName="videoID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -62,6 +62,8 @@ public partial class details : System.Web.UI.Page
                     ddlsubject.ClearSelection();
                     ddlsubject.Items.FindByValue(existingDetails.subjectId.ToString()).Selected = true;
                 }
+                if (existingDetails.studentid != null)
+                    txtstudentid.Value = existingDetails.studentid;
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
