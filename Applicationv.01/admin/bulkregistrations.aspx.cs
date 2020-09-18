@@ -69,7 +69,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                 if (!string.IsNullOrEmpty(isrecordpresent.invalidfilepath))
                 {
                     unregisteredapplicantlistDiv.Attributes.Add("style", "display:block;");
-                    unregisteredapplicantlistLink = webURL + "/Docs/BulkRegistrations/" + isrecordpresent.invalidfilepath;
+                    unregisteredapplicantlistLink = webURL + "/Docs/BulkRegistrations/"+universityID+"/" + isrecordpresent.invalidfilepath;
                 }
             }
         }
@@ -115,7 +115,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                             var email = rows[1].ToString().Trim();
                             var Class = rows[2].ToString().Trim();
                             var group = rows[3].ToString().Trim();
-
+                            var studentid = rows[4].ToString().Trim();
 
                             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                             Match match = regex.Match(email);
@@ -125,9 +125,9 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                                 {
                                     if (string.IsNullOrEmpty(Class) || checkifClassMapped(Class))
                                     {
-                                        if (string.IsNullOrEmpty(group) || checkifClassMapped(group))
+                                        if (string.IsNullOrEmpty(group) || checkifGroupMapped(group))
                                         {
-                                            savetoDatabase(username, email, Class, group);
+                                            savetoDatabase(username, email, Class, group, studentid);
                                         }
                                         else
                                         {
@@ -137,6 +137,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                                                 email = rows[1].ToString().Trim(),
                                                 Class = rows[2].ToString().Trim(),
                                                 group = rows[3].ToString().Trim(),
+                                                studentid = rows[4].ToString().Trim(),
                                                 invalidreason = "InValid Group Name"
                                             });
                                         }
@@ -149,6 +150,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                                             email = rows[1].ToString().Trim(),
                                             Class = rows[2].ToString().Trim(),
                                             group = rows[3].ToString().Trim(),
+                                            studentid = rows[4].ToString().Trim(),
                                             invalidreason = "InValid Class Name"
                                         });
                                     }
@@ -161,6 +163,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                                         email = rows[1].ToString().Trim(),
                                         Class = rows[2].ToString().Trim(),
                                         group = rows[3].ToString().Trim(),
+                                        studentid = rows[4].ToString().Trim(),
                                         invalidreason = "InValid Name"
                                     });
                                 }
@@ -173,6 +176,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                                     email = rows[1].ToString().Trim(),
                                     Class = rows[2].ToString().Trim(),
                                     group = rows[3].ToString().Trim(),
+                                    studentid = rows[4].ToString().Trim(),
                                     invalidreason = "InValid Email"
                                 });
                             }
@@ -231,7 +235,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
         }
     }
 
-    private void savetoDatabase(string username, string useremail, string Class, string group)
+    private void savetoDatabase(string username, string useremail, string Class, string group, string studentid)
     {
         try
         {
@@ -247,6 +251,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     email = useremail,
                     Class = Class,
                     group = group,
+                    studentid= studentid,
                     invalidreason = "Registration Count Exhausted"
                 });
             }
@@ -291,6 +296,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     objapplicant.universityid = universityID;
                     objapplicant.groupId = objCom.getgroupid(group);
                     objapplicant.classId = objCom.getclassid(Class);
+                    objapplicant.studentid = studentid;
                     db.applicantdetails.Add(objapplicant);
                     db.SaveChanges();
 
@@ -316,6 +322,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                         email = useremail,
                         Class = Class,
                         group = group,
+                        studentid =studentid,
                         invalidreason = "Email Already Exists"
                     });
                 }
@@ -409,6 +416,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
         public string email { get; set; }
         public string Class { get; set; }
         public string group { get; set; }
+        public string studentid { get; set; }
         public string invalidreason { get; set; }
     }
 
@@ -469,7 +477,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
             }
 
             string datetime = Convert.ToString(DateTime.Today.ToString("dd-MM-yyyy")).Trim();
-            string filepath = @""+ bulkregistrationPath;            
+            string filepath = @"" + docPath + "/BulkRegistrations/" + universityID + "/";
             if (!Directory.Exists(filepath))
                 Directory.CreateDirectory(filepath);
 

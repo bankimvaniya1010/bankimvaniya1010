@@ -161,7 +161,7 @@
         
         $("#<%=ddlRole.ClientID%>").change(function () {
              var mode = '<%=pagemode %>';
-            if ($("#<%=ddlRole.ClientID%>").val() == 13) {
+            if ($("#<%=ddlRole.ClientID%>").val() == 13 || $("#<%=ddlRole.ClientID%>").val() == 14) {
                 $("#<%=subroles.ClientID%>").show();
                 if (mode == 'new') {
                     $.ajax({
@@ -187,8 +187,7 @@
                 $("#<%=subroles.ClientID%>").hide();
             
         });
-        function validateForm()
-        {
+        function validateForm() {
             var mode = '<%=pagemode %>';
             var name = $('#<%=txtName.ClientID%>').val();
             var username = $('#<%=txtUsername.ClientID%>').val();
@@ -222,11 +221,11 @@
             else if (role == 0) {
                 alert("Please select Role of user");
                 return false;
+            }           
+            else if ((role == 13 || role == 14) && $('[name="ctl00$ContentPlaceHolder1$chkroles$0"]:checked').length == 0) {
+                alert("Please select assessment roles.");
+                return false;
             }
-            //else if (role == 13 && $('[name="subroles"]:checked').length == 0) {
-            //    alert("Please select assessment roles.");
-            //    return false;
-            //}
             return true;
         }
 	</script>
