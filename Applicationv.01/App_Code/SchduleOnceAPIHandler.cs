@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
+using System.Web.Script.Serialization;
+using System.Collections.Generic;
 
 public class SchduleOnceAPIHandler : IHttpHandler
 {
@@ -11,9 +14,29 @@ public class SchduleOnceAPIHandler : IHttpHandler
     public void ProcessRequest(HttpContext context)
     {
         context.Response.ContentType = "text/plain";
-        HttpRequest request = context.Request;
+        HttpRequest request = context.Request;        
+        
         try
         {
+            //var data1 = context.Items.Values; //GetDataOrDefault<bookingdata>();
+            //string action = request.Actions.First();
+            //JObject data = context.GetType<JObject>();
+            //var dataAsString = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+
+            var jsonSerializer = new JavaScriptSerializer();
+
+            var jsonString = string.Empty;
+
+            context.Request.InputStream.Position = 0;
+            using (var inputStream = new StreamReader(context.Request.InputStream))
+            {
+                jsonString = inputStream.ReadToEnd();
+            }
+            //bookingdata data = new List<bookingdata>();
+            //data = jsonSerializer.Deserialize<List<bookingdata>>(jsonString);
+            
+            bookingdata data = Newtonsoft.Json.JsonConvert.DeserializeObject<bookingdata>(jsonString);
+
             string hostname = request.Url.Host.ToLower().ToString();
             string applicant_email = request.QueryString["applicantemail"];
             string utcMeetingTime = request.QueryString["utcMeetingTime"];
@@ -41,6 +64,11 @@ public class SchduleOnceAPIHandler : IHttpHandler
                     log.Write("Meeting ID: " + meetingId + ", ");
                     log.Write("Applicant ID: " + applicantId + ", ");
                     log.WriteLine("University ID: " + universityId);
+                    log.WriteLine("Test obj :" + data.ToString());
+                    log.WriteLine("test email :" + data.email);
+                    log.WriteLine("test email :" + data.name);
+                    log.WriteLine("test meetingtime :" + data.meetingtime);
+                    log.WriteLine("test CustomerTime :" + data.CustomerTime);
                 }
             }
 
@@ -48,6 +76,18 @@ public class SchduleOnceAPIHandler : IHttpHandler
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
         context.Response.End();
+    }
+    public class bookingdata
+    {
+        public int universityid { get; set; }
+        public int applicantid { get; set; }
+        public string name { get; set; }
+        public string email { get; set; }
+        public string eventtype { get; set; }
+        public string message { get; set; }
+        public DateTime meetingtime { get; set; }
+        public DateTime CustomerTime { get; set; }
+        public bool is_meetingtime_expires { get; set; }
     }
 
     private int GetApplicantIdfromEmail(string emailId)
