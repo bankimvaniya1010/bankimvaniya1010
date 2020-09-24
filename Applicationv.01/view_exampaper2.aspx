@@ -256,8 +256,8 @@
             let time = secondsS;
             const countdownEl = document.getElementById('countdown');
 
-            //if (time != null)
-            //    setInterval(updateCountdown, 1000);
+            if (time != null)
+                setInterval(updateCountdown, 1000);
 
             function updateCountdown() {
                 const minutes = Math.floor(time / 60);

@@ -190,7 +190,7 @@
         let time = secondsS;
         const countdownEl = document.getElementById('countdown');
 
-        //setInterval(updateCountdown, 1000);
+        setInterval(updateCountdown, 1000);
 
         function updateCountdown() {
             const minutes = Math.floor(time / 60);

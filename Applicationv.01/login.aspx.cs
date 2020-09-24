@@ -66,16 +66,19 @@ public partial class login : System.Web.UI.Page
                     isActivationMode = false;
 
                 if (isActivationMode && chkUser != null && !chkUser.ispasswordset.HasValue)
-                    Response.Redirect(webURL + "resetpassword.aspx", true);
+                {
+                    if (chkUser.isdeletedbyAdmin != true)
+                        Response.Redirect(webURL + "resetpassword.aspx", true);
+                }
                 else
                 {
                     string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
 
                     //chk user verification for service GTE & Assessment
-                    if (isFullService == 0 || isFullService == 3)
+                    if (isFullService == 0 || isFullService == 2)
                         chkUser = (from usr in db.students
-                               where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword) && usr.isdeletedbyAdmin == false)
-                               select usr).FirstOrDefault();
+                                   where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword) && usr.isdeletedbyAdmin == false)
+                                   select usr).FirstOrDefault();
                     else
                         chkUser = (from usr in db.students
                                    where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
@@ -111,14 +114,14 @@ public partial class login : System.Web.UI.Page
 
                         bool isDeclarationDoneByApplicant = false;
                         bool isGteDeclarationDoneByApplicant;
-                        
+
 
                         pnl_warning.Visible = false;
                         Session["isDomesticStudent"] = chkUser.isDomesticStudent;
                         Session["LoginInfo"] = chkUser;
                         Session["UserID"] = chkUser.studentid;
                         Session["Role"] = "student";
-                        isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid,universityID);
+                        isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid, universityID);
                         isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
                         if (isFullService == 1)
@@ -154,8 +157,8 @@ public partial class login : System.Web.UI.Page
                             var subjectcount = db.exam_applicant_subjectmapping.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).ToList().Count();
                             if (studentdatis != null)
                             {
-                                if(studentdatis.classId == null || studentdatis.groupId == null || subjectcount == 0)
-                                    Response.Redirect(webURL + "details.aspx?id="+chkUser.studentid, true);
+                                if (studentdatis.classId == null || studentdatis.groupId == null || subjectcount == 0)
+                                    Response.Redirect(webURL + "details.aspx?id=" + chkUser.studentid, true);
                                 else
                                     Response.Redirect(webURL + "default.aspx", true);
                             }

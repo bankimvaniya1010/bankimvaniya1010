@@ -132,7 +132,10 @@ public partial class admin_exam_assign : System.Web.UI.Page
             var studentID = (from ad in db.applicantdetails
                              join sm in db.exam_applicant_subjectmapping on ad.universityid equals sm.universityid into data
                              from x in data.DefaultIfEmpty()
-                             where ad.classId == classid && ad.groupId == groupid && ad.universityid == universityId && x.subjectid == subjectid && x.applicantid == ad.applicantid
+
+                             join sd in db.students on ad.applicantid equals sd.studentid into sdata
+                             from s in sdata.DefaultIfEmpty()
+                             where s.isdeletedbyAdmin != true && ad.classId == classid && ad.groupId == groupid && ad.universityid == universityId && x.subjectid == subjectid && x.applicantid == ad.applicantid
                              select new 
                              {
                                  applicantid = ad.applicantid,

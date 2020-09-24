@@ -158,10 +158,10 @@ public partial class exammodule : System.Web.UI.Page
                         examuploadtype = exam.uploadtype== 2?null: exam.uploadtype,
                         gotoresultpage = null,
                     }).SortBy("status").ToList();
-            
+
             if (selectedvalue == "Active")
                 data.RemoveAll(x => x.status != null);
-            else if (selectedvalue == "Completed")
+            else if (selectedvalue == "Completed")  
                 data.RemoveAll(x => x.status != "Completed");
             else if (selectedvalue == "Expired")
                 data.RemoveAll(x => x.status != "Expired");

@@ -42,8 +42,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                  
                 </div>
                 <div class="card" id="coeCard" runat="server">
                     <asp:DataList ID="coeList" runat="server" GridLines="Horizontal">
