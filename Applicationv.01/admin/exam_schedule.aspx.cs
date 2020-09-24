@@ -112,7 +112,7 @@ public partial class admin_exam_schedule : System.Web.UI.Page
                 ddlexam.ClearSelection();
                 //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Added successfully.')", true);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                      "alert('Exam schedule successfully. Go to exam assignment ');window.location='" + Request.ApplicationPath + "admin/exam_assignList.aspx';", true);
+                      "alert('Assessment scheduled successfully. Assign this assessment now.');window.location='" + Request.ApplicationPath + "admin/exam_assignList.aspx';", true);
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record already present.')", true);

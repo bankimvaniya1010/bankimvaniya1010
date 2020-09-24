@@ -1600,6 +1600,16 @@ public partial class exam_applicant_subjectmapping
     public Nullable<int> subjectid { get; set; }
 }
 
+public partial class exam_applicantfileviewed_record
+{
+    public int id { get; set; }
+    public int applicantid { get; set; }
+    public int universityid { get; set; }
+    public int examID { get; set; }
+    public int exampapersheetID { get; set; }
+    public int isviewedonce { get; set; }
+}
+
 public partial class exam_applicantmarks_releasedatemaster
 {
     public int id { get; set; }
@@ -1633,6 +1643,7 @@ public partial class exam_assign
     public Nullable<bool> is_expired { get; set; }
     public Nullable<bool> is_verified { get; set; }
     public string status { get; set; }
+    public string disqualify_reason { get; set; }
 }
 
 public partial class exam_buildpaper_answersheetmaster
@@ -1691,6 +1702,7 @@ public partial class exam_master
     public Nullable<int> uploadtype { get; set; }
     public Nullable<int> basic_setting { get; set; }
     public Nullable<int> download_permission { get; set; }
+    public Nullable<int> is_audiovideofile_onetimeview { get; set; }
     public Nullable<int> classid { get; set; }
     public Nullable<int> groupid { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
@@ -1782,6 +1794,7 @@ public partial class exam_uploadanswer_master
     public string marks { get; set; }
     public string duration { get; set; }
     public string checking_file { get; set; }
+    public Nullable<int> ischeckonce { get; set; }
 }
 
 public partial class examchecking_assignment
@@ -1819,6 +1832,7 @@ public partial class exampapers_master
     public string exampaper_path { get; set; }
     public string extrasheetpath { get; set; }
     public string audiovideofilepath { get; set; }
+    public Nullable<int> is_audiovideofile_onetimeview { get; set; }
     public string fileinstruction { get; set; }
 }
 
@@ -2801,6 +2815,9 @@ public partial class students
     public int otp { get; set; }
     public Nullable<bool> ispasswordset { get; set; }
     public Nullable<bool> isDomesticStudent { get; set; }
+    public Nullable<bool> isverifiedbyAdmin { get; set; }
+    public Nullable<bool> isdeletedbyAdmin { get; set; }
+    public Nullable<int> universityid { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

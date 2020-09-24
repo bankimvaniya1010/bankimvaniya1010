@@ -36,11 +36,11 @@
                             </div>
                              <div class="list-group-item border" id="divInstruction" runat="server">
                                 <label id="Label5" runat="server" for="divInstruction">
-                                   <b>Instruction :</b> <%=examinstruction %>
+                                   <b>Instructions :</b> <%=examinstruction %>
                                 </label>
                             </div>
                             <div class="list-group-item border" id="para1" runat="server">
-                                <label id="lblwithoutotp" runat="server" for="withoutotp">Your Assessmnent Session is scheduled for </label>
+                                <label id="lblwithoutotp" runat="server" for="withoutotp">Your Assessment is scheduled for </label>
                                 <br/>
                                 <ul typeof="disc">
                                     <li>
@@ -73,7 +73,7 @@
                                              <asp:Button ID="Button1" runat="server" Text="Submit" CssClass="btn btn-success" OnClick="btnsubmit_Click" OnClientClick="return validateForm();"/>     
                                         </div>
                                         <br/>
-                                        <label> This would be provided to you by your assigned Invigilator during the session, post verification of identity.</label>
+                                        <label> The invigilator Passkey would be provided to you by your Invigilator during the session post verification of your identity. </label>
                                     </div>
                                 </div>
                             </div>

@@ -96,6 +96,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<entertainment> entertainment { get; set; }
     public virtual DbSet<exam_answersheet> exam_answersheet { get; set; }
     public virtual DbSet<exam_applicant_subjectmapping> exam_applicant_subjectmapping { get; set; }
+    public virtual DbSet<exam_applicantfileviewed_record> exam_applicantfileviewed_record { get; set; }
     public virtual DbSet<exam_applicantmarks_releasedatemaster> exam_applicantmarks_releasedatemaster { get; set; }
     public virtual DbSet<exam_assign> exam_assign { get; set; }
     public virtual DbSet<exam_buildpaper_answersheetmaster> exam_buildpaper_answersheetmaster { get; set; }

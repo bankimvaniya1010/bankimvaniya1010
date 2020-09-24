@@ -273,7 +273,7 @@ public partial class admin_examchecking : System.Web.UI.Page
                   
                 }
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                      "alert('Record Added successfully.');window.location='" + Request.ApplicationPath + "admin/examchecking.aspx';", true);
+                      "alert('You have successfully assigned this assessment to a checker.');window.location='" + Request.ApplicationPath + "admin/examchecking.aspx';", true);
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Selected assessmnent paper already registered with selected applicant at same time.')", true);

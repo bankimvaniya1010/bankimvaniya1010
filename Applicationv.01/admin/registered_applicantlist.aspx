@@ -37,59 +37,86 @@
                                 </div>
                             </div>
                 </div>
-                <div class="tab-pane active" id="first">
-                 
-                    <div class="table-responsive" id="applicantlist" runat="server">
-                        <table class="table" style="border-width:1px;border-style:None;">
-                            <tr>
-                                <th class="bordertb">Applicant ID</th>
-                                <th class="bordertb">University Name</th>
-                                <th class="bordertb">First Name</th>
-                                <th class="bordertb">Family Name</th>
-                                <th class="bordertb">Email</th>
-                                <th class="bordertb">Mobile</th>
-                                <th class="bordertb">Enrollment Date</th>
-                                <th class="bordertb">Country of Residence</th>
-                                <th class="bordertb">Status</th>
-                            </tr>
-                            <%if (applicant.Count > 0)
-                                    {
-                                        for (int i = 0; i < applicant.Count; i++)
-                                        {
-                                    %>
-                            <tr>
-                                <td class="bordertb">
-                                    <span><%=applicant[i].applicantid%> </span>
-                                </td>
-                                <td class="bordertb">
-                                    <span><%=applicant[i].university_name%> </span>
-                                </td>
-                                  <td class="bordertb">
-                                    <span><%=applicant[i].firstname %></span>
-                                </td>
-                                 <td class="bordertb">
-                                    <span><%=applicant[i].lastname %></span>
-                                </td>
-                                  <td class="bordertb">
-                                    <span><%=applicant[i].email%> </span>
-                                </td>
-                                  <td class="bordertb">
-                                    <span><%=applicant[i].mobile %></span>
-                                </td>
-                                 <td class="bordertb">
-                                    <span><%=applicant[i].registereDate%> </span>
-                                </td>
-                                  <td class="bordertb">
-                                    <span><%=applicant[i].countryofresidence%> </span>
-                                </td>
-                                 <td class="bordertb">
-                                    <span><%=applicant[i].Status%> </span>
-                                </td>
-                            </tr>
-                            <%}
-                                    }%> 
-                        </table>
-                    </div>
+                 <div class="tab-content card-body">
+               <div class="table-responsive">
+                    <asp:GridView ID="UserGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
+                        DataKeyNames="id"
+                        AllowPaging="True"
+                        CellPadding="2"
+                        PageSize="25"
+                        BorderStyle="None"
+                        BorderWidth="1px"
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="UserGridView_RowCancelingEdit" OnRowEditing="UserGridView_RowEditing" OnRowUpdating="UserGridView_RowUpdating" OnRowDeleting="UserGridView_RowDeleting" OnPageIndexChanging="UserGridView_PageIndexChanging" OnRowCommand="UserGridView_RowCommand" OnRowDataBound="UserGridView_RowDataBound">
+
+                        <Columns>
+
+                            <asp:BoundField DataField="id" HeaderText="Applicant ID" InsertVisible="False"
+                                ReadOnly="True" />
+                                                  
+                            <asp:TemplateField HeaderText="University Name">                                                            
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltype" runat="server" Text='<%# Bind("university_name") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="First Name">                                                            
+                                <ItemTemplate>
+                                    <asp:Label ID="lblcreatdby" runat="server" Text='<%# Bind("firstname") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Family Name" >  
+                                <ItemTemplate>
+                                     <asp:Label ID="lbluniversity" runat="server" Text='<%# Bind("lastname") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Email" >  
+                                <ItemTemplate>
+                                     <asp:Label ID="lblrolename" runat="server" Text='<%# Bind("email") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Mobile">                                                           
+                                <ItemTemplate>
+                                    <asp:Label ID="lblemail" runat="server" Text='<%# Bind("mobile") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Enrollment Date"> 
+                                <ItemTemplate>
+                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("registereDate") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Country of Residence"> 
+                                <ItemTemplate>
+                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("countryofresidence") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Status"> 
+                                <ItemTemplate>
+                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Approve Status"> 
+                                <ItemTemplate>
+                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("approve") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <%-- <asp:TemplateField HeaderText="Suspend Status"> 
+                                <ItemTemplate>
+                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("suspend") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>--%>
+                            <asp:TemplateField HeaderText="Approve Action"> 
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkapprove" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Verify" Text="Verify Applicant" OnClientClick='<%# Eval("applicantid","return ConfirmOnResend({0})") %>'></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Suspend Action">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Delete" Text="Delete/Suspend" OnClientClick='<%# Eval("applicantid","return ConfirmOnDelete({0})") %>'></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
                 </div>
             </div>
         </div>

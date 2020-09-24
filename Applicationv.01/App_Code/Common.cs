@@ -221,14 +221,44 @@ public class Common
         try
         {
             var GetProof = db.alternateadressproofmaster.Where(x => x.id == id).FirstOrDefault();
-        if (GetProof != null)
-            proofname = GetProof.description;
+            if (GetProof != null)
+                proofname = GetProof.description;
         }
         catch (Exception ex)
         {
             log.WriteLog(ex.ToString());
         }
         return proofname;
+    }
+    public string GetApplicantFirstName(int applicantid)
+    {
+        string firstname = "";
+        try
+        {
+            var data = db.applicantdetails.Where(x => x.applicantid == applicantid).FirstOrDefault();
+            if (data != null)
+                firstname = data.firstname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return firstname;
+    }
+    public string GetApplicantLastName(int applicantid)
+    {
+        string lastname = "";
+        try
+        {
+            var data = db.applicantdetails.Where(x => x.applicantid == applicantid).FirstOrDefault();
+            if (data != null)
+                lastname = data.lastname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return lastname;
     }
     public string GetDOBProof(int id)
     {

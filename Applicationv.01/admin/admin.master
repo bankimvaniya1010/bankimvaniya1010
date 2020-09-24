@@ -853,8 +853,11 @@
             var gteuser = roleName.toLowerCase() == "gte user";
             var assessmentadmin = roleName.toLowerCase() == "assessment admin";
             var assessmentuser = roleName.toLowerCase() == "assessment user";
-           
-            
+
+            if (roleName == "Admin")
+                $("#videolist").show();
+            else
+                $("#videolist").hide();
             
             if (fullservice == 2) {
                 if (roleName == "Admin")

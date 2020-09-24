@@ -162,6 +162,10 @@ public partial class admin_exam_downloadsheetSet : System.Web.UI.Page
                 uploadcheckingfile.PostedFile.SaveAs(filePath);
                 objmapping.checking_file = fileName;
             }
+            if (chkview.Checked == true)
+                objmapping.ischeckonce = 1;
+            else
+                objmapping.ischeckonce = null;
             objmapping.questiondescription = txtquestiondescription.Text;
             objmapping.univesityid = selecteduniversityid;
             objmapping.fileinstruction = txtfileinstruction.Text;
@@ -196,11 +200,126 @@ public partial class admin_exam_downloadsheetSet : System.Web.UI.Page
                 questionpath = webURL + "Docs/Exammodule/questionBankType4/" + selectuniversity + "/" + examinerid + "/" + x.questionpath,
                 extrasheetpath = x.extrasheetpath == null ? null : webURL + "Docs/Exammodule/questionBankType4/" + selectuniversity + "/" + examinerid + "/ExtraSheet/" + x.extrasheetpath,
                 extrafilepath = x.extrafilepath == null ? null : webURL + "Docs/Exammodule/questionBankType4/" + selectuniversity + "/" + examinerid + "/AnyFile/" + x.extrafilepath,
+                audiovideofile_tobeviewed = x.ischeckonce == null ? "No" : "Yes",
+                check = x.ischeckonce == null ? 0 : 1,
                 marks = x.marks,
                 time = x.duration,
             }).ToList();
+        if (List != null)
+        {
+            grid.DataSource = List;
+            grid.DataBind();
+        }
         rptVideo.DataSource = List;
         rptVideo.DataBind();
+
+    }
+
+
+    protected void grid_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        try
+        {
+            grid.EditIndex = -1;
+            int selecteduniversityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+            int selectedexaminerId = Convert.ToInt32(ddlexaminer.SelectedValue);
+            BindDocuments(selecteduniversityid, selectedexaminerId);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    protected void grid_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+
+    }
+
+    protected void grid_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowState != DataControlRowState.Edit) // check for RowState
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow) //check for RowType
+                {
+                    string id = e.Row.Cells[0].Text; // Get the id to be deleted
+                                                     //cast the ShowDeleteButton link to linkbutton
+                    LinkButton lb = (LinkButton)e.Row.Cells[5].Controls[0];
+                    if (lb != null)
+                    {
+                        //attach the JavaScript function with the ID as the paramter
+                        lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    protected void grid_RowDeleted(object sender, GridViewDeletedEventArgs e)
+    {
+
+    }
+
+    protected void grid_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        try
+        {
+            int ID = Convert.ToInt32(grid.DataKeys[e.RowIndex].Values[0]);
+            exam_uploadanswer_master objID = db.exam_uploadanswer_master.Where(b => b.questionid == ID).First();
+
+            var isassign = db.exampapers_master.Where(d => d.questionId == ID && d.questiontype== "Upload Answer").ToList();
+
+            if (isassign.Count == 0)
+            {
+                db.exam_uploadanswer_master.Remove(objID);
+                db.SaveChanges();
+                int selecteduniversityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+                int selectedexaminerId = Convert.ToInt32(ddlexaminer.SelectedValue);
+                BindDocuments(selecteduniversityid, selectedexaminerId);
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete this question as the selected question is already assign to to assessment.')", true);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    protected void grid_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        grid.EditIndex = e.NewEditIndex;
+        int selecteduniversityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+        int selectedexaminerId = Convert.ToInt32(ddlexaminer.SelectedValue);
+        BindDocuments(selecteduniversityid, selectedexaminerId);
+    }
+
+    protected void grid_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+
+    }
+
+    protected void grid_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+      
+    }
+
+    protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grid.PageIndex = e.NewPageIndex;
+        int selecteduniversityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+        int selectedexaminerId = Convert.ToInt32(ddlexaminer.SelectedValue);
+        BindDocuments(selecteduniversityid, selectedexaminerId);
+    }
+
+    protected void grid_DataBound(object sender, EventArgs e)
+    {
 
     }
 }

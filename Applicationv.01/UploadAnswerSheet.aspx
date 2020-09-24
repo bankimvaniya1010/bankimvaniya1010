@@ -90,7 +90,7 @@
                      var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
                     if (req.status && req.status == 200 && (req.readyState == 4)) {
                         $("#btnDownload").removeAttr("disabled");
-                        alert("Documents uploaded successfully");
+                        alert("Your answer sheets have been upload successfully.");
                         location.replace(hostName + "UploadAnswerSheet.aspx?ID"+<%=assignID%>);
                     }
                 }
@@ -110,8 +110,12 @@
             <div class="card-body">
                 <asp:HiddenField runat="server" ID="Hidpassword" />
                 <div id="toshowDiv" runat="server" style="display: none">
+                    <div runat="server" id="Div4" class="form-row justify-content-between" style="margin: auto; width: auto; padding: 10px;">
+                        <label>Welcome <%=applicantfirstname %> please upload answer sheets for <%=assessmentname %></label><br />
+
+                    </div>
                     <div runat="server" id="Div3" class="form-row justify-content-between" style="margin: auto; width: auto; padding: 10px;">
-                        <label>* Select your all answersheets at once to submit response.</label><br />
+                        <label>* Select all your answer sheets in one go by selecting multiple files to submit your response.</label><br />
 
                     </div>
                     <div runat="server" id="btnDiv" class="form-row justify-content-between" style="margin: auto; width: 50%; padding: 10px;">

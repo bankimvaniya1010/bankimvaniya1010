@@ -164,7 +164,7 @@
                             <div class="sidebar-p-y">
 
                                 <!-- Account menu -->
-                                <div class="sidebar-heading">Account</div>
+                                <div class="sidebar-heading"><%=applicantname %></div>
                                 <ul class="sidebar-menu">
                                       <li class="sidebar-menu-item" id="preliminary_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
@@ -702,6 +702,7 @@
             var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");            
             var GteDeclarationDoneByApplicant = ("<%=Session["GteDeclarationDoneByApplicant"]%>".toLowerCase() == "true");
             var UniversityID = '<%= Utility.GetUniversityId()%>';
+            var isVerifiedByAdmin = ("<%=Session["isVerifiedByAdmin"]%>");
 
             if (fullService == 0) {//hide when its gte service
                 $("#counsellingcenter_list").hide();

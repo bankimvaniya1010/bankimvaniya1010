@@ -116,8 +116,8 @@ public partial class Resetpassword : System.Web.UI.Page
                 Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
                 Session["FullService"] = isFullService;
                 Session["DeclarationCompleted"] = isDeclarationCompleted;
-
-                if(isFullService == 2)
+                Session["isVerifiedByAdmin"] = login.isverifiedbyAdmin;
+                if (isFullService == 2)
                     Response.Redirect(webURL + "details.aspx?id="+login.studentid);
                 else
                     Response.Redirect(webURL + "default.aspx");

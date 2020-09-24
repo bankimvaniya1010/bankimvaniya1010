@@ -59,6 +59,8 @@ public partial class register : System.Web.UI.Page
 
                     usrObj.verificationkey = Guid.NewGuid().ToString();
                     usrObj.isverified = false;
+                    usrObj.isverifiedbyAdmin = false;
+                    usrObj.isdeletedbyAdmin = false;
                     db.students.Add(usrObj);
                     db.SaveChanges();
                     var id = usrObj.studentid;
