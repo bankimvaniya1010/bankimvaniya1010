@@ -1,5 +1,24 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="disqualify_applicant.aspx.cs" Inherits="admin_disqualify_applicant" MasterPageFile="~/admin/admin.master" %>
-
+<asp:Content ID="content2" runat="server" ContentPlaceHolderID="head">
+    <title></title>
+    <script type="text/javascript">
+        
+        function ConfirmOnResend(item) {
+            var txt;
+            var person = prompt("Please enter reason for disqualify:", "");
+            if (person == "") {
+                alert("Please enter reason for disqualify");
+                return false;
+            }
+            else if (person == null)
+                return false;
+            else {
+                txt =  person ;
+            }
+            $("#<%= Hidpassword.ClientID%>").val(txt).html(txt);
+        }
+    </script>
+</asp:Content>
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div class="container page__container">
@@ -59,6 +78,7 @@
                                     </div>
                                 </div>
                                 <div id="disqualify" runat="server" style="display: none">
+                                    <asp:HiddenField runat="server" ID="Hidpassword"/>
                                     <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                         <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
                                             DataKeyNames="assignid"
@@ -67,7 +87,7 @@
                                             PageSize="25"
                                             BorderStyle="None"
                                             BorderWidth="1px"
-                                            CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="QuestiontGridView_PageIndexChanging" OnRowCommand="QuestiontGridView_RowCommand" OnRowDataBound="QuestiontGridView_RowDataBound">
+                                            CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="QuestiontGridView_PageIndexChanging" OnRowCommand="QuestiontGridView_RowCommand" OnRowDataBound="QuestiontGridView_RowDataBound" OnDataBinding="QuestiontGridView_DataBinding">
 
                                             <Columns>
 
@@ -101,14 +121,19 @@
                                                         <asp:Label ID="lblisverified" runat="server" Text='<%# Bind("isverified")%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                  <asp:TemplateField HeaderText="Status">
+                                                 <asp:TemplateField HeaderText="Status">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblstatus" runat="server" Text='<%# Bind("status") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="Disqualify Reason">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbldisqualify_reason" runat="server" Text='<%# Bind("disqualify_reason") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Action">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkSubmit" runat="server" CommandName="Disqualify" Text="Disqualify" CommandArgument='<%#Container.DataItemIndex%>'></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkSubmit" runat="server" CommandName="Disqualify" Text="Disqualify" CommandArgument='<%#Eval("assignid")%>' OnClientClick='<%# Eval("assignid","return ConfirmOnResend({0})") %>'></asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

@@ -269,6 +269,8 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     usrObj.studylevelid = 1;
                     usrObj.verificationkey = Guid.NewGuid().ToString();
                     usrObj.isverified = false;
+                    usrObj.isdeletedbyAdmin = false;
+                    usrObj.isverifiedbyAdmin = true;
                     db.students.Add(usrObj);
                     db.SaveChanges();
 
@@ -484,7 +486,6 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
             string filename = "UnRegisteredApplicantFile" + "_" + universityID + ".CSV";
             string combinepath = filepath + filename;
             invalid_fileName = filename;
-            //string path = Path.Combine(directory, filename2);
             System.IO.File.WriteAllText(combinepath, csv);
             
         }

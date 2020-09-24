@@ -101,6 +101,7 @@ public partial class admin_disqualify_applicant : System.Web.UI.Page
                                  exam_datetime = eshe.exam_datetime,
                                  isverified = es.is_verified,
                                  status = string.IsNullOrEmpty(es.status)? null: es.status,
+                                 disqualify_reason = string.IsNullOrEmpty(es.disqualify_reason)? string.Empty :es.disqualify_reason,
                              }).OrderBy(x => x.assignid).ToList();
             if (examlList != null)
             {
@@ -130,25 +131,32 @@ public partial class admin_disqualify_applicant : System.Web.UI.Page
         {
             if (e.CommandName == "Disqualify")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int assignid = Convert.ToInt32(QuestiontGridView.DataKeys[index].Value);
-                GridViewRow row = QuestiontGridView.Rows[index];
-
-                var mode = "new";
-                exam_assign objexam_assign = new exam_assign();
-                var data = db.exam_assign.Where(x => x.assignid == assignid).FirstOrDefault();
-                if (data != null)
+                var reason = Hidpassword.Value;
+                if (!string.IsNullOrEmpty(reason))
                 {
-                    mode = "update";
-                    objexam_assign = data;
+                    //int index = Convert.ToInt32(e.CommandArgument);
+                    int assignid = Convert.ToInt32(e.CommandArgument);
+                    //GridViewRow row = QuestiontGridView.Rows[index];
+
+                    var mode = "new";
+                    exam_assign objexam_assign = new exam_assign();
+                    var data = db.exam_assign.Where(x => x.assignid == assignid).FirstOrDefault();
+                    if (data != null)
+                    {
+                        mode = "update";
+                        objexam_assign = data;
+                    }
+                    objexam_assign.status = "Disqualified";
+                    objexam_assign.disqualify_reason = reason;
+                    if (mode == "new")
+                        db.exam_assign.Add(objexam_assign);
+                    db.SaveChanges();
+                    int selecteduniversityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+                    int selectedproctorid = Convert.ToInt32(ddlproctor.SelectedValue);
+                    BindGrid(selecteduniversityid, selectedproctorid);
                 }
-                objexam_assign.status = "Disqualified";
-                if (mode == "new")
-                    db.exam_assign.Add(objexam_assign);
-                db.SaveChanges();
-                int selecteduniversityid = Convert.ToInt32(ddlUniversity.SelectedValue);
-                int selectedproctorid = Convert.ToInt32(ddlproctor.SelectedValue);
-                BindGrid(selecteduniversityid, selectedproctorid);
+                else
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Reason can not be empty.')", true);
             }
         }
         catch (Exception ex)
@@ -176,5 +184,10 @@ public partial class admin_disqualify_applicant : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    protected void QuestiontGridView_DataBinding(object sender, EventArgs e)
+    {
+
     }
 }

@@ -36,10 +36,9 @@
                             <label for="name" class="col-sm-3 col-form-label form-label">Select Assessment Sheet</label>
                             <div class="col-sm-8">
                                 <div class="row">
-                                    <div class="col-md-10">
-
+                                    <div class="col-md-12">
                                         <asp:FileUpload runat="server" ID="FileUpload" onchange="showdiv()" />
-                                        <label style="font-size: small;" class="marginright" runat="server" id="lbl1"></label>
+                                        <label style="font-size: small;" runat="server" id="lbl1"></label>
                                     </div>
                                 </div>
                             </div>
@@ -50,10 +49,10 @@
                             <label for="name" class="col-sm-3 col-form-label form-label">Extra sheet</label>
                             <div class="col-sm-8">
                                 <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         <asp:FileUpload ID="extrasheet_FileUpload" runat="server" />
                                         <asp:Label ID="Label6" runat="server" />
-                                        <label style="font-size: small;" class="marginright">*The file formats you can upload are - .jpg, .png, .jpeg</label>
+                                        <label style="font-size: small;">*The file formats you can upload are - .jpg, .png, .jpeg,.pdf</label>
                                     </div>
                                 </div>
                             </div>
@@ -62,14 +61,15 @@
                             <label for="name" class="col-sm-3 col-form-label form-label">Upload audio/video file</label>
                             <div class="col-sm-8">
                                 <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         <asp:FileUpload ID="audiofile_FileUpload" runat="server" />
                                         <asp:Label ID="Label3" runat="server" />
-                                        <label style="font-size: small;" class="marginright">*The file formats you can upload are - .mp3, .mp4, .3gp, .webm, .wmv, .flv,.ogv, .mkv</label>
+                                        <label style="font-size: small;">*The file formats you can upload are - .mp3, .mp4, .3gp, .webm, .wmv, .flv,.ogv, .mkv and File size must be till 100 MB</label><br/>
+                                         <asp:CheckBox runat="server" ID="chkview"/>Allow Audio/Video file to be viewed one time 
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label form-label">Instruction</label>
                             <div class="col-sm-8">
@@ -83,10 +83,17 @@
                     </div>
                    
                 </div>
-               
-                <div class="form-group row">
+                <div class="media-left col-md-12">
+                    <div style="position: relative; width: 202px; background: transparent; margin-bottom: 15px; height: 25px;">
+                        <div id="progress" class="hide" style="background: blue; height: 25px; width: 0; color: #fff;">
+                            <div class="status" style="margin-left: 10px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="tab-content card-body">
                         <div class="tab-pane active" id="first">
+                            <div class="table-responsive">
                             <asp:GridView ID="grid" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="false"
                                 DataKeyNames="papersheetID"
                                 AllowPaging="True"
@@ -94,13 +101,9 @@
                                 PageSize="25"
                                 OnDataBound="grid_DataBound" OnRowCancelingEdit="grid_RowCancelingEdit" OnRowCommand="grid_RowCommand" OnRowDataBound="grid_RowDataBound" OnRowDeleted="grid_RowDeleted" OnRowDeleting="grid_RowDeleting" OnRowEditing="grid_RowEditing" OnRowUpdated="grid_RowUpdated" OnRowUpdating="grid_RowUpdating" OnPageIndexChanging="grid_PageIndexChanging">
 
-
                                 <Columns>
-
                                     <asp:BoundField DataField="papersheetID" HeaderText="ID" InsertVisible="False"
                                         ReadOnly="True" SortExpression="id" />
-
-
                                     <asp:TemplateField HeaderText="Assessment Sheet">
                                         <EditItemTemplate>
                                             <asp:FileUpload runat="server" ID="fileupload" />
@@ -119,79 +122,40 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Extra File">
+                                    <asp:TemplateField HeaderText="Audio/Video File">
                                         <EditItemTemplate>
                                             <asp:FileUpload runat="server" ID="fileupload_file" />
                                         </EditItemTemplate>
                                         <ItemTemplate>
-
                                             <a runat="server" href='<%# Bind("audiovideofilepath") %>' target="_blank" id="extrafile" visible='<%# !String.IsNullOrEmpty(Convert.ToString(Eval("audiovideofilepath"))) %>'>View </a>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-                                    <asp:TemplateField HeaderText="Edit" ShowHeader="False">
-
+                                     <asp:TemplateField HeaderText="One time view File">
                                         <EditItemTemplate>
-
-                                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
-
-                                            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
-
+                                           <asp:CheckBox ID="chkactive" runat="server" Checked='<%# bool.Parse(Eval("check").ToString()=="1"?"True":"False") %>'/>
                                         </EditItemTemplate>
-
                                         <ItemTemplate>
-
-                                            <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-
+                                            <asp:Label runat="server" id="lblview" Text='<%# Bind("audiovideofile_tobeviewed") %>'></asp:Label>                                            
                                         </ItemTemplate>
-
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Edit" ShowHeader="False">
+                                        <EditItemTemplate>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
+                                            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
-
                                 </Columns>
-
                             </asp:GridView>
+                                </div>
                         </div>
-
-                    </div>
-
-                    <div class="col-sm-8 offset-sm-3" style="display:none;">
-                        <asp:DataList ID="rptVideo" runat="server" GridLines="Horizontal">
-                            <HeaderTemplate>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <div style="display: none;">
-                                    <asp:Label ID="lblpapersheetID" runat="server" Text='<%# Eval("papersheetID") %>'></asp:Label>
-                                </div>
-                                <div class="form-group" style="display: flex">
-
-                                    <label for="choice" class="col-form-label form-label"><a href="<%# Eval("exampaper_path") %>" target="_blank">Assessmnent sheet</a></label>
-
-                                    <label for="choice" class="col-form-label form-label" style="<%# Eval("extrasheetpath") == null ? "display: none;": "display:block;"  %>">/ <a href="<%# Eval("extrasheetpath") %>" target="_blank">Extra sheet</a></label>
-
-                                    <label for="choice" class="col-form-label form-label" style="<%# Eval("audiovideofilepath") == null ? "display: none;": "display:block;"  %>">/ <a href="<%# Eval("audiovideofilepath") %>" target="_blank">file</a></label>
-                                </div>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                            </FooterTemplate>
-                        </asp:DataList>
                     </div>
                 </div>
-
-                  <div class="form-group row">
-                        <div class="col-sm-8 offset-sm-3">
-                            <div class="media align-items-center">
-                                <div class="media-left">
-                                    <div class="form-row justify-content-between">
-                                        <asp:Button ID="btnupload" runat="server" CssClass="btn btn-success" OnClick="btnupload_Click" OnClientClick="return validateForm()" />
-                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Schedule Assessment" CssClass="btn btn-success" OnClick="gotoNextPage_Click" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
             </div>
             <div id="buildinpaperDiv" style="display: none" runat="server">
                 <div class="form-group row">
@@ -257,6 +221,19 @@
                     <div id="mainNav"></div>
                 </div>
             </div>
+
+            <div class="form-group row">
+                        <div class="col-sm-8 offset-sm-3">
+                            <div class="media align-items-center">
+                                <div class="media-left">
+                                    <div class="form-row justify-content-between">
+                                        <asp:Button ID="btnupload" runat="server" CssClass="btn btn-success" OnClick="btnupload_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Schedule Assessment" CssClass="btn btn-success" OnClick="gotoNextPage_Click" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         </div>
     </div>
     <script>
@@ -326,7 +303,13 @@
                 alert("please upload file");
             else if ((uploadtype == 1 || uploadtype == 3) && !validateUploadedFile("assessment", $("#<%=FileUpload.ClientID%>").val(), uploadtype)) { }
 
+            else if ((uploadtype == 1 || uploadtype == 3) && $("#<%=FileUpload.ClientID%>").val() != "" && !checkFileSize())
+                alert("file Size should be less than 100MB");
+
             else if ((uploadtype == 1 || uploadtype == 3) && $("#<%=extrasheet_FileUpload.ClientID%>").val() != "" && !validateUploadedFile("extra", $("#<%=extrasheet_FileUpload.ClientID%>").val(), uploadtype)) { }
+
+            else if ((uploadtype == 1 || uploadtype == 3) && $("#<%=extrasheet_FileUpload.ClientID%>").val() != "" && !checkFileSize())
+                alert("file Size should be less than 100MB");
 
             else if ((uploadtype == 1 || uploadtype == 3) && $("#<%=audiofile_FileUpload.ClientID%>").val() != "" && !checkFileType())
                 alert("Please upload a valid file ");
@@ -339,6 +322,68 @@
             else
                 flag = true;
             return flag;
+           <%-- if (flag) {
+                $("#ContentPlaceHolder1_btnupload").attr("disabled", "true")
+                $("#progress").removeClass("hide");
+                var progressEle = $("#progress");
+                progressEle.css("background-color", "blue");
+
+                var formData = new FormData();
+                var data1 = $("#ContentPlaceHolder1_FileUpload")[0].files[0];
+                var data2 = $("#ContentPlaceHolder1_extrasheet_FileUpload")[0].files[0];
+                var data3 = $("#ContentPlaceHolder1_audiofile_FileUpload")[0].files[0];
+
+                formData.append("files", data1);
+                formData.append("files", data2);
+                formData.append("files", data3);
+
+                var dummyProgress = 1;
+                var intervalId = -1;
+                var req = new XMLHttpRequest();
+
+                req.upload.addEventListener("progress", function (event) {
+
+                    var percent = (event.loaded / event.total) * 90;
+                    var progress = Math.round((event.loaded / event.total) * 90);
+                    console.log("progress:" + progress);
+                    if (progress < 90) {
+                        $(".status").html(progress + "%");
+                        progressEle.width(progress + "%");
+                    }
+                    else {
+                        progress = progress + dummyProgress;
+                        if (progress <= 99) {
+                            $(".status").html(progress + "%");
+                            progressEle.width(progress + "%");
+                        }
+                        if (intervalId == -1) {
+                            intervalId = setInterval(function () {
+                                progress = progress + dummyProgress;
+                                dummyProgress++;
+                                if (progress <= 99) {
+                                    $(".status").html(progress + "%");
+                                    progressEle.width(progress + "%");
+                                }
+                                else
+                                    clearInterval(intervalId);
+                            }, 2500);
+                        }
+                    }
+                });
+
+                req.onreadystatechange = function () {
+				var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                    if (req.status && req.status == 200 && (req.readyState == 4)) {
+                        $("#ContentPlaceHolder1_btnupload").removeAttr("disabled");
+                        alert("Video uploaded successfully");
+                        location.replace(hostName + "gte_sop.aspx?formid=26");
+                    }
+                }
+
+                req.open("POST", 'upload_exampaper.aspx/uploadVideo', true);
+                req.send(formData);
+            }
+            return false;--%>
         }
 
         $(document).ready(function () {

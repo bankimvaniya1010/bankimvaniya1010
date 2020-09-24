@@ -45,13 +45,13 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         
         docPath = docPath + "/Exammodule/" + selectuniversity + "/" + exampapersid;
         if (!IsPostBack)
-        {
-            BindDocuments();
+        {            
             if (exammasterdata.uploadtype == 1)
             {
                 uploadtype = 1;
                 uploadpaperDiv.Attributes.Add("style", "display:block;");
                 lbl1.InnerText = "*The file formats you can upload are - .jpg, .png, .jpeg";
+                BindDocuments();
             }
             else if (exammasterdata.uploadtype == 2)
             {
@@ -61,6 +61,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
             }
             else if (exammasterdata.uploadtype == 3)
             {
+                BindDocuments();
                 uploadtype = 3;
                 uploadpaperDiv.Attributes.Add("style", "display:block;");
                 lbl1.InnerText = "*The file formats you can upload is .pdf";
@@ -83,7 +84,46 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                 btnupload.Text = "Upload";
 
         }
+
+        //HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
+        //if (httpPostedFile.Count > 0)
+        //    uploadVideo(httpPostedFile[0]);
     }
+
+    //protected void uploadVideo(HttpPostedFile httpPostedFile)
+    //{
+    //    try
+    //    {
+    //        var mode = "new";
+    //        var data = (from vInfo in db.exampapers_master
+    //                    where vInfo.universityid == universityID && vInfo.applicantid == userID
+    //                    select vInfo).FirstOrDefault();
+
+    //        if (data != null)
+    //        {
+    //            mode = "update";
+    //            objgte_videouploadmaster = data;
+    //        }
+    //        string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GteUploadedVideo";
+    //        string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(httpPostedFile.FileName));
+    //        string filePath = string.Concat(dirPath, "/", fileName);
+    //        DirectoryInfo di = new DirectoryInfo(dirPath);
+    //        if (!di.Exists)
+    //            di.Create();
+    //        httpPostedFile.SaveAs(filePath);
+    //        objgte_videouploadmaster.videourl = fileName;
+    //        objgte_videouploadmaster.applicantid = userID;
+    //        objgte_videouploadmaster.universityid = universityID;
+    //        if (mode == "new")
+    //            db.gte_videouploadmaster.Add(objgte_videouploadmaster);
+    //        db.SaveChanges();
+
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        objLog.WriteLog(ex.StackTrace.ToString());
+    //    }
+    //}
 
     public class details1 {
         public int questionid { get; set; }
@@ -91,6 +131,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         public string questionpath { get; set; }
         public string questiontype { get; set; }
     }  
+
     private void BindField(string typeid , int universityid, int examinerid)
     {        
         try
@@ -150,6 +191,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         }
 
     }
+
     private void BindPresected(string typeid, int universityId, int examinerid )
     {
         try
@@ -210,6 +252,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
     protected void btnupload_Click(object sender, EventArgs e)
     {
         try {
@@ -248,6 +291,11 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                     objmapping.audiovideofilepath = fileName;
                 }
 
+                if (chkview.Checked == true)
+                    objmapping.is_audiovideofile_onetimeview = 1;
+                else
+                    objmapping.is_audiovideofile_onetimeview = null;
+
                 objmapping.universityID = selectuniversity;
                 objmapping.exampapersid = exampapersid;
                 objmapping.fileinstruction = txtfileinstruction.Text;
@@ -262,6 +310,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                     btnupload.Visible = false;
                 }
                 txtfileinstruction.Text = "";
+                chkview.Checked = false;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                       "alert('Record Saved successfully.');window.location='" + Request.ApplicationPath + "admin/upload_exampaper.aspx?exampapersid='"+exampapersid+"'';", true);
                
@@ -274,6 +323,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                     {
                         string questiontype = ddlquestiontype.SelectedValue;
                         int questionId = Convert.ToInt32(li.Value);
+                        var datadownloadsheet_viewonce = db.exam_uploadanswer_master.Where(x => x.questionid == questionId).Select(x => x.ischeckonce).FirstOrDefault();
                         var mode = "new";
                         var exsisting = db.exampapers_master.Where(x => x.universityID == selectuniversity && x.questionId == questionId && x.questiontype == questiontype && x.exampapersid == exampapersid).FirstOrDefault();
                         if (exsisting != null)
@@ -287,6 +337,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                         objmapping.questionId= questionId;
                         objmapping.exampapersid = exampapersid;
                         objmapping.universityID = selectuniversity;
+                        objmapping.is_audiovideofile_onetimeview = datadownloadsheet_viewonce;
                         if (mode == "new")
                         {
                             db.exampapers_master.Add(objmapping);
@@ -306,16 +357,17 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
     private void BindDocuments()
     {
 
-       var videoList = (from x in db.exampapers_master
-                     where x.exampapersid == exampapersid && x.universityID == selectuniversity
-                     select new {
-                         
-                         paperID = x.exampapersid,
-                         papersheetID = x.id,
-                         exampaper_path = webURL + "Docs/Exammodule/" + selectuniversity + "/" + exampapersid + "/" + x.exampaper_path,
-                         extrasheetpath = x.extrasheetpath == null ? null : webURL + "Docs/Exammodule/" + selectuniversity + "/" + exampapersid + "/ExtraSheet/" + x.extrasheetpath,
-                         audiovideofilepath = x.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + selectuniversity + "/" + exampapersid + "/AnyFile/" + x.audiovideofilepath,
+        var videoList = (from x in db.exampapers_master
+                         where x.exampapersid == exampapersid && x.universityID == selectuniversity
+                         select new {
 
+                             paperID = x.exampapersid,
+                             papersheetID = x.id,
+                             exampaper_path = webURL + "Docs/Exammodule/" + selectuniversity + "/" + exampapersid + "/" + x.exampaper_path,
+                             extrasheetpath = x.extrasheetpath == null ? null : webURL + "Docs/Exammodule/" + selectuniversity + "/" + exampapersid + "/ExtraSheet/" + x.extrasheetpath,
+                             audiovideofilepath = x.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + selectuniversity + "/" + exampapersid + "/AnyFile/" + x.audiovideofilepath,
+                             audiovideofile_tobeviewed = x.is_audiovideofile_onetimeview == null ? "No" : "Yes",
+                             check = x.is_audiovideofile_onetimeview == null ? 0 : 1,
                      }).ToList();
 
         if (videoList != null)
@@ -323,11 +375,8 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
             grid.DataSource = videoList;
             grid.DataBind();
         }
-
-        rptVideo.DataSource = videoList;
-        rptVideo.DataBind();
-
     }
+
     public class details {
         public int? paperID;
         public int papersheetID;
@@ -335,6 +384,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         public string extrasheetpath;
         public string audiovideofilepath;
     }
+
     protected void ddlquestiontype_SelectedIndexChanged(object sender, EventArgs e)
     {
         string typeid = ddlquestiontype.SelectedValue;
@@ -453,7 +503,8 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
             FileUpload fileupload = (FileUpload)grid.Rows[e.RowIndex].FindControl("fileupload");
             FileUpload fileupload_extra = (FileUpload)grid.Rows[e.RowIndex].FindControl("fileupload_extra");
             FileUpload fileupload_file = (FileUpload)grid.Rows[e.RowIndex].FindControl("fileupload_file");
-            
+            CheckBox checkBox = (CheckBox)grid.Rows[e.RowIndex].FindControl("chkactive") as CheckBox;
+
             var mode = "new";
             int papersheetID = Convert.ToInt32(grid.DataKeys[e.RowIndex].Values[0]);
 
@@ -496,6 +547,10 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                 fileupload_file.PostedFile.SaveAs(filePath);
                 objmapping.audiovideofilepath = fileName;
             }
+            if (checkBox.Checked == true)
+                objmapping.is_audiovideofile_onetimeview = 1;
+            else
+                objmapping.is_audiovideofile_onetimeview = null;
 
             grid.EditIndex = -1;
             if (mode == "new")
