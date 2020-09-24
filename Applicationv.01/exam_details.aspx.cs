@@ -170,7 +170,7 @@ public partial class exam_details : System.Web.UI.Page
     {
         para1.Attributes.Add("style", "display:block;");
         //para3.Attributes.Add("style", "display:block;");
-        para4.Attributes.Add("style", "display:block;");
+        para4.Attributes.Add("style", "display:none;");
         lblutctime.InnerText = "UTC Date & Time : " + exam_utcDate + " at " + exam_utctime;
         lblcusttime.InnerText = "Your Date & Time : " + exam_Date + " at " + exam_time;
         ifadminproctordetailsupdate();

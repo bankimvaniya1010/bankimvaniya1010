@@ -37,13 +37,13 @@ public partial class login : System.Web.UI.Page
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
         universityGTMCode = universityDetails.university_gtm_code;
 
-        int isfullservice = (int)Session["isfullservice"];
+        isFullService =  (int)Session["isfullservice"];
         
-        if (isfullservice == 0)
+        if (isFullService == 0)
             isfullservicethenlbl = " GTE Online Center (GOC)";
-        else if(isfullservice == 1)
+        else if(isFullService == 1)
             isfullservicethenlbl = " APPLICATION CENTER";
-        else if (isfullservice == 2)
+        else if (isFullService == 2)
             isfullservicethenlbl = "Assessment Center";
     }
 
@@ -70,9 +70,16 @@ public partial class login : System.Web.UI.Page
                 else
                 {
                     string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
-                    chkUser = (from usr in db.students
-                               where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
+
+                    //chk user verification for service GTE & Assessment
+                    if (isFullService == 0 || isFullService == 3)
+                        chkUser = (from usr in db.students
+                               where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword) && usr.isdeletedbyAdmin == false)
                                select usr).FirstOrDefault();
+                    else
+                        chkUser = (from usr in db.students
+                                   where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
+                                   select usr).FirstOrDefault();
                     if (chkUser == null)
                     {
                         lbl_warning.Text = "Please enter valid user name and password.";
@@ -131,7 +138,7 @@ public partial class login : System.Web.UI.Page
                         Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
                         Session["FullService"] = isFullService;
                         Session["DeclarationCompleted"] = isDeclarationCompleted;
-
+                        Session["isVerifiedByAdmin"] = chkUser.isverifiedbyAdmin;
                         //switch (chkUser.role)
                         //{
                         //    case 1:

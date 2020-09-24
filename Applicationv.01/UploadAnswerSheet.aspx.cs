@@ -17,6 +17,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     public int exampaperid = 0, assignID;
     exam_assign data = new exam_assign();
+    public string applicantfirstname, assessmentname, examname;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,13 +28,18 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
             Session["ID"] = assignID;
         }
         else
-            assignID =Convert.ToInt32(Session["ID"]);
-
+            assignID =Convert.ToInt32(Session["ID"]);        
         Session["ID"] = assignID;
 
         data = db.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
         universityID = Convert.ToInt32(data.universityID);
         exampaperid = Convert.ToInt32(data.exampapersid);
+        ApplicantID = Convert.ToInt32(data.applicantid);
+        examname = db.exam_master.Where(x => x.exampapersid == data.exampapersid).Select(x => x.exam_name).FirstOrDefault();
+
+        applicantfirstname = objCom.GetApplicantFirstName(ApplicantID);
+        assessmentname = examname;
+
         docPath = docPath + "/Exammodule/AnswerSheet/" + universityID + "/" + data.applicantid + "/" + exampaperid;
         validateuser();
         HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
@@ -157,7 +163,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
             {
                 toshowDiv.Attributes.Add("style", "display:none");
                 ifanswersubmitted.Attributes.Add("style", "display:block");
-                lblmsg.InnerText = "YOUR ANSWER SHEET SUBMITED SUCCESSFULLY...!";
+                lblmsg.InnerText = "THANK YOU "+applicantfirstname+" YOUR ANSWER SHEETS FOR "+examname+" HAVE BEEN SUBMITTED SUCCESSFULLY. ";
             }
         }
         catch (Exception ex)

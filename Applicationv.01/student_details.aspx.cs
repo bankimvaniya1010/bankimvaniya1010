@@ -35,6 +35,13 @@ public partial class student_details : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
+
+        var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
+        if (!isVerifiedByAdmin)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
+
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
@@ -367,10 +374,10 @@ public partial class student_details : System.Web.UI.Page
                     uploadedFile.NavigateUrl = webURL + "/Docs/Exammodule/Studentdetails/"+universityID+"/"+userID+"/"+ profileInfo.profilephoto;
                     uploadedFile.Text = "View File";
                 }
-                if (profileInfo.countryof_citizenship != null)
+                if (profileInfo.residentialcountry != null)
                 {
                     ddlcountrycitizenship.ClearSelection();
-                    ddlcountrycitizenship.Items.FindByValue(profileInfo.countryof_citizenship.ToString()).Selected = true;
+                    ddlcountrycitizenship.Items.FindByValue(profileInfo.residentialcountry.ToString()).Selected = true;
                 }
                 if (profileInfo.countryofbirth != null)
                 {
@@ -498,7 +505,7 @@ public partial class student_details : System.Web.UI.Page
             }
             if (ddlcountrycitizenship.SelectedValue != null)
             {
-                objapplicantDetail.countryof_citizenship = Convert.ToInt32(ddlcountrycitizenship.SelectedValue);
+                objapplicantDetail.residentialcountry = Convert.ToInt32(ddlcountrycitizenship.SelectedValue);
             }
             if (ddldob.SelectedValue != null)
             {

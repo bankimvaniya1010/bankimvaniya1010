@@ -23,6 +23,7 @@ public partial class admin : System.Web.UI.MasterPage
     public string username = string.Empty;
     public string useremail = string.Empty;
     DateTime meetingTime, fiveminbeforemeeetingtimeis, currenttime ;
+    public string applicantname;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -30,7 +31,10 @@ public partial class admin : System.Web.UI.MasterPage
         universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-        UserID = Convert.ToInt32(Session["UserID"].ToString());        
+        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        string firstname = objCom.GetApplicantFirstName(UserID);
+        string lastname = objCom.GetApplicantLastName(UserID);
+        applicantname = firstname + " " + lastname;
 
         var gteQuestionPart2Count = db.gte_question_master_part2.Count();
         var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
