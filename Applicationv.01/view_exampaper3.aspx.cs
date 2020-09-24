@@ -31,7 +31,9 @@ public partial class view_exampaper3 : System.Web.UI.Page
     List<int?> mainList = new List<int?>();
     List<int?> previousList= new List<int?>();
     List<int?> nextList = new List<int?>();
+    List<details> allpapers = new List<details>();
     string btnvalue = string.Empty;
+    public int is_onetimeshow = 0, examsheetid, examid;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -174,16 +176,27 @@ public partial class view_exampaper3 : System.Web.UI.Page
         { objLog.WriteLog(ex.ToString()); }
     }
 
+    public class details
+    {
+        public int id { get; set; }
+        public int? questionpaperID { get; set; }
+        public string questionpaper { get; set; }
+        public string extrasheetpath { get; set; }
+        public string audiovideofilepath { get; set; }
+        public string fileinstruction { get; set; }
+        public int? onetimeshow { get; set; }
+    }
+
     private void bindDataList(int? idtoshow, int? permission)
     {
         try
         {
-            dynamic allpapers;
+            
             if (permission == 1)
             {
                 allpapers = (from em in db.exampapers_master
                                  where em.universityID == UniversityID && em.exampapersid == exampaperid && em.id == idtoshow
-                                 select new
+                                 select new details()
                                  {
                                      id = em.id,
                                      questionpaperID = em.exampapersid,
@@ -191,6 +204,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
                                      extrasheetpath = em.extrasheetpath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/ExtraSheet/" + em.extrasheetpath,
                                      audiovideofilepath = em.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/AnyFile/" + em.audiovideofilepath,
                                      fileinstruction = string.IsNullOrEmpty(em.fileinstruction) ? null : em.fileinstruction,
+                                     onetimeshow = em.is_audiovideofile_onetimeview,
                                  }).ToList();
 
             }
@@ -198,7 +212,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
             {
                 allpapers = (from em in db.exampapers_master
                                  where em.universityID == UniversityID && em.exampapersid == exampaperid && em.id == idtoshow
-                                 select new
+                                 select new details()
                                  {
                                      id = em.id,
                                      questionpaperID = em.exampapersid,
@@ -206,9 +220,23 @@ public partial class view_exampaper3 : System.Web.UI.Page
                                      extrasheetpath = em.extrasheetpath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/ExtraSheet/" + em.extrasheetpath,
                                      audiovideofilepath = em.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/AnyFile/" + em.audiovideofilepath,
                                      fileinstruction = string.IsNullOrEmpty(em.fileinstruction) ? null : em.fileinstruction,
+                                     onetimeshow = em.is_audiovideofile_onetimeview,
                                  }).ToList();
             }
+            foreach (var item in allpapers)
+            {
+                var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                if (data_ifviewed == null)
+                    is_onetimeshow = Convert.ToInt32(item.onetimeshow);
+                else
+                {
+                    is_onetimeshow = 0;
+                    item.audiovideofilepath = null;
+                }
 
+                examid = Convert.ToInt32(item.questionpaperID);
+                examsheetid = item.id;
+            }
             questionList.DataSource = allpapers;
             questionList.DataBind();
 
@@ -476,6 +504,34 @@ public partial class view_exampaper3 : System.Web.UI.Page
             db1.exam_assign.Add(objexam_assign);
         db1.SaveChanges();
         return JsonConvert.SerializeObject(assignID);
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow)
+    {
+        GTEEntities db1 = new GTEEntities();
+        int universityID1 = Utility.GetUniversityId();
+        int userID1 = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
+
+        var mode = "new";
+        exam_applicantfileviewed_record objmapping = new exam_applicantfileviewed_record();
+        var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1).FirstOrDefault();
+
+        if (data != null)
+        {
+            mode = "update";
+            objmapping = data;
+        }
+        objmapping.isviewedonce = 1;
+        objmapping.exampapersheetID = examsheetid;
+        objmapping.examID = examid;
+        objmapping.applicantid = userID1;
+        objmapping.universityid = universityID1;
+        if (mode == "new")
+            db1.exam_applicantfileviewed_record.Add(objmapping);
+        db1.SaveChanges();
+        return JsonConvert.SerializeObject(is_onetimeshow);
     }
 
 }

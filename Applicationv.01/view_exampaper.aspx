@@ -48,20 +48,48 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <div class="form-group row" id="extrafiledocument" style="<%# (Eval("extrasheetpath") == null && Eval("fileinstruction") == null && Eval("audiovideofilepath") == null)? "visibility: hidden;": " "  %>">
-                                                <label for="avatar" class="col-sm-4 col-form-label form-label">Assessmnent related Documents </label>
-                                                <div class="col-sm-8">
-                                                    <div class="media align-items-center">
-                                                        <div class="media-body">
-                                                            <div class="custom-file" style="width: auto;">
-                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("extrasheetpath") == null? "visibility: hidden;": "visibility:visible;"  %>"><b>RESOURCE DOCUMENT:</b> <a href="<%# Eval("extrasheetpath") %>" target="_blank" >View File</a></label><br/>
-                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("fileinstruction") == null? "visibility: hidden;": "visibility:visible;"  %>"><b>Instructions : </b> <%#Eval("fileinstruction") %></label><br/>
-                                                                <label for="choice" class="col-form-label form-label" style="<%# Eval("audiovideofilepath") == null? "visibility: hidden;": "visibility:visible;"  %>"> <b>RESOURCE AUDIO/VIDEO: </b> <a href="<%# Eval("audiovideofilepath") %>" target="_blank">View File</a></label>
-                                                            </div>
+                                             <div style="<%# (Eval("extrasheetpath") == null && Eval("fileinstruction") == null && Eval("audiovideofilepath") == null)? "display:none;": " "  %>">
+
+                                        <div class="list-group-item" id="extrafileDiv" style="<%# Eval("extrasheetpath") == null? "display:none;": "display:block;border: none;"%>">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
+                                                <div class="form-row">
+                                                    <label class="col-md-3 col-form-label form-label"><b>RESOURCE DOCUMENT: </b></label>
+                                                    <div class="col-md-6">
+                                                        <a href="<%# Eval("extrasheetpath") %>" target="_blank">View File</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="list-group-item" id="InstructionDiv" style="<%# Eval("fileinstruction") == null? "display:none;": "display:block;border: none;"%>">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
+                                                <div class="form-row">
+                                                    <label for="choice" class="col-md-3 col-form-label form-label"><b>Instructions : </b></label>
+                                                    <div class="col-md-6">
+                                                        <asp:Label runat="server" Text='<%#Eval("fileinstruction") %>'></asp:Label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="audiiovideoDIv" >
+                                        <div class="list-group-item" id="videoDIv" style="<%# Eval("audiovideofilepath") == null? "display:none;": "display:block;border: none;"%>">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
+                                                <div class="form-row">
+                                                    <label for="choice" class="col-md-3 col-form-label form-label" id="auidovideolink"><b>RESOURCE AUDIO/VIDEO: </b></label>
+                                                    <div class="col-md-6">
+                                                         <%--<a href="<%# Eval("audiovideofilepath") %>" target="_blank" id="aurdiovideohyperlink">View File</a>--%>
+                                                        <div>
+                                                            <video width="320" height="240" oncontextmenu="return false;" id="myVideo" controls controlslist="nodownload" disablepictureinpicture>
+                                                                <source src='<%# Eval("audiovideofilepath") %>'>
+                                                            </video>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        </div>
+
+                                    </div>
                                             <div class="form-group row">
                                                 <label for="avatar" class="col-sm-4 col-form-label form-label">Answer sheet</label>
                                                 <div class="col-sm-8">
@@ -162,7 +190,7 @@
         let time = secondsS;
         const countdownEl = document.getElementById('countdown');
 
-        setInterval(updateCountdown, 1000);
+        //setInterval(updateCountdown, 1000);
 
         function updateCountdown() {
             const minutes = Math.floor(time / 60);
@@ -219,6 +247,31 @@
             }
             return true;
         }
+        var is_onetimeshow = '<%=is_onetimeshow%>';
+        var examid = '<%=examid%>';
+        var examsheetid = '<%=examsheetid%>';
+
+        if (is_onetimeshow == 1) {
+            var aud = document.getElementById("myVideo");
+            aud.onended = function () {
+                 alert("The file has ended");
+                $('#audiiovideoDIv').hide();
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "view_exampaper.aspx/Saveaudiovideoresponse",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "'}",               
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                    }
+                }
+            });
+        }
+
     </script>
 
 </asp:Content>
