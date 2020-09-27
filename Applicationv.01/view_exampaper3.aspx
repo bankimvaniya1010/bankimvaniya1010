@@ -266,16 +266,36 @@
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
-                        if (result == "responsesubmitted") {
-                            var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                        var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                        if (result == "responsesubmitted") 
                             location.replace(hostName + "exammodule.aspx");
-                        }
-
+                        else if (result == "Disqualified") 
+                            location.replace(hostName + "view_exampaper3.aspx?assignID=" + <%=assignID%>);
                     }
                 }
             });
 
         }
+        <%-- function tocheck_ifapplicantdisqualidies() {
+            var assignID = '<%= assignID%>';
+            $.ajax({
+                       type: "POST",
+                       url: "view_exampaper3.aspx/ifDisqualify",
+                       contentType: "application/json; charset=utf-8",
+                       dataType: "json",
+                       data: "{'assignID': '" + assignID + "'}",
+                       success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if (result == "Yes") {
+                                var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                                       location.replace(hostName + "exammodule.aspx");
+                                   }
+
+                               }
+                           }
+                    });
+        }--%>
         function ajaxcall() {
             var assignID = '<%= assignID%>';
             $.ajax({
@@ -335,6 +355,7 @@
         var is_onetimeshow = '<%=is_onetimeshow%>';
         var examid = '<%=examid%>';
         var examsheetid = '<%=examsheetid%>';
+        var examdatetime = '<%=examdatetime%>';
 
         if (is_onetimeshow == 1) {
             var aud = document.getElementById("myVideo");
@@ -348,7 +369,7 @@
                 url: "view_exampaper.aspx/Saveaudiovideoresponse",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "'}",               
+                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",                          
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);

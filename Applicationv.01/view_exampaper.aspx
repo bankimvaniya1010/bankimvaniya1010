@@ -21,6 +21,7 @@
                                 Question Paper <%=ViewState["answeredpapersheetscount"] %> / <%=allpapersheetscount%>
                             </div>
                             <div style="font-size: medium; text-align: center">
+                                <label>Time in minutes remaining for this assessment to end automatically </label>
                                 <span id="countdown"></span>                                
                                 <asp:HiddenField ID="hidTime" runat="server" />
                             </div>
@@ -28,7 +29,7 @@
                                <asp:Button runat="server" ID="disqualifiedbtn" OnClick="disqualifiedbtn_Click" Text="DisQualified"/>
                             </div>
                             <div style="text-align: right">
-                                <label>Marks : <%=exammarks%></label>
+                                <label style="font-size: 20px;">Marks : <%=exammarks%></label>
                             </div>
                             <asp:DataList ID="questionList" runat="server">
                                 <ItemTemplate>
@@ -191,8 +192,9 @@
         const countdownEl = document.getElementById('countdown');
 
         setInterval(updateCountdown, 1000);
-
+       
         function updateCountdown() {
+           ajaxcalltocheckisanswersubmitted();
             const minutes = Math.floor(time / 60);
             let seconds = time % 60;
 
@@ -233,7 +235,7 @@
                            }
                        }
                     });
-        }
+        }     
         function validateForm() {
             var allpapersCount = <%=allpapersCount%>;
             for (var i = 0; i < allpapersCount; i++) {
@@ -247,10 +249,31 @@
             }
             return true;
         }
+         function ajaxcalltocheckisanswersubmitted() {
+            var assignID = '<%= assignID%>';
+            $.ajax({
+                type: "POST",
+                url: "view_exampaper.aspx/isanswersubmitted",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{'assignID': '" + assignID + "'}",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                         if (result == "Disqualified") {
+                             var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                             location.replace(hostName + "view_exampaper.aspx?assignID=" + <%=assignID%>);
+                        }
+                    }
+                }
+            });
+
+        }
+
         var is_onetimeshow = '<%=is_onetimeshow%>';
         var examid = '<%=examid%>';
         var examsheetid = '<%=examsheetid%>';
-
+        var examdatetime = '<%=examdatetime%>';
         if (is_onetimeshow == 1) {
             var aud = document.getElementById("myVideo");
             aud.onended = function () {
@@ -263,7 +286,7 @@
                 url: "view_exampaper.aspx/Saveaudiovideoresponse",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "'}",               
+                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",               
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);

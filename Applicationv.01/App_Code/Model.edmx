@@ -1403,6 +1403,7 @@
           <Property Name="examID" Type="int" Nullable="false" />
           <Property Name="exampapersheetID" Type="int" Nullable="false" />
           <Property Name="isviewedonce" Type="int" Nullable="false" />
+          <Property Name="examdatetime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="exam_applicantmarks_releasedatemaster">
           <Key>
@@ -7260,6 +7261,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="examID" Type="Int32" Nullable="false" />
           <Property Name="exampapersheetID" Type="Int32" Nullable="false" />
           <Property Name="isviewedonce" Type="Int32" Nullable="false" />
+          <Property Name="examdatetime" Type="DateTime" />
         </EntityType>
         <EntityType Name="exam_applicantmarks_releasedatemaster">
           <Key>
@@ -11789,6 +11791,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="exam_applicantfileviewed_record">
             <EntityTypeMapping TypeName="GTEModel.exam_applicantfileviewed_record">
               <MappingFragment StoreEntitySet="exam_applicantfileviewed_record">
+                <ScalarProperty Name="examdatetime" ColumnName="examdatetime" />
                 <ScalarProperty Name="isviewedonce" ColumnName="isviewedonce" />
                 <ScalarProperty Name="exampapersheetID" ColumnName="exampapersheetID" />
                 <ScalarProperty Name="examID" ColumnName="examID" />

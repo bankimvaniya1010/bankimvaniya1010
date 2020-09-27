@@ -38,7 +38,10 @@ public partial class register : System.Web.UI.Page
         applicantdetails objapplicant = new applicantdetails();
         try
         {
-            var registeredapplicant = db.applicantdetails.Where(x => x.universityid == universityID).ToList();
+            var registeredapplicant = (from ad in db.applicantdetails
+                                       join sd in db.students on ad.applicantid equals sd.studentid
+                                       where ad.universityid == universityID && sd.isdeletedbyAdmin == false
+                                       select ad.applicantid).ToList();
             if (noofregistered != 0 && registeredapplicant.Count >= noofregistered)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Number of applicant Exhausted. Contact your institution adminstrator')", true);

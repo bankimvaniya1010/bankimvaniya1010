@@ -1608,6 +1608,7 @@ public partial class exam_applicantfileviewed_record
     public int examID { get; set; }
     public int exampapersheetID { get; set; }
     public int isviewedonce { get; set; }
+    public Nullable<System.DateTime> examdatetime { get; set; }
 }
 
 public partial class exam_applicantmarks_releasedatemaster
