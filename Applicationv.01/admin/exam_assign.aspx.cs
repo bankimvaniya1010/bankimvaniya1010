@@ -135,7 +135,7 @@ public partial class admin_exam_assign : System.Web.UI.Page
 
                              join sd in db.students on ad.applicantid equals sd.studentid into sdata
                              from s in sdata.DefaultIfEmpty()
-                             where s.isdeletedbyAdmin != true && ad.classId == classid && ad.groupId == groupid && ad.universityid == universityId && x.subjectid == subjectid && x.applicantid == ad.applicantid
+                             where s.isdeletedbyAdmin != true && s.isverifiedbyAdmin == true && ad.classId == classid && ad.groupId == groupid && ad.universityid == universityId && x.subjectid == subjectid && x.applicantid == ad.applicantid
                              select new 
                              {
                                  applicantid = ad.applicantid,

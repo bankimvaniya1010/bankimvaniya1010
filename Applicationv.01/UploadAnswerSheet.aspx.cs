@@ -1,9 +1,12 @@
 ﻿using Aspose.Words;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -163,7 +166,14 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
             {
                 toshowDiv.Attributes.Add("style", "display:none");
                 ifanswersubmitted.Attributes.Add("style", "display:block");
-                lblmsg.InnerText = "THANK YOU "+applicantfirstname+" YOUR ANSWER SHEETS FOR "+examname+" HAVE BEEN SUBMITTED SUCCESSFULLY. ";
+                if(data.status == "Completed")
+                    lblmsg.InnerText = "THANK YOU "+applicantfirstname+" YOUR ANSWER SHEETS FOR "+examname+" HAVE BEEN SUBMITTED SUCCESSFULLY. ";
+                else if(data.status == "Expired")
+                    lblmsg.InnerText = "ASSESSMENT TIME EXHAUSTED.";
+                else if(data.status == "Disqualified")
+                    lblmsg.InnerText = "YOUR ASSESSMENT HAS BEEN DISQUALIFY BY INVIGILATOR.";
+                else if (data.status == "Not Appered")
+                    lblmsg.InnerText = "YOU HAVE LEFT THE ASSESSMENT.";
             }
         }
         catch (Exception ex)
@@ -171,5 +181,23 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-  
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string isanswersubmitted(int assignID)
+    {
+        string response = string.Empty;
+        GTEEntities db1 = new GTEEntities();
+        int universityID1 = Utility.GetUniversityId();
+
+        var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+        if (string.IsNullOrEmpty(data.status))
+            response = "NOresponsesubmitted";
+        else if (data.status == "Disqualified")
+            response = "Disqualified";
+        else
+            response = "responsesubmitted";
+
+        return JsonConvert.SerializeObject(response);
+    }
 }

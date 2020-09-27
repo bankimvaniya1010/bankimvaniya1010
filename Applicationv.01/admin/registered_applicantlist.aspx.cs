@@ -43,7 +43,10 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         int? studentcount_byuniveristy = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
         lbltotal.InnerText = studentcount_byuniveristy.ToString();
 
-        int registeredapplicantcCount = db.applicantdetails.Where(x => x.universityid == universityID).ToList().Count;
+        int registeredapplicantcCount = (from ad in db.applicantdetails
+                                         join sd in db.students on ad.applicantid equals sd.studentid
+                                         where ad.universityid == universityID && sd.isdeletedbyAdmin == false
+                                         select ad.applicantid).ToList().Count;
 
         var availableApplicant_Count = studentcount_byuniveristy - registeredapplicantcCount;
 
@@ -304,6 +307,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                     db.students.Add(objstude);
                 db.SaveChanges();
                 BindApplicant();
+                Bindlabel(universityID);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant'"+objstude.name+"'('"+objstude.studentid+"' deleted successfully.)')", true);
 
             }
@@ -323,6 +327,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 if (mode == "new")
                     db.students.Add(objstude);
                 db.SaveChanges();
+                Bindlabel(universityID);
                 BindApplicant();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant'" + objstude.name + "'('" + objstude.studentid + "' verified successfully.)')", true);
                 

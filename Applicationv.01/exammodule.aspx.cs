@@ -144,7 +144,7 @@ public partial class exammodule : System.Web.UI.Page
                         shortremarks = string.IsNullOrEmpty(exam.shortremarks)?null: exam.shortremarks,
                         exam_datetime = y.exam_datetime,
                         examtimezonetoshow = "< " + y.utctimezone + " >",
-                        status = x.status == null ? null : x.status,
+                        status = string.IsNullOrEmpty(x.status) ? null : x.status,
                         showstatus = string.IsNullOrEmpty(x.status) ? "Active" : x.status,
                         Downloadfile = string.IsNullOrEmpty(exam.studentfilepath)? null: webURL + "/Docs/Exammodule/" + UniversityID + "/" + exam.exampapersid + "/studentfile/" + exam.studentfilepath,
                         exampage_link = webURL + "exam_details.aspx?examid=" + exam.exampapersid + "&assignDate=" + y.exam_datetime,

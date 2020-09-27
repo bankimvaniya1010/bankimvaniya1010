@@ -111,33 +111,35 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                         {
                             string[] rows = sreader.ReadLine().Split(',');
 
-                            string username = rows[0].ToString().Trim();
-                            var email = rows[1].ToString().Trim();
-                            var Class = rows[2].ToString().Trim();
-                            var group = rows[3].ToString().Trim();
-                            var studentid = rows[4].ToString().Trim();
+                            string firstname = rows[0].ToString().Trim();
+                            string familyname = rows[1].ToString().Trim();
+                            var email = rows[2].ToString().Trim();
+                            var Class = rows[3].ToString().Trim();
+                            var group = rows[4].ToString().Trim();
+                            var studentid = rows[5].ToString().Trim();
 
                             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                             Match match = regex.Match(email);
                             if (match.Success)
                             {
-                                if (!string.IsNullOrEmpty(username))
+                                if (!string.IsNullOrEmpty(firstname))
                                 {
                                     if (string.IsNullOrEmpty(Class) || checkifClassMapped(Class))
                                     {
                                         if (string.IsNullOrEmpty(group) || checkifGroupMapped(group))
                                         {
-                                            savetoDatabase(username, email, Class, group, studentid);
+                                            savetoDatabase(firstname,familyname , email, Class, group, studentid);
                                         }
                                         else
                                         {
                                             invalidlist.Add(new details
                                             {
-                                                username = rows[0].ToString().Trim(),
-                                                email = rows[1].ToString().Trim(),
-                                                Class = rows[2].ToString().Trim(),
-                                                group = rows[3].ToString().Trim(),
-                                                studentid = rows[4].ToString().Trim(),
+                                                firstname = rows[0].ToString().Trim(),
+                                                familyname = rows[1].ToString().Trim(),
+                                                email = rows[2].ToString().Trim(),
+                                                Class = rows[3].ToString().Trim(),
+                                                group = rows[4].ToString().Trim(),
+                                                studentid = rows[5].ToString().Trim(),
                                                 invalidreason = "InValid Group Name"
                                             });
                                         }
@@ -146,11 +148,12 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                                     {
                                         invalidlist.Add(new details
                                         {
-                                            username = rows[0].ToString().Trim(),
-                                            email = rows[1].ToString().Trim(),
-                                            Class = rows[2].ToString().Trim(),
-                                            group = rows[3].ToString().Trim(),
-                                            studentid = rows[4].ToString().Trim(),
+                                            firstname = rows[0].ToString().Trim(),
+                                            familyname = rows[1].ToString().Trim(),
+                                            email = rows[2].ToString().Trim(),
+                                            Class = rows[3].ToString().Trim(),
+                                            group = rows[4].ToString().Trim(),
+                                            studentid = rows[5].ToString().Trim(),
                                             invalidreason = "InValid Class Name"
                                         });
                                     }
@@ -159,11 +162,12 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                                 {
                                     invalidlist.Add(new details
                                     {
-                                        username = rows[0].ToString().Trim(),
-                                        email = rows[1].ToString().Trim(),
-                                        Class = rows[2].ToString().Trim(),
-                                        group = rows[3].ToString().Trim(),
-                                        studentid = rows[4].ToString().Trim(),
+                                        firstname = rows[0].ToString().Trim(),
+                                        familyname = rows[1].ToString().Trim(),
+                                        email = rows[2].ToString().Trim(),
+                                        Class = rows[3].ToString().Trim(),
+                                        group = rows[4].ToString().Trim(),
+                                        studentid = rows[5].ToString().Trim(),
                                         invalidreason = "InValid Name"
                                     });
                                 }
@@ -172,11 +176,12 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                             {
                                 invalidlist.Add(new details
                                 {
-                                    username = rows[0].ToString().Trim(),
-                                    email = rows[1].ToString().Trim(),
-                                    Class = rows[2].ToString().Trim(),
-                                    group = rows[3].ToString().Trim(),
-                                    studentid = rows[4].ToString().Trim(),
+                                    firstname = rows[0].ToString().Trim(),
+                                    familyname = rows[1].ToString().Trim(),
+                                    email = rows[2].ToString().Trim(),
+                                    Class = rows[3].ToString().Trim(),
+                                    group = rows[4].ToString().Trim(),
+                                    studentid = rows[5].ToString().Trim(),
                                     invalidreason = "InValid Email"
                                 });
                             }
@@ -235,19 +240,24 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
         }
     }
 
-    private void savetoDatabase(string username, string useremail, string Class, string group, string studentid)
+    private void savetoDatabase(string firstname, string familyname , string useremail, string Class, string group, string studentid)
     {
         try
         {
             //check count set by institution for registration
             var universitycount = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
-            var registeredapplicant = db.applicantdetails.Where(x => x.universityid == universityID).ToList();
+            var registeredapplicant = (from ad in db.applicantdetails
+                                       join sd in db.students on ad.applicantid equals sd.studentid
+                                       where ad.universityid == universityID && sd.isdeletedbyAdmin == false
+                                       select ad.applicantid).ToList();
+            //db.applicantdetails.Where(x => x.universityid == universityID).ToList();
             if (universitycount != 0 && registeredapplicant.Count >= universitycount)
             {
                 //count exhausted
                 invalidlist.Add(new details
                 {
-                    username = username,
+                    firstname = firstname,
+                    familyname = familyname,
                     email = useremail,
                     Class = Class,
                     group = group,
@@ -262,7 +272,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                 {
 
                     students usrObj = new students();
-                    usrObj.name = username;
+                    usrObj.name = firstname;
                     usrObj.email = useremail;
                     int otp = objCom.RandomNumber(100000, 999999);
                     usrObj.otp = otp;
@@ -278,7 +288,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     // add to list
                     employees.Add(new students
                     {
-                        username = username,
+                        username = firstname,
                         email = useremail,
                         studentid = usrObj.studentid
                     });
@@ -289,12 +299,8 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     var id = usrObj.studentid;
                     objapplicant.applicantid = id;
                     objapplicant.email = useremail;
-
-                    string[] nameArr = username.Split(' ');
-                    objapplicant.firstname = nameArr[0];
-                    if (nameArr.Length > 1)
-                        objapplicant.lastname = username.Substring(nameArr[0].Length + 1);
-
+                    objapplicant.firstname = firstname;
+                    objapplicant.lastname = familyname;
                     universityID = Utility.GetUniversityId();
                     objapplicant.universityid = universityID;
                     objapplicant.groupId = objCom.getgroupid(group);
@@ -314,6 +320,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     {
                         sendNotification(university.emai_notification2, useremail, id);
                     }
+                    string username = firstname + " " + familyname;
                     sendNotificationToStudent(university, useremail, username, otp);
                 }
                 else
@@ -321,7 +328,8 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     //same email id presenet
                     invalidlist.Add(new details
                     {
-                        username = username,
+                        firstname = firstname,
+                        familyname=familyname,
                         email = useremail,
                         Class = Class,
                         group = group,
@@ -415,7 +423,8 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
 
     public class details
     {
-        public string username { get; set; }
+        public string firstname { get; set; }
+        public string familyname { get; set; }
         public string email { get; set; }
         public string Class { get; set; }
         public string group { get; set; }
@@ -428,7 +437,8 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
     {      
         System.Data.DataTable dt = new System.Data.DataTable();
         // all columns
-        dt.Columns.Add("Name", typeof(string));
+        dt.Columns.Add("First Name", typeof(string));
+        dt.Columns.Add("Family Name", typeof(string));
         dt.Columns.Add("Email", typeof(string));
         dt.Columns.Add("Class", typeof(string));
         dt.Columns.Add("Group", typeof(string));
@@ -442,7 +452,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
             {
                 var details = invalidlist[i];
 
-                dt.Rows.Add(details.username, details.email, details.Class, details.group, details.invalidreason);
+                dt.Rows.Add(details.firstname, details.familyname, details.email, details.Class, details.group, details.invalidreason);
 
                 rowNumber++;
             }
