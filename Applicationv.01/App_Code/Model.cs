@@ -248,6 +248,8 @@ public partial class applicantdetails
     public int applicantpersonaldetailsid { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
+    public Nullable<bool> isdeletedbyAdmin { get; set; }
+    public Nullable<bool> isverifiedbyAdmin { get; set; }
     public Nullable<int> title { get; set; }
     public string firstname { get; set; }
     public Nullable<bool> ispassportfirstname { get; set; }
@@ -1608,6 +1610,7 @@ public partial class exam_applicantfileviewed_record
     public int examID { get; set; }
     public int exampapersheetID { get; set; }
     public int isviewedonce { get; set; }
+    public Nullable<System.DateTime> examdatetime { get; set; }
 }
 
 public partial class exam_applicantmarks_releasedatemaster

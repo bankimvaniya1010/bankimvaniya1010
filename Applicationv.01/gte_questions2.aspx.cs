@@ -69,7 +69,7 @@ public partial class gte_questions2 : System.Web.UI.Page
                         }
                         else if (applicantdetails.issameaspostal == 2)
                         {
-                            if (applicantdetails.residentialcountry)
+                            if (applicantdetails.residentialcountry != null)
                                 ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry);
                         }
                         else

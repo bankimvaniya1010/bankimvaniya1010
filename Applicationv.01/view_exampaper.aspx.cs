@@ -26,6 +26,8 @@ public partial class view_exampaper : System.Web.UI.Page
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected static List<faq> allQuestions = new List<faq>();
     public int is_onetimeshow = 0, examsheetid, examid;
+    public DateTime examdatetime;
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -42,14 +44,15 @@ public partial class view_exampaper : System.Web.UI.Page
         else
             assignID = Convert.ToInt32(Request.QueryString["assignID"].ToString());
        
-        var data = db.exam_assign.Where(x => x.assignid == assignID).Select(x => new { x.exampapersid, x.exam_datetime }).FirstOrDefault();
+        var data = db.exam_assign.Where(x => x.assignid == assignID).Select(x => new { x.exampapersid, x.exam_datetime,x.status }).FirstOrDefault();
         if (data != null)
         {
 
             exampaperid = Convert.ToInt32(data.exampapersid);
             assignDate = Convert.ToDateTime(data.exam_datetime);
+            examdatetime = assignDate;
         }
-
+        
         var exammaster = db.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == exampaperid).FirstOrDefault();
 
         exammarks = exammaster.maximummarks;
@@ -80,11 +83,31 @@ public partial class view_exampaper : System.Web.UI.Page
             {
                 completedDiv.Visible = true;
                 completedDiv.Style.Remove("display");
-                questions.Visible = false;                
+                questions.Visible = false;
                 lblCompleted.Text = "You have answered all question.";
             }
             else
-                SetQuestionList(answeredpapersheets);
+            {
+                if (string.IsNullOrEmpty(data.status))
+                    SetQuestionList(answeredpapersheets);
+                else
+                {
+                    completedDiv.Visible = true;
+                    completedDiv.Style.Remove("display");
+                    questions.Visible = false;
+                    if (data.status == "Completed")
+                        lblCompleted.Text = "YOUR ANSWER SHEETS HAVE BEEN SUBMITTED SUCCESSFULLY. ";
+                    else if (data.status == "Expired")
+                        lblCompleted.Text = "ASSESSMENT TIME EXHAUSTED.";
+                    else if (data.status == "Disqualified")
+                        lblCompleted.Text = "YOUR ASSESSMENT HAS BEEN DISQUALIFY BY INVIGILATOR.";
+                    else if (data.status == "Not Appered")
+                        lblCompleted.Text = "YOU HAVE LEFT THE ASSESSMENT.";
+                    if (data.status == "Disqualified")
+                        lblCompleted.Text = "Your assessment has been disqualify by invigilator.";
+                }
+
+            }
         }
     }
 
@@ -138,7 +161,7 @@ public partial class view_exampaper : System.Web.UI.Page
                              }).ToList();
             foreach (var item in allpapers)
             {
-                var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.exampapersheetID == item.id && x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.exampapersheetID == item.id && x.applicantid == UserID && x.universityid == UniversityID && x.examdatetime == examdatetime).FirstOrDefault();
                 if (data_ifviewed == null)
                     is_onetimeshow = Convert.ToInt32(item.onetimeshow);
                 else
@@ -307,7 +330,7 @@ public partial class view_exampaper : System.Web.UI.Page
     
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow)
+    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow, DateTime examdatetime)
     {
         GTEEntities db1 = new GTEEntities();
         int universityID1 = Utility.GetUniversityId();
@@ -315,7 +338,7 @@ public partial class view_exampaper : System.Web.UI.Page
 
         var mode = "new";
         exam_applicantfileviewed_record objmapping = new exam_applicantfileviewed_record();
-        var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1).FirstOrDefault();
+        var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1 && x.examdatetime == examdatetime).FirstOrDefault();
 
         if (data != null)
         {
@@ -327,12 +350,14 @@ public partial class view_exampaper : System.Web.UI.Page
         objmapping.examID = examid;
         objmapping.applicantid = userID1;
         objmapping.universityid = universityID1;
+        objmapping.examdatetime = examdatetime;
         if (mode == "new")
             db1.exam_applicantfileviewed_record.Add(objmapping);
         db1.SaveChanges();
         return JsonConvert.SerializeObject(is_onetimeshow);
     }
 
+   
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static string Saveresponse(int assignID)
@@ -355,5 +380,24 @@ public partial class view_exampaper : System.Web.UI.Page
             db1.exam_assign.Add(objexam_assign);
         db1.SaveChanges();
         return JsonConvert.SerializeObject(assignID);
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string isanswersubmitted(int assignID)
+    {
+        string response = string.Empty;
+        GTEEntities db1 = new GTEEntities();
+        int universityID1 = Utility.GetUniversityId();
+
+        var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+        if (string.IsNullOrEmpty(data.status))
+            response = "NOresponsesubmitted";
+        else if (data.status == "Disqualified")
+            response = "Disqualified";
+        else
+            response = "responsesubmitted";
+
+        return JsonConvert.SerializeObject(response);
     }
 }

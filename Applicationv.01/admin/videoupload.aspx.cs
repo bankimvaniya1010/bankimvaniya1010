@@ -14,6 +14,7 @@ public partial class admin_videoupload : System.Web.UI.Page
     public string webURL = String.Empty;
     int universityID;
     string roleName = string.Empty;
+    int ifdeleteclick = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -26,18 +27,24 @@ public partial class admin_videoupload : System.Web.UI.Page
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
             BindUploaded();
+        if (ifdeleteclick == 0)
+        {
+            HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
+            if (httpPostedFile.Count > 0)
+                uploadVideo(httpPostedFile[0], HttpContext.Current.Request["doc_name"]);
+        }
     }
 
-    protected void btn_submit_Click(object sender, EventArgs e)
-    {
-        try {
+    private void uploadVideo(HttpPostedFile httpPostedFile, string docName) {
+        try
+        {
             var mode = "new";
             admin_videomaster objmapping = new admin_videomaster();
 
             string sectioname = txtsectinname.Value;
             var Data = (from tInfo in db.admin_videomaster
-                                where tInfo.sectioname == sectioname
-                                select tInfo).FirstOrDefault();
+                        where tInfo.sectioname == sectioname
+                        select tInfo).FirstOrDefault();
 
             if (Data != null)
             {
@@ -45,21 +52,29 @@ public partial class admin_videoupload : System.Web.UI.Page
                 objmapping = Data;
             }
 
-            objmapping.sectioname = txtsectinname.Value;
-            
-            
-            if (FileUpload.HasFile)
-            {
-                string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/AdminHelpingVideo";
-                string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(FileUpload.PostedFile.FileName));
-                string filePath = string.Concat(dirPath, "/", fileName);
-                DirectoryInfo di = new DirectoryInfo(dirPath);
-                if (!di.Exists)
-                    di.Create();
-                FileUpload.PostedFile.SaveAs(filePath);
-                objmapping.videopath= fileName;
-            }
-           
+            objmapping.sectioname = docName;
+
+            string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/AdminHelpingVideo";
+            string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(httpPostedFile.FileName));
+            string filePath = string.Concat(dirPath, "/", fileName);
+            DirectoryInfo di = new DirectoryInfo(dirPath);
+            if (!di.Exists)
+                di.Create();
+            httpPostedFile.SaveAs(filePath);
+            objmapping.videopath = fileName;
+
+            //if (FileUpload.HasFile)
+            //{
+            //    string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/AdminHelpingVideo";
+            //    string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(FileUpload.PostedFile.FileName));
+            //    string filePath = string.Concat(dirPath, "/", fileName);
+            //    DirectoryInfo di = new DirectoryInfo(dirPath);
+            //    if (!di.Exists)
+            //        di.Create();
+            //    FileUpload.PostedFile.SaveAs(filePath);
+            //    objmapping.videopath = fileName;
+            //}
+
             if (mode == "new")
                 db.admin_videomaster.Add(objmapping);
             db.SaveChanges();
@@ -67,6 +82,45 @@ public partial class admin_videoupload : System.Web.UI.Page
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
+    //protected void btn_submit_Click(object sender, EventArgs e)
+    //{
+    //    try {
+    //        var mode = "new";
+    //        admin_videomaster objmapping = new admin_videomaster();
+
+    //        string sectioname = txtsectinname.Value;
+    //        var Data = (from tInfo in db.admin_videomaster
+    //                            where tInfo.sectioname == sectioname
+    //                            select tInfo).FirstOrDefault();
+
+    //        if (Data != null)
+    //        {
+    //            mode = "update";
+    //            objmapping = Data;
+    //        }
+
+    //        objmapping.sectioname = txtsectinname.Value;
+            
+            
+    //        if (FileUpload.HasFile)
+    //        {
+    //            string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/AdminHelpingVideo";
+    //            string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(FileUpload.PostedFile.FileName));
+    //            string filePath = string.Concat(dirPath, "/", fileName);
+    //            DirectoryInfo di = new DirectoryInfo(dirPath);
+    //            if (!di.Exists)
+    //                di.Create();
+    //            FileUpload.PostedFile.SaveAs(filePath);
+    //            objmapping.videopath= fileName;
+    //        }
+           
+    //        if (mode == "new")
+    //            db.admin_videomaster.Add(objmapping);
+    //        db.SaveChanges();
+    //        BindUploaded();
+    //    }
+    //    catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    //}
 
     private void BindUploaded()
     {
@@ -110,7 +164,7 @@ public partial class admin_videoupload : System.Web.UI.Page
                 {
                     string id = e.Row.Cells[0].Text; // Get the id to be deleted
                                                      //cast the ShowDeleteButton link to linkbutton
-                    LinkButton lb = (LinkButton)e.Row.Cells[5].Controls[0];
+                    LinkButton lb = (LinkButton)e.Row.Cells[3].Controls[0];
                     if (lb != null)
                     {
                         //attach the JavaScript function with the ID as the paramter
@@ -134,6 +188,7 @@ public partial class admin_videoupload : System.Web.UI.Page
     {
         try
         {
+            ifdeleteclick = 1;
             int ID = Convert.ToInt32(grid.DataKeys[e.RowIndex].Values[0]);
             admin_videomaster objID = db.admin_videomaster.Where(b => b.videoID == ID).First();
             
@@ -144,6 +199,7 @@ public partial class admin_videoupload : System.Web.UI.Page
                 db.admin_videomaster.Remove(objID);
                 db.SaveChanges();
                 BindUploaded();
+                ifdeleteclick = 0;
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete this Video as its already assign to Institution.')", true);

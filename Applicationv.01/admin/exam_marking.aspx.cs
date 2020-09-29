@@ -255,22 +255,37 @@ public partial class admin_exam_marking : System.Web.UI.Page
 
             if (examdata.uploadtype == 1 || examdata.uploadtype == 3)
             {
-                showuploadexamDiv.Attributes.Add("style", "display:block");
-                BindGrid(universityId, exampaperId, studentid, datetime);
-                coeCard.Attributes.Add("style", "display:block");
-                lbltotalmarks.Text = examdata.maximummarks;
-                marksobtain = Convert.ToInt32(examdata.maximummarks);
+                if (studentstatus.Contains("Completed") || studentstatus.Contains("Disqualified"))
+                {
+                    showuploadexamDiv.Attributes.Add("style", "display:block");
+                    BindGrid(universityId, exampaperId, studentid, datetime);
+                    coeCard.Attributes.Add("style", "display:block");
+                    lbltotalmarks.Text = examdata.maximummarks;
+                    marksobtain = Convert.ToInt32(examdata.maximummarks);
+                }
+                else {
+                    lblMess.Visible = false;
+                    showuploadexamDiv.Attributes.Add("style", "display:none");
+                    coeCard.Attributes.Add("style", "display:none");
+                    BindGrid(universityId, exampaperId, studentid, datetime);
+                }
+
             }
             else if (examdata.uploadtype == 2)
             {
                 if (studentstatus.Contains("Completed") || studentstatus.Contains("Disqualified"))
+                {
                     toshowanswersheet(universityId, studentid, exampaperId, datetime, examinerID);
+                    lblMess.Visible = false;
+                }
                 else
                 {
                     showbuildexamDiv.Attributes.Add("style", "display:none");
                     evalutionguid.Attributes.Add("style", "display:none");
                     showfinalmarks_dateDiv.Attributes.Add("style", "display:none");
                     savedatemarks.Attributes.Add("style", "display:none");
+                    lblMess.Visible = true;
+                    lblMess.InnerText = "Student not yet appered for exam";
                 }
             }            
         }
@@ -331,9 +346,9 @@ public partial class admin_exam_marking : System.Web.UI.Page
                                         select new
                                         {
                                             answesheetid = exam.answesheetid,
-                                            anshwesheetpath = exam.anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid  + "/" + exam.anshwesheetpath,
-                                            extra_anshwesheetpath = exam.extra_anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/extrasheet/" + exam.extra_anshwesheetpath,
-                                            checkedsheet = x.checked_answersheetPath == null ? null : webURL + "Docs/Exammodule/Admin_checkedsheets/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.answesheetid + "/" + x.checked_answersheetPath,
+                                            anshwesheetpath = exam.anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid+"/"+exam.exampapersheetID + "/" + exam.anshwesheetpath,
+                                            extra_anshwesheetpath = exam.extra_anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.exampapersheetID + "/" + "/extrasheet/" + exam.extra_anshwesheetpath,
+                                            checkedsheet = x.checked_answersheetPath == null ? null : webURL + "Docs/Exammodule/Admin_checkedsheets/" + exam.universityID + "/" + exam.exampaperid + "/" + exam.applicantid + "/" + exam.answesheetid + "/" + x.checked_answersheetPath,
                                         }).OrderBy(x => x.answesheetid).ToList();
             }
             else if (examdata.uploadtype == 3)
@@ -360,6 +375,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 showfinalmarks_dateDiv.Attributes.Add("style", "display:block");
                 btnsavedatemarks.Attributes.Add("style", "display:block");
                 coeCard.Attributes.Add("style", "display:block");
+                lblMess.Visible = false;
                 populatedate_marks(examinerID, exampaperid, studentid, universityid, examdate_time);
             }
             else
@@ -504,7 +520,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
             var university = db.university_master.Where(x => x.universityid == objmappping.universityid).FirstOrDefault();
 
             string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/ResultDeclaration_Notification.html"));
-            string emailsubject = "Your " + examname + " result declaration date.";
+            string emailsubject = "Your " + examname.exam_name + " result declaration date.";
             html = html.Replace("@UniversityName", university.university_name);
             html = html.Replace("@universityLogo", webURL + "Docs/" + objmappping.universityid + "/" + university.logo);
             html = html.Replace("@Name", studentDetails.name);

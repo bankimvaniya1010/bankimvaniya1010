@@ -34,6 +34,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
     List<details> allpapers = new List<details>();
     string btnvalue = string.Empty;
     public int is_onetimeshow = 0, examsheetid, examid;
+    public DateTime examdatetime;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -60,6 +61,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
             {
                 exampaperid = Convert.ToInt32(data.exampapersid);
                 assignDate = Convert.ToDateTime(data.exam_datetime);
+                examdatetime = assignDate;
             }
         }
 
@@ -70,7 +72,27 @@ public partial class view_exampaper3 : System.Web.UI.Page
         }
 
         if (!IsPostBack)
-            showdetails();
+        {
+            if (string.IsNullOrEmpty(data.status))
+                showdetails();
+            else
+            {
+                completedDiv.Visible = true;
+                completedDiv.Style.Remove("display");
+                questions.Visible = false;
+                if (data.status == "Completed")
+                    lblCompleted.Text = "YOUR ANSWER SHEETS HAVE BEEN SUBMITTED SUCCESSFULLY. ";
+                else if (data.status == "Expired")
+                    lblCompleted.Text = "ASSESSMENT TIME EXHAUSTED.";
+                else if (data.status == "Disqualified")
+                    lblCompleted.Text = "YOUR ASSESSMENT HAS BEEN DISQUALIFY BY INVIGILATOR.";
+                else if (data.status == "Not Appered")
+                    lblCompleted.Text = "YOU HAVE LEFT THE ASSESSMENT.";
+                if (data.status == "Disqualified")
+                    lblCompleted.Text = "Your assessment has been disqualify by invigilator.";
+            }
+        }
+            
     }
 
     private void showTime() {
@@ -225,7 +247,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
             }
             foreach (var item in allpapers)
             {
-                var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.examdatetime == examdatetime && x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
                 if (data_ifviewed == null)
                     is_onetimeshow = Convert.ToInt32(item.onetimeshow);
                 else
@@ -476,6 +498,8 @@ public partial class view_exampaper3 : System.Web.UI.Page
         var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
         if (string.IsNullOrEmpty(data.status))
             response = "NOresponsesubmitted";
+        else if (data.status == "Disqualified")
+            response = "Disqualified";
         else
             response = "responsesubmitted";
         
@@ -508,7 +532,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow)
+    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow, DateTime examdatetime)
     {
         GTEEntities db1 = new GTEEntities();
         int universityID1 = Utility.GetUniversityId();
@@ -516,7 +540,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
         var mode = "new";
         exam_applicantfileviewed_record objmapping = new exam_applicantfileviewed_record();
-        var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1).FirstOrDefault();
+        var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.examdatetime == examdatetime && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1).FirstOrDefault();
 
         if (data != null)
         {
@@ -528,10 +552,10 @@ public partial class view_exampaper3 : System.Web.UI.Page
         objmapping.examID = examid;
         objmapping.applicantid = userID1;
         objmapping.universityid = universityID1;
+        objmapping.examdatetime = examdatetime;
         if (mode == "new")
             db1.exam_applicantfileviewed_record.Add(objmapping);
         db1.SaveChanges();
         return JsonConvert.SerializeObject(is_onetimeshow);
     }
-
 }

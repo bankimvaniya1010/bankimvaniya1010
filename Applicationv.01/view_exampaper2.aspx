@@ -20,15 +20,16 @@
                             Question Paper <%=ViewState["answeredpapersheetscount"] %> / <%=allpapersheetscount%>
                         </div>
                         <div style="font-size: medium; text-align: center">
+                            <label>Time in minutes remaining for this assessment to end automatically </label>
                             <span id="countdown"></span>
                             <asp:HiddenField ID="hidTime" runat="server" />
                         </div>
                         <div style="text-align: right;display:none;">
                             <asp:Button runat="server" ID="disqualifiedbtn" OnClick="disqualifiedbtn_Click" Text="DisQualified" />
                         </div>
-                        <%-- <div style="text-align: right">
-                            <label>Marks : <%=exammarks%></label>
-                        </div>--%>
+                         <div style="text-align: right">
+                            <label style="font-size: 20px;">Marks : <%=exammarks%></label>
+                        </div>
                         <asp:DataList ID="questionList" runat="server">
                             <ItemTemplate>
                                 <asp:Panel ID="options" runat="server">
@@ -235,75 +236,91 @@
         </div>
     <script>
 
-        $(document).ready(function () {
-            $('.sidebar-menu-item').removeClass('open');
-            $('#exam_list').addClass('open');
-            $('.sidebar-menu-item').removeClass('active');
-            $('#exammodule').addClass('active');
+        $(document).ready(function () {           
+
+            setInterval(ajaxcalltocheckisanswersubmitted, 1000);
+
+            var hms = '<%=Session["totalResponseTime"]%>';   // your input string       
+            //Convert hh:mm:ss string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
+            var secondsS;
+            //alert(secondsS);
+            if (hms != "") {
+                if (hms.includes(":"))
+                    secondsS = hms.split(':').reverse().reduce((prev, curr, i) => prev + curr * Math.pow(60, i), 0);
+                else
+                    secondsS = hms * 60;
+                let time = secondsS;
+                const countdownEl = document.getElementById('countdown');
+                if (time != null || time != "")
+                    setInterval(updateCountdown, 1000);
+
+
+                function updateCountdown() {
+                    const minutes = Math.floor(time / 60);
+                    let seconds = time % 60;
+
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
+                    countdownEl.innerHTML = `${minutes}:${seconds}`;
+                    time--;
+                    $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
+
+                if (countdownEl.innerHTML == '10:00') {
+                    alert("Only 10 minutes remaining. ");
+                    return false;
+                }
+                else {
+                    var applicantid = '<%=HttpContext.Current.Session["UserID"]%>';
+                        var exampaper_id = '<%= exampaper_id%>';
+                        var assignID = '<%= assignID%>';
+
+                        if (countdownEl.innerHTML == '0:00') {
+                            countdownEl.style.display = 'none';
+                            alert("Assessmnent time exhausted");
+                            $.ajax({
+                                type: "POST",
+                                url: "view_exampaper2.aspx/Saveresponse",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: "{'assignID': '" + assignID + "'}",
+                                success: function (response) {
+                                    if (response.d) {
+                                        var result = JSON.parse(response.d);
+
+                                    }
+                                }
+                            });
+                            var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                            location.replace(hostName + "exammodule.aspx");
+
+                        }
+                        else
+                            return true;
+                    }
+                }
+
+            }
         });
 
-
-
-        var hms = '<%=Session["totalResponseTime"]%>';   // your input string       
-        //Convert hh:mm:ss string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
-        var secondsS;
-        //alert(secondsS);
-        if (hms != "") {
-            if (hms.includes(":"))
-                secondsS = hms.split(':').reverse().reduce((prev, curr, i) => prev + curr * Math.pow(60, i), 0);
-            else
-                secondsS = hms * 60;
-            let time = secondsS;
-            const countdownEl = document.getElementById('countdown');
-
-            //if (time != null)
-            //    setInterval(updateCountdown, 1000);
-
-            function updateCountdown() {
-                const minutes = Math.floor(time / 60);
-                let seconds = time % 60;
-
-                seconds = seconds < 10 ? '0' + seconds : seconds;
-                countdownEl.innerHTML = `${minutes}:${seconds}`;
-                time--;
-                $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
-
-            if (countdownEl.innerHTML == '10:00') {
-                alert("Only 10 minutes remaining. ");
-                return false;
-            }
-            else {
-                var applicantid = '<%=HttpContext.Current.Session["UserID"]%>';
-                var exampaper_id = '<%= exampaper_id%>';
-                var assignID = '<%= assignID%>';
-
-                if (countdownEl.innerHTML == '0:00') {
-                    countdownEl.style.display = 'none';
-                    alert("Assessmnent time exhausted");
-                    $.ajax({
-                        type: "POST",
-                        url: "view_exampaper2.aspx/Saveresponse",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: "{'assignID': '" + assignID + "'}",
-                        success: function (response) {
-                            if (response.d) {
-                                var result = JSON.parse(response.d);
-
-                            }
+         function ajaxcalltocheckisanswersubmitted() {
+            var assignID = '<%= assignID%>';
+            $.ajax({
+                type: "POST",
+                url: "view_exampaper2.aspx/isanswersubmitted",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{'assignID': '" + assignID + "'}",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                         if (result == "Disqualified") {
+                             var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                             location.replace(hostName + "view_exampaper2.aspx?assignID=" + <%=assignID%>);
                         }
-                    });
-                    var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
-                        location.replace(hostName + "exammodule.aspx");
-
                     }
-                    else
-                        return true;
                 }
-            }
+            });
 
         }
-
         function validateForm() {
             var MCQ = '<%=MCQ%>';
             var TrueFalse = '<%=TrueFalse%>';
@@ -367,6 +384,7 @@
         var is_onetimeshow = '<%=is_onetimeshow%>';
         var examid = '<%=examid%>';
         var examsheetid = '<%=examsheetid%>';
+        var examdatetime = '<%=examdatetime%>';
 
         if (is_onetimeshow == 1) {
             var aud = document.getElementById("myVideo");
@@ -380,7 +398,7 @@
                 url: "view_exampaper.aspx/Saveaudiovideoresponse",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "'}",               
+                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",                             
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
@@ -388,6 +406,15 @@
                 }
             });
         }
+        
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#exam_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#exammodule').addClass('active');
+        });
+
+
     </script>
 
 </asp:Content>

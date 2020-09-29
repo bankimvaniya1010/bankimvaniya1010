@@ -12,9 +12,35 @@
     <!-- Bootstrap -->
     <link href="https://fonts.googleapis.com/css?family=Parisienne&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Parisienne&display=swap" rel="stylesheet">
-    <link href="assets/dashboard/css/bootstrap.min.css" rel="stylesheet">
+     <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/dashboard/css/bootstrap.min.css" rel="stylesheet">
+    <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/jquery-ui-1.12.1.min.js"></script>
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/jquery-ui-1.12.1.min.css" rel="stylesheet">
+
 
     <script>
+          function ajaxcalltocheckisanswersubmitted() {
+            var assignID = '<%= assignID%>';
+            $.ajax({
+                type: "POST",
+                url: "UploadAnswerSheet.aspx/isanswersubmitted",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{'assignID': '" + assignID + "'}",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                         if (result == "Disqualified") {
+                             var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                             location.replace(hostName + "UploadAnswerSheet.aspx?ID=" + <%=assignID%>);
+                        }
+                    }
+                }
+            });
+
+        }
+       setInterval(ajaxcalltocheckisanswersubmitted, 1000);
+        
+        
 
         function validateUploadedFile() {
             var filePath = $("#<%=FileUpload.ClientID%>").val();
@@ -91,7 +117,7 @@
                     if (req.status && req.status == 200 && (req.readyState == 4)) {
                         $("#btnDownload").removeAttr("disabled");
                         alert("Your answer sheets have been upload successfully.");
-                        location.replace(hostName + "UploadAnswerSheet.aspx?ID"+<%=assignID%>);
+                        location.replace(hostName + "UploadAnswerSheet.aspx?ID="+<%=assignID%>);
                     }
                 }
 

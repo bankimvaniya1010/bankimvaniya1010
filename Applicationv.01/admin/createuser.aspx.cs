@@ -228,7 +228,7 @@ public partial class createuser : System.Web.UI.Page
         usrObj.status = 1;
         if (mode == "new")
             db.adminusers.Add(usrObj);
-       // db.SaveChanges();
+        db.SaveChanges();
         if (usrObj.roleid == 13 || usrObj.roleid == 14)
         {            
             foreach (ListItem li in chkroles.Items)

@@ -135,7 +135,7 @@
                                     <tr>
                                        
                                         <td style="width: 30px;">
-                                            <span><%=invalidlist[i].username %></span>
+                                            <span><%=invalidlist[i].firstname %></span>
                                         </td>
                                         <td style="width: 30px;">
                                             <span><%=invalidlist[i].email%></span>

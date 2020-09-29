@@ -213,8 +213,8 @@
                              <div class="list-group-item" id="Div1" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label1" for="title" class="col-md-4 col-form-label form-label">Subject</label>
-                                        <div class="col-md-6">                                            
+                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">Subjects</label>
+                                        <div class="col-md-7">                                            
                                            <asp:CheckBoxList ID="ddlsubject" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"></asp:CheckBoxList>
                                             <asp:HiddenField runat="server" ID="HidSubjectID"/>
                                         </div>
@@ -311,8 +311,8 @@
             var flag = false;
             if ($("#<%=txtfirstname.ClientID%>").val() == "")
                 alert("Please enter first name");
-            else if ($("#<%=txtmiddlename.ClientID%>").val() == "")
-                alert("Please enter middle name");
+           <%-- else if ($("#<%=txtmiddlename.ClientID%>").val() == "")
+                alert("Please enter middle name");--%>
             else if ($("#<%=txtlastname.ClientID%>").val() == "")
                 alert("Please enter last name");
             else if ($("#<%=txtemail.ClientID%>").val() == "")

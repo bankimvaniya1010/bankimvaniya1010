@@ -144,7 +144,7 @@ public partial class exammodule : System.Web.UI.Page
                         shortremarks = string.IsNullOrEmpty(exam.shortremarks)?null: exam.shortremarks,
                         exam_datetime = y.exam_datetime,
                         examtimezonetoshow = "< " + y.utctimezone + " >",
-                        status = x.status == null ? null : x.status,
+                        status = string.IsNullOrEmpty(x.status) ? null : x.status,
                         showstatus = string.IsNullOrEmpty(x.status) ? "Active" : x.status,
                         Downloadfile = string.IsNullOrEmpty(exam.studentfilepath)? null: webURL + "/Docs/Exammodule/" + UniversityID + "/" + exam.exampapersid + "/studentfile/" + exam.studentfilepath,
                         exampage_link = webURL + "exam_details.aspx?examid=" + exam.exampapersid + "&assignDate=" + y.exam_datetime,
@@ -158,7 +158,7 @@ public partial class exammodule : System.Web.UI.Page
                         examuploadtype = exam.uploadtype== 2?null: exam.uploadtype,
                         gotoresultpage = null,
                     }).SortBy("status").ToList();
-            
+
             if (selectedvalue == "Active")
                 data.RemoveAll(x => x.status != null);
             else if (selectedvalue == "Completed")
@@ -167,7 +167,9 @@ public partial class exammodule : System.Web.UI.Page
                 data.RemoveAll(x => x.status != "Expired");
             else if (selectedvalue == "NotApperead")
                 data.RemoveAll(x => x.status != "NotApperead");
-            
+            else if (selectedvalue == "Disqualified")
+                data.RemoveAll(x => x.status != "Disqualified");
+
             foreach (var item in data)
             {
                 var examdateofrelease = db.exam_applicantmarks_releasedatemaster.Where(x => x.applicantid == item.applicantid && x.universityid == item.universityid && x.examid == item.exampapersid && x.examdate_time == item.exam_datetime).FirstOrDefault();

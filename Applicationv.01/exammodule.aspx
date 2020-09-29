@@ -5,9 +5,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">VIEW YOUR SCHEDULED ASSESSMENTS</li>
+            <li class="breadcrumb-item active">VIEW YOUR ASSESSMENTS </li>
         </ol>
-        <h1 class="h2">VIEW YOUR SCHEDULED ASSESSMENTS</h1>
+        <h1 class="h2">VIEW YOUR ASSESSMENTS </h1>
     </div>
     <div class="page ">
 
@@ -37,13 +37,12 @@
                                                 <asp:ListItem Value="Completed">Completed</asp:ListItem>
                                                 <asp:ListItem Value="Expired">Expired </asp:ListItem>
                                                 <asp:ListItem Value="NotApperead">Not Apperead</asp:ListItem>
+                                                <asp:ListItem Value="Disqualified"></asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                  
                 </div>
                 <div class="card" id="coeCard" runat="server">
                     <asp:DataList ID="coeList" runat="server" GridLines="Horizontal">

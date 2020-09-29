@@ -223,7 +223,7 @@
         let time = secondsS;
         const countdownEl = document.getElementById('countdown');
 
-        //setInterval(updateCountdown, 1000);
+        setInterval(updateCountdown, 1000);
 
         function updateCountdown() {
             ajaxcalltocheckisanswersubmitted();
@@ -266,16 +266,36 @@
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
-                        if (result == "responsesubmitted") {
-                            var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                        var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                        if (result == "responsesubmitted") 
                             location.replace(hostName + "exammodule.aspx");
-                        }
-
+                        else if (result == "Disqualified") 
+                            location.replace(hostName + "view_exampaper3.aspx?assignID=" + <%=assignID%>);
                     }
                 }
             });
 
         }
+        <%-- function tocheck_ifapplicantdisqualidies() {
+            var assignID = '<%= assignID%>';
+            $.ajax({
+                       type: "POST",
+                       url: "view_exampaper3.aspx/ifDisqualify",
+                       contentType: "application/json; charset=utf-8",
+                       dataType: "json",
+                       data: "{'assignID': '" + assignID + "'}",
+                       success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if (result == "Yes") {
+                                var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                                       location.replace(hostName + "exammodule.aspx");
+                                   }
+
+                               }
+                           }
+                    });
+        }--%>
         function ajaxcall() {
             var assignID = '<%= assignID%>';
             $.ajax({
@@ -313,23 +333,18 @@
                 return true;
         }
 
-        //$(document).keydown(function (event) {
-        //    console.log(event);
-        //    if (event.keyCode == 123) { // Prevent F12
-        //        return false;
-        //    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-        //        return false;
-        //    }
-        //});
-        //$(document).on("contextmenu", function (e) {   //prevent inspect     
-        //    e.preventDefault();
-        //});
-        var aud = document.getElementById("myVideo");
-        aud.onended = function () {
-             alert("The file has ended");
-            $('#audiiovideoDIv').hide();
-        };
-       
+        $(document).keydown(function (event) {
+            console.log(event);
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+                return false;
+            }
+        });
+        $(document).on("contextmenu", function (e) {   //prevent inspect     
+            e.preventDefault();
+        });
+              
         function openLink(url) {
             $('body').append('<div class="modal" id="video-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="' + url + '" allowfullscreen></iframe></div></div></div></div></div>');
             $('#video-modal').modal('show');
@@ -340,11 +355,12 @@
         var is_onetimeshow = '<%=is_onetimeshow%>';
         var examid = '<%=examid%>';
         var examsheetid = '<%=examsheetid%>';
+        var examdatetime = '<%=examdatetime%>';
 
         if (is_onetimeshow == 1) {
             var aud = document.getElementById("myVideo");
             aud.onended = function () {
-                alert("The audio has ended");
+                alert("The file has ended");
                 $('#audiiovideoDIv').hide();
             };
 
@@ -353,7 +369,7 @@
                 url: "view_exampaper.aspx/Saveaudiovideoresponse",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "'}",               
+                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",                          
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);

@@ -66,18 +66,15 @@ public partial class login : System.Web.UI.Page
                     isActivationMode = false;
 
                 if (isActivationMode && chkUser != null && !chkUser.ispasswordset.HasValue)
-                    Response.Redirect(webURL + "resetpassword.aspx", true);
+                {
+                    var applicantdetail = db.applicantdetails.Any(x => x.applicantid == chkUser.studentid && x.universityid == universityID && x.isdeletedbyAdmin == true);
+                    if (!applicantdetail)
+                        Response.Redirect(webURL + "resetpassword.aspx", true);
+                }
                 else
                 {
                     string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
-
-                    //chk user verification for service GTE & Assessment
-                    if (isFullService == 0 || isFullService == 3)
-                        chkUser = (from usr in db.students
-                               where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword) && usr.isdeletedbyAdmin == false)
-                               select usr).FirstOrDefault();
-                    else
-                        chkUser = (from usr in db.students
+                    chkUser = (from usr in db.students
                                    where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
                                    select usr).FirstOrDefault();
                     if (chkUser == null)
@@ -93,6 +90,7 @@ public partial class login : System.Web.UI.Page
                     else
                     {
                         var isRecordPresent = db.applicantdetails.Any(x => x.applicantid == chkUser.studentid && x.universityid == universityID);
+
                         if (!isRecordPresent)
                         {
                             applicantdetails objapplicant = new applicantdetails();
@@ -105,74 +103,85 @@ public partial class login : System.Web.UI.Page
                                 objapplicant.lastname = chkUser.name.Substring(nameArr[0].Length + 1);
 
                             objapplicant.universityid = universityID;
+                            objapplicant.isverifiedbyAdmin = false;
+                            objapplicant.isdeletedbyAdmin = false;
                             db.applicantdetails.Add(objapplicant);
                             db.SaveChanges();
                         }
-
-                        bool isDeclarationDoneByApplicant = false;
-                        bool isGteDeclarationDoneByApplicant;
-                        
-
-                        pnl_warning.Visible = false;
-                        Session["isDomesticStudent"] = chkUser.isDomesticStudent;
-                        Session["LoginInfo"] = chkUser;
-                        Session["UserID"] = chkUser.studentid;
-                        Session["Role"] = "student";
-                        isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid,universityID);
-                        isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
-
-                        if (isFullService == 1)
+                        var isRecord_deltedbyAdmin = db.applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID && x.isdeletedbyAdmin == true).FirstOrDefault();
+                        if (isRecord_deltedbyAdmin == null)
                         {
-                            isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
-                            isDeclarationCompleted = isDeclarationDoneByApplicant;
-                            isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
-                        }
-                        else if (isFullService == 0)
-                        {
-                            isDeclarationCompleted = isGteDeclarationDoneByApplicant;
-                            isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(chkUser.studentid, universityID);
-                        }
+                            bool isDeclarationDoneByApplicant = false;
+                            bool isGteDeclarationDoneByApplicant;
 
-                        Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
-                        Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;
-                        Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
-                        Session["FullService"] = isFullService;
-                        Session["DeclarationCompleted"] = isDeclarationCompleted;
-                        Session["isVerifiedByAdmin"] = chkUser.isverifiedbyAdmin;
-                        //switch (chkUser.role)
-                        //{
-                        //    case 1:
-                        //        Response.Redirect(webURL + "admin/default.aspx");
-                        //        break;
-                        //    case 2:
-                        //        Response.Redirect(webURL + "agentdashboard.aspx");
-                        //        break;
-                        //    case 3:
-                        if (isFullService == 2)
-                        {
-                            var studentdatis = db.applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
-                            var subjectcount = db.exam_applicant_subjectmapping.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).ToList().Count();
-                            if (studentdatis != null)
+
+                            pnl_warning.Visible = false;
+                            Session["isDomesticStudent"] = chkUser.isDomesticStudent;
+                            Session["LoginInfo"] = chkUser;
+                            Session["UserID"] = chkUser.studentid;
+                            Session["Role"] = "student";
+                            isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid, universityID);
+                            isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
+
+                            if (isFullService == 1)
                             {
-                                if(studentdatis.classId == null || studentdatis.groupId == null || subjectcount == 0)
-                                    Response.Redirect(webURL + "details.aspx?id="+chkUser.studentid, true);
+                                isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
+                                isDeclarationCompleted = isDeclarationDoneByApplicant;
+                                isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                            }
+                            else if (isFullService == 0)
+                            {
+                                isDeclarationCompleted = isGteDeclarationDoneByApplicant;
+                                isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                            }
+
+                            Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
+                            Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;
+                            Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
+                            Session["FullService"] = isFullService;
+                            Session["DeclarationCompleted"] = isDeclarationCompleted;
+
+                            var applicantdetail = db.applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
+
+                            Session["isVerifiedByAdmin"] = applicantdetail.isverifiedbyAdmin;
+                            //switch (chkUser.role)
+                            //{
+                            //    case 1:
+                            //        Response.Redirect(webURL + "admin/default.aspx");
+                            //        break;
+                            //    case 2:
+                            //        Response.Redirect(webURL + "agentdashboard.aspx");
+                            //        break;
+                            //    case 3:
+                            if (isFullService == 2)
+                            {
+                                var studentdatis = db.applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
+                                var subjectcount = db.exam_applicant_subjectmapping.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).ToList().Count();
+                                if (studentdatis != null)
+                                {
+                                    if (studentdatis.classId == null || studentdatis.groupId == null || subjectcount == 0)
+                                        Response.Redirect(webURL + "details.aspx?id=" + chkUser.studentid, true);
+                                    else
+                                        Response.Redirect(webURL + "default.aspx", true);
+                                }
                                 else
                                     Response.Redirect(webURL + "default.aspx", true);
                             }
                             else
                                 Response.Redirect(webURL + "default.aspx", true);
+                            //            break;
+                            //        case 4:
+                            //            Response.Redirect(webURL + "universitydashboard.aspx");
+                            //            break;
+                            //        default:
+                            //            Response.Redirect(webURL + "login.aspx");
+                            //            break;
+                            //    }                
                         }
-                        else
-                            Response.Redirect(webURL + "default.aspx", true);
-                        //            break;
-                        //        case 4:
-                        //            Response.Redirect(webURL + "universitydashboard.aspx");
-                        //            break;
-                        //        default:
-                        //            Response.Redirect(webURL + "login.aspx");
-                        //            break;
-                        //    }                
-
+                        else {
+                            lbl_warning.Text = "Your Account for this institution is suspended by admin.";
+                            pnl_warning.Visible = true;
+                        }
                     }
                 }
             }

@@ -18,8 +18,8 @@
 
 
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Institution</label>
-                        <div class="col-sm-8">
+                        <label for="name" class="col-sm-2 col-form-label form-label">Institution</label>
+                        <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-md-6">
                                     <asp:DropDownList ID="ddlinstitution" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlinstitution_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
@@ -29,8 +29,8 @@
                         </div>
                     </div>
                      <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Class</label>
-                        <div class="col-sm-8">
+                        <label for="name" class="col-sm-2 col-form-label form-label">Class</label>
+                        <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-md-6">
                                    <asp:CheckBoxList ID="chkIdProof" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
