@@ -311,8 +311,8 @@
             var flag = false;
             if ($("#<%=txtfirstname.ClientID%>").val() == "")
                 alert("Please enter first name");
-            else if ($("#<%=txtmiddlename.ClientID%>").val() == "")
-                alert("Please enter middle name");
+           <%-- else if ($("#<%=txtmiddlename.ClientID%>").val() == "")
+                alert("Please enter middle name");--%>
             else if ($("#<%=txtlastname.ClientID%>").val() == "")
                 alert("Please enter last name");
             else if ($("#<%=txtemail.ClientID%>").val() == "")

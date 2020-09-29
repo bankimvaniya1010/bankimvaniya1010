@@ -138,80 +138,79 @@ public partial class view_result : System.Web.UI.Page
                         //    }
                         //}
                     }
-                    else if (exammarks.uploadtype == 2) //build
+                    }
+                else if (exammarks.uploadtype == 2) //build
+                {
+                    List<int> lst = new List<int>();
+
+                    var totalmarks = (from em in db.exampapers_master
+                                      where em.exampapersid == examid
+                                      select new Record()
+                                      {
+                                          questiontype = em.questiontype,
+                                          questionid = em.questionId,
+                                          marks = 0,
+                                          exampapers_masterID = em.id,
+                                      }).ToList();
+
+                    foreach (var item in totalmarks)
                     {
-                        List<int> lst = new List<int>();
-
-                        var totalmarks = (from em in db.exampapers_master
-                                          where em.exampapersid == examid
-                                          select new Record()
-                                          {
-                                              questiontype = em.questiontype,
-                                              questionid = em.questionId,
-                                              marks = 0,
-                                              exampapers_masterID = em.id,
-                                          }).ToList();
-
-                        foreach (var item in totalmarks)
+                        lstofQuestionIdToBeShow.Add(item.exampapers_masterID);
+                        if (item.questiontype == "MCQ")
                         {
-                            lstofQuestionIdToBeShow.Add(item.exampapers_masterID);
-                            if (item.questiontype == "MCQ")
-                            {
-                                var mcqdata = db.exam_mcq_questionmaster.Where(x => x.questionID == item.questionid).FirstOrDefault();
-                                lst.Add(Convert.ToInt32(mcqdata.maximummarks));
-                            }
-                            if (item.questiontype == "True/False")
-                            {
-                                var truefalsedata = db.exam_truefalse_questionmaster.Where(x => x.questionId == item.questionid).FirstOrDefault();
-                                lst.Add(Convert.ToInt32(truefalsedata.maximum_marks));
-                            }
-                            if (item.questiontype == "Open Answer")
-                            {
-                                var openanswerdata = db.exam_openanswer_master.Where(x => x.questionid == item.questionid).FirstOrDefault();
-                                lst.Add(Convert.ToInt32(openanswerdata.marks));
-                            }
-                            if (item.questiontype == "Upload Answer")
-                            {
-                                var uploadanswerdata = db.exam_uploadanswer_master.Where(x => x.questionid == item.questionid).FirstOrDefault();
-                                lst.Add(Convert.ToInt32(uploadanswerdata.marks));
-                            }
-                            item.marks = lst.Sum();
-
+                            var mcqdata = db.exam_mcq_questionmaster.Where(x => x.questionID == item.questionid).FirstOrDefault();
+                            lst.Add(Convert.ToInt32(mcqdata.maximummarks));
                         }
-                        lbltotalmarks.InnerText = lst.Sum().ToString();
-                        // to show onebyone 
-                        ViewState["MainList"] = lstofQuestionIdToBeShow;
-
-                        DivType2.Attributes.Add("style", "display:block;");
-
-                        int? bindid = 0;
-                        if (lstofIDsTobeRemoved.Count == 0)
+                        if (item.questiontype == "True/False")
                         {
-                            bindid = lstofQuestionIdToBeShow.First();
+                            var truefalsedata = db.exam_truefalse_questionmaster.Where(x => x.questionId == item.questionid).FirstOrDefault();
+                            lst.Add(Convert.ToInt32(truefalsedata.maximum_marks));
                         }
-                        else
+                        if (item.questiontype == "Open Answer")
                         {
-                            List<int?> temp_newlist = new List<int?>();
-                            temp_newlist = (List<int?>)(ViewState["NewList"]);
-                            if (temp_newlist != null)
-                            {
-                                if (temp_newlist.Count != 0)
-                                {
-
-                                    ViewState["MainList"] = ViewState["NewList"];
-                                    bindid = temp_newlist.First();
-                                    if (temp_newlist.Count == 1)
-                                        button.Attributes.Add("style", "display:none");
-                                }
-                                else
-                                    button.Attributes.Add("style", "display:none");
-                            }
+                            var openanswerdata = db.exam_openanswer_master.Where(x => x.questionid == item.questionid).FirstOrDefault();
+                            lst.Add(Convert.ToInt32(openanswerdata.marks));
                         }
-                        bindDataList(bindid, UniversityID, applicantID, examid, assigndate);
+                        if (item.questiontype == "Upload Answer")
+                        {
+                            var uploadanswerdata = db.exam_uploadanswer_master.Where(x => x.questionid == item.questionid).FirstOrDefault();
+                            lst.Add(Convert.ToInt32(uploadanswerdata.marks));
+                        }
+                        item.marks = lst.Sum();
 
                     }
+                    lbltotalmarks.InnerText = lst.Sum().ToString();
+                    // to show onebyone 
+                    ViewState["MainList"] = lstofQuestionIdToBeShow;
 
-                    }         
+                    DivType2.Attributes.Add("style", "display:block;");
+
+                    int? bindid = 0;
+                    if (lstofIDsTobeRemoved.Count == 0)
+                    {
+                        bindid = lstofQuestionIdToBeShow.First();
+                    }
+                    else
+                    {
+                        List<int?> temp_newlist = new List<int?>();
+                        temp_newlist = (List<int?>)(ViewState["NewList"]);
+                        if (temp_newlist != null)
+                        {
+                            if (temp_newlist.Count != 0)
+                            {
+
+                                ViewState["MainList"] = ViewState["NewList"];
+                                bindid = temp_newlist.First();
+                                if (temp_newlist.Count == 1)
+                                    button.Attributes.Add("style", "display:none");
+                            }
+                            else
+                                button.Attributes.Add("style", "display:none");
+                        }
+                    }
+                    bindDataList(bindid, UniversityID, applicantID, examid, assigndate);
+
+                }
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Something went wrong.')", true);

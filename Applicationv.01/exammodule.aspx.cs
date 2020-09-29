@@ -161,13 +161,15 @@ public partial class exammodule : System.Web.UI.Page
 
             if (selectedvalue == "Active")
                 data.RemoveAll(x => x.status != null);
-            else if (selectedvalue == "Completed")  
+            else if (selectedvalue == "Completed")
                 data.RemoveAll(x => x.status != "Completed");
             else if (selectedvalue == "Expired")
                 data.RemoveAll(x => x.status != "Expired");
             else if (selectedvalue == "NotApperead")
                 data.RemoveAll(x => x.status != "NotApperead");
-            
+            else if (selectedvalue == "Disqualified")
+                data.RemoveAll(x => x.status != "Disqualified");
+
             foreach (var item in data)
             {
                 var examdateofrelease = db.exam_applicantmarks_releasedatemaster.Where(x => x.applicantid == item.applicantid && x.universityid == item.universityid && x.examid == item.exampapersid && x.examdate_time == item.exam_datetime).FirstOrDefault();

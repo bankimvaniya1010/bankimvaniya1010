@@ -78,6 +78,8 @@ public partial class register : System.Web.UI.Page
 
                     universityID = Utility.GetUniversityId();
                     objapplicant.universityid = universityID;
+                    objapplicant.isverifiedbyAdmin = false;
+                    objapplicant.isdeletedbyAdmin = false;
                     db.applicantdetails.Add(objapplicant);
                     db.SaveChanges();
                     var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
