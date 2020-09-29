@@ -248,6 +248,8 @@ public partial class applicantdetails
     public int applicantpersonaldetailsid { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
+    public Nullable<bool> isdeletedbyAdmin { get; set; }
+    public Nullable<bool> isverifiedbyAdmin { get; set; }
     public Nullable<int> title { get; set; }
     public string firstname { get; set; }
     public Nullable<bool> ispassportfirstname { get; set; }
