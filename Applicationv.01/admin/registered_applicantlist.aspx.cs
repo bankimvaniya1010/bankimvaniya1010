@@ -45,7 +45,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
 
         int registeredapplicantcCount = (from ad in db.applicantdetails
                                          join sd in db.students on ad.applicantid equals sd.studentid
-                                         where ad.universityid == universityID && sd.isdeletedbyAdmin == false
+                                         where ad.universityid == universityID && ad.isdeletedbyAdmin == false
                                          select ad.applicantid).ToList().Count;
 
         var availableApplicant_Count = studentcount_byuniveristy - registeredapplicantcCount;
@@ -72,7 +72,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                              join cm in db.countriesmaster on sdata.residencecountry equals cm.id into countrydata
                              from cmdata in countrydata.DefaultIfEmpty()
 
-                             where gtead.universityid == universityID && s.isdeletedbyAdmin == false
+                             where gtead.universityid == universityID && gtead.isdeletedbyAdmin == false
                              select new Details()
                              {
                                  id = gtead.applicantid,
@@ -108,7 +108,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                              join um in db.university_master on ad.universityid equals um.universityid into umData
                              from u in umData.DefaultIfEmpty()
 
-                             where ad.universityid == universityID && s.isdeletedbyAdmin == false
+                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false
                              select new Details()
                              {
                                  id = ad.applicantid,
@@ -294,8 +294,8 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             {
                 int ApplicantID = Convert.ToInt32(e.CommandArgument);
                 var mode = "new";
-                students objstude = new students();
-                var data = db.students.Where(x => x.studentid == ApplicantID).FirstOrDefault();
+                applicantdetails objstude = new applicantdetails();
+                var data = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
 
                 if (data != null)
                 {
@@ -304,33 +304,45 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 }
                 objstude.isdeletedbyAdmin = true;
                 if (mode == "new")
-                    db.students.Add(objstude);
+                    db.applicantdetails.Add(objstude);
                 db.SaveChanges();
                 BindApplicant();
                 Bindlabel(universityID);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant'"+objstude.name+"'('"+objstude.studentid+"' deleted successfully.)')", true);
-
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant'"+objstude.firstname+"'('"+objstude.applicantid+"' deleted successfully.)')", true);
             }
             if (e.CommandName.Equals("Verify"))
             {
                 int ApplicantID = Convert.ToInt32(e.CommandArgument);
                 var mode = "new";
-                students objstude = new students();
-                var data = db.students.Where(x => x.studentid == ApplicantID).FirstOrDefault();
+                //students objstude = new students();
+                //var data = db.students.Where(x => x.studentid == ApplicantID).FirstOrDefault();
 
-                if (data != null)
+                //if (data != null)
+                //{
+                //    mode = "update";
+                //    objstude = data;
+                //}
+                //objstude.isverifiedbyAdmin = true;
+                //if (mode == "new")
+                //    db.students.Add(objstude);
+                //db.SaveChanges();
+                
+                applicantdetails objapplicantdetails = new applicantdetails();
+                var applicantdetails = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
+
+                if (applicantdetails != null)
                 {
                     mode = "update";
-                    objstude = data;
+                    objapplicantdetails = applicantdetails;
                 }
-                objstude.isverifiedbyAdmin = true;
+                objapplicantdetails.isverifiedbyAdmin = true;
                 if (mode == "new")
-                    db.students.Add(objstude);
+                    db.applicantdetails.Add(objapplicantdetails);
                 db.SaveChanges();
+                
                 Bindlabel(universityID);
                 BindApplicant();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant'" + objstude.name + "'('" + objstude.studentid + "' verified successfully.)')", true);
-                
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant'" + objapplicantdetails.firstname+ "'('" + objapplicantdetails.applicantid + "' verified successfully.)')", true);
             }
         }
         catch (Exception ex)

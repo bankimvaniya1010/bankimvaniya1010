@@ -221,9 +221,9 @@
             else if (role == 0) {
                 alert("Please select Role of user");
                 return false;
-            }           
-            else if ((role == 13 || role == 14) && $('[name="ctl00$ContentPlaceHolder1$chkroles$0"]:checked').length == 0) {
-                alert("Please select assessment roles.");
+            }
+            else if ((role == 13 || role == 14) && $("input[type=checkbox]:checked").length == 0) {
+                alert("Please select sub roles");
                 return false;
             }
             return true;

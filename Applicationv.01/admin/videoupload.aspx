@@ -35,12 +35,19 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
+                    <div class="media-left col-md-12">
+                        <div style="position: relative; width: 202px; background: transparent; margin-bottom: 15px; height: 25px; margin-left: 24%;">
+                            <div id="progress" class="hide" style="background: blue; height: 25px; width: 0; color: #fff;">
+                                <div class="status" style="margin-left: 10px;"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">                                  
-                                    <asp:Button ID="btn_submit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btn_submit_Click"  OnClientClick="return validateForm()" />                           
+                                    <asp:Button ID="btn_submit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClientClick="return validateForm()" />                           
                                                                
                                 </div>
                             </div>
@@ -119,8 +126,66 @@
            else if (!validateUploadedFile()) { }
            else
                flag = true;
-           return flag;
-       }
+           if (flag) {
+                $("#ContentPlaceHolder1_btn_submit").attr("disabled", "true")
+                $("#progress").removeClass("hide");
+                var progressEle = $("#progress");
+                progressEle.css("background-color", "blue");
+
+                var formData = new FormData();
+                var data = $("#ContentPlaceHolder1_FileUpload")[0].files[0];
+                formData.append("doc_name", $("#<%=txtsectinname.ClientID%>").val());
+                formData.append("files", data);
+
+                var dummyProgress = 1;
+                var intervalId = -1;
+                var req = new XMLHttpRequest();
+
+                req.upload.addEventListener("progress", function (event) {
+
+                    var percent = (event.loaded / event.total) * 90;
+                    var progress = Math.round((event.loaded / event.total) * 90);
+                    console.log("progress:" + progress);
+                    if (progress < 90) {
+                        $(".status").html(progress + "%");
+                        progressEle.width(progress + "%");
+                    }
+                    else {
+                        progress = progress + dummyProgress;
+                        if (progress <= 99) {
+                            $(".status").html(progress + "%");
+                            progressEle.width(progress + "%");
+                        }
+                        if (intervalId == -1) {
+                            intervalId = setInterval(function () {
+                                progress = progress + dummyProgress;
+                                dummyProgress++;
+                                if (progress <= 99) {
+                                    $(".status").html(progress + "%");
+                                    progressEle.width(progress + "%");
+                                }
+                                else
+                                    clearInterval(intervalId);
+                            }, 2500);
+                        }
+                    }
+                });
+
+                req.onreadystatechange = function () {
+				var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                    if (req.status && req.status == 200 && (req.readyState == 4)) {
+                        $("#ContentPlaceHolder1_btn_submit").removeAttr("disabled");
+                        alert("Video uploaded successfully");
+                        location.replace(hostName + "admin/videoupload.aspx");
+                    }
+                }
+
+                req.open("POST", 'videoupload.aspx/uploadVideo', true);
+                req.send(formData);
+            }
+            return false;
+        }
+
        
        $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');

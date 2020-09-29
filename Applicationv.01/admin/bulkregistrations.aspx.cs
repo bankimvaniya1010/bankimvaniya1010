@@ -248,7 +248,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
             var universitycount = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
             var registeredapplicant = (from ad in db.applicantdetails
                                        join sd in db.students on ad.applicantid equals sd.studentid
-                                       where ad.universityid == universityID && sd.isdeletedbyAdmin == false
+                                       where ad.universityid == universityID && ad.isdeletedbyAdmin == false
                                        select ad.applicantid).ToList();
             //db.applicantdetails.Where(x => x.universityid == universityID).ToList();
             if (universitycount != 0 && registeredapplicant.Count >= universitycount)
@@ -270,7 +270,6 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                 var record = db.students.Where(x => x.email == useremail).FirstOrDefault();
                 if (record == null)
                 {
-
                     students usrObj = new students();
                     usrObj.name = firstname;
                     usrObj.email = useremail;
@@ -279,7 +278,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     usrObj.studylevelid = 1;
                     usrObj.verificationkey = Guid.NewGuid().ToString();
                     usrObj.isverified = false;
-                    usrObj.isdeletedbyAdmin = false;
+                    //usrObj.isdeletedbyAdmin = false;
                     usrObj.isverifiedbyAdmin = true;
                     usrObj.universityid = universityID;
                     db.students.Add(usrObj);
@@ -294,9 +293,16 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     });
 
                     //save to applicantdetails db
+                    int id = usrObj.studentid;
+                    var mode = "new";
                     applicantdetails objapplicant = new applicantdetails();
-
-                    var id = usrObj.studentid;
+                    var data = db.applicantdetails.Where(x => x.applicantid == id && x.universityid == usrObj.universityid).FirstOrDefault();
+                    if (data != null)
+                    {
+                        mode = "update";
+                        objapplicant = data;
+                    }
+                    
                     objapplicant.applicantid = id;
                     objapplicant.email = useremail;
                     objapplicant.firstname = firstname;
@@ -306,7 +312,10 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     objapplicant.groupId = objCom.getgroupid(group);
                     objapplicant.classId = objCom.getclassid(Class);
                     objapplicant.studentid = studentid;
-                    db.applicantdetails.Add(objapplicant);
+                    objapplicant.isdeletedbyAdmin = false;
+                    objapplicant.isverifiedbyAdmin = true;
+                    if(mode=="new")
+                        db.applicantdetails.Add(objapplicant);
                     db.SaveChanges();
 
                     var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
