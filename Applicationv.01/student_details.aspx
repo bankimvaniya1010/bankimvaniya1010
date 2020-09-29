@@ -20,7 +20,7 @@
                             <div class="list-group-item" id="Div4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label4" for="title" class="col-md-3 col-form-label form-label">First Name</label>
+                                        <label runat="server" id="label4" for="title" class="col-md-4 col-form-label form-label">First Name</label>
                                         <div class="col-md-6">                                            
                                             <input  id="txtfirstname" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
@@ -30,7 +30,7 @@
                             <div class="list-group-item" id="Div5" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label5" for="title" class="col-md-3 col-form-label form-label">Middle Name</label>
+                                        <label runat="server" id="label5" for="title" class="col-md-4 col-form-label form-label">Middle Name</label>
                                         <div class="col-md-6">                                            
                                             <input  id="txtmiddlename" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
@@ -40,7 +40,7 @@
                             <div class="list-group-item" id="Div6" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label6" for="title" class="col-md-3 col-form-label form-label">Last Name</label>
+                                        <label runat="server" id="label6" for="title" class="col-md-4 col-form-label form-label">Last Name</label>
                                         <div class="col-md-6">                                            
                                             <input  id="txtlastname" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
@@ -50,7 +50,7 @@
                             <div class="list-group-item" id="Div7" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label7" for="title" class="col-md-3 col-form-label form-label">Email</label>
+                                        <label runat="server" id="label7" for="title" class="col-md-4 col-form-label form-label">Email</label>
                                         <div class="col-md-6">                                            
                                             <input  id="txtemail" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
@@ -61,7 +61,7 @@
                             <div class="list-group-item" id="Div3" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label3" for="title" class="col-md-3 col-form-label form-label">Contact No</label>
+                                        <label runat="server" id="label3" for="title" class="col-md-4 col-form-label form-label">Contact No</label>
                                         <div class="col-md-6">                                            
                                             <input  id="txtcontactno" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>
@@ -72,7 +72,7 @@
                             <div class="list-group-item" id="dob" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">Date of Birth</label>
+                                        <label runat="server" id="labeltitle" for="title" class="col-md-4 col-form-label form-label">Date of Birth</label>
                                         <div class="col-md-6"> 
                                             <input id="txtdob" runat="server" type="text" class="form-control" placeholder="Date of Birth" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             
@@ -83,7 +83,7 @@
                             <div class="list-group-item" id="uploadphoto" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="lbluploadphoto" for="uploadphoto" class="col-md-3 col-form-label form-label">Upload photo</label>
+                                        <label runat="server" id="lbluploadphoto" for="uploadphoto" class="col-md-4 col-form-label form-label">Upload photo</label>
                                         <div class="col-md-6">  
                                             <input type="hidden" id="hidDocumentPath" runat="server" />
                                             <asp:FileUpload runat="server" ID="fileupload"/>
@@ -95,7 +95,7 @@
                             <div class="list-group-item" id="countrycitizenship" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="lblcountrycitizenship" for="countrycitizenship" class="col-md-3 col-form-label form-label">Country of citizenship</label>
+                                        <label runat="server" id="lblcountrycitizenship" for="countrycitizenship" class="col-md-4 col-form-label form-label">Country of citizenship</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlcountrycitizenship"></asp:DropDownList>
                                         </div>
@@ -105,7 +105,7 @@
                          <div class="list-group-item" id="countryofbirth" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="lblcountryofbirth" for="title" class="col-md-3 col-form-label form-label">Country of Birth</label>
+                                        <label runat="server" id="lblcountryofbirth" for="title" class="col-md-4 col-form-label form-label">Country of Birth</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddldob"></asp:DropDownList>
                                             
@@ -116,7 +116,7 @@
                          <div class="list-group-item" id="countryofresidence" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="lblcountryofresidence" for="title" class="col-md-3 col-form-label form-label">Country of Residency</label>
+                                        <label runat="server" id="lblcountryofresidence" for="title" class="col-md-4 col-form-label form-label">Country of Residency</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlcountryresidence"></asp:DropDownList>
                                         </div>
@@ -126,7 +126,7 @@
                           <div class="list-group-item" id="idprooftype" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="lblidprooftype" for="title" class="col-md-3 col-form-label form-label">ID Proof Type</label>
+                                        <label runat="server" id="lblidprooftype" for="title" class="col-md-4 col-form-label form-label">ID Proof Type</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlidproof"></asp:DropDownList>
                                         <asp:HiddenField runat="server" ID="HidIpProffID"/>
@@ -137,7 +137,7 @@
                          <div class="list-group-item" id="idprooftypenumber" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="lblidprooftypenumber" for="title" class="col-md-3 col-form-label form-label">ID Proof Number</label>
+                                        <label runat="server" id="lblidprooftypenumber" for="title" class="col-md-4 col-form-label form-label">ID Proof Number</label>
                                         <div class="col-md-6">                                            
                                           <input type="text" runat="server" id="txtidproofnumber" class="form-control" >
                                         </div>
@@ -147,7 +147,7 @@
                          <div class="list-group-item" id="idproofCopy" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="lblidproofCopy" for="title" class="col-md-3 col-form-label form-label">Upload copy of ID Proof</label>
+                                        <label runat="server" id="lblidproofCopy" for="title" class="col-md-4 col-form-label form-label">Upload copy of ID Proof</label>
                                         <div class="col-md-6">                                            
                                            <asp:FileUpload runat="server" ID="fileuploadcopy"/>
                                             <input type="hidden" id="hidproofdocumentpath" runat="server" />
@@ -159,7 +159,7 @@
                          <div class="list-group-item" id="Div13" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label13" for="title" class="col-md-3 col-form-label form-label">Institution</label>
+                                        <label runat="server" id="label13" for="title" class="col-md-4 col-form-label form-label">Institution</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlinstitution"></asp:DropDownList>
                                         </div>
@@ -169,7 +169,7 @@
                         <div class="list-group-item" id="Div14" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label14" for="title" class="col-md-3 col-form-label form-label">Campus</label>
+                                        <label runat="server" id="label14" for="title" class="col-md-4 col-form-label form-label">Campus</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlcampus"></asp:DropDownList>
                                             <asp:HiddenField runat="server" ID="HidcampusID"/>
@@ -180,7 +180,7 @@
                         <div class="list-group-item" id="Div15" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label15" for="title" class="col-md-3 col-form-label form-label">Institution Student ID</label>
+                                        <label runat="server" id="label15" for="title" class="col-md-4 col-form-label form-label">Institution Student ID</label>
                                         <div class="col-md-6">                                            
                                            <input type ="text" runat="server" class="form-control" id="txtstudentid"/>
                                         </div>
@@ -190,7 +190,7 @@
                         <div class="list-group-item" id="Div16" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label16" for="title" class="col-md-3 col-form-label form-label">Class</label>
+                                        <label runat="server" id="label16" for="title" class="col-md-4 col-form-label form-label">CLASS / PROGRAM</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlclass"></asp:DropDownList>
                                             <asp:HiddenField runat="server" ID="HidclassID"/>
@@ -201,7 +201,7 @@
                         <div class="list-group-item" id="Div17" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label17" for="title" class="col-md-3 col-form-label form-label">Group</label>
+                                        <label runat="server" id="label17" for="title" class="col-md-4 col-form-label form-label">Group</label>
                                         <div class="col-md-6">                                            
                                            <asp:DropDownList runat="server" class="form-control" ID="ddlgroup"></asp:DropDownList>
                                             <asp:HiddenField runat="server" ID="HidGroupID"/>
@@ -213,9 +213,9 @@
                              <div class="list-group-item" id="Div1" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">Subject</label>
-                                        <div class="col-md-6">                                            
-                                           <asp:CheckBoxList ID="ddlsubject" runat="server" RepeatDirection="Horizontal" RepeatColumns="2"></asp:CheckBoxList>
+                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">Subjects</label>
+                                        <div class="col-md-7">                                            
+                                           <asp:CheckBoxList ID="ddlsubject" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"></asp:CheckBoxList>
                                             <asp:HiddenField runat="server" ID="HidSubjectID"/>
                                         </div>
                                     </div>
@@ -311,8 +311,8 @@
             var flag = false;
             if ($("#<%=txtfirstname.ClientID%>").val() == "")
                 alert("Please enter first name");
-            else if ($("#<%=txtmiddlename.ClientID%>").val() == "")
-                alert("Please enter middle name");
+           <%-- else if ($("#<%=txtmiddlename.ClientID%>").val() == "")
+                alert("Please enter middle name");--%>
             else if ($("#<%=txtlastname.ClientID%>").val() == "")
                 alert("Please enter last name");
             else if ($("#<%=txtemail.ClientID%>").val() == "")

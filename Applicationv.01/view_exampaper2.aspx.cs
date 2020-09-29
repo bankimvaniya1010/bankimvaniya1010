@@ -15,7 +15,6 @@ public partial class view_exampaper2 : System.Web.UI.Page
     public static int QuestionsCount = 0;
     Logger objLog = new Logger();
     Common objCommon = new Common();
-    //protected static List<faq> allfaqQuestion = new List<faq>();
     string webURL = String.Empty;
     int UniversityID = -1;
     public int exampaperid = 0, assignID;
@@ -27,6 +26,8 @@ public partial class view_exampaper2 : System.Web.UI.Page
     public int exampaper_id;
     protected string MCQ = "", TrueFalse = "", openanswer = "", uploadanswer = "", openanswertype="";
     protected static List<faq> allQuestions = new List<faq>();
+    public int is_onetimeshow = 0, examsheetid, examid;
+    public DateTime examdatetime;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -42,14 +43,13 @@ public partial class view_exampaper2 : System.Web.UI.Page
         else
             assignID = Convert.ToInt32(Request.QueryString["assignID"].ToString());
        
-        var data = db.exam_assign.Where(x => x.assignid == assignID).Select(x => new { x.exampapersid, x.exam_datetime }).FirstOrDefault();
+        var data = db.exam_assign.Where(x => x.assignid == assignID).Select(x => new { x.exampapersid, x.exam_datetime,x.status }).FirstOrDefault();
         if (data != null)
         {
             exampaperid = Convert.ToInt32(data.exampapersid);
             assignDate = Convert.ToDateTime(data.exam_datetime);
+            examdatetime = assignDate;
         }
-        
-       
 
         var exammaster = db.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == exampaperid).FirstOrDefault();
 
@@ -81,7 +81,27 @@ public partial class view_exampaper2 : System.Web.UI.Page
                 lblCompleted.Text = "You have answered all question.";
             }
             else
-                SetQuestionList(answeredpapersheets);
+            {
+                if (string.IsNullOrEmpty(data.status))
+                    SetQuestionList(answeredpapersheets);
+                else
+                {
+                    completedDiv.Visible = true;
+                    completedDiv.Style.Remove("display");
+                    questions.Visible = false;
+                    if (data.status == "Completed")
+                        lblCompleted.Text = "YOUR ANSWER SHEETS HAVE BEEN SUBMITTED SUCCESSFULLY. ";
+                    else if (data.status == "Expired")
+                        lblCompleted.Text = "ASSESSMENT TIME EXHAUSTED.";
+                    else if (data.status == "Disqualified")
+                        lblCompleted.Text = "YOUR ASSESSMENT HAS BEEN DISQUALIFY BY INVIGILATOR.";
+                    else if (data.status == "Not Appered")
+                        lblCompleted.Text = "YOU HAVE LEFT THE ASSESSMENT.";
+                    if (data.status == "Disqualified")
+                        lblCompleted.Text = "Your assessment has been disqualify by invigilator.";
+                }
+
+            }
         }
     }
 
@@ -137,6 +157,7 @@ public partial class view_exampaper2 : System.Web.UI.Page
         public string upload_filepath { get; set; }
         public string upload_fileinstruction { get; set; }
         public string openanswertype { get; set; }
+        public int onetimeshow { get; set; }
     }
     private void bindDataList()
     {
@@ -168,6 +189,7 @@ public partial class view_exampaper2 : System.Web.UI.Page
                                  upload_filepath =null,
                                  upload_fileinstruction =null,
                                  upload_questionpath = null,
+                                 onetimeshow = em.is_audiovideofile_onetimeview == null ? 0 : 1,
                              }).ToList();
           
             var take1question = allpapers.Take(1);
@@ -228,12 +250,23 @@ public partial class view_exampaper2 : System.Web.UI.Page
                     item.upload_filepath = downloadsheet_questionbank.extrafilepath == null ? null: webURL + "Docs/Exammodule/questionBankType4/" + item.universityid + "/" + item.examinerid + "/AnyFile/" + downloadsheet_questionbank.extrafilepath;
                     item.marks = downloadsheet_questionbank.marks;
                     item.duration = downloadsheet_questionbank.duration;
+
                     uploadanswer = "uploadanswer";
                     if (string.IsNullOrEmpty(downloadsheet_questionbank.duration))
                         Session["totalResponseTime"] = null;
                     else
                         Session["totalResponseTime"] = downloadsheet_questionbank.duration;
 
+                    var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.examdatetime == examdatetime && x.exampapersheetID == item.id && x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                    if (data_ifviewed == null)
+                        is_onetimeshow = item.onetimeshow;
+                    else
+                    {
+                        is_onetimeshow = 0;
+                        item.upload_filepath = null;
+                    }
+                    examid = Convert.ToInt32(item.questionpaperID);
+                    examsheetid = item.id;
                 }
             }
 
@@ -468,5 +501,53 @@ public partial class view_exampaper2 : System.Web.UI.Page
             db1.exam_assign.Add(objexam_assign);
         db1.SaveChanges();
         return JsonConvert.SerializeObject(assignID);
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow,DateTime examdatetime)
+    {
+        GTEEntities db1 = new GTEEntities();
+        int universityID1 = Utility.GetUniversityId();
+        int userID1 = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
+
+        var mode = "new";
+        exam_applicantfileviewed_record objmapping = new exam_applicantfileviewed_record();
+        var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1 && x.examdatetime == examdatetime).FirstOrDefault();
+
+        if (data != null)
+        {
+            mode = "update";
+            objmapping = data;
+        }
+        objmapping.isviewedonce = 1;
+        objmapping.exampapersheetID = examsheetid;
+        objmapping.examID = examid;
+        objmapping.applicantid = userID1;
+        objmapping.universityid = universityID1;
+        objmapping.examdatetime = examdatetime;
+        if (mode == "new")
+            db1.exam_applicantfileviewed_record.Add(objmapping);
+        db1.SaveChanges();
+        return JsonConvert.SerializeObject(is_onetimeshow);
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string isanswersubmitted(int assignID)
+    {
+        string response = string.Empty;
+        GTEEntities db1 = new GTEEntities();
+        int universityID1 = Utility.GetUniversityId();
+
+        var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+        if (string.IsNullOrEmpty(data.status))
+            response = "NOresponsesubmitted";
+        else if (data.status == "Disqualified")
+            response = "Disqualified";
+        else
+            response = "responsesubmitted";
+
+        return JsonConvert.SerializeObject(response);
     }
 }

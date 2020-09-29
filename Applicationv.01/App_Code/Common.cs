@@ -67,6 +67,23 @@ public class Common
         // Return the hexadecimal string.
         return sBuilder.ToString();
     }
+
+    public int GetUniversityservice(int universityid)
+    {
+        int Service = -1;
+        try
+        {
+            var GetService = db.university_master.Where(x => x.universityid == universityid).FirstOrDefault();
+            if (GetService != null)
+                Service = GetService.full_service;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return Service;
+    }
+
     public void SendMail(string EmailId, string body, string subject)
     {
         try
@@ -74,8 +91,20 @@ public class Common
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient(ConfigurationManager.AppSettings["Smtp"]);
 
+            string address = string.Empty;
+            int uniid = Utility.GetUniversityId();
+            int service = GetUniversityservice(uniid);
 
-            mail.From = new MailAddress(ConfigurationManager.AppSettings["FromMail"], "Application Center Admin");
+            if (service == 0)
+                address = "support@studecare.com";
+            else if (service == 1)
+                address = "support@gte.direct";
+            else if (service == 2)
+                address = "support@testyt.com";
+            else
+                address = ConfigurationManager.AppSettings["FromMail"];
+
+            mail.From = new MailAddress(address, "Application Center Admin");
             //  mail.To.Add(ConfigurationManager.AppSettings["ToMail"]);
             mail.To.Add(EmailId);
             // MailAddress copy = new MailAddress(ConfigurationManager.AppSettings["FromMail"]);
@@ -144,7 +173,7 @@ public class Common
         int groupid = 0;
         try
         {
-            var Getgroupid = db.class_master.Where(x => x.description.Trim().ToLower() == groupname.Trim().ToLower()).FirstOrDefault();
+            var Getgroupid = db.group_master.Where(x => x.description.Trim().ToLower() == groupname.Trim().ToLower()).FirstOrDefault();
             if (Getgroupid != null)
                 groupid = Getgroupid.id;
         }
@@ -221,14 +250,44 @@ public class Common
         try
         {
             var GetProof = db.alternateadressproofmaster.Where(x => x.id == id).FirstOrDefault();
-        if (GetProof != null)
-            proofname = GetProof.description;
+            if (GetProof != null)
+                proofname = GetProof.description;
         }
         catch (Exception ex)
         {
             log.WriteLog(ex.ToString());
         }
         return proofname;
+    }
+    public string GetApplicantFirstName(int applicantid)
+    {
+        string firstname = "";
+        try
+        {
+            var data = db.applicantdetails.Where(x => x.applicantid == applicantid).FirstOrDefault();
+            if (data != null)
+                firstname = data.firstname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return firstname;
+    }
+    public string GetApplicantLastName(int applicantid)
+    {
+        string lastname = "";
+        try
+        {
+            var data = db.applicantdetails.Where(x => x.applicantid == applicantid).FirstOrDefault();
+            if (data != null)
+                lastname = data.lastname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return lastname;
     }
     public string GetDOBProof(int id)
     {

@@ -9,6 +9,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Aspose.Words;
 
 public partial class view_exampaper3 : System.Web.UI.Page
 {
@@ -30,7 +31,10 @@ public partial class view_exampaper3 : System.Web.UI.Page
     List<int?> mainList = new List<int?>();
     List<int?> previousList= new List<int?>();
     List<int?> nextList = new List<int?>();
+    List<details> allpapers = new List<details>();
     string btnvalue = string.Empty;
+    public int is_onetimeshow = 0, examsheetid, examid;
+    public DateTime examdatetime;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -57,6 +61,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
             {
                 exampaperid = Convert.ToInt32(data.exampapersid);
                 assignDate = Convert.ToDateTime(data.exam_datetime);
+                examdatetime = assignDate;
             }
         }
 
@@ -67,7 +72,27 @@ public partial class view_exampaper3 : System.Web.UI.Page
         }
 
         if (!IsPostBack)
-            showdetails();
+        {
+            if (string.IsNullOrEmpty(data.status))
+                showdetails();
+            else
+            {
+                completedDiv.Visible = true;
+                completedDiv.Style.Remove("display");
+                questions.Visible = false;
+                if (data.status == "Completed")
+                    lblCompleted.Text = "YOUR ANSWER SHEETS HAVE BEEN SUBMITTED SUCCESSFULLY. ";
+                else if (data.status == "Expired")
+                    lblCompleted.Text = "ASSESSMENT TIME EXHAUSTED.";
+                else if (data.status == "Disqualified")
+                    lblCompleted.Text = "YOUR ASSESSMENT HAS BEEN DISQUALIFY BY INVIGILATOR.";
+                else if (data.status == "Not Appered")
+                    lblCompleted.Text = "YOU HAVE LEFT THE ASSESSMENT.";
+                if (data.status == "Disqualified")
+                    lblCompleted.Text = "Your assessment has been disqualify by invigilator.";
+            }
+        }
+            
     }
 
     private void showTime() {
@@ -173,16 +198,27 @@ public partial class view_exampaper3 : System.Web.UI.Page
         { objLog.WriteLog(ex.ToString()); }
     }
 
+    public class details
+    {
+        public int id { get; set; }
+        public int? questionpaperID { get; set; }
+        public string questionpaper { get; set; }
+        public string extrasheetpath { get; set; }
+        public string audiovideofilepath { get; set; }
+        public string fileinstruction { get; set; }
+        public int? onetimeshow { get; set; }
+    }
+
     private void bindDataList(int? idtoshow, int? permission)
     {
         try
         {
-            dynamic allpapers;
+            
             if (permission == 1)
             {
                 allpapers = (from em in db.exampapers_master
                                  where em.universityID == UniversityID && em.exampapersid == exampaperid && em.id == idtoshow
-                                 select new
+                                 select new details()
                                  {
                                      id = em.id,
                                      questionpaperID = em.exampapersid,
@@ -190,6 +226,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
                                      extrasheetpath = em.extrasheetpath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/ExtraSheet/" + em.extrasheetpath,
                                      audiovideofilepath = em.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/AnyFile/" + em.audiovideofilepath,
                                      fileinstruction = string.IsNullOrEmpty(em.fileinstruction) ? null : em.fileinstruction,
+                                     onetimeshow = em.is_audiovideofile_onetimeview,
                                  }).ToList();
 
             }
@@ -197,7 +234,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
             {
                 allpapers = (from em in db.exampapers_master
                                  where em.universityID == UniversityID && em.exampapersid == exampaperid && em.id == idtoshow
-                                 select new
+                                 select new details()
                                  {
                                      id = em.id,
                                      questionpaperID = em.exampapersid,
@@ -205,9 +242,23 @@ public partial class view_exampaper3 : System.Web.UI.Page
                                      extrasheetpath = em.extrasheetpath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/ExtraSheet/" + em.extrasheetpath,
                                      audiovideofilepath = em.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/AnyFile/" + em.audiovideofilepath,
                                      fileinstruction = string.IsNullOrEmpty(em.fileinstruction) ? null : em.fileinstruction,
+                                     onetimeshow = em.is_audiovideofile_onetimeview,
                                  }).ToList();
             }
+            foreach (var item in allpapers)
+            {
+                var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.examdatetime == examdatetime && x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                if (data_ifviewed == null)
+                    is_onetimeshow = Convert.ToInt32(item.onetimeshow);
+                else
+                {
+                    is_onetimeshow = 0;
+                    item.audiovideofilepath = null;
+                }
 
+                examid = Convert.ToInt32(item.questionpaperID);
+                examsheetid = item.id;
+            }
             questionList.DataSource = allpapers;
             questionList.DataBind();
 
@@ -261,7 +312,30 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
                     }
                 }
+                //if multiple images there then convert to pdf 
+                var answersheets = db.exam_answersheet.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate).Select(x=>x.anshwesheetpath).ToList();
+
+                Document doc = new Document();
+                string[] files = new string[answersheets.Count];
+                for (int i = 0; i < answersheets.Count; i++)
+                {
+                    files[i] = @"" + docPath +"/"+ answersheets[i];
+                }
                 
+                Convertfromimagetopdf(files, doc);
+                string pdfname = exampaperid + "answersheets.pdf";
+                doc.Save(@""+ docPath + "/"+ pdfname);
+                
+                objexam_answersheet.universityID = UniversityID;
+                objexam_answersheet.applicantid = UserID;
+                objexam_answersheet.exampaperid = exampaperid;
+                objexam_answersheet.exam_datetime = assignDate;
+                objexam_answersheet.response_time = response_time;
+                objexam_answersheet.ispdfgenrated = 1;
+                objexam_answersheet.genratedanswerpdfPath = pdfname;
+                db.exam_answersheet.Add(objexam_answersheet);
+                db.SaveChanges();
+
                 //change status in exam_assign table
                 var mode = "new";
                 exam_assign objexam_assign = new exam_assign();
@@ -279,6 +353,32 @@ public partial class view_exampaper3 : System.Web.UI.Page
                 Session["totalResponseTime"] = response_time;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('Thank you for answering .');window.location='" + Request.ApplicationPath + "exammodule.aspx';", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+    private void Convertfromimagetopdf(string[] files, Document doc)
+    {
+        try
+        {
+            DocumentBuilder builder = new DocumentBuilder(doc);
+            for (int i = 0; i < files.Length; i++)
+            {
+                System.Drawing.Image image = System.Drawing.Image.FromFile(files[i]);
+
+                PageSetup pagesetup = builder.PageSetup;
+                pagesetup.PageWidth = ConvertUtil.PixelToPoint(image.Width, image.HorizontalResolution);
+                pagesetup.PageHeight = ConvertUtil.PixelToPoint(image.Width, image.VerticalResolution);
+
+
+                builder.InsertImage(image, Aspose.Words.Drawing.RelativeHorizontalPosition.Page, 0, Aspose.Words.Drawing.RelativeVerticalPosition.Page, 0
+                    , pagesetup.PageWidth, pagesetup.PageHeight, Aspose.Words.Drawing.WrapType.None);
+
+                if (i < files.Length - 1)
+                    builder.InsertBreak(BreakType.SectionBreakNewPage);
             }
         }
         catch (Exception ex)
@@ -398,6 +498,8 @@ public partial class view_exampaper3 : System.Web.UI.Page
         var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
         if (string.IsNullOrEmpty(data.status))
             response = "NOresponsesubmitted";
+        else if (data.status == "Disqualified")
+            response = "Disqualified";
         else
             response = "responsesubmitted";
         
@@ -428,4 +530,32 @@ public partial class view_exampaper3 : System.Web.UI.Page
         return JsonConvert.SerializeObject(assignID);
     }
 
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow, DateTime examdatetime)
+    {
+        GTEEntities db1 = new GTEEntities();
+        int universityID1 = Utility.GetUniversityId();
+        int userID1 = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
+
+        var mode = "new";
+        exam_applicantfileviewed_record objmapping = new exam_applicantfileviewed_record();
+        var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.examdatetime == examdatetime && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1).FirstOrDefault();
+
+        if (data != null)
+        {
+            mode = "update";
+            objmapping = data;
+        }
+        objmapping.isviewedonce = 1;
+        objmapping.exampapersheetID = examsheetid;
+        objmapping.examID = examid;
+        objmapping.applicantid = userID1;
+        objmapping.universityid = universityID1;
+        objmapping.examdatetime = examdatetime;
+        if (mode == "new")
+            db1.exam_applicantfileviewed_record.Add(objmapping);
+        db1.SaveChanges();
+        return JsonConvert.SerializeObject(is_onetimeshow);
+    }
 }

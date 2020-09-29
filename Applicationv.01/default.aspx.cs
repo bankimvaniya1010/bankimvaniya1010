@@ -20,6 +20,9 @@ public partial class _Default : System.Web.UI.Page
     Common objCom = new Common();
     public int UniversityID = -1;
     public int isfullservice;
+    public string applicantname;
+    public bool isVerifiedByAdmin;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -27,8 +30,12 @@ public partial class _Default : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        
+        applicantname = objCom.GetApplicantFirstName(UserID);
 
         Session["Applicant"] = UserID;
+
+        isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
 
         isfullservice = (int)Session["isfullservice"];
         if (isfullservice == 1)
@@ -37,7 +44,10 @@ public partial class _Default : System.Web.UI.Page
             isfullservicethenlbl.Text = "TO THE GTE ONLINE CENTER (GOC)";
         else if (isfullservice == 2)
             isfullservicethenlbl.Text = "TO ASSESSMENT CENTER";
-
+        if (!isVerifiedByAdmin)
+            ifnotverifiedshow.Attributes.Add("style","display:block");
+        else
+            ifverifiedshow.Attributes.Add("style", "display:block");
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList();

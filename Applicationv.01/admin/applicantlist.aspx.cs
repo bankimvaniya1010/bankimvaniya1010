@@ -1156,10 +1156,18 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 var displayLinkButton = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
                                           .Select(x => x.is_sop_submitted_by_applicant).FirstOrDefault();
 
+                var displatdraft = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
+                                          .Select(x => x.is_sop_submitted_draft).FirstOrDefault();
+
                 var displaygteertificate = db.gte_progressbar.Where(x => x.applicantid == applicant_id && x.universityId == universityID)
                                           .Select(x => x.is_gte_certificate_generated).FirstOrDefault();
                 if (displaygteertificate == null || displaygteertificate == false)
                     LinkButton8.Style.Add("display", "none");
+                if (displatdraft == null)
+                {
+                    LinkButton4.Style.Add("display", "none");
+                    LinkButton5.Style.Add("display", "none");
+                }
 
                 if (!displayLinkButton)
                 {
@@ -1167,8 +1175,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                     lnkVerificationVideo.Style.Add("display", "none");
                     lnkGteReportFeedBack.Style.Add("display", "none");
                     lnkDownloadSOPReport.Style.Add("display", "none");
-                    LinkButton4.Style.Add("display", "none");
-                    LinkButton5.Style.Add("display", "none");
+                    
                 }
 
                

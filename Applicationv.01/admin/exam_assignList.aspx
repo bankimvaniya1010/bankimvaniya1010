@@ -119,37 +119,9 @@
                                         <asp:Label ID="lblutcdatetime" runat="server" Text='<%# Bind("exam_datetime") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
-
-                                <%--  <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 
-
-                                <EditItemTemplate>
-
-                                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
-
-                                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
-
-                                </EditItemTemplate>                              
-
-                                <ItemTemplate>
-                                    <a href="/admin/create_exampaper.aspx?exampapersid=<%# Eval("exampapersid") %>">Edit</a>
-                                </ItemTemplate>
-
-                            </asp:TemplateField>
-                            
-                            <asp:TemplateField HeaderText="Delete" ShowHeader="False">
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("exampapersid")%>' CommandName="Delete" Text="Delete" OnClientClick='<%# Eval("exampapersid","return ConfirmOnDelete({0})") %>'></asp:LinkButton>
-                                </ItemTemplate>
-                            </asp:TemplateField>--%>
                             </Columns>
-
-
-
                         </asp:GridView>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -159,10 +131,10 @@
 
             var flag = false;
             if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-                 alert("Please select University");
-             else if ($("#<%=ddlexaminer.ClientID%>").val() == "0")
-               alert("Please select Assigner");
-           else if ($("#<%=txtpasskey.ClientID%>").val() == "")
+                alert("Please select University");
+            else if ($("#<%=ddlexaminer.ClientID%>").val() == "0")
+                alert("Please select Assigner");
+            else if ($("#<%=txtpasskey.ClientID%>").val() == "")
                 alert("Please enter passkey");
             else
                 flag = true;

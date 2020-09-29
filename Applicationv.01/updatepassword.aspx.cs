@@ -23,6 +23,13 @@ public partial class updatepassword : System.Web.UI.Page
         
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
+
+        var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
+        if (!isVerifiedByAdmin)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
+
         if (!IsPostBack) {
             allQuestions = objCom.FaqQuestionList();
         }

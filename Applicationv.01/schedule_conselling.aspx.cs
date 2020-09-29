@@ -21,6 +21,11 @@ public partial class schedule_conselling : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
+        if (!isVerifiedByAdmin)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
         if (!IsPostBack)
             allfaqQuestion = objCom.FaqQuestionList();
     }

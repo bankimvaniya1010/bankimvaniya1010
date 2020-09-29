@@ -27,6 +27,7 @@ public partial class GTEEntities : DbContext
 
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<accommodationplan> accommodationplan { get; set; }
+    public virtual DbSet<admin_videomaster> admin_videomaster { get; set; }
     public virtual DbSet<admincomments> admincomments { get; set; }
     public virtual DbSet<admintooltips> admintooltips { get; set; }
     public virtual DbSet<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
@@ -95,6 +96,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<entertainment> entertainment { get; set; }
     public virtual DbSet<exam_answersheet> exam_answersheet { get; set; }
     public virtual DbSet<exam_applicant_subjectmapping> exam_applicant_subjectmapping { get; set; }
+    public virtual DbSet<exam_applicantfileviewed_record> exam_applicantfileviewed_record { get; set; }
     public virtual DbSet<exam_applicantmarks_releasedatemaster> exam_applicantmarks_releasedatemaster { get; set; }
     public virtual DbSet<exam_assign> exam_assign { get; set; }
     public virtual DbSet<exam_buildpaper_answersheetmaster> exam_buildpaper_answersheetmaster { get; set; }
@@ -198,6 +200,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
+    public virtual DbSet<universitywise_admin_video_mapping> universitywise_admin_video_mapping { get; set; }
     public virtual DbSet<universitywise_faqmapping> universitywise_faqmapping { get; set; }
     public virtual DbSet<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
     public virtual DbSet<universitywise_scholarshipmapping> universitywise_scholarshipmapping { get; set; }

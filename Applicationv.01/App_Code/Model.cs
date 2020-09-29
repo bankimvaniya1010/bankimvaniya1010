@@ -25,6 +25,13 @@ public partial class accommodationplan
     public virtual ICollection<manageaccomdationplan> manageaccomdationplan { get; set; }
 }
 
+public partial class admin_videomaster
+{
+    public int videoID { get; set; }
+    public string sectioname { get; set; }
+    public string videopath { get; set; }
+}
+
 public partial class admincomments
 {
     public int id { get; set; }
@@ -241,6 +248,8 @@ public partial class applicantdetails
     public int applicantpersonaldetailsid { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
+    public Nullable<bool> isdeletedbyAdmin { get; set; }
+    public Nullable<bool> isverifiedbyAdmin { get; set; }
     public Nullable<int> title { get; set; }
     public string firstname { get; set; }
     public Nullable<bool> ispassportfirstname { get; set; }
@@ -1579,8 +1588,10 @@ public partial class exam_answersheet
     public Nullable<System.DateTime> exam_datetime { get; set; }
     public Nullable<int> exampapersheetID { get; set; }
     public string anshwesheetpath { get; set; }
-    public string response_time { get; set; }
+    public Nullable<int> ispdfgenrated { get; set; }
+    public string genratedanswerpdfPath { get; set; }
     public string extra_anshwesheetpath { get; set; }
+    public string response_time { get; set; }
 }
 
 public partial class exam_applicant_subjectmapping
@@ -1589,6 +1600,17 @@ public partial class exam_applicant_subjectmapping
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
     public Nullable<int> subjectid { get; set; }
+}
+
+public partial class exam_applicantfileviewed_record
+{
+    public int id { get; set; }
+    public int applicantid { get; set; }
+    public int universityid { get; set; }
+    public int examID { get; set; }
+    public int exampapersheetID { get; set; }
+    public int isviewedonce { get; set; }
+    public Nullable<System.DateTime> examdatetime { get; set; }
 }
 
 public partial class exam_applicantmarks_releasedatemaster
@@ -1624,6 +1646,7 @@ public partial class exam_assign
     public Nullable<bool> is_expired { get; set; }
     public Nullable<bool> is_verified { get; set; }
     public string status { get; set; }
+    public string disqualify_reason { get; set; }
 }
 
 public partial class exam_buildpaper_answersheetmaster
@@ -1682,6 +1705,7 @@ public partial class exam_master
     public Nullable<int> uploadtype { get; set; }
     public Nullable<int> basic_setting { get; set; }
     public Nullable<int> download_permission { get; set; }
+    public Nullable<int> is_audiovideofile_onetimeview { get; set; }
     public Nullable<int> classid { get; set; }
     public Nullable<int> groupid { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
@@ -1773,6 +1797,7 @@ public partial class exam_uploadanswer_master
     public string marks { get; set; }
     public string duration { get; set; }
     public string checking_file { get; set; }
+    public Nullable<int> ischeckonce { get; set; }
 }
 
 public partial class examchecking_assignment
@@ -1810,6 +1835,7 @@ public partial class exampapers_master
     public string exampaper_path { get; set; }
     public string extrasheetpath { get; set; }
     public string audiovideofilepath { get; set; }
+    public Nullable<int> is_audiovideofile_onetimeview { get; set; }
     public string fileinstruction { get; set; }
 }
 
@@ -2792,6 +2818,9 @@ public partial class students
     public int otp { get; set; }
     public Nullable<bool> ispasswordset { get; set; }
     public Nullable<bool> isDomesticStudent { get; set; }
+    public Nullable<bool> isverifiedbyAdmin { get; set; }
+    public Nullable<bool> isdeletedbyAdmin { get; set; }
+    public Nullable<int> universityid { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
@@ -3212,6 +3241,13 @@ public partial class universitygrouping
 
     public virtual university_master university_master { get; set; }
     public virtual university_master university_master1 { get; set; }
+}
+
+public partial class universitywise_admin_video_mapping
+{
+    public int id { get; set; }
+    public Nullable<int> videoID { get; set; }
+    public Nullable<int> universityID { get; set; }
 }
 
 public partial class universitywise_faqmapping

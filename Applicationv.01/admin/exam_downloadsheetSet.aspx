@@ -1,6 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="exam_downloadsheetSet.aspx.cs" Inherits="admin_exam_downloadsheetSet" MasterPageFile="~/admin/admin.master" %>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="head">
+    <script type="text/javascript" language="javascript">
+        function ConfirmOnDelete(item) {
+            if (confirm("Are you sure to delete: " + item + "?") == true)
+                return true;
+            else
+                return false;
+        }
+    </script>
 </asp:Content>
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -112,7 +120,8 @@
                                         <asp:FileUpload ID="audiofile_FileUpload" runat="server" />
                                         <asp:Label ID="Label3" runat="server" />
                                         <label style="font-size: small;" class="marginright">*The file formats you can upload are - .mp4, .3gp, .webm, .wmv, .flv,.ogv, .mkv</label>
-                                    </div>
+                                        <asp:CheckBox runat="server" ID="chkview"/>Allow Audio/Video file to be viewed one time 
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -158,6 +167,81 @@
                         </div>
                     </div>
                      <div class="form-group row">
+                    <div class="tab-content card-body">
+                        <div class="tab-pane active" id="first">
+                            <asp:GridView ID="grid" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="false"
+                                DataKeyNames="questionid"
+                                AllowPaging="True"
+                                CellPadding="3" BorderStyle="None" BorderWidth="1px" CellSpacing="2"
+                                PageSize="25"
+                                OnDataBound="grid_DataBound" OnRowCancelingEdit="grid_RowCancelingEdit" OnRowCommand="grid_RowCommand" OnRowDataBound="grid_RowDataBound" OnRowDeleted="grid_RowDeleted" OnRowDeleting="grid_RowDeleting" OnRowEditing="grid_RowEditing" OnRowUpdated="grid_RowUpdated" OnRowUpdating="grid_RowUpdating" OnPageIndexChanging="grid_PageIndexChanging">
+
+                                <Columns>
+                                    <asp:BoundField DataField="questionid" HeaderText="ID" InsertVisible="False"
+                                        ReadOnly="True" SortExpression="questionid" />
+                                       
+                                    <asp:TemplateField HeaderText="Question Description">
+                                        <EditItemTemplate>
+                                            <asp:FileUpload runat="server" ID="fileupload2" />
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                           <asp:Label ID="lblSubject" runat="server" Text='<%#Eval("questiondescription") %>'/>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Assessment Sheet">
+                                        <EditItemTemplate>
+                                            <asp:FileUpload runat="server" ID="fileupload1" />
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <a runat="server" href='<%# Bind("questionpath") %>' target="_blank" id="exampath">View </a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Extra Sheet">
+                                        <EditItemTemplate>
+                                            <asp:FileUpload runat="server" ID="fileupload_extra" />
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <a runat="server" href='<%# Bind("extrasheetpath") %>' target="_blank" id="extraexampath" visible='<%# !String.IsNullOrEmpty(Convert.ToString(Eval("extrasheetpath"))) %>'>View </a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Audio/Video File">
+                                        <EditItemTemplate>
+                                            <asp:FileUpload runat="server" ID="fileupload_file" />
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <a runat="server" href='<%# Bind("extrafilepath") %>' target="_blank" id="extrafile" visible='<%# !String.IsNullOrEmpty(Convert.ToString(Eval("extrafilepath"))) %>'>View </a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="One time view File">
+                                        <EditItemTemplate>
+                                           <asp:CheckBox ID="chkactive" runat="server" Checked='<%# bool.Parse(Eval("check").ToString()=="1"?"True":"False") %>'/>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label runat="server" id="lblview" Text='<%# Bind("audiovideofile_tobeviewed") %>'></asp:Label>                                            
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <%--<asp:TemplateField HeaderText="Edit" ShowHeader="False">
+                                        <EditItemTemplate>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
+                                            <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>--%>
+                                    <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
+                </div>
+                     <div class="form-group row" style="display:none">
                         <div class="col-sm-8 offset-sm-3">
                             <asp:DataList ID="rptVideo" runat="server" GridLines="Horizontal">
                                 <HeaderTemplate>

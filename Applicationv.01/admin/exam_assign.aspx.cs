@@ -132,7 +132,10 @@ public partial class admin_exam_assign : System.Web.UI.Page
             var studentID = (from ad in db.applicantdetails
                              join sm in db.exam_applicant_subjectmapping on ad.universityid equals sm.universityid into data
                              from x in data.DefaultIfEmpty()
-                             where ad.classId == classid && ad.groupId == groupid && ad.universityid == universityId && x.subjectid == subjectid && x.applicantid == ad.applicantid
+
+                             join sd in db.students on ad.applicantid equals sd.studentid into sdata
+                             from s in sdata.DefaultIfEmpty()
+                             where ad.isdeletedbyAdmin != true && s.isverifiedbyAdmin == true && ad.classId == classid && ad.groupId == groupid && ad.universityid == universityId && x.subjectid == subjectid && x.applicantid == ad.applicantid
                              select new 
                              {
                                  applicantid = ad.applicantid,
@@ -340,7 +343,7 @@ public partial class admin_exam_assign : System.Web.UI.Page
                     }
                 }
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                                  "alert('You have successfully assign assessments .');window.location='" + Request.ApplicationPath + "admin/exam_assignList.aspx';", true);
+                                  "alert('You have successfully assigned this assessment to students and invigilator.');window.location='" + Request.ApplicationPath + "admin/exam_assignList.aspx';", true);
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }

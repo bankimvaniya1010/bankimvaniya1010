@@ -70,7 +70,7 @@ public partial class createuser : System.Web.UI.Page
                     ddlRole.Items.FindByValue(data.roleid.ToString()).Selected = true;
                 }                
                 txtEmail.Value = data.email;
-                if (data.roleid == 13)
+                if (data.roleid == 13 || data.roleid ==14)
                 {
                     subroles.Attributes.Add("style","display:block");
                    // Divpasskey.Attributes.Add("style", "display:none");
@@ -190,7 +190,7 @@ public partial class createuser : System.Web.UI.Page
             var adminData = (from tInfo in db.adminusers
                              where tInfo.universityId == universityID && tInfo.adminid == RecordId
                              select tInfo).FirstOrDefault();
-            if (adminData.roleid == 13)
+            if (adminData.roleid == 13 || adminData.roleid == 14)
             {
                 var examinerdata = (from em in db.examiner_master
                                     where em.universityId == universityID && em.adminrecordID == RecordId
@@ -229,7 +229,7 @@ public partial class createuser : System.Web.UI.Page
         if (mode == "new")
             db.adminusers.Add(usrObj);
         db.SaveChanges();
-        if (usrObj.roleid == 13)
+        if (usrObj.roleid == 13 || usrObj.roleid == 14)
         {            
             foreach (ListItem li in chkroles.Items)
             {

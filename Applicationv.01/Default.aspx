@@ -7,20 +7,28 @@
             <li class="breadcrumb-item"><a href="default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-        <h1 class="h2">WELCOME <asp:Label runat="server" ID="isfullservicethenlbl"></asp:Label></h1>
-        <div id="domesticDiv" runat="server" class="form-group" style="display: none">
-            <div class="col-lg-8 list-group-item">
-                <label class="form-label" for="password">Are you an Australian Citizen, an Australian Permanent Resident or a Citizen of New Zealand?</label>
-                <div class="input-group input-group-merge">
-                    <asp:RadioButton ID="rblYes" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="residency" Text="Yes" />
-                    <asp:RadioButton ID="rblNo" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="residency" Text="No" />
+        <h1 class="sidebar-heading h2" style="font-size: 22px;padding-left: 0px;">HELLO <%=applicantname %>, WELCOME <asp:Label runat="server" ID="isfullservicethenlbl"></asp:Label></h1>
+        <div runat="server" id="ifnotverifiedshow" style="display:none">
+            <div id="Div1" runat="server" class="form-group">
+                <div class="col-lg-12 list-group-item">
+                    <label class="form-label" for="password">Not Verified By Admin. Please wait until admin verify your details.</label>
                 </div>
-                <br/>
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
             </div>
         </div>
+        <div runat="server" id="ifverifiedshow" style="display:none">
+            <div id="domesticDiv" runat="server" class="form-group" style="display: none">
+                <div class="col-lg-12 list-group-item">
+                    <label class="form-label" for="password">Are you an Australian Citizen, an Australian Permanent Resident or a Citizen of New Zealand?</label>
+                    <div class="input-group input-group-merge">
+                        <asp:RadioButton ID="rblYes" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="residency" Text="Yes" />
+                        <asp:RadioButton ID="rblNo" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="residency" Text="No" />
+                    </div>
+                    <br/>
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                </div>
+            </div>
 
-        <div class="row">
+            <div class="row">
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header d-flex align-items-center">
@@ -78,7 +86,7 @@
                                 <li>View list of your past and upcoming assessments.</li><br>
                                 <li>View your ratings or marks obtained along with assessor's comments.</li><br>
                                 <li>At the scheduled time and day appear for your Invigilator-based assessment.</li><br>
-                                <li>Start and complete your proctor based 100% online assessments.</li><br>
+                                <li>Start and complete your invigilator based 100% online assessments.</li><br>
                              </ol>
                         </div>
                     </div>
@@ -110,6 +118,7 @@
 
             </div>
         </div>
+         </div>
     </div>
     <script>
         $(document).ready(function () {

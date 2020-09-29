@@ -31,12 +31,17 @@ public partial class exammodule : System.Web.UI.Page
         ViewState["NewPreviousList"] = null;
         ViewState["totalResponseTime"] = null;
 
+        var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
+        if (!isVerifiedByAdmin)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
         if (!IsPostBack)
         {
             allfaqQuestion = objCom.FaqQuestionList();
             universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.examInstruction).FirstOrDefault();
             Session["totalResponseTime"] = null;
-            bindDataList();
+            bindDataList(string.Empty);
             ifexamexpires();
             ifexamnotappeared();
         }
@@ -76,7 +81,7 @@ public partial class exammodule : System.Web.UI.Page
                     if (mode == "new")
                         db.exam_assign.Add(objexam_assign);
                     db.SaveChanges();
-                    bindDataList();
+                    bindDataList(string.Empty);
                 }
             }
 
@@ -110,7 +115,7 @@ public partial class exammodule : System.Web.UI.Page
                     if (mode == "new")
                         db.exam_assign.Add(objexam_assign);
                     db.SaveChanges();
-                    bindDataList();
+                    bindDataList(string.Empty);
                 }
             }
 
@@ -118,20 +123,16 @@ public partial class exammodule : System.Web.UI.Page
         catch (Exception ex) { log.WriteLog(ex.ToString()); }
     }
 
-    private void bindDataList()
+    private void bindDataList(string selectedvalue)
     {
 
         try
         {
-
             data = (from exam in db.exam_master
-
                     join assign in db.exam_assign on exam.exampapersid equals assign.exampapersid into assignData
                     from x in assignData.DefaultIfEmpty()
-
                     join shedule in db.exam_schedule on x.exampapersid equals shedule.exampapersid into sheduleData
                     from y in sheduleData.DefaultIfEmpty()
-
                     where x.exam_datetime == y.exam_datetime && exam.universityID == UniversityID && y.universityid == UniversityID && x.universityID == UniversityID && x.applicantid == UserID
                     select new Detials()
                     {
@@ -140,10 +141,10 @@ public partial class exammodule : System.Web.UI.Page
                         examdatetime = x.exam_datetime,
                         exampapersid = exam.exampapersid,
                         exam_name = exam.exam_name,
-                        shortremarks = exam.shortremarks,
+                        shortremarks = string.IsNullOrEmpty(exam.shortremarks)?null: exam.shortremarks,
                         exam_datetime = y.exam_datetime,
                         examtimezonetoshow = "< " + y.utctimezone + " >",
-                        status = x.status == null ? null : x.status,
+                        status = string.IsNullOrEmpty(x.status) ? null : x.status,
                         showstatus = string.IsNullOrEmpty(x.status) ? "Active" : x.status,
                         Downloadfile = string.IsNullOrEmpty(exam.studentfilepath)? null: webURL + "/Docs/Exammodule/" + UniversityID + "/" + exam.exampapersid + "/studentfile/" + exam.studentfilepath,
                         exampage_link = webURL + "exam_details.aspx?examid=" + exam.exampapersid + "&assignDate=" + y.exam_datetime,
@@ -157,6 +158,18 @@ public partial class exammodule : System.Web.UI.Page
                         examuploadtype = exam.uploadtype== 2?null: exam.uploadtype,
                         gotoresultpage = null,
                     }).SortBy("status").ToList();
+
+            if (selectedvalue == "Active")
+                data.RemoveAll(x => x.status != null);
+            else if (selectedvalue == "Completed")
+                data.RemoveAll(x => x.status != "Completed");
+            else if (selectedvalue == "Expired")
+                data.RemoveAll(x => x.status != "Expired");
+            else if (selectedvalue == "NotApperead")
+                data.RemoveAll(x => x.status != "NotApperead");
+            else if (selectedvalue == "Disqualified")
+                data.RemoveAll(x => x.status != "Disqualified");
+
             foreach (var item in data)
             {
                 var examdateofrelease = db.exam_applicantmarks_releasedatemaster.Where(x => x.applicantid == item.applicantid && x.universityid == item.universityid && x.examid == item.exampapersid && x.examdate_time == item.exam_datetime).FirstOrDefault();
@@ -174,6 +187,8 @@ public partial class exammodule : System.Web.UI.Page
             }
             if (data.Count > 0)
             {
+                coeCard.Visible = true;
+                emptyChoicesDiv.Visible = false;
                 coeList.DataSource = data;
                 coeList.DataBind();
             }
@@ -208,5 +223,11 @@ public partial class exammodule : System.Web.UI.Page
         public string resulttimezone { get; set; }
         public string gotoresultpage { get; set; }
         public int? examuploadtype { get; set; }
+    }
+
+    protected void ddlsort_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string selectedvalue = ddlsort.SelectedValue;
+        bindDataList(selectedvalue);
     }
 }
