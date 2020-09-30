@@ -314,7 +314,7 @@
                         var result = JSON.parse(response.d);
                          if (result == "Disqualified") {
                              var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
-                             location.replace(hostName + "view_exampaper2.aspx?assignID=" + <%=assignID%>);
+                             location.replace(hostName + "exammodule.aspx");
                         }
                     }
                 }
@@ -395,7 +395,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "view_exampaper.aspx/Saveaudiovideoresponse",
+                url: "view_exampaper2.aspx/Saveaudiovideoresponse",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",                             

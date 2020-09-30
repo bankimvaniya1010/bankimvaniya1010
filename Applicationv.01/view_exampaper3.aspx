@@ -270,7 +270,8 @@
                         if (result == "responsesubmitted") 
                             location.replace(hostName + "exammodule.aspx");
                         else if (result == "Disqualified") 
-                            location.replace(hostName + "view_exampaper3.aspx?assignID=" + <%=assignID%>);
+                            location.replace(hostName + "exammodule.aspx");
+                            //location.replace(hostName + "view_exampaper3.aspx?assignID=" + <%=assignID%>);
                     }
                 }
             });
@@ -366,7 +367,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "view_exampaper.aspx/Saveaudiovideoresponse",
+                url: "view_exampaper3.aspx/Saveaudiovideoresponse",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",                          

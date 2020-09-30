@@ -348,7 +348,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
                                             answesheetid = exam.answesheetid,
                                             anshwesheetpath = exam.anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid+"/"+exam.exampapersheetID + "/" + exam.anshwesheetpath,
                                             extra_anshwesheetpath = exam.extra_anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.exampapersheetID + "/" + "/extrasheet/" + exam.extra_anshwesheetpath,
-                                            checkedsheet = x.checked_answersheetPath == null ? null : webURL + "Docs/Exammodule/Admin_checkedsheets/" + exam.universityID + "/" + exam.exampaperid + "/" + exam.applicantid + "/" + exam.answesheetid + "/" + x.checked_answersheetPath,
+                                            checkedsheet = x.checked_answersheetPath == null ? null : webURL + "Docs/Exammodule/Admin_checkedsheets/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid+ "/" + exam.answesheetid + "/" + x.checked_answersheetPath,
                                         }).OrderBy(x => x.answesheetid).ToList();
             }
             else if (examdata.uploadtype == 3)

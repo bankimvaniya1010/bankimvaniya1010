@@ -260,9 +260,10 @@
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
-                         if (result == "Disqualified") {
-                             var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
-                             location.replace(hostName + "view_exampaper.aspx?assignID=" + <%=assignID%>);
+                        var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                        if (result == "Disqualified") {                           
+                             location.replace(hostName + "exammodule.aspx");
+                             //location.replace(hostName + "view_exampaper.aspx?assignID=" + <%=assignID%>);
                         }
                     }
                 }

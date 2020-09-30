@@ -186,7 +186,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         dt.Columns.Add("Applicant Id", typeof(Int32));
         dt.Columns.Add("University Name", typeof(string));
         dt.Columns.Add("First Name", typeof(string));
-        dt.Columns.Add("Last Name", typeof(string));
+        dt.Columns.Add("Family Name", typeof(string));
         dt.Columns.Add("Email", typeof(string));
         dt.Columns.Add("Registration Date", typeof(DateTime));
         dt.Columns.Add("Contact Number", typeof(string));

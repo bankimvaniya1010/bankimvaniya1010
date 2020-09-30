@@ -53,7 +53,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                              from x3 in dateData.Where(a => a.id.ToString() == x1.commencementdate).DefaultIfEmpty()
                              join sm in db.students on ad.applicantid equals sm.studentid into studentData
                              from x4 in studentData.DefaultIfEmpty()
-                             where ad.universityid == universityID
+                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false
                              select new
                              {
                                  applicantid = ad.applicantid,
