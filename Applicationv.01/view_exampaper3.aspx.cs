@@ -207,6 +207,8 @@ public partial class view_exampaper3 : System.Web.UI.Page
         public string audiovideofilepath { get; set; }
         public string fileinstruction { get; set; }
         public int? onetimeshow { get; set; }
+        public string audiovideofilename { get; set; }
+        public string iffile_isaudio_orvideo { get; set; }
     }
 
     private void bindDataList(int? idtoshow, int? permission)
@@ -227,6 +229,8 @@ public partial class view_exampaper3 : System.Web.UI.Page
                                      audiovideofilepath = em.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/AnyFile/" + em.audiovideofilepath,
                                      fileinstruction = string.IsNullOrEmpty(em.fileinstruction) ? null : em.fileinstruction,
                                      onetimeshow = em.is_audiovideofile_onetimeview,
+                                     audiovideofilename = em.audiovideofilepath == null ? null : em.audiovideofilepath,
+                                     iffile_isaudio_orvideo = null,
                                  }).ToList();
 
             }
@@ -243,10 +247,25 @@ public partial class view_exampaper3 : System.Web.UI.Page
                                      audiovideofilepath = em.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/AnyFile/" + em.audiovideofilepath,
                                      fileinstruction = string.IsNullOrEmpty(em.fileinstruction) ? null : em.fileinstruction,
                                      onetimeshow = em.is_audiovideofile_onetimeview,
+                                     audiovideofilename = em.audiovideofilepath == null ? null : em.audiovideofilepath,
+                                     iffile_isaudio_orvideo = null,
                                  }).ToList();
             }
             foreach (var item in allpapers)
             {
+                if (item.audiovideofilename != null)
+                {
+                    string s = item.audiovideofilename;
+                    string[] after_split = s.Split('.');
+                    string extension = after_split[after_split.Length - 1].ToLower();
+
+                    if (extension == "mp3" || extension == "3gp" || extension == "webm")
+                        item.iffile_isaudio_orvideo = "audio";
+                    else
+                        item.iffile_isaudio_orvideo = null;
+
+                }
+
                 var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.examdatetime == examdatetime && x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
                 if (data_ifviewed == null)
                     is_onetimeshow = Convert.ToInt32(item.onetimeshow);

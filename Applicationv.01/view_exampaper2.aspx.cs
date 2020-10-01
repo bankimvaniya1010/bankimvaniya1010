@@ -158,6 +158,8 @@ public partial class view_exampaper2 : System.Web.UI.Page
         public string upload_fileinstruction { get; set; }
         public string openanswertype { get; set; }
         public int onetimeshow { get; set; }
+        public string audiovideofilename { get; set; }
+        public string iffile_isaudio_orvideo { get; set; }
     }
     private void bindDataList()
     {
@@ -190,6 +192,8 @@ public partial class view_exampaper2 : System.Web.UI.Page
                                  upload_fileinstruction =null,
                                  upload_questionpath = null,
                                  onetimeshow = em.is_audiovideofile_onetimeview == null ? 0 : 1,
+                                 audiovideofilename = em.audiovideofilepath == null ? null : em.audiovideofilepath,
+                                 iffile_isaudio_orvideo = null,
                              }).ToList();
           
             var take1question = allpapers.Take(1);
@@ -256,6 +260,19 @@ public partial class view_exampaper2 : System.Web.UI.Page
                         Session["totalResponseTime"] = null;
                     else
                         Session["totalResponseTime"] = downloadsheet_questionbank.duration;
+
+                    if (item.audiovideofilename != null)
+                    {
+                        string s = item.audiovideofilename;
+                        string[] after_split = s.Split('.');
+                        string extension = after_split[after_split.Length - 1].ToLower();
+
+                        if (extension == "mp3" || extension == "3gp" || extension == "webm")
+                            item.iffile_isaudio_orvideo = "audio";
+                        else
+                            item.iffile_isaudio_orvideo = null;
+
+                    }
 
                     var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.examdatetime == examdatetime && x.exampapersheetID == item.id && x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
                     if (data_ifviewed == null)

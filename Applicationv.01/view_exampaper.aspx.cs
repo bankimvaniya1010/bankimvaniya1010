@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Aspose.Words;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +25,7 @@ public partial class view_exampaper : System.Web.UI.Page
     public int allpapersCount, allpapersheetscount;
     public string exammarks;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
+    string docPath1 = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected static List<faq> allQuestions = new List<faq>();
     public int is_onetimeshow = 0, examsheetid, examid;
     public DateTime examdatetime;
@@ -139,6 +141,8 @@ public partial class view_exampaper : System.Web.UI.Page
         public string audiovideofilepath { get; set; }
         public string fileinstruction { get; set; }
         public int? onetimeshow { get; set; }
+        public string audiovideofilename { get; set; }
+        public string iffile_isaudio_orvideo { get; set; }
     }
 
     private void bindDataList()
@@ -156,11 +160,26 @@ public partial class view_exampaper : System.Web.UI.Page
                                  questionpaper = webURL + "/Docs/Exammodule/" + UniversityID + "/"+ em.exampapersid + "/" + em.exampaper_path,
                                  extrasheetpath = em.extrasheetpath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/" + em.exampapersid + "/ExtraSheet/" + em.extrasheetpath,
                                  audiovideofilepath = em.audiovideofilepath == null ? null : webURL + "Docs/Exammodule/" + UniversityID + "/"+ em.exampapersid + "/AnyFile/" + em.audiovideofilepath,
+                                 audiovideofilename = em.audiovideofilepath== null ? null: em.audiovideofilepath,
+                                 iffile_isaudio_orvideo = null,
                                  fileinstruction = string.IsNullOrEmpty(em.fileinstruction)? null : em.fileinstruction,
                                  onetimeshow = em.is_audiovideofile_onetimeview == null ? 0:1,
+
                              }).ToList();
             foreach (var item in allpapers)
             {
+                if (item.audiovideofilename != null)
+                {
+                    string s = item.audiovideofilename;
+                    string[] after_split = s.Split('.');
+                    string extension = after_split[after_split.Length - 1].ToLower();
+
+                    if (extension == "mp3" || extension == "3gp" || extension == "webm")
+                        item.iffile_isaudio_orvideo = "audio";
+                    else
+                        item.iffile_isaudio_orvideo = null;
+
+                }
                 var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.exampapersheetID == item.id && x.applicantid == UserID && x.universityid == UniversityID && x.examdatetime == examdatetime).FirstOrDefault();
                 if (data_ifviewed == null)
                     is_onetimeshow = Convert.ToInt32(item.onetimeshow);
@@ -294,11 +313,64 @@ public partial class view_exampaper : System.Web.UI.Page
                 lblCompleted.Text = "Thank you for answering all papersheet.";
                 Session["totalResponseTime"] = null;
                 //Session.Remove("totalResponseTime");
+
+                ///save all files in pdf form
+                
+                Document doc = new Document();
+                var answersheets = (from ad in db.exampapers_master
+                                    join cm in db.exam_answersheet on ad.id equals cm.exampapersheetID into cmdata
+                                    from x in cmdata.DefaultIfEmpty()
+                                    where x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate && x.applicantid== UserID
+                                    select new
+                                    {
+                                        anshwesheetpath = webURL+"Docs/Exammodule/AnswerSheet/" + UniversityID + "/" + UserID + "/" + ad.id + "/" + x.anshwesheetpath,
+
+                                    }).ToList();
+
+                string[] files = new string[answersheets.Count];
+                for (int i = 0; i < answersheets.Count; i++)
+                {
+                    files[i] = @""+ answersheets[i];
+                }
+
+                Convertfromimagetopdf(files, doc);
+                docPath1 = webURL + "Docs/Exammodule/AnswerSheet/" + UniversityID + "/" + UserID + "/" + exampaperid;
+                string pdfname = exampaperid + "answersheets.pdf";
+                string docpath = Path.Combine(docPath1, pdfname);
+                doc.Save(@"" + docpath);
+
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('Thank you for answering .');window.location='" + Request.ApplicationPath + "exammodule.aspx';", true);
             }
         }
         catch (Exception ex) {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    private void Convertfromimagetopdf(string[] files, Document doc)
+    {
+        try
+        {
+            DocumentBuilder builder = new DocumentBuilder(doc);
+            for (int i = 0; i < files.Length; i++)
+            {
+                System.Drawing.Image image = System.Drawing.Image.FromFile(files[i]);
+
+                PageSetup pagesetup = builder.PageSetup;
+                pagesetup.PageWidth = ConvertUtil.PixelToPoint(image.Width, image.HorizontalResolution);
+                pagesetup.PageHeight = ConvertUtil.PixelToPoint(image.Width, image.VerticalResolution);
+
+
+                builder.InsertImage(image, Aspose.Words.Drawing.RelativeHorizontalPosition.Page, 0, Aspose.Words.Drawing.RelativeVerticalPosition.Page, 0
+                    , pagesetup.PageWidth, pagesetup.PageHeight, Aspose.Words.Drawing.WrapType.None);
+
+                if (i < files.Length - 1)
+                    builder.InsertBreak(BreakType.SectionBreakNewPage);
+            }
+        }
+        catch (Exception ex)
+        {
             objLog.WriteLog(ex.ToString());
         }
     }

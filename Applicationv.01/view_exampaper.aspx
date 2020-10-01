@@ -51,7 +51,7 @@
                                         <div class="card-body">
                                              <div style="<%# (Eval("extrasheetpath") == null && Eval("fileinstruction") == null && Eval("audiovideofilepath") == null)? "display:none;": " "  %>">
 
-                                        <div class="list-group-item" id="extrafileDiv" style="<%# Eval("extrasheetpath") == null? "display:none;": "display:block;border: none;"%>">
+                                        <div class="list-group-item" id="extrafileDiv" style="<%# Eval("extrasheetpath") == null? "display:none;": "display:block;border: none;margin-left:20px;"%>">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
                                                 <div class="form-row">
                                                     <label class="col-md-3 col-form-label form-label"><b>RESOURCE DOCUMENT: </b></label>
@@ -62,7 +62,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="list-group-item" id="InstructionDiv" style="<%# Eval("fileinstruction") == null? "display:none;": "display:block;border: none;"%>">
+                                        <div class="list-group-item" id="InstructionDiv" style="<%# Eval("fileinstruction") == null? "display:none;": "display:block;border: none;margin-left:20px;"%>">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
                                                 <div class="form-row">
                                                     <label for="choice" class="col-md-3 col-form-label form-label"><b>Instructions : </b></label>
@@ -73,13 +73,19 @@
                                             </div>
                                         </div>
                                         <div id="audiiovideoDIv" >
-                                        <div class="list-group-item" id="videoDIv" style="<%# Eval("audiovideofilepath") == null? "display:none;": "display:block;border: none;"%>">
+                                        <div class="list-group-item" id="videoDIv" style="<%# Eval("audiovideofilepath") == null? "display:none;": "display:block;border: none;margin-left:20px;"%>">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
                                                 <div class="form-row">
                                                     <label for="choice" class="col-md-3 col-form-label form-label" id="auidovideolink"><b>RESOURCE AUDIO/VIDEO: </b></label>
                                                     <div class="col-md-6">
                                                          <%--<a href="<%# Eval("audiovideofilepath") %>" target="_blank" id="aurdiovideohyperlink">View File</a>--%>
-                                                        <div>
+                                                        <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:none;": "display:block;border: none;"%>">
+                                                            <video height="57px"; width="348px";  oncontextmenu="return false;" id="myVideo" controls controlslist="nodownload" disablepictureinpicture>
+                                                                <source src='<%# Eval("audiovideofilepath") %>'>
+                                                            </video>
+                                                        </div>
+                                                        
+                                                        <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:block;": "display:none;border: none;"%>">
                                                             <video width="320" height="240" oncontextmenu="return false;" id="myVideo" controls controlslist="nodownload" disablepictureinpicture>
                                                                 <source src='<%# Eval("audiovideofilepath") %>'>
                                                             </video>
