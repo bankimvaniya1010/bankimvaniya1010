@@ -313,7 +313,8 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 objgte_applicantdetails.nameofuniversityappliedfor = universityID;
                 //objgte_applicantdetails.cityofeducationInstitution = Convert.ToInt32(ddleduinstitutioncity.Value);
             }
-            objgte_applicantdetails.countryofeducationInstitution = Convert.ToInt32(ddluniversityCountry.SelectedValue);
+            if(ddluniversityCountry.SelectedValue != null)
+                objgte_applicantdetails.countryofeducationInstitution = Convert.ToInt32(ddluniversityCountry.SelectedValue);
             objgte_applicantdetails.cityofeducationInstitution = Convert.ToInt32(hidCityField.Value);
 
             //if (ddlUniversityCampus.SelectedValue != "")
@@ -343,7 +344,14 @@ public partial class gte_studentdetails : System.Web.UI.Page
                     Directory.CreateDirectory(docPath);
                 string extension = Path.GetExtension(FileUpload.PostedFile.FileName);
                 string filename = userID + extension;
+
+                if (File.Exists(docPath + filename))
+                {
+                    File.Delete(docPath + filename);
+                }
+
                 FileUpload.PostedFile.SaveAs(docPath + filename);
+                
                 objgte_applicantdetails.profilepicturepath = filename;
             }
 

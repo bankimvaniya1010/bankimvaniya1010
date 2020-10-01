@@ -480,56 +480,65 @@ public partial class admin_exam_marking : System.Web.UI.Page
             DateTime dateofrelease = Convert.ToDateTime(selectedexamdate_time.Value);
             DateTime dateofreleaseutc = Convert.ToDateTime(hidexamutcdatetime.Value);
             string TimeZone = hidTimeZone.Value;
-            var mode = "new";
-            exam_applicantmarks_releasedatemaster objmappping = new exam_applicantmarks_releasedatemaster();
 
-            var data = db.exam_applicantmarks_releasedatemaster.Where(x=>x.applicantid == applicantid && x.universityid == universityid && x.examinerid == examinerid && x.examdate_time == examdatetime).FirstOrDefault();
-            if (data != null)
+
+            // to check whether admin has chedked all answershhet or not
+            var checkedsheetcount = db.exam_marking_master.Where(x => x.universityid == universityid && x.applicantid == applicantid && x.examid == examid && x.examdatetime == examdatetime).ToList().Count();
+            if (checkedsheetcount > 0)
             {
-                mode = "update";
-                objmappping = data;
+                var mode = "new";
+                exam_applicantmarks_releasedatemaster objmappping = new exam_applicantmarks_releasedatemaster();
+
+                var data = db.exam_applicantmarks_releasedatemaster.Where(x => x.applicantid == applicantid && x.universityid == universityid && x.examinerid == examinerid && x.examdate_time == examdatetime).FirstOrDefault();
+                if (data != null)
+                {
+                    mode = "update";
+                    objmappping = data;
+                }
+                objmappping.applicantid = Convert.ToInt32(ddlstudent.SelectedValue);
+                objmappping.examinerid = Convert.ToInt32(ddlexaminer.SelectedValue);
+                objmappping.examid = Convert.ToInt32(ddlexam.SelectedValue);
+                objmappping.universityid = Convert.ToInt32(universityid);
+                objmappping.examdate_time = Convert.ToDateTime(ddlexamdate.SelectedValue);
+                objmappping.finalmarks = txtmarksobtain.Value;
+                objmappping.releasedate = Convert.ToDateTime(selectedexamdate_time.Value);
+                objmappping.releasedate_timezone = TimeZone;
+                objmappping.totalmarks = lbltotalmarks.Text;
+                objmappping.releasedateutc = dateofreleaseutc;
+                objmappping.exammarks_saved_at = Convert.ToDateTime(DateTime.Now);
+                objmappping.examdate_saved_at = Convert.ToDateTime(DateTime.Now);
+                //if (objmappping.examdate_saved_at == null)
+                //    objmappping.exammarks_saved_at = Convert.ToDateTime(DateTime.Now);
+                //else if(objmappping.finalmarks != null && objmappping.finalmarks != finalmrksentered)
+                //    objmappping.exammarks_saved_at = Convert.ToDateTime(DateTime.Now);
+                //if (objmappping.examdate_saved_at == null)                
+                //     objmappping.examdate_saved_at = Convert.ToDateTime(DateTime.Now);
+                //else if (objmappping.releasedate != null && objmappping.releasedate != dateofrelease)
+                //    objmappping.examdate_saved_at = Convert.ToDateTime(DateTime.Now);
+
+                if (mode == "new")
+                    db.exam_applicantmarks_releasedatemaster.Add(objmappping);
+                db.SaveChanges();
+
+                // send mail to student the date of release
+                var examname = db.exam_master.Where(x => x.exampapersid == objmappping.examid).FirstOrDefault();
+                var studentDetails = db.students.Where(x => x.studentid == objmappping.applicantid).FirstOrDefault();
+                var university = db.university_master.Where(x => x.universityid == objmappping.universityid).FirstOrDefault();
+
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/ResultDeclaration_Notification.html"));
+                string emailsubject = "Your " + examname.exam_name + " result declaration date.";
+                html = html.Replace("@UniversityName", university.university_name);
+                html = html.Replace("@universityLogo", webURL + "Docs/" + objmappping.universityid + "/" + university.logo);
+                html = html.Replace("@Name", studentDetails.name);
+                html = html.Replace("@examname", examname.exam_name);
+                html = html.Replace("@releasedate", Convert.ToDateTime(objmappping.releasedate).ToString("dd/MMM/yyyy hh:mm tt"));
+                html = html.Replace("@Loginurl", webURL + "Login.aspx");
+                html = html.Replace("@tiemzone", objmappping.releasedate_timezone);
+                objCom.SendMail(studentDetails.email, html, emailsubject);
+                populatedate_marks(examinerid, examid, applicantid, universityid, examdatetime);
             }
-            objmappping.applicantid = Convert.ToInt32(ddlstudent.SelectedValue);
-            objmappping.examinerid = Convert.ToInt32(ddlexaminer.SelectedValue);
-            objmappping.examid = Convert.ToInt32(ddlexam.SelectedValue);
-            objmappping.universityid = Convert.ToInt32(universityid);
-            objmappping.examdate_time = Convert.ToDateTime(ddlexamdate.SelectedValue);            
-            objmappping.finalmarks = txtmarksobtain.Value;
-            objmappping.releasedate = Convert.ToDateTime(selectedexamdate_time.Value);
-            objmappping.releasedate_timezone = TimeZone;
-            objmappping.totalmarks = lbltotalmarks.Text;
-            objmappping.releasedateutc = dateofreleaseutc;
-            objmappping.exammarks_saved_at = Convert.ToDateTime(DateTime.Now);
-            objmappping.examdate_saved_at = Convert.ToDateTime(DateTime.Now);
-            //if (objmappping.examdate_saved_at == null)
-            //    objmappping.exammarks_saved_at = Convert.ToDateTime(DateTime.Now);
-            //else if(objmappping.finalmarks != null && objmappping.finalmarks != finalmrksentered)
-            //    objmappping.exammarks_saved_at = Convert.ToDateTime(DateTime.Now);
-            //if (objmappping.examdate_saved_at == null)                
-            //     objmappping.examdate_saved_at = Convert.ToDateTime(DateTime.Now);
-            //else if (objmappping.releasedate != null && objmappping.releasedate != dateofrelease)
-            //    objmappping.examdate_saved_at = Convert.ToDateTime(DateTime.Now);
-
-            if (mode == "new")
-                db.exam_applicantmarks_releasedatemaster.Add(objmappping);
-            db.SaveChanges();
-            
-            // send mail to student the date of release
-            var examname = db.exam_master.Where(x => x.exampapersid == objmappping.examid).FirstOrDefault();
-            var studentDetails = db.students.Where(x => x.studentid == objmappping.applicantid).FirstOrDefault();           
-            var university = db.university_master.Where(x => x.universityid == objmappping.universityid).FirstOrDefault();
-
-            string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/ResultDeclaration_Notification.html"));
-            string emailsubject = "Your " + examname.exam_name + " result declaration date.";
-            html = html.Replace("@UniversityName", university.university_name);
-            html = html.Replace("@universityLogo", webURL + "Docs/" + objmappping.universityid + "/" + university.logo);
-            html = html.Replace("@Name", studentDetails.name);
-            html = html.Replace("@examname", examname.exam_name);
-            html = html.Replace("@releasedate",Convert.ToDateTime(objmappping.releasedate).ToString("dd/MMM/yyyy hh:mm tt"));
-            html = html.Replace("@Loginurl", webURL + "Login.aspx");
-            html = html.Replace("@tiemzone", objmappping.releasedate_timezone);
-            objCom.SendMail(studentDetails.email, html, emailsubject);
-            populatedate_marks(examinerid, examid, applicantid, universityid, examdatetime);
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please mark the exam sheet first.')", true);
         }
         catch (Exception ex) {
             objLog.WriteLog(ex.ToString());
