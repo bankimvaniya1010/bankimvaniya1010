@@ -44,46 +44,42 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         selectedexaminerId = exammasterdata.examinerId;
         
         docPath = docPath + "/Exammodule/" + selectuniversity + "/" + exampapersid;
-        if (!IsPostBack)
-        {            
-            if (exammasterdata.uploadtype == 1)
-            {
-                uploadtype = 1;
-                uploadpaperDiv.Attributes.Add("style", "display:block;");
-                lbl1.InnerText = "*The file formats you can upload are - .jpg, .png, .jpeg";
-                BindDocuments();
-            }
-            else if (exammasterdata.uploadtype == 2)
-            {
-                uploadtype = 2;
-                buildinpaperDiv.Attributes.Add("style", "display:block;");
-                btnupload.Attributes.Add("style", "display:none;");
-            }
-            else if (exammasterdata.uploadtype == 3)
-            {
-                BindDocuments();
-                uploadtype = 3;
-                uploadpaperDiv.Attributes.Add("style", "display:block;");
-                lbl1.InnerText = "*The file formats you can upload is .pdf";
-                if (exampapers_master.Count > 0)
-                {
-                    div1.Attributes.Add("style", "display:none");
-                    showdivfield.Attributes.Add("style", "display:none");
-                    btnupload.Visible = false;
-                }
-                else
-                {
-                    div1.Attributes.Add("style", "display:block");
-                    showdivfield.Attributes.Add("style", "display:block");
-                    btnupload.Visible = true;
-                }
-            }
-            if (exampapers_master.Count > 0)
-                btnupload.Text = "Upload More";
-            else
-                btnupload.Text = "Upload";
-
+        if (exammasterdata.uploadtype == 1)
+        {
+            uploadtype = 1;
+            uploadpaperDiv.Attributes.Add("style", "display:block;");
+            lbl1.InnerText = "*The file formats you can upload are - .jpg, .png, .jpeg";
+            BindDocuments();
         }
+        else if (exammasterdata.uploadtype == 2)
+        {
+            uploadtype = 2;
+            buildinpaperDiv.Attributes.Add("style", "display:block;");
+            btnupload.Attributes.Add("style", "display:none;");
+        }
+        else if (exammasterdata.uploadtype == 3)
+        {
+            BindDocuments();
+            uploadtype = 3;
+            uploadpaperDiv.Attributes.Add("style", "display:block;");
+            lbl1.InnerText = "*The file formats you can upload is .pdf";
+            if (exampapers_master.Count > 0)
+            {
+                div1.Attributes.Add("style", "display:none");
+                showdivfield.Attributes.Add("style", "display:none");
+                btnupload.Visible = false;
+            }
+            else
+            {
+                div1.Attributes.Add("style", "display:block");
+                showdivfield.Attributes.Add("style", "display:block");
+                btnupload.Visible = true;
+            }
+        }
+        if (exampapers_master.Count > 0)
+            btnupload.Text = "Upload More";
+        else
+            btnupload.Text = "Upload";
 
         //HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
         //if (httpPostedFile.Count > 0)

@@ -122,8 +122,8 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  mobile = ad.mobileno == null ? string.Empty : ad.mobileno,
                                  countryofresidence = c.country_name == null ? string.Empty : c.country_name,
                                  Status = "Prospect",
-                                 approve = s.isverifiedbyAdmin == true ? "Approved" : "Pending",
-                                 suspend = s.isdeletedbyAdmin == true ? "Deleted" : string.Empty,
+                                 approve = ad.isverifiedbyAdmin == true ? "Approved" : "Pending",
+                                 suspend = ad.isdeletedbyAdmin == true ? "Deleted" : string.Empty,
 
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
             }

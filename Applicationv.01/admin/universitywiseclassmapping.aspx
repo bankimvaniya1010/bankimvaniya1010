@@ -32,7 +32,7 @@
                         <label for="name" class="col-sm-2 col-form-label form-label">Class</label>
                         <div class="col-sm-9">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                    <asp:CheckBoxList ID="chkIdProof" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
 

@@ -19,7 +19,7 @@
                     <div class="list-group-item" id="Div4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label4" for="title" class="col-md-3 col-form-label form-label">SUBSCRIBED REGISTRATIONS: </label>
+                                        <label runat="server" id="label4" for="title" class="" style="font-weight: 500;">SUBSCRIBED REGISTRATIONS: </label>
                                         <div class="col-md-6">                                            
                                             <label runat="server" id="lbltotal"></label>
                                         </div>
@@ -29,7 +29,7 @@
                     <div class="list-group-item" id="Div1" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">AVAILABLE REGISTRATIONS</label>
+                                        <label runat="server" id="label1" for="title" class="" style="font-weight: 500;">AVAILABLE REGISTRATIONS: </label>
                                         <div class="col-md-6">                                            
                                              <label runat="server" id="lblavailable"></label>
                                         </div>
