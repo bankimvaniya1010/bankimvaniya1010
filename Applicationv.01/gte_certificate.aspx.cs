@@ -1,5 +1,7 @@
 ﻿using NReco.PdfGenerator;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -17,13 +19,18 @@ public partial class gte_certificate : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     int downloadPdf = 0;
+    int userScore = 0;
+    int section1Question;
+    int section2Question;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         
         if (Request.QueryString["downloadPdf"] != null)
             downloadPdf = Convert.ToInt32(Request.QueryString["downloadPdf"]);
-        universityID = Utility.GetUniversityId();        
+        universityID = Utility.GetUniversityId();
+        section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
+        section2Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection2Question"]);
         showContent();
         
     }
@@ -61,10 +68,25 @@ public partial class gte_certificate : System.Web.UI.Page
                         {
                             if (studentGteProgress.is_gte_certificate_generated.HasValue && studentGteProgress.is_gte_certificate_generated.Value)
                             {
-                                setStudentPersonalDetails(ApplicantID, universityID);                                
+                                setStudentPersonalDetails(ApplicantID, universityID);
                             }
-                            else
-                                showErrorMessage();
+                            else {
+                                var preliminaryQuestionList = db.gte_preliminary_questionmaster.AsNoTracking().ToList();
+                                calculateStudentScore(preliminaryQuestionList);
+
+                                int totalQuestion = section1Question + section2Question;
+                                int userPercentageScore = (int)Math.Ceiling((decimal)userScore / totalQuestion * 100);
+                                if (userPercentageScore > 40 && userPercentageScore <= 65)
+                                    generateParticipationCertificate("Satisfactory");
+                                else if (userPercentageScore > 65 && userPercentageScore <= 85)
+                                    generateParticipationCertificate("Good");
+                                else if (userPercentageScore > 85)
+                                    generateParticipationCertificate("Excellent");
+                                else
+                                    generateParticipationCertificate("Poor");
+
+                                setStudentPersonalDetails(ApplicantID, universityID);
+                            }
                         }
                         else
                             showErrorMessage();
@@ -76,6 +98,80 @@ public partial class gte_certificate : System.Web.UI.Page
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
+
+    private void generateParticipationCertificate(string performanceCategory)
+    {
+        try
+        {
+            var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == ApplicantID && x.universityId == universityID).FirstOrDefault();
+            if (gteProgressBar != null)
+            {
+                string certificateNumber = generateCertificateNumber();
+                objLog.WriteLog("Certificate Number: " + certificateNumber + " generated for applicant ID: " + ApplicantID);
+                gteProgressBar.is_gte_certificate_generated = true;
+                gteProgressBar.certificate_creation_date = DateTime.Today;
+                gteProgressBar.performance_category = performanceCategory;
+                gteProgressBar.certificate_name = certificateNumber;
+                db.SaveChanges();
+            }
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
+
+    private string generateCertificateNumber()
+    {
+        string certificateNumber = "";
+        while (true)
+        {
+            certificateNumber = RandomAplhaNumericString();
+            if (!db.gte_progressbar.Any(x => x.certificate_name == certificateNumber))
+                return certificateNumber;
+        }
+    }
+    public static string RandomAplhaNumericString() // Generated Format "ABCD9999"
+    {
+        const string chars = "ABCD";
+        Random random = new Random();
+        int randomNumber = random.Next(0, 9999);
+        string aplhaNumericNumber = "";
+        string randomString = new string(Enumerable.Repeat(chars, 4).Select(s => s[random.Next(s.Length)]).ToArray());
+        if (randomNumber < 1000)
+            aplhaNumericNumber = randomString + "0" + randomNumber.ToString();
+        else
+            aplhaNumericNumber = randomString + randomNumber.ToString();
+
+        return aplhaNumericNumber;
+    }
+
+    private void calculateStudentScore(List<gte_preliminary_questionmaster> preliminaryQuestionList)
+    {
+        var preliminaryAnswerList = db.gte_preliminaryapplicantanswers
+                                      .Where(x => x.applicantid == ApplicantID && x.universityId == universityID)
+                                      .Select(x => new { x.gte_preliminary_question_id, x.answer }).ToList();
+
+        foreach (var answer in preliminaryAnswerList)
+        {
+            gte_preliminary_questionmaster test = preliminaryQuestionList.Where(x => x.gte_preliminaryid == answer.gte_preliminary_question_id).FirstOrDefault();
+            if (answer.answer == test.correctanswer)
+                userScore++;
+        }
+
+        //Logic to calculate answered section 1 questions
+        var preliminaryAnswerListSection1 = db.gtepreliminarysection_applicantanswers
+                                              .Where(x => x.applicantId == ApplicantID && x.universityId == universityID)
+                                              .Select(x => new { x.gte_preliminary_section_question_id, x.answer }).ToList();
+
+        var preliminaryQuestionListSection1 = db.gte_preliminary_section_questionmaster.AsNoTracking().ToList();
+
+        foreach (var answer in preliminaryAnswerListSection1)
+        {
+            gte_preliminary_section_questionmaster test = preliminaryQuestionListSection1.Where(x => x.gte_questionID == answer.gte_preliminary_section_question_id).FirstOrDefault();
+            if (answer.answer == test.correctanswer)
+                userScore++;
+        }
+    }
+
+
     private void showErrorMessage()
     {
         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",

@@ -338,7 +338,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     private void calculateStudentScore(List<gte_preliminary_questionmaster> preliminaryQuestionList)
     {
         var preliminaryAnswerList = db.gte_preliminaryapplicantanswers
-                                      .Where(x => x.applicantid == UserID)
+                                      .Where(x => x.applicantid == UserID && x.universityId== UniversityID)
                                       .Select(x => new { x.gte_preliminary_question_id, x.answer}).ToList();
 
         foreach (var answer in preliminaryAnswerList)
