@@ -102,6 +102,34 @@ public partial class view_exampaper3 : System.Web.UI.Page
             if (exammaster != null)
             {
                 exammarks = exammaster.maximummarks;
+                //if(string.IsNullOrEmpty(exammaster.exam_readingduration))
+                //    Session["readingtime"] = string.Empty;
+                //else
+                //    Session["readingtime"] = exammaster.exam_readingduration;
+
+                //if (string.IsNullOrEmpty(exammaster.exam_uploadduration))
+                //    Session["uploadtime"] = string.Empty;
+                //else
+                //    Session["uploadtime"] = exammaster.exam_uploadduration;
+
+                /////
+                if (Session["readingtime"] == null)
+                    Session["readingtime"] = exammaster.exam_readingduration;
+                else
+                {
+
+                    Session["readingtime"] = Session["readingtime"];
+                    var time = Session["readingtime"];
+                }
+                /////
+                if (Session["uploadtime"] == null)
+                    Session["uploadtime"] = exammaster.exam_uploadduration;
+                else
+                {
+
+                    Session["uploadtime"] = Session["uploadtime"];
+                    var time = Session["uploadtime"];
+                }
 
                 if (Session["totalResponseTime"] == null)
                     Session["totalResponseTime"] = exammaster.exam_duration;
@@ -331,30 +359,45 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
                     }
                 }
+
                 //if multiple images there then convert to pdf 
                 var answersheets = db.exam_answersheet.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate).Select(x=>x.anshwesheetpath).ToList();
 
-                Document doc = new Document();
-                string[] files = new string[answersheets.Count];
-                for (int i = 0; i < answersheets.Count; i++)
+                foreach (var data in answersheets)
                 {
-                    files[i] = @"" + docPath +"/"+ answersheets[i];
-                }
-                
-                Convertfromimagetopdf(files, doc);
-                string pdfname = exampaperid + "answersheets.pdf";
-                doc.Save(@""+ docPath + "/"+ pdfname);
-                
-                objexam_answersheet.universityID = UniversityID;
-                objexam_answersheet.applicantid = UserID;
-                objexam_answersheet.exampaperid = exampaperid;
-                objexam_answersheet.exam_datetime = assignDate;
-                objexam_answersheet.response_time = response_time;
-                objexam_answersheet.ispdfgenrated = 1;
-                objexam_answersheet.genratedanswerpdfPath = pdfname;
-                db.exam_answersheet.Add(objexam_answersheet);
-                db.SaveChanges();
+                    if (data != null)
+                    {
+                        string s = data;
+                        string[] after_split = s.Split('.');
+                        string extension = after_split[after_split.Length - 1].ToLower();
 
+                        if (extension != "pdf")
+                        {
+                            //if answershhets are images then only form a pdf of those images 
+                            Document doc = new Document();
+                            string[] files = new string[answersheets.Count];
+                            for (int i = 0; i < answersheets.Count; i++)
+                            {
+                                files[i] = @"" + docPath + "/" + answersheets[i];
+                            }
+
+                            Convertfromimagetopdf(files, doc);
+                            string pdfname = UserID +"_"+ exampaperid + "_answersheets.pdf";
+                            doc.Save(@"" + docPath + "/" + pdfname);
+
+                            objexam_answersheet.anshwesheetpath = "Answer PDF File";
+                            objexam_answersheet.genratedanswerpdfPath = pdfname;
+                            objexam_answersheet.ispdfgenrated = 1;
+                            objexam_answersheet.universityID = UniversityID;
+                            objexam_answersheet.applicantid = UserID;
+                            objexam_answersheet.exampaperid = exampaperid;
+                            objexam_answersheet.exam_datetime = assignDate;
+                            objexam_answersheet.response_time = response_time;
+                            db.exam_answersheet.Add(objexam_answersheet);
+                            db.SaveChanges();
+                        }
+                    }
+                }
                 //change status in exam_assign table
                 var mode = "new";
                 exam_assign objexam_assign = new exam_assign();
@@ -369,7 +412,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
                 if (mode == "new")
                     db.exam_assign.Add(objexam_assign);
                 db.SaveChanges();
-                Session["totalResponseTime"] = response_time;
+                //Session["totalResponseTime"] = response_time;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('Thank you for answering .');window.location='" + Request.ApplicationPath + "exammodule.aspx';", true);
             }
@@ -551,6 +594,20 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string SaveTime(int time, string type)
+    {
+        if(type =="readingtime")
+            HttpContext.Current.Session["readingtime"] = time;
+        else if(type== "totalResponseTime")
+            HttpContext.Current.Session["totalResponseTime"] = time;
+        else if(type=="uploadtime")
+            HttpContext.Current.Session["uploadtime"] = time;
+
+        return JsonConvert.SerializeObject(time);
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow, DateTime examdatetime)
     {
         GTEEntities db1 = new GTEEntities();
@@ -577,4 +634,5 @@ public partial class view_exampaper3 : System.Web.UI.Page
         db1.SaveChanges();
         return JsonConvert.SerializeObject(is_onetimeshow);
     }
+
 }

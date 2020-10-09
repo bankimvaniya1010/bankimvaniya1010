@@ -55,7 +55,7 @@
                                             <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
                                                 <div class="form-row">
                                                     <label class="col-md-3 col-form-label form-label"><b>RESOURCE DOCUMENT: </b></label>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6" style="margin-top: 7px;">
                                                         <a href="<%# Eval("extrasheetpath") %>" target="_blank">View File</a>
                                                     </div>
                                                 </div>

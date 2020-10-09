@@ -314,30 +314,30 @@ public partial class view_exampaper : System.Web.UI.Page
                 Session["totalResponseTime"] = null;
                 //Session.Remove("totalResponseTime");
 
-                ///save all files in pdf form
+                /////save all files in pdf form
                 
-                Document doc = new Document();
-                var answersheets = (from ad in db.exampapers_master
-                                    join cm in db.exam_answersheet on ad.id equals cm.exampapersheetID into cmdata
-                                    from x in cmdata.DefaultIfEmpty()
-                                    where x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate && x.applicantid== UserID
-                                    select new
-                                    {
-                                        anshwesheetpath = webURL+"Docs/Exammodule/AnswerSheet/" + UniversityID + "/" + UserID + "/" + ad.id + "/" + x.anshwesheetpath,
+                //Document doc = new Document();
+                //var answersheets = (from ad in db.exampapers_master
+                //                    join cm in db.exam_answersheet on ad.id equals cm.exampapersheetID into cmdata
+                //                    from x in cmdata.DefaultIfEmpty()
+                //                    where x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate && x.applicantid== UserID
+                //                    select new
+                //                    {
+                //                        anshwesheetpath = docPath1 + "/Exammodule/AnswerSheet/" + UniversityID + "/" + UserID + "/" + ad.id + "/" + x.anshwesheetpath,
 
-                                    }).ToList();
+                //                    }).ToList();
 
-                string[] files = new string[answersheets.Count];
-                for (int i = 0; i < answersheets.Count; i++)
-                {
-                    files[i] = @""+ answersheets[i];
-                }
+                //string[] files = new string[answersheets.Count];
+                //for (int i = 0; i < answersheets.Count; i++)
+                //{
+                //    files[i] = @""+ answersheets[i];
+                //}
 
-                Convertfromimagetopdf(files, doc);
-                docPath1 = webURL + "Docs/Exammodule/AnswerSheet/" + UniversityID + "/" + UserID + "/" + exampaperid;
-                string pdfname = exampaperid + "answersheets.pdf";
-                string docpath = Path.Combine(docPath1, pdfname);
-                doc.Save(@"" + docpath);
+                //Convertfromimagetopdf(files, doc);
+                //docPath1 = webURL + "Docs/Exammodule/AnswerSheet/" + UniversityID + "/" + UserID + "/" + exampaperid;
+                //string pdfname = exampaperid + "answersheets.pdf";
+                //string docpath = Path.Combine(docPath1, pdfname);
+                //doc.Save(@"" + docpath);
 
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('Thank you for answering .');window.location='" + Request.ApplicationPath + "exammodule.aspx';", true);

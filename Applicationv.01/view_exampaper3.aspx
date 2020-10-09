@@ -13,7 +13,7 @@
         </ol>
         <h1 class="h2"></h1>
     </div>
-    <div class="page ">
+    <div class="page">
         <div class="container page__container">
             <div class="row">
                 <%--<div class="col-md-12">--%>
@@ -23,8 +23,11 @@
                             Question Paper <%=answeredpapersheetscount %> / <%=allpapersheetscount%>
                         </div>
                         <div style="font-size: medium; text-align: center">
-                            <label>Time in minutes remaining for this assessment to end automatically </label>
-                            <span id="countdown"></span>
+                            <label id="lblreading" runat="server">READING TIME:</label> <span id="reading_countdown"></span>
+                            <label id="lblexamtime" runat="server">ASSESSMENT TIME: </label> <span id="countdown"></span>
+                            <label id="lbluploadtime" runat="server">UPLOAD TIME:</label> <span id="upload_countdown"></span>
+                           <%-- <label>Time in minutes remaining for this assessment to end automatically </label>
+                            <span id="countdown"></span>--%>
                             <asp:HiddenField ID="hidTime" runat="server" />
                         </div>
                         <div style="text-align: right; display: none;">
@@ -46,7 +49,7 @@
                                             <div class="media-body">
                                                 <h4 class="card-title">
                                                     <asp:ListView runat="server" ID="listview" />
-                                                    <iframe src='<%# Eval("questionpaper") %>' runat="server" width="800" height="750" style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%; width: 100%;" id="myframe"></iframe>
+                                                    <iframe src='<%# Eval("questionpaper") %>' runat="server" width="800" height="750" style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%; width: 100%;" id="myframe" class="disableRightClick"  oncontextmenu=" return disableRightClick();" onmousedown="return false;"></iframe>
                                                     <%--  <asp:Image src='<%# Eval("questionpaper") %>' Width="800" Height="750" Style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" runat="server"></asp:Image>--%>
                                                 </h4>
                                             </div>
@@ -216,23 +219,94 @@
 
         var applicantid = '<%=HttpContext.Current.Session["UserID"]%>';
 
+        var readingtime = '<%=Session["readingtime"]%>';
+        var uploadtime = '<%=Session["uploadtime"]%>';
+        var hms = '<%=Session["totalResponseTime"]%>';
 
-        var hms = '<%=Session["totalResponseTime"]%>';   // your input string       
-        //Convert hh:mm:ss string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
+        const countdownEl = document.getElementById('countdown');
+        const reading_countdown = document.getElementById('reading_countdown');
+        const upload_countdown = document.getElementById('upload_countdown');
+
+        // your input string
+        //Convert hh:mm:ss7  string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
         var secondsS;
-        //alert(secondsS);
-
         if (hms.includes(":"))
             secondsS = hms.split(':').reverse().reduce((prev, curr, i) => prev + curr * Math.pow(60, i), 0);
         else
             secondsS = hms * 60;
         let time = secondsS;
-        const countdownEl = document.getElementById('countdown');
 
-        setInterval(updateCountdown, 1000);
+        const minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        countdownEl.innerHTML = `${minutes}:${seconds}`;
+        var lblexamtime = `${minutes}:${seconds}`;
+        //
+
+        var hms1 = '<%=Session["readingtime"]%>';   // your input string       
+        //Convert hh:mm:ss string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
+        var secondsS1;
+        if (hms1.includes(":"))
+            secondsS1 = hms1.split(':').reverse().reduce((prev, curr, i) => prev + curr * Math.pow(60, i), 0);
+        else
+            secondsS1 = hms1 * 60;
+        let time1 = secondsS1;
+        const minutes1 = Math.floor(time1 / 60);
+        let seconds1 = time1 % 60;
+        reading_countdown.innerHTML = `${minutes1}:${seconds1}`;
+        var lblreadingtime = `${minutes1}:${seconds1}`;
+
+        //
+        var hms2 = '<%=Session["uploadtime"]%>';   // your input string       
+        //Convert hh:mm:ss string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
+        var secondsS2;
+        if (hms2.includes(":"))
+            secondsS2 = hms2.split(':').reverse().reduce((prev, curr, i) => prev + curr * Math.pow(60, i), 0);
+        else
+            secondsS2 = hms2 * 60;
+        let time2 = secondsS2;
+        const minutes2 = Math.floor(time2 / 60);
+        let seconds2 = time2 % 60;
+        upload_countdown.innerHTML = `${minutes2}:${seconds2}`;
+        var lbluploadtime = `${minutes2}:${seconds2}`;
+       
+        if (readingtime != "") {
+            alert("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");           
+            setInterval(updateCountdown1, 1000);
+        }
+        else {
+            setInterval(updateCountdown, 1000);            
+            reading_countdown.style.display = 'none';
+            $("#<%=lblreading.ClientID%>").hide();
+        }
+        function updateCountdown1() {
+            
+            const minutes = Math.floor(time1 / 60);
+            let seconds = time1 % 60;
+
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            reading_countdown.innerHTML = `${minutes}:${seconds}`;
+            var displaytime = `${minutes}:${seconds}`;
+            time1--;
+            $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
+
+            if (reading_countdown.innerHTML == '5:00') {
+                alert("Only 5 minutes remaining. ");
+                return false;
+            }
+            else {
+                if (reading_countdown.innerHTML == '0:00') {
+                    setInterval(updateCountdown, 1000);
+                    reading_countdown.style.display = 'none';
+                    $("#<%=lblreading.ClientID%>").hide();
+                    alert("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
+                    return false;
+                }
+                else
+                    return true;
+            }
+        }
 
         function updateCountdown() {
-            ajaxcalltocheckisanswersubmitted();
             const minutes = Math.floor(time / 60);
             let seconds = time % 60;
 
@@ -242,13 +316,49 @@
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
 
             if (countdownEl.innerHTML == '10:00') {
-                alert("Only 10 minutes remaining. ");
+                alert("Only 10 minutes are remaining for your assessment time to end ");
                 return false;
             }
             else {
                 if (countdownEl.innerHTML == '0:00') {
                     countdownEl.style.display = 'none';
-                    alert("Assessmnent time exhausted");
+                    $("#<%=lblexamtime.ClientID%>").hide();
+                    if (uploadtime != "") {
+                        setInterval(updateCountdown2, 1000);
+                        alert("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified ");
+                    }
+                    else {
+                        upload_countdown.style.display = 'none';
+                        $("#<%=lbluploadtime.ClientID%>").hide();
+                        alert("Assessmnent upload time exhausted");
+                        ajaxcall();
+                        var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                        location.replace(hostName + "exammodule.aspx");
+                    }
+                }
+                else
+                    return true;
+            }
+        }
+
+        function updateCountdown2() {
+            const minutes = Math.floor(time2 / 60);
+            let seconds = time2 % 60;
+
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            upload_countdown.innerHTML = `${minutes}:${seconds}`;
+            time2--;
+            $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
+
+            if (upload_countdown.innerHTML == '10:00') {
+                alert("Only 10 minutes remaining. ");
+                return false;
+            }
+            else {
+                if (upload_countdown.innerHTML == '0:00') {
+                    upload_countdown.style.display = 'none';
+                    $("#<%=lbluploadtime.ClientID%>").hide();
+                    alert("Assessmnent upload time exhausted");
                     ajaxcall();
                     var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
                     location.replace(hostName + "exammodule.aspx");
@@ -256,11 +366,11 @@
                 }
                 else
                     return true;
-
             }
-
-
         }
+
+        setInterval(ajaxcalltocheckisanswersubmitted, 1000);
+
         function ajaxcalltocheckisanswersubmitted() {
             var assignID = '<%= assignID%>';
             $.ajax({
@@ -299,10 +409,25 @@
                 }
             });
         }
+        function ajaxcallTosavedViewedTime(time, type) {
+            $.ajax({
+                type: "POST",
+                url: "view_exampaper3.aspx/SaveTime",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{'time': '" + time + "'}",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+
+                    }
+                }
+            });
+        }
         function validateUploadedFile(Fileupload) {
             var filePath = Fileupload;
             var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
-            if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "jpeg") {
+            if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "jpeg" && fileExtension != "pdf" ) {
                 alert("Invalid File");
                 return false;
             }
@@ -344,9 +469,6 @@
         var examsheetid = '<%=examsheetid%>';
         var examdatetime = '<%=examdatetime%>';
 
-
-       
-
         if (is_onetimeshow == 1) {
             var aud = document.getElementById("myVideo");
            
@@ -372,35 +494,8 @@
                 }
             });
         }
-        $(document).ready(function () {
-            $('#ContentPlaceHolder1_questionList_myframe_0').bind('contextmenu', function () { return false; });
 
-            
-
-            var video = document.getElementById('myVideo');
-            var supposedCurrentTime = 0;
-            video.addEventListener('timeupdate', function () {
-                if (!video.seeking) {
-                    supposedCurrentTime = video.currentTime;
-                }
-            });
-            // prevent user from seeking
-            video.addEventListener('seeking', function () {
-                // guard agains infinite recursion:
-                // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
-                var delta = video.currentTime - supposedCurrentTime;
-                if (Math.abs(delta) > 0.01) {
-                    console.log("Seeking is disabled");
-                    video.currentTime = supposedCurrentTime;
-                }
-            });
-            // delete the following event handler if rewind is not required
-            video.addEventListener('ended', function () {
-                // reset state in order to allow for rewind
-                supposedCurrentTime = 0;
-            });
-
-        });
+      
     </script>
 
 </asp:Content>

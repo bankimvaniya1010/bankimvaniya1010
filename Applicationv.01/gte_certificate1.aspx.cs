@@ -28,6 +28,10 @@ public partial class gte_certificate1 : System.Web.UI.Page
 
         if (Request.QueryString["downloadPdf"] != null)
             downloadPdf = Convert.ToInt32(Request.QueryString["downloadPdf"]);
+        if (string.IsNullOrEmpty(Request.QueryString["applicantid"]))
+            Response.Redirect(webURL + "admin/default.aspx", true);
+        else
+            ApplicantID = Convert.ToInt32(Request.QueryString["applicantid"].ToString());
         universityID = Utility.GetUniversityId();
         section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
         section2Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection2Question"]);
@@ -66,28 +70,33 @@ public partial class gte_certificate1 : System.Web.UI.Page
                         var studentGteProgress = db.gte_progressbar.Where(x => x.applicantid == ApplicantID && x.universityId == universityID).FirstOrDefault();
                         if (studentGteProgress != null)
                         {
-                            if (studentGteProgress.is_gte_certificate_generated.HasValue && studentGteProgress.is_gte_certificate_generated.Value)
+                            if (studentGteProgress.is_gte_preliminarysection2_completed != null)
                             {
-                                setStudentPersonalDetails(ApplicantID, universityID);
+                                if (studentGteProgress.is_gte_certificate_generated.HasValue && studentGteProgress.is_gte_certificate_generated.Value)
+                                {
+                                    setStudentPersonalDetails(ApplicantID, universityID);
+                                }
+                                else
+                                {
+                                    var preliminaryQuestionList = db.gte_preliminary_questionmaster.AsNoTracking().ToList();
+                                    calculateStudentScore(preliminaryQuestionList);
+
+                                    int totalQuestion = section1Question + section2Question;
+                                    int userPercentageScore = (int)Math.Ceiling((decimal)userScore / totalQuestion * 100);
+                                    if (userPercentageScore > 40 && userPercentageScore <= 65)
+                                        generateParticipationCertificate("Satisfactory");
+                                    else if (userPercentageScore > 65 && userPercentageScore <= 85)
+                                        generateParticipationCertificate("Good");
+                                    else if (userPercentageScore > 85)
+                                        generateParticipationCertificate("Excellent");
+                                    else
+                                        generateParticipationCertificate("Poor");
+
+                                    setStudentPersonalDetails(ApplicantID, universityID);
+                                }
                             }
                             else
-                            {
-                                var preliminaryQuestionList = db.gte_preliminary_questionmaster.AsNoTracking().ToList();
-                                calculateStudentScore(preliminaryQuestionList);
-
-                                int totalQuestion = section1Question + section2Question;
-                                int userPercentageScore = (int)Math.Ceiling((decimal)userScore / totalQuestion * 100);
-                                if (userPercentageScore > 40 && userPercentageScore <= 65)
-                                    generateParticipationCertificate("Satisfactory");
-                                else if (userPercentageScore > 65 && userPercentageScore <= 85)
-                                    generateParticipationCertificate("Good");
-                                else if (userPercentageScore > 85)
-                                    generateParticipationCertificate("Excellent");
-                                else
-                                    generateParticipationCertificate("Poor");
-
-                                setStudentPersonalDetails(ApplicantID, universityID);
-                            }
+                                showErrorMessage();
                         }
                         else
                             showErrorMessage();

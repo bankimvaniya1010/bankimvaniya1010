@@ -66,27 +66,33 @@ public partial class gte_certificate : System.Web.UI.Page
                         var studentGteProgress = db.gte_progressbar.Where(x => x.applicantid == ApplicantID && x.universityId == universityID).FirstOrDefault();
                         if (studentGteProgress != null)
                         {
-                            if (studentGteProgress.is_gte_certificate_generated.HasValue && studentGteProgress.is_gte_certificate_generated.Value)
+                            if (studentGteProgress.is_gte_preliminarysection2_completed != null)
                             {
-                                setStudentPersonalDetails(ApplicantID, universityID);
-                            }
-                            else {
-                                var preliminaryQuestionList = db.gte_preliminary_questionmaster.AsNoTracking().ToList();
-                                calculateStudentScore(preliminaryQuestionList);
-
-                                int totalQuestion = section1Question + section2Question;
-                                int userPercentageScore = (int)Math.Ceiling((decimal)userScore / totalQuestion * 100);
-                                if (userPercentageScore > 40 && userPercentageScore <= 65)
-                                    generateParticipationCertificate("Satisfactory");
-                                else if (userPercentageScore > 65 && userPercentageScore <= 85)
-                                    generateParticipationCertificate("Good");
-                                else if (userPercentageScore > 85)
-                                    generateParticipationCertificate("Excellent");
+                                if (studentGteProgress.is_gte_certificate_generated.HasValue && studentGteProgress.is_gte_certificate_generated.Value)
+                                {
+                                    setStudentPersonalDetails(ApplicantID, universityID);
+                                }
                                 else
-                                    generateParticipationCertificate("Poor");
+                                {
+                                    var preliminaryQuestionList = db.gte_preliminary_questionmaster.AsNoTracking().ToList();
+                                    calculateStudentScore(preliminaryQuestionList);
 
-                                setStudentPersonalDetails(ApplicantID, universityID);
+                                    int totalQuestion = section1Question + section2Question;
+                                    int userPercentageScore = (int)Math.Ceiling((decimal)userScore / totalQuestion * 100);
+                                    if (userPercentageScore > 40 && userPercentageScore <= 65)
+                                        generateParticipationCertificate("Satisfactory");
+                                    else if (userPercentageScore > 65 && userPercentageScore <= 85)
+                                        generateParticipationCertificate("Good");
+                                    else if (userPercentageScore > 85)
+                                        generateParticipationCertificate("Excellent");
+                                    else
+                                        generateParticipationCertificate("Poor");
+
+                                    setStudentPersonalDetails(ApplicantID, universityID);
+                                }
                             }
+                            else
+                                showErrorMessage();
                         }
                         else
                             showErrorMessage();

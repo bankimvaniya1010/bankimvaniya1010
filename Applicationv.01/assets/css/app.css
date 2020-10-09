@@ -338,3 +338,29 @@ font-size: 15px;
     padding: 14px 5px 5px!important;
     margin: 0;
 }
+div#plybtn {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #000;
+    border-radius: 50%;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#plybtn:before {content: '';border-top: 10px solid  transparent;border-bottom: 10px solid  transparent;border-left: 10px solid  #fff;display: block;}	
+
+video::-webkit-media-controls-timeline {
+    display: none;
+}
+video::-webkit-media-controls-volume-slider {
+	display: block;
+}
