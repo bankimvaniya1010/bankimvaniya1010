@@ -2,6 +2,21 @@
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
     <title></title>   
+     <script type="text/javascript">
+        function ConfirmOnDelete(item) {
+            if (confirm("Are you sure to delete: " + item + "?") == true)
+                return true;
+            else
+                return false;
+         }
+          function ConfirmOnVerify(item) {
+            if (confirm("Are you sure to verify: " + item + "?") == true)
+                return true;
+            else
+                return false;
+        }
+        
+    </script>
 </asp:Content>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container page__container">
@@ -106,7 +121,7 @@
                             </asp:TemplateField>--%>
                             <asp:TemplateField HeaderText="Approve Action"> 
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkapprove" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Verify" Text="Verify Applicant" OnClientClick='<%# Eval("applicantid","return ConfirmOnResend({0})") %>'></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkapprove" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Verify" Text="Verify Applicant" OnClientClick='<%# Eval("applicantid","return ConfirmOnVerify({0})") %>'></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Suspend Action">

@@ -199,7 +199,6 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 //}
                 savedatemarks.Attributes.Add("style", "display:block");
                 studentddl_evalutionDiv.Attributes.Add("style", "display:block");
-                evalutionguid.Attributes.Add("style", "display:none");
                 validDiv.Attributes.Add("style", "display:none");
             }
             else
@@ -249,9 +248,15 @@ public partial class admin_exam_marking : System.Web.UI.Page
 
         if (studentid != 0)
         {
-           // evalutionguid            
-            evalutionfile = webURL + "Docs/Exammodule/" + examdata.universityID + "/" + exampaperId + "/CheckingGuide/" + examdata.checkingguidfilepath;
-            evalutionguid.Attributes.Add("style", "display:block");
+            // evalutionguid    
+            if (examdata.checkingguidfilepath != null)
+            {
+                evalutionfile = webURL + "Docs/Exammodule/" + examdata.universityID + "/" + exampaperId + "/CheckingGuide/" + examdata.checkingguidfilepath;
+                evalutionguid.Attributes.Add("style", "display:block");
+            }
+            else
+                evalutionguid.Attributes.Add("style", "display:none");
+
 
             if (examdata.uploadtype == 1 || examdata.uploadtype == 3)
             {
@@ -333,7 +338,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
     {        
         try
         {
-            dynamic exam_answersheetdata = null;
+            List<data> exam_answersheetdata = null;
             int examinerID = Convert.ToInt32(ddlexaminer.SelectedValue);
             int exampaperId = Convert.ToInt32(ddlexam.SelectedValue);
             var examdata = db.exam_master.Where(x => x.exampapersid == exampaperId).FirstOrDefault();
@@ -343,7 +348,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
                                         join em in db.exam_marking_master on exam.answesheetid equals em.answersheetid into data
                                         from x in data.DefaultIfEmpty()
                                         where exam.universityID == universityid && exam.exampaperid == exampaperid && exam.applicantid == studentid && exam.exam_datetime == examdate_time
-                                        select new
+                                        select new data()
                                         {
                                             answesheetid = exam.answesheetid,
                                             anshwesheetpath = exam.anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid+"/"+exam.exampapersheetID + "/" + exam.anshwesheetpath,
@@ -357,17 +362,24 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 exam_answersheetdata = (from exam in db.exam_answersheet
                                         join em in db.exam_marking_master on exam.answesheetid equals em.answersheetid into data
                                         from x in data.DefaultIfEmpty()
-                                        where exam.universityID == universityid && exam.exampaperid == exampaperid && exam.applicantid == studentid && exam.exam_datetime == examdate_time && exam.ispdfgenrated == 1
-                                        select new
+                                        where exam.universityID == universityid && exam.exampaperid == exampaperid && exam.applicantid == studentid && exam.exam_datetime == examdate_time
+                                        select new data()
                                         {
                                             answesheetid = exam.answesheetid,
-                                            anshwesheetpath = exam.anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/"+exam.exampaperid+"answersheets.pdf",
+                                            anshwesheetpath = exam.anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/"+exam.anshwesheetpath,
                                             extra_anshwesheetpath = exam.extra_anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.exampapersheetID + "/extrasheet/" + exam.extra_anshwesheetpath,
                                             checkedsheet = x.checked_answersheetPath == null ? null : webURL + "Docs/Exammodule/Admin_checkedsheets/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.answesheetid + "/" + x.checked_answersheetPath,
+                                            ispdfgenrated = exam.ispdfgenrated == null ? null: exam.ispdfgenrated,
+                                            genratedanswerpdfPath = exam.genratedanswerpdfPath,
                                         }).OrderBy(x => x.answesheetid).ToList();
+                foreach (var item in exam_answersheetdata)
+                {
+                    if (item.ispdfgenrated == 1)
+                        item.anshwesheetpath = webURL + "Docs/Exammodule/AnswerSheet/" + universityid + "/" + studentid + "/" + exampaperid + "/" + item.genratedanswerpdfPath;
+                }
             }
 
-            if (exam_answersheetdata.Count > 0)
+            if (exam_answersheetdata != null && exam_answersheetdata.Count > 0)
             {               
                 GridView.DataSource = exam_answersheetdata;
                 GridView.DataBind();
@@ -389,8 +401,17 @@ public partial class admin_exam_marking : System.Web.UI.Page
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
-    }   
-   
+    }
+
+    public class data
+    {
+        public int answesheetid { get; set;}
+        public string anshwesheetpath { get; set; }
+        public string extra_anshwesheetpath { get; set; }
+        public string checkedsheet { get; set; }
+        public int? ispdfgenrated { get; set; }
+        public string genratedanswerpdfPath { get; set; }
+    }
     protected void GridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
 
@@ -481,9 +502,21 @@ public partial class admin_exam_marking : System.Web.UI.Page
             DateTime dateofreleaseutc = Convert.ToDateTime(hidexamutcdatetime.Value);
             string TimeZone = hidTimeZone.Value;
 
+            var examdata = db.exam_master.Where(x => x.exampapersid == examid).FirstOrDefault();
 
             // to check whether admin has chedked all answershhet or not
-            var checkedsheetcount = db.exam_marking_master.Where(x => x.universityid == universityid && x.applicantid == applicantid && x.examid == examid && x.examdatetime == examdatetime).ToList().Count();
+            dynamic checkedsheetcount ;
+            if (examdata.uploadtype != 1)
+                checkedsheetcount = db.exam_marking_master.Where(x => x.universityid == universityid && x.applicantid == applicantid && x.examid == examid && x.examdatetime == examdatetime).ToList().Count();
+            else
+            {
+                var answercount = db.exam_answersheet.Where(x => x.universityID == universityid && x.applicantid == applicantid && x.exampaperid == examid && x.exam_datetime == examdatetime).ToList().Count();
+                var checkedcount = db.exam_marking_master.Where(x => x.universityid == universityid && x.applicantid == applicantid && x.examid == examid && x.examdatetime == examdatetime).ToList().Count();
+                if (answercount == checkedcount)
+                    checkedsheetcount = 1;
+                else
+                    checkedsheetcount = 0;
+            }
             if (checkedsheetcount > 0)
             {
                 var mode = "new";
@@ -538,7 +571,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 populatedate_marks(examinerid, examid, applicantid, universityid, examdatetime);
             }
             else
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please mark the exam sheet first.')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please check the exam sheet first.')", true);
         }
         catch (Exception ex) {
             objLog.WriteLog(ex.ToString());
@@ -555,21 +588,30 @@ public partial class admin_exam_marking : System.Web.UI.Page
 
         if (answeredQuestion.Count == allQuestions.Count)
         {
-            showfinalmarks_dateDiv.Attributes.Add("style", "display:block");
-            savedatemarks.Attributes.Add("style", "display:block");
-            //var totalmarks = db.exam_marking_master.Where(x => x.universityid == universityid && x.applicantid == applicantid && x.examid == examid && x.examdatetime == examdatetime)
-            //                               .Select(x => x.perquestion_marks).DefaultIfEmpty(0).Sum();
-            var finalmarks = db.exam_master.Where(x => x.universityID == universityid && x.exampapersid == examid).Select(x => x.maximummarks).FirstOrDefault();
+            if (allQuestions.Count > 0)
+            {
+                showfinalmarks_dateDiv.Attributes.Add("style", "display:block");
+                savedatemarks.Attributes.Add("style", "display:block");
+                //var totalmarks = db.exam_marking_master.Where(x => x.universityid == universityid && x.applicantid == applicantid && x.examid == examid && x.examdatetime == examdatetime)
+                //                               .Select(x => x.perquestion_marks).DefaultIfEmpty(0).Sum();
+                var finalmarks = db.exam_master.Where(x => x.universityID == universityid && x.exampapersid == examid).Select(x => x.maximummarks).FirstOrDefault();
 
-            txtmarksobtain.Value = lsttotalmarks.ToString();
-            marksobtain =Convert.ToInt32(finalmarks);
-            BindTotalMarks_buildtype(examid);
-            //lbltotalmarks.Text = totalmarks;
-            populatedate_marks(examinerid, examid, applicantid, universityid, examdatetime);
-            answer_records.Attributes.Add("style", "display:none");
-            evalutionguid.Attributes.Add("style", "display:none");
-            button.Attributes.Add("style", "display:none");
-            
+                txtmarksobtain.Value = lsttotalmarks.ToString();
+                marksobtain = Convert.ToInt32(finalmarks);
+                BindTotalMarks_buildtype(examid);
+                //lbltotalmarks.Text = totalmarks;
+                populatedate_marks(examinerid, examid, applicantid, universityid, examdatetime);
+                answer_records.Attributes.Add("style", "display:none");
+                evalutionguid.Attributes.Add("style", "display:none");
+                button.Attributes.Add("style", "display:none");
+            }
+            else {
+                showfinalmarks_dateDiv.Attributes.Add("style", "display:none");
+                savedatemarks.Attributes.Add("style", "display:none");
+                answer_records.Attributes.Add("style", "display:none");
+                evalutionguid.Attributes.Add("style", "display:none");
+                button.Attributes.Add("style", "display:none");
+            }
         }
         else
         {

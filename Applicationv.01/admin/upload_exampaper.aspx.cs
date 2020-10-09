@@ -308,7 +308,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                 txtfileinstruction.Text = "";
                 chkview.Checked = false;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                      "alert('Record Saved successfully.');window.location='" + Request.ApplicationPath + "admin/upload_exampaper.aspx?exampapersid='"+exampapersid+"'';", true);
+                      "alert('Record Saved successfully.');window.location='" + Request.ApplicationPath + "admin/upload_exampaper.aspx?exampapersid='"+exampapersid+"';", true);
                
             }
             else if (exammasterdata.uploadtype == 2) {

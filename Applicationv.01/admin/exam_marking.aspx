@@ -182,11 +182,11 @@
 
             <div id="showbuildexamDiv" runat="server" style="display: none">
 
-                <div id="answer_records" runat="server">
+                <div id="answer_records" runat="server" style=" margin-left: -21px;">
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
-                                <div class="card-header">
+                                <div class="">
                                     <div style="display: none;">
                                         <asp:Label ID="lblanswesheetid" runat="server" Text='<%# Eval("answesheetid") %>'></asp:Label>
                                         <asp:Label ID="lbluniversityid" runat="server" Text='<%# Eval("universityid") %>'></asp:Label>

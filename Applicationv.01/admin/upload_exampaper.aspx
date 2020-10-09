@@ -235,7 +235,9 @@
         </div>
     </div>
     <script>
-
+        function showdiv() {
+           $("#<%=showdivfield.ClientID%>").show();
+       }
         <%--function validate() {
             var uploadtype = '<%= uploadtype%>';
             if (uploadtype == 2)

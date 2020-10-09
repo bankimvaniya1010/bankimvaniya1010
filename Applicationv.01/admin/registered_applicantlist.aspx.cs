@@ -86,8 +86,8 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  mobile = gtead.mobileno == null ? string.Empty : gtead.mobileno,
                                  countryofresidence = cmdata.country_name == null ? string.Empty : cmdata.country_name,
                                  Status = "Prospect",
-                                 approve = s.isverifiedbyAdmin == true ? "Approved" : "Pending",
-                                 suspend = s.isdeletedbyAdmin == true?"Deleted":string.Empty,
+                                 approve = gtead.isverifiedbyAdmin == true ? "Approved" : "Pending",
+                                 suspend = gtead.isdeletedbyAdmin == true?"Deleted":string.Empty,
 
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
             }
@@ -342,7 +342,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 
                 Bindlabel(universityID);
                 BindApplicant();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant'" + objapplicantdetails.firstname+ "'('" + objapplicantdetails.applicantid + "' verified successfully.)')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant verified successfully.')", true);
             }
         }
         catch (Exception ex)

@@ -116,11 +116,12 @@ public partial class admin_getaddtutorial : System.Web.UI.Page
     {
         try
         {
+            int universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
             var mode = "new";
             if (tutorialId != -1)
             {
                 var tutorailData = (from tInfo in db.gte_tutorialmaster
-                                    where tInfo.universityid == universityID && tInfo.id == tutorialId
+                                    where tInfo.universityid == universityid && tInfo.id == tutorialId
                                     select tInfo).FirstOrDefault();
 
                 if (tutorailData != null)

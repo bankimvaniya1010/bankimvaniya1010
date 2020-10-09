@@ -21,7 +21,7 @@
         <h1 class="h2">Open Answer Master</h1>
 
         <div class="card">
-            <div id="validateDiv" runat="server">
+        <%--    <div id="validateDiv" runat="server">
                 <div class="form-group row">
                     <label for="name" class="col-sm-3 col-form-label form-label">Select Institution</label>
                     <div class="col-sm-8">
@@ -63,8 +63,8 @@
                     </div>
                 </div>
             </div>
-                </div>
-           <div id="gridDiv" runat="server" style="display: none">
+                </div>--%>
+           <div id="gridDiv" runat="server">
                 <div class="form-group row">
                     <label for="name" class="col-sm-3 col-form-label form-label">Enter Question</label>
                     <div class="col-sm-8">
@@ -79,9 +79,11 @@
                     <label for="name" class="col-sm-3 col-form-label form-label">Instruction for checking & Evalution</label>
                     <div class="col-sm-8">
                         <div class="row">
-                            <div class="col-md-6">                                 
+                            <div class="col-md-9">                                 
                                     <asp:FileUpload runat="server" ID="uploadcheckingfile" />
-                                <label>Please upload file of type .docx, .pdf, png, jpg</label>
+                                <asp:HiddenField runat="server" ID="hidlnkevalution"/>
+                                <label>Please upload file of type .docx, .pdf, png, jpg</label>                                
+                                <asp:HyperLink runat="server" ID="lnkevalution" Target="_blank"> </asp:HyperLink>
                              </div>
                         </div>
                     </div>
@@ -110,6 +112,8 @@
                                   <asp:TextBox runat="server" ID="txtanswer" class="form-control" TextMode="MultiLine" height="157px" Width="550px"></asp:TextBox>
                                 <div runat="server" id="fileuploaddiv" style="display: none">
                                     <asp:FileUpload runat="server" ID="fileupload" />
+                                    <asp:HiddenField runat="server" ID="hidlnkanswer"/>
+                                    <asp:HyperLink runat="server" ID="lnkanswer" Target="_blank"></asp:HyperLink>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +241,7 @@
                 flag = true;
             return flag;
         }
-        function validateForm() {
+       <%-- function validateForm() {
 
             var flag = false;
             if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
@@ -247,7 +251,7 @@
             else
                 flag = true;
             return flag;
-        }
+        }--%>
 
          $("#<%=ddltype.ClientID%>").change(function () {
 
@@ -270,6 +274,19 @@
             $('#buildpaper_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#exam_openansset').addClass('active');
+
+             var typeId = $("#<%=ddltype.ClientID%>").val();
+                
+                if (typeId == 1)
+                {
+                    $("#<%=txtanswer.ClientID%>").show();
+                    $("#<%=fileuploaddiv.ClientID%>").hide();
+                }
+                else
+                {
+                    $("#<%=txtanswer.ClientID%>").hide();
+                    $("#<%=fileuploaddiv.ClientID%>").show();
+                }
         });
     </script>
 
