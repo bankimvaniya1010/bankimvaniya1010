@@ -45,7 +45,7 @@
         function validateUploadedFile() {
             var filePath = $("#<%=FileUpload.ClientID%>").val();
             var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
-            if (fileExtension != "jpg" && fileExtension != "png"&& fileExtension != "jpeg") {
+            if (fileExtension != "jpg" && fileExtension != "png"&& fileExtension != "jpeg" && fileExtension != "pdf" ) {
                 alert("Invalid File");
                 return false;
             }

@@ -81,7 +81,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
             exam_assign objexam_assign = new exam_assign();
             var examassign = db.exam_assign.Where(x => x.applicantid == data.applicantid && x.universityID == universityID && x.exampapersid == exampaperid && x.exam_datetime == data.exam_datetime).FirstOrDefault();
 
-            if (examassign != null)
+            if (examassign != null)  
             {
                 mode = "update";
                 objexam_assign = examassign;
@@ -96,26 +96,42 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
 
             if (selectedfilecount == answersheets.Count)
             {
-                Document doc = new Document();
-                string[] files = new string[answersheets.Count];
-                for (int i = 0; i < answersheets.Count; i++)
+                foreach (var item in answersheets)
                 {
-                    files[i] = @"" + docPath + "/" + answersheets[i];
+                    if (item != null)
+                    {
+                        string s = item;
+                        string[] after_split = s.Split('.');
+                        string extension1 = after_split[after_split.Length - 1].ToLower();
+
+                        if (extension1 != "pdf")
+                        {
+                            //if answershhets are images then only form a pdf of those images 
+                            Document doc = new Document();
+                            string[] files = new string[answersheets.Count];
+                            for (int i = 0; i < answersheets.Count; i++)
+                            {
+                                files[i] = @"" + docPath + "/" + answersheets[i];
+                            }
+
+                            Convertfromimagetopdf(files, doc);
+                            string pdfname = data.applicantid + "_" + exampaperid + "_answersheets.pdf";
+                            doc.Save(@"" + docPath + "/" + pdfname);
+
+                            objexam_answersheet.universityID = universityID;
+                            objexam_answersheet.applicantid = data.applicantid;
+                            objexam_answersheet.exampaperid = exampaperid;
+                            objexam_answersheet.exam_datetime = data.exam_datetime;
+                            objexam_answersheet.ispdfgenrated = 1;
+                            objexam_answersheet.genratedanswerpdfPath = pdfname;
+                            objexam_answersheet.anshwesheetpath = "Answer PDF File";
+                            db.exam_answersheet.Add(objexam_answersheet);
+                            db.SaveChanges();
+                        }
+                    }
                 }
-
-                Convertfromimagetopdf(files, doc);
-                string pdfname = exampaperid + "answersheets.pdf";
-                doc.Save(@"" + docPath + "/" + pdfname);
-
-                objexam_answersheet.universityID = universityID;
-                objexam_answersheet.applicantid = data.applicantid;
-                objexam_answersheet.exampaperid = exampaperid;
-                objexam_answersheet.exam_datetime = data.exam_datetime;
-                // objexam_answersheet.response_time = response_time;
-                objexam_answersheet.ispdfgenrated = 1;
-                objexam_answersheet.genratedanswerpdfPath = pdfname;
-                db.exam_answersheet.Add(objexam_answersheet);
-                db.SaveChanges();
+                
+                
             }
           
             toshowDiv.Attributes.Add("style", "display:none");

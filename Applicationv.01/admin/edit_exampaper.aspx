@@ -115,6 +115,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group row" id="ReadingExamtime">
+                            <label for="name" class="col-sm-3 col-form-label form-label">Reading Duration (Minutes)</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input runat="server" type="text" id="txtreadingtime" class="form-control" placeholder="enter minutes" autocomplete="off"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group row" id="UploadExamtime">
+                            <label for="name" class="col-sm-3 col-form-label form-label">Upload Duration (Minutes)</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <input runat="server" type="text" id="txtuploadtime" class="form-control" placeholder="enter minutes" autocomplete="off"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row" id="maximummarks">
                             <label for="name" class="col-sm-3 col-form-label form-label">Maximum Marks</label>
                             <div class="col-sm-8">

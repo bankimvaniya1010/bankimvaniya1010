@@ -146,6 +146,8 @@ public partial class admin_create_exampaper : System.Web.UI.Page
                 //objexam_master.exam_course = txtcourse.Value;
                 objexam_master.exam_createddate = DateTime.Today.Date;
                 objexam_master.exam_duration = txtExamtime.Value;
+                objexam_master.exam_readingduration = txtreadingtime.Value;
+                objexam_master.exam_uploadduration = txtuploadtime.Value;
                 objexam_master.created_by = txtexamcreatedby.Value;
                 objexam_master.maximummarks = txtmaximummarks.Value;
                 objexam_master.exam_instruction = txtinstrcution.Text.Trim();

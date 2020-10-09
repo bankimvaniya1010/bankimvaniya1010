@@ -1160,7 +1160,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                                           .Select(x => x.is_sop_submitted_draft).FirstOrDefault();
 
                 var displaygteertificate = db.gte_progressbar.Where(x => x.applicantid == applicant_id && x.universityId == universityID)
-                                          .Select(x => x.is_gte_certificate_generated).FirstOrDefault();
+                                          .Select(x => x.is_gte_preliminarysection2_completed).FirstOrDefault();
                 if (displaygteertificate == null || displaygteertificate == false)
                     LinkButton8.Style.Add("display", "none");
                 if (displatdraft == null)
