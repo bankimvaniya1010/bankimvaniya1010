@@ -16,8 +16,29 @@
             <div class="col-md-10">
 
                
-                <%
-                    if (allDocuments.Count > 0)
+            <%
+                    if (otherDocCount > 0)
+                    {
+                    %>
+                <div class="card pdf-doc-wrpr" id="document" runat="server">
+                    <h5>Please read the following documents:</h5>
+                    <div class="pdf-container clearfix">
+                        <%for (int v = 0; v < allDocuments.Count; v++)
+                            {
+                            int? docType = allDocuments[v].type;
+                            if (docType != 2)
+                            {
+                            %>
+                            <div class="pdf-wrpr">
+                                <a href="<%=allDocuments[v].url %>" target="_blank"><i class="fa-file-pdf fa"></i></a>
+                                <div class="pdf-dcrp"><%=allDocuments[v].sectionname %></div>
+                            </div>                            
+                        <%} } %>
+                        </div>
+                </div>                  <%} %> 
+                
+                  <%
+                    if (videoCount > 0)
                     {
                     %>
                 <div class="card video-container" id="video" runat="server">
@@ -25,16 +46,32 @@
                        <div class="row">
                       <%for (int v = 0; v < allDocuments.Count; v++)
                           {
+                              if (allDocuments[v].type == 1)
+                              {
                               %>
-                            <div class="col-md-4 col-6">
-                                <video class="img-fluid video-img mx-auto d-block" src="<%=allDocuments[v].url %>" onclick="openLink('<%=allDocuments[v].url %>')"></video>
-                                <%--<img class="img-fluid video-img mx-auto d-block" src="<%=allDocuments[v].url %>" onclick="openLink('<%=allDocuments[v].url %>')"/>                               --%>
+                            <div class="col-md-4 col-6 pdf-wrpr">
+                                 <video class="img-fluid video-img mx-auto d-block" src="<%=allDocuments[v].url %>" onclick="openLink('<%=allDocuments[v].url %>')"></video>                                
+                                <div class="pdf-dcrp"><%=allDocuments[v].sectionname %></div>
                             </div>
-                        <%
+                        <%}
                             } %>
                     </div>
-                </div>            <%} %>  
-                
+                </div>            <%} %>
+
+                <%
+                    if (videoCount == 0 && otherDocCount == 0)
+                    {
+                %>
+                <div class="list-group-item" id="employerwebsite">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <asp:label id="LabelMessage" runat="server" text="No Tutorial available"></asp:label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%} %>
             </div>
         </div>
         </div>
