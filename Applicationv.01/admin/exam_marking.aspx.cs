@@ -17,8 +17,8 @@ public partial class admin_exam_marking : System.Web.UI.Page
     string roleName = string.Empty;
     int universityID;
     public string evalutionfile, buildevalutionfile, questiontype;
-    public int  marksobtain, lsttotalmarks;
-    public string totalmarksvalidation;    
+    public int lsttotalmarks;
+    public string totalmarksvalidation, marksobtain;    
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     public int allanswer_papersCount, allChecked_papersheetscount;
 
@@ -266,7 +266,8 @@ public partial class admin_exam_marking : System.Web.UI.Page
                     BindGrid(universityId, exampaperId, studentid, datetime);
                     coeCard.Attributes.Add("style", "display:block");
                     lbltotalmarks.Text = examdata.maximummarks;
-                    marksobtain = Convert.ToInt32(examdata.maximummarks);
+
+                    marksobtain = examdata.maximummarks;
                 }
                 else {
                     lblMess.Visible = false;
@@ -286,7 +287,6 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 else
                 {
                     showbuildexamDiv.Attributes.Add("style", "display:none");
-                    evalutionguid.Attributes.Add("style", "display:none");
                     showfinalmarks_dateDiv.Attributes.Add("style", "display:none");
                     savedatemarks.Attributes.Add("style", "display:none");
                     lblMess.Visible = true;
@@ -297,7 +297,6 @@ public partial class admin_exam_marking : System.Web.UI.Page
         else
         {
             coeCard.Attributes.Add("style", "display:none");
-            evalutionguid.Attributes.Add("style", "display:none");
             showfinalmarks_dateDiv.Attributes.Add("style", "display:none");
             showbuildexamDiv.Attributes.Add("style", "display:none");
         }        
@@ -383,7 +382,6 @@ public partial class admin_exam_marking : System.Web.UI.Page
             {               
                 GridView.DataSource = exam_answersheetdata;
                 GridView.DataBind();
-                evalutionguid.Attributes.Add("style", "display:block");
                 showfinalmarks_dateDiv.Attributes.Add("style", "display:block");
                 btnsavedatemarks.Attributes.Add("style", "display:block");
                 coeCard.Attributes.Add("style", "display:block");
@@ -396,8 +394,6 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 lblMess.InnerText = "Student not yet appered for exam";
                 coeCard.Attributes.Add("style", "display:none");
                 showfinalmarks_dateDiv.Attributes.Add("style", "display:none");
-                evalutionguid.Attributes.Add("style", "display:none");
-                
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
@@ -597,19 +593,17 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 var finalmarks = db.exam_master.Where(x => x.universityID == universityid && x.exampapersid == examid).Select(x => x.maximummarks).FirstOrDefault();
 
                 txtmarksobtain.Value = lsttotalmarks.ToString();
-                marksobtain = Convert.ToInt32(finalmarks);
+                marksobtain = finalmarks;
                 BindTotalMarks_buildtype(examid);
                 //lbltotalmarks.Text = totalmarks;
                 populatedate_marks(examinerid, examid, applicantid, universityid, examdatetime);
                 answer_records.Attributes.Add("style", "display:none");
-                evalutionguid.Attributes.Add("style", "display:none");
                 button.Attributes.Add("style", "display:none");
             }
             else {
                 showfinalmarks_dateDiv.Attributes.Add("style", "display:none");
                 savedatemarks.Attributes.Add("style", "display:none");
                 answer_records.Attributes.Add("style", "display:none");
-                evalutionguid.Attributes.Add("style", "display:none");
                 button.Attributes.Add("style", "display:none");
             }
         }
@@ -903,7 +897,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
                     var finalmarks = db.exam_master.Where(x => x.universityID == universityid && x.exampapersid == exampaperid).Select(x => x.maximummarks).FirstOrDefault();
 
                     txtmarksobtain.Value = totalmarks.ToString();
-                    marksobtain = Convert.ToInt32(finalmarks);
+                    marksobtain = finalmarks;
                     BindTotalMarks_buildtype(exampaperid);//lbltotalmarks.Text = ;
                     //populatedate_marks(examinerid, exampaperid, studentid, universityid, examdatetime);
                     answer_records.Attributes.Add("style", "display:none");

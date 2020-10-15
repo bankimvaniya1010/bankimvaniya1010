@@ -1,4 +1,4 @@
-﻿using System;
+﻿            using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -154,21 +154,21 @@ public partial class admin_exam_openanswerSet : System.Web.UI.Page
     //    // BindGrid(selecteduniID, examinerId);
     //}
 
-    //protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)
-    //{
-    //    int typeId = Convert.ToInt32(ddltype.SelectedValue);
-    //    typeid = typeId;
-    //    if (typeId == 1)
-    //    {
-    //        txtanswer.Attributes.Add("style", "display:block");
-    //        fileuploaddiv.Attributes.Add("style", "display:none");
-    //    }
-    //    else
-    //    {
-    //        txtanswer.Attributes.Add("style", "display:none");
-    //        fileuploaddiv.Attributes.Add("style", "display:block");
-    //    }
-    //}
+    protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int typeId = Convert.ToInt32(ddltype.SelectedValue);
+        typeid = typeId;
+        if (typeId == 1)
+        {
+            txtanswer.Attributes.Add("style", "display:block");
+            fileuploaddiv.Attributes.Add("style", "display:none");
+        }
+        else
+        {
+            txtanswer.Attributes.Add("style", "display:none");
+            fileuploaddiv.Attributes.Add("style", "display:block");
+        }
+    }
 
     private void PopulatetInfo()
     {
@@ -219,7 +219,7 @@ public partial class admin_exam_openanswerSet : System.Web.UI.Page
             if (recordID != -1)
             {
                 var Data = (from tInfo in db.exam_openanswer_master
-                                    where tInfo.universityid == universityID && tInfo.questionid== recordID
+                            where tInfo.questionid == recordID
                                     select tInfo).FirstOrDefault();
 
                 if (Data != null)
@@ -263,15 +263,20 @@ public partial class admin_exam_openanswerSet : System.Web.UI.Page
             }
             objmapping.marks = txtmarks.Value;
             objmapping.duration = txttime.Value;
-            db.exam_openanswer_master.Add(objmapping);
+            if(mode=="new")
+                db.exam_openanswer_master.Add(objmapping);
             db.SaveChanges();
+
             txtquestion.Text = "";
             ddltype.ClearSelection();
             txtmarks.Value = "";
             txttime.Value = "";
             txtanswer.Attributes.Add("style", "display:none");
             fileuploaddiv.Attributes.Add("style", "display:none");
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Saved .')", true);
+            if(mode== "new")
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Saved .')", true);
+            else if(mode =="update")
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record updated.')", true);
             //BindGrid(selecteduniversityid, selectedexaminerid);
 
         }
@@ -302,6 +307,8 @@ public partial class admin_exam_openanswerSet : System.Web.UI.Page
                             question = mv.question,
                             type = mv.type == 1 ? "Text": mv.type == 2 ? "Image": mv.type == 3 ?"Video": mv.type == 4 ?"Audio": null,
                             questiontype = mv.type== 1? null : mv.type,
+                            marks= mv.marks,
+                            duration = mv.duration,
                             answer = mv.type == 1 ? mv.answer : webURL + "Docs/Exammodule/OpenAnswerFiles/" + mv.universityid + "/" + mv.examinerid + "/" + mv.answer,
                         }).ToList();
             if (List != null)
@@ -315,5 +322,35 @@ public partial class admin_exam_openanswerSet : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    protected void GridView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+
+    }
+
+    protected void GridView_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+    }
+
+    protected void GridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
+    {
+
+    }
+
+    protected void GridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+
+    }
+
+    protected void GridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+
+    }
+
+    protected void GridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+
     }
 }

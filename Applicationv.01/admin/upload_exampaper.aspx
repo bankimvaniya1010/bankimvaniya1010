@@ -225,7 +225,7 @@
                             <div class="media align-items-center">
                                 <div class="media-left">
                                     <div class="form-row justify-content-between">
-                                        <asp:Button ID="btnupload" runat="server" CssClass="btn btn-success" OnClick="btnupload_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="btnupload" runat="server" CssClass="btn btn-success" OnClientClick="return validateForm()" OnClick="btnupload_Click" />
                                         <asp:Button ID="gotoNextPage" runat="server" Text="Go to Schedule Assessment" CssClass="btn btn-success" OnClick="gotoNextPage_Click" />
                                     </div>
                                 </div>
@@ -321,8 +321,8 @@
                 alert("Please select question");
             else
                 flag = true;
-            return flag;
-           <%-- if (flag) {
+            return true;
+            <%--if (flag) {
                 $("#ContentPlaceHolder1_btnupload").attr("disabled", "true")
                 $("#progress").removeClass("hide");
                 var progressEle = $("#progress");
@@ -334,7 +334,9 @@
                 var data3 = $("#ContentPlaceHolder1_audiofile_FileUpload")[0].files[0];
 
                 formData.append("files", data1);
+
                 formData.append("files", data2);
+
                 formData.append("files", data3);
 
                 var dummyProgress = 1;
@@ -376,7 +378,7 @@
                     if (req.status && req.status == 200 && (req.readyState == 4)) {
                         $("#ContentPlaceHolder1_btnupload").removeAttr("disabled");
                         alert("Video uploaded successfully");
-                        location.replace(hostName + "gte_sop.aspx?formid=26");
+                        location.replace(hostName + "admin/upload_exampaper.aspx?exampapersid=<%=exampapersid%>");
                     }
                 }
 

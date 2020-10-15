@@ -61,6 +61,26 @@
 
                             </asp:TemplateField>
 
+                             <asp:TemplateField HeaderText="Service">
+
+                                    <EditItemTemplate>
+                                         <asp:Label ID="lblService" runat="server" Text='<%# Bind("Service") %>' Visible="false"></asp:Label>
+                                        <asp:DropDownList ID="ddlService" Width="200px" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        <asp:RequiredFieldValidator runat='server' ID='requiredddlService' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please select service' InitialValue="0" ControlToValidate='ddlService' />
+                                    </EditItemTemplate>
+
+                                    <FooterTemplate>
+                                        <asp:DropDownList ID="ddlServiceFooter" Width="200px" runat="server" CssClass="form-control"></asp:DropDownList>
+                                         <asp:RequiredFieldValidator runat='server' ID='RequiredFieldValidator1' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please select service' InitialValue="0" ControlToValidate='ddlServiceFooter' />
+                                    </FooterTemplate>
+
+                                    <ItemTemplate>
+
+                                        <asp:Label ID="lblForm" runat="server" Text='<%# Bind("Service") %>'></asp:Label>
+
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
 

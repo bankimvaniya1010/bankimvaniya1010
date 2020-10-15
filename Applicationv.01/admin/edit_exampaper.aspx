@@ -302,6 +302,10 @@
                 alert("Please enter created by");
             else if ($("#<%=txtExamtime.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtExamtime.ClientID%>").val())))
                 alert("Please enter time in minutes");
+            else if ($("#<%=txtreadingtime.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtreadingtime.ClientID%>").val())))
+                alert("Please enter rading time in minutes");
+            else if ($("#<%=txtuploadtime.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtuploadtime.ClientID%>").val())))
+                alert("Please enter upload time in minutes");
             else if ($("#<%=txtmaximummarks.ClientID%>").val() == "")
                 alert("Please enter maximum marks");
           <%--  else if ($("#<%=txtshotremarks.ClientID%>").val() == "")

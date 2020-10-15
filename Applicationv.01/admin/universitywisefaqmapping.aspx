@@ -38,6 +38,24 @@
                             </div>
                         </div>
                     </div>
+                  <%--  <div style="display:none;" runat="server" id="serviceDiv">
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-3 col-form-label form-label">service</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <asp:DropDownList ID="ddlservice" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlservice_SelectedIndexChanged" CssClass="form-control">
+                                            <asp:ListItem Value="Please select">Please Select</asp:ListItem>
+                                            <asp:ListItem Value="0">GTE</asp:ListItem>
+                                            <asp:ListItem Value="1">Full Service</asp:ListItem>
+                                            <asp:ListItem Value="2">Assessment</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>--%>
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label form-label">Faq Question</label>
                         <div class="col-sm-9">

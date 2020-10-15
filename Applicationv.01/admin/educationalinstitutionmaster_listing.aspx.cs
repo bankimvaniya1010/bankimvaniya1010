@@ -24,7 +24,7 @@ public partial class admin_educationalinstitutionmaster_listing : System.Web.UI.
     {
         try
         {
-            var QuestionList = (from q in db.educationalinstitution_master
+            var QuestionList = (from q in db.educationalinstitution_country_city_mappingmaster
                                 join um in db.university_master on q.universityid equals um.universityid
                                 join cm in db.countriesmaster on q.countryid equals cm.id
                                 join cim in db.citymaster on q.cityid equals cim.city_id

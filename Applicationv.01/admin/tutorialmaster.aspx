@@ -77,6 +77,16 @@
                             </div>
                         </div>
                     </div>
+                     <div class="form-group row" id="Div1" runat="server">
+                        <label for="name" class="col-sm-3 col-form-label form-label">Status</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-12">
+                                   <asp:CheckBox runat="server" ID="chkactive" Text="Check to activate tutorial for institution"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">

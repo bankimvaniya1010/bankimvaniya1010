@@ -12,7 +12,7 @@ public partial class universityformmapping : System.Web.UI.Page
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string roleName = string.Empty;
-    int universityID = 0;
+    int universityID = 0, isfullservice;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,10 +24,11 @@ public partial class universityformmapping : System.Web.UI.Page
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
+        isfullservice = (int)Session["isfullservice"];
+
         if (!IsPostBack)
         {
             BindUniversity();
-            BindForm();
         }
 
     }
@@ -69,7 +70,11 @@ public partial class universityformmapping : System.Web.UI.Page
         try
         {
             if (ddlUniversity.SelectedValue != "0")
-                BindPresected(Convert.ToInt32(ddlUniversity.SelectedValue));
+            {
+                int universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+                BindForm(universityid);
+                BindPresected(universityid);
+            }
         }
         catch (Exception ex)
         {
@@ -101,12 +106,13 @@ public partial class universityformmapping : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    private void BindForm()
+    private void BindForm(int universityid)
     {
         try
         {
+            int service = objCom.GetUniversityservice(universityid);
             // List<formmaster> forms = new List<formmaster>();
-            var forms = db.formmaster.ToList();
+            var forms = db.formmaster.Where(x=>x.service == 3 || x.service == service).ToList();
             chkForm.DataSource = forms;
             chkForm.DataTextField = "formname";
             chkForm.DataValueField = "formid";
@@ -123,11 +129,12 @@ public partial class universityformmapping : System.Web.UI.Page
         try
         {
             chkForm.Items.Clear();
-            BindForm();
+            BindForm(university);
+            chkForm.Items.FindByValue(30.ToString()).Enabled = false;
             var universityWise = db.universitywiseformmapping.Where(x => x.universityid == university).ToList();
             for (int k = 0; k < universityWise.Count; k++)
             {
-                chkForm.Items.FindByValue(universityWise[k].formid.ToString()).Selected = true;
+                chkForm.Items.FindByValue(universityWise[k].formid.ToString()).Selected = true;                
             }
         }
         catch (Exception ex)

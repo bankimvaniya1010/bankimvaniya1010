@@ -104,6 +104,14 @@ public partial class admin_getaddtutorial : System.Web.UI.Page
                     ddlType.ClearSelection();
                     ddlType.Items.FindByValue(gtetutorailData.type.ToString()).Selected = true;
                 }
+                if (gtetutorailData.status != null)
+                {
+                    if (gtetutorailData.status == 1)
+                        chkactive.Checked = true;
+                    else
+                        chkactive.Checked = false;
+                }
+
             }
         }
         catch (Exception ex)
@@ -133,7 +141,11 @@ public partial class admin_getaddtutorial : System.Web.UI.Page
 
             objgtetutorialmaster.type = ddlType.SelectedValue;
             objgtetutorialmaster.title = txtDescription.Value;
-            objgtetutorialmaster.status = 1;
+            if(chkactive.Checked == true)
+                objgtetutorialmaster.status = 1;
+            else
+                objgtetutorialmaster.status = 0;
+
             if (!ddlType.SelectedValue.ToString().Equals("video", StringComparison.OrdinalIgnoreCase) && (FileUpload.HasFile || !string.IsNullOrEmpty(hidDocumentPath.Value)))
             {
                 if (FileUpload.HasFile)

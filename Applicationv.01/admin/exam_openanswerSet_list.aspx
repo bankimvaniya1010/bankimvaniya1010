@@ -107,7 +107,7 @@
                                         <asp:Label ID="lblmarks" runat="server" Text='<%# Bind("marks") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Duration">
+                                <asp:TemplateField HeaderText="Time (in minutes)">
                                     <ItemTemplate>
                                         <asp:Label ID="lblduration" runat="server" Text='<%# Bind("duration") %>'></asp:Label>
                                     </ItemTemplate>

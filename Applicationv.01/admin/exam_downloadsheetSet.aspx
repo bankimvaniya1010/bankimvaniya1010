@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-sm-3 col-form-label form-label">Time in minutes</label>
+                            <label for="name" class="col-sm-3 col-form-label form-label">Time (in minutes)</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-10">

@@ -1148,6 +1148,14 @@ public partial class admin_applicantlist : System.Web.UI.Page
             LinkButton LinkButton4 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton4");
             LinkButton LinkButton5 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton5");
             LinkButton LinkButton8 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton8");
+            LinkButton LinkButton6 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton6");
+            int applicantid = Convert.ToInt32(e.Row.Cells[0].Text);
+            if (LinkButton6 != null)
+            {
+                var isgtedetils = db.gte_applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
+                if(isgtedetils == null)
+                    LinkButton6.Style.Add("display", "none");
+            }
 
             if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
             {

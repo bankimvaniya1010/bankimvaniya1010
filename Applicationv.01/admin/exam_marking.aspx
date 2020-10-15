@@ -129,7 +129,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href='<%=evalutionfile %>' target="_blank">View File</a>
+                                    <a href='<%=evalutionfile %>' target="_blank" id="evalutionfile">View File</a>
                                 </div>
                             </div>
                         </div>
@@ -486,10 +486,10 @@
                      alert("Please enter valid marks.");
                      return false;
                  }
-                 //else if (txtmarks.val() > totalmarksvalidation) {
-                 //    alert("Please enter valid marks. marks obtain can not be grater than total marks.");
-                 //    return false;
-                 //}
+                 else if (txtmarks.val() > totalmarksvalidation) {
+                     alert("Please enter valid marks. marks obtain can not be grater than total marks.");
+                     return false;
+                 }
                  
              }
             return true;
@@ -521,7 +521,7 @@
         }
 
         function validateForm() {
-             var checOnlykNum = /^[0-9]*$/;
+            var checOnlykNum = /^[0-9]*$/;
             var totalmarks = '<%=marksobtain%>';
             var flag = false;
      
@@ -529,7 +529,7 @@
                 alert("Please select applicant");
             else if ($("#<%=txtmarksobtain.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtmarksobtain.ClientID%>").val())))// check final marks should not be grater
                 alert("Please enter valid final marks");
-            <%--else if ($("#<%=txtmarksobtain.ClientID%>").val() > totalmarks)
+         <%--   else if ($("#<%=txtmarksobtain.ClientID%>").val() > totalmarks)
                 alert("Entered marks is grater than total marks.");--%>
             else if ($("#<%=selectedexamdate_time.ClientID%>").val() == "")
                 alert("Please select date and time to relase assessment result.");
