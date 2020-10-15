@@ -50,7 +50,7 @@ public partial class _Default : System.Web.UI.Page
             ifverifiedshow.Attributes.Add("style", "display:block");
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList("30", UniversityID, isfullservice);
 
             if (Session["isDomesticStudent"] == null)
                 domesticDiv.Style.Remove("display");

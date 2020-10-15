@@ -40,10 +40,10 @@ public partial class gte_studentdetails : System.Web.UI.Page
         if (isFullService == 1)
             Response.Redirect(webURL + "default.aspx", true);
 
-        var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
-        if (!isGteDeclarationDoneByApplicant)
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('GTE Declaration is not completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+        //var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
+        //if (!isGteDeclarationDoneByApplicant)
+        //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+        //            "alert('GTE Declaration is not completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
 
         isuniversityGroupHead = db.universitygrouping.Where(x => x.groupingheaduniversityid == universityID).ToList().Count > 0;
         if (isuniversityGroupHead)
@@ -89,7 +89,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
     public static string GetCityDropdown(int countryId, int universityid)
     {
         GTEEntities db1 = new GTEEntities();
-        var temp = (from em in db1.educationalinstitution_master
+        var temp = (from em in db1.educationalinstitution_country_city_mappingmaster
                     join cm in db1.citymaster on em.cityid equals cm.city_id
                     where em.countryid == countryId && em.universityid == universityid
                     select new
@@ -104,7 +104,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var dates = (from em in db.educationalinstitution_master
+            var dates = (from em in db.educationalinstitution_country_city_mappingmaster
                          join cm in db.citymaster on em.cityid equals cm.city_id
                          where em.countryid == countryId && em.universityid == universityid
                          select new

@@ -22,10 +22,10 @@
                         <div style="font-size: medium; text-align: center; display: none">
                             Question Paper <%=answeredpapersheetscount %> / <%=allpapersheetscount%>
                         </div>
-                        <div style="font-size: medium; text-align: center">
-                            <label id="lblreading" runat="server">READING TIME:</label> <span id="reading_countdown"></span>
-                            <label id="lblexamtime" runat="server">ASSESSMENT TIME: </label> <span id="countdown"></span>
-                            <label id="lbluploadtime" runat="server">UPLOAD TIME:</label> <span id="upload_countdown"></span>
+                        <div style="font-size: large; text-align: center">
+                            <label id="lblreading" runat="server">READING TIME:</label> <span id="reading_countdown" style="font-weight:900;padding-right:25px;"></span>
+                            <label id="lblexamtime" runat="server">ASSESSMENT TIME: </label> <span id="countdown" style="font-weight:900;padding-right:25px;"></span>
+                            <label id="lbluploadtime" runat="server">UPLOAD TIME:</label> <span id="upload_countdown" style="font-weight:900"></span>
                            <%-- <label>Time in minutes remaining for this assessment to end automatically </label>
                             <span id="countdown"></span>--%>
                             <asp:HiddenField ID="hidTime" runat="server" />
@@ -268,14 +268,19 @@
         let seconds2 = time2 % 60;
         upload_countdown.innerHTML = `${minutes2}:${seconds2}`;
         var lbluploadtime = `${minutes2}:${seconds2}`;
-       
+
+        if (uploadtime == "") {
+            upload_countdown.style.display = 'none';
+            $("#<%=lbluploadtime.ClientID%>").hide();
+        }
         if (readingtime != "") {
-            alert("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");           
             setInterval(updateCountdown1, 1000);
+            setTimeout(function () { 
+            alert("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");           
+           
         }
         else {
-            setInterval(updateCountdown, 1000);            
-            reading_countdown.style.display = 'none';
+            setInterval(updateCountdown, 1000); 
             $("#<%=lblreading.ClientID%>").hide();
         }
         function updateCountdown1() {
@@ -291,7 +296,6 @@
 
             if (reading_countdown.innerHTML == '5:00') {
                 alert("Only 5 minutes remaining. ");
-                return false;
             }
             else {
                 if (reading_countdown.innerHTML == '0:00') {
@@ -299,7 +303,6 @@
                     reading_countdown.style.display = 'none';
                     $("#<%=lblreading.ClientID%>").hide();
                     alert("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
-                    return false;
                 }
                 else
                     return true;
@@ -317,7 +320,6 @@
 
             if (countdownEl.innerHTML == '10:00') {
                 alert("Only 10 minutes are remaining for your assessment time to end ");
-                return false;
             }
             else {
                 if (countdownEl.innerHTML == '0:00') {
@@ -470,13 +472,25 @@
         var examdatetime = '<%=examdatetime%>';
 
         if (is_onetimeshow == 1) {
+
             var aud = document.getElementById("myVideo");
-           
+            aud.setAttribute("video:-webkit-media-controls-timeline", "display: none");
             aud.onended = function () {
                 alert("The file has ended");
                 $('#audiiovideoDIv').hide();
             };
 
+            var supposedCurrentTime = 0;
+            aud.addEventListener('timeupdate', function () {
+                if (!aud.seeking) {
+                    supposedCurrentTime = aud.currentTime;
+                }
+            });
+
+            $('#myVideo').on('play', function (e) {
+                alert("sdas");
+                //$(this).attr('controls','true');
+            });
             aud.onplaying = function () {
                 aud.setAttribute("video:-webkit-media-controls-timeline", "display: none");
             }

@@ -23,10 +23,28 @@
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
                     <h5> Please read the following documents:</h5>
                     <div class="pdf-container clearfix">
+                        <div style="display:block;text-align: center;">
+                         <asp:DataList ID="questionList" runat="server">
+                            <ItemTemplate>
+                                <asp:Panel ID="options" runat="server">
+                                    <div class="media align-items-center">
+
+                                            <div class="media-body">
+                                                <h4 class="card-title">
+                                                   <div class="pdf-dcrp"><%# Eval("title") %></div>
+                                                    <iframe src='<%# Eval("link") %>' runat="server" width="800" height="750" style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" id="myframe"></iframe>
+                                                    
+                                                </h4>
+                                            </div>
+                                        </div>
+                                </asp:Panel>
+                            </ItemTemplate>
+                         </asp:DataList>
+                        </div>
                         <%for (int v = 0; v < allDocuments.Count; v++)
                             {
                             string docType = allDocuments[v].type;
-                            if (docType != "video")
+                            if (docType == "ppt")
                             {
                             %>
                             <div class="pdf-wrpr">
