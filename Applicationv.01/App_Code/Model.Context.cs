@@ -89,7 +89,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<declaration_master> declaration_master { get; set; }
     public virtual DbSet<disabilitymaster> disabilitymaster { get; set; }
     public virtual DbSet<documentvalidationbyagent> documentvalidationbyagent { get; set; }
-    public virtual DbSet<educationalinstitution_master> educationalinstitution_master { get; set; }
+    public virtual DbSet<educational_institutionmaster> educational_institutionmaster { get; set; }
+    public virtual DbSet<educationalinstitution_country_city_mappingmaster> educationalinstitution_country_city_mappingmaster { get; set; }
     public virtual DbSet<educationdetailcheck_referee_response> educationdetailcheck_referee_response { get; set; }
     public virtual DbSet<educationmediummaster> educationmediummaster { get; set; }
     public virtual DbSet<educationverificationcontactmaster> educationverificationcontactmaster { get; set; }

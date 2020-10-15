@@ -987,22 +987,32 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
-    public List<faq> FaqQuestionList(string formID = "", int universityId = 0)
+    public List<faq> FaqQuestionList(string formID = "", int universityId = 0, int service = -1)
     {
         List<faq> faqList = new List<faq>();
         try
         {
-            if(formID == "" && universityId == 0)
+            if (formID == "" && universityId == 0)
                 faqList = db.faq.ToList();
             else
-                faqList = (from q in db.faq
+            {
+                if(formID == "30")
+                    faqList = (from q in db.faq
                            join ufm in db.universitywise_faqmapping on q.id equals ufm.faq_questionID into unifaqData
                            from x in unifaqData.DefaultIfEmpty()
                            join uform in db.universitywiseformmapping on x.formid equals uform.formid into uniformData
                            from x1 in uniformData.DefaultIfEmpty()
-                           where (x.universityid == universityId && x1.universityid == universityId && x1.formid.ToString() == formID)
+                           where (x.universityid == universityId && x1.universityid == universityId && x1.formid.ToString() == formID && x.university_service == service)
                            select q).ToList();
-
+                else
+                    faqList = (from q in db.faq
+                               join ufm in db.universitywise_faqmapping on q.id equals ufm.faq_questionID into unifaqData
+                               from x in unifaqData.DefaultIfEmpty()
+                               join uform in db.universitywiseformmapping on x.formid equals uform.formid into uniformData
+                               from x1 in uniformData.DefaultIfEmpty()
+                               where (x.universityid == universityId && x1.universityid == universityId && x1.formid.ToString() == formID)
+                               select q).ToList();
+            }
         }
         catch (Exception ex)
         {
