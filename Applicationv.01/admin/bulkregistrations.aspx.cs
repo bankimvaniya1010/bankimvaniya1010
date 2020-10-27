@@ -277,7 +277,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     usrObj.studylevelid = 1;
                     usrObj.verificationkey = Guid.NewGuid().ToString();
                     usrObj.isverified = false;
-                    //usrObj.isdeletedbyAdmin = false;
+                    usrObj.isdeletedbyAdmin = false;
                     usrObj.isverifiedbyAdmin = true;
                     usrObj.universityid = universityID;
                     db.students.Add(usrObj);

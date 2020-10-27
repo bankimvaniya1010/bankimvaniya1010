@@ -134,11 +134,11 @@ public partial class admin_createuniversity : System.Web.UI.Page
     {
         try {
             universitywiseformmapping objmapping = new universitywiseformmapping();
-            var formlist = db.formmaster.Where(x => x.service == service && x.service == 3).ToList();
-            for(int formid = 0; formid < formlist.Count; formid++)
+            var formlist = db.formmaster.Where(x => x.service == service || x.service == 3).Select(x=>x.formid).ToList();
+            foreach(var item in formlist)
             {
                 objmapping.universityid = universityid;
-                objmapping.formid = formid;
+                objmapping.formid = item;
                 db.universitywiseformmapping.Add(objmapping);
                 db.SaveChanges();
             }
