@@ -29,6 +29,7 @@ public partial class admin_videomaster
 {
     public int videoID { get; set; }
     public string sectioname { get; set; }
+    public Nullable<int> type { get; set; }
     public string videopath { get; set; }
 }
 
@@ -1531,7 +1532,15 @@ public partial class documentvalidationbyagent
     public string remarks { get; set; }
 }
 
-public partial class educationalinstitution_master
+public partial class educational_institutionmaster
+{
+    public int id { get; set; }
+    public Nullable<int> name { get; set; }
+    public Nullable<int> code { get; set; }
+    public Nullable<int> countryid { get; set; }
+}
+
+public partial class educationalinstitution_country_city_mappingmaster
 {
     public int id { get; set; }
     public Nullable<int> universityid { get; set; }
@@ -1697,6 +1706,8 @@ public partial class exam_master
     public Nullable<System.DateTime> exam_createddate { get; set; }
     public string created_by { get; set; }
     public string exam_duration { get; set; }
+    public string exam_readingduration { get; set; }
+    public string exam_uploadduration { get; set; }
     public string maximummarks { get; set; }
     public string exam_instruction { get; set; }
     public string shortremarks { get; set; }
@@ -1929,6 +1940,8 @@ public partial class formmaster
 
     public int formid { get; set; }
     public string formname { get; set; }
+    public Nullable<int> service { get; set; }
+    public Nullable<int> Active { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
@@ -3091,6 +3104,7 @@ public partial class university_master
 
     public int universityid { get; set; }
     public string university_name { get; set; }
+    public string CRICOS_Code { get; set; }
     public string hosturl { get; set; }
     public int full_service { get; set; }
     public string emai_notification1 { get; set; }
@@ -3257,6 +3271,7 @@ public partial class universitywise_faqmapping
     public Nullable<int> universityid { get; set; }
     public Nullable<int> formid { get; set; }
     public Nullable<int> questionranking { get; set; }
+    public Nullable<int> university_service { get; set; }
 
     public virtual faq faq { get; set; }
     public virtual formmaster formmaster { get; set; }

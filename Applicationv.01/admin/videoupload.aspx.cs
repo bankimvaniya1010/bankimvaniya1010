@@ -26,13 +26,15 @@ public partial class admin_videoupload : System.Web.UI.Page
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
-            BindUploaded();
-        if (ifdeleteclick == 0)
         {
-            HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
-            if (httpPostedFile.Count > 0)
-                uploadVideo(httpPostedFile[0], HttpContext.Current.Request["doc_name"]);
-        }
+            BindUploaded();
+            if (ifdeleteclick == 0)
+            {
+                HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
+                if (httpPostedFile.Count > 0)
+                    uploadVideo(httpPostedFile[0], HttpContext.Current.Request["doc_name"]);
+            }
+        }        
     }
 
     private void uploadVideo(HttpPostedFile httpPostedFile, string docName) {
@@ -53,7 +55,7 @@ public partial class admin_videoupload : System.Web.UI.Page
             }
 
             objmapping.sectioname = docName;
-
+            //objmapping.type = Convert.ToInt32(ddltype.SelectedValue);
             string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/AdminHelpingVideo";
             string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(httpPostedFile.FileName));
             string filePath = string.Concat(dirPath, "/", fileName);
@@ -164,7 +166,7 @@ public partial class admin_videoupload : System.Web.UI.Page
                 {
                     string id = e.Row.Cells[0].Text; // Get the id to be deleted
                                                      //cast the ShowDeleteButton link to linkbutton
-                    LinkButton lb = (LinkButton)e.Row.Cells[3].Controls[0];
+                    LinkButton lb = (LinkButton)e.Row.Cells[4].Controls[0];
                     if (lb != null)
                     {
                         //attach the JavaScript function with the ID as the paramter
@@ -199,7 +201,6 @@ public partial class admin_videoupload : System.Web.UI.Page
                 db.admin_videomaster.Remove(objID);
                 db.SaveChanges();
                 BindUploaded();
-                ifdeleteclick = 0;
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete this Video as its already assign to Institution.')", true);

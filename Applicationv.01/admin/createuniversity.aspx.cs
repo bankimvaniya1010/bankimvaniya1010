@@ -115,12 +115,32 @@ public partial class admin_createuniversity : System.Web.UI.Page
                     universityObj.logo = filename;
                     db.SaveChanges();
                 }
+                mappeduniversitytoform(universityObj.universityid, universityObj.full_service);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                      "alert('Record Inserted Successfully');window.location='" + Request.ApplicationPath + "admin/universitymaster.aspx';", true);
             }
             else
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University already exists')", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.StackTrace.ToString());
+        }
+    }
+
+    private void mappeduniversitytoform(int universityid, int service)
+    {
+        try {
+            universitywiseformmapping objmapping = new universitywiseformmapping();
+            var formlist = db.formmaster.Where(x => x.service == service || x.service == 3).Select(x=>x.formid).ToList();
+            foreach(var item in formlist)
+            {
+                objmapping.universityid = universityid;
+                objmapping.formid = item;
+                db.universitywiseformmapping.Add(objmapping);
+                db.SaveChanges();
             }
         }
         catch (Exception ex)

@@ -53,7 +53,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                              from x3 in dateData.Where(a => a.id.ToString() == x1.commencementdate).DefaultIfEmpty()
                              join sm in db.students on ad.applicantid equals sm.studentid into studentData
                              from x4 in studentData.DefaultIfEmpty()
-                             where ad.universityid == universityID
+                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false
                              select new
                              {
                                  applicantid = ad.applicantid,
@@ -1148,6 +1148,14 @@ public partial class admin_applicantlist : System.Web.UI.Page
             LinkButton LinkButton4 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton4");
             LinkButton LinkButton5 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton5");
             LinkButton LinkButton8 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton8");
+            LinkButton LinkButton6 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton6");
+            int applicantid = Convert.ToInt32(e.Row.Cells[0].Text);
+            if (LinkButton6 != null)
+            {
+                var isgtedetils = db.gte_applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
+                if(isgtedetils == null)
+                    LinkButton6.Style.Add("display", "none");
+            }
 
             if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
             {
@@ -1160,7 +1168,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                                           .Select(x => x.is_sop_submitted_draft).FirstOrDefault();
 
                 var displaygteertificate = db.gte_progressbar.Where(x => x.applicantid == applicant_id && x.universityId == universityID)
-                                          .Select(x => x.is_gte_certificate_generated).FirstOrDefault();
+                                          .Select(x => x.is_gte_preliminarysection2_completed).FirstOrDefault();
                 if (displaygteertificate == null || displaygteertificate == false)
                     LinkButton8.Style.Add("display", "none");
                 if (displatdraft == null)

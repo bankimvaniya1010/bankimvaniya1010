@@ -135,7 +135,7 @@ public partial class admin_exam_assign : System.Web.UI.Page
 
                              join sd in db.students on ad.applicantid equals sd.studentid into sdata
                              from s in sdata.DefaultIfEmpty()
-                             where ad.isdeletedbyAdmin != true && s.isverifiedbyAdmin == true && ad.classId == classid && ad.groupId == groupid && ad.universityid == universityId && x.subjectid == subjectid && x.applicantid == ad.applicantid
+                             where ad.isdeletedbyAdmin != true && ad.isverifiedbyAdmin == true && ad.classId == classid && ad.groupId == groupid && ad.universityid == universityId && x.subjectid == subjectid && x.applicantid == ad.applicantid
                              select new 
                              {
                                  applicantid = ad.applicantid,
@@ -289,8 +289,13 @@ public partial class admin_exam_assign : System.Web.UI.Page
                         Random random = new Random();
                         int otp = random.Next(100000, 999999);
                         objassign.studentpasskey = otp.ToString();
-                        int proctorpasskey = random.Next(100000, 999999);
-                        objassign.proctorpasskey = proctorpasskey.ToString();
+
+                        //int proctorpasskey = random.Next(100000, 999999);  //change for test demo 
+                        //objassign.proctorpasskey = proctorpasskey.ToString();
+                        int examinerid = Convert.ToInt32(ddlproctor.SelectedValue);
+                        var proctorpasskey = db.examiner_master.Where(x => x.examinerID == examinerid).Select(x => x.examinerkey).FirstOrDefault();
+                        objassign.proctorpasskey = proctorpasskey;
+
                         objassign.examassignerid = selectedexaminerId;
                         db.exam_assign.Add(objassign);
                         db.SaveChanges();
@@ -305,23 +310,23 @@ public partial class admin_exam_assign : System.Web.UI.Page
                         
                         //send passkey proctor
                         
-                        if (objassign.proctorid != null)
-                        {
-                            string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/ProctorPasskey_Notification.html"));
-                            string emailsubject = "Your Invigilator Passkey for " + examname;
-                            html = html.Replace("@UniversityName", university.university_name);
-                            html = html.Replace("@universityLogo", webURL + "Docs/" + objassign.universityID + "/" + university.logo);
-                            html = html.Replace("@Name", proctordetails.name);
-                            html = html.Replace("@examname", examname);
-                            html = html.Replace("@studentname", studentdetail.username);
-                            html = html.Replace("@applicantID", objassign.applicantid.ToString());
-                            html = html.Replace("@examdatetime", Convert.ToDateTime(objassign.exam_datetime).ToString("dd/MMM/yyyy hh:mm tt"));
-                            html = html.Replace("@virtuallink", objassign.virtuallink);
-                            html = html.Replace("@TimeZone", timezone.utctimezone);
-                            html = html.Replace("@examutctime", Convert.ToDateTime(timezone.exam_datetime_utc).ToString("dd/MMM/yyyy hh:mm tt")); 
-                            html = html.Replace("@passkey", objassign.proctorpasskey);
-                            objCom.SendMail(proctordetails.email, html, emailsubject);
-                        }
+                        //if (objassign.proctorid != null)
+                        //{
+                        //    string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/ProctorPasskey_Notification.html"));
+                        //    string emailsubject = "Your Invigilator Passkey for " + examname;
+                        //    html = html.Replace("@UniversityName", university.university_name);
+                        //    html = html.Replace("@universityLogo", webURL + "Docs/" + objassign.universityID + "/" + university.logo);
+                        //    html = html.Replace("@Name", proctordetails.name);
+                        //    html = html.Replace("@examname", examname);
+                        //    html = html.Replace("@studentname", studentdetail.username);
+                        //    html = html.Replace("@applicantID", objassign.applicantid.ToString());
+                        //    html = html.Replace("@examdatetime", Convert.ToDateTime(objassign.exam_datetime).ToString("dd/MMM/yyyy hh:mm tt"));
+                        //    html = html.Replace("@virtuallink", objassign.virtuallink);
+                        //    html = html.Replace("@TimeZone", timezone.utctimezone);
+                        //    html = html.Replace("@examutctime", Convert.ToDateTime(timezone.exam_datetime_utc).ToString("dd/MMM/yyyy hh:mm tt")); 
+                        //    html = html.Replace("@passkey", objassign.proctorpasskey);
+                        //    objCom.SendMail(proctordetails.email, html, emailsubject);
+                        //}
                         //send passkey student
                         if (objassign.applicantid != null)
                         {

@@ -14,7 +14,7 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;
     string roleName = string.Empty;
-    int selectuniversity, UserID, exampapersid, selectedexaminerId;
+    public int selectuniversity, UserID, exampapersid, selectedexaminerId;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected List<exampapers_master> exampapers_master = new List<exampapers_master>();
     dynamic exammasterdata;
@@ -30,13 +30,29 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         roleName = Utility.GetRoleName();
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
-
         if ((Request.QueryString["exampapersid"] == null) || (Request.QueryString["exampapersid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
         }
         else
-            exampapersid = Convert.ToInt32(Request.QueryString["exampapersid"]);       
+        {
+            exampapersid = Convert.ToInt32(Request.QueryString["exampapersid"]);
+            Session["exampapersid"] = exampapersid;
+        }
+
+        //if (Session["exampapersid"] != null)
+        //    exampapersid = Convert.ToInt32(Session["exampapersid"]);
+        //else {
+        //    if ((Request.QueryString["exampapersid"] == null) || (Request.QueryString["exampapersid"].ToString() == ""))
+        //    {            
+        //        Response.Redirect(webURL + "admin/default.aspx", true);
+        //    }
+        //    else
+        //    {
+        //        exampapersid = Convert.ToInt32(Request.QueryString["exampapersid"]);
+        //        Session["exampapersid"] = exampapersid;
+        //    }
+        //}
 
         exampapers_master = db.exampapers_master.Where(x => x.exampapersid == exampapersid).ToList();
         exammasterdata = db.exam_master.Where(x => x.exampapersid == exampapersid).FirstOrDefault();
@@ -44,50 +60,52 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         selectedexaminerId = exammasterdata.examinerId;
         
         docPath = docPath + "/Exammodule/" + selectuniversity + "/" + exampapersid;
-        if (!IsPostBack)
-        {            
-            if (exammasterdata.uploadtype == 1)
-            {
-                uploadtype = 1;
-                uploadpaperDiv.Attributes.Add("style", "display:block;");
-                lbl1.InnerText = "*The file formats you can upload are - .jpg, .png, .jpeg";
-                BindDocuments();
-            }
-            else if (exammasterdata.uploadtype == 2)
-            {
-                uploadtype = 2;
-                buildinpaperDiv.Attributes.Add("style", "display:block;");
-                btnupload.Attributes.Add("style", "display:none;");
-            }
-            else if (exammasterdata.uploadtype == 3)
-            {
-                BindDocuments();
-                uploadtype = 3;
-                uploadpaperDiv.Attributes.Add("style", "display:block;");
-                lbl1.InnerText = "*The file formats you can upload is .pdf";
-                if (exampapers_master.Count > 0)
-                {
-                    div1.Attributes.Add("style", "display:none");
-                    showdivfield.Attributes.Add("style", "display:none");
-                    btnupload.Visible = false;
-                }
-                else
-                {
-                    div1.Attributes.Add("style", "display:block");
-                    showdivfield.Attributes.Add("style", "display:block");
-                    btnupload.Visible = true;
-                }
-            }
-            if (exampapers_master.Count > 0)
-                btnupload.Text = "Upload More";
-            else
-                btnupload.Text = "Upload";
-
+        if (exammasterdata.uploadtype == 1)
+        {
+            uploadtype = 1;
+            uploadpaperDiv.Attributes.Add("style", "display:block;");
+            lbl1.InnerText = "*The file formats you can upload are - .jpg, .png, .jpeg";
+            BindDocuments();
         }
+        else if (exammasterdata.uploadtype == 2)
+        {
+            uploadtype = 2;
+            buildinpaperDiv.Attributes.Add("style", "display:block;");
+            btnupload.Attributes.Add("style", "display:none;");
+        }
+        else if (exammasterdata.uploadtype == 3)
+        {
+            BindDocuments();
+            uploadtype = 3;
+            uploadpaperDiv.Attributes.Add("style", "display:block;");
+            lbl1.InnerText = "*The file formats you can upload is .pdf";
+            if (exampapers_master.Count > 0)
+            {
+                div1.Attributes.Add("style", "display:none");
+                showdivfield.Attributes.Add("style", "display:none");
+                btnupload.Visible = false;
+            }
+            else
+            {
+                div1.Attributes.Add("style", "display:block");
+                showdivfield.Attributes.Add("style", "display:block");
+                btnupload.Visible = true;
+            }
+        }
+        if (exampapers_master.Count > 0)
+            btnupload.Text = "Upload More";
+        else
+            btnupload.Text = "Upload";
 
         //HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
         //if (httpPostedFile.Count > 0)
-        //    uploadVideo(httpPostedFile[0]);
+        //{
+        //    for (int i = 0; i < httpPostedFile.Count; i++)
+        //    {
+        //        uploadVideo(httpPostedFile[i]);
+        //    }
+        //}
+           
     }
 
     //protected void uploadVideo(HttpPostedFile httpPostedFile)
@@ -96,28 +114,10 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
     //    {
     //        var mode = "new";
     //        var data = (from vInfo in db.exampapers_master
-    //                    where vInfo.universityid == universityID && vInfo.applicantid == userID
+    //                    where vInfo.universityID == selectuniversity
     //                    select vInfo).FirstOrDefault();
 
-    //        if (data != null)
-    //        {
-    //            mode = "update";
-    //            objgte_videouploadmaster = data;
-    //        }
-    //        string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GteUploadedVideo";
-    //        string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(httpPostedFile.FileName));
-    //        string filePath = string.Concat(dirPath, "/", fileName);
-    //        DirectoryInfo di = new DirectoryInfo(dirPath);
-    //        if (!di.Exists)
-    //            di.Create();
-    //        httpPostedFile.SaveAs(filePath);
-    //        objgte_videouploadmaster.videourl = fileName;
-    //        objgte_videouploadmaster.applicantid = userID;
-    //        objgte_videouploadmaster.universityid = universityID;
-    //        if (mode == "new")
-    //            db.gte_videouploadmaster.Add(objgte_videouploadmaster);
-    //        db.SaveChanges();
-
+            
     //    }
     //    catch (Exception ex)
     //    {
@@ -255,10 +255,11 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
 
     protected void btnupload_Click(object sender, EventArgs e)
     {
-        try {
+        try
+        {
             exampapers_master objmapping = new exampapers_master();
             if (exammasterdata.uploadtype == 1 || exammasterdata.uploadtype == 3)
-            {               
+            {
 
                 if (FileUpload.HasFiles)
                 {
@@ -312,10 +313,11 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                 txtfileinstruction.Text = "";
                 chkview.Checked = false;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                      "alert('Record Saved successfully.');window.location='" + Request.ApplicationPath + "admin/upload_exampaper.aspx?exampapersid='"+exampapersid+"'';", true);
-               
+                      "alert('Record Saved successfully.');window.location='" + Request.ApplicationPath + "admin/upload_exampaper.aspx?exampapersid='" + exampapersid + "';", true);
+
             }
-            else if (exammasterdata.uploadtype == 2) {
+            else if (exammasterdata.uploadtype == 2)
+            {
 
                 foreach (ListItem li in chkquestion.Items)
                 {
@@ -331,10 +333,10 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
                             mode = "update";
                             exsisting = objmapping;
                         }
-                        
+
                         objmapping.examinerid = selectedexaminerId;
                         objmapping.questiontype = ddlquestiontype.SelectedValue;
-                        objmapping.questionId= questionId;
+                        objmapping.questionId = questionId;
                         objmapping.exampapersid = exampapersid;
                         objmapping.universityID = selectuniversity;
                         objmapping.is_audiovideofile_onetimeview = datadownloadsheet_viewonce;

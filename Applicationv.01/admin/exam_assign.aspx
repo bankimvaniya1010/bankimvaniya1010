@@ -252,7 +252,7 @@
             $('#exammodule_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#examsassign').addClass('active');
-            $.ajax({
+           <%-- $.ajax({
                 type: "GET",
                 url: "exam_assign.aspx/Genrateotp",
                 contentType: "application/json; charset=utf-8",
@@ -277,7 +277,7 @@
                            $("#<%=hidtxtproctorpasskey.ClientID%>").val(result);
                     }
                 }
-            });
+            });--%>
         });
     </script>        
 </asp:Content>

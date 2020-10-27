@@ -118,7 +118,7 @@
 
                                       <div style="<%# (Eval("upload_extrasheetpath") == null && Eval("upload_fileinstruction") == null && Eval("upload_filepath") == null)? "visibility: hidden;": " "  %>">
 
-                                        <div class="list-group-item" id="extrafileDiv" style="<%# Eval("upload_extrasheetpath") == null? "display:none;": "display:block;border: none;"%>">
+                                        <div class="list-group-item" id="extrafileDiv" style="<%# Eval("upload_extrasheetpath") == null? "display:none;": "display:block;border: none;margin-left:20px;"%>">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
                                                 <div class="form-row">
                                                     <label class="col-md-3 col-form-label form-label"><b>RESOURCE DOCUMENT: </b></label>
@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="list-group-item" id="InstructionDiv" style="<%# Eval("upload_fileinstruction") == null? "display:none;": "display:block;border: none;"%>">
+                                        <div class="list-group-item" id="InstructionDiv" style="<%# Eval("upload_fileinstruction") == null? "display:none;": "display:block;border: none;margin-left:20px;"%>">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
                                                 <div class="form-row">
                                                     <label for="choice" class="col-md-3 col-form-label form-label"><b>Instructions : </b></label>
@@ -140,13 +140,18 @@
                                             </div>
                                         </div>
                                         <div id="audiiovideoDIv" >
-                                        <div class="list-group-item" id="videoDIv" style="<%# Eval("upload_filepath") == null? "display:none;": "display:block;border: none;"%>">
+                                        <div class="list-group-item" id="videoDIv" style="<%# Eval("upload_filepath") == null? "display:none;": "display:block;border: none;margin-left:20px;"%>">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-countryofdob">
                                                 <div class="form-row">
                                                     <label for="choice" class="col-md-3 col-form-label form-label" id="auidovideolink"><b>RESOURCE AUDIO/VIDEO: </b></label>
                                                     <div class="col-md-6">
                                                          <%--<a href="<%# Eval("upload_filepath") %>" target="_blank" id="aurdiovideohyperlink">View File</a>--%>
-                                                        <div>
+                                                         <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:none;": "display:block;border: none;"%>">
+                                                            <video height="57px"; width="348px";  oncontextmenu="return false;" id="myAudio" controls controlslist="nodownload" disablepictureinpicture>
+                                                                <source src='<%# Eval("upload_filepath") %>'>
+                                                            </video>
+                                                        </div>
+                                                          <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:block;border: none;": "display:none;"%>">
                                                             <video width="320" height="240" oncontextmenu="return false;" id="myVideo" controls controlslist="nodownload" disablepictureinpicture>
                                                                 <source src='<%# Eval("upload_filepath") %>'>
                                                             </video>
@@ -314,7 +319,7 @@
                         var result = JSON.parse(response.d);
                          if (result == "Disqualified") {
                              var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
-                             location.replace(hostName + "view_exampaper2.aspx?assignID=" + <%=assignID%>);
+                             location.replace(hostName + "exammodule.aspx");
                         }
                     }
                 }
@@ -385,26 +390,33 @@
         var examid = '<%=examid%>';
         var examsheetid = '<%=examsheetid%>';
         var examdatetime = '<%=examdatetime%>';
-
+        var assignID = '<%= assignID%>';
+        var isaudio_orvideo = '<%= isaudio_orvideo%>';
+        
         if (is_onetimeshow == 1) {
-            var aud = document.getElementById("myVideo");
+            var aud;
+            if (isaudio_orvideo == "audio")
+                aud = document.getElementById("myAudio");
+            else
+                aud = document.getElementById("myVideo");
             aud.onended = function () {
-                alert("The file has ended");
-                $('#audiiovideoDIv').hide();
-            };
-
-            $.ajax({
+                $.ajax({
                 type: "POST",
-                url: "view_exampaper.aspx/Saveaudiovideoresponse",
+                url: "view_exampaper2.aspx/Saveaudiovideoresponse",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",                             
+                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'assignID': '" + assignID + "'}",
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
                     }
                 }
             });
+                alert("The file has ended");
+                $('#audiiovideoDIv').hide();
+            };
+
+            
         }
         
         $(document).ready(function () {

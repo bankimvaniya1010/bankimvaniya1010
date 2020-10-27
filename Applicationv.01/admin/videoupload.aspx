@@ -25,6 +25,20 @@
                             </div>
                         </div>
                     </div>
+                     <div class="form-group row" id="uploadtype">
+                        <label for="name" class="col-sm-3 col-form-label form-label">Select File Type</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList runat="server" ID="ddltype" CssClass="form-control">
+                                        <asp:ListItem Value="0" Selected="True">Please select </asp:ListItem>
+                                        <asp:ListItem Value="1">Video </asp:ListItem>
+                                        <asp:ListItem Value="2">PDF</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                      <div class="form-group row" id="upload">
                         <label for="name" class="col-sm-3 col-form-label form-label">Upload File</label>
                         <div class="col-sm-8">
@@ -102,7 +116,7 @@
         </div>
   
    <script>
-       function validateUploadedFile() {
+       function validateUploadedFile(type) {
            var filePath = $("#<%=FileUpload.ClientID%>").val();
           
            if (filePath == "") {
@@ -112,7 +126,11 @@
            
            var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
            
-           if (fileExtension != "mp4" && fileExtension != "3gp" && fileExtension != "mp3" && fileExtension != "ogv") {
+           if (type == 1 && fileExtension != "mp4" && fileExtension != "3gp" && fileExtension != "mp3" && fileExtension != "ogv") {
+               alert("Invalid File");
+               return false;
+           }
+           if (type == 2 && fileExtension != "pdf") {
                alert("Invalid File");
                return false;
            }
@@ -123,7 +141,9 @@
            var flag = false;
            if ($("#<%=txtsectinname.ClientID%>").val() == "")
                alert("Please enter section name");
-           else if (!validateUploadedFile()) { }
+           else if ($("#<%=ddltype.ClientID%>").val() == "0")
+               alert("Please select file type");
+           else if (!validateUploadedFile($("#<%=ddltype.ClientID%>").val())) { }
            else
                flag = true;
            if (flag) {
@@ -175,7 +195,7 @@
 				var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
                     if (req.status && req.status == 200 && (req.readyState == 4)) {
                         $("#ContentPlaceHolder1_btn_submit").removeAttr("disabled");
-                        alert("Video uploaded successfully");
+                        alert("Uploaded successfully");
                         location.replace(hostName + "admin/videoupload.aspx");
                     }
                 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -278,7 +277,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     usrObj.studylevelid = 1;
                     usrObj.verificationkey = Guid.NewGuid().ToString();
                     usrObj.isverified = false;
-                    //usrObj.isdeletedbyAdmin = false;
+                    usrObj.isdeletedbyAdmin = false;
                     usrObj.isverifiedbyAdmin = true;
                     usrObj.universityid = universityID;
                     db.students.Add(usrObj);

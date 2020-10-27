@@ -323,7 +323,7 @@
                                         </a>
                                     </li>
                                    <li class="sidebar-menu-item" id="exam_openansset">
-                                        <a class="sidebar-menu-button" href="exam_openanswerSet.aspx">
+                                        <a class="sidebar-menu-button" href="exam_openanswerSet_list.aspx">
                                             <span class="sidebar-menu-text">Open-ended Master</span>
                                         </a>
                                     </li>

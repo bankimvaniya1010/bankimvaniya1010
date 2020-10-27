@@ -40,7 +40,7 @@
                             <div class="list-group-item" id="Div6" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label6" for="title" class="col-md-4 col-form-label form-label">Last Name</label>
+                                        <label runat="server" id="label6" for="title" class="col-md-4 col-form-label form-label">Family Name</label>
                                         <div class="col-md-6">                                            
                                             <input  id="txtlastname" runat="server" type="text" placeholder="" value="" class="form-control">
                                         </div>

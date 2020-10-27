@@ -55,7 +55,7 @@
                             <div class="list-group-item border" id="para2" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group">
                                     <div class="form-row">
-                                        <label id="lblwithotp" runat="server" for="employer" >Enter Student Passkey :</label>&nbsp;
+                                        <label id="lblwithotp" runat="server" for="employer" style="margin-right: 15px;" >Enter Student Passkey :</label>&nbsp;
                                         <div class="col-md-4">
                                             <input id="txtstudepassskey" runat="server" type="text" class="form-control" placeholder="Enter the Passkey"  autocomplete="off">
                                         </div>

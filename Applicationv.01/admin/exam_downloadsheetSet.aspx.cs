@@ -246,7 +246,7 @@ public partial class admin_exam_downloadsheetSet : System.Web.UI.Page
                 {
                     string id = e.Row.Cells[0].Text; // Get the id to be deleted
                                                      //cast the ShowDeleteButton link to linkbutton
-                    LinkButton lb = (LinkButton)e.Row.Cells[5].Controls[0];
+                    LinkButton lb = (LinkButton)e.Row.Cells[7].Controls[0];
                     if (lb != null)
                     {
                         //attach the JavaScript function with the ID as the paramter
@@ -307,7 +307,77 @@ public partial class admin_exam_downloadsheetSet : System.Web.UI.Page
 
     protected void grid_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-      
+        try
+        {
+            TextBox txtquestiondescription = (TextBox)grid.Rows[e.RowIndex].FindControl("txtquestiondescription");
+            FileUpload fileupload = (FileUpload)grid.Rows[e.RowIndex].FindControl("fileupload");
+            FileUpload fileupload_extra = (FileUpload)grid.Rows[e.RowIndex].FindControl("fileupload_extra");
+            FileUpload fileupload_file = (FileUpload)grid.Rows[e.RowIndex].FindControl("fileupload_file");
+            CheckBox checkBox = (CheckBox)grid.Rows[e.RowIndex].FindControl("chkactive") as CheckBox;
+
+            var mode = "new";
+            int papersheetID = Convert.ToInt32(grid.DataKeys[e.RowIndex].Values[0]);
+
+            exam_uploadanswer_master objmapping = new exam_uploadanswer_master();
+            var data = db.exam_uploadanswer_master.Where(b => b.questionid == papersheetID).First();
+            if (data != null)
+            {
+                mode = "update";
+                objmapping = data;
+            }
+
+            int selecteduniversityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+            int selectedexaminerId = Convert.ToInt32(ddlexaminer.SelectedValue);
+
+            docPath = docPath + "/Exammodule/questionBankType4/" + selecteduniversityid + "/" + selectedexaminerId;
+            if (fileupload.HasFiles)
+            {
+                string dirPath = docPath;
+                string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(fileupload.PostedFile.FileName));
+                string filePath = string.Concat(dirPath, "/", fileName);
+                DirectoryInfo di = new DirectoryInfo(dirPath);
+                if (!di.Exists)
+                    di.Create();
+                fileupload.PostedFile.SaveAs(filePath);
+                objmapping.questionpath = fileName;
+            }
+            if (fileupload_extra.HasFile)
+            {
+                string path = docPath + "/ExtraSheet/";
+                string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(fileupload_extra.PostedFile.FileName));
+                string filePath = string.Concat(path, fileName);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+                fileupload_extra.PostedFile.SaveAs(filePath);
+                objmapping.extrasheetpath = fileName;
+            }
+            if (fileupload_file.HasFile)
+            {
+                string path1 = docPath + "/AnyFile/";
+                string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(fileupload_file.PostedFile.FileName));
+                string filePath = string.Concat(path1, fileName);
+                if (!Directory.Exists(path1))
+                    Directory.CreateDirectory(path1);
+                fileupload_file.PostedFile.SaveAs(filePath);
+                objmapping.extrafilepath = fileName;
+            }
+            if (checkBox.Checked == true)
+                objmapping.ischeckonce = 1;
+            else
+                objmapping.ischeckonce = null;
+
+            objmapping.questiondescription = txtquestiondescription.Text;
+
+            grid.EditIndex = -1;
+            if (mode == "new")
+                db.exam_uploadanswer_master.Add(objmapping);
+            db.SaveChanges();
+            BindDocuments(selecteduniversityid, selectedexaminerId);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
     }
 
     protected void grid_PageIndexChanging(object sender, GridViewPageEventArgs e)

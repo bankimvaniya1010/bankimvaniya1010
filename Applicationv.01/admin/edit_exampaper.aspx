@@ -115,6 +115,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group row" id="ReadingExamtime">
+                            <label for="name" class="col-sm-3 col-form-label form-label">Reading Duration (Minutes)</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input runat="server" type="text" id="txtreadingtime" class="form-control" placeholder="enter minutes" autocomplete="off"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group row" id="UploadExamtime">
+                            <label for="name" class="col-sm-3 col-form-label form-label">Upload Duration (Minutes)</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <input runat="server" type="text" id="txtuploadtime" class="form-control" placeholder="enter minutes" autocomplete="off"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row" id="maximummarks">
                             <label for="name" class="col-sm-3 col-form-label form-label">Maximum Marks</label>
                             <div class="col-sm-8">
@@ -281,6 +302,10 @@
                 alert("Please enter created by");
             else if ($("#<%=txtExamtime.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtExamtime.ClientID%>").val())))
                 alert("Please enter time in minutes");
+            else if ($("#<%=txtreadingtime.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtreadingtime.ClientID%>").val())))
+                alert("Please enter rading time in minutes");
+            else if ($("#<%=txtuploadtime.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtuploadtime.ClientID%>").val())))
+                alert("Please enter upload time in minutes");
             else if ($("#<%=txtmaximummarks.ClientID%>").val() == "")
                 alert("Please enter maximum marks");
           <%--  else if ($("#<%=txtshotremarks.ClientID%>").val() == "")

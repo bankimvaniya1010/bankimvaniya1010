@@ -39,6 +39,11 @@ public partial class admin_universitywisefaqmapping : System.Web.UI.Page
                 BindForm(Convert.ToInt32(ddlUniversity.SelectedValue));
                 chkField.Items.Clear();
             }
+            else
+            {
+                ddlForm.ClearSelection();
+                chkField.Items.Clear();
+            }
         }
         catch (Exception ex)
         {
@@ -91,11 +96,12 @@ public partial class admin_universitywisefaqmapping : System.Web.UI.Page
     {
         try
         {
+            int is_service = objCom.GetUniversityservice(UniversityID);
             ListItem lst = new ListItem("Please select", "0");
             // List<formmaster> forms = new List<formmaster>();
             var forms = (from a in db.formmaster
                          join q in db.universitywiseformmapping on a.formid equals q.formid
-                         where q.universityid == UniversityID
+                         where q.universityid == UniversityID 
                          select new
                          {
                              formname = a.formname,
@@ -135,6 +141,7 @@ public partial class admin_universitywisefaqmapping : System.Web.UI.Page
                     universitywise_faqmapping mappingObj = new universitywise_faqmapping();
                     mappingObj.faq_questionID = faqquestionID;
                     mappingObj.formid = FormID;
+                    mappingObj.university_service = objCom.GetUniversityservice(UniversityID);
                     mappingObj.universityid = UniversityID;
                     db.universitywise_faqmapping.Add(mappingObj);
                     db.SaveChanges();
@@ -148,13 +155,20 @@ public partial class admin_universitywisefaqmapping : System.Web.UI.Page
         }
     }
 
-    private void BindPresected(int university, int FormID)
+    private void BindPresected(int university, int FormID, int service)
     {
         try
         {
+            dynamic universityWise;
             chkField.Items.Clear();
             BindField(FormID);
-            var universityWise = (from fa in db.faq
+            if(FormID == 30)
+                universityWise = (from fa in db.faq
+                                  join ufqm in db.universitywise_faqmapping on fa.id equals ufqm.faq_questionID
+                                  where (ufqm.universityid == university && ufqm.formid == FormID && ufqm.university_service == service)
+                                  select ufqm).ToList();
+            else
+                universityWise = (from fa in db.faq
                                   join ufqm in db.universitywise_faqmapping on fa.id equals ufqm.faq_questionID
                                   where (ufqm.universityid == university && ufqm.formid == FormID)
                                   select ufqm).ToList();
@@ -170,7 +184,18 @@ public partial class admin_universitywisefaqmapping : System.Web.UI.Page
     }
     protected void ddlForm_SelectedIndexChanged(object sender, EventArgs e)
     {
+        int formid = Convert.ToInt32(ddlForm.SelectedValue);
+        int selecteduniversityID = Convert.ToInt32(ddlUniversity.SelectedValue);
+
         BindField(Convert.ToInt32(ddlForm.SelectedValue));
-        BindPresected(Convert.ToInt32(ddlUniversity.SelectedValue), Convert.ToInt32(ddlForm.SelectedValue));
+
+        if (formid == 30)
+        {
+            int university_service = objCom.GetUniversityservice(selecteduniversityID);
+            BindPresected(Convert.ToInt32(ddlUniversity.SelectedValue), Convert.ToInt32(ddlForm.SelectedValue), university_service);
+
+        }
+        else
+            BindPresected(Convert.ToInt32(ddlUniversity.SelectedValue), Convert.ToInt32(ddlForm.SelectedValue), -1);
     }
 }

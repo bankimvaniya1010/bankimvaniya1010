@@ -129,7 +129,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href='<%=evalutionfile %>' target="_blank">View File</a>
+                                    <a href='<%=evalutionfile %>' target="_blank" id="evalutionfile">View File</a>
                                 </div>
                             </div>
                         </div>
@@ -182,11 +182,11 @@
 
             <div id="showbuildexamDiv" runat="server" style="display: none">
 
-                <div id="answer_records" runat="server">
+                <div id="answer_records" runat="server" style=" margin-left: -21px;">
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
-                                <div class="card-header">
+                                <div class="">
                                     <div style="display: none;">
                                         <asp:Label ID="lblanswesheetid" runat="server" Text='<%# Eval("answesheetid") %>'></asp:Label>
                                         <asp:Label ID="lbluniversityid" runat="server" Text='<%# Eval("universityid") %>'></asp:Label>
@@ -521,7 +521,7 @@
         }
 
         function validateForm() {
-             var checOnlykNum = /^[0-9]*$/;
+            var checOnlykNum = /^[0-9]*$/;
             var totalmarks = '<%=marksobtain%>';
             var flag = false;
      
@@ -529,7 +529,7 @@
                 alert("Please select applicant");
             else if ($("#<%=txtmarksobtain.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtmarksobtain.ClientID%>").val())))// check final marks should not be grater
                 alert("Please enter valid final marks");
-            <%--else if ($("#<%=txtmarksobtain.ClientID%>").val() > totalmarks)
+         <%--   else if ($("#<%=txtmarksobtain.ClientID%>").val() > totalmarks)
                 alert("Entered marks is grater than total marks.");--%>
             else if ($("#<%=selectedexamdate_time.ClientID%>").val() == "")
                 alert("Please select date and time to relase assessment result.");

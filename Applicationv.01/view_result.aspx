@@ -22,7 +22,7 @@
                             <div class="list-group-item" id="title" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">Marks Obtained</label>
+                                        <label runat="server" id="labeltitle" for="title" class="">Marks Obtained :</label>
                                         <div class="col-md-6">
                                             <label id="lblmarksobtain" runat="server"></label>
                                         </div>
@@ -33,7 +33,7 @@
                             <div class="list-group-item" id="Div1" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">Maximum Marks</label>
+                                        <label runat="server" id="label1" for="title" class="">Maximum Marks : </label>
                                         <div class="col-md-6">
                                             <label id="lbltotalmarks" runat="server"></label>
                                         </div>
