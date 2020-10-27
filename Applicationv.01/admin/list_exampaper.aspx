@@ -79,7 +79,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="QuestiontGridView_PageIndexChanging">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="QuestiontGridView_PageIndexChanging" OnRowDeleting="QuestiontGridView_RowDeleting" OnRowCommand="QuestiontGridView_RowCommand">
 
                         <Columns>
 
@@ -107,30 +107,13 @@
                                 <ItemTemplate>
                                     <a href="<%# Eval("uploadpagelink") %>">Uploaded Paper</a>
                                 </ItemTemplate>
-                            </asp:TemplateField>                           
+                             </asp:TemplateField>
 
-                            
-                          <%--  <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 
-
-                                <EditItemTemplate>
-
-                                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
-
-                                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
-
-                                </EditItemTemplate>                              
-
-                                <ItemTemplate>
-                                    <a href="/admin/create_exampaper.aspx?exampapersid=<%# Eval("exampapersid") %>">Edit</a>
-                                </ItemTemplate>
-
-                            </asp:TemplateField>
-                            
-                            <asp:TemplateField HeaderText="Delete" ShowHeader="False">
+                            <asp:TemplateField HeaderText="Delete">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("exampapersid")%>' CommandName="Delete" Text="Delete" OnClientClick='<%# Eval("exampapersid","return ConfirmOnDelete({0})") %>'></asp:LinkButton>
                                 </ItemTemplate>
-                            </asp:TemplateField>--%>
+                            </asp:TemplateField>
 
 
                         </Columns>

@@ -157,7 +157,7 @@ public partial class exammodule : System.Web.UI.Page
                         examtimezone = y.utctimezone,
                         examuploadtype = exam.uploadtype== 2?null: exam.uploadtype,
                         gotoresultpage = null,
-                    }).SortBy("status").ToList();
+                    }).OrderBy(x=>x.status).ThenByDescending(x=>x.examdatetime).ToList();
 
             if (selectedvalue == "Active")
                 data.RemoveAll(x => x.status != null);

@@ -19,8 +19,8 @@
         </ol>
 
         <div class="card">
-            <div class="tab-content card-body">
-                <div id="uploadpaperDiv" style="display: none" runat="server">
+            <div class="tab-content card-body" id="uploadpaperDiv" style="display: none" runat="server">
+                <div>
                     <div class="form-group row">
                         <h2>Upload Assessment Paper</h2>
                         <div class="col-sm-8">
@@ -37,7 +37,7 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <asp:FileUpload runat="server" ID="FileUpload" onchange="showdiv()" />
+                                        <asp:FileUpload runat="server" ID="FileUpload" onchange="showdiv()" /><br/>
                                         <label style="font-size: small;" runat="server" id="lbl1"></label>
                                     </div>
                                 </div>
@@ -50,8 +50,7 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <asp:FileUpload ID="extrasheet_FileUpload" runat="server" />
-                                        <asp:Label ID="Label6" runat="server" />
+                                        <asp:FileUpload ID="extrasheet_FileUpload" runat="server" /><br/>
                                         <label style="font-size: small;">*The file formats you can upload are - .jpg, .png, .jpeg,.pdf</label>
                                     </div>
                                 </div>
@@ -62,9 +61,8 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <asp:FileUpload ID="audiofile_FileUpload" runat="server" />
-                                        <asp:Label ID="Label3" runat="server" />
-                                        <label style="font-size: small;">*The file formats you can upload are - .mp3, .mp4, .3gp, .webm, .wmv, .flv,.ogv, .mkv and File size must be till 100 MB</label><br/>
+                                        <asp:FileUpload ID="audiofile_FileUpload" runat="server" /><br/>
+                                        <label style="font-size: small;">*The file formats you can upload are - .mp3, .mp4, .3gp, .webm, .wmv, .flv, .mkv and File size must be till 100 MB</label><br/>
                                          <asp:CheckBox runat="server" ID="chkview"/>Allow Audio/Video file to be viewed one time 
                                     </div>
                                 </div>
@@ -227,7 +225,7 @@
                             <div class="media align-items-center">
                                 <div class="media-left">
                                     <div class="form-row justify-content-between">
-                                        <asp:Button ID="btnupload" runat="server" CssClass="btn btn-success" OnClick="btnupload_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="btnupload" runat="server" CssClass="btn btn-success" OnClientClick="return validateForm()" OnClick="btnupload_Click" />
                                         <asp:Button ID="gotoNextPage" runat="server" Text="Go to Schedule Assessment" CssClass="btn btn-success" OnClick="gotoNextPage_Click" />
                                     </div>
                                 </div>
@@ -237,7 +235,9 @@
         </div>
     </div>
     <script>
-
+        function showdiv() {
+           $("#<%=showdivfield.ClientID%>").show();
+       }
         <%--function validate() {
             var uploadtype = '<%= uploadtype%>';
             if (uploadtype == 2)
@@ -286,7 +286,7 @@
         function checkFileType() {
             var fileName = $("#ContentPlaceHolder1_audiofile_FileUpload")[0].files[0].name;
             var extension = fileName.substr(fileName.lastIndexOf(".") + 1);
-            return (extension == "mp4" || extension == "3gp" || extension == "webm" || extension == "wmv" || extension == "flv" || extension == "ogv" || extension == "mkv" || extension == "mp3");
+            return (extension == "mp4" || extension == "3gp" || extension == "webm" || extension == "wmv" || extension == "flv" || extension == "mkv" || extension == "mp3");
         }
 
         function checkFileSize() {
@@ -321,8 +321,8 @@
                 alert("Please select question");
             else
                 flag = true;
-            return flag;
-           <%-- if (flag) {
+            return true;
+            <%--if (flag) {
                 $("#ContentPlaceHolder1_btnupload").attr("disabled", "true")
                 $("#progress").removeClass("hide");
                 var progressEle = $("#progress");
@@ -334,7 +334,9 @@
                 var data3 = $("#ContentPlaceHolder1_audiofile_FileUpload")[0].files[0];
 
                 formData.append("files", data1);
+
                 formData.append("files", data2);
+
                 formData.append("files", data3);
 
                 var dummyProgress = 1;
@@ -376,7 +378,7 @@
                     if (req.status && req.status == 200 && (req.readyState == 4)) {
                         $("#ContentPlaceHolder1_btnupload").removeAttr("disabled");
                         alert("Video uploaded successfully");
-                        location.replace(hostName + "gte_sop.aspx?formid=26");
+                        location.replace(hostName + "admin/upload_exampaper.aspx?exampapersid=<%=exampapersid%>");
                     }
                 }
 

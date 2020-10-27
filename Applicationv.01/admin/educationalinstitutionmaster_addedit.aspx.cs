@@ -18,7 +18,7 @@ public partial class admin_educationalinstitutionmaster_addedit : System.Web.UI.
     int universityID;
     int recordId;
 
-    educationalinstitution_master objmaster = new educationalinstitution_master();
+    educationalinstitution_country_city_mappingmaster objmaster = new educationalinstitution_country_city_mappingmaster();
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -36,7 +36,7 @@ public partial class admin_educationalinstitutionmaster_addedit : System.Web.UI.
             recordId = -1;
             if (int.TryParse(Request.QueryString["id"], out recordId))
             {
-                objmaster = db.educationalinstitution_master.Where(obj => obj.id == recordId).FirstOrDefault();
+                objmaster = db.educationalinstitution_country_city_mappingmaster.Where(obj => obj.id == recordId).FirstOrDefault();
                 if (objmaster == null)
                     recordId = -1;
             }
@@ -64,7 +64,7 @@ public partial class admin_educationalinstitutionmaster_addedit : System.Web.UI.
     {
         try
         {
-            var Data = (from tInfo in db.educationalinstitution_master
+            var Data = (from tInfo in db.educationalinstitution_country_city_mappingmaster
                         where tInfo.id == recordId
                         select tInfo).FirstOrDefault();
             if (Data != null)
@@ -130,15 +130,15 @@ public partial class admin_educationalinstitutionmaster_addedit : System.Web.UI.
             var countryid = Convert.ToInt32(ddlcountry.SelectedValue);
             var cityid = Convert.ToInt32(hidCityField.Value);
 
-            var repeateData = (from tInfo in db.educationalinstitution_master
-                                where tInfo.universityid == universityid && tInfo.countryid == countryid && tInfo.cityid == cityid
+            var repeateData = (from tInfo in db.educationalinstitution_country_city_mappingmaster
+                               where tInfo.universityid == universityid && tInfo.countryid == countryid && tInfo.cityid == cityid
                                 select tInfo).FirstOrDefault();
             if (repeateData != null)
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record with selected combination already exsists')", true);
             else {
                 if (recordId != -1)
                 {
-                    var tutorailData = (from tInfo in db.educationalinstitution_master
+                    var tutorailData = (from tInfo in db.educationalinstitution_country_city_mappingmaster
                                         where tInfo.universityid == universityid && tInfo.id == recordId
                                         select tInfo).FirstOrDefault();
 
@@ -154,7 +154,7 @@ public partial class admin_educationalinstitutionmaster_addedit : System.Web.UI.
                 objmaster.cityid = Convert.ToInt32(hidCityField.Value);
 
                 if (mode == "new")
-                    db.educationalinstitution_master.Add(objmaster);
+                    db.educationalinstitution_country_city_mappingmaster.Add(objmaster);
                 db.SaveChanges();
                 Response.Redirect(webURL + "admin/educationalinstitutionmaster_listing.aspx", true);
             }

@@ -360,10 +360,14 @@ public partial class admin_exam_truefalseSet : System.Web.UI.Page
             if (enteredPasskey == examinerpasskey)
             {
                 gridDiv.Attributes.Add("style", "display:block");
+                validdiv.Attributes.Add("style", "display:none");
                 BindGrid(selecteduniID, examinerId);
             }
             else
+            {
+                validdiv.Attributes.Add("style", "display:block");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Entered passkey doest not match with records.')", true);
+            }
 
         }
         catch (Exception ex)

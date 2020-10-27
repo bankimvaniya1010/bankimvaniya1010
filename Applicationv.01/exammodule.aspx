@@ -60,8 +60,8 @@
                                         <label for="choice" class="col-form-label form-label" style="font-size: large;">Assessment Name : <%# Eval("exam_name") %></label>
                                     </div>
                                     <div class="form-group" style="font-size: medium;">
-                                        <label for="choice" class="col-form-label form-label">Assessment Date & Time: <%# Eval("exam_datetime", "{0:dd/MMM/yyyy hh:mm tt}") %></label> 
-                                         <label for="choice" class="col-form-label form-label"> <%# Eval("examtimezonetoshow") %></label>
+                                        <label for="choice" class="col-form-label form-label" style="padding-bottom: 0px;">Assessment Date & Time: <%# Eval("exam_datetime", "{0:dd/MMM/yyyy hh:mm tt}") %>  <%# Eval("examtimezonetoshow") %></label> 
+                                     <%--    <label for="choice" class="col-form-label form-label"></label>--%>
                                         <label for="choice" class="col-form-label form-label">Assessment UTC Date & Time: <%# Eval("examutctime", "{0:dd/MMM/yyyy hh:mm tt}") %></label>
                                     </div>  
 

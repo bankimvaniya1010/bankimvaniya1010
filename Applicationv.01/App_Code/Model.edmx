@@ -18,6 +18,7 @@
           </Key>
           <Property Name="videoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sectioname" Type="varchar" MaxLength="200" />
+          <Property Name="type" Type="int" />
           <Property Name="videopath" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="admincomments">
@@ -266,7 +267,7 @@
           <Property Name="mobileno" Type="varchar" MaxLength="45" />
           <Property Name="homephone" Type="varchar" MaxLength="45" />
           <Property Name="workphone" Type="varchar" MaxLength="45" />
-          <Property Name="email" Type="varchar" MaxLength="45" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="skypeid" Type="varchar" MaxLength="45" />
           <Property Name="haveskypeid" Type="int" />
           <Property Name="whatsappno" Type="varchar" MaxLength="15" />
@@ -1326,7 +1327,16 @@
           <Property Name="lastupdatedate" Type="datetime" Precision="0" />
           <Property Name="remarks" Type="varchar" MaxLength="200" />
         </EntityType>
-        <EntityType Name="educationalinstitution_master">
+        <EntityType Name="educational_institutionmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="int" />
+          <Property Name="code" Type="int" />
+          <Property Name="countryid" Type="int" />
+        </EntityType>
+        <EntityType Name="educationalinstitution_country_city_mappingmaster">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -1498,6 +1508,8 @@
           <Property Name="exam_createddate" Type="datetime" Precision="0" />
           <Property Name="created_by" Type="varchar" MaxLength="100" />
           <Property Name="exam_duration" Type="varchar" MaxLength="50" />
+          <Property Name="exam_readingduration" Type="varchar" MaxLength="50" />
+          <Property Name="exam_uploadduration" Type="varchar" MaxLength="50" />
           <Property Name="maximummarks" Type="varchar" MaxLength="50" />
           <Property Name="exam_instruction" Type="varchar" MaxLength="2000" />
           <Property Name="shortremarks" Type="varchar" MaxLength="1000" />
@@ -1712,6 +1724,8 @@
           </Key>
           <Property Name="formid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="formname" Type="varchar" MaxLength="50" />
+          <Property Name="service" Type="int" />
+          <Property Name="Active" Type="int" />
         </EntityType>
         <EntityType Name="grademaster">
           <Key>
@@ -2381,8 +2395,8 @@
           <Property Name="studentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="100" />
           <Property Name="password" Type="varchar" MaxLength="45" />
-          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="enrollmentyear" Type="int" Nullable="false" />
           <Property Name="studylevelid" Type="int" Nullable="false" />
           <Property Name="status" Type="int" Nullable="false" />
@@ -2548,6 +2562,7 @@
           </Key>
           <Property Name="universityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="university_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CRICOS_Code" Type="varchar" MaxLength="100" />
           <Property Name="hosturl" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="full_service" Type="int" Nullable="false" />
           <Property Name="emai_notification1" Type="varchar" MaxLength="100" />
@@ -2635,6 +2650,7 @@
           <Property Name="universityid" Type="int" />
           <Property Name="formid" Type="int" />
           <Property Name="questionranking" Type="int" />
+          <Property Name="university_service" Type="int" />
         </EntityType>
         <EntityType Name="universitywise_rejectionreasonmapping">
           <Key>
@@ -4377,7 +4393,8 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="declaration_master" EntityType="Self.declaration_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="educationalinstitution_master" EntityType="Self.educationalinstitution_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="educational_institutionmaster" EntityType="Self.educational_institutionmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="educationalinstitution_country_city_mappingmaster" EntityType="Self.educationalinstitution_country_city_mappingmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationdetailcheck_referee_response" EntityType="Self.educationdetailcheck_referee_response" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationverificationcontactmaster" EntityType="Self.educationverificationcontactmaster" Schema="GTE" store:Type="Tables" />
@@ -5110,7 +5127,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="declaration_master" EntityType="GTEModel.declaration_master" />
           <EntitySet Name="disabilitymaster" EntityType="GTEModel.disabilitymaster" />
           <EntitySet Name="documentvalidationbyagent" EntityType="GTEModel.documentvalidationbyagent" />
-          <EntitySet Name="educationalinstitution_master" EntityType="GTEModel.educationalinstitution_master" />
+          <EntitySet Name="educational_institutionmaster" EntityType="GTEModel.educational_institutionmaster" />
+          <EntitySet Name="educationalinstitution_country_city_mappingmaster" EntityType="GTEModel.educationalinstitution_country_city_mappingmaster" />
           <EntitySet Name="educationdetailcheck_referee_response" EntityType="GTEModel.educationdetailcheck_referee_response" />
           <EntitySet Name="educationmediummaster" EntityType="GTEModel.educationmediummaster" />
           <EntitySet Name="educationverificationcontactmaster" EntityType="GTEModel.educationverificationcontactmaster" />
@@ -5781,6 +5799,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="videoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sectioname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="Int32" />
           <Property Name="videopath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="admincomments">
@@ -6044,7 +6063,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="skypeid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="haveskypeid" Type="Int32" />
           <Property Name="whatsappno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
@@ -7185,7 +7204,16 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="lastupdatedate" Type="DateTime" />
           <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="educationalinstitution_master">
+        <EntityType Name="educational_institutionmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="Int32" />
+          <Property Name="code" Type="Int32" />
+          <Property Name="countryid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="educationalinstitution_country_city_mappingmaster">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -7358,6 +7386,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="exam_createddate" Type="DateTime" />
           <Property Name="created_by" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="exam_duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="exam_readingduration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="exam_uploadduration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="maximummarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="exam_instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="shortremarks" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
@@ -7576,6 +7606,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="formid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="formname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="service" Type="Int32" />
+          <Property Name="Active" Type="Int32" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_frommaster_admincomments" FromRole="formmaster" ToRole="admincomments" />
           <NavigationProperty Name="admintooltips" Relationship="GTEModel.fk_admintooltips_formmaster" FromRole="formmaster" ToRole="admintooltips" />
           <NavigationProperty Name="adminuniversitywisetooltips" Relationship="GTEModel.fk_adminuniversitywisetooltips_formmaster" FromRole="formmaster" ToRole="adminuniversitywisetooltips" />
@@ -8318,8 +8350,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="studentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="enrollmentyear" Type="Int32" Nullable="false" />
           <Property Name="studylevelid" Type="Int32" Nullable="false" />
           <Property Name="status" Type="Int32" Nullable="false" />
@@ -8518,6 +8550,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="universityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="university_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CRICOS_Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="hosturl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="full_service" Type="Int32" Nullable="false" />
           <Property Name="emai_notification1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -8644,6 +8677,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="universityid" Type="Int32" />
           <Property Name="formid" Type="Int32" />
           <Property Name="questionranking" Type="Int32" />
+          <Property Name="university_service" Type="Int32" />
           <NavigationProperty Name="faq" Relationship="GTEModel.FK_universitywise_faqmapping_faq" FromRole="universitywise_faqmapping" ToRole="faq" />
           <NavigationProperty Name="formmaster" Relationship="GTEModel.FK_universitywise_faqmapping_formmaster" FromRole="universitywise_faqmapping" ToRole="formmaster" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universitywise_faqmapping_university_master" FromRole="universitywise_faqmapping" ToRole="university_master" />
@@ -10346,6 +10380,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <EntityTypeMapping TypeName="GTEModel.admin_videomaster">
               <MappingFragment StoreEntitySet="admin_videomaster">
                 <ScalarProperty Name="videopath" ColumnName="videopath" />
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="sectioname" ColumnName="sectioname" />
                 <ScalarProperty Name="videoID" ColumnName="videoID" />
               </MappingFragment>
@@ -11718,9 +11753,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="educationalinstitution_master">
-            <EntityTypeMapping TypeName="GTEModel.educationalinstitution_master">
-              <MappingFragment StoreEntitySet="educationalinstitution_master">
+          <EntitySetMapping Name="educational_institutionmaster">
+            <EntityTypeMapping TypeName="GTEModel.educational_institutionmaster">
+              <MappingFragment StoreEntitySet="educational_institutionmaster">
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="educationalinstitution_country_city_mappingmaster">
+            <EntityTypeMapping TypeName="GTEModel.educationalinstitution_country_city_mappingmaster">
+              <MappingFragment StoreEntitySet="educationalinstitution_country_city_mappingmaster">
                 <ScalarProperty Name="cityid" ColumnName="cityid" />
                 <ScalarProperty Name="countryid" ColumnName="countryid" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
@@ -11904,6 +11949,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="shortremarks" ColumnName="shortremarks" />
                 <ScalarProperty Name="exam_instruction" ColumnName="exam_instruction" />
                 <ScalarProperty Name="maximummarks" ColumnName="maximummarks" />
+                <ScalarProperty Name="exam_uploadduration" ColumnName="exam_uploadduration" />
+                <ScalarProperty Name="exam_readingduration" ColumnName="exam_readingduration" />
                 <ScalarProperty Name="exam_duration" ColumnName="exam_duration" />
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
                 <ScalarProperty Name="exam_createddate" ColumnName="exam_createddate" />
@@ -12131,6 +12178,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="formmaster">
             <EntityTypeMapping TypeName="GTEModel.formmaster">
               <MappingFragment StoreEntitySet="formmaster">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="service" ColumnName="service" />
                 <ScalarProperty Name="formname" ColumnName="formname" />
                 <ScalarProperty Name="formid" ColumnName="formid" />
               </MappingFragment>
@@ -13094,6 +13143,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="emai_notification1" ColumnName="emai_notification1" />
                 <ScalarProperty Name="full_service" ColumnName="full_service" />
                 <ScalarProperty Name="hosturl" ColumnName="hosturl" />
+                <ScalarProperty Name="CRICOS_Code" ColumnName="CRICOS_Code" />
                 <ScalarProperty Name="university_name" ColumnName="university_name" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
               </MappingFragment>
@@ -13133,6 +13183,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="universitywise_faqmapping">
             <EntityTypeMapping TypeName="GTEModel.universitywise_faqmapping">
               <MappingFragment StoreEntitySet="universitywise_faqmapping">
+                <ScalarProperty Name="university_service" ColumnName="university_service" />
                 <ScalarProperty Name="questionranking" ColumnName="questionranking" />
                 <ScalarProperty Name="formid" ColumnName="formid" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />

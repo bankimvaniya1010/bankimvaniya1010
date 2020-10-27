@@ -150,7 +150,10 @@ public partial class admin_edit_exampaper : System.Web.UI.Page
                 //txtsubject.Value = existingDetails.exam_subject;
                 txtexamcreatedby.Value = existingDetails.created_by;
                 txtExamtime.Value = existingDetails.exam_duration;
-                txtmaximummarks.Value = existingDetails.maximummarks;
+                txtreadingtime.Value = existingDetails.exam_readingduration;
+                txtuploadtime.Value = existingDetails.exam_uploadduration;
+
+                 txtmaximummarks.Value = existingDetails.maximummarks;
                 txtinstrcution.Text = existingDetails.exam_instruction;
                 txtshotremarks.Text = existingDetails.shortremarks;
                 if (existingDetails.studentfilepath != null)
@@ -212,6 +215,8 @@ public partial class admin_edit_exampaper : System.Web.UI.Page
             //objexam_master.exam_course = txtcourse.Value;
             objexam_master.exam_createddate = DateTime.Today.Date;
             objexam_master.exam_duration = txtExamtime.Value;
+            objexam_master.exam_readingduration = txtreadingtime.Value;
+            objexam_master.exam_uploadduration = txtuploadtime.Value;
             objexam_master.created_by = txtexamcreatedby.Value;
             objexam_master.maximummarks = txtmaximummarks.Value;
             objexam_master.exam_instruction = txtinstrcution.Text.Trim();

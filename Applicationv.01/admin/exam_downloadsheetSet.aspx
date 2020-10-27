@@ -146,7 +146,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-sm-3 col-form-label form-label">Time in minutes</label>
+                            <label for="name" class="col-sm-3 col-form-label form-label">Time (in minutes)</label>
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-md-10">
@@ -167,8 +167,9 @@
                         </div>
                     </div>
                      <div class="form-group row">
-                    <div class="tab-content card-body">
+                    <div class="tab-content">
                         <div class="tab-pane active" id="first">
+                            <div class="table-responsive">
                             <asp:GridView ID="grid" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="false"
                                 DataKeyNames="questionid"
                                 AllowPaging="True"
@@ -182,7 +183,7 @@
                                        
                                     <asp:TemplateField HeaderText="Question Description">
                                         <EditItemTemplate>
-                                            <asp:FileUpload runat="server" ID="fileupload2" />
+                                            <asp:TextBox runat="server" ID="txtquestiondescription" Text='<%#Eval("questiondescription") %>'/>
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                            <asp:Label ID="lblSubject" runat="server" Text='<%#Eval("questiondescription") %>'/>
@@ -192,7 +193,7 @@
 
                                     <asp:TemplateField HeaderText="Assessment Sheet">
                                         <EditItemTemplate>
-                                            <asp:FileUpload runat="server" ID="fileupload1" />
+                                            <asp:FileUpload runat="server" ID="fileupload" />
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <a runat="server" href='<%# Bind("questionpath") %>' target="_blank" id="exampath">View </a>
@@ -226,7 +227,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <%--<asp:TemplateField HeaderText="Edit" ShowHeader="False">
+                                       <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                         <EditItemTemplate>
                                             <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
                                             <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
@@ -234,10 +235,11 @@
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
                                         </ItemTemplate>
-                                    </asp:TemplateField>--%>
+                                    </asp:TemplateField>
                                     <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
                                 </Columns>
                             </asp:GridView>
+                                </div>
                         </div>
                     </div>
                 </div>

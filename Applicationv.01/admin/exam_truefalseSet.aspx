@@ -20,49 +20,51 @@
         <h1 class="h2">True/False Question Master</h1>
 
         <div class="card">
-            <div class="form-group row">
-                <label for="name" class="col-sm-3 col-form-label form-label">Select Institution</label>
-                <div class="col-sm-8">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <asp:DropDownList ID="ddlUniversity" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            <div id="validdiv" runat="server">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label form-label">Select Institution</label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <asp:DropDownList ID="ddlUniversity" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label for="name" class="col-sm-3 col-form-label form-label">Select Examiner</label>
-                <div class="col-sm-8">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <asp:DropDownList ID="ddlexaminer" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlexaminer_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label form-label">Select Examiner</label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <asp:DropDownList ID="ddlexaminer" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlexaminer_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="name" class="col-sm-3 col-form-label form-label">Enter Examiner Passkey</label>
-                <div class="col-sm-8">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" runat="server" id="txtpasskey" class="form-control" autocomplete="off">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label form-label">Enter Examiner Passkey</label>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" runat="server" id="txtpasskey" class="form-control" autocomplete="off">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-8 offset-sm-3">
-                    <div class="media align-items-center">
-                        <div class="media-left">
-                            <asp:Button ID="btn_submit" runat="server" Text="Validate" CssClass="btn btn-success" OnClick="btn_submit_Click" OnClientClick="return validateForm()" />
-                            <div class="col-md-20">
+                <div class="form-group row">
+                    <div class="col-sm-8 offset-sm-3">
+                        <div class="media align-items-center">
+                            <div class="media-left">
+                                <asp:Button ID="btn_submit" runat="server" Text="Validate" CssClass="btn btn-success" OnClick="btn_submit_Click" OnClientClick="return validateForm()" />
+                                <div class="col-md-20">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-content card-body" id="gridDiv" runat="server" style="display:none">
+            <div class="tab-content card-body" id="gridDiv" runat="server" style="display: none">
                 <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                     <asp:GridView ID="section2queGridView" CssClass="table" runat="server" AutoGenerateColumns="False" ShowFooter="true"
                         DataKeyNames="questionid"
@@ -82,8 +84,8 @@
                                 <th scope="col">Answer 2</th>
                                 <th scope="col">Answer2 Description</th>
                                 <th scope="col">Correct Answer</th>
-                                <th scope="col">Maximum Marks</th>
-                                <th scope="col">Time in minute</th>
+                                <th scope="col">Marks</th>
+                                <th scope="col">Time (in minutes)</th>
                                 <th scope="col"></th>
                             </tr>
                             <tr>
@@ -111,10 +113,10 @@
                                     </asp:DropDownList>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="empytytxtmarks" class="form-control" runat="server"  ></asp:TextBox>
+                                    <asp:TextBox ID="empytytxtmarks" class="form-control" runat="server"></asp:TextBox>
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="emptytxttime" Class="form-control" runat="server" ></asp:TextBox>
+                                    <asp:TextBox ID="emptytxttime" Class="form-control" runat="server"></asp:TextBox>
                                 </td>
                                 <td>
                                     <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClick="Add" CommandName="EmptyDataTemplate" class="btn btn-success" OnClientClick="return validateEmptyRow()" />
@@ -206,8 +208,8 @@
                                     <asp:Label ID="lblCorrectAnswer" runat="server" Text='<%# Bind("correctanswer") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            
-                             <asp:TemplateField HeaderText="Maximum Marks ">
+
+                            <asp:TemplateField HeaderText="Marks ">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtmarks" TextMode="MultiLine" runat="server" Text='<%# Bind("marks") %>' Height="110px" Width="196px"></asp:TextBox>
                                     <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer2' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtmarks' />
@@ -220,7 +222,7 @@
                                     <asp:Label ID="lbltxtmarks" runat="server" Text='<%# Bind("marks") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                             <asp:TemplateField HeaderText="Time in Minute">    
+                            <asp:TemplateField HeaderText="Time (in minutes)">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txttime" TextMode="MultiLine" runat="server" Text='<%# Bind("time") %>' Height="110px" Width="196px"></asp:TextBox>
                                     <%--<asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer23' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txttime' />--%>
@@ -281,14 +283,14 @@
             //}
             return true;
         }
-         function validateForm() {
+        function validateForm() {
 
             var flag = false;
             if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-                 alert("Please select University");
-             else if ($("#<%=ddlexaminer.ClientID%>").val() == "0")
-               alert("Please select examiner");
-           else if ($("#<%=txtpasskey.ClientID%>").val() == "")
+                alert("Please select University");
+            else if ($("#<%=ddlexaminer.ClientID%>").val() == "0")
+                alert("Please select examiner");
+            else if ($("#<%=txtpasskey.ClientID%>").val() == "")
                 alert("Please enter passkey");
             else
                 flag = true;

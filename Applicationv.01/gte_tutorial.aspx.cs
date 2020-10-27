@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class gte_tutorial : System.Web.UI.Page
 {
     public static int videoCount = 0;
-    public static int otherDocCount = 0;
+    public static int otherDocCount = 0, pptDocumentCount= 0;
     Common objCom = new Common();
     protected static List<faq> allQuestions = new List<faq>();
     protected List<gte_tutorialmaster> allDocuments = new List<gte_tutorialmaster>();
@@ -35,17 +35,27 @@ public partial class gte_tutorial : System.Web.UI.Page
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
 
-        istutorialcomplete = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).Select(x => x.is_gte_tutorial_completed).FirstOrDefault();
-        if (istutorialcomplete != null && istutorialcomplete == true)
-            declaration.Attributes.Add("style", "display:none");
+        //istutorialcomplete = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).Select(x => x.is_gte_tutorial_completed).FirstOrDefault();
+        //if (istutorialcomplete != null && istutorialcomplete == true)
+        //    declaration.Attributes.Add("style", "display:none");
 
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], UniversityID);
-            allDocuments = db.gte_tutorialmaster.Where(x => x.status == 1).ToList();
+            allDocuments = db.gte_tutorialmaster.Where(x => x.status == 1 && x.universityid == UniversityID).ToList();
 
             videoCount = allDocuments.Where(c => c.type == "video").ToList().Count;
             otherDocCount = allDocuments.Where(c => c.type != "video").ToList().Count;
+            pptDocumentCount = allDocuments.Where(c => c.type == "ppt").ToList().Count();
+
+            var data = db.gte_tutorialmaster.Where(x => x.status == 1 && x.universityid == UniversityID && x.type == "pdf").Select(x => new {
+                title = x.title,
+                link = webURL + "Docs/GteTutorial/" + x.documentpath + "#toolbar=0"
+            }).ToList().Take(1);
+
+            questionList.DataSource = data;
+            questionList.DataBind();
+
             populate();
         }
     }

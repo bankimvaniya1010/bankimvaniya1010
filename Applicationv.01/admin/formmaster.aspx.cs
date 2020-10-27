@@ -28,7 +28,7 @@ public partial class admin_formmaster : System.Web.UI.Page
                             {
                                 formid = q.formid,
                                 formname = q.formname,
-
+                                Service = q.service == 1?"Full Service": q.service == 2? "Assessment": q.service == null ?"Common": "GTE",
                             }).ToList();
             if (FormList != null)
             {
@@ -64,9 +64,18 @@ public partial class admin_formmaster : System.Web.UI.Page
                 formmaster objForm = new formmaster();
 
                 TextBox txtDescription = (TextBox)FormGridView.FooterRow.FindControl("txtDescription1");
+                DropDownList ddlServiceFooter = (DropDownList)FormGridView.FooterRow.FindControl("ddlServiceFooter");
 
                 objForm.formname = txtDescription.Text.Trim();
-
+                if (ddlServiceFooter.SelectedValue != "")
+                {
+                    if (ddlServiceFooter.SelectedValue == "GTE")
+                        objForm.service = 0;
+                    else if (ddlServiceFooter.SelectedValue == "Full Service")
+                        objForm.service = 1;
+                    else if (ddlServiceFooter.SelectedValue == "Assessment")
+                        objForm.service = 2;
+                }
                 db.formmaster.Add(objForm);
                 db.SaveChanges();
                 BindInference();
@@ -94,6 +103,41 @@ public partial class admin_formmaster : System.Web.UI.Page
                         //attach the JavaScript function with the ID as the paramter
                         lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
                     }
+                }
+            }
+            ListItem lst = new ListItem("Please select", "0");
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.DataItem != null)
+                {
+                    //check if is in edit mode
+                    if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                    {
+
+                        DropDownList ddlService = (e.Row.FindControl("ddlService") as DropDownList);
+                        string selectedFormName = ""; // DataBinder.Eval(e.Row.DataItem, "inferenceDescription").ToString();
+
+                        Label lblService = (e.Row.FindControl("lblService") as Label);
+                        if (lblService != null)
+                            selectedFormName = lblService.Text;
+                        if (ddlService != null)
+                        {
+                            ddlService.Items.Insert(0, "GTE");
+                            ddlService.Items.Insert(1, "Full Service");
+                            ddlService.Items.Insert(2, "Assessment");
+                            ddlService.Items.FindByText(selectedFormName).Selected = true;
+                        }
+                    }
+                }
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                DropDownList ddlServiceFooter = (e.Row.FindControl("ddlServiceFooter") as DropDownList);
+                if (ddlServiceFooter != null)
+                {
+                    ddlServiceFooter.Items.Insert(0, "GTE");
+                    ddlServiceFooter.Items.Insert(1, "Full Service");                    
+                    ddlServiceFooter.Items.Insert(2, "Assessment");
                 }
             }
         }
@@ -142,10 +186,20 @@ public partial class admin_formmaster : System.Web.UI.Page
             int formID = Convert.ToInt32(FormGridView.DataKeys[e.RowIndex].Values[0]);
             formmaster fn = db.formmaster.Where(b => b.formid == formID).First();
 
-
+            DropDownList ddlService = (DropDownList)FormGridView.Rows[e.RowIndex].FindControl("ddlService");
             TextBox txtDescription = (TextBox)FormGridView.Rows[e.RowIndex].FindControl("txtDescription");
 
             fn.formname = txtDescription.Text.Trim();
+            fn.Active = 1;
+            if (ddlService.SelectedValue != "")
+            {
+                if (ddlService.SelectedValue == "GTE")
+                    fn.service = 0;
+                else if (ddlService.SelectedValue == "Full Service")
+                    fn.service = 1;
+                else if (ddlService.SelectedValue == "Assessment")
+                    fn.service = 2;
+            }
 
             FormGridView.EditIndex = -1;
             db.SaveChanges();

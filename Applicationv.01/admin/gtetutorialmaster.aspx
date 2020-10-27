@@ -61,7 +61,8 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status" SortExpression="status">  
                                 <ItemTemplate>
-                                     <asp:CheckBox ID="chkValid" runat="server" Checked='<%# bool.Parse(Eval("status").ToString()=="1"?"True":"False") %>' />
+                                    <asp:label runat="server" Text='<%# Eval("status").ToString() == "1"?"Active":"UnActive" %>'></asp:label>
+                                     <%--<asp:CheckBox ID="chkValid" runat="server" Checked='<%# bool.Parse(Eval("status").ToString()=="1"?"True":"False") %>' />--%>
                                 </ItemTemplate>
                             </asp:TemplateField>                          
 

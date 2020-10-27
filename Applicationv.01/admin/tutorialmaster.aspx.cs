@@ -104,6 +104,14 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
                     ddlType.ClearSelection();
                     ddlType.Items.FindByValue(tutorailData.type.ToString()).Selected = true;
                 }
+                if (tutorailData.status != null)
+                {
+                    if (tutorailData.status == 1)
+                        chkactive.Checked = true;
+                    else
+                        chkactive.Checked = false;
+                }
+
             }
         }
         catch (Exception ex)
@@ -132,8 +140,11 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
             }
             
             objtutorialmaster.type = ddlType.SelectedValue;
-            objtutorialmaster.title = txtDescription.Value;           
-            objtutorialmaster.status = 1;
+            objtutorialmaster.title = txtDescription.Value;
+            if (chkactive.Checked == true)
+                objtutorialmaster.status = 1;
+            else
+                objtutorialmaster.status = 0;
             if (!ddlType.SelectedValue.ToString().Equals("video", StringComparison.OrdinalIgnoreCase) && (FileUpload.HasFile || !string.IsNullOrEmpty(hidDocumentPath.Value)))
             {
                 if (FileUpload.HasFile)

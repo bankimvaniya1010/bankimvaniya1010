@@ -18,6 +18,7 @@
 
 
     <script>
+        var pagebackDone ='<%=pagebackDone%>';
           function ajaxcalltocheckisanswersubmitted() {
             var assignID = '<%= assignID%>';
             $.ajax({
@@ -29,25 +30,36 @@
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
-                         if (result == "Disqualified") {
-                             var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
-                             location.replace(hostName + "UploadAnswerSheet.aspx?ID=" + <%=assignID%>);
+                        if (result != "NOresponsesubmitted") {
+                            var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                            location.replace(hostName + "UploadAnswerSheet.aspx?ID=" + <%=assignID%>);
                         }
                     }
                 }
             });
 
         }
-       setInterval(ajaxcalltocheckisanswersubmitted, 1000);
+        if(pagebackDone == 0)
+            setInterval(ajaxcalltocheckisanswersubmitted, 1000);
         
         
 
         function validateUploadedFile() {
             var filePath = $("#<%=FileUpload.ClientID%>").val();
+            var fileuploadtype = $("#<%=ddltype.ClientID%>").val();
+
             var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
-            if (fileExtension != "jpg" && fileExtension != "png"&& fileExtension != "jpeg") {
-                alert("Invalid File");
-                return false;
+            if (fileuploadtype == 1) {
+                if (fileExtension != "pdf") {
+                    alert("Invalid File. Please select file of type .pdf");
+                    return false;
+                }
+            }
+            else {
+                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "jpeg") {
+                    alert("Invalid File. Please select file of type .jpg, .jpeg, .png");
+                    return false;
+                }
             }
             return true;
         }
@@ -55,7 +67,9 @@
         function validatForm() {
             var flag = false;
             var answersheet = $("#<%=FileUpload.ClientID%>").val();
-             if (answersheet == "")
+             if ($("#<%=ddltype.ClientID%>").val() == 0)
+                alert("Please select answer sheet type.");
+             else if (answersheet == "")
                  alert("Please select answer sheet.");
              else if (answersheet != "" && !validateUploadedFile()) { }
              else
@@ -77,7 +91,7 @@
                         formData.append("files", file);
                     }
                  //formData.append("files", data);
-
+                 formData.append("doc_type", $("#<%=ddltype.ClientID%>").val());
                  var dummyProgress = 1;
                  var intervalId = -1;
                  var req = new XMLHttpRequest();
@@ -143,6 +157,20 @@
                     <div runat="server" id="Div3" class="form-row justify-content-between" style="margin: auto; width: auto; padding: 10px;">
                         <label>* Select all your answer sheets in one go by selecting multiple files to submit your response.</label><br />
 
+                    </div>
+                     <div class="form-group row  justify-content-between" id="selecttype" style="margin: auto; padding: 10px;">
+                                <label for="name" class="col-sm-3 col-form-label form-label"> Please Select file type you want to upload </label>
+                                <div class="col-sm-8">
+                                    <div class="row">                                        
+                                    </div>
+                                </div>
+                            </div>
+                    <div runat="server" id="Div5" class="form-row justify-content-between" style="margin: auto; width: 50%; padding: 10px;">
+                        <asp:DropDownList runat="server" ID="ddltype" CssClass="form-control">
+                            <asp:ListItem Value="0"> Please Select</asp:ListItem>
+                             <asp:ListItem Value="1">PDF</asp:ListItem>
+                             <asp:ListItem Value="2"> Images</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
                     <div runat="server" id="btnDiv" class="form-row justify-content-between" style="margin: auto; width: 50%; padding: 10px;">
                         <%-- <input id="backNavLink" runat="server" type="button" class="btn btn-success" value="Back" onclick="return window.location = '/gte_declaration.aspx?formid=20';"/>--%>
