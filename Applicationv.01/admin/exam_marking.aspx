@@ -486,10 +486,10 @@
                      alert("Please enter valid marks.");
                      return false;
                  }
-                 else if (txtmarks.val() > totalmarksvalidation) {
-                     alert("Please enter valid marks. marks obtain can not be grater than total marks.");
-                     return false;
-                 }
+                 //else if (txtmarks.val() > totalmarksvalidation) {
+                 //    alert("Please enter valid marks. marks obtain can not be grater than total marks.");
+                 //    return false;
+                 //}
                  
              }
             return true;

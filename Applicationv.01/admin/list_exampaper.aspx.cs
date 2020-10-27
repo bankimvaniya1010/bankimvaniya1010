@@ -21,9 +21,11 @@ public partial class admin_list_exampaper : System.Web.UI.Page
         roleName = Utility.GetRoleName();
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        Session["exampapersid"] = null;
         if (!IsPostBack)
         {
             BindUniversity();
+            Session["exampapersid"] = null;
         }
     }
 
@@ -149,5 +151,45 @@ public partial class admin_list_exampaper : System.Web.UI.Page
         int selectedexaminerId = Convert.ToInt32(ddlexaminer.SelectedValue);
         QuestiontGridView.PageIndex = e.NewPageIndex;
         BindGrid(selecteduniversityid, selectedexaminerId);
+    }
+
+    protected void QuestiontGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+
+    }
+
+    protected void QuestiontGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            if (e.CommandName.Equals("Delete"))
+            {
+                int ID = Convert.ToInt32(e.CommandArgument);
+
+                var isassessment_schedule = db.exam_schedule.Where(x => x.exampapersid == ID).ToList();
+                var isassessment_assign = db.exam_assign.Where(x => x.exampapersid == ID).ToList();
+
+                if (isassessment_schedule.Count == 0)
+                {
+                    if (isassessment_assign.Count == 0)
+                    {
+                        exam_master em = db.exam_master.Where(b => b.exampapersid == ID).First();
+                        db.exam_master.Remove(em);
+                        db.SaveChanges();
+                        int selecteduniversityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+                        int selectedexaminerId = Convert.ToInt32(ddlexaminer.SelectedValue);
+                        BindGrid(selecteduniversityid, selectedexaminerId);
+                    }
+                    else
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Can not delete this assessment as its already being assign to applicant')", true);
+                }
+                else
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Can not delete this assessment as its already being schedule')", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
     }
 }
