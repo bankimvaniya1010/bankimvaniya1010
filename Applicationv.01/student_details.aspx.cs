@@ -440,7 +440,7 @@ public partial class student_details : System.Web.UI.Page
                     HidGroupID.Value = profileInfo.groupId.ToString();
                 }
                 //int universityId = Convert.ToInt16(ddlUniversity.SelectedValue);
-                Bind_Subject(universityID);
+                Bind_Subject(Convert.ToInt32(profileInfo.exam_institutionId));
                 var universityWise = (from usm in db.exam_applicant_subjectmapping
                                       join sm in db.exam_subjectmaster on usm.subjectid equals sm.id
                                       where usm.universityid == universityID && usm.applicantid == userID

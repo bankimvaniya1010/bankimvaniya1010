@@ -30,19 +30,29 @@ public partial class admin_upload_exampaper : System.Web.UI.Page
         roleName = Utility.GetRoleName();
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        if (Session["exampapersid"] != null)
-            exampapersid = Convert.ToInt32(Session["exampapersid"]);
-        else {
-            if ((Request.QueryString["exampapersid"] == null) || (Request.QueryString["exampapersid"].ToString() == ""))
-            {            
-                Response.Redirect(webURL + "admin/default.aspx", true);
-            }
-            else
-            {
-                exampapersid = Convert.ToInt32(Request.QueryString["exampapersid"]);
-                Session["exampapersid"] = exampapersid;
-            }
+        if ((Request.QueryString["exampapersid"] == null) || (Request.QueryString["exampapersid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "admin/default.aspx", true);
         }
+        else
+        {
+            exampapersid = Convert.ToInt32(Request.QueryString["exampapersid"]);
+            Session["exampapersid"] = exampapersid;
+        }
+
+        //if (Session["exampapersid"] != null)
+        //    exampapersid = Convert.ToInt32(Session["exampapersid"]);
+        //else {
+        //    if ((Request.QueryString["exampapersid"] == null) || (Request.QueryString["exampapersid"].ToString() == ""))
+        //    {            
+        //        Response.Redirect(webURL + "admin/default.aspx", true);
+        //    }
+        //    else
+        //    {
+        //        exampapersid = Convert.ToInt32(Request.QueryString["exampapersid"]);
+        //        Session["exampapersid"] = exampapersid;
+        //    }
+        //}
 
         exampapers_master = db.exampapers_master.Where(x => x.exampapersid == exampapersid).ToList();
         exammasterdata = db.exam_master.Where(x => x.exampapersid == exampapersid).FirstOrDefault();

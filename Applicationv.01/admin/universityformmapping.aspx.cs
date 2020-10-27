@@ -130,7 +130,7 @@ public partial class universityformmapping : System.Web.UI.Page
         {
             chkForm.Items.Clear();
             BindForm(university);
-            chkForm.Items.FindByValue(30.ToString()).Enabled = false;
+            //chkForm.Items.FindByValue(30.ToString()).Enabled = false;
             var universityWise = db.universitywiseformmapping.Where(x => x.universityid == university).ToList();
             for (int k = 0; k < universityWise.Count; k++)
             {

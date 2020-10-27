@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -19,6 +19,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
     string webURL = String.Empty;
     private string constr, query;
     public int fullservice;
+    List<exam_subjectmaster> appliedsubjectlist = new List<exam_subjectmaster>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,27 +32,33 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
         universityID = Utility.GetUniversityId();
-        fullservice = Convert.ToInt32(Session["isfullservice"]);
+        fullservice = 2;// Convert.ToInt32(Session["isfullservice"]);
         roleID = Convert.ToInt32(Session["Role"]);
         if (!IsPostBack)
         {
-            Bindlabel(universityID);
             BindApplicant();
+            Bindlabel(universityID);
         }
     }
     private void Bindlabel(int universityID) {
-        int? studentcount_byuniveristy = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
-        lbltotal.InnerText = studentcount_byuniveristy.ToString();
+        try
+        {
+            int? studentcount_byuniveristy = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
+            lbltotal.InnerText = studentcount_byuniveristy.ToString();
 
-        int registeredapplicantcCount = (from ad in db.applicantdetails
-                                         join sd in db.students on ad.applicantid equals sd.studentid
-                                         where ad.universityid == universityID && ad.isdeletedbyAdmin == false
-                                         select ad.applicantid).ToList().Count;
+            int registeredapplicantcCount = (from ad in db.applicantdetails
+                                             join sd in db.students on ad.applicantid equals sd.studentid
+                                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false
+                                             select ad.applicantid).ToList().Count;
 
-        var availableApplicant_Count = studentcount_byuniveristy - registeredapplicantcCount;
+            var availableApplicant_Count = studentcount_byuniveristy - registeredapplicantcCount;
 
-        lblavailable.InnerText = availableApplicant_Count.ToString();
-
+            lblavailable.InnerText = availableApplicant_Count.ToString();
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
     }
 
     private void BindApplicant()
@@ -91,17 +98,47 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
 
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
             }
-            else
+            else if(fullservice == 2)
             {
                 applicant = (from ad in db.applicantdetails
-
 
                              join cm in db.countriesmaster on ad.residentialcountry equals cm.id into cmdata
                              from c in cmdata.DefaultIfEmpty()
 
-                             join gtesd in db.gte_applicantdetails on ad.applicantid equals gtesd.applicantid into gtestudentData
-                             from sd in gtestudentData.DefaultIfEmpty()
+                             join sm in db.students on ad.applicantid equals sm.studentid into studentData
+                             from s in studentData.DefaultIfEmpty()
 
+                             join um in db.university_master on ad.universityid equals um.universityid into umData
+                             from u in umData.DefaultIfEmpty()
+                             
+                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false
+                             select new Details()
+                             {
+                                 id = ad.applicantid,
+                                 applicantid = ad.applicantid,
+                                 universityId = u.universityid,
+                                 university_name = u.university_name,
+                                 firstname = ad.firstname == null ? string.Empty : ad.firstname,
+                                 lastname = ad.lastname == null ? string.Empty : ad.lastname,
+                                 email = ad.email == null ? s.email : ad.email,
+                                 registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
+                                 mobile = ad.mobileno == null ? string.Empty : ad.mobileno,
+                                 countryofresidence = c.country_name == null ? string.Empty : c.country_name,
+                                 Status = "Prospect",
+                                 approve = ad.isverifiedbyAdmin == true ? "Approved" : "Pending",
+                                 suspend = ad.isdeletedbyAdmin == true ? "Deleted" : string.Empty,
+                                 classId = ad.classId,
+                                 groupId = ad.groupId,
+                                 studentID =ad.studentid,
+                             }).Distinct().OrderByDescending(x => x.applicantid).ToList();              
+            }
+            else
+            {
+                applicant = (from ad in db.applicantdetails
+
+                             join cm in db.countriesmaster on ad.residentialcountry equals cm.id into cmdata
+                             from c in cmdata.DefaultIfEmpty()
+                             
                              join sm in db.students on ad.applicantid equals sm.studentid into studentData
                              from s in studentData.DefaultIfEmpty()
 
@@ -124,51 +161,93 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  Status = "Prospect",
                                  approve = ad.isverifiedbyAdmin == true ? "Approved" : "Pending",
                                  suspend = ad.isdeletedbyAdmin == true ? "Deleted" : string.Empty,
-
+                                 
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
             }
             //Starts filling up any form - Applicant
-            foreach (var item in applicant)
+            if (fullservice == 2)
             {
-                var personalDetails = db.applicantdetails.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
-                var educationDetails = db.applicanteducationdetails.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
-                var languageCompetency = db.applicantlanguagecompetency.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
-                var courseData = db.applicationmaster.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
-                var applicationmaster = db.applicationmaster.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).ToList();
-                var applicationStatus = db.application_status_master.AsNoTracking().Select(x => new { x.id, x.status_description });
+                foreach (var data in applicant)
+                {
+                    string classname = db.class_master.Where(x => x.id == data.classId).Select(x => x.description).FirstOrDefault();
+                    string groupnname = db.group_master.Where(x => x.id == data.groupId).Select(x => x.description).FirstOrDefault();
 
-                if (personalDetails != null && (personalDetails.ispersonaldetailspresent || personalDetails.iscontactdetailspresent || personalDetails.issocialprofilepresent || personalDetails.isidentificationpresent))
-                {
-                    item.Status = "Applicant";
-                }
-                else if (educationDetails != null && !educationDetails.iseducationdetailspresent)
-                {
-                    item.Status = "Applicant";
-                }
-                else if (languageCompetency != null && !languageCompetency.islanguagecompetencypresent)
-                {
-                    item.Status = "Applicant";
-                }
-                if (personalDetails != null && personalDetails.ispersonaldetailspresent && courseData != null)
-                {
-                    item.Status = "Successful Applicant";
-                }
-                if (applicationmaster.Count > 0)
-                {
-                    foreach (var data in applicationmaster)
+                    if (string.IsNullOrEmpty(classname))
+                        data.classname = string.Empty;
+                    else
+                        data.classname = classname;
+
+                    if (string.IsNullOrEmpty(groupnname))
+                        data.groupname = string.Empty;
+                    else
+                        data.groupname = groupnname;
+                    appliedsubjectlist.Clear();
+
+                    var subjectapplied = db.exam_applicant_subjectmapping.Where(x => x.universityid == data.universityId && x.applicantid == data.applicantid).Select(x=>x.subjectid).ToList();
+                    foreach (var item in subjectapplied)
                     {
+                        int subjectid = Convert.ToInt32(item);
+                        appliedsubjectlist.Add(db.exam_subjectmaster.Where(x => x.id == subjectid).FirstOrDefault());
+                    }
 
-                        if (data.current_status != null && (data.current_status == 2 || data.current_status == 3))
-                            item.Status = "Offered Applicant";
+                    if (appliedsubjectlist.Count > 0)
+                    {
+                        String numberList = "";
+                        for (int i = 0; i < appliedsubjectlist.Count; i++)
+                        {
+                            numberList += appliedsubjectlist[i].description +"<br/>"+ Environment.NewLine;
+                        }
 
-                        if (data.current_status != null && (data.current_status == 6 || data.current_status == 9 || data.current_status == 10))
-                            item.Status = "Accepted Applicant";
+                        data.Subjects = numberList;
+                    }
+                    else
+                        data.Subjects = string.Empty;
+                }
+            }
+            else
+            {
+                foreach (var item in applicant)
+                {
+                    var personalDetails = db.applicantdetails.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
+                    var educationDetails = db.applicanteducationdetails.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
+                    var languageCompetency = db.applicantlanguagecompetency.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
+                    var courseData = db.applicationmaster.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
+                    var applicationmaster = db.applicationmaster.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).ToList();
+                    var applicationStatus = db.application_status_master.AsNoTracking().Select(x => new { x.id, x.status_description });
 
-                        if (data.current_status != null && data.current_status == 11)
-                            item.Status = "Enrolled Applicant";
+                    if (personalDetails != null && (personalDetails.ispersonaldetailspresent || personalDetails.iscontactdetailspresent || personalDetails.issocialprofilepresent || personalDetails.isidentificationpresent))
+                    {
+                        item.Status = "Applicant";
+                    }
+                    else if (educationDetails != null && !educationDetails.iseducationdetailspresent)
+                    {
+                        item.Status = "Applicant";
+                    }
+                    else if (languageCompetency != null && !languageCompetency.islanguagecompetencypresent)
+                    {
+                        item.Status = "Applicant";
+                    }
+                    if (personalDetails != null && personalDetails.ispersonaldetailspresent && courseData != null)
+                    {
+                        item.Status = "Successful Applicant";
+                    }
+                    if (applicationmaster.Count > 0)
+                    {
+                        foreach (var data in applicationmaster)
+                        {
+                            if (data.current_status != null && (data.current_status == 2 || data.current_status == 3))
+                                item.Status = "Offered Applicant";
+
+                            if (data.current_status != null && (data.current_status == 6 || data.current_status == 9 || data.current_status == 10))
+                                item.Status = "Accepted Applicant";
+
+                            if (data.current_status != null && data.current_status == 11)
+                                item.Status = "Enrolled Applicant";
+                        }
                     }
                 }
             }
+           
             UserGridView.DataSource = applicant;
             UserGridView.DataBind();
         }
@@ -188,6 +267,9 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         dt.Columns.Add("First Name", typeof(string));
         dt.Columns.Add("Family Name", typeof(string));
         dt.Columns.Add("Email", typeof(string));
+        dt.Columns.Add("Class", typeof(string));
+        dt.Columns.Add("Group", typeof(string));
+        dt.Columns.Add("Student ID", typeof(string));
         dt.Columns.Add("Registration Date", typeof(DateTime));
         dt.Columns.Add("Contact Number", typeof(string));
         dt.Columns.Add("Country of Residence", typeof(string));
@@ -200,7 +282,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             {
                 var applicantemployerdetails = applicant[i];
 
-                dt.Rows.Add(applicantemployerdetails.applicantid, applicantemployerdetails.university_name, applicantemployerdetails.firstname, applicantemployerdetails.lastname, applicantemployerdetails.email, Convert.ToDateTime(applicantemployerdetails.registereDate), applicantemployerdetails.mobile, applicantemployerdetails.countryofresidence, applicantemployerdetails.Status);
+                dt.Rows.Add(applicantemployerdetails.applicantid, applicantemployerdetails.university_name, applicantemployerdetails.firstname, applicantemployerdetails.lastname, applicantemployerdetails.email,applicantemployerdetails.classname, applicantemployerdetails.groupname, applicantemployerdetails.studentID, Convert.ToDateTime(applicantemployerdetails.registereDate), applicantemployerdetails.mobile, applicantemployerdetails.countryofresidence, applicantemployerdetails.Status);
 
                 rowNumber++;
             }
@@ -257,6 +339,12 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         public string Status { get; set; }
         public string approve { get; set; }
         public string suspend { get; set; }
+        public int? classId { get; set; }
+        public int? groupId { get; set; }
+        public string classname { get; set; }
+        public string groupname { get; set; }
+        public string Subjects { get; set; }
+        public string studentID { get; set; }
     }
 
     protected void UserGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -308,25 +396,25 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 db.SaveChanges();
                 BindApplicant();
                 Bindlabel(universityID);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant'"+objstude.firstname+"'('"+objstude.applicantid+"' deleted successfully.)')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant deleted successfully.)')", true);
             }
             if (e.CommandName.Equals("Verify"))
             {
                 int ApplicantID = Convert.ToInt32(e.CommandArgument);
                 var mode = "new";
-                //students objstude = new students();
-                //var data = db.students.Where(x => x.studentid == ApplicantID).FirstOrDefault();
+                students objstude = new students();
+                var data = db.students.Where(x => x.studentid == ApplicantID).FirstOrDefault();
 
-                //if (data != null)
-                //{
-                //    mode = "update";
-                //    objstude = data;
-                //}
-                //objstude.isverifiedbyAdmin = true;
-                //if (mode == "new")
-                //    db.students.Add(objstude);
-                //db.SaveChanges();
-                
+                if (data != null)
+                {
+                    mode = "update";
+                    objstude = data;
+                }
+                objstude.isverifiedbyAdmin = true;
+                if (mode == "new")
+                    db.students.Add(objstude);
+                db.SaveChanges();
+
                 applicantdetails objapplicantdetails = new applicantdetails();
                 var applicantdetails = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
 
@@ -342,7 +430,12 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 
                 Bindlabel(universityID);
                 BindApplicant();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant verified successfully.')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant verified successfully.'", true);
+            }
+            if (e.CommandName.Equals("Edit"))
+            {
+                int ApplicantID = Convert.ToInt32(e.CommandArgument);
+                Response.Redirect(webURL + "admin/edit_studentDetails.aspx?ID="+ ApplicantID, true);
             }
         }
         catch (Exception ex)
@@ -369,6 +462,29 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    protected void UserGridView_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        if (fullservice == 1 || fullservice == 0)
+        {
+            ((DataControlField)UserGridView.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "Class")
+                .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "Group")
+                .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "Subjects")
+                .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "StudentID")
+                .SingleOrDefault()).Visible = false;
         }
     }
 }
