@@ -32,7 +32,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
         universityID = Utility.GetUniversityId();
-        fullservice = 2;// Convert.ToInt32(Session["isfullservice"]);
+        fullservice = Convert.ToInt32(Session["isfullservice"]);
         roleID = Convert.ToInt32(Session["Role"]);
         if (!IsPostBack)
         {

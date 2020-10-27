@@ -201,7 +201,7 @@
                             <div class="list-group-item" id="universityname" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-universityname">
                                     <div class="form-row">
-                                        <label id="lbluniversityname" runat="server" for="universityname" class="col-md-3 col-form-label form-label">NAME OF UNIVERSITY YOU ARE APPLYING TO  </label>
+                                        <label id="lbluniversityname" runat="server" for="universityname" class="col-md-3 col-form-label form-label">NAME OF Institution YOU ARE APPLYING TO  </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddluniversityname" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -228,7 +228,9 @@
                                         <label id="lbluniversityCountry" runat="server" for="universityCountry" class="col-md-3 col-form-label form-label">Country where chosen Educational Institution is located  </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddluniversityCountry" CssClass="form-control" runat="server">
+                                                 <asp:ListItem Value="0">Please Select</asp:ListItem>
                                             </asp:DropDownList>
+                                            <asp:HiddenField runat="server" ID="HiduniversityCountry"/>
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +238,7 @@
                               <div class="list-group-item" id="eduinstitutioncity">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-eduinstitutioncity">
                                     <div class="form-row">
-                                        <label id="lbleduinstitutioncity" runat="server" for="eduinstitutioncity" class="col-md-3 col-form-label form-label">CITY WHERE CHOSEN UNIVERSITY IS LOCATED</label>
+                                        <label id="lbleduinstitutioncity" runat="server" for="eduinstitutioncity" class="col-md-3 col-form-label form-label">CITY WHERE CHOSEN Institution IS LOCATED</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddleduinstitutioncity" runat="server" class="form-control">
                                                 <asp:ListItem Value="0">Please Select</asp:ListItem>
@@ -750,13 +752,13 @@
                     universityid = $("#<%=ddluniversityname.ClientID%>").val();
             else
                 universityid = '<%= Utility.GetUniversityId()%>';
-            if(universityid != 0)
+            if (universityid != 0) {
                 $.ajax({
                     type: "GET",
                     url: "gte_studentdetails.aspx/GetCityDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: {countryId: countryid, universityid: universityid},                    
+                    data: { countryId: countryid, universityid: universityid },
                     success: function (response) {
                         if (response.d) {
                             var result = JSON.parse(response.d);
@@ -770,12 +772,53 @@
                         }
                     }
                 });
+            }
+            else {
+                $("#<%=ddleduinstitutioncity.ClientID%>").empty();
+                $("#<%=ddleduinstitutioncity.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+            }
 
             });
 
             $("#<%=ddleduinstitutioncity.ClientID%>").change(function () {
                 $("#<%=hidCityField.ClientID%>").val($("#<%=ddleduinstitutioncity.ClientID%>").val());
+        });
+
+        $("#<%=ddluniversityname.ClientID%>").change(function () {
+            var universityid = $("#<%=ddluniversityname.ClientID%>").val();
+            if (universityid != 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "gte_studentdetails.aspx/GetEducationCountry",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { universityid: universityid },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddluniversityCountry.ClientID%>").length >= 1) {
+                                $("#<%=ddluniversityCountry.ClientID%>").empty();
+                                $("#<%=ddluniversityCountry.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddluniversityCountry.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].country_name));
+                            }
+                        }
+                    }
+                });
+            }
+              else {
+                $("#<%=ddluniversityCountry.ClientID%>").empty();
+                $("#<%=ddluniversityCountry.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+            }
+
+           
             });
+
+            $("#<%=ddluniversityCountry.ClientID%>").change(function () {
+                $("#<%=HiduniversityCountry.ClientID%>").val($("#<%=ddluniversityCountry.ClientID%>").val());
+        });
+        
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#gteevalution_list').addClass('open');
