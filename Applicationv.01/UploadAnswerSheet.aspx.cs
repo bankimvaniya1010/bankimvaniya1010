@@ -1,4 +1,5 @@
-﻿using Aspose.Words;
+﻿using Aspose.Pdf.Facades;
+using Aspose.Words;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
     public int exampaperid = 0, assignID;
     exam_assign data = new exam_assign();
     public string applicantfirstname, assessmentname, examname;
+    public int pagebackDone;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -50,20 +52,20 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
         {
             for(int i = 0; i < httpPostedFile.Count;i++)
             {
-                uploadVideo(httpPostedFile[i], httpPostedFile.Count);
+                uploadVideo(httpPostedFile[i], httpPostedFile.Count, HttpContext.Current.Request["doc_type"]);
             }
         }
                   
     }
 
-    protected void uploadVideo(HttpPostedFile  httpPostedFile , int selectedfilecount)
+    protected void uploadVideo(HttpPostedFile  httpPostedFile , int selectedfilecount, string doc_type)
     {
         try
         {           
-            exam_answersheet objexam_answersheet = new exam_answersheet();          
+            exam_answersheet objexam_answersheet = new exam_answersheet(); 
             if (!Directory.Exists(docPath))
                 Directory.CreateDirectory(docPath);
-
+            
             string extension = Path.GetExtension(httpPostedFile.FileName);
             string filename = Guid.NewGuid() + extension;
 
@@ -93,7 +95,9 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
 
             //if multiple images there then convert to pdf 
             var answersheets = db.exam_answersheet.Where(x => x.applicantid == data.applicantid && x.universityID == universityID && x.exampaperid == exampaperid && x.exam_datetime == data.exam_datetime).Select(x => x.anshwesheetpath).ToList();
-
+            Document doc = new Document();
+            string[] files = new string[answersheets.Count];
+            string ext = null;
             if (selectedfilecount == answersheets.Count)
             {
                 foreach (var item in answersheets)
@@ -103,35 +107,42 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
                         string s = item;
                         string[] after_split = s.Split('.');
                         string extension1 = after_split[after_split.Length - 1].ToLower();
-
-                        if (extension1 != "pdf")
+                        ext = extension1;
+                        for (int i = 0; i < answersheets.Count; i++)
                         {
-                            //if answershhets are images then only form a pdf of those images 
-                            Document doc = new Document();
-                            string[] files = new string[answersheets.Count];
-                            for (int i = 0; i < answersheets.Count; i++)
-                            {
-                                files[i] = @"" + docPath + "/" + answersheets[i];
-                            }
-
-                            Convertfromimagetopdf(files, doc);
-                            string pdfname = data.applicantid + "_" + exampaperid + "_answersheets.pdf";
-                            doc.Save(@"" + docPath + "/" + pdfname);
-
-                            objexam_answersheet.universityID = universityID;
-                            objexam_answersheet.applicantid = data.applicantid;
-                            objexam_answersheet.exampaperid = exampaperid;
-                            objexam_answersheet.exam_datetime = data.exam_datetime;
-                            objexam_answersheet.ispdfgenrated = 1;
-                            objexam_answersheet.genratedanswerpdfPath = pdfname;
-                            objexam_answersheet.anshwesheetpath = "Answer PDF File";
-                            db.exam_answersheet.Add(objexam_answersheet);
-                            db.SaveChanges();
+                            files[i] = @"" + docPath + "/" + answersheets[i];
                         }
                     }
                 }
-                
-                
+                if (files.Count() > 0)
+                {
+                    //Convertfromimagetopdf(files, doc);
+                    //string pdfname = data.applicantid + "_" + exampaperid + "_answersheets.pdf";
+                    //doc.Save(@"" + docPath + "/" + pdfname);
+                                        
+                    string pdfname = data.applicantid + "_" + exampaperid + "_" + Guid.NewGuid() + "_answersheets.pdf";
+                    if (ext == "pdf")
+                    {
+                        PdfFileEditor fileEditor = new PdfFileEditor();
+                        fileEditor.Concatenate(files, @"" + docPath + "/" + pdfname);
+                    }
+                    else
+                    {
+                        Convertfromimagetopdf(files, doc);
+                        doc.Save(@"" + docPath + "/" + pdfname);
+                    }
+
+                    objexam_answersheet.universityID = universityID;
+                    objexam_answersheet.applicantid = data.applicantid;
+                    objexam_answersheet.exampaperid = exampaperid;
+                    objexam_answersheet.exam_datetime = data.exam_datetime;
+                    objexam_answersheet.ispdfgenrated = 1;
+                    objexam_answersheet.genratedanswerpdfPath = pdfname;
+                    objexam_answersheet.anshwesheetpath = pdfname;
+                    db.exam_answersheet.Add(objexam_answersheet);
+                    db.SaveChanges();
+                }
+
             }
           
             toshowDiv.Attributes.Add("style", "display:none");
@@ -175,11 +186,13 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
         try{
             if (string.IsNullOrEmpty(data.status))
             {
+                pagebackDone = 0;
                 toshowDiv.Attributes.Add("style", "display:block");
                 ifanswersubmitted.Attributes.Add("style", "display:none");
             }
             else
             {
+                pagebackDone = 1;
                 toshowDiv.Attributes.Add("style", "display:none");
                 ifanswersubmitted.Attributes.Add("style", "display:block");
                 if(data.status == "Completed")

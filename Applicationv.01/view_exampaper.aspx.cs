@@ -29,7 +29,7 @@ public partial class view_exampaper : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     public int is_onetimeshow = 0, examsheetid, examid;
     public DateTime examdatetime;
-
+    public string isaudio_orvideo;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -174,10 +174,14 @@ public partial class view_exampaper : System.Web.UI.Page
                     string[] after_split = s.Split('.');
                     string extension = after_split[after_split.Length - 1].ToLower();
 
-                    if (extension == "mp3" || extension == "3gp" || extension == "webm")
+                    if (extension == "mp3" || extension == "3gp" || extension == "webm") { 
                         item.iffile_isaudio_orvideo = "audio";
-                    else
+                        isaudio_orvideo = "audio";
+                    }
+                    else { 
                         item.iffile_isaudio_orvideo = null;
+                        isaudio_orvideo = "video";
+                    }
 
                 }
                 var data_ifviewed = db.exam_applicantfileviewed_record.Where(x => x.examID == item.questionpaperID && x.exampapersheetID == item.id && x.applicantid == UserID && x.universityid == UniversityID && x.examdatetime == examdatetime).FirstOrDefault();
@@ -402,7 +406,7 @@ public partial class view_exampaper : System.Web.UI.Page
     
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow, DateTime examdatetime)
+    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow, int assignID)
     {
         GTEEntities db1 = new GTEEntities();
         int universityID1 = Utility.GetUniversityId();
@@ -410,6 +414,8 @@ public partial class view_exampaper : System.Web.UI.Page
 
         var mode = "new";
         exam_applicantfileviewed_record objmapping = new exam_applicantfileviewed_record();
+        var examdata = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+        DateTime examdatetime = Convert.ToDateTime(examdata.exam_datetime);
         var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1 && x.examdatetime == examdatetime).FirstOrDefault();
 
         if (data != null)

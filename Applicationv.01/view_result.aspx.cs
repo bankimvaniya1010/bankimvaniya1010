@@ -228,7 +228,7 @@ public partial class view_result : System.Web.UI.Page
             var allanswerpapers = (from ea in db.exam_answersheet
                                    join em in db.exampapers_master on ea.exampapersheetID equals em.id
                                    join exammaster in db.exam_marking_master on ea.answesheetid equals exammaster.answersheetid
-                                   where em.id == bindId
+                                   where em.id == bindId && exammaster.applicantid == studentid && exammaster.universityid == universityid && exammaster.examid == exampaperid && exammaster.examdatetime == examdatetime
                                    select new details()
                                    {
                                        lblbindId = bindId,

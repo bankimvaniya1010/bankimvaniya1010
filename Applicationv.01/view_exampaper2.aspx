@@ -147,11 +147,11 @@
                                                     <div class="col-md-6">
                                                          <%--<a href="<%# Eval("upload_filepath") %>" target="_blank" id="aurdiovideohyperlink">View File</a>--%>
                                                          <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:none;": "display:block;border: none;"%>">
-                                                            <video height="57px"; width="348px";  oncontextmenu="return false;" id="myVideo" controls controlslist="nodownload" disablepictureinpicture>
+                                                            <video height="57px"; width="348px";  oncontextmenu="return false;" id="myAudio" controls controlslist="nodownload" disablepictureinpicture>
                                                                 <source src='<%# Eval("upload_filepath") %>'>
                                                             </video>
                                                         </div>
-                                                          <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:block;": "display:none;border: none;"%>">
+                                                          <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:block;border: none;": "display:none;"%>">
                                                             <video width="320" height="240" oncontextmenu="return false;" id="myVideo" controls controlslist="nodownload" disablepictureinpicture>
                                                                 <source src='<%# Eval("upload_filepath") %>'>
                                                             </video>
@@ -390,26 +390,33 @@
         var examid = '<%=examid%>';
         var examsheetid = '<%=examsheetid%>';
         var examdatetime = '<%=examdatetime%>';
-
+        var assignID = '<%= assignID%>';
+        var isaudio_orvideo = '<%= isaudio_orvideo%>';
+        
         if (is_onetimeshow == 1) {
-            var aud = document.getElementById("myVideo");
+            var aud;
+            if (isaudio_orvideo == "audio")
+                aud = document.getElementById("myAudio");
+            else
+                aud = document.getElementById("myVideo");
             aud.onended = function () {
-                alert("The file has ended");
-                $('#audiiovideoDIv').hide();
-            };
-
-            $.ajax({
+                $.ajax({
                 type: "POST",
                 url: "view_exampaper2.aspx/Saveaudiovideoresponse",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",                             
+                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'assignID': '" + assignID + "'}",
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
                     }
                 }
             });
+                alert("The file has ended");
+                $('#audiiovideoDIv').hide();
+            };
+
+            
         }
         
         $(document).ready(function () {

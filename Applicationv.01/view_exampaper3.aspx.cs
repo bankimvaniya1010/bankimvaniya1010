@@ -10,6 +10,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Aspose.Words;
+using Aspose.Pdf.Facades;
 
 public partial class view_exampaper3 : System.Web.UI.Page
 {
@@ -35,6 +36,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
     string btnvalue = string.Empty;
     public int is_onetimeshow = 0, examsheetid, examid;
     public DateTime examdatetime;
+    public string isaudio_orvideo;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -102,34 +104,34 @@ public partial class view_exampaper3 : System.Web.UI.Page
             if (exammaster != null)
             {
                 exammarks = exammaster.maximummarks;
-                //if(string.IsNullOrEmpty(exammaster.exam_readingduration))
-                //    Session["readingtime"] = string.Empty;
-                //else
-                //    Session["readingtime"] = exammaster.exam_readingduration;
-
-                //if (string.IsNullOrEmpty(exammaster.exam_uploadduration))
-                //    Session["uploadtime"] = string.Empty;
-                //else
-                //    Session["uploadtime"] = exammaster.exam_uploadduration;
-
-                /////
-                if (Session["readingtime"] == null)
+                if (string.IsNullOrEmpty(exammaster.exam_readingduration))
+                    Session["readingtime"] = string.Empty;
+                else
                     Session["readingtime"] = exammaster.exam_readingduration;
-                else
-                {
 
-                    Session["readingtime"] = Session["readingtime"];
-                    var time = Session["readingtime"];
-                }
-                /////
-                if (Session["uploadtime"] == null)
+                if (string.IsNullOrEmpty(exammaster.exam_uploadduration))
+                    Session["uploadtime"] = string.Empty;
+                else
                     Session["uploadtime"] = exammaster.exam_uploadduration;
-                else
-                {
 
-                    Session["uploadtime"] = Session["uploadtime"];
-                    var time = Session["uploadtime"];
-                }
+                /////
+                //if (Session["readingtime"] == null)
+                //    Session["readingtime"] = exammaster.exam_readingduration;
+                //else
+                //{
+
+                //    Session["readingtime"] = Session["readingtime"];
+                //    var time = Session["readingtime"];
+                //}
+                ///////
+                //if (Session["uploadtime"] == null)
+                //    Session["uploadtime"] = exammaster.exam_uploadduration;
+                //else
+                //{
+
+                //    Session["uploadtime"] = Session["uploadtime"];
+                //    var time = Session["uploadtime"];
+                //}
 
                 if (Session["totalResponseTime"] == null)
                     Session["totalResponseTime"] = exammaster.exam_duration;
@@ -288,9 +290,15 @@ public partial class view_exampaper3 : System.Web.UI.Page
                     string extension = after_split[after_split.Length - 1].ToLower();
 
                     if (extension == "mp3" || extension == "3gp" || extension == "webm")
+                    {
                         item.iffile_isaudio_orvideo = "audio";
+                        isaudio_orvideo = "audio";
+                    }
                     else
+                    {
                         item.iffile_isaudio_orvideo = null;
+                        isaudio_orvideo = "video";
+                    }
 
                 }
 
@@ -362,6 +370,8 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
                 //if multiple images there then convert to pdf 
                 var answersheets = db.exam_answersheet.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate).Select(x=>x.anshwesheetpath).ToList();
+                string[] files = new string[answersheets.Count];
+                Document doc = new Document();
 
                 foreach (var data in answersheets)
                 {
@@ -370,33 +380,35 @@ public partial class view_exampaper3 : System.Web.UI.Page
                         string s = data;
                         string[] after_split = s.Split('.');
                         string extension = after_split[after_split.Length - 1].ToLower();
-
-                        if (extension != "pdf")
+                        for (int i = 0; i < answersheets.Count; i++)
                         {
-                            //if answershhets are images then only form a pdf of those images 
-                            Document doc = new Document();
-                            string[] files = new string[answersheets.Count];
-                            for (int i = 0; i < answersheets.Count; i++)
-                            {
-                                files[i] = @"" + docPath + "/" + answersheets[i];
-                            }
-
-                            Convertfromimagetopdf(files, doc);
-                            string pdfname = UserID +"_"+ exampaperid + "_answersheets.pdf";
-                            doc.Save(@"" + docPath + "/" + pdfname);
-
-                            objexam_answersheet.anshwesheetpath = "Answer PDF File";
-                            objexam_answersheet.genratedanswerpdfPath = pdfname;
-                            objexam_answersheet.ispdfgenrated = 1;
-                            objexam_answersheet.universityID = UniversityID;
-                            objexam_answersheet.applicantid = UserID;
-                            objexam_answersheet.exampaperid = exampaperid;
-                            objexam_answersheet.exam_datetime = assignDate;
-                            objexam_answersheet.response_time = response_time;
-                            db.exam_answersheet.Add(objexam_answersheet);
-                            db.SaveChanges();
+                            files[i] = @"" + docPath + "/" + answersheets[i];
                         }
                     }
+                }
+                if(files.Count() > 0 )
+                {
+                    string pdfname = UserID + "_" + exampaperid+"_" + Guid.NewGuid() + "_answersheets.pdf";
+                    if (ddltype.SelectedValue == "1")
+                    {
+                        PdfFileEditor fileEditor = new PdfFileEditor();
+                        fileEditor.Concatenate(files, @"" + docPath + "/" + pdfname);
+                    }
+                    else
+                    {
+                        Convertfromimagetopdf(files, doc);
+                        doc.Save(@"" + docPath + "/" + pdfname);
+                    }
+                    objexam_answersheet.anshwesheetpath = pdfname;
+                    objexam_answersheet.genratedanswerpdfPath = pdfname;
+                    objexam_answersheet.ispdfgenrated = 1;
+                    objexam_answersheet.universityID = UniversityID;
+                    objexam_answersheet.applicantid = UserID;
+                    objexam_answersheet.exampaperid = exampaperid;
+                    objexam_answersheet.exam_datetime = assignDate;
+                    objexam_answersheet.response_time = response_time;
+                    db.exam_answersheet.Add(objexam_answersheet);
+                    db.SaveChanges();
                 }
                 //change status in exam_assign table
                 var mode = "new";
@@ -584,7 +596,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
             mode = "update";
             objexam_assign = data;
         }
-        if (objexam_assign.status == null)
+        if (string.IsNullOrEmpty(objexam_assign.status))
             objexam_assign.status = "Not Appered";
         if (mode == "new")
             db1.exam_assign.Add(objexam_assign);
@@ -608,7 +620,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow, DateTime examdatetime)
+    public static string Saveaudiovideoresponse(int examid, int examsheetid, int is_onetimeshow, int assignID)
     {
         GTEEntities db1 = new GTEEntities();
         int universityID1 = Utility.GetUniversityId();
@@ -616,6 +628,8 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
         var mode = "new";
         exam_applicantfileviewed_record objmapping = new exam_applicantfileviewed_record();
+        var examdata = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+        DateTime examdatetime = Convert.ToDateTime(examdata.exam_datetime);
         var data = db1.exam_applicantfileviewed_record.Where(x => x.examID == examid && x.examdatetime == examdatetime && x.exampapersheetID == examsheetid && x.applicantid == userID1 && x.universityid == universityID1).FirstOrDefault();
 
         if (data != null)

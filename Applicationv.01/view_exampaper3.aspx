@@ -87,7 +87,7 @@
                                                     <div class="col-md-6">
                                                          <%--<a href="<%# Eval("audiovideofilepath") %>" target="_blank" id="aurdiovideohyperlink">View File</a>--%>
                                                          <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:none;": "display:block;border: none;"%>">
-                                                            <video height="57px"; width="348px";  oncontextmenu="return false;" id="myVideo" controls controlslist="nodownload" disablepictureinpicture>
+                                                            <video height="57px"; width="348px";  oncontextmenu="return false;" id="myAudio" controls controlslist="nodownload" disablepictureinpicture>
                                                                 <source src='<%# Eval("audiovideofilepath") %>'>
                                                             </video>
                                                         </div>
@@ -149,6 +149,11 @@
                                     <div class="media align-items-center">
                                         <div class="media-body">
                                             <div class="custom-file" style="width: auto;">
+                                                <asp:DropDownList runat="server" ID="ddltype" CssClass="form-control">
+                                                    <asp:ListItem Value="0"> Please Select</asp:ListItem>
+                                                    <asp:ListItem Value="1">PDF</asp:ListItem>
+                                                    <asp:ListItem Value="2"> Images</asp:ListItem>
+                                                </asp:DropDownList>
                                                 <asp:FileUpload ID="ansersheet" runat="server" AllowMultiple="true" />
                                                 <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Upload" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
                                                 <br />
@@ -183,6 +188,7 @@
             </div>
         </div>
     </div>
+    
     <script>
 
 
@@ -220,7 +226,7 @@
         var applicantid = '<%=HttpContext.Current.Session["UserID"]%>';
 
         var readingtime = '<%=Session["readingtime"]%>';
-        var uploadtime = '<%=Session["uploadtime"]%>';
+        var uploadtime ='<%=Session["uploadtime"]%>';
         var hms = '<%=Session["totalResponseTime"]%>';
 
         const countdownEl = document.getElementById('countdown');
@@ -275,13 +281,14 @@
         }
         if (readingtime != "") {
             setInterval(updateCountdown1, 1000);
-            setTimeout(function () { 
-            alert("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");           
-           
+             //$('#userAlertMsg').html("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");
+             //$('#alertModal').modal('show');
+            alert("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");
         }
         else {
             setInterval(updateCountdown, 1000); 
-            $("#<%=lblreading.ClientID%>").hide();
+            $("#<%=lblreading.ClientID%>").hide();  
+            reading_countdown.style.display = 'none';
         }
         function updateCountdown1() {
             
@@ -295,14 +302,21 @@
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
 
             if (reading_countdown.innerHTML == '5:00') {
-                alert("Only 5 minutes remaining. ");
+                $('#userAlertMsg').html("Only 5 minutes remaining");
+                $('#alertModal').modal('show');
+                //alert("Only 5 minutes remaining. ");
             }
             else {
                 if (reading_countdown.innerHTML == '0:00') {
-                    setInterval(updateCountdown, 1000);
                     reading_countdown.style.display = 'none';
                     $("#<%=lblreading.ClientID%>").hide();
-                    alert("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
+                    setInterval(updateCountdown, 1000);
+                    $('#userAlertMsg').html("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
+                    $('#alertModal').modal('show');
+                    //setTimeout(function () {
+                    //    alert("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
+                    //},1000)
+                    
                 }
                 else
                     return true;
@@ -319,7 +333,9 @@
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
 
             if (countdownEl.innerHTML == '10:00') {
-                alert("Only 10 minutes are remaining for your assessment time to end ");
+                $('#userAlertMsg').html("Only 10 minutes are remaining for your assessment time to end ");
+                $('#alertModal').modal('show');
+                //alert("Only 10 minutes are remaining for your assessment time to end ");
             }
             else {
                 if (countdownEl.innerHTML == '0:00') {
@@ -327,12 +343,17 @@
                     $("#<%=lblexamtime.ClientID%>").hide();
                     if (uploadtime != "") {
                         setInterval(updateCountdown2, 1000);
-                        alert("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified ");
+                        $('#userAlertMsg').html("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified");
+                        $('#alertModal').modal('show');
+                        //alert("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified ");
+                       
                     }
                     else {
                         upload_countdown.style.display = 'none';
                         $("#<%=lbluploadtime.ClientID%>").hide();
-                        alert("Assessmnent upload time exhausted");
+                        $('#userAlertMsg').html("Assessmnent upload time exhausted");
+                        $('#alertModal').modal('show');
+                        //alert("Assessmnent upload time exhausted");
                         ajaxcall();
                         var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
                         location.replace(hostName + "exammodule.aspx");
@@ -354,17 +375,17 @@
 
             if (upload_countdown.innerHTML == '10:00') {
                 alert("Only 10 minutes remaining. ");
-                return false;
             }
             else {
                 if (upload_countdown.innerHTML == '0:00') {
                     upload_countdown.style.display = 'none';
                     $("#<%=lbluploadtime.ClientID%>").hide();
-                    alert("Assessmnent upload time exhausted");
+                    $('#userAlertMsg').html("Assessmnent upload time exhausted");
+                    $('#alertModal').modal('show');
+                    //alert("Assessmnent upload time exhausted");
                     ajaxcall();
                     var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
                     location.replace(hostName + "exammodule.aspx");
-
                 }
                 else
                     return true;
@@ -438,13 +459,29 @@
 
         function validateForm() {
             var answersheet = $("#ContentPlaceHolder1_ansersheet").val();
-            if (answersheet == "") {
+            var files = $("#<%=ansersheet.ClientID%>").get(0).file;
+
+            if ($("#<%=ddltype.ClientID%>").val() == 0) {
+                alert("Please select answer sheet type.");
+                return false;
+            }
+            else if (answersheet == "") {
                 alert("Please upload answer sheet.");
                 return false;
             }
-            else if (answersheet != "" && !validateUploadedFile(answersheet)) { }
             else
                 return true;
+
+            for (var i = 0; i < files.length; i++) {
+                if(!validateUploadedFile(answersheet)){ }
+            }
+            //if (answersheet == "") {
+            //    alert("Please upload answer sheet.");
+            //    return false;
+            //}
+            //else if (answersheet != "" && !validateUploadedFile(answersheet)) { }
+            //else
+            //    return true;
         }
 
         //$(document).keydown(function (event) {
@@ -470,46 +507,35 @@
         var examid = '<%=examid%>';
         var examsheetid = '<%=examsheetid%>';
         var examdatetime = '<%=examdatetime%>';
+        var assignID = '<%= assignID%>';
+        var isaudio_orvideo = '<%= isaudio_orvideo%>';
 
         if (is_onetimeshow == 1) {
+            var aud;
+            if (isaudio_orvideo == "audio")
+                aud = document.getElementById("myAudio");
+            else
+                aud = document.getElementById("myVideo");
 
-            var aud = document.getElementById("myVideo");
             aud.setAttribute("video:-webkit-media-controls-timeline", "display: none");
             aud.onended = function () {
+                $.ajax({
+                    type: "POST",
+                    url: "view_exampaper3.aspx/Saveaudiovideoresponse",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'assignID': '" + assignID + "'}",
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                        }
+                    }
+                });
                 alert("The file has ended");
                 $('#audiiovideoDIv').hide();
             };
-
-            var supposedCurrentTime = 0;
-            aud.addEventListener('timeupdate', function () {
-                if (!aud.seeking) {
-                    supposedCurrentTime = aud.currentTime;
-                }
-            });
-
-            $('#myVideo').on('play', function (e) {
-                alert("sdas");
-                //$(this).attr('controls','true');
-            });
-            aud.onplaying = function () {
-                aud.setAttribute("video:-webkit-media-controls-timeline", "display: none");
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "view_exampaper3.aspx/Saveaudiovideoresponse",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: "{'examid': '" + examid + "','examsheetid': '" + examsheetid + "', 'is_onetimeshow': '" + is_onetimeshow + "', 'examdatetime': '" + examdatetime + "'}",                          
-                success: function (response) {
-                    if (response.d) {
-                        var result = JSON.parse(response.d);
-                    }
-                }
-            });
         }
 
       
     </script>
-
 </asp:Content>
