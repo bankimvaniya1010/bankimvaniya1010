@@ -2561,6 +2561,7 @@
             <PropertyRef Name="universityid" />
           </Key>
           <Property Name="universityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="university_flag" Type="int" Nullable="false" />
           <Property Name="university_name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CRICOS_Code" Type="varchar" MaxLength="100" />
           <Property Name="hosturl" Type="varchar" MaxLength="100" Nullable="false" />
@@ -4273,18 +4274,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_universitywiseformmapping_formmaster">
-          <End Role="formmaster" Type="Self.formmaster" Multiplicity="0..1" />
-          <End Role="universitywiseformmapping" Type="Self.universitywiseformmapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="formmaster">
-              <PropertyRef Name="formid" />
-            </Principal>
-            <Dependent Role="universitywiseformmapping">
-              <PropertyRef Name="formid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_universitywisetooltipmaster_formmaster">
           <End Role="formmaster" Type="Self.formmaster" Multiplicity="1" />
           <End Role="universitywisetooltipmaster" Type="Self.universitywisetooltipmaster" Multiplicity="*" />
@@ -5033,10 +5022,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitywise_scholarshipmapping" EntitySet="universitywise_scholarshipmapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_universitywiseformmapping_formmaster" Association="Self.FK_universitywiseformmapping_formmaster">
-            <End Role="formmaster" EntitySet="formmaster" />
-            <End Role="universitywiseformmapping" EntitySet="universitywiseformmapping" />
-          </AssociationSet>
           <AssociationSet Name="FK_universitywisetooltipmaster_formmaster" Association="Self.FK_universitywisetooltipmaster_formmaster">
             <End Role="formmaster" EntitySet="formmaster" />
             <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
@@ -5611,10 +5596,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_universitywise_faqmapping_formmaster" Association="GTEModel.FK_universitywise_faqmapping_formmaster">
             <End Role="formmaster" EntitySet="formmaster" />
             <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_universitywiseformmapping_formmaster" Association="GTEModel.FK_universitywiseformmapping_formmaster">
-            <End Role="formmaster" EntitySet="formmaster" />
-            <End Role="universitywiseformmapping" EntitySet="universitywiseformmapping" />
           </AssociationSet>
           <AssociationSet Name="FK_universitywisetooltipmaster_formmaster" Association="GTEModel.FK_universitywisetooltipmaster_formmaster">
             <End Role="formmaster" EntitySet="formmaster" />
@@ -7615,7 +7596,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_formmaster" FromRole="formmaster" ToRole="supervisorcomments" />
           <NavigationProperty Name="tooltipmaster" Relationship="GTEModel.FK_tooltips_formmaster" FromRole="formmaster" ToRole="tooltipmaster" />
           <NavigationProperty Name="universitywise_faqmapping" Relationship="GTEModel.FK_universitywise_faqmapping_formmaster" FromRole="formmaster" ToRole="universitywise_faqmapping" />
-          <NavigationProperty Name="universitywiseformmapping" Relationship="GTEModel.FK_universitywiseformmapping_formmaster" FromRole="formmaster" ToRole="universitywiseformmapping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_formmaster" FromRole="formmaster" ToRole="universitywisetooltipmaster" />
         </EntityType>
         <EntityType Name="grademaster">
@@ -8549,6 +8529,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <PropertyRef Name="universityid" />
           </Key>
           <Property Name="universityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="university_flag" Type="Int32" Nullable="false" />
           <Property Name="university_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CRICOS_Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="hosturl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -8730,7 +8711,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="universitywiseformmappingid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="universityid" Type="Int32" />
           <Property Name="formid" Type="Int32" />
-          <NavigationProperty Name="formmaster" Relationship="GTEModel.FK_universitywiseformmapping_formmaster" FromRole="universitywiseformmapping" ToRole="formmaster" />
         </EntityType>
         <EntityType Name="universitywisemastermapping">
           <Key>
@@ -9863,18 +9843,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <PropertyRef Name="formid" />
             </Principal>
             <Dependent Role="universitywise_faqmapping">
-              <PropertyRef Name="formid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_universitywiseformmapping_formmaster">
-          <End Type="GTEModel.formmaster" Role="formmaster" Multiplicity="0..1" />
-          <End Type="GTEModel.universitywiseformmapping" Role="universitywiseformmapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="formmaster">
-              <PropertyRef Name="formid" />
-            </Principal>
-            <Dependent Role="universitywiseformmapping">
               <PropertyRef Name="formid" />
             </Dependent>
           </ReferentialConstraint>
@@ -13145,6 +13113,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="hosturl" ColumnName="hosturl" />
                 <ScalarProperty Name="CRICOS_Code" ColumnName="CRICOS_Code" />
                 <ScalarProperty Name="university_name" ColumnName="university_name" />
+                <ScalarProperty Name="university_flag" ColumnName="university_flag" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
               </MappingFragment>
             </EntityTypeMapping>

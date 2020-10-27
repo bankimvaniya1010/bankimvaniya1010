@@ -1934,7 +1934,6 @@ public partial class formmaster
         this.supervisorcomments = new HashSet<supervisorcomments>();
         this.tooltipmaster = new HashSet<tooltipmaster>();
         this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
-        this.universitywiseformmapping = new HashSet<universitywiseformmapping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
     }
 
@@ -1957,8 +1956,6 @@ public partial class formmaster
     public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<universitywiseformmapping> universitywiseformmapping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
@@ -3103,6 +3100,7 @@ public partial class university_master
     }
 
     public int universityid { get; set; }
+    public int university_flag { get; set; }
     public string university_name { get; set; }
     public string CRICOS_Code { get; set; }
     public string hosturl { get; set; }
@@ -3322,8 +3320,6 @@ public partial class universitywiseformmapping
     public int universitywiseformmappingid { get; set; }
     public Nullable<int> universityid { get; set; }
     public Nullable<int> formid { get; set; }
-
-    public virtual formmaster formmaster { get; set; }
 }
 
 public partial class universitywisemastermapping

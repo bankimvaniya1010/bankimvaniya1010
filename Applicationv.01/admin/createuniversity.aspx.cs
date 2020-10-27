@@ -50,6 +50,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
             if (string.IsNullOrEmpty(existingUniversity))
             {
                 universityObj.university_name = txtUniName.Value.Trim();
+                universityObj.university_flag = Convert.ToInt32(ddlflag.SelectedItem.Value);
                 universityObj.address = txtUniAddress.Value.Trim();
                 universityObj.website = txtUniWebsite.Value.Trim();
                 universityObj.contact_person = txtUniContactPerson.Value.Trim();
