@@ -455,55 +455,57 @@
         function validateForm() {
             var flag = false;
             if ($("#<%=txtdob.ClientID%>").val() == "")
-                alert("Please Select Date OF Birth");
+                alert("Please select date of birth");
             else if ($("#<%=ddlnationality.ClientID%>").val() == "0")
-                alert("Please Select Nationality");
+                alert("Please select nationality");
             else if ($("#<%=ddlcountryofdob.ClientID%>").val() == "0")
-                alert("Please Select Country Of Date Of Birth");
+                alert("Please select country Of date Of birth");
             else if ($("#<%=ddlmaritalstatus.ClientID%>").val() == "0")
-                alert("Please Select Marital Status");            
+                alert("Please select marital status");            
             else if ($("#<%=txtmarriagedob.ClientID%>").val() == "" && $("#<%=ddlmaritalstatus.ClientID%> option:selected").text() == "Married")
-                alert("Please Select Date OF Marriage");
+                alert("Please select date of marriage");
             else if ($("#<%=ddlspousenationality.ClientID%>").val() == "0" && $("#<%=ddlmaritalstatus.ClientID%> option:selected").text() == "Married")
-                alert("Please Select Spouse NationalityOF Birth"); 
+                alert("Please select spouse nationality of birth"); 
             else if ($("#<%=FileUpload.ClientID%>").val() == "" && $("#<%=hidDocumentPath.ClientID%>").val() == "")
                 alert("Please upload profile picture");
             else if (!validfileExtention($("#<%=FileUpload.ClientID%>").val(), $("#<%=hidDocumentPath.ClientID%>").val()))
                 alert("Please upload valid file format");
             else if (!checkFileSize()) 
-                alert("photo Size should be less than 16MB");                        
+                alert("photo size should be less than 16MB");                        
             else if ($("#<%=txthighestqualification.ClientID%>").val() == "")
-                alert("Please Enter Highest Education Name");
+                alert("Please enter highest education name");
             else if ($("#<%=ddlhighestqualificationAchieved.ClientID%>").val() == "0")
-                alert("Please Select highest qualification Achieved");
+                alert("Please select highest qualification achieved");
             else if ($("#<%=ddlhighestqualificationfield.ClientID%>").val() == "0")
-                alert("Please Select Fielf Of STudy Of Highest Qualification");
+                alert("Please select fielf Of study Of highest qualification");
             else if ( $("#<%=ddlhighestqualificationcountry.ClientID%>").val() == "0")
-                alert("Please Select country Of Highest QualificationBirth");
+                alert("Please select country Of highest qualificationBirth");
             else if ($("#<%=ddlcourseapplied.ClientID%>").val() == "0")
-                alert("Please Select Level of Course you are applying for ");
+                alert("Please select level of Course you are applying for ");
             else  if ($("#<%=ddlfieldofstudy.ClientID%>").val() == "0")
-                alert("Please Select Field of study Applying to");
+                alert("Please select field of study applying to");
             <%--else  if ($("#<%=ddlUniversityCampus.ClientID%>").val() == "0")
                 alert("Please select university campus you are applying to");--%>
             else if ($("#<%=txtnameofcourse.ClientID%>").val() == "")
-                alert("Please enter Name of Course you are applying for");
+                alert("Please enter name of course you are applying for");
             else if ($("#<%=ddlCommencementdateMonth.ClientID%>").val() == "0" && $("#<%=ddlCommencementdateYear.ClientID%>").val() == "0")
-                alert("Please Select Date of course commencement ");
+                alert("Please select date of course commencement ");
             else if ($("#<%=ddlworkexperience.ClientID%>").val() == "0")
-                alert("Please Select Work experience ");
+                alert("Please select work experience ");
             else if ($("#<%=ddlcountryresidence.ClientID%>").val() == "0")
-                alert("Please Select Current Country of Residence ");
+                alert("Please select current country of residence ");
             else if ($("#<%=ddlannualfee.ClientID%>").val() == "0")
-                alert("Please Select My Annual Tuition Fee and living costs is expected to be ");
+                alert("Please select my annual tuition fee and living costs is expected to be ");
             else if ($("#<%=ddluniversityname.ClientID%>").val() == "0")
-                alert("Please Select Name of University Apply for ");
+                alert("Please select name of university apply for ");
+            else if ($("#<%=ddluniversityCountry.ClientID%>").val() == null && isNaN(parseInt($('#ContentPlaceHolder1_HiduniversityCountry').val())))
+                alert("Please select name of country of educational institution");
             else if ($("#<%=ddleduinstitutioncity.ClientID%>").val() == null && isNaN(parseInt($('#ContentPlaceHolder1_hidCityField').val())))
-                alert("Please Select Name of City of Educational Institution");
+                alert("Please select name of city of educational institution");
             else if (!($("#<%=rblAgentYes.ClientID%>").is(':checked') || $("#<%=rblAgentNo.ClientID%>").is(':checked')))
-                alert("Please Select Option to record reffrerd by agent");
+                alert("Please select option to record reffrerd by agent");
             else if ($("#<%=rblAgentYes.ClientID%>").is(':checked') && ($("#<%=ddlAgent.ClientID%>").val() == "0"))
-                alert("Please Select valid agent details");
+                alert("Please select valid agent details");
             else
                 flag = true;
            return flag;
@@ -764,7 +766,7 @@
                             var result = JSON.parse(response.d);
                             if ($("#<%=ddleduinstitutioncity.ClientID%>").length >= 1) {
                                 $("#<%=ddleduinstitutioncity.ClientID%>").empty();
-                                $("#<%=ddleduinstitutioncity.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                                $("#<%=ddleduinstitutioncity.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
                             }
                             for (var i = 0; i < result.length; i++) {
                                 $("#<%=ddleduinstitutioncity.ClientID%>").append($("<option></option>").val(result[i].city_id).html(result[i].name));
@@ -775,7 +777,7 @@
             }
             else {
                 $("#<%=ddleduinstitutioncity.ClientID%>").empty();
-                $("#<%=ddleduinstitutioncity.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                $("#<%=ddleduinstitutioncity.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
             }
 
             });
@@ -798,7 +800,7 @@
                             var result = JSON.parse(response.d);
                             if ($("#<%=ddluniversityCountry.ClientID%>").length >= 1) {
                                 $("#<%=ddluniversityCountry.ClientID%>").empty();
-                                $("#<%=ddluniversityCountry.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                                $("#<%=ddluniversityCountry.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
                             }
                             for (var i = 0; i < result.length; i++) {
                                 $("#<%=ddluniversityCountry.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].country_name));
@@ -809,7 +811,7 @@
             }
               else {
                 $("#<%=ddluniversityCountry.ClientID%>").empty();
-                $("#<%=ddluniversityCountry.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                $("#<%=ddluniversityCountry.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
             }
 
            

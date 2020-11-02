@@ -93,27 +93,112 @@ public partial class gte_studentdetails : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             List<data> list = new List<data>();
             List<data> list_final = new List<data>();
-            var temp = (from em in db.countriesmaster
+            List<data> temp = new List<data>();
+
+            var campuscount = db.universitycampus.Where(x => x.universityid == universityid).ToList();
+            if (campuscount.Count > 0)
+            {
+                temp = (from em in db.countriesmaster
+
+                            join um in db.university_master on em.id equals um.countryid into primaryData
+                            from uni in primaryData.DefaultIfEmpty()
+
+                            join uc in db.universitycampus on universityid equals uc.universityid into uniData
+                            from campus in uniData.DefaultIfEmpty()
+
+                            where uni.universityid == universityid
+                            select new data()
+                            {
+                                country_name = em.country_name,
+                                id = em.id,
+                                campuscity = campus.cityid,
+                            }).Distinct().ToList();
+
+                foreach (var item in temp)
+                {
+
+                    list.Add((from cm in db.citymaster
+                              join coun in db.countriesmaster on cm.country_id equals coun.id into counData
+                              from counmaster in counData.DefaultIfEmpty()
+                              where cm.city_id == item.campuscity
+                              select new data { id = counmaster.id, country_name = counmaster.country_name }).Distinct().FirstOrDefault());
+
+                    if (list.Count > 0)
+                    {
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            item.id = list[i].id;
+                            item.country_name = list[i].country_name;
+                        }
+                    }
+                }
+                var product = list;
+
+                foreach (var data in product)
+                {
+                    if (!list_final.Exists(x => x.id == data.id))
+                    {
+                        list_final.Add(data);
+                    }
+                }
+            }
+            else
+            {
+                list_final = (from em in db.countriesmaster
 
                         join um in db.university_master on em.id equals um.countryid into primaryData
                         from uni in primaryData.DefaultIfEmpty()
-
-                        join uc in db.universitycampus on universityid equals uc.universityid into uniData
-                        from campus in uniData.DefaultIfEmpty()
 
                         where uni.universityid == universityid
                         select new data()
                         {
                             country_name = em.country_name,
                             id = em.id,
-                            campuscity = campus.cityid,
                         }).Distinct().ToList();
+            }
+
+            ddluniversityCountry.DataSource = list_final;
+            ddluniversityCountry.DataTextField = "country_name";
+            ddluniversityCountry.DataValueField = "id";
+            ddluniversityCountry.DataBind();
+            ddluniversityCountry.Items.Insert(0, lst);
+           
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetEducationCountry(int universityid)
+   {
+        GTEEntities db1 = new GTEEntities();
+        List<data> list = new List<data>();
+        List<data> list_final = new List<data>();
+        List<data> temp = new List<data>();
+
+        var campuscount = db1.universitycampus.Where(x => x.universityid == universityid).ToList();
+        if (campuscount.Count > 0)
+        {
+            temp = (from em in db1.countriesmaster
+
+                    join um in db1.university_master on em.id equals um.countryid into primaryData
+                    from uni in primaryData.DefaultIfEmpty()
+
+                    join uc in db1.universitycampus on universityid equals uc.universityid into uniData
+                    from campus in uniData.DefaultIfEmpty()
+
+                    where uni.universityid == universityid
+                    select new data()
+                    {
+                        country_name = em.country_name,
+                        id = em.id,
+                        campuscity = campus.cityid,
+                    }).Distinct().ToList();
 
             foreach (var item in temp)
             {
 
-                list.Add((from cm in db.citymaster
-                          join coun in db.countriesmaster on cm.country_id equals coun.id into counData
+                list.Add((from cm in db1.citymaster
+                          join coun in db1.countriesmaster on cm.country_id equals coun.id into counData
                           from counmaster in counData.DefaultIfEmpty()
                           where cm.city_id == item.campuscity
                           select new data { id = counmaster.id, country_name = counmaster.country_name }).Distinct().FirstOrDefault());
@@ -136,64 +221,21 @@ public partial class gte_studentdetails : System.Web.UI.Page
                     list_final.Add(data);
                 }
             }
-            ddluniversityCountry.DataSource = list_final;
-            ddluniversityCountry.DataTextField = "country_name";
-            ddluniversityCountry.DataValueField = "id";
-            ddluniversityCountry.DataBind();
-            ddluniversityCountry.Items.Insert(0, lst);
-           
         }
-        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
-    }
-    [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
-    public static string GetEducationCountry(int universityid)
-   {
-        GTEEntities db1 = new GTEEntities();
-        List<data> list = new List<data>();
-        List<data> list_final = new List<data>();
-        var temp  = (from em in db1.countriesmaster
-
-                                  join um in db1.university_master on em.id equals um.countryid into primaryData
-                                  from uni in primaryData.DefaultIfEmpty()
-
-                                  join uc in db1.universitycampus on universityid equals uc.universityid into uniData
-                                  from campus in uniData.DefaultIfEmpty()
-
-                                  where uni.universityid == universityid
-                                  select new data()
-                                  {
-                                      country_name = em.country_name,
-                                      id = em.id,
-                                      campuscity = campus.cityid,
-                                  }).Distinct().ToList();
-
-        foreach (var item in temp)        {            
-            
-            list.Add((from cm in db1.citymaster
-                      join coun in db1.countriesmaster on cm.country_id equals coun.id into counData
-                      from counmaster in counData.DefaultIfEmpty()
-                      where cm.city_id == item.campuscity
-                      select new data { id = counmaster.id, country_name = counmaster.country_name }).Distinct().FirstOrDefault());
-
-            if (list.Count > 0)            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    item.id = list[i].id;
-                    item.country_name = list[i].country_name;
-                }
-            }            
-        }
-        var product = list;
-
-        foreach (var data in product)
+        else
         {
-            if (!list_final.Exists(x => x.id == data.id))
-            {
-                list_final.Add(data);
-            }
-        }
+            list_final = (from em in db1.countriesmaster
 
+                    join um in db1.university_master on em.id equals um.countryid into primaryData
+                    from uni in primaryData.DefaultIfEmpty()
+
+                    where uni.universityid == universityid
+                    select new data()
+                    {
+                        country_name = em.country_name,
+                        id = em.id,
+                    }).Distinct().ToList();
+        }
         
         return JsonConvert.SerializeObject(list_final);
     }
@@ -210,8 +252,11 @@ public partial class gte_studentdetails : System.Web.UI.Page
     public static string GetCityDropdown(int countryId, int universityid)
     {
         GTEEntities db1 = new GTEEntities();
-        
-        var temp = (from cm in db1.citymaster
+        List<citydata> temp = new List<citydata>();
+        var campuscount = db1.universitycampus.Where(x => x.universityid == universityid).ToList();
+        if (campuscount.Count > 0)
+        {
+            temp = (from cm in db1.citymaster
                     join uc in db1.universitycampus on cm.city_id equals uc.cityid into campusData
                     from campus in campusData.DefaultIfEmpty()
 
@@ -221,55 +266,10 @@ public partial class gte_studentdetails : System.Web.UI.Page
                         name = cm.name,
                         city_id = cm.city_id,
                     }).Distinct().ToList();
-        foreach (var item in temp) {
-            var universitycity = (from cm in db1.citymaster
-                                  join um in db1.university_master on cm.city_id equals um.cityid
-                                  where cm.country_id == countryId && um.universityid == universityid
-                                  select new citydata
-                                  {
-                                      name =cm.name,
-                                      city_id = cm.city_id,
-
-                                  }).ToList();
-            if (universitycity != null)
-            {
-                foreach (var data in universitycity)
-                {
-                    if (!temp.Exists(x => x.city_id == data.city_id))
-                    {
-                        temp.Add(data);
-                    }
-                }
-            }
-        }
-
-        return JsonConvert.SerializeObject(temp);
-    }
-    public class citydata
-    {
-        public string name { get; set; }
-        public int city_id { get; set; }
-    }
-
-    private void bindcity(int countryId, int universityid)
-    {
-        try
-        {
-            ListItem lst = new ListItem("Please select", "0");
-            var temp = (from cm in db.citymaster
-                        join uc in db.universitycampus on cm.city_id equals uc.cityid into campusData
-                        from campus in campusData.DefaultIfEmpty()
-
-                        where cm.country_id == countryId && campus.universityid == universityid
-                        select new citydata
-                        {
-                            name = cm.name,
-                            city_id = cm.city_id,
-                        }).Distinct().ToList();
             foreach (var item in temp)
             {
-                var universitycity = (from cm in db.citymaster
-                                      join um in db.university_master on cm.city_id equals um.cityid
+                var universitycity = (from cm in db1.citymaster
+                                      join um in db1.university_master on cm.city_id equals um.cityid
                                       where cm.country_id == countryId && um.universityid == universityid
                                       select new citydata
                                       {
@@ -287,6 +287,81 @@ public partial class gte_studentdetails : System.Web.UI.Page
                         }
                     }
                 }
+            }
+        }
+        else {
+            temp = (from cm in db1.citymaster
+                    join um in db1.university_master on cm.city_id equals um.cityid
+
+                    where um.universityid == universityid
+                    select new citydata
+                    {
+                        name = cm.name,
+                        city_id = cm.city_id,
+                    }).Distinct().ToList();
+        }
+
+        return JsonConvert.SerializeObject(temp);
+    }
+    public class citydata
+    {
+        public string name { get; set; }
+        public int city_id { get; set; }
+    }
+
+    private void bindcity(int countryId, int universityid)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            List<citydata> temp = new List<citydata>();
+
+            var campuscount = db.universitycampus.Where(x => x.universityid == universityid).ToList();
+            if (campuscount.Count > 0)
+            {
+                temp = (from cm in db.citymaster
+                        join uc in db.universitycampus on cm.city_id equals uc.cityid into campusData
+                        from campus in campusData.DefaultIfEmpty()
+
+                        where cm.country_id == countryId && campus.universityid == universityid
+                        select new citydata
+                        {
+                            name = cm.name,
+                            city_id = cm.city_id,
+                        }).Distinct().ToList();
+                foreach (var item in temp)
+                {
+                    var universitycity = (from cm in db.citymaster
+                                          join um in db.university_master on cm.city_id equals um.cityid
+                                          where cm.country_id == countryId && um.universityid == universityid
+                                          select new citydata
+                                          {
+                                              name = cm.name,
+                                              city_id = cm.city_id,
+
+                                          }).ToList();
+                    if (universitycity != null)
+                    {
+                        foreach (var data in universitycity)
+                        {
+                            if (!temp.Exists(x => x.city_id == data.city_id))
+                            {
+                                temp.Add(data);
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                temp = (from cm in db.citymaster
+                        join um in db.university_master on cm.city_id equals um.cityid
+
+                        where um.universityid == universityid
+                        select new citydata
+                        {
+                            name = cm.name,
+                            city_id = cm.city_id,
+                        }).Distinct().ToList();
             }
             ddleduinstitutioncity.DataSource = temp;
             ddleduinstitutioncity.DataTextField = "name";
@@ -490,7 +565,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 //objgte_applicantdetails.cityofeducationInstitution = Convert.ToInt32(ddleduinstitutioncity.Value);
             }
             if(ddluniversityCountry.SelectedValue != null)
-                objgte_applicantdetails.countryofeducationInstitution = Convert.ToInt32(ddluniversityCountry.SelectedValue);
+                objgte_applicantdetails.countryofeducationInstitution = Convert.ToInt32(HiduniversityCountry.Value);
             objgte_applicantdetails.cityofeducationInstitution = Convert.ToInt32(hidCityField.Value);
 
             //if (ddlUniversityCampus.SelectedValue != "")
@@ -670,7 +745,9 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 if (studentInfo.countryofeducationInstitution != null)
                 {
                     ddluniversityCountry.ClearSelection();
+                    BindEducationCountry(Convert.ToInt32(studentInfo.nameofuniversityappliedfor));
                     ddluniversityCountry.Items.FindByValue(studentInfo.countryofeducationInstitution.ToString()).Selected = true;
+                    HiduniversityCountry.Value = Convert.ToString(studentInfo.countryofeducationInstitution);
                 }
                 if (studentInfo.cityofeducationInstitution != null)
                 {
