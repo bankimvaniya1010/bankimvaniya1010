@@ -15,7 +15,7 @@ public partial class admin : System.Web.UI.MasterPage
     public int? questioncompleted = 0 , isclarificationquestionset = 0;
     string webURL = String.Empty;
     int universityID;
-    int UserID = 0;    
+    public int UserID = 0;    
     public string logourl = string.Empty;
     public string fontColor = string.Empty;
     public string headercolor = string.Empty;
@@ -24,6 +24,7 @@ public partial class admin : System.Web.UI.MasterPage
     public string useremail = string.Empty;
     DateTime meetingTime, fiveminbeforemeeetingtimeis, currenttime ;
     public string applicantname;
+    public bool? isVerifiedByAdmin;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,6 +36,9 @@ public partial class admin : System.Web.UI.MasterPage
         string firstname = objCom.GetApplicantFirstName(UserID);
         string lastname = objCom.GetApplicantLastName(UserID);
         applicantname = firstname + " " + lastname;
+
+        isVerifiedByAdmin = db.applicantdetails.Where(x => x.applicantid == UserID).Select(x => x.isverifiedbyAdmin).FirstOrDefault();
+        Session["isVerifiedByAdmin"] = isVerifiedByAdmin;
 
         var gteQuestionPart2Count = db.gte_question_master_part2.Count();
         var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
