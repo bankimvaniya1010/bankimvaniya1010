@@ -485,6 +485,10 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 .Cast<DataControlField>()
                 .Where(fld => fld.HeaderText == "StudentID")
                 .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+               .Cast<DataControlField>()
+               .Where(fld => fld.HeaderText == "Edit")
+               .SingleOrDefault()).Visible = false;
         }
     }
 }

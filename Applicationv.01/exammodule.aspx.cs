@@ -165,8 +165,8 @@ public partial class exammodule : System.Web.UI.Page
                 data.RemoveAll(x => x.status != "Completed");
             else if (selectedvalue == "Expired")
                 data.RemoveAll(x => x.status != "Expired");
-            else if (selectedvalue == "NotApperead")
-                data.RemoveAll(x => x.status != "NotApperead");
+            else if (selectedvalue == "Not Apperead")
+                data.RemoveAll(x => x.status != "Not Apperead");
             else if (selectedvalue == "Disqualified")
                 data.RemoveAll(x => x.status != "Disqualified");
 

@@ -38,15 +38,16 @@
                         </div>
                     </div>
                        <div class="form-group row">
-                        <label for="uniSubscribeGte" class="col-sm-3 col-form-label form-label">Institution Flag </label>
+                        <label for="uniSubscribeGte" class="col-sm-3 col-form-label form-label">Partner Type</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-4">
                                     <asp:DropDownList id="ddlflag" name="gtesubscription" runat="server" class="form-control">
-                                        <asp:ListItem value="0">Please Select</asp:ListItem>
-                                        <asp:ListItem value="1">Institutioon</asp:ListItem>
-                                        <asp:ListItem value="2">Agent</asp:ListItem>
-                                        <asp:ListItem value="3">Other</asp:ListItem>
+                                       <asp:ListItem value="0">Please Select</asp:ListItem>
+                                        <asp:ListItem value="1">Institution</asp:ListItem>
+                                        <asp:ListItem value="2">Agency</asp:ListItem>
+                                        <asp:ListItem value="3">Govt.</asp:ListItem>
+                                        <asp:ListItem value="4">Others</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -691,7 +692,7 @@
                 return false;
             }
             else if (institutionflag == 0) {
-                alert("Please select Institution flag");
+                alert("Please select Partner Type");
                 return false;
             }
             else if (txtUniAffiliation == '') {
