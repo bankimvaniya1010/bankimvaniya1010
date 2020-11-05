@@ -266,25 +266,23 @@ public partial class gte_studentdetails : System.Web.UI.Page
                         name = cm.name,
                         city_id = cm.city_id,
                     }).Distinct().ToList();
-            foreach (var item in temp)
-            {
-                var universitycity = (from cm in db1.citymaster
-                                      join um in db1.university_master on cm.city_id equals um.cityid
-                                      where cm.country_id == countryId && um.universityid == universityid
-                                      select new citydata
-                                      {
-                                          name = cm.name,
-                                          city_id = cm.city_id,
 
-                                      }).ToList();
-                if (universitycity != null)
+            var universitycity = (from cm in db1.citymaster
+                                  join um in db1.university_master on cm.city_id equals um.cityid
+                                  where cm.country_id == countryId && um.universityid == universityid
+                                  select new citydata
+                                  {
+                                      name = cm.name,
+                                      city_id = cm.city_id,
+
+                                  }).ToList();
+            if (universitycity != null)
+            {
+                foreach (var data in universitycity)
                 {
-                    foreach (var data in universitycity)
+                    if (!temp.Exists(x => x.city_id == data.city_id))
                     {
-                        if (!temp.Exists(x => x.city_id == data.city_id))
-                        {
-                            temp.Add(data);
-                        }
+                        temp.Add(data);
                     }
                 }
             }
@@ -329,25 +327,22 @@ public partial class gte_studentdetails : System.Web.UI.Page
                             name = cm.name,
                             city_id = cm.city_id,
                         }).Distinct().ToList();
-                foreach (var item in temp)
-                {
-                    var universitycity = (from cm in db.citymaster
-                                          join um in db.university_master on cm.city_id equals um.cityid
-                                          where cm.country_id == countryId && um.universityid == universityid
-                                          select new citydata
-                                          {
-                                              name = cm.name,
-                                              city_id = cm.city_id,
+                var universitycity = (from cm in db.citymaster
+                                      join um in db.university_master on cm.city_id equals um.cityid
+                                      where cm.country_id == countryId && um.universityid == universityid
+                                      select new citydata
+                                      {
+                                          name = cm.name,
+                                          city_id = cm.city_id,
 
-                                          }).ToList();
-                    if (universitycity != null)
+                                      }).ToList();
+                if (universitycity != null)
+                {
+                    foreach (var data in universitycity)
                     {
-                        foreach (var data in universitycity)
+                        if (!temp.Exists(x => x.city_id == data.city_id))
                         {
-                            if (!temp.Exists(x => x.city_id == data.city_id))
-                            {
-                                temp.Add(data);
-                            }
+                            temp.Add(data);
                         }
                     }
                 }
@@ -1045,7 +1040,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
     {
         public int universityid { get; set; }
         public string university_name { get; set; }
-        public int uniflag { get; set; }
+        public int? uniflag { get; set; }
     }
 
     public void FillMonth(DropDownList ddl)
