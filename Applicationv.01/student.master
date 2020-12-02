@@ -869,8 +869,9 @@
                 });
             });            
         });
+
      var isVerifiedByAdmin = '<%=isVerifiedByAdmin%>';
-     function ajaxcalltocheckidVerified() {
+     <%--function ajaxcalltocheckidVerified() {
             var UserID = '<%= UserID%>';
             $.ajax({
                 type: "POST",
@@ -893,7 +894,7 @@
         }
         if (isVerifiedByAdmin == "False")
             setInterval(ajaxcalltocheckidVerified, 1000);
-        
+        --%>
     </script>
     
 <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

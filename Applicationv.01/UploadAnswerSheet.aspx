@@ -63,6 +63,32 @@
             }
             return true;
         }
+        function checkFiletest(elem) {
+            var type = $("#<%=ddltype.ClientID%>").val();
+            if (type == "" || type == "0") {
+                alert("Please select file type");
+                return false;
+            }
+            var filePath = elem.value;
+            if (filePath.indexOf('.') == -1)
+                return false;
+
+            var validExtensions = new Array();
+            var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+            //Add valid extentions in this array
+            if (type == "1") 
+                validExtensions[0] = 'pdf';
+            else 
+                validExtensions[0] = 'jpg';
+            
+            for (var i = 0; i < validExtensions.length; i++) {
+                if (ext == validExtensions[i])
+                    return true;
+            }
+            alert('The file extension ' + ext.toUpperCase() + ' is not allowed!');
+            elem.value = "";
+            return false;
+        }
 
         function validatForm() {
             var flag = false;
@@ -71,7 +97,6 @@
                 alert("Please select answer sheet type.");
              else if (answersheet == "")
                  alert("Please select answer sheet.");
-             else if (answersheet != "" && !validateUploadedFile()) { }
              else
                  flag = true;
              if (flag) {
@@ -174,7 +199,7 @@
                     </div>
                     <div runat="server" id="btnDiv" class="form-row justify-content-between" style="margin: auto; width: 50%; padding: 10px;">
                         <%-- <input id="backNavLink" runat="server" type="button" class="btn btn-success" value="Back" onclick="return window.location = '/gte_declaration.aspx?formid=20';"/>--%>
-                         <asp:FileUpload runat="server" ID="FileUpload" AllowMultiple="true"/>
+                         <asp:FileUpload runat="server" ID="FileUpload" AllowMultiple="true"  onchange ="checkFiletest(this);"/>
 
                     </div>
                     <div class="media-left col-md-12">

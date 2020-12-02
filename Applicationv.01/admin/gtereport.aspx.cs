@@ -114,38 +114,40 @@ public partial class admin_gtereport : System.Web.UI.Page
                     _notesDisclaimer = universityDetails.notes_disclaimer;
                     _reportNo = "ECU - " + currentDate.Year + currentDate.ToString("MM") + currentDate.ToString("dd") + currentDate.Hour + currentDate.Minute + ApplicantID;
                     string type = Request.QueryString["type"].ToString();
-                    var gte_student_sop = db.gte_student_sop
-                                            .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID && x.is_sop_submitted_by_applicant == true)
-                                            .FirstOrDefault();
+                    //var gte_student_sop = db.gte_student_sop
+                    //                        .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID)
+                    //                        .FirstOrDefault();
 
-                    if (gte_student_sop != null)
+                    if (type == "Final")
                     {
-                        if (type == "Final")
+                        var gte_student_sop = db.gte_student_sop
+                                               .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID && x.is_sop_submitted_by_applicant == true)
+                                               .FirstOrDefault();
+                        if (gte_student_sop != null)
                         {
-                            if (gte_student_sop.is_sop_submitted_by_applicant == true)
-                            {
-                                ViewState["student_sop_id"] = gte_student_sop.id;
-                                _genuineStudentAssesment = gte_student_sop.applicant_generated_sop_para1;
-                                _situationStudentAssesment = gte_student_sop.applicant_generated_sop_para2;
-                                _potentialStudentAssesment = gte_student_sop.applicant_generated_sop_para3;
-                                _paragraph4 = gte_student_sop.applicant_generated_sop_para4;
-                                _paragraph5 = gte_student_sop.applicant_generated_sop_para5;
-                            }
-                        }
-                        else if (type == "Draft")
-                        {
-                            if (gte_student_sop.is_sop_submitted_draft == true)
-                            {
-                                ViewState["student_sop_id"] = gte_student_sop.id;
-                                _genuineStudentAssesment = gte_student_sop.gte_sop_para1;
-                                _situationStudentAssesment = gte_student_sop.gte_sop_para2;
-                                _potentialStudentAssesment = gte_student_sop.gte_sop_para3;
-                                _paragraph4 = gte_student_sop.gte_sop_para4;
-                                _paragraph5 = gte_student_sop.gte_sop_para5;
-                            }
+                            ViewState["student_sop_id"] = gte_student_sop.id;
+                            _genuineStudentAssesment = gte_student_sop.applicant_generated_sop_para1;
+                            _situationStudentAssesment = gte_student_sop.applicant_generated_sop_para2;
+                            _potentialStudentAssesment = gte_student_sop.applicant_generated_sop_para3;
+                            _paragraph4 = gte_student_sop.applicant_generated_sop_para4;
+                            _paragraph5 = gte_student_sop.applicant_generated_sop_para5;
                         }
                     }
-
+                    else if (type == "Draft")
+                    {
+                        var gte_student_sop = db.gte_student_sop
+                                              .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID && x.is_sop_submitted_draft == true)
+                                              .FirstOrDefault();
+                        if (gte_student_sop != null)
+                        {
+                            ViewState["student_sop_id"] = gte_student_sop.id;
+                            _genuineStudentAssesment = gte_student_sop.gte_sop_para1;
+                            _situationStudentAssesment = gte_student_sop.gte_sop_para2;
+                            _potentialStudentAssesment = gte_student_sop.gte_sop_para3;
+                            _paragraph4 = gte_student_sop.gte_sop_para4;
+                            _paragraph5 = gte_student_sop.gte_sop_para5;
+                        }
+                    }
                     var section2_max_score_by_tag = db.gte_answer_master
                                                       .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score, x.gte_questions_master.tag })
                                                       .GroupBy(x => x.gte_question_id)

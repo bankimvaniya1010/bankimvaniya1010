@@ -78,6 +78,7 @@ public partial class register : System.Web.UI.Page
 
                     universityID = Utility.GetUniversityId();
                     objapplicant.universityid = universityID;
+                    objapplicant.exam_institutionId = universityID;
                     objapplicant.isverifiedbyAdmin = false;
                     objapplicant.isdeletedbyAdmin = false;
                     db.applicantdetails.Add(objapplicant);
@@ -125,7 +126,7 @@ public partial class register : System.Web.UI.Page
                     html = html.Replace("@UniversityEmailID", university.email);
                     html = html.Replace("@UniversityChatID", university.chatid);
                     html = html.Replace("@UniversityMobileNumber", university.mobile);
-
+                    html = html.Replace("@applicantid", id.ToString());
                     objCom.SendMail(email.Value.Trim(), html, emailsubject);
                     webURL = "";
                     webURL = webURL + "registerconfimation.aspx?email=" + email.Value;

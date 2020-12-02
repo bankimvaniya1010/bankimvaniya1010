@@ -179,6 +179,11 @@ public partial class admin_create_exampaper : System.Web.UI.Page
                     filecheckingguid.PostedFile.SaveAs(filePath);
                     objexam_master.checkingguidfilepath = fileName;
                 }
+                if (Radio1.Checked == true)
+                    objexam_master.isautomaticstart = 1;
+                else if(Radio2.Checked == true)
+                    objexam_master.isautomaticstart = 0;
+
                 if (rbupload.Checked == true)
                     objexam_master.uploadtype = 1;
                 else if (rbbuild.Checked == true)

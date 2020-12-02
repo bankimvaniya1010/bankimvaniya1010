@@ -154,7 +154,7 @@
                                                     <asp:ListItem Value="1">PDF</asp:ListItem>
                                                     <asp:ListItem Value="2"> Images</asp:ListItem>
                                                 </asp:DropDownList>
-                                                <asp:FileUpload ID="ansersheet" runat="server" AllowMultiple="true" />
+                                                <asp:FileUpload ID="ansersheet" runat="server" AllowMultiple="true"  onchange ="checkFiletest(this);"/>
                                                 <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Upload" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
                                                 <br />
                                                 <asp:Label ID="lblavatar" runat="server" Text="Select multiple files to be uploaded at one go, OR a single file containing all answer sheets" />
@@ -343,6 +343,7 @@
                     $("#<%=lblexamtime.ClientID%>").hide();
                     if (uploadtime != "") {
                         setInterval(updateCountdown2, 1000);
+                        $("#<%=questionList.ClientID%>").hide();
                         $('#userAlertMsg').html("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified");
                         $('#alertModal').modal('show');
                         //alert("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified ");
@@ -456,10 +457,37 @@
             }
             return true;
         }
+        function checkFiletest(elem) {
+            var type = $("#<%=ddltype.ClientID%>").val();
+            if (type == "" || type == "0") {
+                alert("Please select file type");
+                return false;
+            }
+            var filePath = elem.value;
+            if (filePath.indexOf('.') == -1)
+                return false;
+
+            var validExtensions = new Array();
+            var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+            //Add valid extentions in this array
+            if (type == "1") 
+                validExtensions[0] = 'pdf';
+            else 
+                validExtensions[0] = 'jpg';
+            
+            for (var i = 0; i < validExtensions.length; i++) {
+                if (ext == validExtensions[i])
+                    return true;
+            }
+            alert('The file extension ' + ext.toUpperCase() + ' is not allowed!');
+            elem.value = "";
+            return false;
+        }
+
+
 
         function validateForm() {
             var answersheet = $("#ContentPlaceHolder1_ansersheet").val();
-            var files = $("#<%=ansersheet.ClientID%>").get(0).file;
 
             if ($("#<%=ddltype.ClientID%>").val() == 0) {
                 alert("Please select answer sheet type.");
@@ -471,17 +499,31 @@
             }
             else
                 return true;
+            
+        }
+        function checkFileUploadExt(type) {
+            var control = $("#ContentPlaceHolder1_ansersheet").val();        //document.getElementById("ansersheet");
+            var filelength = $("#ContentPlaceHolder1_ansersheet").files.length; 
 
-            for (var i = 0; i < files.length; i++) {
-                if(!validateUploadedFile(answersheet)){ }
+            for (var i = 0; i < filelength; i++) {
+                var file = control.files[i];
+                var FileName = file.name;
+                var FileExt = FileName.substr(FileName.lastIndexOf('.') + 1);
+                if (type == "1") {
+                    if ((FileExt.toUpperCase() != "pdf")) {
+                        var error = "File type : " + FileExt + "\n\n";
+                        error += "Please make sure your file is in pdf  format .\n\n";
+                        console.error(error);
+                    }
+                }
+                else {
+                    if ((FileExt.toUpperCase() != "jpg")) {
+                        var error = "File type : " + FileExt + "\n\n";
+                        error += "Please make sure your file is in jpg format .\n\n";
+                        console.error(error);
+                    }
+                }
             }
-            //if (answersheet == "") {
-            //    alert("Please upload answer sheet.");
-            //    return false;
-            //}
-            //else if (answersheet != "" && !validateUploadedFile(answersheet)) { }
-            //else
-            //    return true;
         }
 
         //$(document).keydown(function (event) {

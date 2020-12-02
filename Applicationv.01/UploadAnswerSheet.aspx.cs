@@ -75,6 +75,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
             objexam_answersheet.applicantid = data.applicantid;
             objexam_answersheet.exampaperid = exampaperid;
             objexam_answersheet.exam_datetime = data.exam_datetime;
+            objexam_answersheet.uploded_at = DateTime.UtcNow;
             db.exam_answersheet.Add(objexam_answersheet);
             db.SaveChanges();
 
@@ -89,6 +90,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
                 objexam_assign = examassign;
             }
             objexam_assign.status = "Completed";
+            objexam_assign.is_studentactiveforexam = 0;
             if (mode == "new")
                 db.exam_assign.Add(objexam_assign);
             db.SaveChanges();
@@ -139,6 +141,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
                     objexam_answersheet.ispdfgenrated = 1;
                     objexam_answersheet.genratedanswerpdfPath = pdfname;
                     objexam_answersheet.anshwesheetpath = pdfname;
+                    objexam_answersheet.uploded_at = DateTime.UtcNow;
                     db.exam_answersheet.Add(objexam_answersheet);
                     db.SaveChanges();
                 }
@@ -184,7 +187,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
 
     private void validateuser() {
         try{
-            if (string.IsNullOrEmpty(data.status))
+            if (string.IsNullOrEmpty(data.status) || data.status == "Verified" || data.status == "Assessment Started")
             {
                 pagebackDone = 0;
                 toshowDiv.Attributes.Add("style", "display:block");
@@ -220,7 +223,7 @@ public partial class UploadAnswerSheet : System.Web.UI.Page
         int universityID1 = Utility.GetUniversityId();
 
         var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
-        if (string.IsNullOrEmpty(data.status))
+        if (string.IsNullOrEmpty(data.status) || data.status == "Verified" || data.status == "Assessment Started")
             response = "NOresponsesubmitted";
         else if (data.status == "Disqualified")
             response = "Disqualified";

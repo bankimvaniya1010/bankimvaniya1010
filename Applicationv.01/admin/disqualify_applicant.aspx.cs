@@ -226,6 +226,8 @@ public partial class admin_disqualify_applicant : System.Web.UI.Page
                              select new
                              {
                                  assignid = es.assignid,
+                                 exampapersid = es.exampapersid,
+                                 examuploadtype = em.uploadtype,
                                  universityname = um.university_name,
                                  paper_name = em.exam_name,
                                  studentname = es.applicantid + " " + ad.firstname,
@@ -234,6 +236,14 @@ public partial class admin_disqualify_applicant : System.Web.UI.Page
                                  status = string.IsNullOrEmpty(es.status)? null: es.status,
                                  disqualify_reason = string.IsNullOrEmpty(es.disqualify_reason)? string.Empty :es.disqualify_reason,
                              }).OrderBy(x => x.assignid).ToList();
+            //foreach (var item in examlList)
+            //{
+            //    if (item.examuploadtype == 1)
+            //    {
+
+            //    }
+            //}
+
             if (examlList != null)
             {
                 QuestiontGridView.DataSource = examlList;
