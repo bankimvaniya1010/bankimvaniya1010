@@ -249,6 +249,7 @@ public partial class applicantdetails
     public int applicantpersonaldetailsid { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
+    public int isLoggedIn { get; set; }
     public Nullable<bool> isdeletedbyAdmin { get; set; }
     public Nullable<bool> isverifiedbyAdmin { get; set; }
     public Nullable<int> title { get; set; }
@@ -1511,6 +1512,8 @@ public partial class declaration_master
     public string header_description { get; set; }
     public string statement_description { get; set; }
     public Nullable<int> universityId { get; set; }
+    public Nullable<int> is_commontutoial { get; set; }
+    public Nullable<int> serviceId { get; set; }
     public System.DateTime created_at { get; set; }
     public Nullable<int> edited_by { get; set; }
 
@@ -1595,6 +1598,8 @@ public partial class exam_answersheet
     public Nullable<int> universityID { get; set; }
     public Nullable<int> exampaperid { get; set; }
     public Nullable<System.DateTime> exam_datetime { get; set; }
+    public Nullable<System.DateTime> uploded_at { get; set; }
+    public Nullable<System.DateTime> uplodedAt { get; set; }
     public Nullable<int> exampapersheetID { get; set; }
     public string anshwesheetpath { get; set; }
     public Nullable<int> ispdfgenrated { get; set; }
@@ -1643,19 +1648,28 @@ public partial class exam_assign
 {
     public int assignid { get; set; }
     public Nullable<int> universityID { get; set; }
-    public Nullable<int> examassignerid { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> exampapersid { get; set; }
     public Nullable<System.DateTime> exam_datetime { get; set; }
     public Nullable<int> proctorid { get; set; }
-    public string proctoremail { get; set; }
-    public string virtuallink { get; set; }
     public string studentpasskey { get; set; }
     public string proctorpasskey { get; set; }
-    public Nullable<bool> is_expired { get; set; }
-    public Nullable<bool> is_verified { get; set; }
     public string status { get; set; }
+    public int is_studentactiveforexam { get; set; }
+    public Nullable<System.DateTime> studentactiveforexam_at { get; set; }
+    public Nullable<System.DateTime> logout_forexam_at { get; set; }
+    public System.DateTime studentactiveforexamAt { get; set; }
+    public bool is_proctor_access_given { get; set; }
+    public bool is_examstarted { get; set; }
+    public Nullable<System.DateTime> examstarted_utctime { get; set; }
     public string disqualify_reason { get; set; }
+    public string proctoremail { get; set; }
+    public string virtuallink { get; set; }
+    public Nullable<bool> is_verified { get; set; }
+    public Nullable<bool> is_expired { get; set; }
+    public int is_examchecked { get; set; }
+    public string timebeforeexam { get; set; }
+    public Nullable<int> examassignerid { get; set; }
 }
 
 public partial class exam_buildpaper_answersheetmaster
@@ -1719,6 +1733,7 @@ public partial class exam_master
     public Nullable<int> is_audiovideofile_onetimeview { get; set; }
     public Nullable<int> classid { get; set; }
     public Nullable<int> groupid { get; set; }
+    public Nullable<int> isautomaticstart { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
 }
 
@@ -1934,7 +1949,6 @@ public partial class formmaster
         this.supervisorcomments = new HashSet<supervisorcomments>();
         this.tooltipmaster = new HashSet<tooltipmaster>();
         this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
-        this.universitywiseformmapping = new HashSet<universitywiseformmapping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
     }
 
@@ -1957,8 +1971,6 @@ public partial class formmaster
     public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<universitywiseformmapping> universitywiseformmapping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
@@ -2073,6 +2085,8 @@ public partial class gte_declaration_master
 {
     public int Id { get; set; }
     public Nullable<int> universityId { get; set; }
+    public Nullable<int> is_commontutoial { get; set; }
+    public Nullable<int> serviceId { get; set; }
     public string statementdescription { get; set; }
     public string header_description { get; set; }
     public System.DateTime created_at { get; set; }
@@ -2280,6 +2294,8 @@ public partial class gte_tutorialmaster
 {
     public int id { get; set; }
     public Nullable<int> universityid { get; set; }
+    public Nullable<int> is_commontutoial { get; set; }
+    public Nullable<int> serviceId { get; set; }
     public string type { get; set; }
     public string documentpath { get; set; }
     public string videourl { get; set; }
@@ -3043,6 +3059,8 @@ public partial class tutorialmaster
 {
     public int id { get; set; }
     public Nullable<int> universityid { get; set; }
+    public Nullable<int> is_commontutoial { get; set; }
+    public Nullable<int> serviceId { get; set; }
     public string type { get; set; }
     public string documentpath { get; set; }
     public string videourl { get; set; }
@@ -3103,6 +3121,7 @@ public partial class university_master
     }
 
     public int universityid { get; set; }
+    public Nullable<int> university_flag { get; set; }
     public string university_name { get; set; }
     public string CRICOS_Code { get; set; }
     public string hosturl { get; set; }
@@ -3322,8 +3341,6 @@ public partial class universitywiseformmapping
     public int universitywiseformmappingid { get; set; }
     public Nullable<int> universityid { get; set; }
     public Nullable<int> formid { get; set; }
-
-    public virtual formmaster formmaster { get; set; }
 }
 
 public partial class universitywisemastermapping

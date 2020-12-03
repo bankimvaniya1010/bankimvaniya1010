@@ -386,38 +386,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 else
                     exam_answersheetdata.RemoveAll(x => x.ispdfgenrated == 1);
 
-                //var exampdfgengrated = db.exam_answersheet.Where(exam => exam.universityID == universityid && exam.exampaperid == exampaperid && exam.applicantid == studentid && exam.exam_datetime == examdate_time).Select(x => x.ispdfgenrated).FirstOrDefault();
-
-
-                //if(exampdfgengrated == 1)
-                //    exam_answersheetdata = (from exam in db.exam_answersheet
-                //                        join em in db.exam_marking_master on exam.answesheetid equals em.answersheetid into data
-                //                        from x in data.DefaultIfEmpty()
-                //                        where exam.universityID == universityid && exam.exampaperid == exampaperid && exam.applicantid == studentid && exam.exam_datetime == examdate_time && exam.ispdfgenrated == 1
-                //                        select new data()
-                //                        {
-                //                            answesheetid = exam.answesheetid,
-                //                            anshwesheetpath = webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.genratedanswerpdfPath,
-                //                            extra_anshwesheetpath = exam.extra_anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.exampapersheetID + "/extrasheet/" + exam.extra_anshwesheetpath,
-                //                            checkedsheet = x.checked_answersheetPath == null ? null : webURL + "Docs/Exammodule/Admin_checkedsheets/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.answesheetid + "/" + x.checked_answersheetPath,
-                //                            ispdfgenrated = exam.ispdfgenrated == null ? null: exam.ispdfgenrated,
-                //                            genratedanswerpdfPath = exam.genratedanswerpdfPath,
-                //                        }).OrderBy(x => x.answesheetid).ToList();
-                //else
-                //    exam_answersheetdata = (from exam in db.exam_answersheet
-                //                            join em in db.exam_marking_master on exam.answesheetid equals em.answersheetid into data
-                //                            from x in data.DefaultIfEmpty()
-                //                            where exam.universityID == universityid && exam.exampaperid == exampaperid && exam.applicantid == studentid && exam.exam_datetime == examdate_time && exam.ispdfgenrated != 1
-                //                        select new data()
-                //                        {
-                //                            answesheetid = exam.answesheetid,
-                //                            anshwesheetpath = webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.anshwesheetpath,
-                //                            extra_anshwesheetpath = exam.extra_anshwesheetpath == null ? null : webURL + "Docs/Exammodule/AnswerSheet/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.exampapersheetID + "/extrasheet/" + exam.extra_anshwesheetpath,
-                //                            checkedsheet = x.checked_answersheetPath == null ? null : webURL + "Docs/Exammodule/Admin_checkedsheets/" + exam.universityID + "/" + exam.applicantid + "/" + exam.exampaperid + "/" + exam.answesheetid + "/" + x.checked_answersheetPath,
-                //                            ispdfgenrated = exam.ispdfgenrated == null ? null : exam.ispdfgenrated,
-                //                            genratedanswerpdfPath = exam.genratedanswerpdfPath,
-                //                        }).OrderBy(x => x.answesheetid).ToList();
-
+                
             }
 
             if (exam_answersheetdata != null && exam_answersheetdata.Count > 0)

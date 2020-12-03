@@ -32,8 +32,9 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
         universityID = Utility.GetUniversityId();
-        fullservice = 2;// Convert.ToInt32(Session["isfullservice"]);
+        fullservice = Convert.ToInt32(Session["isfullservice"]);
         roleID = Convert.ToInt32(Session["Role"]);
+        BindApplicant();
         if (!IsPostBack)
         {
             BindApplicant();
@@ -61,7 +62,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         }
     }
 
-    private void BindApplicant()
+    private void BindApplicant(string type = "NOdownload")
     {
         try
         {
@@ -195,7 +196,10 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                         String numberList = "";
                         for (int i = 0; i < appliedsubjectlist.Count; i++)
                         {
-                            numberList += appliedsubjectlist[i].description +"<br/>"+ Environment.NewLine;
+                            if(type == "download")
+                                numberList += appliedsubjectlist[i].description + ",";
+                            else
+                                numberList += appliedsubjectlist[i].description + "<br/>" + Environment.NewLine;
                         }
 
                         data.Subjects = numberList;
@@ -259,7 +263,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
 
     protected DataTable BindDatatable()
     {
-        BindApplicant();
+        BindApplicant("download");
         DataTable dt = new DataTable();
         // all columns
         dt.Columns.Add("Applicant Id", typeof(Int32));
@@ -267,9 +271,14 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         dt.Columns.Add("First Name", typeof(string));
         dt.Columns.Add("Family Name", typeof(string));
         dt.Columns.Add("Email", typeof(string));
-        dt.Columns.Add("Class", typeof(string));
-        dt.Columns.Add("Group", typeof(string));
-        dt.Columns.Add("Student ID", typeof(string));
+
+        if (fullservice == 2)
+        {
+            dt.Columns.Add("Class", typeof(string));
+            dt.Columns.Add("Group", typeof(string));
+            dt.Columns.Add("Subjects", typeof(string));
+            dt.Columns.Add("Student ID", typeof(string));
+        }
         dt.Columns.Add("Registration Date", typeof(DateTime));
         dt.Columns.Add("Contact Number", typeof(string));
         dt.Columns.Add("Country of Residence", typeof(string));
@@ -281,8 +290,10 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             for (var i = 0; i < applicant.Count; i++)
             {
                 var applicantemployerdetails = applicant[i];
-
-                dt.Rows.Add(applicantemployerdetails.applicantid, applicantemployerdetails.university_name, applicantemployerdetails.firstname, applicantemployerdetails.lastname, applicantemployerdetails.email,applicantemployerdetails.classname, applicantemployerdetails.groupname, applicantemployerdetails.studentID, Convert.ToDateTime(applicantemployerdetails.registereDate), applicantemployerdetails.mobile, applicantemployerdetails.countryofresidence, applicantemployerdetails.Status);
+                if(fullservice == 2)
+                    dt.Rows.Add(applicantemployerdetails.applicantid, applicantemployerdetails.university_name, applicantemployerdetails.firstname, applicantemployerdetails.lastname, applicantemployerdetails.email,applicantemployerdetails.classname, applicantemployerdetails.groupname, applicantemployerdetails.Subjects, applicantemployerdetails.studentID, Convert.ToDateTime(applicantemployerdetails.registereDate), applicantemployerdetails.mobile, applicantemployerdetails.countryofresidence, applicantemployerdetails.Status);
+                else
+                    dt.Rows.Add(applicantemployerdetails.applicantid, applicantemployerdetails.university_name, applicantemployerdetails.firstname, applicantemployerdetails.lastname, applicantemployerdetails.email, Convert.ToDateTime(applicantemployerdetails.registereDate), applicantemployerdetails.mobile, applicantemployerdetails.countryofresidence, applicantemployerdetails.Status);
 
                 rowNumber++;
             }
@@ -448,6 +459,29 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
     {
         try
         {
+            if (fullservice == 1 || fullservice == 0)
+            {
+                ((DataControlField)UserGridView.Columns
+                    .Cast<DataControlField>()
+                    .Where(fld => fld.HeaderText == "Class")
+                    .SingleOrDefault()).Visible = false;
+                ((DataControlField)UserGridView.Columns
+                    .Cast<DataControlField>()
+                    .Where(fld => fld.HeaderText == "Group")
+                    .SingleOrDefault()).Visible = false;
+                ((DataControlField)UserGridView.Columns
+                    .Cast<DataControlField>()
+                    .Where(fld => fld.HeaderText == "Subjects")
+                    .SingleOrDefault()).Visible = false;
+                ((DataControlField)UserGridView.Columns
+                    .Cast<DataControlField>()
+                    .Where(fld => fld.HeaderText == "StudentID")
+                    .SingleOrDefault()).Visible = false;
+                ((DataControlField)UserGridView.Columns
+                   .Cast<DataControlField>()
+                   .Where(fld => fld.HeaderText == "Edit")
+                   .SingleOrDefault()).Visible = false;
+            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 Label lblstatus = (Label)e.Row.FindControl("Label6");
@@ -485,6 +519,37 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 .Cast<DataControlField>()
                 .Where(fld => fld.HeaderText == "StudentID")
                 .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+               .Cast<DataControlField>()
+               .Where(fld => fld.HeaderText == "Edit")
+               .SingleOrDefault()).Visible = false;
+        }
+    }
+
+    protected void UserGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+        if (fullservice == 1 || fullservice == 0)
+        {
+            ((DataControlField)UserGridView.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "Class")
+                .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "Group")
+                .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "Subjects")
+                .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "StudentID")
+                .SingleOrDefault()).Visible = false;
+            ((DataControlField)UserGridView.Columns
+               .Cast<DataControlField>()
+               .Where(fld => fld.HeaderText == "Edit")
+               .SingleOrDefault()).Visible = false;
         }
     }
 }

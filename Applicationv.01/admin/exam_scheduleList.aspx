@@ -92,7 +92,7 @@
                                     <asp:Label ID="lbluniveristy" runat="server" Text='<%# Bind("universityname") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>  
-                            <asp:TemplateField HeaderText="Assessmnent Name">
+                            <asp:TemplateField HeaderText="Assessment Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblpapername" runat="server" Text='<%# Bind("paper_name") %>'></asp:Label>
                                 </ItemTemplate>
@@ -102,12 +102,12 @@
                                     <asp:Label ID="lbltimezone" runat="server" Text='<%# Bind("utctimezone") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>   
-                            <asp:TemplateField HeaderText="Assessmnent Time">
+                            <asp:TemplateField HeaderText="Assessment Time">
                                 <ItemTemplate>
                                     <asp:Label ID="lbldatetime" runat="server" Text='<%# Bind("exam_datetime") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>  
-                             <asp:TemplateField HeaderText="Assessmnent UTC Time">
+                             <asp:TemplateField HeaderText="Assessment UTC Time">
                                 <ItemTemplate>
                                     <asp:Label ID="lblutcdatetime" runat="server" Text='<%# Bind("exam_datetime_utc") %>'></asp:Label>
                                 </ItemTemplate>

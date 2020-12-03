@@ -44,6 +44,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     string[] railDistanceValue = existingUninversity.distance_from_railway.Split(' ');
 
                     txtUniName.Value = existingUninversity.university_name;
+                    ddlflag.Items.FindByValue(existingUninversity.university_flag.ToString()).Selected = true;                     
                     txthosturl.Value = existingUninversity.hosturl;
                     txtUniAddress.Value = existingUninversity.address;
                     txtUniContactPerson.Value = existingUninversity.contact_person;
@@ -170,6 +171,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
         try
         {
             universityObj.university_name = txtUniName.Value.Trim();
+            universityObj.university_flag = Convert.ToInt32(ddlflag.SelectedItem.Value);
             universityObj.address = txtUniAddress.Value.Trim();
             universityObj.website = txtUniWebsite.Value.Trim();
             universityObj.contact_person = txtUniContactPerson.Value.Trim();

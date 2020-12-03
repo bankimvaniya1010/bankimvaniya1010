@@ -52,11 +52,13 @@ public partial class view_exampaper3 : System.Web.UI.Page
         }
         else
             assignID = Convert.ToInt32(Request.QueryString["assignID"].ToString());
-        
+
+        objCommon.SaveStatus_examstarted(assignID);
+
         var data = db.exam_assign.Where(x => x.assignid == assignID).Select(x => new { x.exampapersid, x.exam_datetime,x.status }).FirstOrDefault();
         if (data != null)
         {
-            if (!string.IsNullOrEmpty(data.status))
+            if (!string.IsNullOrEmpty(data.status) && data.status != "Verified" && data.status != "Assessment Started")
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('You have answered all question.');window.location='" + Request.ApplicationPath + "exammodule.aspx';", true);
             else
@@ -75,7 +77,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            if (string.IsNullOrEmpty(data.status))
+            if (string.IsNullOrEmpty(data.status) || data.status == "Verified" || data.status == "Assessment Started")
                 showdetails();
             else
             {
@@ -113,25 +115,6 @@ public partial class view_exampaper3 : System.Web.UI.Page
                     Session["uploadtime"] = string.Empty;
                 else
                     Session["uploadtime"] = exammaster.exam_uploadduration;
-
-                /////
-                //if (Session["readingtime"] == null)
-                //    Session["readingtime"] = exammaster.exam_readingduration;
-                //else
-                //{
-
-                //    Session["readingtime"] = Session["readingtime"];
-                //    var time = Session["readingtime"];
-                //}
-                ///////
-                //if (Session["uploadtime"] == null)
-                //    Session["uploadtime"] = exammaster.exam_uploadduration;
-                //else
-                //{
-
-                //    Session["uploadtime"] = Session["uploadtime"];
-                //    var time = Session["uploadtime"];
-                //}
 
                 if (Session["totalResponseTime"] == null)
                     Session["totalResponseTime"] = exammaster.exam_duration;
@@ -361,6 +344,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
                         objexam_answersheet.exampaperid = exampaperid;
                         objexam_answersheet.exam_datetime = assignDate;
                         //objexam_answersheet.exampapersheetID = exampapersheetID;
+                        objexam_answersheet.uploded_at = DateTime.UtcNow;
                         objexam_answersheet.response_time = response_time;
                         db.exam_answersheet.Add(objexam_answersheet);
                         db.SaveChanges();
@@ -407,6 +391,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
                     objexam_answersheet.exampaperid = exampaperid;
                     objexam_answersheet.exam_datetime = assignDate;
                     objexam_answersheet.response_time = response_time;
+                    objexam_answersheet.uploded_at = DateTime.UtcNow;
                     db.exam_answersheet.Add(objexam_answersheet);
                     db.SaveChanges();
                 }
@@ -421,6 +406,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
                     objexam_assign = examassign;
                 }
                 objexam_assign.status = "Completed";
+                objexam_assign.is_studentactiveforexam = 0;
                 if (mode == "new")
                     db.exam_assign.Add(objexam_assign);
                 db.SaveChanges();
@@ -570,10 +556,25 @@ public partial class view_exampaper3 : System.Web.UI.Page
         int universityID1 = Utility.GetUniversityId();
 
         var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
-        if (string.IsNullOrEmpty(data.status))
+        if (string.IsNullOrEmpty(data.status) || data.status == "Verified" || data.status == "Assessment Started")
             response = "NOresponsesubmitted";
         else if (data.status == "Disqualified")
+        {
             response = "Disqualified";
+
+            var mode = "new";
+            exam_assign objexam_assign = new exam_assign();
+           
+            if (data != null)
+            {
+                mode = "update";
+                objexam_assign = data;
+            }
+            objexam_assign.is_studentactiveforexam = 0;
+            if (mode == "new")
+                db1.exam_assign.Add(objexam_assign);
+            db1.SaveChanges();
+        }
         else
             response = "responsesubmitted";
         
@@ -596,7 +597,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
             mode = "update";
             objexam_assign = data;
         }
-        if (string.IsNullOrEmpty(objexam_assign.status))
+        if (string.IsNullOrEmpty(objexam_assign.status) || data.status == "Verified" || data.status == "Assessment Started")
             objexam_assign.status = "Not Appered";
         if (mode == "new")
             db1.exam_assign.Add(objexam_assign);

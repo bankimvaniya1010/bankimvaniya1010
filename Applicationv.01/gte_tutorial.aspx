@@ -14,14 +14,14 @@
     <div class="page ">
       <div class="container page__container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
 
                 <%
                     if (otherDocCount > 0)
                     {
                     %>
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
-                    <h5> Please read the following documents:</h5>
+                   <%-- <h5> Please read the following documents:</h5>--%>
                     <div class="pdf-container clearfix">
                         <div style="display:block;text-align: center;">
                          <asp:DataList ID="questionList" runat="server">
@@ -32,7 +32,7 @@
                                             <div class="media-body">
                                                 <h4 class="card-title">
                                                    <div class="pdf-dcrp"><%# Eval("title") %></div>
-                                                    <iframe src='<%# Eval("link") %>' runat="server" width="800" height="750" style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" id="myframe"></iframe>
+                                                    <iframe src='<%# Eval("link") %>' runat="server" width="900" height="750" style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" id="myframe"></iframe>
                                                     
                                                 </h4>
                                             </div>
@@ -106,7 +106,7 @@
                          </div>   
                     <%} %>                
             </div>
-            <div class="col-md-4">               
+           <%-- <div class="col-md-4">               
                 <div class="card">
                     <div class="card-body">
                         <label id="lblInstructionHeader" runat="server" class="instructn">Instructions:</label><br />
@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                         </div>
-            </div>
+            </div>--%>
         </div>
         </div>
         <div class="container page__container">

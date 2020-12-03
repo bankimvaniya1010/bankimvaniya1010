@@ -196,9 +196,9 @@
             secondsS = hms * 60;
         let time = secondsS;
         const countdownEl = document.getElementById('countdown');
-
-        setInterval(updateCountdown, 1000);
-       
+        if (hms != "") {
+            setInterval(updateCountdown, 1000);
+        }
         function updateCountdown() {
            ajaxcalltocheckisanswersubmitted();
             const minutes = Math.floor(time / 60);

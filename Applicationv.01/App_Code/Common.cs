@@ -1809,4 +1809,28 @@ public class Common
         public string SecondaryFieldnameLanguage { get; set; }
         public string SecondaryFielddnameValue { get; set; }
     }
+
+    public void SaveStatus_examstarted(int assignID)
+    {
+        try
+        {
+            exam_assign objmapping = new exam_assign();
+            var mode = "new";
+            var data = db.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+            if (data != null)
+            {
+                mode = "update";
+                objmapping = data;
+            }
+            objmapping.status = "Assessment Started";
+            if (mode == "new")
+                db.exam_assign.Add(objmapping);
+            db.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+
+    }
 }

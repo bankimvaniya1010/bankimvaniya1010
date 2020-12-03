@@ -297,11 +297,12 @@ public partial class admin_exam_assign : System.Web.UI.Page
                         objassign.proctorpasskey = proctorpasskey;
 
                         objassign.examassignerid = selectedexaminerId;
+                        objassign.timebeforeexam = txtbeforetime.Value;
                         db.exam_assign.Add(objassign);
                         db.SaveChanges();
 
                         int proctorid = Convert.ToInt32(objassign.proctorid);
-                        var studentdetail = db.students.Where(x => x.studentid == objassign.applicantid).Select(x => new { x.username, x.email }).FirstOrDefault();
+                        var studentdetail = db.students.Where(x => x.studentid == objassign.applicantid).Select(x => new { x.name, x.email }).FirstOrDefault();
                         var examname = db.exam_master.Where(x => x.universityID == objassign.universityID && x.exampapersid == objassign.exampapersid).Select(x => x.exam_name).FirstOrDefault();
                         var proctordetails = db.examiner_master.Where(x => x.examinerID == proctorid).Select(x => new { x.name, x.email }).FirstOrDefault();
                         var university = db.university_master.Where(x => x.universityid == objassign.universityID).FirstOrDefault();
@@ -331,18 +332,22 @@ public partial class admin_exam_assign : System.Web.UI.Page
                         if (objassign.applicantid != null)
                         {
                             string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/Passkey_Notification_Applicant.html"));
-                            string emailsubject = "Your passkey for " + examname + " Online Assessment";
+                            string emailsubject = "You have been assigned " + examname + " Online Assessment";
                             html = html.Replace("@UniversityName", university.university_name);
                             html = html.Replace("@universityLogo", webURL + "Docs/" + objassign.universityID + "/" + university.logo);
-                            html = html.Replace("@Name", studentdetail.username);
+                            html = html.Replace("@Name", studentdetail.name);
                             html = html.Replace("@papername", examname);
                             html = html.Replace("@Loginurl", webURL + "login.aspx");
-                            html = html.Replace("@sheduletime", Convert.ToDateTime(objassign.exam_datetime).ToString("dd/MMM/yyyy hh:mm tt")); 
+                            html = html.Replace("@sheduletime", Convert.ToDateTime(objassign.exam_datetime).ToString("dd/MMM/yyyy hh:mm tt"));
                             html = html.Replace("@virtuallink", objassign.virtuallink);
                             html = html.Replace("@TimeZone", timezone.utctimezone);
-                            html = html.Replace("@studentname", studentdetail.username);
+                            html = html.Replace("@studentname", studentdetail.name);
                             html = html.Replace("@examutctime", Convert.ToDateTime(timezone.exam_datetime_utc).ToString("dd/MMM/yyyy hh:mm tt"));
                             html = html.Replace("@passkey", objassign.studentpasskey);
+                            if (objassign.timebeforeexam != null)
+                                html = html.Replace("@examtime", objassign.timebeforeexam);
+                            else
+                                html = html.Replace("@examtime", "15");
                             objCom.SendMail(studentdetail.email, html, emailsubject);
                         }
                     }

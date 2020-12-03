@@ -168,6 +168,10 @@ public partial class admin_edit_exampaper : System.Web.UI.Page
                     checkingguidfilepathLink.NavigateUrl = webURL + "/Docs/Exammodule/" + universityID + "/" + "/" + selectedexamID + "/CheckingGuide/" + existingDetails.checkingguidfilepath;
                     checkingguidfilepathLink.Text = "View File";
                 }
+                if (existingDetails.isautomaticstart == 1)
+                    Radio1.Checked = true;
+                else if (existingDetails.isautomaticstart == 0)
+                    Radio2.Checked = true;
                 if (existingDetails.uploadtype == 1)
                     rbupload.Checked = true;
                 else if (existingDetails.uploadtype == 2)
@@ -248,6 +252,12 @@ public partial class admin_edit_exampaper : System.Web.UI.Page
                 filecheckingguid.PostedFile.SaveAs(filePath);
                 objexam_master.checkingguidfilepath = fileName;
             }
+
+            if (Radio1.Checked == true)
+                objexam_master.isautomaticstart = 1;
+            else if (Radio2.Checked == true)
+                objexam_master.isautomaticstart = 0;
+
             if (rbupload.Checked == true)
                 objexam_master.uploadtype = 1;
             else if (rbbuild.Checked == true)
