@@ -64,24 +64,28 @@ public partial class exammodule : System.Web.UI.Page
                         }).Distinct().ToList();
             foreach (var item in data)
             {
-                DateTime current_utctime= DateTime.UtcNow;
-                DateTime record_utcdattime_plus30 = Convert.ToDateTime(item.exam_datetime_utc).AddMinutes(30);
-
-                if (record_utcdattime_plus30 < current_utctime)
+                var exammaster = db.exam_master.Where(x => x.exampapersid == item.exampapersid).FirstOrDefault();
+                if (exammaster != null && exammaster.isautomaticstart == 1)
                 {
-                    var mode = "new";
-                    var examdata = db.exam_assign.Where(x => x.applicantid == item.applicantid && x.universityID == item.universityID && x.exam_datetime == item.exam_datetime && x.exampapersid == item.exampapersid && x.status == null).FirstOrDefault();
-                    if (examdata != null)
+                    DateTime current_utctime = DateTime.UtcNow;
+                    DateTime record_utcdattime_plus30 = Convert.ToDateTime(item.exam_datetime_utc).AddMinutes(30);
+
+                    if (record_utcdattime_plus30 < current_utctime)
                     {
-                        mode = "update";
-                        objexam_assign = examdata;
+                        var mode = "new";
+                        var examdata = db.exam_assign.Where(x => x.applicantid == item.applicantid && x.universityID == item.universityID && x.exam_datetime == item.exam_datetime && x.exampapersid == item.exampapersid && x.status == null).FirstOrDefault();
+                        if (examdata != null)
+                        {
+                            mode = "update";
+                            objexam_assign = examdata;
+                        }
+                        objexam_assign.is_expired = true;
+                        objexam_assign.status = "Expired";
+                        if (mode == "new")
+                            db.exam_assign.Add(objexam_assign);
+                        db.SaveChanges();
+                        bindDataList(string.Empty);
                     }
-                    objexam_assign.is_expired = true;
-                    objexam_assign.status = "Expired";
-                    if (mode == "new")
-                        db.exam_assign.Add(objexam_assign);
-                    db.SaveChanges();
-                    bindDataList(string.Empty);
                 }
             }
 
@@ -101,21 +105,25 @@ public partial class exammodule : System.Web.UI.Page
                         select exam).Distinct().ToList();
             foreach (var item in data)
             {
-                var anshwerdata = db.exam_answersheet.Where(x => x.exampaperid == item.exampapersid).ToList();
-                if (anshwerdata.Count == 0)
+                var exammaster = db.exam_master.Where(x => x.exampapersid == item.exampapersid).FirstOrDefault();
+                if (exammaster != null && exammaster.isautomaticstart == 1)
                 {
-                    var mode = "new";
-                    var examdata = db.exam_assign.Where(x => x.applicantid == item.applicantid && x.universityID == item.universityID && x.exam_datetime == item.exam_datetime && x.exampapersid == item.exampapersid && x.status==null).FirstOrDefault();
-                    if (examdata != null)
+                    var anshwerdata = db.exam_answersheet.Where(x => x.exampaperid == item.exampapersid).ToList();
+                    if (anshwerdata.Count == 0)
                     {
-                        mode = "update";
-                        objexam_assign = examdata;
+                        var mode = "new";
+                        var examdata = db.exam_assign.Where(x => x.applicantid == item.applicantid && x.universityID == item.universityID && x.exam_datetime == item.exam_datetime && x.exampapersid == item.exampapersid && x.status == null).FirstOrDefault();
+                        if (examdata != null)
+                        {
+                            mode = "update";
+                            objexam_assign = examdata;
+                        }
+                        objexam_assign.status = "Not Apperead";
+                        if (mode == "new")
+                            db.exam_assign.Add(objexam_assign);
+                        db.SaveChanges();
+                        bindDataList(string.Empty);
                     }
-                    objexam_assign.status = "Not Apperead";
-                    if (mode == "new")
-                        db.exam_assign.Add(objexam_assign);
-                    db.SaveChanges();
-                    bindDataList(string.Empty);
                 }
             }
 
@@ -136,18 +144,21 @@ public partial class exammodule : System.Web.UI.Page
                     where x.exam_datetime == y.exam_datetime && exam.universityID == UniversityID && y.universityid == UniversityID && x.universityID == UniversityID && x.applicantid == UserID
                     select new Detials()
                     {
+                        assignid = x.assignid,
                         applicantid = x.applicantid,
                         universityid = x.universityID,
                         examdatetime = x.exam_datetime,
                         exampapersid = exam.exampapersid,
                         exam_name = exam.exam_name,
-                        shortremarks = string.IsNullOrEmpty(exam.shortremarks)?null: exam.shortremarks,
+                        shortremarks = string.IsNullOrEmpty(exam.shortremarks) ? null : exam.shortremarks,
                         exam_datetime = y.exam_datetime,
                         examtimezonetoshow = "< " + y.utctimezone + " >",
                         status = string.IsNullOrEmpty(x.status) ? null : x.status,
+                        showlink = (string.IsNullOrEmpty(x.status) || x.status == "Verified") ? null : x.status,
                         showstatus = string.IsNullOrEmpty(x.status) ? "Active" : x.status,
-                        Downloadfile = string.IsNullOrEmpty(exam.studentfilepath)? null: webURL + "/Docs/Exammodule/" + UniversityID + "/" + exam.exampapersid + "/studentfile/" + exam.studentfilepath,
-                        exampage_link = webURL + "exam_details.aspx?examid=" + exam.exampapersid + "&assignDate=" + y.exam_datetime,
+                        Downloadfile = string.IsNullOrEmpty(exam.studentfilepath) ? null : webURL + "/Docs/Exammodule/" + UniversityID + "/" + exam.exampapersid + "/studentfile/" + exam.studentfilepath,
+                        exampage_link = webURL + "exam_verification.aspx?assignid=" + x.assignid,
+                        //exampage_link = webURL + "exam_details.aspx?examid=" + exam.exampapersid + "&assignDate=" + y.exam_datetime,
                         result = null,
                         resulttimezone =null,
                         showmarks = null,
@@ -165,13 +176,14 @@ public partial class exammodule : System.Web.UI.Page
                 data.RemoveAll(x => x.status != "Completed");
             else if (selectedvalue == "Expired")
                 data.RemoveAll(x => x.status != "Expired");
-            else if (selectedvalue == "NotApperead")
-                data.RemoveAll(x => x.status != "NotApperead");
+            else if (selectedvalue == "Not Apperead")
+                data.RemoveAll(x => x.status != "Not Apperead");
             else if (selectedvalue == "Disqualified")
                 data.RemoveAll(x => x.status != "Disqualified");
 
             foreach (var item in data)
             {
+
                 var examdateofrelease = db.exam_applicantmarks_releasedatemaster.Where(x => x.applicantid == item.applicantid && x.universityid == item.universityid && x.examid == item.exampapersid && x.examdate_time == item.exam_datetime).FirstOrDefault();
                 if (examdateofrelease != null && examdateofrelease.releasedate != null)
                 {
@@ -184,6 +196,11 @@ public partial class exammodule : System.Web.UI.Page
                         item.gotoresultpage = webURL + "view_result.aspx?examid=" + item.exampapersid+ "&assignDate=" + item.examdatetime;
                     }
                 }
+
+                //if (UniversityID == 18 || UniversityID == 1)
+                //{
+                //    item.exampage_link = webURL + "exam_verification.aspx?assignid=" + item.assignid;
+                //}
             }
             if (data.Count > 0)
             {
@@ -201,7 +218,7 @@ public partial class exammodule : System.Web.UI.Page
         catch (Exception ex) { log.WriteLog(ex.ToString()); }
     }
     public class Detials {
-
+        public int assignid { get; set; }
         public int? applicantid { get; set; }
         public int? universityid { get; set; }
         public DateTime? examdatetime { get; set; }
@@ -210,6 +227,7 @@ public partial class exammodule : System.Web.UI.Page
         public string shortremarks { get; set; }
         public DateTime? exam_datetime { get; set; }
         public string status { get; set; }
+        public string showlink { get; set; }
         public string showstatus { get; set; }
         public string Downloadfile { get; set; }
         public string exampage_link { get; set; }
@@ -230,4 +248,5 @@ public partial class exammodule : System.Web.UI.Page
         string selectedvalue = ddlsort.SelectedValue;
         bindDataList(selectedvalue);
     }
+    
 }

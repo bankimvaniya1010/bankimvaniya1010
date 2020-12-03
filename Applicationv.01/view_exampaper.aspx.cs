@@ -33,7 +33,7 @@ public partial class view_exampaper : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();
+       webURL = Utility.GetWebUrl();
         UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
@@ -45,7 +45,8 @@ public partial class view_exampaper : System.Web.UI.Page
         }
         else
             assignID = Convert.ToInt32(Request.QueryString["assignID"].ToString());
-       
+
+        objCommon.SaveStatus_examstarted(assignID);
         var data = db.exam_assign.Where(x => x.assignid == assignID).Select(x => new { x.exampapersid, x.exam_datetime,x.status }).FirstOrDefault();
         if (data != null)
         {
@@ -62,7 +63,7 @@ public partial class view_exampaper : System.Web.UI.Page
         if (Session["totalResponseTime"] == null)
             Session["totalResponseTime"] = exammaster.exam_duration;
         else {
-            var examtime = db.exam_answersheet.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampaperid == exampaperid).ToList();
+            var examtime = db.exam_answersheet.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate).ToList();
             Session["totalResponseTime"] = examtime.Min(x=>x.response_time);
             var time = Session["totalResponseTime"];
         }
@@ -90,7 +91,7 @@ public partial class view_exampaper : System.Web.UI.Page
             }
             else
             {
-                if (string.IsNullOrEmpty(data.status))
+                if (string.IsNullOrEmpty(data.status) || data.status == "Verified" || data.status == "Assessment Started")
                     SetQuestionList(answeredpapersheets);
                 else
                 {
@@ -113,6 +114,7 @@ public partial class view_exampaper : System.Web.UI.Page
         }
     }
 
+    
     private void SetQuestionList(List<exam_answersheet> allResponseList)
     {
         try
@@ -250,7 +252,8 @@ public partial class view_exampaper : System.Web.UI.Page
                 objexam_answersheet.exam_datetime = assignDate;
                 objexam_answersheet.exampapersheetID = exampapersheetID;
                 objexam_answersheet.response_time = response_time;
-                
+                objexam_answersheet.uploded_at = DateTime.UtcNow;
+
                 db.exam_answersheet.Add(objexam_answersheet);
                 db.SaveChanges();
                 //change status in exam_assign table
@@ -307,6 +310,7 @@ public partial class view_exampaper : System.Web.UI.Page
                     objexam_assign = examassign;
                 }
                 objexam_assign.status = "Completed";
+                objexam_assign.is_studentactiveforexam = 0;
                 if (mode == "new")
                     db.exam_assign.Add(objexam_assign);
                 db.SaveChanges();
@@ -452,7 +456,7 @@ public partial class view_exampaper : System.Web.UI.Page
             mode = "update";
             objexam_assign = data;
         }
-        if (objexam_assign.status == null)
+        if (objexam_assign.status == null || data.status == "Verified" || data.status == "Assessment Started")
             objexam_assign.status = "Not Appered";
         if (mode == "new")
             db1.exam_assign.Add(objexam_assign);
@@ -469,7 +473,7 @@ public partial class view_exampaper : System.Web.UI.Page
         int universityID1 = Utility.GetUniversityId();
 
         var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
-        if (string.IsNullOrEmpty(data.status))
+        if (string.IsNullOrEmpty(data.status) || data.status == "Verified" || data.status == "Assessment Started")
             response = "NOresponsesubmitted";
         else if (data.status == "Disqualified")
             response = "Disqualified";

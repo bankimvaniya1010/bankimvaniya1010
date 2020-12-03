@@ -329,7 +329,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                         sendNotification(university.emai_notification2, useremail, id);
                     }
                     string username = firstname + " " + familyname;
-                    sendNotificationToStudent(university, useremail, username, otp);
+                    sendNotificationToStudent(university, useremail, username, otp, id);
                 }
                 else
                 {
@@ -372,7 +372,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
 
     }
 
-    private void sendNotificationToStudent(university_master university, string email, string name, int otp)
+    private void sendNotificationToStudent(university_master university, string email, string name, int otp, int applicantid)
     {
         try
         {
@@ -407,6 +407,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
             html = html.Replace("@UniversityEmailID", university.email);
             html = html.Replace("@UniversityChatID", university.chatid);
             html = html.Replace("@UniversityMobileNumber", university.mobile);
+            html = html.Replace("@applicantid", applicantid.ToString());
             objCom.SendMail(email, html, emailsubject);
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }

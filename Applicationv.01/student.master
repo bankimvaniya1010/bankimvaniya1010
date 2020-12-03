@@ -702,7 +702,7 @@
             var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");            
             var GteDeclarationDoneByApplicant = ("<%=Session["GteDeclarationDoneByApplicant"]%>".toLowerCase() == "true");
             var UniversityID = '<%= Utility.GetUniversityId()%>';
-            var isVerifiedByAdmin = ("<%=Session["isVerifiedByAdmin"]%>");
+            
 
             if (fullService == 0) {//hide when its gte service
                 $("#counsellingcenter_list").hide();
@@ -869,8 +869,49 @@
                 });
             });            
         });
-     
+
+     var isVerifiedByAdmin = '<%=isVerifiedByAdmin%>';
+     <%--function ajaxcalltocheckidVerified() {
+            var UserID = '<%= UserID%>';
+            $.ajax({
+                type: "POST",
+                url: "default.aspx/isstudentverified",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{'UserID': '" + UserID + "'}",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                        if (result == "1") {
+                             <%=HttpContext.Current.Session["isVerifiedByAdmin"]%> = true;
+                             var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                             location.replace(hostName + "default.aspx");
+                        }
+                    }
+                }
+            });
+
+        }
+        if (isVerifiedByAdmin == "False")
+            setInterval(ajaxcalltocheckidVerified, 1000);
+        --%>
     </script>
+    
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>
+          <div class="modal-body">
+           <div id="userAlertMsg"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: blue;">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 
 </html>

@@ -117,6 +117,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-4 col-form-label form-label">Before time </label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <input type="text" id="txtbeforetime" runat="server" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group row" style="display: none">
                                     <label for="name" class="col-sm-4 col-form-label form-label">Student Passkey</label>
                                     <div class="col-sm-8">
@@ -195,7 +205,9 @@
            <%--else if ($("#<%=txtproctoremail.ClientID%>").val() == "")
                alert("Please enter proctor email");--%>
            else if ($("#<%=txtvirtualLink.ClientID%>").val() == "")
-                alert("Please enter virtual link");
+               alert("Please enter virtual link");
+           else if ($("#<%=txtbeforetime.ClientID%>").val() == "")
+               alert("Please enter time.");
             else
                 flag = true;
             return flag;

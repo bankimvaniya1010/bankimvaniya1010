@@ -6,21 +6,21 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Create University</li>
+            <li class="breadcrumb-item active">Create Institution</li>
         </ol>
 
-        <h1 class="h2">CREATE UNIVERSITY</h1>
+        <h1 class="h2">CREATE INSTITUTION</h1>
 
         <div class="card">
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
 
                     <div class="form-group row">
-                        <label for="uniName" class="col-sm-3 col-form-label form-label">University Name</label>
+                        <label for="uniName" class="col-sm-3 col-form-label form-label">Institution Name</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtUniName" type="text" runat="server" class="form-control" placeholder="University Name" />
+                                    <input id="txtUniName" type="text" runat="server" class="form-control" placeholder="Institution Name" />
                                 </div>
                             </div>
                         </div>
@@ -36,126 +36,144 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label for="uniAffiliation" class="col-sm-3 col-form-label form-label">University Affiliation</label>
+                        <label for="uniSubscribeGte" class="col-sm-3 col-form-label form-label">Partner Type</label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input id="txtUniAffiliation" type="text" runat="server" class="form-control" placeholder="University Affiliation" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="uniType" class="col-sm-3 col-form-label form-label">University Type</label>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input id="txtUniType" type="text" runat="server" class="form-control" placeholder="University Type" />
+                                <div class="col-md-4">
+                                    <asp:DropDownList id="ddlflag" name="gtesubscription" runat="server" class="form-control">
+                                        <asp:ListItem value="0">Please Select</asp:ListItem>
+                                        <asp:ListItem value="1">Institution</asp:ListItem>
+                                        <asp:ListItem value="2">Agency</asp:ListItem>
+                                        <asp:ListItem value="3">Govt.</asp:ListItem>
+                                        <asp:ListItem value="4">Others</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniYearEstablish" class="col-sm-3 col-form-label form-label">University Year Established</label>
+                        <label for="uniAffiliation" class="col-sm-3 col-form-label form-label">Institution Affiliation</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtYearEstablish" type="text" runat="server" maxlength="4" class="form-control" placeholder="University Year Established" />
+                                    <input id="txtUniAffiliation" type="text" runat="server" class="form-control" placeholder="Institution Affiliation" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="uniType" class="col-sm-3 col-form-label form-label">Institution Type</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtUniType" type="text" runat="server" class="form-control" placeholder="Institution Type" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniSDescription" class="col-sm-3 col-form-label form-label">University Short Description</label>
+                        <label for="uniYearEstablish" class="col-sm-3 col-form-label form-label">Institution Year Established</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtUniSDescription" type="text" runat="server" class="form-control" placeholder="University Short Description" />
+                                    <input id="txtYearEstablish" type="text" runat="server" maxlength="4" class="form-control" placeholder="Institution Year Established" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniLDescription" class="col-sm-3 col-form-label form-label">University Long Description</label>
+                        <label for="uniSDescription" class="col-sm-3 col-form-label form-label">Institution Short Description</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtUniLDescription" type="text" runat="server" class="form-control" placeholder="University Long Description" />
+                                    <input id="txtUniSDescription" type="text" runat="server" class="form-control" placeholder="Institution Short Description" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniEmail" class="col-sm-3 col-form-label form-label">University Email ID</label>
+                        <label for="uniLDescription" class="col-sm-3 col-form-label form-label">Institution Long Description</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtEmail" type="email" runat="server" class="form-control" placeholder="University Email ID" />
+                                    <input id="txtUniLDescription" type="text" runat="server" class="form-control" placeholder="Institution Long Description" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniWebsite" class="col-sm-3 col-form-label form-label">University Website</label>
+                        <label for="uniEmail" class="col-sm-3 col-form-label form-label">Institution Email ID</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtUniWebsite" type="text" runat="server" class="form-control" placeholder="University Website" />
+                                    <input id="txtEmail" type="email" runat="server" class="form-control" placeholder="Institution Email ID" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniContactPerson" class="col-sm-3 col-form-label form-label">University Contact Person</label>
+                        <label for="uniWebsite" class="col-sm-3 col-form-label form-label">Institution Website</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtUniContactPerson" type="text" runat="server" class="form-control" placeholder="University Contact Person" />
+                                    <input id="txtUniWebsite" type="text" runat="server" class="form-control" placeholder="Institution Website" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniMobile" class="col-sm-3 col-form-label form-label">University Mobile Number</label>
+                        <label for="uniContactPerson" class="col-sm-3 col-form-label form-label">Institution Contact Person</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtMobile" type="text" runat="server" class="form-control" placeholder="University Mobile Number" maxlength="10" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="unichatId" class="col-sm-3 col-form-label form-label">University Chat ID</label>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input id="txtunichatId" type="text" runat="server" class="form-control" placeholder="University chat ID"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="uniAddress" class="col-sm-3 col-form-label form-label">University Address</label>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input id="txtUniAddress" type="text" runat="server" class="form-control" placeholder="University Address" />
+                                    <input id="txtUniContactPerson" type="text" runat="server" class="form-control" placeholder="Institution Contact Person" />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniCountry" class="col-sm-3 col-form-label form-label">University Country</label>
+                        <label for="uniMobile" class="col-sm-3 col-form-label form-label">Institution Mobile Number</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtMobile" type="text" runat="server" class="form-control" placeholder="Institution Mobile Number" maxlength="10" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="unichatId" class="col-sm-3 col-form-label form-label">Institution Chat ID</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtunichatId" type="text" runat="server" class="form-control" placeholder="Institution chat ID"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="uniAddress" class="col-sm-3 col-form-label form-label">Institution Address</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtUniAddress" type="text" runat="server" class="form-control" placeholder="Institution Address" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="uniCountry" class="col-sm-3 col-form-label form-label">Institution Country</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -166,7 +184,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniCity" class="col-sm-3 col-form-label form-label">University City</label>
+                        <label for="uniCity" class="col-sm-3 col-form-label form-label">Institution City</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -213,11 +231,11 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniAirport" class="col-sm-3 col-form-label form-label">Closest Airport to University</label>
+                        <label for="uniAirport" class="col-sm-3 col-form-label form-label">Closest Airport to Institution</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtUniAirport" type="text" runat="server" class="form-control" placeholder="Closest Airport to University" />
+                                    <input id="txtUniAirport" type="text" runat="server" class="form-control" placeholder="Closest Airport to Institution" />
                                 </div>
                             </div>
                         </div>
@@ -267,7 +285,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniAcceptedMaxAge" class="col-sm-3 col-form-label form-label">University Accepted Maximum age</label>
+                        <label for="uniAcceptedMaxAge" class="col-sm-3 col-form-label form-label">Institution Accepted Maximum age</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-3">
@@ -280,7 +298,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniAcceptedMinAge" class="col-sm-3 col-form-label form-label">University Accepted Minimum age</label>
+                        <label for="uniAcceptedMinAge" class="col-sm-3 col-form-label form-label">Institution Accepted Minimum age</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-3">
@@ -373,7 +391,7 @@
                         </div>
                     </div> 
                     <div class="form-group row">
-                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for Student Sop </label>
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> Institution Instruction for Student Sop </label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -384,7 +402,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for Scholarship and Funding </label>
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> Institution Instruction for Scholarship and Funding </label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -394,7 +412,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for fee payments </label>
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> Institution Instruction for fee payments </label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -445,7 +463,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for managing application status</label>
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> Institution Instruction for managing application status</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -456,7 +474,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for managing COE</label>
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> Institution Instruction for managing COE</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -467,7 +485,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label"> University Instruction for Support Services </label>
+                        <label class="col-sm-3 col-form-label form-label"> Institution Instruction for Support Services </label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -477,7 +495,7 @@
                         </div>
                     </div>
                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label"> University Instruction for Visa View Status</label>
+                        <label class="col-sm-3 col-form-label form-label"> Institution Instruction for Visa View Status</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -487,7 +505,7 @@
                         </div>
                     </div>
                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label"> University google tag manager Code </label>
+                        <label class="col-sm-3 col-form-label form-label"> Institution google tag manager Code </label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -616,6 +634,7 @@
         function validateForm() {
 
             var txtUniName = $('#<%=txtUniName.ClientID%>').val();
+            var institutionflag = $('#<%=ddlflag.ClientID%>').val();
             var hostUrl = $('#<%=txthosturl.ClientID%>').val();
             var txtUniAffiliation = $('#<%=txtUniAffiliation.ClientID%>').val();
             var txtUniType = $('#<%=txtUniType.ClientID%>').val();
@@ -668,19 +687,23 @@
             var checOnlykNum = /^[0-9]*$/;
 
             if (txtUniName == '') {
-                alert("Please enter University Name");
+                alert("Please enter Institution Name");
                 return false;
             }
             if (hostUrl == '' || (hostUrl).match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i)) {
                 alert("Please enter valid Host Url");
                 return false;
             }
+            else if (institutionflag == 0) {
+                alert("Please select Partner Type");
+                return false;
+            }
             else if (txtUniAffiliation == '') {
-                alert("Please enter University Affiliation");
+                alert("Please enter Institution Affiliation");
                 return false;
             }
             else if (txtUniType == '') {
-                alert("Please enter University Type");
+                alert("Please enter Institution Type");
                 return false;
             }
             else if (txtYearEstablish == '' || isNaN(parseInt(txtYearEstablish)) || parseInt(txtYearEstablish) >= new Date().getFullYear()) {
@@ -688,15 +711,15 @@
                 return false;
             }
             else if (txtUniSDescription == '') {
-                alert("Please enter University  Short Description");
+                alert("Please enter Institution  Short Description");
                 return false;
             }
             else if (txtUniLDescription == '') {
-                alert("Please enter University long description");
+                alert("Please enter Institution long description");
                 return false;
             }
             else if (txtEmail == '' || !emailRegex.test(txtEmail)) {
-                alert("Please enter University Email ID");
+                alert("Please enter Institution Email ID");
                 return false;
             }
             else if (txtUniWebsite == '' || !urlRegex.test(txtUniWebsite)) {
@@ -704,7 +727,7 @@
                 return false;
             }            
             else if (txtUniContactPerson == '') {
-                alert("Please enter University contact person");
+                alert("Please enter Institution contact person");
                 return false;
             }
             else if (txtMobile == '') {
@@ -716,23 +739,23 @@
                 return false;
             }
             else if (txtUniAddress == '') {
-                alert("Please enter University Address");
+                alert("Please enter Institution Address");
                 return false;
             }
             else if (countryValue == 0 || isNaN(parseInt(countryValue))) {
-                alert("Please select University Country");
+                alert("Please select Institution Country");
                 return false;
             }
             else if (cityValue == 0 || isNaN(parseInt(cityValue))) {
-                alert("Please select University City");
+                alert("Please select Institution City");
                 return false;
             }
             else if (txtUniLatitude == '' || isNaN(txtUniLatitude) || isNaN(parseFloat(txtUniLatitude))) {
-                alert("Please enter appropriate University Latitude format. eg. 34.5553");
+                alert("Please enter appropriate Institution Latitude format. eg. 34.5553");
                 return false;
             }
             else if (txtUniLongitude == '' || isNaN(txtUniLongitude) || isNaN(parseFloat(txtUniLongitude))) {
-                alert("Please enter appropriate University Longitude format. eg. 34.5553");
+                alert("Please enter appropriate Institution Longitude format. eg. 34.5553");
                 return false;
             }
             else if (UniTimeZoneValue == 0 || isNaN(parseInt(UniTimeZoneValue))) {
@@ -758,7 +781,7 @@
                 return false;
             }
             else if (txtUniGettingAround == '') {
-                alert("Please enter University Getting Around");
+                alert("Please enter Institution Getting Around");
                 return false;
             }
             else if (txtUniAcceptedMaxAge == '' || parseInt(txtUniAcceptedMaxAge) <= 0) {
@@ -778,7 +801,7 @@
                 return false;
             }
             else if (txtNotesDisclaimer == '') {
-                alert("Please enter University Notes and disclaimer");
+                alert("Please enter Institution Notes and disclaimer");
                 return false;
             }
             else if (fllogo == '') {

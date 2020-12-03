@@ -95,7 +95,7 @@ public partial class admin_exam_schedule : System.Web.UI.Page
             int selectedexamid = Convert.ToInt32(ddlexam.SelectedValue);
             DateTime exam_datetime = Convert.ToDateTime(selectedexamdate_time.Value);
             exam_schedule objexam_schedule = new exam_schedule();
-            var data = db.exam_schedule.Where(x => x.universityid == selecteduniversity && x.exampapersid == selectedexamid && x.exam_datetime == exam_datetime && x.examassignerid == selectedexamassignerId).FirstOrDefault();
+            var data = db.exam_schedule.Where(x => x.universityid == selecteduniversity && x.exampapersid == selectedexamid && x.exam_datetime == exam_datetime/* && x.examassignerid == selectedexamassignerId*/).FirstOrDefault();
             if (data == null)
             {
                 objexam_schedule.universityid = selecteduniversity;
@@ -115,7 +115,7 @@ public partial class admin_exam_schedule : System.Web.UI.Page
                       "alert('Assessment scheduled successfully. Assign this assessment now.');window.location='" + Request.ApplicationPath + "admin/exam_assignList.aspx';", true);
             }
             else
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record already present.')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record already present for selected institution and assessment.')", true);
 
         } catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }

@@ -35,9 +35,14 @@ public partial class gte_tutorial : System.Web.UI.Page
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
 
-        //istutorialcomplete = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).Select(x => x.is_gte_tutorial_completed).FirstOrDefault();
-        //if (istutorialcomplete != null && istutorialcomplete == true)
-        //    declaration.Attributes.Add("style", "display:none");
+        var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
+        if (!isVerifiedByAdmin)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
+        istutorialcomplete = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).Select(x => x.is_gte_tutorial_completed).FirstOrDefault();
+        if (istutorialcomplete != null && istutorialcomplete == true)
+            declaration.Attributes.Add("style", "display:none");
 
         if (!IsPostBack)
         {

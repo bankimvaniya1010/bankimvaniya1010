@@ -192,6 +192,18 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="form-group row" id="Div1" runat="server">
+                            <label for="name" class="col-sm-3 col-form-label form-label">Assessment Settings </label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                       <input type="radio" class="form-check-input" name="examsetting" runat="server" id="Radio1">Auto Start 
+                                        <br>
+                                        <input type="radio" class="form-check-input" name="examsetting" runat="server" id="Radio2">Manual
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row" id="selecttype">
                             <label for="name" class="col-sm-3 col-form-label form-label">Select type</label>
                             <div class="col-sm-8">
@@ -310,6 +322,8 @@
                 alert("Please enter short remarks");--%>
             <%--else if (!validateUploadedFile($("#<%=studentFileUpload.ClientID%>").val())) { }
             else if (!validateUploadedFile($("#<%=filecheckingguid.ClientID%>").val())) { }--%>
+            else if (!($("#<%=Radio1.ClientID%>").is(":checked")|| $("#<%=Radio2.ClientID%>").is(":checked")))
+                alert("select assessment settings");
             else if (!($("#<%=rbupload.ClientID%>").is(":checked")|| $("#<%=rbbuild.ClientID%>").is(":checked") || $("#<%=rbnew.ClientID%>").is(":checked")))  <%-- || $("#<%=rbbuild.ClientID%>").is(":checked")--%>
                 alert("select type to upload assessment paper");
             else if ($("#<%=rbbuild.ClientID%>").is(":checked") && !($("#<%=rblfixed.ClientID%>").is(":checked") || $("#<%=rblrandom.ClientID%>").is(":checked")))

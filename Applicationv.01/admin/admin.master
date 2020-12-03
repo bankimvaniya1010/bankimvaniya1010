@@ -253,16 +253,25 @@
                                         </a>
                                     </li>
                                       <li class="sidebar-menu-item" id="exammarking">
-                                        <a class="sidebar-menu-button" href="exam_marking.aspx">
+                                        <a class="sidebar-menu-button" href="exam_marking_test.aspx">
                                             <span class="sidebar-menu-text">Check Assessment</span>
                                         </a>
-                                    </li>
+                                    <%--</li>--%>
                                      <li class="sidebar-menu-item" id="examdisqualify">
                                         <a class="sidebar-menu-button" href="disqualify_applicant.aspx">
                                             <span class="sidebar-menu-text">Disqualify Applicant</span>
                                         </a>
                                     </li>
-                                  
+                                    <%-- <li class="sidebar-menu-item" id="exam_assessment_management">
+                                        <a class="sidebar-menu-button" href="exam_assessment_management.aspx">
+                                            <span class="sidebar-menu-text">Manage Assessment</span>
+                                        </a>
+                                    </li>--%>
+                                    <li class="sidebar-menu-item" id="exam_assessment_management2">
+                                        <a class="sidebar-menu-button" href="examassessment_management.aspx">
+                                            <span class="sidebar-menu-text">Manage Assessment</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                              <li class="sidebar-menu-item" id="class_group_list">
@@ -860,8 +869,16 @@
                 $("#videolist").hide();
             
             if (fullservice == 2) {
-                if (roleName == "Admin")
+                if (roleName == "Admin") {
                     $("#buildpaper_list").show();
+                    $("#tutorial_list").show();
+                    $("#gte_list").show();
+                }
+                else {
+                    $("#tutorial_list").hide();
+                    $("#gte_list").hide();
+                }
+
                 if (assessmentuser) {
                     $("#role_list").hide();
                     $("#assessmentroles_list").hide();
@@ -881,9 +898,7 @@
                 $("#FaqManage_list").hide();
                 $("#tooltipslisting").hide();
                 $("#admintooltipslisting").hide();
-                $("#Costcalculator_list").hide();
-                $("#tutorial_list").hide();
-                $("#gte_list").hide();
+                $("#Costcalculator_list").hide();               
                 $("#Scholarships_list").hide();
                 $("#managelanguages_list").hide();
                 $("#course_list").hide();
@@ -991,7 +1006,14 @@
                 $("#payment_list").hide();
                 $("#courseApplication").hide();
             }
-        });
+     });
+   <%--  var UniversityID = '<%= Utility.GetUniversityId()%>';
+     if (UniversityID == 18 || UniversityID == 1)
+         $("#exam_assessment_management2").show();
+     else
+         $("#exam_assessment_management2").hide();--%>
+
+        
  </script>
    
 </body>

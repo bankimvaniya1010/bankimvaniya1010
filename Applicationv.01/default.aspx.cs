@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
 using System.Web.Script.Services;
+using Newtonsoft.Json;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -21,7 +22,7 @@ public partial class _Default : System.Web.UI.Page
     public int UniversityID = -1;
     public int isfullservice;
     public string applicantname;
-    public bool isVerifiedByAdmin;
+    public bool? isVerifiedByAdmin;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,7 +36,8 @@ public partial class _Default : System.Web.UI.Page
 
         Session["Applicant"] = UserID;
 
-        isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
+        isVerifiedByAdmin = db.applicantdetails.Where(x=>x.applicantid == UserID).Select(x=>x.isverifiedbyAdmin).FirstOrDefault();
+        Session["isVerifiedByAdmin"] = isVerifiedByAdmin;
 
         isfullservice = (int)Session["isfullservice"];
         if (isfullservice == 1)
@@ -44,7 +46,7 @@ public partial class _Default : System.Web.UI.Page
             isfullservicethenlbl.Text = "TO THE GTE ONLINE CENTER (GOC)";
         else if (isfullservice == 2)
             isfullservicethenlbl.Text = "TO ASSESSMENT CENTER";
-        if (!isVerifiedByAdmin)
+        if (isVerifiedByAdmin != true)
             ifnotverifiedshow.Attributes.Add("style","display:block");
         else
             ifverifiedshow.Attributes.Add("style", "display:block");
@@ -70,6 +72,23 @@ public partial class _Default : System.Web.UI.Page
     {
         Label lbluniversityName = (Label)this.Master.FindControl("lbluniversityName");
         universityName = lbluniversityName.Text;
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string isstudentverified(int UserID)
+    {
+        string response = string.Empty;
+        GTEEntities db1 = new GTEEntities();
+        int universityID1 = Utility.GetUniversityId();
+
+        var data = db1.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+        HttpContext.Current.Session["isVerifiedByAdmin"] = data.isverifiedbyAdmin;
+        if (data.isverifiedbyAdmin == true)
+            response = "1";
+        else
+            response = "0";
+        return JsonConvert.SerializeObject(response);
     }
 
     //private void SetprogressStatus()

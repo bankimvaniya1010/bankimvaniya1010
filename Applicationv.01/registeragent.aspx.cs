@@ -46,7 +46,7 @@ public partial class registeragent : System.Web.UI.Page
                 sb.Append("Dear " + name.Value.Trim() + ",");
                 webURL = webURL + "login.aspx";
                 sb.Append("Thank You to register with us.<br/>");
-                sb.Append("Please login with below link <br/>" + webURL + " <br/>");
+                //sb.Append("Please login with below link <br/>" + webURL + " <br/>");
                 sb.Append("Username:" + username.Value.Trim() + " <br/>");
                 sb.Append("Password:" + password.Value.Trim() + " <br/>");
                 sb.Append("Thank You GTE Backend Team");

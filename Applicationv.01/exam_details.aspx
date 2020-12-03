@@ -26,12 +26,12 @@
                             </div>
                             <div class="list-group-item border" id="meetingrexpiresDiv" runat="server" style="display:none">
                                 <label runat="server">
-                                    No Show.Assessmnent time is expired.
+                                    No Show.Assessment time is expired.
                                 </label>
                             </div>
                             <div class="list-group-item border" id="divexamname" runat="server">
                                 <label id="Label7" runat="server" for="divexamname">
-                                   <b>Assessmnent Name :</b> <%=examname %>
+                                   <b>Assessment Name :</b> <%=examname %>
                                 </label>
                             </div>
                              <div class="list-group-item border" id="divInstruction" runat="server">

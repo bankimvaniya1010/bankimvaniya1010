@@ -22,7 +22,7 @@
                 <br/>
                    <div id="emptyChoicesDiv" runat="server" class="card" visible="false">
                        <div class="card-body">
-                           <asp:Label ID="lblEmptyList" runat="server" Text=""> No Assessmnent are schedule by institution.</asp:Label>
+                           <asp:Label ID="lblEmptyList" runat="server" Text=""> No Assessment are schedule by institution.</asp:Label>
                        </div>
                    </div>
                 <div class="list-group-fit list-group-item">
@@ -50,6 +50,7 @@
                             <asp:Panel ID="options" runat="server">
                                 <div class="card-body">
                                     <div style="display: none;">
+                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("assignid") %>'></asp:Label>
                                         <asp:Label ID="Label1" runat="server" Text='<%# Eval("applicantid") %>'></asp:Label>
                                         <asp:Label ID="Label2" runat="server" Text='<%# Eval("universityid") %>'></asp:Label>
                                         <asp:Label ID="Label3" runat="server" Text='<%# Eval("examdatetime") %>'></asp:Label>
@@ -76,7 +77,7 @@
                                         <div class="form-row">
                                             <label class="col-md-7 col-form-label form-label"  style="font-size: large;" >Status : <%# Eval("showstatus") %></label>
                                         <div class="col-md-5">                                            
-                                            <label for="choice" class="btn btn-success"  style="<%# Eval("status") == null? "visibility: visible;color: rgb(20 24 27 / 85%);font-weight: 600;": "visibility:hidden;"%>"> <a href="<%# Eval("exampage_link") %>" style="color: #f9f9f9;">Go to assessment >></a></label>
+                                            <label for="choice" class="btn btn-success"  style="<%# Eval("showlink") == null? "visibility: visible;color: rgb(20 24 27 / 85%);font-weight: 600;": "visibility:hidden;"%>"> <a href="<%# Eval("exampage_link") %>" style="color: #f9f9f9;">Go to assessment >></a></label>
                                         </div>
                                     </div>
                                     <div class="form-group">                                        

@@ -45,8 +45,37 @@ public partial class login : System.Web.UI.Page
             isfullservicethenlbl = " APPLICATION CENTER";
         else if (isFullService == 2)
             isfullservicethenlbl = "Assessment Center";
+        SaveStatus();
     }
+    private void SaveStatus()
+    {
+        try
+        {
+            var mode = "new";
+            if (Session["assignid"] != null)
+            {
+                int assignid = Convert.ToInt32(Session["assignid"]);
 
+                exam_assign objapplicant = new exam_assign();
+
+                var data = db.exam_assign.Where(x => x.assignid == assignid).FirstOrDefault();
+                if (data != null)
+                {
+                    mode = "update";
+                    objapplicant = data;
+                }
+                objapplicant.logout_forexam_at = System.DateTime.Now;
+                objapplicant.is_studentactiveforexam = 0;
+                if (mode == "new")
+                    db.exam_assign.Add(objapplicant);
+                db.SaveChanges();
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
     protected void btn_login_Click(object sender, EventArgs e)
     {
         try
