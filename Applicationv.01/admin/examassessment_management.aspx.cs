@@ -873,7 +873,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                         WritingTimeEnd = Convert.ToDateTime(HttpContext.Current.Session["Session_Final_writingtime_End"]);
                         str_WritingTime_end = WritingTimeEnd.ToString();
                     }
-
+                    uploadTime_start = str_WritingTime_end;
                     if (HttpContext.Current.Session["Final_Uploadtime_End"] == null)
                     {
                         UploadTimeEnd = Convert.ToDateTime(str_WritingTime_end).AddMinutes(exam_UploadTime);

@@ -83,6 +83,57 @@
                             </div>
                         </div>
                     </div>--%>
+                     <div class="form-group row">
+                                    <label for="name" class="col-sm-4 col-form-label form-label">Select Class</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-8 updt-prftbl">
+                                                <asp:DropDownList runat="server" ID="ddlclass" CssClass="form-control" OnSelectedIndexChanged="ddlclass_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-4 col-form-label form-label">Select Group</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-8 updt-prftbl">
+                                                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlgroup" OnSelectedIndexChanged="ddlgroup_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-4 col-form-label form-label">Select Subject</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-8 updt-prftbl">
+                                                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlsubjcet" OnSelectedIndexChanged="ddlsubjcet_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-4 col-form-label form-label">Select Assessment</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <asp:DropDownList ID="ddlexam" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlexam_SelectedIndexChanged"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-4 col-form-label form-label">Select Scheduled Date & Time</label>
+                                    <div class="col-sm-8">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <asp:DropDownList ID="ddlExamDateTime" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlExamDateTime_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    <div runat="server" id="DivGrid">
                     <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                         <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
                             DataKeyNames="assignid"
@@ -122,6 +173,7 @@
                             </Columns>
                         </asp:GridView>
                     </div>
+                        </div>
                 </div>
             </div>
         </div>
