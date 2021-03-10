@@ -174,6 +174,7 @@
                     </div>
                     <div class="">
                         <div class="col-md-12">
+                            <asp:CheckBox ID="chkAll" Text="Select All" runat="server" />
                                 <asp:CheckBoxList ID="ddlstudentid" runat="server" RepeatDirection="Horizontal" RepeatColumns="1"></asp:CheckBoxList>
                             </div>
                     </div>
@@ -184,7 +185,22 @@
 
 
     <script>
-
+        $(function () {
+            $("[id*=chkAll]").bind("click", function () {
+                if ($(this).is(":checked")) {
+                    $("[id*=ddlstudentid] input").attr("checked", "checked");
+                } else {
+                    $("[id*=ddlstudentid] input").removeAttr("checked");
+                }
+            });
+            $("[id*=ddlstudentid] input").bind("click", function () {
+                if ($("[id*=ddlstudentid] input:checked").length == $("[id*=ddlstudentid] input").length) {
+                    $("[id*=chkAll]").attr("checked", "checked");
+                } else {
+                    $("[id*=chkAll]").removeAttr("checked");
+                }
+            });
+        });
         function validateForm() {
 
             var flag = false;

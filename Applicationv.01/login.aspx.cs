@@ -64,7 +64,7 @@ public partial class login : System.Web.UI.Page
                     mode = "update";
                     objapplicant = data;
                 }
-                objapplicant.logout_forexam_at = System.DateTime.Now;
+                objapplicant.logout_forexam_at = DateTime.UtcNow;
                 objapplicant.is_studentactiveforexam = 0;
                 if (mode == "new")
                     db.exam_assign.Add(objapplicant);
@@ -134,6 +134,7 @@ public partial class login : System.Web.UI.Page
                             objapplicant.universityid = universityID;
                             objapplicant.isverifiedbyAdmin = false;
                             objapplicant.isdeletedbyAdmin = false;
+                            objapplicant.Isold_or_new_applicant = true;
                             db.applicantdetails.Add(objapplicant);
                             db.SaveChanges();
                         }
@@ -173,15 +174,35 @@ public partial class login : System.Web.UI.Page
                             var applicantdetail = db.applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
 
                             Session["isVerifiedByAdmin"] = applicantdetail.isverifiedbyAdmin;
-                            //switch (chkUser.role)
+                            ////logic to set old or new applicant
+                            //if (isFullService == 0 || isFullService == 1)
                             //{
-                            //    case 1:
-                            //        Response.Redirect(webURL + "admin/default.aspx");
-                            //        break;
-                            //    case 2:
-                            //        Response.Redirect(webURL + "agentdashboard.aspx");
-                            //        break;
-                            //    case 3:
+                            //    if (applicantdetail != null)
+                            //    {
+                            //        if (applicantdetail.Isold_or_new_applicant != true)
+                            //        {
+                            //            //level1 of applicantdetails
+                            //            var gtedetail = db.gte_applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
+                            //            if (gtedetail == null)
+                            //                SaveApplicantAsNew(chkUser.studentid);
+                            //            else
+                            //            {//level 2 of gte certificate
+                            //                var gteProgress = db.gte_progressbar.Where(x => x.applicantid == chkUser.studentid && x.universityId == universityID).FirstOrDefault();
+                            //                if (gteProgress != null && gteProgress.is_gte_certificate_generated != true)
+                            //                    SaveApplicantAsNew(chkUser.studentid);
+                            //                else
+                            //                {//level3 check for gte assessment & sop
+                            //                    var IssopComplteted = db.gte_student_sop.Where(x => x.applicant_id== chkUser.studentid && x.universityid== universityID).FirstOrDefault();
+                            //                    if(IssopComplteted != null && IssopComplteted.is_sop_submitted_by_applicant != true)
+                            //                        SaveApplicantAsNew(chkUser.studentid);
+                            //                }
+                            //            }
+                            //        }
+
+                            //    }
+                            //}
+
+
                             if (isFullService == 2)
                             {
                                 var studentdatis = db.applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
@@ -198,14 +219,7 @@ public partial class login : System.Web.UI.Page
                             }
                             else
                                 Response.Redirect(webURL + "default.aspx", true);
-                            //            break;
-                            //        case 4:
-                            //            Response.Redirect(webURL + "universitydashboard.aspx");
-                            //            break;
-                            //        default:
-                            //            Response.Redirect(webURL + "login.aspx");
-                            //            break;
-                            //    }                
+                                       
                         }
                         else {
                             lbl_warning.Text = "Your Account for this institution is suspended by admin.";
@@ -219,5 +233,22 @@ public partial class login : System.Web.UI.Page
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }
     }
-
+    private void SaveApplicantAsNew(int applicantid) {
+        try {
+            var mode = "new";
+            applicantdetails objapplicant = new applicantdetails();
+            var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
+            if (data != null)
+            {
+                mode = "update";
+                objapplicant = data;
+            }
+            objapplicant.Isold_or_new_applicant =true;
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicant);
+            db.SaveChanges();
+        }
+        catch (Exception ex)
+        { objLog.WriteLog(ex.ToString()); }
+    }
 }

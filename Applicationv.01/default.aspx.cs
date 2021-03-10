@@ -36,10 +36,10 @@ public partial class _Default : System.Web.UI.Page
 
         Session["Applicant"] = UserID;
 
-        isVerifiedByAdmin = db.applicantdetails.Where(x=>x.applicantid == UserID).Select(x=>x.isverifiedbyAdmin).FirstOrDefault();
+        isVerifiedByAdmin = db.applicantdetails.Where(x=>x.applicantid == UserID && x.universityid == UniversityID).Select(x=>x.isverifiedbyAdmin).FirstOrDefault();
         Session["isVerifiedByAdmin"] = isVerifiedByAdmin;
 
-        isfullservice = (int)Session["isfullservice"];
+        isfullservice =  (int)Session["isfullservice"];
         if (isfullservice == 1)
             isfullservicethenlbl.Text = "TO THE APPLICATION CENTER";
         else if (isfullservice == 0)
@@ -82,7 +82,7 @@ public partial class _Default : System.Web.UI.Page
         GTEEntities db1 = new GTEEntities();
         int universityID1 = Utility.GetUniversityId();
 
-        var data = db1.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+        var data = db1.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID1).FirstOrDefault();
         HttpContext.Current.Session["isVerifiedByAdmin"] = data.isverifiedbyAdmin;
         if (data.isverifiedbyAdmin == true)
             response = "1";

@@ -12,7 +12,7 @@ public partial class admin_login : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     string webURL = String.Empty;
-    public string isfullservicethenlbl = string.Empty;
+    public string isfullservicethenlbl = string.Empty, studlogin;
     int universityID;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -34,6 +34,7 @@ public partial class admin_login : System.Web.UI.Page
             isfullservicethenlbl = " APPLICATION CENTER";
         else if (isfullservice == 2)
             isfullservicethenlbl = " ASSESSMENT CENTER";
+        studlogin = webURL + "login.aspx";
     }
     protected void btn_login_Click(object sender, EventArgs e)
     {

@@ -44,6 +44,18 @@ public partial class preliminary : System.Web.UI.Page
 
             videoCount = allDocuments.Where(c => c.type == "video").ToList().Count;
             otherDocCount = allDocuments.Where(c => c.type != "video").ToList().Count;
+
+            
         }
-    } 
+    }
+
+    protected void Unnamed_Click(object sender, EventArgs e)
+    {
+        int isFullService = (int)Session["isfullservice"];
+        if (isFullService == 0)
+            Response.Redirect(webURL + "gte_studentdetails.aspx?formid=21", true);
+        else
+            Response.Redirect(webURL + "preliminaryquestion.aspx", true);
+
+    }
 }

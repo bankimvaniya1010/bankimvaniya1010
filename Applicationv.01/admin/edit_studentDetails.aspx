@@ -12,8 +12,22 @@
         <h1 class="h2">Student Details</h1>
 
         <div class="card">
+            <div>
+                <asp:label runat="server">Go To applicantid</asp:label> <asp:DropDownList runat="server" ID="ddlapplicantlist" CssClass="form-control"></asp:DropDownList>
+            </div>
+
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
+                     <div class="list-group-item" id="Div2" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                    <div class="form-row">
+                                        <label runat="server" id="label2" for="title" class="col-md-4 col-form-label form-label">Applicant Name</label>
+                                        <div class="col-md-6">
+                                            <input type ="text" runat="server" class="form-control" id="lblname" disabled="disabled"/>                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     <div class="list-group-item" id="Div15" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">

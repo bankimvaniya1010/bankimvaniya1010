@@ -49,7 +49,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtUniAddress.Value = existingUninversity.address;
                     txtUniContactPerson.Value = existingUninversity.contact_person;
                     txtUniWebsite.Value = existingUninversity.website;
-                    txtUniAffiliation.Value = existingUninversity.affiliation;
+                    txtUniAffiliation.Value = existingUninversity.affiliation.ToString();
                     txtEmail.Value = existingUninversity.email;
                     txtMobile.Value = existingUninversity.mobile;
                     txtunichatId.Value = existingUninversity.chatid;
@@ -85,11 +85,11 @@ public partial class edituniversitydetails : System.Web.UI.Page
 
                     ddlTimeZone.SelectedValue = existingUninversity.time_zone;
                     hidCityField.Value = Convert.ToString(existingUninversity.cityid);
-                    bindCityDropdown(existingUninversity.countryid);                    
+                    bindCityDropdown(Convert.ToInt32(existingUninversity.countryid));                    
                     ddlCity.Items.FindByValue(existingUninversity.cityid.ToString()).Selected = true;
                     subscription.Items.FindByValue(existingUninversity.full_service.ToString()).Selected = true;
                     //ddlCity.SelectedIndex = Convert.ToInt32(existingUninversity.cityid);
-                    ddlCountry.SelectedIndex = existingUninversity.countryid;
+                    ddlCountry.SelectedIndex = Convert.ToInt32(existingUninversity.countryid);
                     txtUniAcceptedMaxAge.Value = Convert.ToString(existingUninversity.acceptedmaxage);
                     txtUniAcceptedMinAge.Value = Convert.ToString(existingUninversity.acceptedminage);
                     if (existingUninversity.headerstripcolor != "")
@@ -175,7 +175,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.address = txtUniAddress.Value.Trim();
             universityObj.website = txtUniWebsite.Value.Trim();
             universityObj.contact_person = txtUniContactPerson.Value.Trim();
-            universityObj.affiliation = txtUniAffiliation.Value.Trim();
+            universityObj.affiliation = Convert.ToInt32(txtUniAffiliation.Value);
             universityObj.email = txtEmail.Value.Trim();
             universityObj.mobile = txtMobile.Value.Trim();
             universityObj.chatid = txtunichatId.Value.Trim();
@@ -217,7 +217,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.examInstruction = txtexamInstruction.Text.Trim();
             universityObj.emai_notification1 = txtnotification1.Text.Trim();
             universityObj.emai_notification2 = txtnotification2.Text.Trim();
-            universityObj.numberof_applicant = Convert.ToInt32(txtapplicantno.Value.Trim());
+            universityObj.numberof_applicant = txtapplicantno.Value.Trim();
 
             if (logo.HasFile)  //fileupload control contains a file  
             {

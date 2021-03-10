@@ -175,7 +175,11 @@ public partial class schedulemeeting_otp : System.Web.UI.Page
             if (mode == "new")
                 db.applicant_meeting_schedule.Add(objapplicant_meeting_schedule);
             db.SaveChanges();
-            Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
+            int isFullService = (int)Session["FullService"];
+            if(isFullService == 0)
+                Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
+            else
+                Response.Redirect(webURL + "gte_questions1.aspx?formid=22", true);
         }
     }
 }

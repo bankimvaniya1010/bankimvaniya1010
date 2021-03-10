@@ -99,37 +99,128 @@ public partial class view_exampaper3 : System.Web.UI.Page
             
     }
 
-    private void showTime() {
-        try {           
-                
+    private void showTime()
+    {
+        try
+        {
+
             var exammaster = db.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == exampaperid).FirstOrDefault();
-            if (exammaster != null)
+            
+            var exam_assign = db.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+            if (exam_assign != null)
             {
-                exammarks = exammaster.maximummarks;
-                if (string.IsNullOrEmpty(exammaster.exam_readingduration))
-                    Session["readingtime"] = string.Empty;
-                else
-                    Session["readingtime"] = exammaster.exam_readingduration;
-
-                if (string.IsNullOrEmpty(exammaster.exam_uploadduration))
-                    Session["uploadtime"] = string.Empty;
-                else
-                    Session["uploadtime"] = exammaster.exam_uploadduration;
-
-                if (Session["totalResponseTime"] == null)
-                    Session["totalResponseTime"] = exammaster.exam_duration;
-                else
+                var examschedule = db.exam_schedule.Where(x => x.universityid == UniversityID && x.exampapersid == exampaperid && x.exam_datetime == exam_assign.exam_datetime).FirstOrDefault();
+                if (exammaster != null)
                 {
+                    exammarks = exammaster.maximummarks;
 
-                    Session["totalResponseTime"] = Session["totalResponseTime"];
-                    var time = Session["totalResponseTime"];
+                    if (examschedule != null)
+                    {
+                        string current_UTC_Time = DateTime.UtcNow.ToString("hh:mm:ss");
+                        DateTime current_UTCDatetime = Convert.ToDateTime(current_UTC_Time);
+
+                        string UTC_examstart = Convert.ToDateTime(examschedule.exam_datetime_utc).ToString("hh:mm:ss");
+                        DateTime UTC_examstartDatetime = Convert.ToDateTime(examschedule.exam_datetime_utc);
+
+                        int exam_ReadingTime = Convert.ToInt32(exammaster.exam_readingduration);
+                        int exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                        int exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+
+                        string ReadingTime_start = UTC_examstart;
+                        string str_ReadingTime_end = UTC_examstartDatetime.AddMinutes(exam_ReadingTime).ToString("hh:mm:ss");
+                        DateTime date_read = Convert.ToDateTime(str_ReadingTime_end);
+
+                        string WritingTime_start = str_ReadingTime_end;
+                        string str_WritingTime_end = date_read.AddMinutes(exam_WritingTime).ToString("hh:mm:ss");
+                        DateTime date_write = Convert.ToDateTime(str_WritingTime_end);
+
+                        string uploadTime_start = str_WritingTime_end;
+                        string str_UploadTime_end = date_write.AddMinutes(exam_UploadTime).ToString("hh:mm:ss");
+
+                        TimeSpan? set_Readingtime = null;
+                        TimeSpan? set_Writingtime = null;
+                        TimeSpan? set_Uploadtime = null;
+
+                        if (exammaster.uploadtype == 3)
+                        {
+                            if (UTC_examstart == current_UTC_Time)
+                            {
+                                exam_ReadingTime = Convert.ToInt32(exammaster.exam_readingduration);
+                                exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                                exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+                                Session["readingtime"] = exammaster.exam_readingduration;
+                                Session["totalResponseTime"] = exammaster.exam_duration;
+                                Session["uploadtime"] = exammaster.exam_uploadduration;
+                            }
+                            else
+                            {
+                                set_Readingtime = DateTime.Parse(str_ReadingTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                if (set_Readingtime.ToString() == "00:00:00" || set_Readingtime.ToString().Contains("-"))
+                                {
+                                    Session["readingtime"] = string.Empty;
+                                    set_Writingtime = DateTime.Parse(str_WritingTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                    if (set_Writingtime.ToString() == "00:00:00" || set_Writingtime.ToString().Contains("-"))
+                                    {
+                                        Session["totalResponseTime"] = string.Empty;
+                                        set_Uploadtime = DateTime.Parse(str_UploadTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                        if (set_Uploadtime.ToString() == "00:00:00" || set_Uploadtime.ToString().Contains("-"))
+                                        {
+                                            Session["uploadtime"] = string.Empty;
+                                        }
+                                        else
+                                        {
+                                            Session["readingtime"] = string.Empty;
+                                            Session["totalResponseTime"] = string.Empty;
+                                            Session["uploadtime"] = set_Uploadtime;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Session["readingtime"] = string.Empty;
+                                        Session["totalResponseTime"] = set_Writingtime;
+                                        Session["uploadtime"] = exammaster.exam_uploadduration;
+                                    }
+                                }
+                                else
+                                {
+                                    Session["readingtime"] = set_Readingtime;
+                                    Session["totalResponseTime"] = exammaster.exam_duration;
+                                    Session["uploadtime"] = exammaster.exam_uploadduration;
+                                }
+
+                                exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                                exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+
+                            }
+
+
+                        }
+
+                        //if (string.IsNullOrEmpty(exammaster.exam_readingduration))
+                        //    Session["readingtime"] = string.Empty;
+                        //else
+                        //    Session["readingtime"] = exammaster.exam_readingduration;
+
+                        //if (string.IsNullOrEmpty(exammaster.exam_uploadduration))
+                        //    Session["uploadtime"] = string.Empty;
+                        //else
+                        //    Session["uploadtime"] = exammaster.exam_uploadduration;
+
+                        //if (Session["totalResponseTime"] == null)
+                        //    Session["totalResponseTime"] = exammaster.exam_duration;
+                        //else
+                        //{
+
+                        //    Session["totalResponseTime"] = Session["totalResponseTime"];
+                        //    var time = Session["totalResponseTime"];
+                        //}
+                    }
                 }
             }
         }
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }
     }
-
     private void showdetails()
     {
         try
@@ -598,7 +689,10 @@ public partial class view_exampaper3 : System.Web.UI.Page
             objexam_assign = data;
         }
         if (string.IsNullOrEmpty(objexam_assign.status) || data.status == "Verified" || data.status == "Assessment Started")
+        {
             objexam_assign.status = "Not Appered";
+            objexam_assign.is_studentactiveforexam = 0;
+        }
         if (mode == "new")
             db1.exam_assign.Add(objexam_assign);
         db1.SaveChanges();

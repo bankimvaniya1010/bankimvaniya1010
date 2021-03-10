@@ -32,6 +32,9 @@ public partial class admin_examassessment_management : System.Web.UI.Page
         roleName = Utility.GetRoleName();
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
+
+        if (rejectionlist.SelectedValue != null)
+            btnsave.Text ="Mark " +rejectionlist.SelectedItem.Text ;
         if (!IsPostBack)
         {
             BindUniversity();
@@ -321,7 +324,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
         DateTime? examdatetime = db1.exam_assign.Where(x => x.assignid == assignid).Select(x => x.exam_datetime).FirstOrDefault();
         var applicantlist = (from ea in db1.exam_assign
                          join ap in db1.applicantdetails on ea.applicantid equals ap.applicantid
-                         where ea.exampapersid == examId && ea.proctorid == proctorid && ea.exam_datetime == examdatetime && ap.universityid == universityid && ea.universityID == universityid
+                         where ea.exampapersid == examId && ea.proctorid == proctorid && ea.exam_datetime == examdatetime && ap.universityid == universityid && ea.universityID == universityid && !string.IsNullOrEmpty(ea.status)
                          select new Data
                          {
                              applicantid = ea.applicantid,
@@ -370,9 +373,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
             if (data.loggedintime != null)
             {
                 DateTime iKnowThisIsUtc = Convert.ToDateTime(data.loggedintime);
-                DateTime runtimeKnowsThisIsUtc = DateTime.SpecifyKind(
-                    iKnowThisIsUtc,
-                    DateTimeKind.Utc);
+                DateTime runtimeKnowsThisIsUtc = DateTime.SpecifyKind(iKnowThisIsUtc,DateTimeKind.Utc);
                 DateTime localVersion = runtimeKnowsThisIsUtc.ToLocalTime();
                 data.loggedintime_inLocal = localVersion.ToString("hh:mm:ss tt");
             }
@@ -402,6 +403,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
         public string lblansweruplodedtime_inLocal { get; set; }
         public string lblansweruploded { get; set; }
         public string showtime { get; set; }
+        public string status { get; set; }
 
     }
 
@@ -412,7 +414,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
             int rejectionreasonID = Convert.ToInt32(rejectionlist.SelectedValue);
             applicantlist = (from ea in db.exam_assign
                              join ap in db.applicantdetails on ea.applicantid equals ap.applicantid
-                             where ea.exampapersid == examId && ea.proctorid == proctorid && ea.exam_datetime == exam_datetime && ap.universityid == universityid && ea.universityID == universityid
+                             where ea.exampapersid == examId && ea.proctorid == proctorid && ea.exam_datetime == exam_datetime && ap.universityid == universityid && ea.universityID == universityid && (string.IsNullOrEmpty(ea.status) || ea.status.ToLower()=="Verified")
                              select new Data
                              {
                                  applicantid = ea.applicantid,
@@ -429,6 +431,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                                  showcheckbox = null,
                                  showTextbox = null,
                                  lblansweruploded ="NO",
+                                 status = ea.status,
                                  loggedintime = ea.studentactiveforexam_at == null ? (DateTime?)null : ea.studentactiveforexam_at,
 
 
@@ -504,6 +507,10 @@ public partial class admin_examassessment_management : System.Web.UI.Page
             }
             grid.DataSource = applicantlist.OrderBy(x => x.toshow == null).ThenBy(x=>x.is_active == null).ToList();
             grid.DataBind();
+
+            
+            //GridRemainingApplicant.DataSource = applicantlist.Where(x => x.status == null || x.status == string.Empty).ToList();
+            //GridRemainingApplicant.DataBind();
         }
         catch (Exception ex)
         {
@@ -661,10 +668,30 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                 isexamautostart = 0;
                 // check if exam started manually or not
                 var examstarted = db.exam_assign.Where(x => x.universityID == universityid && x.exampapersid == examId && x.exam_datetime == exam_datetime && x.is_examstarted == true).ToList();
+                string current_UTC_Time = DateTime.UtcNow.ToString("hh:mm:ss");
+
+                var examtime = db.exam_schedule.Where(x => x.universityid == universityid && x.exampapersid == examId && x.exam_datetime == exam_datetime).FirstOrDefault();
                 if (examstarted.Count > 0)
                 {
-                    tblcontent.Attributes.Add("style", "display:none");
-                    refreshtbl.Attributes.Add("style", "display:block");
+                    DateTime current_UTCDatetime = DateTime.UtcNow;
+
+                    DateTime examdatetime = Convert.ToDateTime(examtime.exam_datetime_utc);
+
+                    DateTime timetostop = examdatetime.AddMinutes(30);
+
+                    if (current_UTCDatetime > timetostop)
+                    {
+                        tblcontent.Attributes.Add("style", "display:none");
+                        refreshtbl.Attributes.Add("style", "display:block");
+                    }
+                    else
+                    {
+                        btnstart.Visible = true;
+                        tblcontent.Attributes.Add("style", "display:block");
+                        BindTable(examId, proctorid, assignid, universityid, exam_datetime);
+                        refreshtbl.Attributes.Add("style", "display:block");
+                    }
+
                 }
                 else
                 {
@@ -673,7 +700,20 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                     BindTable(examId, proctorid, assignid, universityid, exam_datetime);
                     refreshtbl.Attributes.Add("style", "display:none");
                 }
-                
+
+                //if (examstarted.Count > 0)
+                //{
+                //    tblcontent.Attributes.Add("style", "display:none");
+                //    refreshtbl.Attributes.Add("style", "display:block");
+                //}
+                //else
+                //{
+                //    btnstart.Visible = true;
+                //    tblcontent.Attributes.Add("style", "display:block");
+                //    BindTable(examId, proctorid, assignid, universityid, exam_datetime);
+                //    refreshtbl.Attributes.Add("style", "display:none");
+                //}
+
             }
         }
         else
@@ -693,11 +733,29 @@ public partial class admin_examassessment_management : System.Web.UI.Page
         var examverificationtype = db.exam_master.Where(x => x.exampapersid == examId).FirstOrDefault();
         DateTime exam_datetime = Convert.ToDateTime(ddlExamDateTime.SelectedItem.Text);
         var examstarted = db.exam_assign.Where(x => x.universityID == universityid && x.exampapersid == examId && x.exam_datetime == exam_datetime && x.is_examstarted == true).ToList();
+        var examtime = db.exam_schedule.Where(x => x.universityid == universityid && x.exampapersid == examId && x.exam_datetime == exam_datetime).FirstOrDefault();
+
         if (examstarted.Count > 0)
         {
-            btnstart.Visible = false;
-            tblcontent.Attributes.Add("style", "display:none");
-            refreshtbl.Attributes.Add("style", "display:block");
+            DateTime current_UTCDatetime = DateTime.UtcNow;
+
+            DateTime examdatetime = Convert.ToDateTime(examtime.exam_datetime_utc);
+
+            DateTime timetostop = examdatetime.AddMinutes(30);
+
+            if (current_UTCDatetime > timetostop)
+            {
+                tblcontent.Attributes.Add("style", "display:none");
+                refreshtbl.Attributes.Add("style", "display:block");
+            }
+            else
+            {
+                btnstart.Visible = true;
+                tblcontent.Attributes.Add("style", "display:block");
+                BindTable(examId, proctorid, assignid, universityid, exam_datetime);
+                refreshtbl.Attributes.Add("style", "display:block");
+            }
+
         }
         else
         {
@@ -706,6 +764,20 @@ public partial class admin_examassessment_management : System.Web.UI.Page
             BindTable(examId, proctorid, assignid, universityid, exam_datetime);
             refreshtbl.Attributes.Add("style", "display:none");
         }
+
+        //if (examstarted.Count > 0)
+        //{
+        //    btnstart.Visible = false;
+        //    tblcontent.Attributes.Add("style", "display:none");
+        //    refreshtbl.Attributes.Add("style", "display:block");
+        //}
+        //else
+        //{
+        //    btnstart.Visible = true;
+        //    tblcontent.Attributes.Add("style", "display:block");
+        //    BindTable(examId, proctorid, assignid, universityid, exam_datetime);
+        //    refreshtbl.Attributes.Add("style", "display:none");
+        //}
 
     }
     protected void rejectionlist_SelectedIndexChanged(object sender, EventArgs e)
@@ -755,17 +827,20 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                         mode = "update";
                         objmapping = data;
                     }
-
-                    objmapping.is_examstarted = true;
-                    objmapping.examstarted_utctime = DateTime.UtcNow;
-                    if (string.IsNullOrEmpty(objmapping.status))
-                        objmapping.status = "Not Present";
+                    if (!string.IsNullOrEmpty(objmapping.status))
+                    {
+                        objmapping.is_examstarted = true;
+                        objmapping.examstarted_utctime = DateTime.UtcNow;
+                        //if (string.IsNullOrEmpty(objmapping.status))
+                        //    objmapping.status = "Not Present";
+                    }
                     if (mode == "new")
                         db.exam_assign.Add(objmapping);
                     db.SaveChanges();
                 }
-                startClock(examId, Convert.ToDateTime(objmapping.examstarted_utctime));
-                
+                //startClock(examId, Convert.ToDateTime(objmapping.examstarted_utctime));
+                DateTime exam_datetime = Convert.ToDateTime(ddlExamDateTime.SelectedItem.Text);
+                BindTable(examId, proctorid, assignid, universityid, exam_datetime);
                 checkmanual();
             }
             else
@@ -793,14 +868,14 @@ public partial class admin_examassessment_management : System.Web.UI.Page
 
             var isexamstarted = db1.exam_assign.Where(x => x.universityID == universityid && x.exampapersid == examid && x.exam_datetime == exam_datetime && x.is_examstarted == true).ToList();
             
-            var isanystudentisVerified = db1.exam_assign.Where(x => x.universityID == universityid && x.exampapersid == examid && x.exam_datetime == exam_datetime && (x.status == "Verified" || x.status == "Assessment Started")).ToList();
+            var isanystudentisVerified = db1.exam_assign.Where(x => x.universityID == universityid && x.exampapersid == examid && x.exam_datetime == exam_datetime && (x.status.ToLower() == "verified" || x.status.ToLower() == "assessment started")).ToList();
 
             if (isexamstarted.Count > 0)
             {
                 if (isanystudentisVerified.Count > 0)
                 {
                     response = "startclock";
-                    startClock(examid, Convert.ToDateTime(exam_assign.examstarted_utctime));
+                    //startClock(examid, Convert.ToDateTime(exam_assign.examstarted_utctime));
                    
                 }
             }
@@ -958,7 +1033,10 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                     sessionwritingTime = string.Empty;
                     sessionUploadTime = string.Empty;
                 }
-              
+
+                HttpContext.Current.Session["SessionReadingTime"] = sessionreadingTime;
+                HttpContext.Current.Session["SessionWrittingTime"] = sessionwritingTime;
+                HttpContext.Current.Session["SessionUpploadTime"] = sessionUploadTime;
             }
         }
         catch (Exception ex) { objlog.WriteLog(ex.ToString()); }
@@ -995,7 +1073,63 @@ public partial class admin_examassessment_management : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string Hidestartexamandtable(int examid, int assignid, int universityid, int proctorid)
+    {
+        GTEEntities db1 = new GTEEntities();
+        string response = "UnHide";
+        var examdate = db1.exam_assign.Where(x => x.assignid == assignid).Select(x => x.exam_datetime).FirstOrDefault();
+        DateTime date = Convert.ToDateTime(examdate);
+        var examschedule = db1.exam_schedule.Where(x => x.exam_datetime == date && x.exampapersid == examid && x.universityid == universityid).FirstOrDefault();
 
+        DateTime current_UTCDatetime = DateTime.UtcNow;
+        if (examschedule != null)
+        {
+            DateTime examdatetime = Convert.ToDateTime(examschedule.exam_datetime_utc);
+
+            DateTime timetostop = examdatetime.AddMinutes(30);
+
+            if (current_UTCDatetime > timetostop)
+            {
+                response = "hide";
+                // after 30 min mark NOt present to all students 
+
+                var list = (from ea in db1.exam_assign
+                            where ea.exampapersid == examid && ea.proctorid == proctorid && ea.exam_datetime == examdate && ea.universityID == universityid
+                            select new
+                            {
+                                assignid = ea.assignid,
+                                status = ea.status,
+                                is_proctor_access_given = ea.is_proctor_access_given,
+
+                            }).ToList();
+                foreach (var item in list)
+                {
+                    var mode = "new";
+                    int assignID = item.assignid;
+                    exam_assign objmapping = new exam_assign();
+                    var data = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+                    if (data != null)
+                    {
+                        mode = "update";
+                        objmapping = data;
+                    }
+                    if (string.IsNullOrEmpty(objmapping.status) || objmapping.status.ToLower() == "verified")
+                    {
+                        objmapping.is_examstarted = false;
+                        objmapping.status = "Not Present";
+                    }
+                    if (mode == "new")
+                        db1.exam_assign.Add(objmapping);
+                    db1.SaveChanges();
+                }
+            }
+            else
+                response = "UnHide";
+        }
+        return response;
+    }
     [WebMethod]
     [ScriptMethod(UseHttpGet = true)]
     public static string checkutcexamtime(int universityid, int examid, int assignid)
@@ -1044,10 +1178,10 @@ public partial class admin_examassessment_management : System.Web.UI.Page
 
         return JsonConvert.SerializeObject(response);
     }
-
+    
     [WebMethod]
     [ScriptMethod(UseHttpGet = true)]
-    public static string MarkAbsentBydefaut(int examid, int assignid, int universityid, int proctorid)
+    public static string MarkAbsentBydefaut(int examid, int assignid, int universityid, int proctorid) //excluded
     {
         string response = "0";
         GTEEntities db1 = new GTEEntities();
@@ -1074,11 +1208,11 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                 mode = "update";
                 objmapping = data;
             }
-
-            objmapping.is_examstarted = true;
-            objmapping.examstarted_utctime = DateTime.UtcNow;
             if (string.IsNullOrEmpty(objmapping.status))
+            {
+                objmapping.is_examstarted = false;
                 objmapping.status = "Not Present";
+            }
             if (mode == "new")
                 db1.exam_assign.Add(objmapping);
             db1.SaveChanges();
@@ -1089,11 +1223,13 @@ public partial class admin_examassessment_management : System.Web.UI.Page
         {
             examdatetime = examassign.exam_datetime;
 
-            var allList = db1.exam_assign.Where(x => x.universityID == universityid && x.exampapersid == examid && x.exam_datetime == examdatetime2 && x.is_examstarted == true).ToList();
-            if (allList.Count > 0)
-                startClock(examid, Convert.ToDateTime(examassign.examstarted_utctime));
+            //var allList = db1.exam_assign.Where(x => x.universityID == universityid && x.exampapersid == examid && x.exam_datetime == examdatetime2 && x.is_examstarted == true).ToList();
+            //if (allList.Count > 0)
+            //    startClock(examid, Convert.ToDateTime(examassign.examstarted_utctime));
         }
 
         return JsonConvert.SerializeObject(response);
     }
+
+   
 }

@@ -359,6 +359,7 @@ public partial class student_details : System.Web.UI.Page
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
+                employerwebsite.Attributes.Add("style", "display:none");
                 txtfirstname.Value = profileInfo.firstname;
                 txtmiddlename.Value = profileInfo.middlename;
                 txtlastname.Value = profileInfo.lastname;

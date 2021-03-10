@@ -53,27 +53,29 @@ public partial class exammodule : System.Web.UI.Page
             var data = (from exam in db.exam_assign
                         join shedule in db.exam_schedule on exam.exampapersid equals shedule.exampapersid into sheduleData
                         from y in sheduleData.DefaultIfEmpty()
-                        where exam.applicantid == UserID && exam.universityID == UniversityID && exam.status == null && exam.exam_datetime == y.exam_datetime
+                        where exam.applicantid == UserID && exam.universityID == UniversityID && exam.exam_datetime == y.exam_datetime
                         select new {
                             applicantid = exam.applicantid,
                             universityID = exam.universityID,
                             exam_datetime = exam.exam_datetime,
                             exam_datetime_utc = y.exam_datetime_utc,
-                            exampapersid = exam.exampapersid
+                            exampapersid = exam.exampapersid,
+                            status= exam.status,
+                            assignid =exam.assignid
 
                         }).Distinct().ToList();
             foreach (var item in data)
             {
-                var exammaster = db.exam_master.Where(x => x.exampapersid == item.exampapersid).FirstOrDefault();
-                if (exammaster != null && exammaster.isautomaticstart == 1)
-                {
-                    DateTime current_utctime = DateTime.UtcNow;
-                    DateTime record_utcdattime_plus30 = Convert.ToDateTime(item.exam_datetime_utc).AddMinutes(30);
+                
+                DateTime current_utctime = DateTime.UtcNow;
+                DateTime record_utcdattime_plus30 = Convert.ToDateTime(item.exam_datetime_utc).AddMinutes(30);
 
-                    if (record_utcdattime_plus30 < current_utctime)
+                if (record_utcdattime_plus30 < current_utctime)
+                {
+                    if (string.IsNullOrEmpty(item.status) || item.status.ToUpper() == "ACTIVE" || item.status.ToUpper() == "ASSESSMENT STARTED" || item.status.ToUpper() == "VERIFIED")
                     {
                         var mode = "new";
-                        var examdata = db.exam_assign.Where(x => x.applicantid == item.applicantid && x.universityID == item.universityID && x.exam_datetime == item.exam_datetime && x.exampapersid == item.exampapersid && x.status == null).FirstOrDefault();
+                        var examdata = db.exam_assign.Where(x => x.assignid == item.assignid).FirstOrDefault();
                         if (examdata != null)
                         {
                             mode = "update";
@@ -87,6 +89,7 @@ public partial class exammodule : System.Web.UI.Page
                         bindDataList(string.Empty);
                     }
                 }
+                
             }
 
         }
@@ -101,7 +104,7 @@ public partial class exammodule : System.Web.UI.Page
             var data = (from exam in db.exam_assign
                         join answer in db.exam_answersheet on exam.exampapersid equals answer.exampaperid into answerData
                         from y in answerData.DefaultIfEmpty()
-                        where exam.applicantid == UserID && exam.universityID == UniversityID && exam.status == null && exam.is_verified == true
+                        where exam.applicantid == UserID && exam.universityID == UniversityID && exam.is_verified == true && (exam.status == null || exam.status.ToUpper() == "ASSESSMENT STARTED")
                         select exam).Distinct().ToList();
             foreach (var item in data)
             {
@@ -112,7 +115,7 @@ public partial class exammodule : System.Web.UI.Page
                     if (anshwerdata.Count == 0)
                     {
                         var mode = "new";
-                        var examdata = db.exam_assign.Where(x => x.applicantid == item.applicantid && x.universityID == item.universityID && x.exam_datetime == item.exam_datetime && x.exampapersid == item.exampapersid && x.status == null).FirstOrDefault();
+                        var examdata = db.exam_assign.Where(x => x.assignid == item.assignid).FirstOrDefault();
                         if (examdata != null)
                         {
                             mode = "update";
@@ -154,7 +157,7 @@ public partial class exammodule : System.Web.UI.Page
                         exam_datetime = y.exam_datetime,
                         examtimezonetoshow = "< " + y.utctimezone + " >",
                         status = string.IsNullOrEmpty(x.status) ? null : x.status,
-                        showlink = (string.IsNullOrEmpty(x.status) || x.status == "Verified") ? null : x.status,
+                        showlink = (string.IsNullOrEmpty(x.status) || x.status.ToLower() == "verified") ? null : x.status,
                         showstatus = string.IsNullOrEmpty(x.status) ? "Active" : x.status,
                         Downloadfile = string.IsNullOrEmpty(exam.studentfilepath) ? null : webURL + "/Docs/Exammodule/" + UniversityID + "/" + exam.exampapersid + "/studentfile/" + exam.studentfilepath,
                         exampage_link = webURL + "exam_verification.aspx?assignid=" + x.assignid,
@@ -173,13 +176,13 @@ public partial class exammodule : System.Web.UI.Page
             if (selectedvalue == "Active")
                 data.RemoveAll(x => x.status != null);
             else if (selectedvalue == "Completed")
-                data.RemoveAll(x => x.status != "Completed");
+                data.RemoveAll(x => x.status.ToLower() != "completed");
             else if (selectedvalue == "Expired")
-                data.RemoveAll(x => x.status != "Expired");
+                data.RemoveAll(x => x.status.ToLower() != "expired");
             else if (selectedvalue == "Not Apperead")
-                data.RemoveAll(x => x.status != "Not Apperead");
+                data.RemoveAll(x => x.status.ToLower() != "not apperead");
             else if (selectedvalue == "Disqualified")
-                data.RemoveAll(x => x.status != "Disqualified");
+                data.RemoveAll(x => x.status.ToLower() != "disqualified");
 
             foreach (var item in data)
             {
@@ -206,6 +209,7 @@ public partial class exammodule : System.Web.UI.Page
             {
                 coeCard.Visible = true;
                 emptyChoicesDiv.Visible = false;
+                dropdownlist.Visible = true;
                 coeList.DataSource = data;
                 coeList.DataBind();
             }
@@ -213,6 +217,7 @@ public partial class exammodule : System.Web.UI.Page
             {
                 coeCard.Visible = false;
                 emptyChoicesDiv.Visible = true;
+                dropdownlist.Visible = false;
             }
         }
         catch (Exception ex) { log.WriteLog(ex.ToString()); }

@@ -3,7 +3,7 @@
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
     <div class="col-lg container-fluid page__container">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb" style="    margin-top: -22px;    margin-bottom: 14px;">
             <li class="breadcrumb-item"><a href="default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
@@ -29,7 +29,7 @@
             </div>
 
             <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header d-flex align-items-center">
                         <div class="h2 mb-0 mr-3 text-primary"></div>
@@ -57,7 +57,7 @@
                     </div>
                     <%--for euc.gte.stude.care i.e universityid 13 instructions //#376 change for all gte services--%>
                     <div id="service_gte_instructions" runat="server" style="display:none">
-                        <div class="card-body">
+                        <div class="card-body" style="    margin-top: -22px;    margin-bottom: -9px;}">
                             In the GTE-Direct Online Center (GOC), based on your subscription you will be able to:
                         </div>
                         <div>
@@ -92,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4" style="display:none">
 
                 <div class="banImg-wrp">
                     <img src="/assets/images/Banner1.jpg" class="img-fluid">
@@ -137,5 +137,12 @@
             else
                 $("#<%=defaultinstructions.ClientID%>").show();
         });
+          $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Dashboard').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Dashboard').addClass('active');
+        });
+
     </script>
 </asp:Content>

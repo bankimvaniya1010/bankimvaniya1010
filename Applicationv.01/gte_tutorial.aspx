@@ -8,10 +8,10 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">GS & GTE Tutorial </li>
         </ol>
-        <h1 class="h2">GS & GTE Tutorial </h1>
+       <%-- <h1 class="h2">GS & GTE Tutorial </h1>--%>
     </div>
 
-    <div class="page ">
+    <div class="page" style="padding-top:0px;">
       <div class="container page__container">
         <div class="row">
             <div class="col-md-12">

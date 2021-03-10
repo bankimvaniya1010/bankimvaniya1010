@@ -14,7 +14,7 @@
     <div class="page ">
        <div class="container page__container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               
                 <div class="card" id="questions" runat="server">
                     <div id="divUserScore" runat="server" style="font-size:medium;display:none">
@@ -93,7 +93,7 @@
                 </div>
 
              </div>
-                <div class="col-md-4">  
+                <div class="col-md-4" style="display:none;">  
                 <div class="card">
                     <div class="card-body">
                         <label id="lblInstructionHeader" runat="server" class="instructn">Instructions:</label><br />

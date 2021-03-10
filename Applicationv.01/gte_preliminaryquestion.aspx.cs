@@ -239,6 +239,21 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 //linkCertificate.Style.Add("display", "none");
             }
 
+            var mode1 = "update";
+            var gteProgressBar1 = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
+            if (gteProgressBar1 == null)
+            {
+                mode1 = "new";
+                gteProgressBar1 = new gte_progressbar();
+                gteProgressBar1.applicantid = UserID;
+                gteProgressBar1.universityId = UniversityID;
+            }
+
+            //gteProgressBar1.gte_perdentage_score = Math.Round((decimal)userScore / totalQuestion * 100, 2).ToString() + "%";
+            if (mode1 == "new")
+                db.gte_progressbar.Add(gteProgressBar);
+            db.SaveChanges();
+
             lblUserScore.InnerText = Math.Round((decimal)userScore / totalQuestion * 100, 2).ToString() + "%";
             btnsubmit.Enabled = false;
             btnGoToDeclaration.Enabled = true; // Depending upon flag for Only GTE Certificate or complete GTE Module will be visible

@@ -223,7 +223,7 @@ public partial class createuser : System.Web.UI.Page
         }
         usrObj.roleid = Convert.ToInt32(ddlRole.SelectedItem.Value);
         usrObj.email = txtEmail.Value.Trim();
-        usrObj.universityId = Utility.GetUniversityId();
+        usrObj.universityId = universityID;
         //usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
         usrObj.status = 1;
         if (mode == "new")

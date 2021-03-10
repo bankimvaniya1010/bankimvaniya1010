@@ -82,7 +82,7 @@
                 var fileElement = $("#" + customerControlArr[i].fileElement);
                 var anchorElement = $("#" + customerControlArr[i].anchorElement);
                 if (!validfileExtention(fileElement.val(), anchorElement.attr("href"))) {
-                    alert("Please select valid fileDescription \n");
+                    alert("Please select valid file \n");
                     flag = false;
                     return false;
                 }
@@ -101,7 +101,7 @@
                 var fileElement = $("#" + uploadedFileControlArr[i].fileElement);
                 var anchorElement = $("#" + uploadedFileControlArr[i].anchorElement);
                 if (!validfileExtention(fileElement.val(), anchorElement.attr("href"))) {
-                    alert("Please select valid fileDescription \n");
+                    alert("Please select valid file \n");
                     flag = false;
                     return false;
                 }
@@ -111,7 +111,63 @@
 
             if (flag)
                 flag = customcontrolValidation();
-            return flag;
+            <%--if (flag) {
+                <%--$("#<%=btn_login.ClientID%>").attr("disabled", "disabled");
+                $("#ContentPlaceHolder1_uploadbtn").attr("disabled", "true");
+                $("#progress").removeClass("hide");
+                var progressEle = $("#progress");
+                progressEle.css("background-color", "red");
+
+                var formData = new FormData();                
+                var data = $("#ContentPlaceHolder1_avatar")[0].files[0];               
+<%--                formData.append("doc_name", $("#<%=ddlDocuments.ClientID%>").val());
+                formData.append("files", data);
+                
+                var dummyProgress = 1;
+                var intervalId = -1;
+                var req = new XMLHttpRequest();
+
+                 req.upload.addEventListener("progress", function (event) {
+
+                    var percent = (event.loaded / event.total) * 90;
+                    var progress = Math.round((event.loaded / event.total) * 90);
+                    console.log("progress:" + progress);
+                    if (progress < 90) {
+                        $(".status").html(progress + "%");
+                        progressEle.width(progress + "%");
+                    }
+                    else {
+                        progress = progress + dummyProgress;
+                        if (progress <= 99) {
+                            $(".status").html(progress + "%");
+                            progressEle.width(progress + "%");
+                        }
+                        if (intervalId == -1) {
+                            intervalId = setInterval(function () {
+                                progress = progress + dummyProgress;
+                                dummyProgress++;
+                                if (progress <= 99) {
+                                    $(".status").html(progress + "%");
+                                    progressEle.width(progress + "%");
+                                }
+                                else
+                                    clearInterval(intervalId);
+                            }, 2500);
+                        }
+                    }
+                });
+
+                req.onreadystatechange = function () {
+                    if (req.status && req.status == 200 && (req.readyState == 4)) {                        
+                        $("#ContentPlaceHolder1_uploadbtn").removeAttr("disabled");
+                        alert("uploaded successfully");
+                        location.reload();
+                    }
+                }
+                req.open("POST", 'uploaddocuments.aspx/uploadDoc', true);
+                req.send(formData);
+            }--%>
+            return true;
         }
                     
         function validfileExtention(filepath , hidDocumentPath) {
