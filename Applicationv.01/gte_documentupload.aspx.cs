@@ -164,6 +164,7 @@ public partial class gte_documentupload : System.Web.UI.Page
                 formgroupDiv.Attributes["class"] = "form-group m-0";
                 formgroupDiv.Attributes["role"] = "group";
                 formgroupDiv.Attributes["aria - labelledby"] = fields[k].fieldid.ToString();
+                formgroupDiv.Attributes["ID"] = fields[k].fieldid.ToString();
                 lstDiv.Controls.Add(formgroupDiv);
                 System.Web.UI.HtmlControls.HtmlGenericControl divFormRow = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
                 divFormRow.Attributes["class"] = "form-row";
@@ -172,7 +173,7 @@ public partial class gte_documentupload : System.Web.UI.Page
 
                 System.Web.UI.HtmlControls.HtmlGenericControl label1 = new System.Web.UI.HtmlControls.HtmlGenericControl("Label");
                 label1.ID = "label" + fields[k].fieldid.ToString();
-                label1.Attributes["class"] = "col-md-3 col-form-label form-label";
+                label1.Attributes["class"] = "col-md-6 col-form-label form-label";
                 label1.Attributes["for"] = fields[k].fieldid.ToString();
                 label1.InnerHtml = fields[k].primaryfiledname;
                 divFormRow.Controls.Add(label1);

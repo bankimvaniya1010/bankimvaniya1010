@@ -181,7 +181,7 @@ public partial class gte_certificate : System.Web.UI.Page
     private void showErrorMessage()
     {
         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                                "alert('GTE Certificate not generated.');window.location='" + webURL + "default.aspx';", true);
+                                "alert('GTE Certificate not generated.Please complete certification.');window.location='" + webURL + "default.aspx';", true);
     }
 
     private void setStudentPersonalDetails(int applicantId, int universityID)

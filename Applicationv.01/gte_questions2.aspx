@@ -124,7 +124,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#gteevalution_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#gtepart2').addClass('active');
+            $('#gtepart1').addClass('active');
 
             var minutesLabel = document.getElementById("minutes");	
             var secondsLabel = document.getElementById("seconds");	

@@ -128,5 +128,11 @@
             else
                 $("#<%=defaultinstructions.ClientID%>").show();
         });
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#dashboard_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Dashboard').addClass('active');
+        });
     </script>
 </asp:Content>

@@ -40,6 +40,9 @@
     <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/jquery-ui-1.12.1.min.js"></script>
     <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/jquery-ui-1.12.1.min.css" rel="stylesheet">
 
+
+    <script type="text/javascript" src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/WebCam.js"></script>
+
     <!--Code for disabling browser back button-->
     <script type="text/javascript">
         function disablePrev() { window.history.forward() }
@@ -118,7 +121,7 @@
                             <!-- User dropdown -->
                             <li class="nav-item ml-1 ml-md-3">
                                                                    
-                                    Welcome  &nbsp;<asp:Label ID="lblusername" runat="server"></asp:Label>
+                                    Welcome  &nbsp;<b><asp:Label ID="lblusername" runat="server"></asp:Label></b>
                                <!-- <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="login.aspx">
                                         <i class="material-icons">lock</i> Logout
@@ -188,8 +191,6 @@
                                                     <span class="sidebar-menu-text">Declarations</span>
                                                 </a>
                                             </li>
-
-
                                         </ul>
                                     </li>
                                       <li class="sidebar-menu-item" id="schedulecounselling">
@@ -358,6 +359,104 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="sidebar-menu-item" id="Dashboard" runat="server">
+                                        <a class="sidebar-menu-button" href="Default.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/message board.png" /></i>
+                                            <span class="sidebar-menu-text">Dashboard </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="Li1" runat="server" visible ="false"> 
+                                        <a class="sidebar-menu-button" href="gte_verification.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/message board.png" /></i>
+                                            <span class="sidebar-menu-text">verification</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="Instructions" runat="server">
+                                        <a class="sidebar-menu-button" href="preliminary.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/before you start.png" /></i>
+                                            <span class="sidebar-menu-text">Before you start </span>
+                                        </a>
+                                    </li>
+                                     <%-- <li class="sidebar-menu-item" id="gtestudentdetail" runat="server">
+                                        <a class="sidebar-menu-button" href="<%=gtestudentdetailpageURL %>"">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/student info.png" /></i>
+                                            <span class="sidebar-menu-text">Your Details  </span>
+                                        </a>
+                                    </li>--%>
+                                    <li class="sidebar-menu-item" id="Declaration" runat="server">
+                                        <a class="sidebar-menu-button" href="gte_declaration.aspx?formid=20">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/student application.png" /></i>
+                                            <span class="sidebar-menu-text">Declaration  </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="Tutorial" runat="server">
+                                        <a class="sidebar-menu-button" href="gte_tutorial.aspx?formid=17">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/message board.png" /></i>
+                                            <span class="sidebar-menu-text">Tutorial</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="Verification" runat="server">
+                                        <a class="sidebar-menu-button" href="schedule_conselling.aspx?name=<%=username %>&email=<%=useremail%>">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/message board.png" /></i>
+                                            <span class="sidebar-menu-text">Schedule Now </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="Certification" runat="server">
+                                        <a class="sidebar-menu-button" href="gte_preliminary_section.aspx?formid=18">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/gte.png" /></i>
+                                            <span class="sidebar-menu-text">Certification  </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="ViewCertificate" runat="server">
+                                        <a class="sidebar-menu-button" href="<%=CertificateURL %>"">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/message board.png" /></i>
+                                            <span class="sidebar-menu-text">View Certificate </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="GTEAssessment" runat="server">
+                                        <a class="sidebar-menu-button" href="gte_questions1.aspx?formid=22">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/admissions offer.png" /></i>
+                                            <span class="sidebar-menu-text">GTE Assessment</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="SOPBuilder" runat="server">
+                                        <a class="sidebar-menu-button" href="<%=SOPPageURL %>"">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/admissions offer.png" /></i>
+                                            <span class="sidebar-menu-text">SOP Builder</span>
+                                        </a>
+                                    </li>
+                                      <li class="sidebar-menu-item" id="CounsellorAdvise" runat="server" visible="false">
+                                        <a class="sidebar-menu-button" href="#">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/message board.png" /></i>
+                                            <span class="sidebar-menu-text">Counsellor's Advise </span>
+                                        </a>
+                                    </li>
+                                      <li class="sidebar-menu-item" id="DocumentsUpload" runat="server">
+                                        <a class="sidebar-menu-button" href="<%=gtedocumentuploadURL %>"">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/admissions offer.png" /></i>
+                                            <span class="sidebar-menu-text">Documents Upload</span>
+                                        </a>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="GTEREport" runat="server">
+                                        <a class="sidebar-menu-button" href="gte_ReportN.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/admissions offer.png" /></i>
+                                            <span class="sidebar-menu-text">GTE Report</span>
+                                        </a>
+                                    </li>
                                     <li class="sidebar-menu-item" id="Gte_list">
                                         <a class="sidebar-menu-button" data-toggle="collapse"  href="#Gte">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/gte.png" /></i>
@@ -375,7 +474,7 @@
                                                     <span class="sidebar-menu-text">Certificate Test - Stage 1</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-menu-item" id="gtepreliminarysection2">
+                                            <li class="sidebar-menu-item" id="gtepreliminarysection2" style="display:none;">
                                                 <a class="sidebar-menu-button" href="gte_preliminaryquestion.aspx?formid=19">
                                                     <span class="sidebar-menu-text">Certificate Test - Stage 2</span>
                                                 </a>
@@ -410,12 +509,12 @@
                                                     <span class="sidebar-menu-text">GTE Evaluation - Stage 2</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-menu-item" id="gtepart2">
+                                            <li class="sidebar-menu-item" id="gtepart2" style="display:none;">
                                                 <a class="sidebar-menu-button" href="gte_questions2.aspx?formid=23">
                                                     <span class="sidebar-menu-text">GTE Evaluation - Stage 3</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-menu-item" id="gteclarification">
+                                            <li class="sidebar-menu-item" id="gteclarification" style="display:none;">
                                                 <a class="sidebar-menu-button" href="gte_clarificationquestions.aspx?formid=24">
                                                     <span class="sidebar-menu-text">Clarification Questions</span>
                                                 </a>
@@ -465,7 +564,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>      
+                                    </li>     
                                      <li class="sidebar-menu-item" id="admissionsOffer_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#admissionsOffer">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/admissions offer.png" /></i>
@@ -699,14 +798,15 @@
             var fullService = ("<%=Session["FullService"]%>");
             var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
-            var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");            
+            var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");
             var GteDeclarationDoneByApplicant = ("<%=Session["GteDeclarationDoneByApplicant"]%>".toLowerCase() == "true");
             var UniversityID = '<%= Utility.GetUniversityId()%>';
-            
+            var gtesubService = '<%=gtesubService%>';
 
             if (fullService == 0) {//hide when its gte service
                 $("#counsellingcenter_list").hide();
-                $("#updatepreferences").hide();
+                //$("#updatepreferences").hide();
+                //$("#profile_list").hide();
             }
             if (fullService == 1 || fullService == 0) {
                 $("#exam_list").hide();
@@ -742,11 +842,11 @@
                     else if (fullService == 1) {
                         $("#gteevalution_list").hide();
                         $("#gtestudentdetail").hide();
-                        //$("#preliminary_list").show();
+                        $("#preliminary_list").show();
                     }
 
-                    //if (isDomesticStudent)
-                    //    $("#Gte_list").hide();
+                    if (isDomesticStudent)
+                        $("#Gte_list").hide();
                 }
                 else {
                     $("#schedulecounselling").show();
@@ -758,7 +858,7 @@
                     $("#predeparture_list").show();
                     $("#supportservice_list").show();
                     $("#gtepart1").show();
-                    $("#gtepart2").show();
+                    $("#gtepart2").hide();//$("#gtepart2").show();
                     //$("#gtevideoquestion").show();
                     $("#gtestudent_sop").show();
                     $("#gte_sop_draft").show();
@@ -770,7 +870,7 @@
                     $("#studentapplication_finances").show();
                     if (fullService == 0) {
                         $("#gtestudentdetail").show();
-                       // $("#preliminary_list").hide();
+                        //$("#preliminary_list").hide();
                         $("#personal_menu_list").hide();
                         $("#studentapplication_list").hide();
 
@@ -784,26 +884,24 @@
                         $("#supportservice_list").hide();
                     }
                     else if (fullService == 1) {
-                        $("#gtestudentdetail").hide();
-                        //$("#preliminary_list").show();
+                       // $("#gtestudentdetail").hide();
+                        $("#preliminary_list").show();
                         $("#personal_menu_list").show();
                         $("#studentapplication_list").show();
 
                     }
 
-                    if (!studentDetailsCompleted) {                       
+                    if (!studentDetailsCompleted) {
                         $("#gtepart1").hide();
                         $("#gtepart2").hide();
-                        //$("#gtevideoquestion").hide();
+                        $("#gtevideoquestion").hide();
                         $("#gtestudent_sop").hide();
                         $("#gte_sop_draft").hide();
                         $("#draftgtereport").hide();
                         $("#gte_downlload_your_sop").hide();
                         $("#download_gtereport").hide();
                         $("#gtedocmentupload").hide();
-                        $("#gtedocument_list").hide();
-                        if (fullService == 1)
-                             $("#gteevalution_list").hide();
+                        $("#gteevalution_list").hide();
                     }
                     if (fullService == 1) {
                         if (studentDetailsCompleted) {
@@ -831,18 +929,72 @@
                     }
 
                 }
+
             }
             else if (fullService == 2) {
                 $("#studedetails").show();
                 $("#schedulecounselling").hide();
                 $("#updatepreferences").hide();
                 $("#counsellingcenter_list").hide();
-               // $("#preliminary_list").hide();
+                //$("#preliminary_list").hide();
                 $("#personal_menu_list").hide();
                 $("#studentapplication_list").hide();
                 $("#studentapplication_finances").hide();
                 $("#Gte_list").hide();
                 $("#gteevalution_list").hide();
+                $("#gtedocument_list").hide();
+                $("#Verification").hide();
+                $("#admissionsOffer_list").hide();
+                $("#viewCOE_list").hide();
+                $("#visaapplication_list").hide();
+                $("#feepayment_list").hide();
+                $("#predeparture_list").hide();
+                $("#supportservice_list").hide();
+            }
+            else if (fullService == 3) {
+                $("#GTEAssessment").hide();
+                $("#SOPBuilder").hide();
+                $("#CounsellorAdvise").hide();
+                $("#DocumentsUpload").hide();
+            }
+            else if (fullService == 4) {//Evalution
+                $("#Certification").hide();
+                $("#ViewCertificate").hide();
+                $("#Tutorial").hide();
+
+            }
+
+            if (fullService != 0 || fullService != 1) {
+                $("#Dashboard").hide();
+                $("#Instructions").hide();
+                //$("#gtestudentdetail").hide();
+                $("#Declaration").hide();
+                $("#Tutorial").hide();
+                $("#Certification").hide();
+                $("#ViewCertificate").hide();
+                $("#GTEAssessment").hide();
+                $("#SOPBuilder").hide();
+                $("#DocumentsUpload").hide();
+                $("#GTEREport").hide();               
+            }
+            
+                
+
+            if (fullService == 3 || fullService == 4 /*|| fullService == 0*/) {
+                $("#preliminary_list").hide();
+                $("#schedulecounselling").hide();
+            }
+            if (fullService == 3 || fullService == 4) {
+                $("#exam_list").hide();
+                $("#schedulecounselling").hide();
+                 $("#studedetails").show();
+                $("#schedulecounselling").hide();
+                $("#updatepreferences").hide();
+                $("#counsellingcenter_list").hide();
+                $("#profile_list").hide();
+                $("#personal_menu_list").hide();
+                $("#studentapplication_list").hide();
+                $("#studentapplication_finances").hide();
                 $("#gtedocument_list").hide();
                 $("#admissionsOffer_list").hide();
                 $("#viewCOE_list").hide();
@@ -851,12 +1003,42 @@
                 $("#predeparture_list").hide();
                 $("#supportservice_list").hide();
             }
-            var questioncompleted = '<%=questioncompleted%>';
+            if (fullService == 1) {
+                $("#Dashboard").hide();
+                if (gtesubService == 2) {
+                   
+                    $("#GTEAssessment").hide();
+                    $("#SOPBuilder").hide();
+                    $("#CounsellorAdvise").hide();
+                    $("#DocumentsUpload").hide();
+                }
+                else if (gtesubService == 3) {
+                    $("#Tutorial").hide();
+                    $("#Certification").hide();
+                    $("#ViewCertificate").hide();
+                }
+            }
+            if (fullService == 0)
+                $("#gteevalution_list").show();
+            $("#Dashboard").hide();
+            $("#Instructions").hide();
+            //$("#gtestudentdetail").hide();
+            $("#Declaration").hide();
+            $("#Tutorial").hide();
+            $("#Certification").hide();
+            $("#ViewCertificate").hide();
+            $("#GTEAssessment").hide();
+            $("#SOPBuilder").hide();
+            $("#DocumentsUpload").hide();
+            $("#GTEREport").hide();
+            $("#Verification").hide();
+            
+           <%-- var questioncompleted = '<%=questioncompleted%>';
             var isclarificationquestionset = '<%=isclarificationquestionset%>'
             if (questioncompleted == 0 || isclarificationquestionset == 0)
                 $("#gteclarification").hide();
             else
-                $("#gteclarification").show();
+                $("#gteclarification").show();--%>
 
             $("#<%=ddlseclanguage.ClientID%>").change(function () {
             var selectedvalue = $("#<%=ddlseclanguage.ClientID%>").val();
@@ -871,7 +1053,7 @@
         });
 
      var isVerifiedByAdmin = '<%=isVerifiedByAdmin%>';
-     <%--function ajaxcalltocheckidVerified() {
+     function ajaxcalltocheckidVerified() {
             var UserID = '<%= UserID%>';
             $.ajax({
                 type: "POST",
@@ -894,7 +1076,7 @@
         }
         if (isVerifiedByAdmin == "False")
             setInterval(ajaxcalltocheckidVerified, 1000);
-        --%>
+        
     </script>
     
 <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

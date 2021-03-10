@@ -21,6 +21,8 @@ public partial class gte_tutorial : System.Web.UI.Page
     bool? istutorialcomplete;
     int formId = 0;
     gte_progressbar gteProgressBar = new gte_progressbar();
+    string username = string.Empty;
+    string useremail = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -34,7 +36,9 @@ public partial class gte_tutorial : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
-
+        students loggedInApplicant = (students)Session["LoginInfo"];
+        username = loggedInApplicant.name;
+        useremail = loggedInApplicant.email;
         var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
         if (!isVerifiedByAdmin)
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
@@ -97,7 +101,7 @@ public partial class gte_tutorial : System.Web.UI.Page
             if(mode== "new")
                 db.gte_progressbar.Add(gteProgressBar);
             db.SaveChanges();
-            Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
+            Response.Redirect(webURL + "schedule_conselling.aspx?name=" + username + "&email=" + useremail, true);
         }
         
         catch (Exception ex)

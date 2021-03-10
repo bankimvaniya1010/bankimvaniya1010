@@ -155,7 +155,7 @@ public partial class schedulemeeting_otp : System.Web.UI.Page
         var enteredPasskey = txtpassskey.Value;
         var mode = "new";
         var Schedule = (from pInfo in db.applicant_meeting_schedule
-                        where pInfo.applicant_id == UserID && pInfo.university_id == UniversityID && pInfo.is_meetingtime_expires == null
+                        where pInfo.applicant_id == UserID && pInfo.university_id == UniversityID && pInfo.is_meetingtime_expires != true
                         select pInfo).FirstOrDefault();
         applicant_meeting_schedule objapplicant_meeting_schedule = new applicant_meeting_schedule();
 
@@ -175,7 +175,11 @@ public partial class schedulemeeting_otp : System.Web.UI.Page
             if (mode == "new")
                 db.applicant_meeting_schedule.Add(objapplicant_meeting_schedule);
             db.SaveChanges();
-            Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
+            int isFullService = (int)Session["FullService"];
+            if(isFullService == 0)
+                Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
+            else
+                Response.Redirect(webURL + "gte_questions1.aspx?formid=22", true);
         }
     }
 }

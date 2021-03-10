@@ -31,6 +31,12 @@ public partial class admin_edit_studentDetails : System.Web.UI.Page
         }
     }
 
+    private void BindList() {
+        try {
+
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
     private void populateInfo()
     {
         try {
@@ -38,6 +44,7 @@ public partial class admin_edit_studentDetails : System.Web.UI.Page
                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null) {
+                lblname.Value = profileInfo.firstname + " " + profileInfo.lastname;
                 txtstudentid.Value = profileInfo.studentid;
                 if (profileInfo.classId != null)
                 {

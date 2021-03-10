@@ -25,7 +25,8 @@ public partial class admin : System.Web.UI.MasterPage
     DateTime meetingTime, fiveminbeforemeeetingtimeis, currenttime ;
     public string applicantname;
     public bool? isVerifiedByAdmin;
-
+    public int gtesubService;
+    public string CertificateURL, SOPPageURL, gtestudentdetailpageURL, gtedocumentuploadURL;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -60,17 +61,15 @@ public partial class admin : System.Web.UI.MasterPage
             Bindseclanguagelist();
             populateSelectedLanguage();
         }
-
+        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.fontcolor, x.headerstripcolor, x.verticalnavigationcolor, x.logo, x.sub_gte_service }).FirstOrDefault();
         if (Session["universitylogo"] == null || Session["universityverticalnavigationcolor"] == null || Session["universityfontColor"] == null || Session["universityheadercolor"] == null)
         {
-            var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.fontcolor, x.headerstripcolor, x.verticalnavigationcolor, x.logo }).FirstOrDefault();
-
             Session["universitylogo"] = universityDetails.logo;
             Session["universityverticalnavigationcolor"] = universityDetails.verticalnavigationcolor;
             Session["universityfontColor"] = universityDetails.fontcolor;
             Session["universityheadercolor"] = universityDetails.headerstripcolor;            
         }
-
+        gtesubService = Convert.ToInt32(universityDetails.sub_gte_service);
         students loggedInApplicant = (students)Session["LoginInfo"];
         lblusername.Text = loggedInApplicant.name;
         username = loggedInApplicant.name;
@@ -80,7 +79,7 @@ public partial class admin : System.Web.UI.MasterPage
         verticalnavigationcolor = (string)Session["universityverticalnavigationcolor"];
         fontColor = (string)Session["universityfontColor"];
         headercolor = (string)Session["universityheadercolor"];
-        int isfullservice = (int)Session["isfullservice"];
+        int isfullservice =  (int)Session["isfullservice"];
         
         if (isfullservice == 0)
             isfullservicethenlbl.Text = "GTE Online Center (GOC)";
@@ -88,6 +87,23 @@ public partial class admin : System.Web.UI.MasterPage
             isfullservicethenlbl.Text = "APPLICATION CENTER";
         else if (isfullservice == 2)
             isfullservicethenlbl.Text = "Assessment Center";
+
+        
+        bool Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(UserID);
+        if (Isold_or_new_applicant == true)
+        {
+            gtestudentdetailpageURL = "gte_studentdetailsN.aspx?formid=21";
+            CertificateURL = "gte_certificateN.aspx";
+            SOPPageURL = "gte_sop_builder.aspx?formid=26";
+            gtedocumentuploadURL = "gte_supportingdocument.aspx";
+        }
+        else
+        {
+            gtestudentdetailpageURL = "gte_studentdetails.aspx?formid=21";
+            CertificateURL = "gte_certificate.aspx";
+            SOPPageURL = "gte_sop.aspx?formid=26";
+            gtedocumentuploadURL = "gte_documentupload.aspx?formid=15";
+        }
     }
 
     private void populateSelectedLanguage()

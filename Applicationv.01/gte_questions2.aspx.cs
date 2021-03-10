@@ -103,7 +103,7 @@ public partial class gte_questions2 : System.Web.UI.Page
 
     private string AddContentInText(string text)
     {
-        if (text.Contains("#HomeCountry#"))
+        if (text.Contains("#HomeCountry#"))///#City#,    #Education_Institution#, 
             text = text.Replace("#HomeCountry#", Convert.ToString(ViewState["homeCountry"]));
 
         return text;

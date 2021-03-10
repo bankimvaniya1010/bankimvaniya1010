@@ -49,7 +49,7 @@
         <div class="d-flex align-items-center" style="min-height: 100vh">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
 
-                <div class="card navbar-shadow">
+                <div class="card navbar-shadow" style="width:553px;margin-left:-52px">
                     <div class="card-header text-center logn-head positnrel">
                         <div class="frnd-hdr logo-img">
                             <img src="<%=logourl %>" class="logo-img img-fluid"/>

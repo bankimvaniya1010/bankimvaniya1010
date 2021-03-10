@@ -67,16 +67,28 @@ public partial class admin_view_gteapplicantdocuments : System.Web.UI.Page
     {
         try {
 
-            documentlist = (from ad in db.gte_applicantdocument
+            if(objCom.GetIS_oldOrNew_applicant(applicantid) == true)
+                documentlist = (from ad in db.gte_applicantdocument
                             join pfm in db.primaryfieldmaster on ad.documentid equals pfm.primaryfieldid
                             where ad.applicantid == applicantid && ad.universityid == universityid && pfm.primaryfieldid == ad.documentid
                             select new Details() {
                                 documentid = ad.applicantdocumentid,
                                 documentname= pfm.primaryfiledname,
-                                documentpath = webURL + "Docs/GTEApplicantDocument/"+ad.documentpath,
+                                documentpath = webURL + "Docs/GTEApplicantDocument/"+ad.universityid+"/"+applicantid+"/"+ad.documentpath,
 
                             }).ToList();
-                         
+            else
+                documentlist = (from ad in db.gte_applicantdocument
+                                join pfm in db.primaryfieldmaster on ad.documentid equals pfm.primaryfieldid
+                                where ad.applicantid == applicantid && ad.universityid == universityid && pfm.primaryfieldid == ad.documentid
+                                select new Details()
+                                {
+                                    documentid = ad.applicantdocumentid,
+                                    documentname = pfm.primaryfiledname,
+                                    documentpath = webURL + "Docs/GTEApplicantDocument/" + ad.documentpath,
+
+                                }).ToList();
+
         }
         catch (Exception ex){objLog.WriteLog(ex.StackTrace.ToString());}
     }

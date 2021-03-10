@@ -59,7 +59,7 @@
     <body class="login">
         <div class="d-flex align-items-center" style="min-height: 100vh">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
-                <div class="text-center mt-5 mb-1">
+                <div class="text-center mb-1">
                     <div class="avatar avatar-lg">
                         <%--<img src="~/assets/images/logo/primary.svg" class="avatar-img rounded-circle" alt="LearnPlus" />--%>
                     </div>
@@ -69,8 +69,8 @@
                 </div>
                 <div class="card navbar-shadow">
                     <div class="card-header text-center">
-                        <h4 class="card-title">Login</h4>
-                        <p class="card-subtitle">Access your account</p>
+                        <h4 class="card-title" style="color: black;">Admin Portal Login</h4>
+                        <p class="card-subtitle" style="color: black;">Access your account</p>
                     </div>
                     <div class="card-body">
 
@@ -111,12 +111,14 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <asp:Button ID="btn_login" runat="server" Text="Log In" CssClass="btn btn-primary btn-block" OnClick="btn_login_Click" />
+                                <asp:Button ID="buttonlogin" runat="server" Text="Log In" CssClass="btn btn-primary btn-block" OnClick="btn_login_Click" />
                                  <asp:Label ID="lblMessage" runat="server"></asp:Label>
                             </div>
                             <div class="text-center">
-                                <a href="forgetpassword.aspx" class="text-black-70" style="text-decoration: underline;">Forgot Password?</a>
+                                <div class="card-footer text-center text-black-50" style="color:black; margin-bottom: -15px;"> <a href="forgetpassword.aspx" class="text-black-70" style="text-decoration: underline;">Forgot Password?</a></div>
+                               <br/><a href="<%=studlogin %>"" class="" style="text-decoration: underline;">Student Login Portal</a>
                             </div>
+                            
                         </form>
                     </div>                    
                 </div>
@@ -146,7 +148,16 @@
 
         <!-- App Settings (safe to remove) -->
         <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/app-settings.js"></script>
-
+         <script>
+           
+            var uniheadercolor = '<%=Session["headercolor"]%>';           
+           
+            // setter header color
+            document.documentElement.style.setProperty('--header-color', uniheadercolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--header-color');
+            
+        </script>
     </body>
     </html>
 </body>

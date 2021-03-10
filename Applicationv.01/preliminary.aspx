@@ -6,9 +6,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Preliminary Step</li>
+            <li class="breadcrumb-item active">Before You Start</li>
         </ol>
-        <h1 class="h2">TUTORIAL (STEP 1/3)</h1>
+       <%-- <h1 class="h2">TUTORIAL (STEP 1/3)</h1>--%>
     </div>
 
     <div class="page ">
@@ -65,7 +65,8 @@
                         <label  style="font-size:small;">I have Read and fully Understood the information contained in the above documents and videos </label>
                         <div class="media align-items-center">  
                             <div class="form-row" style="align-content:center">
-                                <a href="preliminaryquestion.aspx" class="btn btn-success">Next</a>                                      
+                                <asp:Button runat="server" CssClass="btn-success" Text="Next" OnClick="Unnamed_Click"/>
+                                <%--<a href="gte_studentdetails.aspx?formid=21" class="btn btn-success">Next</a>                                      --%>
                             </div>
                         </div>
                     </div>
@@ -143,10 +144,10 @@
         });
         }
           $(document).ready(function () {
-              $('.sidebar-menu-item').removeClass('open');
-              $('#preliminary_list').addClass('open');
+              //$('.sidebar-menu-item').removeClass('open');
+              //$('#preliminary_list').addClass('open');
               $('.sidebar-menu-item').removeClass('active');
-              $('#preliminarys').addClass('active');
+              $('#Instructions').addClass('active');
           });
         
     </script>

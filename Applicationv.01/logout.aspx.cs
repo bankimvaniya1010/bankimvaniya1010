@@ -64,7 +64,7 @@ public partial class logout : System.Web.UI.Page
                     mode = "update";
                     objapplicant = data;
                 }
-                objapplicant.logout_forexam_at = System.DateTime.Now;
+                objapplicant.logout_forexam_at = DateTime.UtcNow;
                 objapplicant.is_studentactiveforexam = 0;
                 if (mode == "new")
                     db.exam_assign.Add(objapplicant);

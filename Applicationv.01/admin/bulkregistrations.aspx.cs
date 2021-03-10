@@ -244,7 +244,8 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
         try
         {
             //check count set by institution for registration
-            var universitycount = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
+            var universitycount1 = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
+            var universitycount = Convert.ToInt32(universitycount1);
             var registeredapplicant = (from ad in db.applicantdetails
                                        join sd in db.students on ad.applicantid equals sd.studentid
                                        where ad.universityid == universityID && ad.isdeletedbyAdmin == false
@@ -266,70 +267,90 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
             }
             else
             {
-                var record = db.students.Where(x => x.email == useremail).FirstOrDefault();
-                if (record == null)
+                if (!string.IsNullOrEmpty(useremail))
                 {
-                    students usrObj = new students();
-                    usrObj.name = firstname;
-                    usrObj.email = useremail;
-                    int otp = objCom.RandomNumber(100000, 999999);
-                    usrObj.otp = otp;
-                    usrObj.studylevelid = 1;
-                    usrObj.verificationkey = Guid.NewGuid().ToString();
-                    usrObj.isverified = false;
-                    usrObj.isdeletedbyAdmin = false;
-                    usrObj.isverifiedbyAdmin = true;
-                    usrObj.universityid = universityID;
-                    db.students.Add(usrObj);
-                    db.SaveChanges();
-
-                    // add to list
-                    employees.Add(new students
+                    var record = db.students.Where(x => x.email == useremail).FirstOrDefault();
+                    if (record == null)
                     {
-                        username = firstname,
-                        email = useremail,
-                        studentid = usrObj.studentid
-                    });
+                        students usrObj = new students();
+                        usrObj.name = firstname;
+                        usrObj.email = useremail;
+                        int otp = objCom.RandomNumber(100000, 999999);
+                        usrObj.otp = otp;
+                        usrObj.studylevelid = 1;
+                        usrObj.verificationkey = Guid.NewGuid().ToString();
+                        usrObj.isverified = false;
+                        usrObj.isdeletedbyAdmin = false;
+                        usrObj.isverifiedbyAdmin = true;
+                        usrObj.universityid = universityID;
+                        db.students.Add(usrObj);
+                        db.SaveChanges();
 
-                    //save to applicantdetails db
-                    int id = usrObj.studentid;
-                    var mode = "new";
-                    applicantdetails objapplicant = new applicantdetails();
-                    var data = db.applicantdetails.Where(x => x.applicantid == id && x.universityid == usrObj.universityid).FirstOrDefault();
-                    if (data != null)
-                    {
-                        mode = "update";
-                        objapplicant = data;
+                        // add to list
+                        employees.Add(new students
+                        {
+                            username = firstname,
+                            email = useremail,
+                            studentid = usrObj.studentid
+                        });
+
+                        //save to applicantdetails db
+                        int id = usrObj.studentid;
+                        var mode = "new";
+                        applicantdetails objapplicant = new applicantdetails();
+                        var data = db.applicantdetails.Where(x => x.applicantid == id && x.universityid == usrObj.universityid).FirstOrDefault();
+                        if (data != null)
+                        {
+                            mode = "update";
+                            objapplicant = data;
+                        }
+
+                        objapplicant.applicantid = id;
+                        objapplicant.email = useremail;
+                        objapplicant.firstname = firstname;
+                        objapplicant.lastname = familyname;
+                        universityID = Utility.GetUniversityId();
+                        objapplicant.universityid = universityID;
+                        objapplicant.groupId = objCom.getgroupid(group);
+                        objapplicant.classId = objCom.getclassid(Class);
+                        objapplicant.studentid = studentid;
+                        objapplicant.isdeletedbyAdmin = false;
+                        objapplicant.Isdetailscompleted = false;
+                        objapplicant.Is_clarification_submitted = false;
+                        objapplicant.Isold_or_new_applicant = false;
+                        objapplicant.isverifiedbyAdmin = true;
+                        if (mode == "new")
+                            db.applicantdetails.Add(objapplicant);
+                        db.SaveChanges();
+
+                        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                        //sender email notification to university 
+                        if (university.emai_notification1 != null)
+                        {
+                            sendNotification(university.emai_notification1, useremail, id);
+                        }
+
+                        if (university.emai_notification2 != null)
+                        {
+                            sendNotification(university.emai_notification2, useremail, id);
+                        }
+                        string username = firstname + " " + familyname;
+                        sendNotificationToStudent(university, useremail, username, otp, id);
                     }
-                    
-                    objapplicant.applicantid = id;
-                    objapplicant.email = useremail;
-                    objapplicant.firstname = firstname;
-                    objapplicant.lastname = familyname;
-                    universityID = Utility.GetUniversityId();
-                    objapplicant.universityid = universityID;
-                    objapplicant.groupId = objCom.getgroupid(group);
-                    objapplicant.classId = objCom.getclassid(Class);
-                    objapplicant.studentid = studentid;
-                    objapplicant.isdeletedbyAdmin = false;
-                    objapplicant.isverifiedbyAdmin = true;
-                    if(mode=="new")
-                        db.applicantdetails.Add(objapplicant);
-                    db.SaveChanges();
-
-                    var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-                    //sender email notification to university 
-                    if (university.emai_notification1 != null)
+                    else
                     {
-                        sendNotification(university.emai_notification1, useremail, id);
+                        //same email id presenet
+                        invalidlist.Add(new details
+                        {
+                            firstname = firstname,
+                            familyname = familyname,
+                            email = useremail,
+                            Class = Class,
+                            group = group,
+                            studentid = studentid,
+                            invalidreason = "Email Already Exists"
+                        });
                     }
-
-                    if (university.emai_notification2 != null)
-                    {
-                        sendNotification(university.emai_notification2, useremail, id);
-                    }
-                    string username = firstname + " " + familyname;
-                    sendNotificationToStudent(university, useremail, username, otp, id);
                 }
                 else
                 {
@@ -337,12 +358,12 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
                     invalidlist.Add(new details
                     {
                         firstname = firstname,
-                        familyname=familyname,
+                        familyname = familyname,
                         email = useremail,
                         Class = Class,
                         group = group,
-                        studentid =studentid,
-                        invalidreason = "Email Already Exists"
+                        studentid = studentid,
+                        invalidreason = "Invalid Email"
                     });
                 }
             }

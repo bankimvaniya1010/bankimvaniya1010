@@ -344,9 +344,9 @@ public partial class admin_exam_assign : System.Web.UI.Page
                             html = html.Replace("@studentname", studentdetail.name);
                             html = html.Replace("@examutctime", Convert.ToDateTime(timezone.exam_datetime_utc).ToString("dd/MMM/yyyy hh:mm tt"));
                             html = html.Replace("@passkey", objassign.studentpasskey);
-                            if (objassign.timebeforeexam != null)
-                                html = html.Replace("@examtime", objassign.timebeforeexam);
-                            else
+                            html = html.Replace("@examtime", objassign.timebeforeexam);
+
+                            if (objassign.timebeforeexam == null)
                                 html = html.Replace("@examtime", "15");
                             objCom.SendMail(studentdetail.email, html, emailsubject);
                         }

@@ -62,7 +62,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                         details.highestqualificationfield = applicant_details.fieldofhigheststudy.HasValue ? applicant_details.fieldofhigheststudy.Value : 1;
                         details.fieldofstudyapplied = application_details.majorofdiscipline.HasValue ? application_details.majorofdiscipline.Value : 1;
                         details.highestqualifiactionachieved = applicant_details.higheststudycompleted.HasValue ? applicant_details.higheststudycompleted.Value.ToString() : "1";
-                        details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value.ToString() : "1";
+                        details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value : 1;
                     }
                 }
                 else if (isFullService == 0)

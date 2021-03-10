@@ -54,7 +54,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.address = txtUniAddress.Value.Trim();
                 universityObj.website = txtUniWebsite.Value.Trim();
                 universityObj.contact_person = txtUniContactPerson.Value.Trim();
-                universityObj.affiliation = txtUniAffiliation.Value.Trim();
+                universityObj.affiliation = Convert.ToInt32(txtUniAffiliation.Value);
                 universityObj.email = txtEmail.Value.Trim();
                 universityObj.mobile = txtMobile.Value.Trim();
                 universityObj.chatid = txtunichatId.Value.Trim();
@@ -97,7 +97,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.examInstruction = txtexamInstruction.Text.Trim();
                 universityObj.emai_notification1 = txtnotification1.Text.Trim();
                 universityObj.emai_notification2 = txtnotification2.Text.Trim();
-                universityObj.numberof_applicant = Convert.ToInt32(txtapplicantno.Value.Trim());
+                universityObj.numberof_applicant =txtapplicantno.Value.Trim();
 
                 var url = txthosturl.Value.Trim();
                 if(url.ToLower().Contains("www."))

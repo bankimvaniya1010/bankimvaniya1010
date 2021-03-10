@@ -72,6 +72,13 @@
           <Property Name="examinermasterID" Type="int" />
           <Property Name="creationdate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="admisionfactor_dropdown_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="agentmaster">
           <Key>
             <PropertyRef Name="agentid" />
@@ -81,6 +88,13 @@
           <Property Name="email" Type="varchar" MaxLength="45" />
           <Property Name="mobile" Type="varchar" MaxLength="45" />
           <Property Name="isactive" Type="int" />
+        </EntityType>
+        <EntityType Name="agenumber_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="alternateadressproofmaster">
           <Key>
@@ -218,6 +232,8 @@
           <Property Name="applicantpersonaldetailsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
           <Property Name="universityid" Type="int" />
+          <Property Name="isapplicatverified" Type="bit" />
+          <Property Name="Isold_or_new_applicant" Type="bit" Nullable="false" />
           <Property Name="isLoggedIn" Type="int" Nullable="false" />
           <Property Name="isdeletedbyAdmin" Type="bit" />
           <Property Name="isverifiedbyAdmin" Type="bit" />
@@ -265,6 +281,7 @@
           <Property Name="residentialstate" Type="varchar" MaxLength="45" />
           <Property Name="residentialcountry" Type="int" />
           <Property Name="haspreviousresidence" Type="bit" />
+          <Property Name="countrycode" Type="varchar" MaxLength="50" />
           <Property Name="mobileno" Type="varchar" MaxLength="45" />
           <Property Name="homephone" Type="varchar" MaxLength="45" />
           <Property Name="workphone" Type="varchar" MaxLength="45" />
@@ -333,6 +350,28 @@
           <Property Name="countryof_citizenship" Type="int" />
           <Property Name="campusId" Type="int" />
           <Property Name="profilephoto" Type="varchar" MaxLength="100" />
+          <Property Name="passportcopy" Type="varchar" MaxLength="100" />
+          <Property Name="broadFieldID" Type="int" />
+          <Property Name="narrowFieldID" Type="int" />
+          <Property Name="detailedFieldID" Type="int" />
+          <Property Name="broadFieldIDyouwillComplete" Type="int" />
+          <Property Name="narrowFieldIDyouwillComplete" Type="int" />
+          <Property Name="detailedFieldIDyouwillComplete" Type="int" />
+          <Property Name="Is_clarification_submitted" Type="bit" />
+          <Property Name="Isdetailscompleted" Type="bit" />
+          <Property Name="Ispackage" Type="int" />
+          <Property Name="what_package" Type="varchar" MaxLength="100" />
+          <Property Name="nameofuniversityappliedfor" Type="int" />
+          <Property Name="cityofeducationInstitution" Type="int" />
+          <Property Name="countryofeducationInstitution" Type="int" />
+          <Property Name="commencementdate" Type="varchar" MaxLength="100" />
+          <Property Name="levelofcourse" Type="int" />
+          <Property Name="highestqualifiactionachieved" Type="varchar" MaxLength="50" />
+          <Property Name="highestqualificationdate" Type="varchar" MaxLength="100" />
+          <Property Name="highestqualificationcountry" Type="int" />
+          <Property Name="workexperience" Type="int" />
+          <Property Name="Iscurrentlyworking" Type="int" />
+          <Property Name="Isjoboffered" Type="int" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -1100,6 +1139,14 @@
           <Property Name="passportplaceofissue" Type="varchar" MaxLength="50" />
           <Property Name="studyinAustralia" Type="int" />
         </EntityType>
+        <EntityType Name="broad_narrow_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="broadField_Id" Type="int" />
+          <Property Name="narrowField_Id" Type="int" />
+        </EntityType>
         <EntityType Name="bulk_registrations_master">
           <Key>
             <PropertyRef Name="id" />
@@ -1180,6 +1227,20 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="co_ed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="code_regno_type_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="controlmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -1196,6 +1257,14 @@
           <Property Name="country_name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="dual_citizenship_allowed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="countrycode_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="countrywisealternateidproofmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -1203,6 +1272,15 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="alternateidproofID" Type="int" />
           <Property Name="countryID" Type="int" />
+        </EntityType>
+        <EntityType Name="course_broadFields_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fieldname" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar" MaxLength="5000" />
+          <Property Name="code" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="course_campus_mapping">
           <Key>
@@ -1227,6 +1305,24 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="courseid" Type="int" Nullable="false" />
           <Property Name="defermentdate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="course_detailsField_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" />
+          <Property Name="fieldname" Type="varchar" MaxLength="500" />
+          <Property Name="description" Type="varchar" MaxLength="5000" />
+        </EntityType>
+        <EntityType Name="course_narrowFields_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" />
+          <Property Name="fieldname" Type="varchar" MaxLength="500" />
+          <Property Name="description" Type="varchar" MaxLength="5000" />
         </EntityType>
         <EntityType Name="coursemaster">
           <Key>
@@ -1299,6 +1395,13 @@
           <Property Name="value" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="formid" Type="int" Nullable="false" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="datetype_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="declaration_master">
           <Key>
@@ -1742,6 +1845,13 @@
           <Property Name="service" Type="int" />
           <Property Name="Active" Type="int" />
         </EntityType>
+        <EntityType Name="gender_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="grademaster">
           <Key>
             <PropertyRef Name="id" />
@@ -1765,6 +1875,7 @@
           <Property Name="gte_score" Type="int" Nullable="false" />
           <Property Name="gte_risk_score" Type="int" Nullable="false" />
           <Property Name="gte_question_id" Type="int" Nullable="false" />
+          <Property Name="counsellor_review_comments" Type="varchar" MaxLength="5000" />
         </EntityType>
         <EntityType Name="gte_applicantdetails">
           <Key>
@@ -1784,12 +1895,13 @@
           <Property Name="highestqualificationfield" Type="int" />
           <Property Name="highestqualificationdate" Type="varchar" MaxLength="10" />
           <Property Name="highestqualificationcountry" Type="int" />
-          <Property Name="levelofcourse" Type="varchar" MaxLength="11" />
           <Property Name="fieldofstudyapplied" Type="int" />
           <Property Name="campusid" Type="int" />
           <Property Name="coursename" Type="varchar" MaxLength="500" />
           <Property Name="commencementdate" Type="varchar" MaxLength="50" />
           <Property Name="workexperience" Type="int" />
+          <Property Name="Iscurrentlyworking" Type="int" />
+          <Property Name="Isjoboffered" Type="int" />
           <Property Name="typeofworkexperience" Type="int" />
           <Property Name="residencecountry" Type="int" />
           <Property Name="tuitionandlivingcost" Type="int" />
@@ -1800,6 +1912,20 @@
           <Property Name="agentid" Type="int" />
           <Property Name="registeragent_email" Type="varchar" MaxLength="100" />
           <Property Name="profilepicturepath" Type="varchar" MaxLength="200" />
+          <Property Name="passportcopyPath" Type="varchar" MaxLength="200" />
+          <Property Name="levelofcourse" Type="int" />
+        </EntityType>
+        <EntityType Name="gte_applicantdetails_autogenrated_clarificationquestionmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question_tag" Type="varchar" MaxLength="200" />
+          <Property Name="condition" Type="varchar" MaxLength="500" />
+          <Property Name="true_gte_score" Type="int" />
+          <Property Name="true_risk_score" Type="int" />
+          <Property Name="false_gte_score" Type="int" />
+          <Property Name="false_risk_score" Type="int" />
         </EntityType>
         <EntityType Name="gte_applicantdocument">
           <Key>
@@ -1811,6 +1937,15 @@
           <Property Name="documentpath" Type="varchar" MaxLength="100" />
           <Property Name="documentid" Type="int" />
         </EntityType>
+        <EntityType Name="gte_certificatelevel_description">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="percentage" Type="varchar" MaxLength="200" />
+          <Property Name="grade" Type="varchar" MaxLength="200" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+        </EntityType>
         <EntityType Name="gte_clarification_applicantresponse">
           <Key>
             <PropertyRef Name="id" />
@@ -1820,6 +1955,7 @@
           <Property Name="university_id" Type="int" Nullable="false" />
           <Property Name="clarification_question_id" Type="int" Nullable="false" />
           <Property Name="applicant_response" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="response_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="gte_clarification_questionmaster">
           <Key>
@@ -1827,9 +1963,9 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="gte_master1_id" Type="int" />
-          <Property Name="clarification_question" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="clarification_question" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="display_condition" Type="bit" />
-          <Property Name="action" Type="varchar" MaxLength="50" />
+          <Property Name="action" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="gte_declaration_master">
           <Key>
@@ -1898,8 +2034,11 @@
           <Property Name="is_gte_preliminarysection2_completed" Type="bit" />
           <Property Name="is_gte_declaration_completed" Type="bit" />
           <Property Name="is_gte_certificate_generated" Type="bit" />
+          <Property Name="gte_perdentage_score" Type="varchar" MaxLength="50" />
           <Property Name="certificate_name" Type="varchar" MaxLength="50" />
           <Property Name="certificate_creation_date" Type="date" />
+          <Property Name="gte_declaration_completed_date" Type="date" />
+          <Property Name="activity_ip" Type="varchar" MaxLength="100" />
           <Property Name="performance_category" Type="varchar" MaxLength="50" />
           <Property Name="certificatepath" Type="varchar" MaxLength="100" />
         </EntityType>
@@ -1910,6 +2049,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="question" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="tag" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="RG_Comments" Type="varchar" MaxLength="2000" />
           <Property Name="true_gte_score" Type="int" Nullable="false" />
           <Property Name="true_risk_score" Type="int" Nullable="false" />
           <Property Name="false_gte_score" Type="int" Nullable="false" />
@@ -1998,6 +2138,13 @@
           <Property Name="created_at" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="deleted_at" Type="datetime" Precision="0" />
           <Property Name="edited_at" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="gte_studymode_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="gte_tutorialmaster">
           <Key>
@@ -2197,6 +2344,21 @@
           <Property Name="masterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="mastername" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="narrow_detailed_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="narrowField_Id" Type="int" />
+          <Property Name="deatailedField_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Number_of_dependents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="payment_description_mappings">
           <Key>
             <PropertyRef Name="id" />
@@ -2275,6 +2437,28 @@
           <Property Name="answer" Type="varchar" MaxLength="45" />
           <Property Name="answersubmittedtime" Type="datetime" Precision="0" />
         </EntityType>
+        <EntityType Name="primary_location_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location_id" Type="varchar" MaxLength="50" />
+          <Property Name="primary_location" Type="varchar" MaxLength="100" />
+          <Property Name="city" Type="varchar" MaxLength="100" />
+          <Property Name="state_code" Type="varchar" MaxLength="100" />
+          <Property Name="state" Type="varchar" MaxLength="100" />
+          <Property Name="primary_zipcode" Type="varchar" MaxLength="100" />
+          <Property Name="type" Type="varchar" MaxLength="100" />
+          <Property Name="latitude" Type="varchar" MaxLength="100" />
+          <Property Name="longitude" Type="varchar" MaxLength="100" />
+          <Property Name="elevation" Type="varchar" MaxLength="100" />
+          <Property Name="population" Type="varchar" MaxLength="100" />
+          <Property Name="median_income" Type="varchar" MaxLength="100" />
+          <Property Name="are_sq_km" Type="varchar" MaxLength="100" />
+          <Property Name="local_govt_area" Type="varchar" MaxLength="100" />
+          <Property Name="region" Type="varchar" MaxLength="100" />
+          <Property Name="time_zone" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="primaryfieldmaster">
           <Key>
             <PropertyRef Name="primaryfieldid" />
@@ -2319,6 +2503,13 @@
           <Property Name="isprimary" Type="int" />
           <Property Name="infrencecategoryid" Type="int" />
         </EntityType>
+        <EntityType Name="question_tag_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tagname" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="realtionshipmaster">
           <Key>
             <PropertyRef Name="relationshiptid" />
@@ -2358,6 +2549,13 @@
           <Property Name="nationality" Type="varchar" MaxLength="45" />
           <Property Name="dob" Type="date" />
         </EntityType>
+        <EntityType Name="religious_affiliation_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="rolemaster">
           <Key>
             <PropertyRef Name="roleid" />
@@ -2386,6 +2584,27 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="languagecode" Type="varchar" MaxLength="5" />
           <Property Name="secondarylanguagename" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="selectivity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Setting_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="size_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="student_sop">
           <Key>
@@ -2435,7 +2654,8 @@
           </Key>
           <Property Name="studylevelid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="studylevel" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="levelofcode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="levelofcode" Type="varchar" MaxLength="100" />
+          <Property Name="systemLevel" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="studymodemaster">
           <Key>
@@ -2502,6 +2722,13 @@
           <Property Name="applicantid" Type="int" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="tests_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="timezonemaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -2563,6 +2790,13 @@
           <Property Name="status" Type="int" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="type_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="typeofworkexperiencemaster">
           <Key>
             <PropertyRef Name="workexperiencetypesid" />
@@ -2582,70 +2816,140 @@
             <PropertyRef Name="universityid" />
           </Key>
           <Property Name="universityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uni_id" Type="int" />
           <Property Name="university_flag" Type="int" />
-          <Property Name="university_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="codetype" Type="int" />
           <Property Name="CRICOS_Code" Type="varchar" MaxLength="100" />
-          <Property Name="hosturl" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="university_name" Type="varchar" MaxLength="1000" />
+          <Property Name="institutionlegalname" Type="varchar" MaxLength="1000" />
+          <Property Name="contact_person" Type="varchar" MaxLength="100" />
+          <Property Name="UniContactPersonPosition" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="45" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" />
+          <Property Name="address" Type="varchar" MaxLength="200" />
+          <Property Name="primarylocation" Type="int" />
+          <Property Name="cityid" Type="int" />
+          <Property Name="primary_state" Type="varchar" MaxLength="200" />
+          <Property Name="primaryzipcode" Type="varchar" MaxLength="200" />
+          <Property Name="countryid" Type="int" />
+          <Property Name="website" Type="varchar" MaxLength="45" />
           <Property Name="full_service" Type="int" Nullable="false" />
+          <Property Name="sub_gte_service" Type="int" />
+          <Property Name="numberof_applicant" Type="varchar" MaxLength="50" />
           <Property Name="emai_notification1" Type="varchar" MaxLength="100" />
           <Property Name="emai_notification2" Type="varchar" MaxLength="100" />
-          <Property Name="address" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="website" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="contact_person" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="mobile" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="chatid" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="affiliation" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="type" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="year_established" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="short_description" Type="varchar" MaxLength="1000" Nullable="false" />
-          <Property Name="long_description" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="cityid" Type="int" Nullable="false" />
-          <Property Name="countryid" Type="int" Nullable="false" />
-          <Property Name="latitude" Type="decimal" Precision="10" Scale="5" Nullable="false" />
-          <Property Name="longitude" Type="decimal" Precision="10" Scale="5" Nullable="false" />
-          <Property Name="time_zone" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="closest_airport" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="distance_from_airport" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="distance_from_railway" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="getting_around" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="acceptedmaxage" Type="int" Nullable="false" />
-          <Property Name="acceptedminage" Type="int" Nullable="false" />
-          <Property Name="notes_disclaimer" Type="varchar" MaxLength="1000" Nullable="false" />
-          <Property Name="logo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="headerstripcolor" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="verticalnavigationcolor" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fontcolor" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="sop_instruction_for_applicant" Type="varchar" MaxLength="20000" Nullable="false" />
-          <Property Name="scholarship_instruction" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="application_instruction" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="fee_payment_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="coe_instruction" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="acceptedmaxage" Type="int" />
+          <Property Name="acceptedminage" Type="int" />
+          <Property Name="hosturl" Type="varchar" MaxLength="100" />
+          <Property Name="chatid" Type="varchar" MaxLength="50" />
+          <Property Name="affiliation" Type="int" />
+          <Property Name="size" Type="int" />
+          <Property Name="setting" Type="int" />
+          <Property Name="ReligiousAffiliation" Type="int" />
+          <Property Name="SingleGender_Co_ed" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="200" />
+          <Property Name="year_established" Type="varchar" MaxLength="20" />
+          <Property Name="short_description" Type="varchar" MaxLength="1000" />
+          <Property Name="long_description" Type="varchar" MaxLength="2000" />
+          <Property Name="noofcampus" Type="varchar" MaxLength="2000" />
+          <Property Name="courseDescription" Type="varchar" MaxLength="2000" />
+          <Property Name="TotalEnrolledStudents" Type="varchar" MaxLength="500" />
+          <Property Name="DoctoralStudents" Type="varchar" MaxLength="500" />
+          <Property Name="GraduateStudents" Type="varchar" MaxLength="500" />
+          <Property Name="GraduateStudents39" Type="varchar" MaxLength="500" />
+          <Property Name="UnderGraduateStudents" Type="varchar" MaxLength="500" />
+          <Property Name="Certificate_DiplomaStudents" Type="varchar" MaxLength="500" />
+          <Property Name="Non_awardStudents" Type="varchar" MaxLength="500" />
+          <Property Name="SchoolEducationStudents" Type="varchar" MaxLength="500" />
+          <Property Name="NoofAcademicStaff" Type="varchar" MaxLength="500" />
+          <Property Name="StafftoStudentRatio" Type="varchar" MaxLength="500" />
+          <Property Name="FemaleonCampus" Type="varchar" MaxLength="500" />
+          <Property Name="AverageAge" Type="varchar" MaxLength="500" />
+          <Property Name="ofDomesticStudents" Type="varchar" MaxLength="500" />
+          <Property Name="InStateStudents" Type="varchar" MaxLength="500" />
+          <Property Name="ofInternationalStudents" Type="varchar" MaxLength="500" />
+          <Property Name="NoofNationalities" Type="varchar" MaxLength="500" />
+          <Property Name="impDates" Type="int" />
+          <Property Name="avgTuitionFee" Type="varchar" MaxLength="200" />
+          <Property Name="AvgFinancialAidPackage" Type="varchar" MaxLength="200" />
+          <Property Name="FinancialneedMet" Type="varchar" MaxLength="200" />
+          <Property Name="accreditation" Type="varchar" MaxLength="200" />
+          <Property Name="timesHigherEducationRanking" Type="varchar" MaxLength="200" />
+          <Property Name="QSWorldUniversityRanking" Type="varchar" MaxLength="200" />
+          <Property Name="academicRankingofWorldUniversities" Type="varchar" MaxLength="200" />
+          <Property Name="rankings" Type="varchar" MaxLength="200" />
+          <Property Name="awards" Type="varchar" MaxLength="200" />
+          <Property Name="subjectRankings" Type="varchar" MaxLength="200" />
+          <Property Name="longitude" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="latitude" Type="decimal" Precision="10" Scale="5" />
+          <Property Name="time_zone" Type="varchar" MaxLength="100" />
+          <Property Name="closest_airport" Type="varchar" MaxLength="100" />
+          <Property Name="distance_from_airport" Type="varchar" MaxLength="50" />
+          <Property Name="distance_from_railway" Type="varchar" MaxLength="50" />
+          <Property Name="getting_around" Type="varchar" MaxLength="200" />
+          <Property Name="notes_disclaimer" Type="varchar" MaxLength="1000" />
+          <Property Name="logo" Type="varchar" MaxLength="100" />
+          <Property Name="headerstripcolor" Type="varchar" MaxLength="100" />
+          <Property Name="verticalnavigationcolor" Type="varchar" MaxLength="100" />
+          <Property Name="fontcolor" Type="varchar" MaxLength="100" />
+          <Property Name="sop_instruction_for_applicant" Type="varchar" MaxLength="2000" />
+          <Property Name="scholarship_instruction" Type="varchar" MaxLength="2000" />
+          <Property Name="application_instruction" Type="varchar" MaxLength="2000" />
+          <Property Name="fee_payment_instructions" Type="varchar" MaxLength="2000" />
+          <Property Name="coe_instruction" Type="varchar" MaxLength="2000" />
           <Property Name="acceptance_terms" Type="varchar" MaxLength="2000" />
           <Property Name="deferment_terms" Type="varchar" MaxLength="2000" />
           <Property Name="rejection_terms" Type="varchar" MaxLength="2000" />
           <Property Name="examInstruction" Type="varchar" MaxLength="2000" />
           <Property Name="withdrawn_terms" Type="varchar" MaxLength="2000" />
-          <Property Name="supprot_service_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="visa_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="university_gtm_code" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="supprot_service_instructions" Type="varchar" MaxLength="2000" />
+          <Property Name="visa_instructions" Type="varchar" MaxLength="2000" />
+          <Property Name="university_gtm_code" Type="varchar" MaxLength="100" />
           <Property Name="proctor1_name" Type="varchar" MaxLength="100" />
           <Property Name="proctor1_email" Type="varchar" MaxLength="100" />
           <Property Name="proctor1_contactno" Type="varchar" MaxLength="100" />
-          <Property Name="numberof_applicant" Type="int" />
           <Property Name="recordsavedat_numberof_applicant" Type="datetime" Precision="0" />
+          <Property Name="totalcapacity" Type="varchar" MaxLength="50" />
+          <Property Name="nooflocation" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
             <PropertyRef Name="campusid" />
           </Key>
           <Property Name="campusid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="campusname" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="universityid" Type="int" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="research" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="faculty_description" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Ismaincampus" Type="int" />
+          <Property Name="campusname" Type="varchar" MaxLength="500" />
+          <Property Name="campuscountry" Type="int" />
           <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="campussetting" Type="int" />
+          <Property Name="campusaddress" Type="varchar" MaxLength="500" />
+          <Property Name="campuslatitude" Type="varchar" MaxLength="200" />
+          <Property Name="campuslongitude" Type="varchar" MaxLength="200" />
+          <Property Name="closest_airport" Type="varchar" MaxLength="200" />
+          <Property Name="distance_from_airport" Type="varchar" MaxLength="200" />
+          <Property Name="airDistanceUnit" Type="varchar" MaxLength="200" />
+          <Property Name="closest_distance_from_railway" Type="varchar" MaxLength="200" />
+          <Property Name="railclosestDistanceUnit" Type="varchar" MaxLength="200" />
+          <Property Name="distance_from_railway" Type="varchar" MaxLength="200" />
+          <Property Name="railwaydistanceunit" Type="varchar" MaxLength="200" />
+          <Property Name="getting_around" Type="varchar" MaxLength="200" />
+          <Property Name="placeofintrestimage" Type="varchar" MaxLength="200" />
+          <Property Name="placeofintrestdescription" Type="varchar" MaxLength="200" />
+          <Property Name="placeofintrestdistance" Type="varchar" MaxLength="200" />
+          <Property Name="Fraternities" Type="int" />
+          <Property Name="Sororities" Type="int" />
+          <Property Name="totalstudent_campus" Type="varchar" MaxLength="200" />
+          <Property Name="male_percentage" Type="varchar" MaxLength="200" />
+          <Property Name="female_percentage" Type="varchar" MaxLength="200" />
+          <Property Name="averageage" Type="varchar" MaxLength="200" />
+          <Property Name="domesticstude" Type="varchar" MaxLength="200" />
+          <Property Name="statestude" Type="varchar" MaxLength="200" />
+          <Property Name="internationalstude" Type="varchar" MaxLength="200" />
+          <Property Name="noofnationalty" Type="varchar" MaxLength="200" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="2000" />
+          <Property Name="research" Type="varchar" MaxLength="2000" />
+          <Property Name="faculty_description" Type="varchar" MaxLength="2000" />
         </EntityType>
         <EntityType Name="universitygrouping">
           <Key>
@@ -3347,18 +3651,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_clarification_gte_master_part2">
-          <End Role="gte_question_master_part2" Type="Self.gte_question_master_part2" Multiplicity="0..1" />
-          <End Role="gte_clarification_questionmaster" Type="Self.gte_clarification_questionmaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="gte_question_master_part2">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="gte_clarification_questionmaster">
-              <PropertyRef Name="gte_master1_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_clarificationmaster_clarificationquestion_mapping">
           <End Role="clarificationquestionsmaster" Type="Self.clarificationquestionsmaster" Multiplicity="1" />
           <End Role="clarificationquestion_university_mapping" Type="Self.clarificationquestion_university_mapping" Multiplicity="*" />
@@ -3584,6 +3876,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Principal>
             <Dependent Role="gte_declaration_master">
               <PropertyRef Name="universityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gte_question_master_part2">
+          <End Role="gte_question_master_part2" Type="Self.gte_question_master_part2" Multiplicity="0..1" />
+          <End Role="gte_clarification_questionmaster" Type="Self.gte_clarification_questionmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gte_question_master_part2">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="gte_clarification_questionmaster">
+              <PropertyRef Name="gte_master1_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4224,7 +4528,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_universityMaster_cityMaster">
-          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="0..1" />
           <End Role="university_master" Type="Self.university_master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="citymaster">
@@ -4346,7 +4650,9 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="admintooltips" EntityType="Self.admintooltips" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="adminuniversitywisetooltips" EntityType="Self.adminuniversitywisetooltips" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="adminusers" EntityType="Self.adminusers" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="admisionfactor_dropdown_master" EntityType="Self.admisionfactor_dropdown_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="agentmaster" EntityType="Self.agentmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="agenumber_master" EntityType="Self.agenumber_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="alternateadressproofmaster" EntityType="Self.alternateadressproofmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="alternatedobproof" EntityType="Self.alternatedobproof" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="alternateidproofmaster" EntityType="Self.alternateidproofmaster" Schema="GTE" store:Type="Tables" />
@@ -4379,6 +4685,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="australiavisadetailmaster" EntityType="Self.australiavisadetailmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="australiavisadocumentmaster" EntityType="Self.australiavisadocumentmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="australiavisaFamilydetailmaster" EntityType="Self.australiavisaFamilydetailmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="broad_narrow_mapping" EntityType="Self.broad_narrow_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="bulk_registrations_master" EntityType="Self.bulk_registrations_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="careeroutcomes_master" EntityType="Self.careeroutcomes_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="careeroutcomes_position_master" EntityType="Self.careeroutcomes_position_master" Schema="GTE" store:Type="Tables" />
@@ -4388,18 +4695,25 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="clarificationquestion_university_mapping" EntityType="Self.clarificationquestion_university_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="clarificationquestionsmaster" EntityType="Self.clarificationquestionsmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="class_master" EntityType="Self.class_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="co_ed_master" EntityType="Self.co_ed_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="code_regno_type_master" EntityType="Self.code_regno_type_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="controlmaster" EntityType="Self.controlmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="countriesmaster" EntityType="Self.countriesmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="countrycode_master" EntityType="Self.countrycode_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="countrywisealternateidproofmaster" EntityType="Self.countrywisealternateidproofmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="course_broadFields_master" EntityType="Self.course_broadFields_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="course_campus_mapping" EntityType="Self.course_campus_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="course_dates" EntityType="Self.course_dates" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="course_defermentdates" EntityType="Self.course_defermentdates" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="course_detailsField_master" EntityType="Self.course_detailsField_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="course_narrowFields_master" EntityType="Self.course_narrowFields_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursemaster" EntityType="Self.coursemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="credentialmaster" EntityType="Self.credentialmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="currency_master" EntityType="Self.currency_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="customfieldmaster" EntityType="Self.customfieldmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="customfieldvalue" EntityType="Self.customfieldvalue" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="datetype_master" EntityType="Self.datetype_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="declaration_master" EntityType="Self.declaration_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
@@ -4435,11 +4749,14 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="formfieldmapping" EntityType="Self.formfieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="formfieldmaster" EntityType="Self.formfieldmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="formmaster" EntityType="Self.formmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gender_master" EntityType="Self.gender_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="grademaster" EntityType="Self.grademaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="group_master" EntityType="Self.group_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_answer_master" EntityType="Self.gte_answer_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_applicantdetails" EntityType="Self.gte_applicantdetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gte_applicantdetails_autogenrated_clarificationquestionmaster" EntityType="Self.gte_applicantdetails_autogenrated_clarificationquestionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_applicantdocument" EntityType="Self.gte_applicantdocument" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gte_certificatelevel_description" EntityType="Self.gte_certificatelevel_description" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_clarification_applicantresponse" EntityType="Self.gte_clarification_applicantresponse" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_clarification_questionmaster" EntityType="Self.gte_clarification_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_declaration_master" EntityType="Self.gte_declaration_master" Schema="GTE" store:Type="Tables" />
@@ -4454,6 +4771,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="gte_report_admin_comment" EntityType="Self.gte_report_admin_comment" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_statementofpurpose" EntityType="Self.gte_statementofpurpose" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_student_sop" EntityType="Self.gte_student_sop" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gte_studymode_master" EntityType="Self.gte_studymode_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_tutorialmaster" EntityType="Self.gte_tutorialmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_videouploadmaster" EntityType="Self.gte_videouploadmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gtepreliminarysection_applicantanswers" EntityType="Self.gtepreliminarysection_applicantanswers" Schema="GTE" store:Type="Tables" />
@@ -4473,6 +4791,8 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="managevisa" EntityType="Self.managevisa" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="maritalstatusmaster" EntityType="Self.maritalstatusmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="master_name" EntityType="Self.master_name" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="narrow_detailed_mapping" EntityType="Self.narrow_detailed_mapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="Number_of_dependents" EntityType="Self.Number_of_dependents" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="payment_description_mappings" EntityType="Self.payment_description_mappings" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="payment_description_master" EntityType="Self.payment_description_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="payment_details" EntityType="Self.payment_details" Schema="GTE" store:Type="Tables" />
@@ -4480,18 +4800,24 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="predeparturetutorialmaster" EntityType="Self.predeparturetutorialmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="Self.preliminaryapplicantanswers" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="primary_location_master" EntityType="Self.primary_location_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="primaryfieldmaster" EntityType="Self.primaryfieldmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="proctor_master" EntityType="Self.proctor_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="qualificationcountriesmapping" EntityType="Self.qualificationcountriesmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="qualificationmaster" EntityType="Self.qualificationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="question_master" EntityType="Self.question_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="question_tag_master" EntityType="Self.question_tag_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="realtionshipmaster" EntityType="Self.realtionshipmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="registrationcourses" EntityType="Self.registrationcourses" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="rejection_reasonmaster" EntityType="Self.rejection_reasonmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="relative_master" EntityType="Self.relative_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="religious_affiliation_master" EntityType="Self.religious_affiliation_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="rolemaster" EntityType="Self.rolemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="scholarships" EntityType="Self.scholarships" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="secondarylanguagemaster" EntityType="Self.secondarylanguagemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="selectivity" EntityType="Self.selectivity" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="Setting_master" EntityType="Self.Setting_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="size_master" EntityType="Self.size_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="student_sop" EntityType="Self.student_sop" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studentcoursemapping" EntityType="Self.studentcoursemapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="students" EntityType="Self.students" Schema="GTE" store:Type="Tables" />
@@ -4503,6 +4829,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="supervisorcomments" EntityType="Self.supervisorcomments" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="supportservicemaster" EntityType="Self.supportservicemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="supportservices_enquiries" EntityType="Self.supportservices_enquiries" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="tests_master" EntityType="Self.tests_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="timezonemaster" EntityType="Self.timezonemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
@@ -4510,6 +4837,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="trips" EntityType="Self.trips" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tuitionAndlivingcostmaster" EntityType="Self.tuitionAndlivingcostmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tutorialmaster" EntityType="Self.tutorialmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="type_master" EntityType="Self.type_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="typeofworkexperiencemaster" EntityType="Self.typeofworkexperiencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_application_decision_master" EntityType="Self.university_application_decision_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_master" EntityType="Self.university_master" Schema="GTE" store:Type="Tables" />
@@ -4727,10 +5055,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="countriesmaster" EntitySet="countriesmaster" />
             <End Role="citymaster" EntitySet="citymaster" />
           </AssociationSet>
-          <AssociationSet Name="FK_clarification_gte_master_part2" Association="Self.FK_clarification_gte_master_part2">
-            <End Role="gte_question_master_part2" EntitySet="gte_question_master_part2" />
-            <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
-          </AssociationSet>
           <AssociationSet Name="FK_clarificationmaster_clarificationquestion_mapping" Association="Self.FK_clarificationmaster_clarificationquestion_mapping">
             <End Role="clarificationquestionsmaster" EntitySet="clarificationquestionsmaster" />
             <End Role="clarificationquestion_university_mapping" EntitySet="clarificationquestion_university_mapping" />
@@ -4806,6 +5130,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_gte_declaration_master_university_master" Association="Self.FK_gte_declaration_master_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="gte_declaration_master" EntitySet="gte_declaration_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gte_question_master_part2" Association="Self.FK_gte_question_master_part2">
+            <End Role="gte_question_master_part2" EntitySet="gte_question_master_part2" />
+            <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
           </AssociationSet>
           <AssociationSet Name="fk_manageaccomdationplan_accomation" Association="Self.fk_manageaccomdationplan_accomation">
             <End Role="accommodationplan" EntitySet="accommodationplan" />
@@ -5076,7 +5404,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="admintooltips" EntityType="GTEModel.admintooltips" />
           <EntitySet Name="adminuniversitywisetooltips" EntityType="GTEModel.adminuniversitywisetooltips" />
           <EntitySet Name="adminusers" EntityType="GTEModel.adminusers" />
+          <EntitySet Name="admisionfactor_dropdown_master" EntityType="GTEModel.admisionfactor_dropdown_master" />
           <EntitySet Name="agentmaster" EntityType="GTEModel.agentmaster" />
+          <EntitySet Name="agenumber_master" EntityType="GTEModel.agenumber_master" />
           <EntitySet Name="alternateadressproofmaster" EntityType="GTEModel.alternateadressproofmaster" />
           <EntitySet Name="alternatedobproof" EntityType="GTEModel.alternatedobproof" />
           <EntitySet Name="alternateidproofmaster" EntityType="GTEModel.alternateidproofmaster" />
@@ -5109,6 +5439,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="australiavisadetailmaster" EntityType="GTEModel.australiavisadetailmaster" />
           <EntitySet Name="australiavisadocumentmaster" EntityType="GTEModel.australiavisadocumentmaster" />
           <EntitySet Name="australiavisaFamilydetailmaster" EntityType="GTEModel.australiavisaFamilydetailmaster" />
+          <EntitySet Name="broad_narrow_mapping" EntityType="GTEModel.broad_narrow_mapping" />
           <EntitySet Name="bulk_registrations_master" EntityType="GTEModel.bulk_registrations_master" />
           <EntitySet Name="careeroutcomes_master" EntityType="GTEModel.careeroutcomes_master" />
           <EntitySet Name="careeroutcomes_position_master" EntityType="GTEModel.careeroutcomes_position_master" />
@@ -5118,18 +5449,25 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="clarificationquestion_university_mapping" EntityType="GTEModel.clarificationquestion_university_mapping" />
           <EntitySet Name="clarificationquestionsmaster" EntityType="GTEModel.clarificationquestionsmaster" />
           <EntitySet Name="class_master" EntityType="GTEModel.class_master" />
+          <EntitySet Name="co_ed_master" EntityType="GTEModel.co_ed_master" />
+          <EntitySet Name="code_regno_type_master" EntityType="GTEModel.code_regno_type_master" />
           <EntitySet Name="controlmaster" EntityType="GTEModel.controlmaster" />
           <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
+          <EntitySet Name="countrycode_master" EntityType="GTEModel.countrycode_master" />
           <EntitySet Name="countrywisealternateidproofmaster" EntityType="GTEModel.countrywisealternateidproofmaster" />
+          <EntitySet Name="course_broadFields_master" EntityType="GTEModel.course_broadFields_master" />
           <EntitySet Name="course_campus_mapping" EntityType="GTEModel.course_campus_mapping" />
           <EntitySet Name="course_dates" EntityType="GTEModel.course_dates" />
           <EntitySet Name="course_defermentdates" EntityType="GTEModel.course_defermentdates" />
+          <EntitySet Name="course_detailsField_master" EntityType="GTEModel.course_detailsField_master" />
+          <EntitySet Name="course_narrowFields_master" EntityType="GTEModel.course_narrowFields_master" />
           <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           <EntitySet Name="coursetypemaster" EntityType="GTEModel.coursetypemaster" />
           <EntitySet Name="credentialmaster" EntityType="GTEModel.credentialmaster" />
           <EntitySet Name="currency_master" EntityType="GTEModel.currency_master" />
           <EntitySet Name="customfieldmaster" EntityType="GTEModel.customfieldmaster" />
           <EntitySet Name="customfieldvalue" EntityType="GTEModel.customfieldvalue" />
+          <EntitySet Name="datetype_master" EntityType="GTEModel.datetype_master" />
           <EntitySet Name="declaration_master" EntityType="GTEModel.declaration_master" />
           <EntitySet Name="disabilitymaster" EntityType="GTEModel.disabilitymaster" />
           <EntitySet Name="documentvalidationbyagent" EntityType="GTEModel.documentvalidationbyagent" />
@@ -5165,11 +5503,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="formfieldmapping" EntityType="GTEModel.formfieldmapping" />
           <EntitySet Name="formfieldmaster" EntityType="GTEModel.formfieldmaster" />
           <EntitySet Name="formmaster" EntityType="GTEModel.formmaster" />
+          <EntitySet Name="gender_master" EntityType="GTEModel.gender_master" />
           <EntitySet Name="grademaster" EntityType="GTEModel.grademaster" />
           <EntitySet Name="group_master" EntityType="GTEModel.group_master" />
           <EntitySet Name="gte_answer_master" EntityType="GTEModel.gte_answer_master" />
           <EntitySet Name="gte_applicantdetails" EntityType="GTEModel.gte_applicantdetails" />
+          <EntitySet Name="gte_applicantdetails_autogenrated_clarificationquestionmaster" EntityType="GTEModel.gte_applicantdetails_autogenrated_clarificationquestionmaster" />
           <EntitySet Name="gte_applicantdocument" EntityType="GTEModel.gte_applicantdocument" />
+          <EntitySet Name="gte_certificatelevel_description" EntityType="GTEModel.gte_certificatelevel_description" />
           <EntitySet Name="gte_clarification_applicantresponse" EntityType="GTEModel.gte_clarification_applicantresponse" />
           <EntitySet Name="gte_clarification_questionmaster" EntityType="GTEModel.gte_clarification_questionmaster" />
           <EntitySet Name="gte_declaration_master" EntityType="GTEModel.gte_declaration_master" />
@@ -5184,6 +5525,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="gte_report_admin_comment" EntityType="GTEModel.gte_report_admin_comment" />
           <EntitySet Name="gte_statementofpurpose" EntityType="GTEModel.gte_statementofpurpose" />
           <EntitySet Name="gte_student_sop" EntityType="GTEModel.gte_student_sop" />
+          <EntitySet Name="gte_studymode_master" EntityType="GTEModel.gte_studymode_master" />
           <EntitySet Name="gte_tutorialmaster" EntityType="GTEModel.gte_tutorialmaster" />
           <EntitySet Name="gte_videouploadmaster" EntityType="GTEModel.gte_videouploadmaster" />
           <EntitySet Name="gtepreliminarysection_applicantanswers" EntityType="GTEModel.gtepreliminarysection_applicantanswers" />
@@ -5203,6 +5545,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="managevisa" EntityType="GTEModel.managevisa" />
           <EntitySet Name="maritalstatusmaster" EntityType="GTEModel.maritalstatusmaster" />
           <EntitySet Name="master_name" EntityType="GTEModel.master_name" />
+          <EntitySet Name="narrow_detailed_mapping" EntityType="GTEModel.narrow_detailed_mapping" />
+          <EntitySet Name="Number_of_dependents" EntityType="GTEModel.Number_of_dependents" />
           <EntitySet Name="payment_description_mappings" EntityType="GTEModel.payment_description_mappings" />
           <EntitySet Name="payment_description_master" EntityType="GTEModel.payment_description_master" />
           <EntitySet Name="payment_details" EntityType="GTEModel.payment_details" />
@@ -5210,18 +5554,24 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="predeparturetutorialmaster" EntityType="GTEModel.predeparturetutorialmaster" />
           <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
+          <EntitySet Name="primary_location_master" EntityType="GTEModel.primary_location_master" />
           <EntitySet Name="primaryfieldmaster" EntityType="GTEModel.primaryfieldmaster" />
           <EntitySet Name="proctor_master" EntityType="GTEModel.proctor_master" />
           <EntitySet Name="qualificationcountriesmapping" EntityType="GTEModel.qualificationcountriesmapping" />
           <EntitySet Name="qualificationmaster" EntityType="GTEModel.qualificationmaster" />
           <EntitySet Name="question_master" EntityType="GTEModel.question_master" />
+          <EntitySet Name="question_tag_master" EntityType="GTEModel.question_tag_master" />
           <EntitySet Name="realtionshipmaster" EntityType="GTEModel.realtionshipmaster" />
           <EntitySet Name="registrationcourses" EntityType="GTEModel.registrationcourses" />
           <EntitySet Name="rejection_reasonmaster" EntityType="GTEModel.rejection_reasonmaster" />
           <EntitySet Name="relative_master" EntityType="GTEModel.relative_master" />
+          <EntitySet Name="religious_affiliation_master" EntityType="GTEModel.religious_affiliation_master" />
           <EntitySet Name="rolemaster" EntityType="GTEModel.rolemaster" />
           <EntitySet Name="scholarships" EntityType="GTEModel.scholarships" />
           <EntitySet Name="secondarylanguagemaster" EntityType="GTEModel.secondarylanguagemaster" />
+          <EntitySet Name="selectivity" EntityType="GTEModel.selectivity" />
+          <EntitySet Name="Setting_master" EntityType="GTEModel.Setting_master" />
+          <EntitySet Name="size_master" EntityType="GTEModel.size_master" />
           <EntitySet Name="student_sop" EntityType="GTEModel.student_sop" />
           <EntitySet Name="studentcoursemapping" EntityType="GTEModel.studentcoursemapping" />
           <EntitySet Name="students" EntityType="GTEModel.students" />
@@ -5233,6 +5583,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="supervisorcomments" EntityType="GTEModel.supervisorcomments" />
           <EntitySet Name="supportservicemaster" EntityType="GTEModel.supportservicemaster" />
           <EntitySet Name="supportservices_enquiries" EntityType="GTEModel.supportservices_enquiries" />
+          <EntitySet Name="tests_master" EntityType="GTEModel.tests_master" />
           <EntitySet Name="timezonemaster" EntityType="GTEModel.timezonemaster" />
           <EntitySet Name="titlemaster" EntityType="GTEModel.titlemaster" />
           <EntitySet Name="tooltipmaster" EntityType="GTEModel.tooltipmaster" />
@@ -5240,6 +5591,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="trips" EntityType="GTEModel.trips" />
           <EntitySet Name="tuitionAndlivingcostmaster" EntityType="GTEModel.tuitionAndlivingcostmaster" />
           <EntitySet Name="tutorialmaster" EntityType="GTEModel.tutorialmaster" />
+          <EntitySet Name="type_master" EntityType="GTEModel.type_master" />
           <EntitySet Name="typeofworkexperiencemaster" EntityType="GTEModel.typeofworkexperiencemaster" />
           <EntitySet Name="university_application_decision_master" EntityType="GTEModel.university_application_decision_master" />
           <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
@@ -5638,7 +5990,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
             <End Role="gte_clarification_applicantresponse" EntitySet="gte_clarification_applicantresponse" />
           </AssociationSet>
-          <AssociationSet Name="FK_clarification_gte_master_part2" Association="GTEModel.FK_clarification_gte_master_part2">
+          <AssociationSet Name="FK_gte_question_master_part2" Association="GTEModel.FK_gte_question_master_part2">
             <End Role="gte_question_master_part2" EntitySet="gte_question_master_part2" />
             <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
           </AssociationSet>
@@ -5867,6 +6219,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="rolemaster" Relationship="GTEModel.FK_adminusers_rolemaster" FromRole="adminusers" ToRole="rolemaster" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_adminusers" FromRole="adminusers" ToRole="supervisorcomments" />
         </EntityType>
+        <EntityType Name="admisionfactor_dropdown_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="agentmaster">
           <Key>
             <PropertyRef Name="agentid" />
@@ -5876,6 +6235,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="mobile" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="isactive" Type="Int32" />
+        </EntityType>
+        <EntityType Name="agenumber_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="alternateadressproofmaster">
           <Key>
@@ -6016,6 +6382,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="applicantpersonaldetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="applicantid" Type="Int32" />
           <Property Name="universityid" Type="Int32" />
+          <Property Name="isapplicatverified" Type="Boolean" />
+          <Property Name="Isold_or_new_applicant" Type="Boolean" Nullable="false" />
           <Property Name="isLoggedIn" Type="Int32" Nullable="false" />
           <Property Name="isdeletedbyAdmin" Type="Boolean" />
           <Property Name="isverifiedbyAdmin" Type="Boolean" />
@@ -6063,6 +6431,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="residentialcountry" Type="Int32" />
           <Property Name="haspreviousresidence" Type="Boolean" />
+          <Property Name="countrycode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -6131,6 +6500,28 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="countryof_citizenship" Type="Int32" />
           <Property Name="campusId" Type="Int32" />
           <Property Name="profilephoto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="passportcopy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="broadFieldID" Type="Int32" />
+          <Property Name="narrowFieldID" Type="Int32" />
+          <Property Name="detailedFieldID" Type="Int32" />
+          <Property Name="broadFieldIDyouwillComplete" Type="Int32" />
+          <Property Name="narrowFieldIDyouwillComplete" Type="Int32" />
+          <Property Name="detailedFieldIDyouwillComplete" Type="Int32" />
+          <Property Name="Is_clarification_submitted" Type="Boolean" />
+          <Property Name="Isdetailscompleted" Type="Boolean" />
+          <Property Name="Ispackage" Type="Int32" />
+          <Property Name="what_package" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nameofuniversityappliedfor" Type="Int32" />
+          <Property Name="cityofeducationInstitution" Type="Int32" />
+          <Property Name="countryofeducationInstitution" Type="Int32" />
+          <Property Name="commencementdate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="levelofcourse" Type="Int32" />
+          <Property Name="highestqualifiactionachieved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="highestqualificationdate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="highestqualificationcountry" Type="Int32" />
+          <Property Name="workexperience" Type="Int32" />
+          <Property Name="Iscurrentlyworking" Type="Int32" />
+          <Property Name="Isjoboffered" Type="Int32" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdetails_students" FromRole="applicantdetails" ToRole="students" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
@@ -6922,6 +7313,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="students" Relationship="GTEModel.FK_australiavisaFamilydetailmaster_students" FromRole="australiavisaFamilydetailmaster" ToRole="students" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_australiavisaFamilydetailmaster_university_master" FromRole="australiavisaFamilydetailmaster" ToRole="university_master" />
         </EntityType>
+        <EntityType Name="broad_narrow_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="broadField_Id" Type="Int32" />
+          <Property Name="narrowField_Id" Type="Int32" />
+        </EntityType>
         <EntityType Name="bulk_registrations_master">
           <Key>
             <PropertyRef Name="id" />
@@ -7023,6 +7422,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="co_ed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="code_regno_type_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="controlmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -7042,6 +7455,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="countrywisealternateidproofmaster" Relationship="GTEModel.FK__countriesmaster" FromRole="countriesmaster" ToRole="countrywisealternateidproofmaster" />
           <NavigationProperty Name="qualificationcountriesmapping" Relationship="GTEModel.FK_qualificationcountriesmapping_countriesmaster" FromRole="countriesmaster" ToRole="qualificationcountriesmapping" />
         </EntityType>
+        <EntityType Name="countrycode_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="countrywisealternateidproofmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -7051,6 +7472,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="countryID" Type="Int32" />
           <NavigationProperty Name="alternateidproofmaster" Relationship="GTEModel.FK__alternateidproofmaster" FromRole="countrywisealternateidproofmaster" ToRole="alternateidproofmaster" />
           <NavigationProperty Name="countriesmaster" Relationship="GTEModel.FK__countriesmaster" FromRole="countrywisealternateidproofmaster" ToRole="countriesmaster" />
+        </EntityType>
+        <EntityType Name="course_broadFields_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fieldname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="course_campus_mapping">
           <Key>
@@ -7079,6 +7509,24 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="courseid" Type="Int32" Nullable="false" />
           <Property Name="defermentdate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="coursemaster" Relationship="GTEModel.FK_defermentDate_coursemaster" FromRole="course_defermentdates" ToRole="coursemaster" />
+        </EntityType>
+        <EntityType Name="course_detailsField_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fieldname" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="course_narrowFields_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fieldname" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="coursemaster">
           <Key>
@@ -7177,6 +7625,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="customfieldmaster" Relationship="GTEModel.FK_customfieldvalue_customfieldmaster" FromRole="customfieldvalue" ToRole="customfieldmaster" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_customfieldvalue_students" FromRole="customfieldvalue" ToRole="students" />
+        </EntityType>
+        <EntityType Name="datetype_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="declaration_master">
           <Key>
@@ -7634,6 +8089,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitywise_faqmapping" Relationship="GTEModel.FK_universitywise_faqmapping_formmaster" FromRole="formmaster" ToRole="universitywise_faqmapping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_formmaster" FromRole="formmaster" ToRole="universitywisetooltipmaster" />
         </EntityType>
+        <EntityType Name="gender_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="grademaster">
           <Key>
             <PropertyRef Name="id" />
@@ -7657,6 +8119,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="gte_score" Type="Int32" Nullable="false" />
           <Property Name="gte_risk_score" Type="Int32" Nullable="false" />
           <Property Name="gte_question_id" Type="Int32" Nullable="false" />
+          <Property Name="counsellor_review_comments" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="gte_questions_master" Relationship="GTEModel.FK_answer_gteQuestion" FromRole="gte_answer_master" ToRole="gte_questions_master" />
           <NavigationProperty Name="gte_questions_applicant_response" Relationship="GTEModel.FK_resposne_answer" FromRole="gte_answer_master" ToRole="gte_questions_applicant_response" />
         </EntityType>
@@ -7678,12 +8141,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="highestqualificationfield" Type="Int32" />
           <Property Name="highestqualificationdate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="highestqualificationcountry" Type="Int32" />
-          <Property Name="levelofcourse" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="fieldofstudyapplied" Type="Int32" />
           <Property Name="campusid" Type="Int32" />
           <Property Name="coursename" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="commencementdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="workexperience" Type="Int32" />
+          <Property Name="Iscurrentlyworking" Type="Int32" />
+          <Property Name="Isjoboffered" Type="Int32" />
           <Property Name="typeofworkexperience" Type="Int32" />
           <Property Name="residencecountry" Type="Int32" />
           <Property Name="tuitionandlivingcost" Type="Int32" />
@@ -7694,6 +8158,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="agentid" Type="Int32" />
           <Property Name="registeragent_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="profilepicturepath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="passportcopyPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="levelofcourse" Type="Int32" />
+        </EntityType>
+        <EntityType Name="gte_applicantdetails_autogenrated_clarificationquestionmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question_tag" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="condition" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="true_gte_score" Type="Int32" />
+          <Property Name="true_risk_score" Type="Int32" />
+          <Property Name="false_gte_score" Type="Int32" />
+          <Property Name="false_risk_score" Type="Int32" />
         </EntityType>
         <EntityType Name="gte_applicantdocument">
           <Key>
@@ -7706,6 +8184,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="documentid" Type="Int32" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK__students" FromRole="gte_applicantdocument" ToRole="students" />
         </EntityType>
+        <EntityType Name="gte_certificatelevel_description">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="percentage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="grade" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="gte_clarification_applicantresponse">
           <Key>
             <PropertyRef Name="id" />
@@ -7715,6 +8202,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="university_id" Type="Int32" Nullable="false" />
           <Property Name="clarification_question_id" Type="Int32" Nullable="false" />
           <Property Name="applicant_response" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="response_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="gte_clarification_questionmaster" Relationship="GTEModel.FK_response_clarification_questionmaster" FromRole="gte_clarification_applicantresponse" ToRole="gte_clarification_questionmaster" />
         </EntityType>
         <EntityType Name="gte_clarification_questionmaster">
@@ -7723,11 +8211,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="gte_master1_id" Type="Int32" />
-          <Property Name="clarification_question" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="clarification_question" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="display_condition" Type="Boolean" />
-          <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="action" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="gte_clarification_applicantresponse" Relationship="GTEModel.FK_response_clarification_questionmaster" FromRole="gte_clarification_questionmaster" ToRole="gte_clarification_applicantresponse" />
-          <NavigationProperty Name="gte_question_master_part2" Relationship="GTEModel.FK_clarification_gte_master_part2" FromRole="gte_clarification_questionmaster" ToRole="gte_question_master_part2" />
+          <NavigationProperty Name="gte_question_master_part2" Relationship="GTEModel.FK_gte_question_master_part2" FromRole="gte_clarification_questionmaster" ToRole="gte_question_master_part2" />
         </EntityType>
         <EntityType Name="gte_declaration_master">
           <Key>
@@ -7797,8 +8285,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="is_gte_preliminarysection2_completed" Type="Boolean" />
           <Property Name="is_gte_declaration_completed" Type="Boolean" />
           <Property Name="is_gte_certificate_generated" Type="Boolean" />
+          <Property Name="gte_perdentage_score" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="certificate_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="certificate_creation_date" Type="DateTime" />
+          <Property Name="gte_declaration_completed_date" Type="DateTime" />
+          <Property Name="activity_ip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="performance_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="certificatepath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -7809,11 +8300,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="question" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="tag" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RG_Comments" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="true_gte_score" Type="Int32" Nullable="false" />
           <Property Name="true_risk_score" Type="Int32" Nullable="false" />
           <Property Name="false_gte_score" Type="Int32" Nullable="false" />
           <Property Name="false_risk_score" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="gte_clarification_questionmaster" Relationship="GTEModel.FK_clarification_gte_master_part2" FromRole="gte_question_master_part2" ToRole="gte_clarification_questionmaster" />
+          <NavigationProperty Name="gte_clarification_questionmaster" Relationship="GTEModel.FK_gte_question_master_part2" FromRole="gte_question_master_part2" ToRole="gte_clarification_questionmaster" />
           <NavigationProperty Name="gte_question_part2_applicant_response" Relationship="GTEModel.FK_response_gteQuestionPart2" FromRole="gte_question_master_part2" ToRole="gte_question_part2_applicant_response" />
         </EntityType>
         <EntityType Name="gte_question_part2_applicant_response">
@@ -7906,6 +8398,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="deleted_at" Type="DateTime" />
           <Property Name="edited_at" Type="DateTime" />
           <NavigationProperty Name="gte_report_admin_comment" Relationship="GTEModel.FK_reportFeedBack_studentSop" FromRole="gte_student_sop" ToRole="gte_report_admin_comment" />
+        </EntityType>
+        <EntityType Name="gte_studymode_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gte_tutorialmaster">
           <Key>
@@ -8132,6 +8631,21 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="masterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="mastername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="narrow_detailed_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="narrowField_Id" Type="Int32" />
+          <Property Name="deatailedField_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Number_of_dependents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="payment_description_mappings">
           <Key>
             <PropertyRef Name="id" />
@@ -8217,6 +8731,28 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="answer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="answersubmittedtime" Type="DateTime" />
         </EntityType>
+        <EntityType Name="primary_location_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="primary_location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="state_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="primary_zipcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="longitude" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="elevation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="population" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="median_income" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="are_sq_km" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="local_govt_area" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="region" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="time_zone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="primaryfieldmaster">
           <Key>
             <PropertyRef Name="primaryfieldid" />
@@ -8268,6 +8804,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="isprimary" Type="Int32" />
           <Property Name="infrencecategoryid" Type="Int32" />
         </EntityType>
+        <EntityType Name="question_tag_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tagname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="realtionshipmaster">
           <Key>
             <PropertyRef Name="relationshiptid" />
@@ -8309,6 +8852,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="nationality" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="dob" Type="DateTime" />
         </EntityType>
+        <EntityType Name="religious_affiliation_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="rolemaster">
           <Key>
             <PropertyRef Name="roleid" />
@@ -8340,6 +8890,27 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="languagecode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="secondarylanguagename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="selectivity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Setting_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="size_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="student_sop">
           <Key>
@@ -8411,7 +8982,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="studylevelid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="studylevel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="levelofcode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="levelofcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="systemLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="coursemaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="studylevelmaster" ToRole="coursemaster" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="studylevelmaster" ToRole="students" />
         </EntityType>
@@ -8487,6 +9059,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="applicantid" Type="Int32" />
           <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="tests_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="timezonemaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -8552,6 +9131,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="status" Type="Int32" />
           <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="type_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="typeofworkexperiencemaster">
           <Key>
             <PropertyRef Name="workexperiencetypesid" />
@@ -8571,58 +9157,101 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <PropertyRef Name="universityid" />
           </Key>
           <Property Name="universityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uni_id" Type="Int32" />
           <Property Name="university_flag" Type="Int32" />
-          <Property Name="university_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="codetype" Type="Int32" />
           <Property Name="CRICOS_Code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="hosturl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="university_name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="institutionlegalname" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="contact_person" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UniContactPersonPosition" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="primarylocation" Type="Int32" />
+          <Property Name="cityid" Type="Int32" />
+          <Property Name="primary_state" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="primaryzipcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="countryid" Type="Int32" />
+          <Property Name="website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="full_service" Type="Int32" Nullable="false" />
+          <Property Name="sub_gte_service" Type="Int32" />
+          <Property Name="numberof_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="emai_notification1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="emai_notification2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="website" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="contact_person" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="mobile" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="chatid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="affiliation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="year_established" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="short_description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="long_description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="cityid" Type="Int32" Nullable="false" />
-          <Property Name="countryid" Type="Int32" Nullable="false" />
-          <Property Name="latitude" Type="Decimal" Nullable="false" />
-          <Property Name="longitude" Type="Decimal" Nullable="false" />
-          <Property Name="time_zone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="closest_airport" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="distance_from_airport" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="distance_from_railway" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="getting_around" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="acceptedmaxage" Type="Int32" Nullable="false" />
-          <Property Name="acceptedminage" Type="Int32" Nullable="false" />
-          <Property Name="notes_disclaimer" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="logo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="headerstripcolor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="verticalnavigationcolor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fontcolor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="sop_instruction_for_applicant" Type="String" Nullable="false" MaxLength="20000" FixedLength="false" Unicode="false" />
-          <Property Name="scholarship_instruction" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="application_instruction" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="fee_payment_instructions" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="coe_instruction" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="acceptedmaxage" Type="Int32" />
+          <Property Name="acceptedminage" Type="Int32" />
+          <Property Name="hosturl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="chatid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="affiliation" Type="Int32" />
+          <Property Name="size" Type="Int32" />
+          <Property Name="setting" Type="Int32" />
+          <Property Name="ReligiousAffiliation" Type="Int32" />
+          <Property Name="SingleGender_Co_ed" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="year_established" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="short_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="long_description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="noofcampus" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="courseDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="TotalEnrolledStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DoctoralStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateStudents39" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UnderGraduateStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Certificate_DiplomaStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Non_awardStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SchoolEducationStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NoofAcademicStaff" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StafftoStudentRatio" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FemaleonCampus" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AverageAge" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ofDomesticStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="InStateStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ofInternationalStudents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="NoofNationalities" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="impDates" Type="Int32" />
+          <Property Name="avgTuitionFee" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AvgFinancialAidPackage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FinancialneedMet" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="accreditation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="timesHigherEducationRanking" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="QSWorldUniversityRanking" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="academicRankingofWorldUniversities" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="rankings" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="awards" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="subjectRankings" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="longitude" Type="Decimal" />
+          <Property Name="latitude" Type="Decimal" />
+          <Property Name="time_zone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="closest_airport" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="distance_from_airport" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="distance_from_railway" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="getting_around" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="notes_disclaimer" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="headerstripcolor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="verticalnavigationcolor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fontcolor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sop_instruction_for_applicant" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="scholarship_instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="application_instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="fee_payment_instructions" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="coe_instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="acceptance_terms" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="deferment_terms" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="rejection_terms" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="examInstruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="withdrawn_terms" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="supprot_service_instructions" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="visa_instructions" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="university_gtm_code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="supprot_service_instructions" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="visa_instructions" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="university_gtm_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="proctor1_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="proctor1_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="proctor1_contactno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="numberof_applicant" Type="Int32" />
           <Property Name="recordsavedat_numberof_applicant" Type="DateTime" />
+          <Property Name="totalcapacity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nooflocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_university_master_admincomments" FromRole="university_master" ToRole="admincomments" />
           <NavigationProperty Name="adminuniversitywisetooltips" Relationship="GTEModel.fk_adminuniversitywisetooltips_university_master" FromRole="university_master" ToRole="adminuniversitywisetooltips" />
           <NavigationProperty Name="applicantdocumentmaster" Relationship="GTEModel.FK_applicantdocumentmaster_university_master" FromRole="university_master" ToRole="applicantdocumentmaster" />
@@ -8662,12 +9291,39 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <PropertyRef Name="campusid" />
           </Key>
           <Property Name="campusid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="campusname" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="universityid" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="research" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="faculty_description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Ismaincampus" Type="Int32" />
+          <Property Name="campusname" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="campuscountry" Type="Int32" />
           <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="campussetting" Type="Int32" />
+          <Property Name="campusaddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="campuslatitude" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="campuslongitude" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="closest_airport" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="distance_from_airport" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="airDistanceUnit" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="closest_distance_from_railway" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="railclosestDistanceUnit" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="distance_from_railway" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="railwaydistanceunit" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="getting_around" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="placeofintrestimage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="placeofintrestdescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="placeofintrestdistance" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Fraternities" Type="Int32" />
+          <Property Name="Sororities" Type="Int32" />
+          <Property Name="totalstudent_campus" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="male_percentage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="female_percentage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="averageage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="domesticstude" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="statestude" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="internationalstude" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="noofnationalty" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="research" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="faculty_description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_universitycampus_citymaster" FromRole="universitycampus" ToRole="citymaster" />
           <NavigationProperty Name="course_campus_mapping" Relationship="GTEModel.FK_courseMapping_universitycampus" FromRole="universitycampus" ToRole="course_campus_mapping" />
           <NavigationProperty Name="facility_campus_mapping" Relationship="GTEModel.FK_mapping_campusdetail" FromRole="universitycampus" ToRole="facility_campus_mapping" />
@@ -9446,7 +10102,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_universityMaster_cityMaster">
-          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="0..1" />
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="citymaster">
@@ -9949,7 +10605,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_clarification_gte_master_part2">
+        <Association Name="FK_gte_question_master_part2">
           <End Type="GTEModel.gte_question_master_part2" Role="gte_question_master_part2" Multiplicity="0..1" />
           <End Type="GTEModel.gte_clarification_questionmaster" Role="gte_clarification_questionmaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -10451,6 +11107,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="admisionfactor_dropdown_master">
+            <EntityTypeMapping TypeName="GTEModel.admisionfactor_dropdown_master">
+              <MappingFragment StoreEntitySet="admisionfactor_dropdown_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="agentmaster">
             <EntityTypeMapping TypeName="GTEModel.agentmaster">
               <MappingFragment StoreEntitySet="agentmaster">
@@ -10459,6 +11123,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="agentname" ColumnName="agentname" />
                 <ScalarProperty Name="agentid" ColumnName="agentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="agenumber_master">
+            <EntityTypeMapping TypeName="GTEModel.agenumber_master">
+              <MappingFragment StoreEntitySet="agenumber_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -10606,6 +11278,28 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
+                <ScalarProperty Name="Isjoboffered" ColumnName="Isjoboffered" />
+                <ScalarProperty Name="Iscurrentlyworking" ColumnName="Iscurrentlyworking" />
+                <ScalarProperty Name="workexperience" ColumnName="workexperience" />
+                <ScalarProperty Name="highestqualificationcountry" ColumnName="highestqualificationcountry" />
+                <ScalarProperty Name="highestqualificationdate" ColumnName="highestqualificationdate" />
+                <ScalarProperty Name="highestqualifiactionachieved" ColumnName="highestqualifiactionachieved" />
+                <ScalarProperty Name="levelofcourse" ColumnName="levelofcourse" />
+                <ScalarProperty Name="commencementdate" ColumnName="commencementdate" />
+                <ScalarProperty Name="countryofeducationInstitution" ColumnName="countryofeducationInstitution" />
+                <ScalarProperty Name="cityofeducationInstitution" ColumnName="cityofeducationInstitution" />
+                <ScalarProperty Name="nameofuniversityappliedfor" ColumnName="nameofuniversityappliedfor" />
+                <ScalarProperty Name="what_package" ColumnName="what_package" />
+                <ScalarProperty Name="Ispackage" ColumnName="Ispackage" />
+                <ScalarProperty Name="Isdetailscompleted" ColumnName="Isdetailscompleted" />
+                <ScalarProperty Name="Is_clarification_submitted" ColumnName="Is_clarification_submitted" />
+                <ScalarProperty Name="detailedFieldIDyouwillComplete" ColumnName="detailedFieldIDyouwillComplete" />
+                <ScalarProperty Name="narrowFieldIDyouwillComplete" ColumnName="narrowFieldIDyouwillComplete" />
+                <ScalarProperty Name="broadFieldIDyouwillComplete" ColumnName="broadFieldIDyouwillComplete" />
+                <ScalarProperty Name="detailedFieldID" ColumnName="detailedFieldID" />
+                <ScalarProperty Name="narrowFieldID" ColumnName="narrowFieldID" />
+                <ScalarProperty Name="broadFieldID" ColumnName="broadFieldID" />
+                <ScalarProperty Name="passportcopy" ColumnName="passportcopy" />
                 <ScalarProperty Name="profilephoto" ColumnName="profilephoto" />
                 <ScalarProperty Name="campusId" ColumnName="campusId" />
                 <ScalarProperty Name="countryof_citizenship" ColumnName="countryof_citizenship" />
@@ -10674,6 +11368,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="workphone" ColumnName="workphone" />
                 <ScalarProperty Name="homephone" ColumnName="homephone" />
                 <ScalarProperty Name="mobileno" ColumnName="mobileno" />
+                <ScalarProperty Name="countrycode" ColumnName="countrycode" />
                 <ScalarProperty Name="haspreviousresidence" ColumnName="haspreviousresidence" />
                 <ScalarProperty Name="residentialcountry" ColumnName="residentialcountry" />
                 <ScalarProperty Name="residentialstate" ColumnName="residentialstate" />
@@ -10721,6 +11416,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="isverifiedbyAdmin" ColumnName="isverifiedbyAdmin" />
                 <ScalarProperty Name="isdeletedbyAdmin" ColumnName="isdeletedbyAdmin" />
                 <ScalarProperty Name="isLoggedIn" ColumnName="isLoggedIn" />
+                <ScalarProperty Name="Isold_or_new_applicant" ColumnName="Isold_or_new_applicant" />
+                <ScalarProperty Name="isapplicatverified" ColumnName="isapplicatverified" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
@@ -11512,6 +12209,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="broad_narrow_mapping">
+            <EntityTypeMapping TypeName="GTEModel.broad_narrow_mapping">
+              <MappingFragment StoreEntitySet="broad_narrow_mapping">
+                <ScalarProperty Name="narrowField_Id" ColumnName="narrowField_Id" />
+                <ScalarProperty Name="broadField_Id" ColumnName="broadField_Id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="bulk_registrations_master">
             <EntityTypeMapping TypeName="GTEModel.bulk_registrations_master">
               <MappingFragment StoreEntitySet="bulk_registrations_master">
@@ -11601,6 +12307,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="co_ed_master">
+            <EntityTypeMapping TypeName="GTEModel.co_ed_master">
+              <MappingFragment StoreEntitySet="co_ed_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="code_regno_type_master">
+            <EntityTypeMapping TypeName="GTEModel.code_regno_type_master">
+              <MappingFragment StoreEntitySet="code_regno_type_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="controlmaster">
             <EntityTypeMapping TypeName="GTEModel.controlmaster">
               <MappingFragment StoreEntitySet="controlmaster">
@@ -11619,11 +12341,30 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="countrycode_master">
+            <EntityTypeMapping TypeName="GTEModel.countrycode_master">
+              <MappingFragment StoreEntitySet="countrycode_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="countrywisealternateidproofmaster">
             <EntityTypeMapping TypeName="GTEModel.countrywisealternateidproofmaster">
               <MappingFragment StoreEntitySet="countrywisealternateidproofmaster">
                 <ScalarProperty Name="countryID" ColumnName="countryID" />
                 <ScalarProperty Name="alternateidproofID" ColumnName="alternateidproofID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="course_broadFields_master">
+            <EntityTypeMapping TypeName="GTEModel.course_broadFields_master">
+              <MappingFragment StoreEntitySet="course_broadFields_master">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="fieldname" ColumnName="fieldname" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -11651,6 +12392,26 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="course_defermentdates">
                 <ScalarProperty Name="defermentdate" ColumnName="defermentdate" />
                 <ScalarProperty Name="courseid" ColumnName="courseid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="course_detailsField_master">
+            <EntityTypeMapping TypeName="GTEModel.course_detailsField_master">
+              <MappingFragment StoreEntitySet="course_detailsField_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="fieldname" ColumnName="fieldname" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="course_narrowFields_master">
+            <EntityTypeMapping TypeName="GTEModel.course_narrowFields_master">
+              <MappingFragment StoreEntitySet="course_narrowFields_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="fieldname" ColumnName="fieldname" />
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -11729,6 +12490,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="customfieldid" ColumnName="customfieldid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="datetype_master">
+            <EntityTypeMapping TypeName="GTEModel.datetype_master">
+              <MappingFragment StoreEntitySet="datetype_master">
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -12210,6 +12979,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="gender_master">
+            <EntityTypeMapping TypeName="GTEModel.gender_master">
+              <MappingFragment StoreEntitySet="gender_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="grademaster">
             <EntityTypeMapping TypeName="GTEModel.grademaster">
               <MappingFragment StoreEntitySet="grademaster">
@@ -12229,6 +13006,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_answer_master">
             <EntityTypeMapping TypeName="GTEModel.gte_answer_master">
               <MappingFragment StoreEntitySet="gte_answer_master">
+                <ScalarProperty Name="counsellor_review_comments" ColumnName="counsellor_review_comments" />
                 <ScalarProperty Name="gte_question_id" ColumnName="gte_question_id" />
                 <ScalarProperty Name="gte_risk_score" ColumnName="gte_risk_score" />
                 <ScalarProperty Name="gte_score" ColumnName="gte_score" />
@@ -12240,6 +13018,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.gte_applicantdetails">
               <MappingFragment StoreEntitySet="gte_applicantdetails">
+                <ScalarProperty Name="levelofcourse" ColumnName="levelofcourse" />
+                <ScalarProperty Name="passportcopyPath" ColumnName="passportcopyPath" />
                 <ScalarProperty Name="profilepicturepath" ColumnName="profilepicturepath" />
                 <ScalarProperty Name="registeragent_email" ColumnName="registeragent_email" />
                 <ScalarProperty Name="agentid" ColumnName="agentid" />
@@ -12250,12 +13030,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="tuitionandlivingcost" ColumnName="tuitionandlivingcost" />
                 <ScalarProperty Name="residencecountry" ColumnName="residencecountry" />
                 <ScalarProperty Name="typeofworkexperience" ColumnName="typeofworkexperience" />
+                <ScalarProperty Name="Isjoboffered" ColumnName="Isjoboffered" />
+                <ScalarProperty Name="Iscurrentlyworking" ColumnName="Iscurrentlyworking" />
                 <ScalarProperty Name="workexperience" ColumnName="workexperience" />
                 <ScalarProperty Name="commencementdate" ColumnName="commencementdate" />
                 <ScalarProperty Name="coursename" ColumnName="coursename" />
                 <ScalarProperty Name="campusid" ColumnName="campusid" />
                 <ScalarProperty Name="fieldofstudyapplied" ColumnName="fieldofstudyapplied" />
-                <ScalarProperty Name="levelofcourse" ColumnName="levelofcourse" />
                 <ScalarProperty Name="highestqualificationcountry" ColumnName="highestqualificationcountry" />
                 <ScalarProperty Name="highestqualificationdate" ColumnName="highestqualificationdate" />
                 <ScalarProperty Name="highestqualificationfield" ColumnName="highestqualificationfield" />
@@ -12273,6 +13054,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="gte_applicantdetails_autogenrated_clarificationquestionmaster">
+            <EntityTypeMapping TypeName="GTEModel.gte_applicantdetails_autogenrated_clarificationquestionmaster">
+              <MappingFragment StoreEntitySet="gte_applicantdetails_autogenrated_clarificationquestionmaster">
+                <ScalarProperty Name="false_risk_score" ColumnName="false_risk_score" />
+                <ScalarProperty Name="false_gte_score" ColumnName="false_gte_score" />
+                <ScalarProperty Name="true_risk_score" ColumnName="true_risk_score" />
+                <ScalarProperty Name="true_gte_score" ColumnName="true_gte_score" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+                <ScalarProperty Name="question_tag" ColumnName="question_tag" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="gte_applicantdocument">
             <EntityTypeMapping TypeName="GTEModel.gte_applicantdocument">
               <MappingFragment StoreEntitySet="gte_applicantdocument">
@@ -12284,9 +13078,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="gte_certificatelevel_description">
+            <EntityTypeMapping TypeName="GTEModel.gte_certificatelevel_description">
+              <MappingFragment StoreEntitySet="gte_certificatelevel_description">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="gte_clarification_applicantresponse">
             <EntityTypeMapping TypeName="GTEModel.gte_clarification_applicantresponse">
               <MappingFragment StoreEntitySet="gte_clarification_applicantresponse">
+                <ScalarProperty Name="response_at" ColumnName="response_at" />
                 <ScalarProperty Name="applicant_response" ColumnName="applicant_response" />
                 <ScalarProperty Name="clarification_question_id" ColumnName="clarification_question_id" />
                 <ScalarProperty Name="university_id" ColumnName="university_id" />
@@ -12370,8 +13175,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="gte_progressbar">
                 <ScalarProperty Name="certificatepath" ColumnName="certificatepath" />
                 <ScalarProperty Name="performance_category" ColumnName="performance_category" />
+                <ScalarProperty Name="activity_ip" ColumnName="activity_ip" />
+                <ScalarProperty Name="gte_declaration_completed_date" ColumnName="gte_declaration_completed_date" />
                 <ScalarProperty Name="certificate_creation_date" ColumnName="certificate_creation_date" />
                 <ScalarProperty Name="certificate_name" ColumnName="certificate_name" />
+                <ScalarProperty Name="gte_perdentage_score" ColumnName="gte_perdentage_score" />
                 <ScalarProperty Name="is_gte_certificate_generated" ColumnName="is_gte_certificate_generated" />
                 <ScalarProperty Name="is_gte_declaration_completed" ColumnName="is_gte_declaration_completed" />
                 <ScalarProperty Name="is_gte_preliminarysection2_completed" ColumnName="is_gte_preliminarysection2_completed" />
@@ -12390,6 +13198,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="false_gte_score" ColumnName="false_gte_score" />
                 <ScalarProperty Name="true_risk_score" ColumnName="true_risk_score" />
                 <ScalarProperty Name="true_gte_score" ColumnName="true_gte_score" />
+                <ScalarProperty Name="RG_Comments" ColumnName="RG_Comments" />
                 <ScalarProperty Name="tag" ColumnName="tag" />
                 <ScalarProperty Name="question" ColumnName="question" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -12482,6 +13291,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="gte_sop_para1" ColumnName="gte_sop_para1" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_studymode_master">
+            <EntityTypeMapping TypeName="GTEModel.gte_studymode_master">
+              <MappingFragment StoreEntitySet="gte_studymode_master">
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -12703,6 +13520,23 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="narrow_detailed_mapping">
+            <EntityTypeMapping TypeName="GTEModel.narrow_detailed_mapping">
+              <MappingFragment StoreEntitySet="narrow_detailed_mapping">
+                <ScalarProperty Name="deatailedField_Id" ColumnName="deatailedField_Id" />
+                <ScalarProperty Name="narrowField_Id" ColumnName="narrowField_Id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Number_of_dependents">
+            <EntityTypeMapping TypeName="GTEModel.Number_of_dependents">
+              <MappingFragment StoreEntitySet="Number_of_dependents">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="payment_description_mappings">
             <EntityTypeMapping TypeName="GTEModel.payment_description_mappings">
               <MappingFragment StoreEntitySet="payment_description_mappings">
@@ -12788,6 +13622,29 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="primary_location_master">
+            <EntityTypeMapping TypeName="GTEModel.primary_location_master">
+              <MappingFragment StoreEntitySet="primary_location_master">
+                <ScalarProperty Name="time_zone" ColumnName="time_zone" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="local_govt_area" ColumnName="local_govt_area" />
+                <ScalarProperty Name="are_sq_km" ColumnName="are_sq_km" />
+                <ScalarProperty Name="median_income" ColumnName="median_income" />
+                <ScalarProperty Name="population" ColumnName="population" />
+                <ScalarProperty Name="elevation" ColumnName="elevation" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="primary_zipcode" ColumnName="primary_zipcode" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="state_code" ColumnName="state_code" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="primary_location" ColumnName="primary_location" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="primaryfieldmaster">
             <EntityTypeMapping TypeName="GTEModel.primaryfieldmaster">
               <MappingFragment StoreEntitySet="primaryfieldmaster">
@@ -12837,6 +13694,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="question_tag_master">
+            <EntityTypeMapping TypeName="GTEModel.question_tag_master">
+              <MappingFragment StoreEntitySet="question_tag_master">
+                <ScalarProperty Name="tagname" ColumnName="tagname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="realtionshipmaster">
             <EntityTypeMapping TypeName="GTEModel.realtionshipmaster">
               <MappingFragment StoreEntitySet="realtionshipmaster">
@@ -12880,6 +13745,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="religious_affiliation_master">
+            <EntityTypeMapping TypeName="GTEModel.religious_affiliation_master">
+              <MappingFragment StoreEntitySet="religious_affiliation_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="rolemaster">
             <EntityTypeMapping TypeName="GTEModel.rolemaster">
               <MappingFragment StoreEntitySet="rolemaster">
@@ -12908,6 +13781,30 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="secondarylanguagemaster">
                 <ScalarProperty Name="secondarylanguagename" ColumnName="secondarylanguagename" />
                 <ScalarProperty Name="languagecode" ColumnName="languagecode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="selectivity">
+            <EntityTypeMapping TypeName="GTEModel.selectivity">
+              <MappingFragment StoreEntitySet="selectivity">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Setting_master">
+            <EntityTypeMapping TypeName="GTEModel.Setting_master">
+              <MappingFragment StoreEntitySet="Setting_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="size_master">
+            <EntityTypeMapping TypeName="GTEModel.size_master">
+              <MappingFragment StoreEntitySet="size_master">
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -12960,6 +13857,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="studylevelmaster">
             <EntityTypeMapping TypeName="GTEModel.studylevelmaster">
               <MappingFragment StoreEntitySet="studylevelmaster">
+                <ScalarProperty Name="systemLevel" ColumnName="systemLevel" />
                 <ScalarProperty Name="levelofcode" ColumnName="levelofcode" />
                 <ScalarProperty Name="studylevel" ColumnName="studylevel" />
                 <ScalarProperty Name="studylevelid" ColumnName="studylevelid" />
@@ -13038,6 +13936,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tests_master">
+            <EntityTypeMapping TypeName="GTEModel.tests_master">
+              <MappingFragment StoreEntitySet="tests_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="timezonemaster">
             <EntityTypeMapping TypeName="GTEModel.timezonemaster">
               <MappingFragment StoreEntitySet="timezonemaster">
@@ -13106,6 +14012,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="type_master">
+            <EntityTypeMapping TypeName="GTEModel.type_master">
+              <MappingFragment StoreEntitySet="type_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="typeofworkexperiencemaster">
             <EntityTypeMapping TypeName="GTEModel.typeofworkexperiencemaster">
               <MappingFragment StoreEntitySet="typeofworkexperiencemaster">
@@ -13125,8 +14039,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="university_master">
             <EntityTypeMapping TypeName="GTEModel.university_master">
               <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="nooflocation" ColumnName="nooflocation" />
+                <ScalarProperty Name="totalcapacity" ColumnName="totalcapacity" />
                 <ScalarProperty Name="recordsavedat_numberof_applicant" ColumnName="recordsavedat_numberof_applicant" />
-                <ScalarProperty Name="numberof_applicant" ColumnName="numberof_applicant" />
                 <ScalarProperty Name="proctor1_contactno" ColumnName="proctor1_contactno" />
                 <ScalarProperty Name="proctor1_email" ColumnName="proctor1_email" />
                 <ScalarProperty Name="proctor1_name" ColumnName="proctor1_name" />
@@ -13148,35 +14063,77 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="headerstripcolor" ColumnName="headerstripcolor" />
                 <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="notes_disclaimer" ColumnName="notes_disclaimer" />
-                <ScalarProperty Name="acceptedminage" ColumnName="acceptedminage" />
-                <ScalarProperty Name="acceptedmaxage" ColumnName="acceptedmaxage" />
                 <ScalarProperty Name="getting_around" ColumnName="getting_around" />
                 <ScalarProperty Name="distance_from_railway" ColumnName="distance_from_railway" />
                 <ScalarProperty Name="distance_from_airport" ColumnName="distance_from_airport" />
                 <ScalarProperty Name="closest_airport" ColumnName="closest_airport" />
                 <ScalarProperty Name="time_zone" ColumnName="time_zone" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
                 <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="countryid" ColumnName="countryid" />
-                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="subjectRankings" ColumnName="subjectRankings" />
+                <ScalarProperty Name="awards" ColumnName="awards" />
+                <ScalarProperty Name="rankings" ColumnName="rankings" />
+                <ScalarProperty Name="academicRankingofWorldUniversities" ColumnName="academicRankingofWorldUniversities" />
+                <ScalarProperty Name="QSWorldUniversityRanking" ColumnName="QSWorldUniversityRanking" />
+                <ScalarProperty Name="timesHigherEducationRanking" ColumnName="timesHigherEducationRanking" />
+                <ScalarProperty Name="accreditation" ColumnName="accreditation" />
+                <ScalarProperty Name="FinancialneedMet" ColumnName="FinancialneedMet" />
+                <ScalarProperty Name="AvgFinancialAidPackage" ColumnName="AvgFinancialAidPackage" />
+                <ScalarProperty Name="avgTuitionFee" ColumnName="avgTuitionFee" />
+                <ScalarProperty Name="impDates" ColumnName="impDates" />
+                <ScalarProperty Name="NoofNationalities" ColumnName="NoofNationalities" />
+                <ScalarProperty Name="ofInternationalStudents" ColumnName="ofInternationalStudents" />
+                <ScalarProperty Name="InStateStudents" ColumnName="InStateStudents" />
+                <ScalarProperty Name="ofDomesticStudents" ColumnName="ofDomesticStudents" />
+                <ScalarProperty Name="AverageAge" ColumnName="AverageAge" />
+                <ScalarProperty Name="FemaleonCampus" ColumnName="FemaleonCampus" />
+                <ScalarProperty Name="StafftoStudentRatio" ColumnName="StafftoStudentRatio" />
+                <ScalarProperty Name="NoofAcademicStaff" ColumnName="NoofAcademicStaff" />
+                <ScalarProperty Name="SchoolEducationStudents" ColumnName="SchoolEducationStudents" />
+                <ScalarProperty Name="Non_awardStudents" ColumnName="Non_awardStudents" />
+                <ScalarProperty Name="Certificate_DiplomaStudents" ColumnName="Certificate_DiplomaStudents" />
+                <ScalarProperty Name="UnderGraduateStudents" ColumnName="UnderGraduateStudents" />
+                <ScalarProperty Name="GraduateStudents39" ColumnName="GraduateStudents39" />
+                <ScalarProperty Name="GraduateStudents" ColumnName="GraduateStudents" />
+                <ScalarProperty Name="DoctoralStudents" ColumnName="DoctoralStudents" />
+                <ScalarProperty Name="TotalEnrolledStudents" ColumnName="TotalEnrolledStudents" />
+                <ScalarProperty Name="courseDescription" ColumnName="courseDescription" />
+                <ScalarProperty Name="noofcampus" ColumnName="noofcampus" />
                 <ScalarProperty Name="long_description" ColumnName="long_description" />
                 <ScalarProperty Name="short_description" ColumnName="short_description" />
                 <ScalarProperty Name="year_established" ColumnName="year_established" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="SingleGender_Co_ed" ColumnName="SingleGender_Co_ed" />
+                <ScalarProperty Name="ReligiousAffiliation" ColumnName="ReligiousAffiliation" />
+                <ScalarProperty Name="setting" ColumnName="setting" />
+                <ScalarProperty Name="size" ColumnName="size" />
                 <ScalarProperty Name="affiliation" ColumnName="affiliation" />
                 <ScalarProperty Name="chatid" ColumnName="chatid" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
-                <ScalarProperty Name="website" ColumnName="website" />
-                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="hosturl" ColumnName="hosturl" />
+                <ScalarProperty Name="acceptedminage" ColumnName="acceptedminage" />
+                <ScalarProperty Name="acceptedmaxage" ColumnName="acceptedmaxage" />
                 <ScalarProperty Name="emai_notification2" ColumnName="emai_notification2" />
                 <ScalarProperty Name="emai_notification1" ColumnName="emai_notification1" />
+                <ScalarProperty Name="numberof_applicant" ColumnName="numberof_applicant" />
+                <ScalarProperty Name="sub_gte_service" ColumnName="sub_gte_service" />
                 <ScalarProperty Name="full_service" ColumnName="full_service" />
-                <ScalarProperty Name="hosturl" ColumnName="hosturl" />
-                <ScalarProperty Name="CRICOS_Code" ColumnName="CRICOS_Code" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="primaryzipcode" ColumnName="primaryzipcode" />
+                <ScalarProperty Name="primary_state" ColumnName="primary_state" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="primarylocation" ColumnName="primarylocation" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="UniContactPersonPosition" ColumnName="UniContactPersonPosition" />
+                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+                <ScalarProperty Name="institutionlegalname" ColumnName="institutionlegalname" />
                 <ScalarProperty Name="university_name" ColumnName="university_name" />
+                <ScalarProperty Name="CRICOS_Code" ColumnName="CRICOS_Code" />
+                <ScalarProperty Name="codetype" ColumnName="codetype" />
                 <ScalarProperty Name="university_flag" ColumnName="university_flag" />
+                <ScalarProperty Name="uni_id" ColumnName="uni_id" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -13184,12 +14141,39 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="universitycampus">
             <EntityTypeMapping TypeName="GTEModel.universitycampus">
               <MappingFragment StoreEntitySet="universitycampus">
-                <ScalarProperty Name="cityid" ColumnName="cityid" />
                 <ScalarProperty Name="faculty_description" ColumnName="faculty_description" />
                 <ScalarProperty Name="research" ColumnName="research" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="noofnationalty" ColumnName="noofnationalty" />
+                <ScalarProperty Name="internationalstude" ColumnName="internationalstude" />
+                <ScalarProperty Name="statestude" ColumnName="statestude" />
+                <ScalarProperty Name="domesticstude" ColumnName="domesticstude" />
+                <ScalarProperty Name="averageage" ColumnName="averageage" />
+                <ScalarProperty Name="female_percentage" ColumnName="female_percentage" />
+                <ScalarProperty Name="male_percentage" ColumnName="male_percentage" />
+                <ScalarProperty Name="totalstudent_campus" ColumnName="totalstudent_campus" />
+                <ScalarProperty Name="Sororities" ColumnName="Sororities" />
+                <ScalarProperty Name="Fraternities" ColumnName="Fraternities" />
+                <ScalarProperty Name="placeofintrestdistance" ColumnName="placeofintrestdistance" />
+                <ScalarProperty Name="placeofintrestdescription" ColumnName="placeofintrestdescription" />
+                <ScalarProperty Name="placeofintrestimage" ColumnName="placeofintrestimage" />
+                <ScalarProperty Name="getting_around" ColumnName="getting_around" />
+                <ScalarProperty Name="railwaydistanceunit" ColumnName="railwaydistanceunit" />
+                <ScalarProperty Name="distance_from_railway" ColumnName="distance_from_railway" />
+                <ScalarProperty Name="railclosestDistanceUnit" ColumnName="railclosestDistanceUnit" />
+                <ScalarProperty Name="closest_distance_from_railway" ColumnName="closest_distance_from_railway" />
+                <ScalarProperty Name="airDistanceUnit" ColumnName="airDistanceUnit" />
+                <ScalarProperty Name="distance_from_airport" ColumnName="distance_from_airport" />
+                <ScalarProperty Name="closest_airport" ColumnName="closest_airport" />
+                <ScalarProperty Name="campuslongitude" ColumnName="campuslongitude" />
+                <ScalarProperty Name="campuslatitude" ColumnName="campuslatitude" />
+                <ScalarProperty Name="campusaddress" ColumnName="campusaddress" />
+                <ScalarProperty Name="campussetting" ColumnName="campussetting" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="campuscountry" ColumnName="campuscountry" />
                 <ScalarProperty Name="campusname" ColumnName="campusname" />
+                <ScalarProperty Name="Ismaincampus" ColumnName="Ismaincampus" />
                 <ScalarProperty Name="campusid" ColumnName="campusid" />
               </MappingFragment>
             </EntityTypeMapping>

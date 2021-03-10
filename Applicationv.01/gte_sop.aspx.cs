@@ -126,7 +126,7 @@ public partial class gte_sop : System.Web.UI.Page
                             applicantdetails.highestqualificationdate = details.studycompletedate;
                             applicantdetails.highestqualificationcountry = Convert.ToInt32(details.countryofhigheststudy.HasValue);
 
-                            applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value.ToString() : "1";
+                            applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value : 1;
                             applicantdetails.cityofeducationInstitution = applicationDetails.city.HasValue ? applicationDetails.city.Value : 1;
                             applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1;
                             applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == applicationDetails.course.Value).Select(x => x.coursename).FirstOrDefault();
@@ -167,11 +167,11 @@ public partial class gte_sop : System.Web.UI.Page
                         btnsubmit.Style.Remove("display");
                         btnEdit.Style.Remove("display");
 
-                        //txtPara1.Text = construct_para(1, applicantdetails);
-                        //txtPara2.Text = construct_para(2, applicantdetails);
-                        //txtPara3.Text = construct_para(3, applicantdetails);
-                        //txtPara4.Text = construct_para(4, applicantdetails);
-                        //txtPara5.Text = construct_para(5, applicantdetails);
+                        txtPara1.Text = construct_para(1, applicantdetails);
+                        txtPara2.Text = construct_para(2, applicantdetails);
+                        txtPara3.Text = construct_para(3, applicantdetails);
+                        txtPara4.Text = construct_para(4, applicantdetails);
+                        txtPara5.Text = construct_para(5, applicantdetails);
                         var mode = "new";
                         gte_student_sop sop = new gte_student_sop();
                         var data = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
@@ -181,21 +181,22 @@ public partial class gte_sop : System.Web.UI.Page
                             mode = "update";
                             data = sop;
                         }
-                        //sop.gte_sop_para1 = txtPara1.Text;
-                        //sop.gte_sop_para2 = txtPara2.Text;
-                        //sop.gte_sop_para3 = txtPara3.Text;
-                        //sop.gte_sop_para4 = txtPara4.Text;
-                        //sop.gte_sop_para5 = txtPara5.Text;
-                        //sop.applicant_generated_sop_para1 = string.Empty;
-                        //sop.applicant_generated_sop_para2 = string.Empty;
-                        //sop.applicant_generated_sop_para3 = string.Empty;
-                        //sop.applicant_generated_sop_para4 = string.Empty;
-                        //sop.applicant_generated_sop_para5 = string.Empty;
+                        sop.gte_sop_para1 = txtPara1.Text;
+                        sop.gte_sop_para2 = txtPara2.Text;
+                        sop.gte_sop_para3 = txtPara3.Text;
+                        sop.gte_sop_para4 = txtPara4.Text;
+                        sop.gte_sop_para5 = txtPara5.Text;
+                        sop.applicant_generated_sop_para1 = string.Empty;
+                        sop.applicant_generated_sop_para2 = string.Empty;
+                        sop.applicant_generated_sop_para3 = string.Empty;
+                        sop.applicant_generated_sop_para4 = string.Empty;
+                        sop.applicant_generated_sop_para5 = string.Empty;
                         sop.is_sop_submitted_by_applicant = false;
-                        //sop.applicant_id = UserID;
-                        //sop.universityid = universityID;
-                        //sop.created_at = DateTime.Now;
-                        if(mode == "new")
+                        sop.is_sop_submitted_draft = false;
+                        sop.applicant_id = UserID;
+                        sop.universityid = universityID;
+                        sop.created_at = DateTime.Now;
+                        if (mode == "new")
                              db.gte_student_sop.Add(sop);
                         db.SaveChanges();
                     }

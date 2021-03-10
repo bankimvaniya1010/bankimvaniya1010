@@ -25,7 +25,7 @@
                            <asp:Label ID="lblEmptyList" runat="server" Text=""> No Assessment are schedule by institution.</asp:Label>
                        </div>
                    </div>
-                <div class="list-group-fit list-group-item">
+                <div class="list-group-fit list-group-item" id="dropdownlist" runat="server">
                     <div class="list-group-item" id="Div4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">

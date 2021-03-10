@@ -25,6 +25,10 @@
 
                     <div class="card">
                         <div class="card-body list-group list-group-fit">
+                            <div class="list-group-item" id="CompleteDiv" style="display:none;" runat="server">
+                                <asp:Label runat="server"> Declaration completed <%=declarationsubmitteddate %></asp:Label>
+                                </div>
+                            <div id="declarationDiv" runat="server">
                             <div class="list-group-item">
                                 <%--<label style="font-size:large;">Student Declaration:</label>--%>
                                 <div class="form-group">
@@ -61,6 +65,7 @@
                                         <asp:Label ID="lblmsg" runat="server" Text="Declations Not Set By Institution"></asp:Label>                                      
                                     </div>
                             <% } %>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -105,31 +110,31 @@
     </div>
     <script>
         
-        var questionsCompleted = '<%=questionsCompleted%>';
+        var applicantdetailsCompleted = '<%=applicantdetailsCompleted%>';
        <%-- var allstatementscount = '<%=allStatements.Count%>';
         var summarycount = '<%=summarystatCount%>';--%>
 
         function validate() {            
            
-            if (questionsCompleted == "False") {
-                alert("Please first complete Quick Test");
-                return false;
-            }
-            //for (var i = summarycount; i < allstatementscount; i++) {
-            //    var chk = $("#declarationchk_" + i);
-
-            //    if (!chk.is(':checked')) {
-            //        alert("Please tick all check boxes before proceeding.");
-            //        return false;
-            //    }
+            //if (applicantdetailsCompleted == "False") {
+            //    alert("Please first complete Your details");
+            //    return false;
             //}
-            return !(questionsCompleted == "False");
+            ////for (var i = summarycount; i < allstatementscount; i++) {
+            ////    var chk = $("#declarationchk_" + i);
+
+            ////    if (!chk.is(':checked')) {
+            ////        alert("Please tick all check boxes before proceeding.");
+            ////        return false;
+            ////    }
+            ////}
+            //return !(applicantdetailsCompleted == "False");
         }
        $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#gtedeclaration').addClass('active');
+            $('#Declaration').addClass('active');
         });
     </script>
 </asp:Content>

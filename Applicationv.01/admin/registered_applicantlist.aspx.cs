@@ -1,6 +1,7 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -44,7 +45,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
     private void Bindlabel(int universityID) {
         try
         {
-            int? studentcount_byuniveristy = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
+            var studentcount_byuniveristy = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
             lbltotal.InnerText = studentcount_byuniveristy.ToString();
 
             int registeredapplicantcCount = (from ad in db.applicantdetails
@@ -52,7 +53,8 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                              where ad.universityid == universityID && ad.isdeletedbyAdmin == false
                                              select ad.applicantid).ToList().Count;
 
-            var availableApplicant_Count = studentcount_byuniveristy - registeredapplicantcCount;
+            var value1 = Convert.ToInt32(studentcount_byuniveristy);
+            var availableApplicant_Count = value1 - registeredapplicantcCount;
 
             lblavailable.InnerText = availableApplicant_Count.ToString();
         }
@@ -68,6 +70,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         {
             if (fullservice == 0)
             {
+                
                 applicant = (from gtead in db.applicantdetails
 
                              join s in db.students on gtead.applicantid equals s.studentid 
@@ -75,12 +78,12 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                              join u in db.university_master on gtead.universityid equals u.universityid
 
                              join sd in db.gte_applicantdetails on gtead.applicantid equals sd.applicantid into data
-                             from sdata in data.DefaultIfEmpty()
+                             from sdata in data.Where(x=>x.universityid == universityID).DefaultIfEmpty()
 
                              join cm in db.countriesmaster on sdata.residencecountry equals cm.id into countrydata
                              from cmdata in countrydata.DefaultIfEmpty()
 
-                             where gtead.universityid == universityID && gtead.isdeletedbyAdmin == false
+                             where gtead.universityid == universityID && gtead.isdeletedbyAdmin == false 
                              select new Details()
                              {
                                  id = gtead.applicantid,
@@ -92,12 +95,24 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  email = gtead.email == null ? s.email : gtead.email,
                                  registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
                                  mobile = gtead.mobileno == null ? string.Empty : gtead.mobileno,
-                                 countryofresidence = cmdata.country_name == null ? string.Empty : cmdata.country_name,
+                                 countryofresidence = string.IsNullOrEmpty(cmdata.country_name) ? string.Empty : cmdata.country_name,
                                  Status = "Prospect",
                                  approve = gtead.isverifiedbyAdmin == true ? "Approved" : "Pending",
                                  suspend = gtead.isdeletedbyAdmin == true?"Deleted":string.Empty,
 
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
+                foreach (var itm in applicant) {
+                    int applicantid = Convert.ToInt32(itm.applicantid);
+                    if (string.IsNullOrEmpty(itm.countryofresidence))
+                    {
+                        var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == itm.universityId).FirstOrDefault();
+                        if (data != null)
+                        {
+                            itm.countryofresidence = objCom.GetCountryDiscription(Convert.ToInt32(data.residentialcountry));
+                        }
+                        
+                    }
+                }
             }
             else if(fullservice == 2)
             {
@@ -251,9 +266,10 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                     }
                 }
             }
-           
+            
             UserGridView.DataSource = applicant;
             UserGridView.DataBind();
+           
         }
         catch (Exception ex)
         {
@@ -448,42 +464,65 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 int ApplicantID = Convert.ToInt32(e.CommandArgument);
                 Response.Redirect(webURL + "admin/edit_studentDetails.aspx?ID="+ ApplicantID, true);
             }
+            if (e.CommandName.Equals("resend"))
+            {
+                var password = objCom.EncodePasswordToMD5(Hidpassword.Value);
+                int ApplicantID = Convert.ToInt32(e.CommandArgument);
+                int adminID = Convert.ToInt32(Session["UserID"]);
+                var adminData = db.adminusers.Where(x => x.adminid == adminID).FirstOrDefault();
+                //var studentInfo = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
+                var studentInfo = db.students.Where(x => x.studentid == ApplicantID).FirstOrDefault();
+
+                if (adminData.password == password)
+                {
+                    var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                    
+                    //resnd otp to applicant as well as loggedin admin
+                   
+                    StringBuilder sb1 = new StringBuilder();
+                    sb1.Append("Dear "+studentInfo.name+ "<br/>");
+                    sb1.Append("Based on your resend request, please find below the Online Time Password (OTP) details:"+"<br/>");
+                    sb1.Append("<b><ol><li>" + "Applicant ID: " + studentInfo.studentid + "</li>");
+                    sb1.Append("<li>"+ "Applicant Name: "+studentInfo.name + "</li>");
+                    sb1.Append("<li>" + "Registered on:  " + studentInfo.creationdate + "</li>");
+                    sb1.Append("<li>" + "User ID / Email: " + studentInfo.email + "</li>");
+                    sb1.Append("<li>" + "OTP: " + studentInfo.otp + "</li></ol></b>");
+                    sb1.Append("Thank you"+ "<br/>");
+                    sb1.Append("Support Team." + "<br/>");
+
+                    objCom.SendMail(studentInfo.email, sb1.ToString(), "Your OTP resend request was successful.");
+                                        
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("Dear " + adminData.name + "<br/>");
+                    sb.Append("Based on your resend request, please find below the Online Time Password (OTP) details:" + "<br/>");
+                    sb.Append("<b><ol><li>" + "Applicant ID: " + studentInfo.studentid + "</li>");
+                    sb.Append("<li>" + "Applicant Name: " + studentInfo.name + "</li>");
+                    sb.Append("<li>" + "Registered on:  " + studentInfo.creationdate + "</li>");
+                    sb.Append("<li>" + "User ID / Email: " + studentInfo.email + "</li>");
+                    sb.Append("<li>" + "OTP: " + studentInfo.otp + "</li></ol></b>");
+                    sb.Append("Thank you" + "<br/>");
+                    sb.Append("Support Team." + "<br/>");
+                    objCom.SendMail(adminData.email , sb.ToString(), "Your OTP resend request was successful for applicant ID " + ApplicantID);
+
+                }
+                else
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Invalid password.')", true);
+            }
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
     }
-
+   
     protected void UserGridView_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         try
         {
-            if (fullservice == 1 || fullservice == 0)
-            {
-                ((DataControlField)UserGridView.Columns
-                    .Cast<DataControlField>()
-                    .Where(fld => fld.HeaderText == "Class")
-                    .SingleOrDefault()).Visible = false;
-                ((DataControlField)UserGridView.Columns
-                    .Cast<DataControlField>()
-                    .Where(fld => fld.HeaderText == "Group")
-                    .SingleOrDefault()).Visible = false;
-                ((DataControlField)UserGridView.Columns
-                    .Cast<DataControlField>()
-                    .Where(fld => fld.HeaderText == "Subjects")
-                    .SingleOrDefault()).Visible = false;
-                ((DataControlField)UserGridView.Columns
-                    .Cast<DataControlField>()
-                    .Where(fld => fld.HeaderText == "StudentID")
-                    .SingleOrDefault()).Visible = false;
-                ((DataControlField)UserGridView.Columns
-                   .Cast<DataControlField>()
-                   .Where(fld => fld.HeaderText == "Edit")
-                   .SingleOrDefault()).Visible = false;
-            }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                e.Row.Cells[0].CssClass = "locked";
+                Label lblapplicantid = (Label)e.Row.FindControl("lblapplicantid");
                 Label lblstatus = (Label)e.Row.FindControl("Label6");
                 LinkButton lnkapprove = ((LinkButton)e.Row.FindControl("lnkapprove"));
 
@@ -491,6 +530,21 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                     lnkapprove.Attributes.Add("style", "display:none");
                 else
                     lnkapprove.Attributes.Add("style", "display:block");
+
+                int applicantid = Convert.ToInt32(lblapplicantid.Text);
+                Label Label7 = (Label)e.Row.FindControl("Label7");
+                LinkButton lnkResend = ((LinkButton)e.Row.FindControl("lnkResend"));
+                var ispassword = db.students.Where(x => x.studentid == applicantid).FirstOrDefault();
+                if (string.IsNullOrEmpty(ispassword.password))
+                {
+                    lnkResend.Attributes.Add("style", "display:block");
+                    Label7.Attributes.Add("style", "display:none");
+                }
+                else {
+                    lnkResend.Attributes.Add("style", "display:none");
+                    Label7.Attributes.Add("style", "display:block");
+                }
+
             }
         }
         catch (Exception ex)
@@ -501,7 +555,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
 
     protected void UserGridView_RowCreated(object sender, GridViewRowEventArgs e)
     {
-        if (fullservice == 1 || fullservice == 0)
+        if (objCom.GetUniversityservice(universityID) == 1 || objCom.GetUniversityservice(universityID) == 0)
         {
             ((DataControlField)UserGridView.Columns
                 .Cast<DataControlField>()
@@ -511,10 +565,10 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 .Cast<DataControlField>()
                 .Where(fld => fld.HeaderText == "Group")
                 .SingleOrDefault()).Visible = false;
-            ((DataControlField)UserGridView.Columns
-                .Cast<DataControlField>()
-                .Where(fld => fld.HeaderText == "Subjects")
-                .SingleOrDefault()).Visible = false;
+            //((DataControlField)UserGridView.Columns
+            //    .Cast<DataControlField>()
+            //    .Where(fld => fld.HeaderText == "Subjects")
+            //    .SingleOrDefault()).Visible = false;
             ((DataControlField)UserGridView.Columns
                 .Cast<DataControlField>()
                 .Where(fld => fld.HeaderText == "StudentID")
@@ -528,28 +582,28 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
 
     protected void UserGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
     {
-        if (fullservice == 1 || fullservice == 0)
-        {
-            ((DataControlField)UserGridView.Columns
-                .Cast<DataControlField>()
-                .Where(fld => fld.HeaderText == "Class")
-                .SingleOrDefault()).Visible = false;
-            ((DataControlField)UserGridView.Columns
-                .Cast<DataControlField>()
-                .Where(fld => fld.HeaderText == "Group")
-                .SingleOrDefault()).Visible = false;
-            ((DataControlField)UserGridView.Columns
-                .Cast<DataControlField>()
-                .Where(fld => fld.HeaderText == "Subjects")
-                .SingleOrDefault()).Visible = false;
-            ((DataControlField)UserGridView.Columns
-                .Cast<DataControlField>()
-                .Where(fld => fld.HeaderText == "StudentID")
-                .SingleOrDefault()).Visible = false;
-            ((DataControlField)UserGridView.Columns
-               .Cast<DataControlField>()
-               .Where(fld => fld.HeaderText == "Edit")
-               .SingleOrDefault()).Visible = false;
-        }
+        //if (fullservice == 1 || fullservice == 0)
+        //{
+        //    ((DataControlField)UserGridView.Columns
+        //        .Cast<DataControlField>()
+        //        .Where(fld => fld.HeaderText == "Class")
+        //        .SingleOrDefault()).Visible = false;
+        //    ((DataControlField)UserGridView.Columns
+        //        .Cast<DataControlField>()
+        //        .Where(fld => fld.HeaderText == "Group")
+        //        .SingleOrDefault()).Visible = false;
+        //    //((DataControlField)UserGridView.Columns
+        //    //    .Cast<DataControlField>()
+        //    //    .Where(fld => fld.HeaderText == "Subjects")
+        //    //    .SingleOrDefault()).Visible = false;
+        //    ((DataControlField)UserGridView.Columns
+        //        .Cast<DataControlField>()
+        //        .Where(fld => fld.HeaderText == "StudentID")
+        //        .SingleOrDefault()).Visible = false;
+        //    ((DataControlField)UserGridView.Columns
+        //       .Cast<DataControlField>()
+        //       .Where(fld => fld.HeaderText == "Edit")
+        //       .SingleOrDefault()).Visible = false;
+        //}
     }
 }

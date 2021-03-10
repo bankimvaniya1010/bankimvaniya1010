@@ -141,8 +141,8 @@
                                 <div class="form-group m-0" role="Residential" aria-labelledby="label-Residential ">
                                     <div class="form-row">
                                         <label id="labelResidential" runat="server" for="title" class="col-md-3 col-form-label form-label">Current Residential  Address</label>
-                                        <div class="col-md-6">
-
+                                        <div class="-md-6">
+ 
                                             <input id="txtResidentialAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control" maxlength="200"><span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             <input id="txtResidentialAddress2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control" maxlength="200">
                                             <input id="txtResidentialAddress3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control" maxlength="200">

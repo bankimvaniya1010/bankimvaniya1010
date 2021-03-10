@@ -87,7 +87,8 @@ public partial class gte_studentdetails : System.Web.UI.Page
         }
     }
 
-    private void BindEducationCountry(int universityid) {
+    private void BindEducationCountry(int universityid)
+    {
         try
         {
             ListItem lst = new ListItem("Please select", "0");
@@ -100,19 +101,19 @@ public partial class gte_studentdetails : System.Web.UI.Page
             {
                 temp = (from em in db.countriesmaster
 
-                            join um in db.university_master on em.id equals um.countryid into primaryData
-                            from uni in primaryData.DefaultIfEmpty()
+                        join um in db.university_master on em.id equals um.countryid into primaryData
+                        from uni in primaryData.DefaultIfEmpty()
 
-                            join uc in db.universitycampus on universityid equals uc.universityid into uniData
-                            from campus in uniData.DefaultIfEmpty()
+                        join uc in db.universitycampus on universityid equals uc.universityid into uniData
+                        from campus in uniData.DefaultIfEmpty()
 
-                            where uni.universityid == universityid
-                            select new data()
-                            {
-                                country_name = em.country_name,
-                                id = em.id,
-                                campuscity = campus.cityid,
-                            }).Distinct().ToList();
+                        where uni.universityid == universityid
+                        select new data()
+                        {
+                            country_name = em.country_name,
+                            id = em.id,
+                            campuscity = campus.cityid,
+                        }).Distinct().ToList();
 
                 foreach (var item in temp)
                 {
@@ -146,15 +147,15 @@ public partial class gte_studentdetails : System.Web.UI.Page
             {
                 list_final = (from em in db.countriesmaster
 
-                        join um in db.university_master on em.id equals um.countryid into primaryData
-                        from uni in primaryData.DefaultIfEmpty()
+                              join um in db.university_master on em.id equals um.countryid into primaryData
+                              from uni in primaryData.DefaultIfEmpty()
 
-                        where uni.universityid == universityid
-                        select new data()
-                        {
-                            country_name = em.country_name,
-                            id = em.id,
-                        }).Distinct().ToList();
+                              where uni.universityid == universityid
+                              select new data()
+                              {
+                                  country_name = em.country_name,
+                                  id = em.id,
+                              }).Distinct().ToList();
             }
 
             ddluniversityCountry.DataSource = list_final;
@@ -162,7 +163,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             ddluniversityCountry.DataValueField = "id";
             ddluniversityCountry.DataBind();
             ddluniversityCountry.Items.Insert(0, lst);
-           
+
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
@@ -519,7 +520,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 objgte_applicantdetails.highestqualificationcountry = Convert.ToInt32(ddlhighestqualificationcountry.SelectedValue);
 
             if (ddlcourseapplied.SelectedValue != "")
-                objgte_applicantdetails.levelofcourse = ddlcourseapplied.SelectedValue;
+                objgte_applicantdetails.levelofcourse = Convert.ToInt32(ddlcourseapplied.SelectedValue);
 
             if (ddlfieldofstudy.SelectedValue != "")
                 objgte_applicantdetails.fieldofstudyapplied = Convert.ToInt32(ddlfieldofstudy.SelectedValue);

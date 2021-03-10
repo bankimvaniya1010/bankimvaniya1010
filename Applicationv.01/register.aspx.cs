@@ -27,7 +27,7 @@ public partial class register : System.Web.UI.Page
         logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         universityGTMCode = university.university_gtm_code;
         if(university.numberof_applicant != null)
-            noofregistered = university.numberof_applicant;
+            noofregistered =Convert.ToInt32(university.numberof_applicant);
     }
 
     protected void btnSignUp_Click(object sender, EventArgs e)
@@ -38,9 +38,8 @@ public partial class register : System.Web.UI.Page
         applicantdetails objapplicant = new applicantdetails();
         try
         {
-            var registeredapplicant = (from ad in db.applicantdetails
-                                       join sd in db.students on ad.applicantid equals sd.studentid
-                                       where ad.universityid == universityID && sd.isdeletedbyAdmin == false
+            var registeredapplicant = (from ad in db.applicantdetails                                       
+                                       where ad.universityid == universityID && ad.isdeletedbyAdmin == false
                                        select ad.applicantid).ToList();
             if (noofregistered != 0 && registeredapplicant.Count >= noofregistered)
             {
@@ -79,8 +78,11 @@ public partial class register : System.Web.UI.Page
                     universityID = Utility.GetUniversityId();
                     objapplicant.universityid = universityID;
                     objapplicant.exam_institutionId = universityID;
+                    objapplicant.Isdetailscompleted = false;
+                    objapplicant.Is_clarification_submitted = false;
                     objapplicant.isverifiedbyAdmin = false;
                     objapplicant.isdeletedbyAdmin = false;
+                    objapplicant.Isold_or_new_applicant = false;
                     db.applicantdetails.Add(objapplicant);
                     db.SaveChanges();
                     var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
@@ -98,7 +100,7 @@ public partial class register : System.Web.UI.Page
                     string html = string.Empty;
                     string emailsubject = string.Empty;
 
-                    if (university.full_service == 0)// if (Utility.GetUniversityId() == 13) exsisting now change acc #376
+                    if (university.full_service == 0) // if (Utility.GetUniversityId() == 13) exsisting now change acc #376
                     {
                         html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/gte_direct_signupNotification.html"));
                         emailsubject = "Welcome to GTE-Direct Online Centre (GOC)";

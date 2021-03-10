@@ -131,24 +131,19 @@
                 <div id="tblcontent" runat="server" style="display: none">
                     <div class="form-group row">
                         <div class="col-sm-4 col-form-label form-label">
-                            Select Action :
+                            <asp:Button runat="server" Text="Refresh" CssClass="btn btn-success" ID="refreshbtn" OnClick="refreshbtn_Click" />
+                        </div>
+                        <div class="col-sm-4" style="margin-top:20px;margin-left:-20%;">
                             <asp:DropDownList runat="server" ID="rejectionlist" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="rejectionlist_SelectedIndexChanged">
                                 <asp:ListItem Value="0">Please select</asp:ListItem>
-                                <%--Do not change the listitem spelling. acc check was there is exam_verification page --%>
+                                <%---Do not change the listitem spelling. acc check was there is exam_verification page --%>
                                 <asp:ListItem Value="1">Verified</asp:ListItem>
                                 <asp:ListItem Value="2">Not Present</asp:ListItem>
                                 <asp:ListItem Value="3">Not Verified</asp:ListItem>
                             </asp:DropDownList>
                         </div>
-
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-8 updt-prftbl">
-                                    <asp:Button runat="server" Text="Refresh" CssClass="btn btn-success" ID="refreshbtn" OnClick="refreshbtn_Click" />
-                                    <asp:Button runat="server" ID="btnstart" class="btn btn-success" OnClick="btnstart_Click" Text="Start Exam" OnClientClick="return ConfirmOnDelete()" />
-                                </div>
-                                
-                            </div>
+                        <div class="col-sm-4" style="margin-top:11px;">
+                            <asp:Button runat="server" ID="btnsave" class="btn btn-success" OnClick="btnsave_Click" OnClientClick="return validate()" Text="Submit" />
                         </div>
                     </div>
                    
@@ -240,11 +235,13 @@
                         </div>
                     </div>
                     <div>
-                        <asp:Button runat="server" ID="btnsave" class="btn btn-success" OnClick="btnsave_Click" OnClientClick="return validate()" Text="Submit" />
+                        <asp:Button runat="server" ID="btnstart" class="btn btn-success" OnClick="btnstart_Click" Text="Start Exam" OnClientClick="return ConfirmOnDelete()" />
 
                     </div>
                 </div>
-                 <div id="clock" runat="server">                   
+                
+                <div runat="server" id="refreshtbl" style="display: none">
+                     <%--<div id="clock" runat="server">                   
                                     <div style="font-size: large; text-align: center">
                                         <label id="lblreading" runat="server">READING TIME:</label>
                                         <span id="reading_countdown" style="font-weight: 900; padding-right: 25px;"></span>
@@ -255,13 +252,12 @@
                                       
                                         <asp:hiddenfield id="hidTime" runat="server" />
                                     </div>
-                                </div>
-                <div runat="server" id="refreshtbl" style="display: none">
+                                </div>--%>
                     <div class="form-group">
                         <div class="tab-content card-body">
                             <div class="tab-pane active" id="first1" style="white-space: nowrap">
                                 <div class="table-responsive">
-                                    <table id="refreshtblcontent" class="table">
+                                    <table id="refreshtblcontent" class="table table-bordered" style="border: 1px solid #1b1c1c !important;">
                                         <tr>
                                             <th>Record Id</th>
                                             <th>Applicant ID</th>
@@ -280,6 +276,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div id="remainingapplicantDiv">
+
                     </div>
                 </div>
                 </div>
@@ -387,8 +386,6 @@
             document.getElementById("myLocalDate").innerHTML = myLocalDate; --%>
 
         });
-        
-
        
         setInterval(refreshcheckutcexamtime, 1000);
         
@@ -432,7 +429,7 @@
                                   }
                               });
                               $("#<%=refreshtbl.ClientID%>").show();
-                              $("#<%=tblcontent.ClientID%>").hide();
+                              <%--$("#<%=tblcontent.ClientID%>").hide();--%>
 
                           }
                       }
@@ -445,15 +442,11 @@
         }  
         setInterval(funcheckifexamstarted, 1000);
         
-        var readingtime ;
-        var uploadtime ;
-        var hms ;
-
         function funcheckifexamstarted() {
             var examid = $("#<%=ddlexam.ClientID%>").val();
             var assignid = $("#<%=ddlExamDateTime.ClientID%>").val();
             var universityid = $("#<%=ddlUniversity.ClientID%>").val();
-
+            var proctorid = $("#<%=ddlexaminer.ClientID%>").val();
             $.ajax({
                 type: "GET",
                 url: "examassessment_management.aspx/checkifexamstarted",
@@ -464,21 +457,46 @@
                     if (response.d) {
                         var result = JSON.parse(response.d);
                         if (result == "startclock") {
-                            readingtime = '<%=sessionreadingTime%>';
-                            uploadtime = '<%=sessionUploadTime%>';
-                            hms = '<%=sessionwritingTime%>';
+                            
                         }
                     }
                 }
             });
-        } 
+            
+        }
+        setInterval(tohidecontent, 1000);
+
+        function tohidecontent() {
+            var examid = $("#<%=ddlexam.ClientID%>").val();
+            var assignid = $("#<%=ddlExamDateTime.ClientID%>").val();
+            var universityid = $("#<%=ddlUniversity.ClientID%>").val();
+            var proctorid = $("#<%=ddlexaminer.ClientID%>").val();
+            if (examid != null && proctorid != null && assignid != 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "examassessment_management.aspx/Hidestartexamandtable",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { examid: examid, assignid: assignid, universityid: universityid, proctorid: proctorid },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = response.d;
+                            if (result == "hide") {
+
+                                $("#<%=tblcontent.ClientID%>").hide();
+                            }
+                        }
+                    }
+                });
+            }
+        }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        
+   <%--     
 
-        readingtime = '<%=sessionreadingTime%>';
-        uploadtime = '<%=sessionUploadTime%>';
-        hms = '<%=sessionwritingTime%>';
+        readingtime = '<%=Session["SessionReadingTime"]%>'; 
+        uploadtime = '<%=Session["SessionWrittingTime"]%>'; 
+        hms = '<%=Session["SessionUpploadTime"]%>'; 
 
         const countdownEl = document.getElementById('countdown');
         const reading_countdown = document.getElementById('reading_countdown');
@@ -606,9 +624,7 @@
                         $("#<%=lbluploadtime.ClientID%>").hide();
                         $('#userAlertMsg').html("Assessmnent upload time exhausted");
                         $('#alertModal').modal('show');
-                        //alert("Assessmnent upload time exhausted");
-                        //ajaxcall();
-                        0
+                       
                     }
                 }
                 else
@@ -634,14 +650,12 @@
                     $('#userAlertMsg').html("Assessmnent upload time exhausted");
                     $('#alertModal').modal('show');
                     //alert("Assessmnent upload time exhausted");
-                    ajaxcall();
-                    var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
-                    location.replace(hostName + "exammodule.aspx");
+
                 }
                 else
                     return true;
             }
-        }
+        }--%>
 
     </script>
 </asp:Content>

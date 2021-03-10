@@ -523,8 +523,11 @@ public partial class view_exampaper2 : System.Web.UI.Page
             mode = "update";
             objexam_assign = data;
         }
-        if (objexam_assign.status == null || data.status == "Verified" || data.status == "Assessment Started")
+        if (string.IsNullOrEmpty(objexam_assign.status) || data.status == "Verified" || data.status == "Assessment Started")
+        {
             objexam_assign.status = "Not Appered";
+            objexam_assign.is_studentactiveforexam = 0;
+        }
         if (mode == "new")
             db1.exam_assign.Add(objexam_assign);
         db1.SaveChanges();

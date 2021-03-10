@@ -64,8 +64,11 @@ public partial class admin_applicantlist : System.Web.UI.Page
                                  commencementdate = (x3 == null) ? (DateTime?)null : x3.commencementdate,
 
                              }).SortBy("applicantid").ToList();
-            gvApplicant.DataSource = applicant;
-            gvApplicant.DataBind();
+            if (applicant != null)
+            {
+                gvApplicant.DataSource = applicant;
+                gvApplicant.DataBind();
+            }
         }
         catch (Exception ex)
         {
@@ -177,7 +180,11 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 downloadApplicantDetails(ID);
             }
             if (Comamandname.Equals("GTE Student Detail"))
-            {
+            {               
+                //var Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(ID);
+                //if (Isold_or_new_applicant == true)
+                //    Response.Redirect(webURL + "admin/gte_studentdetailsN.aspx?userid=" + ID + "&formid=" + form.formid, true);
+                //else
                 Response.Redirect(webURL + "admin/gte_studentdetailsaspx.aspx?userid=" + ID + "&formid=" + form.formid, true);
             }
             if (Comamandname.Equals("FeedBackGTE"))
@@ -237,7 +244,10 @@ public partial class admin_applicantlist : System.Web.UI.Page
             string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
             string fileName = Guid.NewGuid() + ".pdf";
             string filePath = string.Concat(dirPath, "\\", fileName);
-
+            //var Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(ApplicantID);
+            //if (Isold_or_new_applicant == true)
+            //    htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificateN.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + ApplicantID + "&universityId=" + universityID, null, filePath);
+            //else
             htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificate1.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + ApplicantID + "&universityId=" + universityID, null, filePath);
 
             var mode = "new";
@@ -272,8 +282,13 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/sopreport.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID +"&type="+type + "&downloadPdf=1", null, filePath);
 
+        //var Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(ApplicantID);
+        //if (Isold_or_new_applicant == true)
+        //    htmlToPdf.GeneratePdfFromFile(webURL + "admin/sop_reportN.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
+        //else
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/sopreport.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
+        
         Response.ContentType = "application/pdf";
         Response.AppendHeader("Content-Disposition", "attachment; filename="+type+"_SOP_Report_" + fileName);
         Response.TransmitFile(filePath);
@@ -324,6 +339,10 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
+        
+        //if (Isold_or_new_applicant == true)
+        //    htmlToPdf.GeneratePdfFromFile(webURL + "admin/gte_ReportN.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
+        //else
         htmlToPdf.GeneratePdfFromFile(webURL + "admin/gtereport.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID+"&type="+type + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
@@ -1152,8 +1171,22 @@ public partial class admin_applicantlist : System.Web.UI.Page
             int applicantid = Convert.ToInt32(e.Row.Cells[0].Text);
             if (LinkButton6 != null)
             {
+                //var Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(applicantid);
+                //dynamic isgtedetils;
+                //if (Isold_or_new_applicant == true)
+                //{
+                //    isgtedetils = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).Where(x => x.Isdetailscompleted == true).FirstOrDefault();
+                //    LinkButton4.Style.Add("display", "none");
+                //    if (isgtedetils.Is_clarification_submitted == true)
+                //        lnkDownloadSOPReport.Style.Add("display", "block");
+                //    else
+                //        lnkDownloadSOPReport.Style.Add("display", "none");
+                //}
+                //else
+                //    isgtedetils = db.gte_applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
+
                 var isgtedetils = db.gte_applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
-                if(isgtedetils == null)
+                if (isgtedetils == null)
                     LinkButton6.Style.Add("display", "none");
             }
 

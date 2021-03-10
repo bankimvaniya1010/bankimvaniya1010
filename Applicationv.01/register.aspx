@@ -54,7 +54,7 @@
                             <img src="<%=logourl %>" class="logo-img img-fluid"/>
                         </div>
                         <h4 class="card-title">Student Sign Up</h4>
-                        <p class="card-subtitle">Create your account</p>
+                        <p class="card-subtitle" style="color:black">Create your account</p>
                     </div>
                     <div class="card-body">
 
@@ -63,7 +63,7 @@
                             
                         </div>
 
-                        <div class="form-group">
+                        <div class="">
                             <label class="form-label" for="name">Name:</label>
                             <div class="input-group input-group-merge">
                                 <input id="name" type="text" runat="server" class="form-control form-control-prepended" placeholder="Enter your full name">
@@ -87,10 +87,10 @@
                         </div>
                         <asp:Button ID="buttonlogin" runat="server" Text="Sign Up" CssClass="btn btn-primary btn-block mb-3" OnClick="btnSignUp_Click" target="_blank" />
                          
-                        <div class="form-group text-center mb-0">
+                        <div class="form-group text-center" style="margin-bottom:-36px;">
                             <div class="custom-control custom-checkbox">
                                 <input id="terms" type="checkbox" class="custom-control-input" checked required="">
-                                <label for="terms" class="custom-control-label text-black-70">I agree to the <a href="#" class="text-black-70" style="text-decoration: underline;">Terms of Use</a></label>
+                                <label for="terms" class="custom-control-label text-black-70">I agree to the <Label class="text-black-70" style="text-decoration: underline;" id="lblterms">Terms of Use</Label></label>
                             </div>
                             <br>
                              <%--<div style="font-size: small;">
@@ -99,10 +99,26 @@
                         </div>
 
                     </div>
-                    <div class="card-footer text-center text-black-50">Already signed up? <a href="login.aspx" target="_blank">Login</a></div>
+                    <div class="card-footer text-center text-black-50" style="color:black">Already signed up? <a href="login.aspx" target="_blank">Login</a></div>
                 </div>
             </div>
         </div>
+        <div style="display: none;" runat="server">
+                <div class="modal" id="IELTS-modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="faq-modal-header modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="">
+                                    <span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </form>
     <!-- jQuery -->
     <script src="assets/vendor/jquery.min.js"></script>
@@ -134,6 +150,11 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <script language="javascript" type="text/javascript">
+        $('#lblterms').click(function () {
+                var IELTSModal = $('#IELTS-modal');
+                $('body').append(IELTSModal);
+                $('#IELTS-modal').modal('show');
+            });
         $(function () {
             $('#buttonlogin').click(function () {
                 var summary = "";

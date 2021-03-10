@@ -121,7 +121,7 @@ public partial class gte_sop_draft : System.Web.UI.Page
                             applicantdetails.highestqualificationdate = details.studycompletedate;
                             applicantdetails.highestqualificationcountry = Convert.ToInt32(details.countryofhigheststudy.HasValue);
 
-                            applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value.ToString() : "1";
+                            applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value : 1;
                             applicantdetails.cityofeducationInstitution = applicationDetails.city.HasValue ? applicationDetails.city.Value : 1;
                             applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1;
                             applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == applicationDetails.course.Value).Select(x => x.coursename).FirstOrDefault();
