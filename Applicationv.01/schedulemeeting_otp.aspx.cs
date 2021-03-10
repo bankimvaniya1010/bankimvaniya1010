@@ -155,7 +155,7 @@ public partial class schedulemeeting_otp : System.Web.UI.Page
         var enteredPasskey = txtpassskey.Value;
         var mode = "new";
         var Schedule = (from pInfo in db.applicant_meeting_schedule
-                        where pInfo.applicant_id == UserID && pInfo.university_id == UniversityID && pInfo.is_meetingtime_expires != true
+                        where pInfo.applicant_id == UserID && pInfo.university_id == UniversityID && pInfo.is_meetingtime_expires == null
                         select pInfo).FirstOrDefault();
         applicant_meeting_schedule objapplicant_meeting_schedule = new applicant_meeting_schedule();
 
