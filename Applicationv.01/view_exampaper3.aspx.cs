@@ -74,7 +74,8 @@ public partial class view_exampaper3 : System.Web.UI.Page
         {
             allpapersheetscount = exammpaperaster.Count;
         }
-
+        var exammaster = db.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == exampaperid).FirstOrDefault();
+        exammarks = exammaster.maximummarks;
         if (!IsPostBack)
         {
             if (string.IsNullOrEmpty(data.status) || data.status == "Verified" || data.status == "Assessment Started")
@@ -99,21 +100,25 @@ public partial class view_exampaper3 : System.Web.UI.Page
             
     }
 
-    private void showTime()
+    private static void showTime(int assignID)
     {
+        Logger objLog = new Logger();
+        int UniversityID = Utility.GetUniversityId();
         try
         {
+            GTEEntities db1 = new GTEEntities();            
+            var exam_assign = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
 
-            var exammaster = db.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == exampaperid).FirstOrDefault();
-            
-            var exam_assign = db.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
             if (exam_assign != null)
             {
-                var examschedule = db.exam_schedule.Where(x => x.universityid == UniversityID && x.exampapersid == exampaperid && x.exam_datetime == exam_assign.exam_datetime).FirstOrDefault();
+                HttpContext.Current.Session["readingtime"] = null;
+                HttpContext.Current.Session["uploadtime"] = null;
+                HttpContext.Current.Session["totalResponseTime"] = null;
+
+                var exammaster = db1.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == exam_assign.exampapersid).FirstOrDefault();
+                var examschedule = db1.exam_schedule.Where(x => x.universityid == UniversityID && x.exampapersid == exam_assign.exampapersid && x.exam_datetime == exam_assign.exam_datetime).FirstOrDefault();
                 if (exammaster != null)
                 {
-                    exammarks = exammaster.maximummarks;
-
                     if (examschedule != null)
                     {
                         string current_UTC_Time = DateTime.UtcNow.ToString("hh:mm:ss");
@@ -148,72 +153,51 @@ public partial class view_exampaper3 : System.Web.UI.Page
                                 exam_ReadingTime = Convert.ToInt32(exammaster.exam_readingduration);
                                 exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
                                 exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
-                                Session["readingtime"] = exammaster.exam_readingduration;
-                                Session["totalResponseTime"] = exammaster.exam_duration;
-                                Session["uploadtime"] = exammaster.exam_uploadduration;
+                                HttpContext.Current.Session["readingtime"] = exammaster.exam_readingduration;
+                                HttpContext.Current.Session["totalResponseTime"] = exammaster.exam_duration;
+                                HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
                             }
                             else
                             {
                                 set_Readingtime = DateTime.Parse(str_ReadingTime_end).Subtract(DateTime.Parse(current_UTC_Time));
                                 if (set_Readingtime.ToString() == "00:00:00" || set_Readingtime.ToString().Contains("-"))
                                 {
-                                    Session["readingtime"] = string.Empty;
+                                    HttpContext.Current.Session["readingtime"] = string.Empty;
                                     set_Writingtime = DateTime.Parse(str_WritingTime_end).Subtract(DateTime.Parse(current_UTC_Time));
                                     if (set_Writingtime.ToString() == "00:00:00" || set_Writingtime.ToString().Contains("-"))
                                     {
-                                        Session["totalResponseTime"] = string.Empty;
+                                        HttpContext.Current.Session["totalResponseTime"] = string.Empty;
                                         set_Uploadtime = DateTime.Parse(str_UploadTime_end).Subtract(DateTime.Parse(current_UTC_Time));
                                         if (set_Uploadtime.ToString() == "00:00:00" || set_Uploadtime.ToString().Contains("-"))
                                         {
-                                            Session["uploadtime"] = string.Empty;
+                                            HttpContext.Current.Session["uploadtime"] = string.Empty;
                                         }
                                         else
                                         {
-                                            Session["readingtime"] = string.Empty;
-                                            Session["totalResponseTime"] = string.Empty;
-                                            Session["uploadtime"] = set_Uploadtime;
+                                            HttpContext.Current.Session["readingtime"] = string.Empty;
+                                            HttpContext.Current.Session["totalResponseTime"] = string.Empty;
+                                            HttpContext.Current.Session["uploadtime"] = set_Uploadtime;
                                         }
                                     }
                                     else
                                     {
-                                        Session["readingtime"] = string.Empty;
-                                        Session["totalResponseTime"] = set_Writingtime;
-                                        Session["uploadtime"] = exammaster.exam_uploadduration;
+                                        HttpContext.Current.Session["readingtime"] = string.Empty;
+                                        HttpContext.Current.Session["totalResponseTime"] = set_Writingtime;
+                                        HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
                                     }
                                 }
                                 else
                                 {
-                                    Session["readingtime"] = set_Readingtime;
-                                    Session["totalResponseTime"] = exammaster.exam_duration;
-                                    Session["uploadtime"] = exammaster.exam_uploadduration;
+                                    HttpContext.Current.Session["readingtime"] = set_Readingtime;
+                                    HttpContext.Current.Session["totalResponseTime"] = exammaster.exam_duration;
+                                    HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
                                 }
 
                                 exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
                                 exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
 
                             }
-
-
                         }
-
-                        //if (string.IsNullOrEmpty(exammaster.exam_readingduration))
-                        //    Session["readingtime"] = string.Empty;
-                        //else
-                        //    Session["readingtime"] = exammaster.exam_readingduration;
-
-                        //if (string.IsNullOrEmpty(exammaster.exam_uploadduration))
-                        //    Session["uploadtime"] = string.Empty;
-                        //else
-                        //    Session["uploadtime"] = exammaster.exam_uploadduration;
-
-                        //if (Session["totalResponseTime"] == null)
-                        //    Session["totalResponseTime"] = exammaster.exam_duration;
-                        //else
-                        //{
-
-                        //    Session["totalResponseTime"] = Session["totalResponseTime"];
-                        //    var time = Session["totalResponseTime"];
-                        //}
                     }
                 }
             }
@@ -225,7 +209,7 @@ public partial class view_exampaper3 : System.Web.UI.Page
     {
         try
         {
-            showTime();
+            showTime(assignID);
             var answeredpapersheets = db.exam_answersheet.Where(x => x.applicantid == UserID && x.universityID == UniversityID && x.exampaperid == exampaperid && x.exam_datetime == assignDate).ToList();
             var allpapersheets = db.exampapers_master.Where(y => y.exampapersid == exampaperid).ToList();
             if (mainList.Count == 0)
@@ -709,6 +693,16 @@ public partial class view_exampaper3 : System.Web.UI.Page
             HttpContext.Current.Session["totalResponseTime"] = time;
         else if(type=="uploadtime")
             HttpContext.Current.Session["uploadtime"] = time;
+
+        return JsonConvert.SerializeObject(time);
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string RefreshTime(int assignID)
+    {
+        var time = "0";
+        showTime(assignID);
 
         return JsonConvert.SerializeObject(time);
     }

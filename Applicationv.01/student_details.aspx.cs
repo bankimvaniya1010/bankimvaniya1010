@@ -359,7 +359,8 @@ public partial class student_details : System.Web.UI.Page
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
-                employerwebsite.Attributes.Add("style", "display:none");
+                if(profileInfo.Isdetailscompleted == true)
+                    employerwebsite.Attributes.Add("style", "display:none");
                 txtfirstname.Value = profileInfo.firstname;
                 txtmiddlename.Value = profileInfo.middlename;
                 txtlastname.Value = profileInfo.lastname;
@@ -374,6 +375,7 @@ public partial class student_details : System.Web.UI.Page
                     hidDocumentPath.Value = profileInfo.profilephoto;
                     uploadedFile.NavigateUrl = webURL + "/Docs/Exammodule/Studentdetails/"+universityID+"/"+userID+"/"+ profileInfo.profilephoto;
                     uploadedFile.Text = "View File";
+                    fileupload.Attributes.Add("style", "display:none");
                 }
                 if (profileInfo.residentialcountry != null)
                 {
@@ -403,6 +405,7 @@ public partial class student_details : System.Web.UI.Page
                     hidproofdocumentpath.Value = profileInfo.copyofidproof;
                     copylink.NavigateUrl = webURL + "/Docs/Exammodule/Studentdetails/" + universityID + "/" + userID + "/" + profileInfo.copyofidproof;
                     copylink.Text = "View File";
+                    fileuploadcopy.Attributes.Add("style", "display:none");
                 }
 
                 if (profileInfo.exam_institutionId != null)
@@ -573,6 +576,7 @@ public partial class student_details : System.Web.UI.Page
             //}
             objapplicantDetail.applicantid = userID;
             objapplicantDetail.universityid = universityID;
+            objapplicantDetail.Isdetailscompleted = true;
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();

@@ -78,8 +78,11 @@
             //Add valid extentions in this array
             if (type == "1") 
                 validExtensions[0] = 'pdf';
-            else 
+            else {
                 validExtensions[0] = 'jpg';
+                validExtensions[1] = 'jpeg';
+                validExtensions[2] = 'png';
+            }
             
             for (var i = 0; i < validExtensions.length; i++) {
                 if (ext == validExtensions[i])

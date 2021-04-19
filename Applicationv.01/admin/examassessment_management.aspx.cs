@@ -618,21 +618,10 @@ public partial class admin_examassessment_management : System.Web.UI.Page
     {
         int assignid = Convert.ToInt32(ddlExamDateTime.SelectedValue);
 
-        Session["Final_Readingtime_Start"] = null;
-        Session["Final_Readingtime_End"] = null;
-        Session["Session_Final_Readingtime_End"] = null;
-
-        Session["Final_writingtime_End"] = null;
-        Session["Final_writingtime_Start"] = null; 
-         Session["Session_Final_writingtime_End"] = null;
-
-        Session["Final_Uploadtime_End"] = null;
-        Session["Session_Final_Uploadtime_End"] = null;
-
-        sessionreadingTime = string.Empty;
-        sessionwritingTime = string.Empty;
-        sessionUploadTime = string.Empty;
-
+        Session["readingtime"] = null;
+        Session["uploadtime"] = null;
+        Session["totalResponseTime"] = null;
+                
         if (assignid != 0)
         {
             int examId = Convert.ToInt32(ddlexam.SelectedValue);
@@ -715,6 +704,8 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                 //}
 
             }
+
+            startClock(examId,assignid);
         }
         else
         {
@@ -788,6 +779,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
         int proctorid = Convert.ToInt32(ddlexaminer.SelectedValue);
         int universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
         DateTime exam_datetime = Convert.ToDateTime(ddlExamDateTime.SelectedItem.Text);
+        startClock(examId, assignid);
         BindTable(examId, proctorid, assignid, universityid, exam_datetime);
     }
 
@@ -838,7 +830,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
                         db.exam_assign.Add(objmapping);
                     db.SaveChanges();
                 }
-                //startClock(examId, Convert.ToDateTime(objmapping.examstarted_utctime));
+                startClock(examId, assignid);
                 DateTime exam_datetime = Convert.ToDateTime(ddlExamDateTime.SelectedItem.Text);
                 BindTable(examId, proctorid, assignid, universityid, exam_datetime);
                 checkmanual();
@@ -872,174 +864,123 @@ public partial class admin_examassessment_management : System.Web.UI.Page
 
             if (isexamstarted.Count > 0)
             {
-                if (isanystudentisVerified.Count > 0)
-                {
-                    response = "startclock";
-                    //startClock(examid, Convert.ToDateTime(exam_assign.examstarted_utctime));
-                   
-                }
+                startClock(examid, assignid);
+                response = "startclock";
             }
         }
         return JsonConvert.SerializeObject(response);
     }
 
-    private static void startClock(int examID , DateTime UTCexamstart)
+    private static void startClock(int examID , int assignID)
     {
         GTEEntities db1 = new GTEEntities();
-        Logger objlog = new Logger();
-        try {
-            sessionreadingTime = string.Empty;
-            sessionwritingTime = string.Empty;
-            sessionUploadTime = string.Empty;
+        Logger objLog = new Logger();
+        int UniversityID = Utility.GetUniversityId();
+        try
+        {
+            sessionreadingTime = "";
+            sessionUploadTime = "";
+            sessionwritingTime = "";
+            HttpContext.Current.Session["readingtime"] = "";
+            HttpContext.Current.Session["totalResponseTime"] = "";
+            HttpContext.Current.Session["uploadtime"] = "";
+            var exammaster = db1.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == examID).FirstOrDefault();
 
-            var exammaster = db1.exam_master.Where(x =>x.exampapersid == examID).FirstOrDefault();
-            if (exammaster != null)
+            var exam_assign = db1.exam_assign.Where(x => x.assignid == assignID).FirstOrDefault();
+            if (exam_assign != null)
             {
-                string current_UTC_Time = DateTime.UtcNow.ToString("hh:mm:ss");
-                string UTC_examstart = Convert.ToDateTime(UTCexamstart).ToString("hh:mm:ss");
-                DateTime current_UTCDatetime = Convert.ToDateTime(current_UTC_Time);
+                var examschedule = db1.exam_schedule.Where(x => x.universityid == UniversityID && x.exampapersid == examID && x.exam_datetime == exam_assign.exam_datetime).FirstOrDefault();
+                if (exammaster != null)
+                {
+                    if (examschedule != null)
+                    {
+                        string current_UTC_Time = DateTime.UtcNow.ToString("hh:mm:ss");
+                        DateTime current_UTCDatetime = Convert.ToDateTime(current_UTC_Time);
 
-                int exam_ReadingTime = Convert.ToInt32(exammaster.exam_readingduration);
-                int exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
-                int exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+                        string UTC_examstart = Convert.ToDateTime(examschedule.exam_datetime_utc).ToString("hh:mm:ss");
+                        DateTime UTC_examstartDatetime = Convert.ToDateTime(examschedule.exam_datetime_utc);
 
-                string ReadingTime_start = string.Empty;
-                string str_ReadingTime_end = string.Empty;
-                string WritingTime_start = string.Empty;
-                string str_WritingTime_end = string.Empty;
-                DateTime? WritingTimeEnd = (DateTime?)null;
-                string uploadTime_start = str_WritingTime_end;
-                string str_UploadTime_end = string.Empty;
-                DateTime? UploadTimeEnd = (DateTime?)null;   
-                
-                if (exammaster.uploadtype == 3)
-                {                    
-                    if (HttpContext.Current.Session["Final_Readingtime_Start"] == null)
-                    {
-                        HttpContext.Current.Session["Final_Readingtime_Start"] = UTC_examstart;
-                        ReadingTime_start = UTC_examstart;
-                    }
-                    else
-                        ReadingTime_start = current_UTC_Time;
-                    
-                    DateTime? ReadingTimeEnd = (DateTime?)null;
-                    if (HttpContext.Current.Session["Final_Readingtime_End"] == null)
-                    {
-                        ReadingTimeEnd = Convert.ToDateTime(UTC_examstart).AddMinutes(exam_ReadingTime);
-                        HttpContext.Current.Session["Final_Readingtime_End"] = ReadingTimeEnd;
-                        HttpContext.Current.Session["Session_Final_Readingtime_End"] = ReadingTimeEnd;
-                        str_ReadingTime_end = ReadingTimeEnd.ToString();
-                    }
-                    else
-                    {
-                        ReadingTimeEnd = Convert.ToDateTime(HttpContext.Current.Session["Session_Final_Readingtime_End"]);
-                        str_ReadingTime_end = ReadingTimeEnd.ToString();
-                    }
-                    WritingTime_start = str_ReadingTime_end;
-                    if (HttpContext.Current.Session["Final_writingtime_End"] == null)
-                    {
-                        WritingTimeEnd = Convert.ToDateTime(str_ReadingTime_end).AddMinutes(exam_WritingTime);
-                        HttpContext.Current.Session["Final_writingtime_End"] = WritingTimeEnd;
-                        HttpContext.Current.Session["Session_Final_writingtime_End"] = WritingTimeEnd;
-                        str_WritingTime_end = WritingTimeEnd.ToString();
-                    }
-                    else
-                    {
-                        WritingTimeEnd = Convert.ToDateTime(HttpContext.Current.Session["Session_Final_writingtime_End"]);
-                        str_WritingTime_end = WritingTimeEnd.ToString();
-                    }
-                    uploadTime_start = str_WritingTime_end;
-                    if (HttpContext.Current.Session["Final_Uploadtime_End"] == null)
-                    {
-                        UploadTimeEnd = Convert.ToDateTime(str_WritingTime_end).AddMinutes(exam_UploadTime);
-                        HttpContext.Current.Session["Final_Uploadtime_End"] = UploadTimeEnd;
-                        HttpContext.Current.Session["Session_Final_Uploadtime_End"] = UploadTimeEnd;
-                        str_UploadTime_end = UploadTimeEnd.ToString();
-                    }
-                    else
-                    {
-                        UploadTimeEnd = Convert.ToDateTime(HttpContext.Current.Session["Session_Final_Uploadtime_End"]);
-                        str_UploadTime_end = UploadTimeEnd.ToString();
-                    }
-                    if (current_UTCDatetime == ReadingTimeEnd || current_UTCDatetime > ReadingTimeEnd)
-                    {
+                        int exam_ReadingTime = Convert.ToInt32(exammaster.exam_readingduration);
+                        int exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                        int exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
 
-                        WritingTime_start = current_UTC_Time;
-                        HttpContext.Current.Session["Final_Readingtime_End"] = null;
-                        str_ReadingTime_end = null;
+                        string ReadingTime_start = UTC_examstart;
+                        string str_ReadingTime_end = UTC_examstartDatetime.AddMinutes(exam_ReadingTime).ToString("hh:mm:ss");
+                        DateTime date_read = Convert.ToDateTime(str_ReadingTime_end);
 
-                        if (current_UTCDatetime == WritingTimeEnd || current_UTCDatetime > WritingTimeEnd)
+                        string WritingTime_start = str_ReadingTime_end;
+                        string str_WritingTime_end = date_read.AddMinutes(exam_WritingTime).ToString("hh:mm:ss");
+                        DateTime date_write = Convert.ToDateTime(str_WritingTime_end);
+
+                        string uploadTime_start = str_WritingTime_end;
+                        string str_UploadTime_end = date_write.AddMinutes(exam_UploadTime).ToString("hh:mm:ss");
+
+                        TimeSpan? set_Readingtime = null;
+                        TimeSpan? set_Writingtime = null;
+                        TimeSpan? set_Uploadtime = null;
+
+                        if (exammaster.uploadtype == 3)
                         {
-                            uploadTime_start = current_UTC_Time;
-                            HttpContext.Current.Session["Final_writingtime_End"] = null;
-                            str_WritingTime_end = null;
+                            if (UTC_examstart == current_UTC_Time)
+                            {
+                                exam_ReadingTime = Convert.ToInt32(exammaster.exam_readingduration);
+                                exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                                exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+                                HttpContext.Current.Session["readingtime"] = exammaster.exam_readingduration;
+                                HttpContext.Current.Session["totalResponseTime"] = exammaster.exam_duration;
+                                HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
+                            }
+                            else
+                            {
+                                set_Readingtime = DateTime.Parse(str_ReadingTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                if (set_Readingtime.ToString() == "00:00:00" || set_Readingtime.ToString().Contains("-"))
+                                {
+                                    HttpContext.Current.Session["readingtime"] = string.Empty;
+                                    set_Writingtime = DateTime.Parse(str_WritingTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                    if (set_Writingtime.ToString() == "00:00:00" || set_Writingtime.ToString().Contains("-"))
+                                    {
+                                        HttpContext.Current.Session["totalResponseTime"] = string.Empty;
+                                        set_Uploadtime = DateTime.Parse(str_UploadTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                        if (set_Uploadtime.ToString() == "00:00:00" || set_Uploadtime.ToString().Contains("-"))
+                                        {
+                                            HttpContext.Current.Session["uploadtime"] = string.Empty;
+                                        }
+                                        else
+                                        {
+                                            HttpContext.Current.Session["readingtime"] = string.Empty;
+                                            HttpContext.Current.Session["totalResponseTime"] = string.Empty;
+                                            HttpContext.Current.Session["uploadtime"] = set_Uploadtime;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        HttpContext.Current.Session["readingtime"] = string.Empty;
+                                        HttpContext.Current.Session["totalResponseTime"] = set_Writingtime;
+                                        HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
+                                    }
+                                }
+                                else
+                                {
+                                    HttpContext.Current.Session["readingtime"] = set_Readingtime;
+                                    HttpContext.Current.Session["totalResponseTime"] = exammaster.exam_duration;
+                                    HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
+                                }
+
+                                exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                                exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+
+                            }
                         }
 
+                        sessionreadingTime = HttpContext.Current.Session["readingtime"].ToString();
+                        sessionwritingTime = HttpContext.Current.Session["totalResponseTime"].ToString();
+                        sessionUploadTime = HttpContext.Current.Session["uploadtime"].ToString();
                     }
                 }
-                else if(exammaster.uploadtype == 1)
-                {
-                    //string ReadingTime_start;
-                    if (HttpContext.Current.Session["Final_writingtime_Start"] == null)
-                    {
-                        HttpContext.Current.Session["Final_writingtime_Start"] = UTC_examstart;
-                        WritingTime_start = UTC_examstart;
-                    }
-                    else
-                        WritingTime_start = current_UTC_Time;
-                    if (HttpContext.Current.Session["Final_writingtime_End"] == null)
-                    {
-                        WritingTimeEnd = Convert.ToDateTime(UTC_examstart).AddMinutes(exam_WritingTime);
-                        HttpContext.Current.Session["Final_writingtime_End"] = WritingTimeEnd;
-                        HttpContext.Current.Session["Session_Final_writingtime_End"] = WritingTimeEnd;
-                        str_WritingTime_end = WritingTimeEnd.ToString();
-                    }
-                    else
-                    {
-                        WritingTimeEnd = Convert.ToDateTime(HttpContext.Current.Session["Session_Final_writingtime_End"]);
-                        str_WritingTime_end = WritingTimeEnd.ToString();
-                    }
-                    str_ReadingTime_end = string.Empty;
-                    str_UploadTime_end = string.Empty;
-                }
-
-                TimeSpan? set_Readingtime = null;
-                TimeSpan? set_Writingtime = null;
-                TimeSpan? set_Uploadtime = null;
-
-                if (!string.IsNullOrEmpty(str_ReadingTime_end))
-                    set_Readingtime = DateTime.Parse(str_ReadingTime_end).Subtract(DateTime.Parse(ReadingTime_start));
-                if (!string.IsNullOrEmpty(str_WritingTime_end))
-                    set_Writingtime = DateTime.Parse(str_WritingTime_end).Subtract(DateTime.Parse(WritingTime_start));
-                if (!string.IsNullOrEmpty(str_UploadTime_end))
-                    set_Uploadtime = DateTime.Parse(str_UploadTime_end).Subtract(DateTime.Parse(uploadTime_start));
-
-                if (exammaster.uploadtype == 3)
-                {
-
-                    sessionreadingTime = set_Readingtime.ToString();
-                    sessionwritingTime = set_Writingtime.ToString();
-                    sessionUploadTime = set_Uploadtime.ToString();
-                }
-                else if (exammaster.uploadtype == 1)
-                {
-                    sessionreadingTime = string.Empty;
-                    sessionwritingTime = set_Writingtime.ToString();
-                    sessionUploadTime = string.Empty;
-                }
-                else
-                {
-                    sessionreadingTime = string.Empty;
-                    sessionwritingTime = string.Empty;
-                    sessionUploadTime = string.Empty;
-                }
-
-                HttpContext.Current.Session["SessionReadingTime"] = sessionreadingTime;
-                HttpContext.Current.Session["SessionWrittingTime"] = sessionwritingTime;
-                HttpContext.Current.Session["SessionUpploadTime"] = sessionUploadTime;
             }
         }
-        catch (Exception ex) { objlog.WriteLog(ex.ToString()); }
+        catch (Exception ex)
+        { objLog.WriteLog(ex.ToString()); }
     }
 
     protected void refreshbtn_Click(object sender, EventArgs e)
@@ -1052,6 +993,7 @@ public partial class admin_examassessment_management : System.Web.UI.Page
             int universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
             DateTime exam_datetime = Convert.ToDateTime(ddlExamDateTime.SelectedItem.Text);
             BindTable(examId, proctorid, assignid, universityid, exam_datetime);
+            startClock(examId, assignid);
         }
 
     }
