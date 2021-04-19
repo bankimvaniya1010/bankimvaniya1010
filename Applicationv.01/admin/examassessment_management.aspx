@@ -241,18 +241,18 @@
                 </div>
                 
                 <div runat="server" id="refreshtbl" style="display: none">
-                     <%--<div id="clock" runat="server">                   
+                     <div id="clock" runat="server">                   
                                     <div style="font-size: large; text-align: center">
                                         <label id="lblreading" runat="server">READING TIME:</label>
                                         <span id="reading_countdown" style="font-weight: 900; padding-right: 25px;"></span>
                                         <label id="lblexamtime" runat="server">ASSESSMENT TIME: </label>
                                         <span id="countdown" style="font-weight: 900; padding-right: 25px;"></span>
                                         <label id="lbluploadtime" runat="server">UPLOAD TIME:</label>
-                                        <span id="upload_countdown" style="font-weight: 900"></span>
+                                        <span id="upload_countdown" style="font-weight: 900;"></span>
                                       
                                         <asp:hiddenfield id="hidTime" runat="server" />
                                     </div>
-                                </div>--%>
+                                </div>
                     <div class="form-group">
                         <div class="tab-content card-body">
                             <div class="tab-pane active" id="first1" style="white-space: nowrap">
@@ -263,7 +263,6 @@
                                             <th>Applicant ID</th>
                                             <th>Applicant Name</th>
                                             <th>Login Status</th>
-                                            <%--<th>Login Time(UTC)</th>--%>
                                             <th>Login Time</th>
                                             <th>Remarks</th>
                                             <th>Exam Status</th>
@@ -446,7 +445,6 @@
             var examid = $("#<%=ddlexam.ClientID%>").val();
             var assignid = $("#<%=ddlExamDateTime.ClientID%>").val();
             var universityid = $("#<%=ddlUniversity.ClientID%>").val();
-            var proctorid = $("#<%=ddlexaminer.ClientID%>").val();
             $.ajax({
                 type: "GET",
                 url: "examassessment_management.aspx/checkifexamstarted",
@@ -492,15 +490,19 @@
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   <%--     
+        var readingtime = '<%=Session["readingtime"]%>';
+        var uploadtime ='<%=Session["uploadtime"]%>';
+        var hms = '<%=Session["totalResponseTime"]%>';
 
-        readingtime = '<%=Session["SessionReadingTime"]%>'; 
-        uploadtime = '<%=Session["SessionWrittingTime"]%>'; 
-        hms = '<%=Session["SessionUpploadTime"]%>'; 
+        <%--var readingtime = '<%=sessionreadingTime%>';
+        var uploadtime ='<%=sessionUploadTime%>';
+        var hms = '<%=sessionwritingTime%>';--%>
+
 
         const countdownEl = document.getElementById('countdown');
         const reading_countdown = document.getElementById('reading_countdown');
         const upload_countdown = document.getElementById('upload_countdown');
+
 
         // your input string
         //Convert hh:mm:ss7  string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
@@ -513,7 +515,7 @@
 
         const minutes = Math.floor(time / 60);
         let seconds = time % 60;
-        countdownEl.innerHTML = `${minutes}:${seconds}`;
+        countdownEl.innerHTML = `${minutes}`;
         var lblexamtime = `${minutes}:${seconds}`;
         //
 
@@ -527,9 +529,9 @@
         let time1 = secondsS1;
         const minutes1 = Math.floor(time1 / 60);
         let seconds1 = time1 % 60;
-        reading_countdown.innerHTML = `${minutes1}:${seconds1}`;
+        reading_countdown.innerHTML = `${minutes1}`;
         var lblreadingtime = `${minutes1}:${seconds1}`;
-
+        
         //
         var hms2 = '<%=sessionUploadTime%>';   // your input string       
         //Convert hh:mm:ss string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
@@ -541,7 +543,7 @@
         let time2 = secondsS2;
         const minutes2 = Math.floor(time2 / 60);
         let seconds2 = time2 % 60;
-        upload_countdown.innerHTML = `${minutes2}:${seconds2}`;
+        upload_countdown.innerHTML = `${minutes2}`;
         var lbluploadtime = `${minutes2}:${seconds2}`;
 
         if (uploadtime == "") {
@@ -549,10 +551,7 @@
             $("#<%=lbluploadtime.ClientID%>").hide();
         }
         if (readingtime != "") {
-            setInterval(updateCountdown1, 1000);
-             //$('#userAlertMsg').html("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");
-             //$('#alertModal').modal('show');
-            //alert("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");
+            setInterval(updateCountdown1, 1000);             
         }
         else {
             setInterval(updateCountdown, 1000); 
@@ -565,31 +564,26 @@
             let seconds = time1 % 60;
 
             seconds = seconds < 10 ? '0' + seconds : seconds;
-            reading_countdown.innerHTML = `${minutes}:${seconds}`;
+            reading_countdown.innerHTML = `${minutes}`;
             var displaytime = `${minutes}:${seconds}`;
+            var min = `${minutes}`;
+            if (min == "0")
+                reading_countdown.innerHTML = `${minutes}:${seconds}`;
             time1--;
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
+            if (displaytime == '0:00') {
+                reading_countdown.style.display = 'none';
+                $("#<%=lblreading.ClientID%>").hide();
+                setInterval(updateCountdown, 1000);
+                //$('#userAlertMsg').html("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
+                //$('#alertModal').modal('show');
+                //setTimeout(function () {
+                //    alert("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
+                //},1000)
 
-            if (reading_countdown.innerHTML == '5:00') {
-                $('#userAlertMsg').html("Only 5 minutes remaining");
-                $('#alertModal').modal('show');
-                //alert("Only 5 minutes remaining. ");
             }
-            else {
-                if (reading_countdown.innerHTML == '0:00') {
-                    reading_countdown.style.display = 'none';
-                    $("#<%=lblreading.ClientID%>").hide();
-                    setInterval(updateCountdown, 1000);
-                    $('#userAlertMsg').html("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
-                    $('#alertModal').modal('show');
-                    //setTimeout(function () {
-                    //    alert("Your reading time has finished you now have " + lblexamtime + " minutes to answer this assessment");
-                    //},1000)
-                    
-                }
-                else
-                    return true;
-            }
+            else
+                return true;
         }
 
         function updateCountdown() {
@@ -597,7 +591,11 @@
             let seconds = time % 60;
 
             seconds = seconds < 10 ? '0' + seconds : seconds;
-            countdownEl.innerHTML = `${minutes}:${seconds}`;
+            countdownEl.innerHTML = `${minutes}`;
+            var abc = `${minutes}:${seconds}`;
+            var min1 = `${minutes}`;
+            if (min1 == "0")
+                countdownEl.innerHTML = `${minutes}:${seconds}`;
             time--;
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
 
@@ -609,21 +607,22 @@
             //else {
                 
             //}
-            if (countdownEl.innerHTML == '0:00') {
-                    countdownEl.style.display = 'none';
+            if (abc == '0:00') {
+                countdownEl.style.display = 'none';
+               
                     $("#<%=lblexamtime.ClientID%>").hide();
                     if (uploadtime != "") {
                         setInterval(updateCountdown2, 1000);
-                        $('#userAlertMsg').html("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified");
-                        $('#alertModal').modal('show');
+                        //$('#userAlertMsg').html("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified");
+                        //$('#alertModal').modal('show');
                         //alert("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified ");
                        
                     }
                     else {
                         upload_countdown.style.display = 'none';
                         $("#<%=lbluploadtime.ClientID%>").hide();
-                        $('#userAlertMsg').html("Assessmnent upload time exhausted");
-                        $('#alertModal').modal('show');
+                        //$('#userAlertMsg').html("Assessmnent upload time exhausted");
+                        //$('#alertModal').modal('show');
                        
                     }
                 }
@@ -636,26 +635,21 @@
             let seconds = time2 % 60;
 
             seconds = seconds < 10 ? '0' + seconds : seconds;
-            upload_countdown.innerHTML = `${minutes}:${seconds}`;
+            upload_countdown.innerHTML = `${minutes}`;
+            var xyz = `${minutes}:${seconds}`;  
+            var min2 = `${minutes}`;  
+            if (min2 == "0")
+                upload_countdown.innerHTML = `${minutes}:${seconds}`;  
             time2--;
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
 
-            if (upload_countdown.innerHTML == '10:00') {
-                alert("Only 10 minutes remaining. ");
+            if (xyz == '0:00') {
+                upload_countdown.style.display = 'none';
+                $("#<%=lbluploadtime.ClientID%>").hide();
             }
-            else {
-                if (upload_countdown.innerHTML == '0:00') {
-                    upload_countdown.style.display = 'none';
-                    $("#<%=lbluploadtime.ClientID%>").hide();
-                    $('#userAlertMsg').html("Assessmnent upload time exhausted");
-                    $('#alertModal').modal('show');
-                    //alert("Assessmnent upload time exhausted");
-
-                }
-                else
-                    return true;
-            }
-        }--%>
+            else
+                return true;
+        }
 
     </script>
 </asp:Content>

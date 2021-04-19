@@ -52,7 +52,7 @@
                                     <div class="form-row">
                                         <label runat="server" id="label7" for="title" class="col-md-4 col-form-label form-label">Email</label>
                                         <div class="col-md-6">                                            
-                                            <input  id="txtemail" runat="server" type="text" placeholder="" value="" class="form-control">
+                                            <input  id="txtemail" runat="server" type="text" placeholder="" value="" class="form-control" disabled="disabled">
                                         </div>
                                     </div>
                                 </div>

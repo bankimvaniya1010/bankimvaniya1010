@@ -57,13 +57,13 @@
 
                             <div class="list-group-item border" id="para3" runat="server" style="display:none">                                
                                 <label id="Label1" runat="server" for="employer">
-                                    Please ensure you are logged in to the GTE Online Center (GOC), at least 10 minutes before the scheduled time and are fully prepared for the session based on instructions provided via email and also available in the <a href="gte_tutorial.aspx?formid=17" target="_blank"> Tutorial section</a>.
+                                    Please ensure you are logged in to the GTE DIRECT CENTRE, at least 10 minutes before the scheduled time and are fully prepared for the session based on instructions provided via email and also available in the <a href="gte_tutorial.aspx?formid=17" target="_blank"> Tutorial section</a>.
                                 </label>
                             </div>
 
                             <div class="list-group-item border" id="para4" runat="server" style="display:none">
                                 <label id="Label2" runat="server" for="employer">
-                                    Post logging in to the GTE Online Center (GOC), at least 5 minutes before the scheduled time please use the Virtual Meeting information provided in the GTE Assessment confirmation email and also provided below for ready reference to simultaneously join the Virtual Meeting.
+                                    Post logging in to the GTE DIRECT CENTRE, at least 5 minutes before the scheduled time please use the Virtual Meeting information provided in the GTE Assessment confirmation email and also provided below for ready reference to simultaneously join the Virtual Meeting.
                                 </label>
                             </div>
 

@@ -13,18 +13,20 @@ public partial class schedule_conselling : System.Web.UI.Page
     int UserID = 0;
     Common objCom = new Common();
     protected static List<faq> allfaqQuestion = new List<faq>();
-    string webURL = String.Empty;    
-
+    string webURL = String.Empty;
+    GTEEntities db = new GTEEntities();
+    int universityID;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        universityID = Utility.GetUniversityId();
         var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
-        if (!isVerifiedByAdmin)
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+        //if (!isVerifiedByAdmin)
+        //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+        //        "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
 
         if (!IsPostBack)
             allfaqQuestion = objCom.FaqQuestionList();
@@ -98,7 +100,8 @@ public partial class schedule_conselling : System.Web.UI.Page
                     html = html.Replace("@virtuallink", objSchedule.virtualmeetinginfo);
                     html = html.Replace("@utcmeetingtime", objSchedule.utc_meeting_time.ToString("dd/MM/yyyy hh:mm tt"));
                     html = html.Replace("@meetingtime", objSchedule.applicant_time_zone.ToString("dd/MM/yyyy hh:mm tt"));
-                    objCom.SendMail(proctordata.email, html, "Assessment ReSchedule for " + studentname + " at " + objSchedule.applicant_time_zone.ToString("dd/MM/yyyy hh:mm tt"));
+                    objCom.SendMail(proctordata.email, html, "GTE Direct : Assessment for " + studentname + " at " + objSchedule.applicant_time_zone.ToString("dd/MM/yyyy hh:mm tt"));
+                    sendNotification_toapplicant(data.email, data.applicantid, Convert.ToInt32(objSchedule.proctor_id));
                 }
                 }
         }
@@ -119,7 +122,9 @@ public partial class schedule_conselling : System.Web.UI.Page
             objSchedule.is_otp_generated = true;
             db1.applicant_meeting_schedule.Add(objSchedule);
             db1.SaveChanges();
+            
         }
+        
     }
 
     public class bookingdata
@@ -134,5 +139,45 @@ public partial class schedule_conselling : System.Web.UI.Page
         public DateTime CustomerTime;
         public bool is_meetingtime_expires;
     }
+    private static void sendNotification_toapplicant(string studentemail, int applicantid, int proctor_id)
+    {
+        GTEEntities db = new GTEEntities();
+        int universityID = Utility.GetUniversityId();
+        string webURL = Utility.GetWebUrl();
+        Common objCom = new Common();
 
+        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        var objSchedule = db.applicant_meeting_schedule.Where(x => x.applicant_id == applicantid && x.university_id == universityID && x.is_meetingtime_expires == null).FirstOrDefault();
+        var proctordata = db.proctor_master.Where(x => x.proctorID == proctor_id).FirstOrDefault();
+        var applicantdata = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
+
+        string html = File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("/assets/Emailtemplate/gte_shedule_student_Notification.html"));
+                
+        html = html.Replace("@UniversityName", university.university_name);
+        html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);
+
+        html = html.Replace("@Email", studentemail);
+        html = html.Replace("@studentname", objCom.GetApplicantFirstName(applicantid));
+        html = html.Replace("@studentid", Convert.ToString(applicantid));
+
+        html = html.Replace("@proctorName", proctordata.name);
+        
+        html = html.Replace("@eventtype", objSchedule.event_type_name);
+        html = html.Replace("@passkey", objSchedule.otp);
+        html = html.Replace("@virtuallink", objSchedule.virtualmeetinginfo);
+        html = html.Replace("@utcmeetingtime", objSchedule.utc_meeting_time.ToString("dd/MM/yyyy hh:mm tt"));
+        html = html.Replace("@meetingtime", objSchedule.applicant_time_zone.ToString("dd/MM/yyyy hh:mm tt"));
+        html = html.Replace("@countryofapplicant", objCom.GetCountryDiscription(Convert.ToInt32(applicantdata.countryofbirth)));
+        html = html.Replace("@resetURLd", webURL + "forgetpassword.aspx");
+        var adminurl = webURL + "login.aspx";
+        html = html.Replace("@adminLoginurl", adminurl);
+        if (university.full_service == 0)
+            html = html.Replace("team", "GTE Direct Team");
+        else if (university.full_service == 2)
+            html = html.Replace("team", "The Assessment Centre Team");
+        else
+            html = html.Replace("team", "The Application Centre Team");
+        
+        objCom.SendMail(studentemail, html, "GTE Direct: #2 Get ready for your Online Assessment Steps 7 to 11");
+    }
 }

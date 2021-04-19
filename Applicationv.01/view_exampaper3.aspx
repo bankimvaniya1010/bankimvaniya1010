@@ -283,7 +283,7 @@
             setInterval(updateCountdown1, 1000);
              //$('#userAlertMsg').html("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");
              //$('#alertModal').modal('show');
-            alert("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");
+            //alert("For this assessment you have " + lblreadingtime + " minutes of reading time. Do note start answering your assessment during this time, as it would lead to your disqualification.");
         }
         else {
             setInterval(updateCountdown, 1000); 
@@ -374,8 +374,10 @@
             time2--;
             $("#<%=hidTime.ClientID%>").val(`${minutes}:${seconds}`);
 
-            if (upload_countdown.innerHTML == '10:00') {
-                alert("Only 10 minutes remaining. ");
+            if (upload_countdown.innerHTML == '5:00') {
+                $('#userAlertMsg').html("Only 10 minutes remaining.");
+                $('#alertModal').modal('show');
+                //alert("Only 10 minutes remaining. ");
             }
             else {
                 if (upload_countdown.innerHTML == '0:00') {
@@ -417,6 +419,25 @@
             });
 
         }
+        setInterval(ajaxcalltocheckRefreshTime, 1000);
+        function ajaxcalltocheckRefreshTime() {
+            var assignID = '<%= assignID%>';
+             var exampaperid = '<%= exampaperid%>';
+             $.ajax({
+                 type: "POST",
+                 url: "view_exampaper3.aspx/RefreshTime",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                  data: "{'assignID': '" + assignID + "'}",
+                 success: function (response) {
+                     if (response.d) {
+                         var result = JSON.parse(response.d);
+
+                     }
+                 }
+             });
+
+         }
         function ajaxcall() {
             var assignID = '<%= assignID%>';
             $.ajax({
@@ -470,10 +491,13 @@
             var validExtensions = new Array();
             var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
             //Add valid extentions in this array
-            if (type == "1") 
+            if (type == "1")
                 validExtensions[0] = 'pdf';
-            else 
+            else {
                 validExtensions[0] = 'jpg';
+                validExtensions[1] = 'jpeg';
+                validExtensions[2] = 'png';
+            }
             
             for (var i = 0; i < validExtensions.length; i++) {
                 if (ext == validExtensions[i])
@@ -508,18 +532,18 @@
             for (var i = 0; i < filelength; i++) {
                 var file = control.files[i];
                 var FileName = file.name;
-                var FileExt = FileName.substr(FileName.lastIndexOf('.') + 1);
+                var FileExt = FileName.substr(FileName.lastIndexOf('.') + 1).toLowerCase();
                 if (type == "1") {
-                    if ((FileExt.toUpperCase() != "pdf")) {
+                    if ((FileExt != "pdf")) {
                         var error = "File type : " + FileExt + "\n\n";
                         error += "Please make sure your file is in pdf  format .\n\n";
                         console.error(error);
                     }
                 }
                 else {
-                    if ((FileExt.toUpperCase() != "jpg")) {
+                    if (FileExt != "jpg" && FileExt != "png" && FileExt != "jpeg") {
                         var error = "File type : " + FileExt + "\n\n";
-                        error += "Please make sure your file is in jpg format .\n\n";
+                        error += "Please make sure your file is in jpg or jpeg or png format .\n\n";
                         console.error(error);
                     }
                 }
@@ -560,6 +584,7 @@
                 aud = document.getElementById("myVideo");
 
             aud.setAttribute("video:-webkit-media-controls-timeline", "display: none");
+            
             aud.onended = function () {
                 $.ajax({
                     type: "POST",
@@ -577,7 +602,15 @@
                 $('#audiiovideoDIv').hide();
             };
         }
-
-      
+      //  var audio =document.getElementById("myAudio");
+      //  audio.onplay = function () {
+      //      audio.controls = false;//.removeAttribute('controls');
+      //      //alert("The video has started to play");
+      //  };
+      //var vid =document.getElementById("myVideo");
+      //  vid.onplay = function () {
+      //      vid.controls = false;//.removeAttribute('controls');
+      //      //alert("The video has started to play");
+      //  };
     </script>
 </asp:Content>
