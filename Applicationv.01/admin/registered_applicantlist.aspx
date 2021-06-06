@@ -48,13 +48,43 @@
         <div class="card" style="margin-top:-20px;">            
             <div class="tab-content card-body" style=" margin-left: -35px;">
                 <div style="margin-top: -19px; margin-bottom: -25px;">
-                    <ul  style="list-style-type:none">
-                        <li>
-                            <span runat="server" id="label4"><b>SUBSCRIBED REGISTRATIONS:</b> <label runat="server" id="lbltotal" style="font-weight: 800;font-size: larger;"></label> </span>
-                            <span runat="server" id="label1" style=" margin-left: 5%;"><b>AVAILABLE REGISTRATIONS: </b><label runat="server" id="lblavailable" style="font-weight: 800;font-size: larger;"></label> </span>
-                             <span style="margin-left: 100px;"><asp:Button runat="server" ID="downloadbtn" Text ="Download List" OnClick="downloadbtn_Click" CssClass="btn btn-success" Visible="true"/> </span>
-                        </li>                       
-                        </ul>
+                    <table>
+                        <tr>
+                            <td><span runat="server" id="label4" style="margin-left: 33px;"><b>SUBSCRIBED :</b></span><span style="font-weight: 800; font-size: larger;"><%=lbltotal %></span>
+                               <%-- <label runat="server" id="lbltotal" style="font-weight: 800; font-size: larger;"></label>--%>
+                            <br/>
+                                <span runat="server" id="label1" style="margin-left: 5%;margin-left: 31px;"><b>AVAILABLE : </b></span><span style="font-weight: 800; font-size: larger;"><%=lblavailable %></span>
+                                <%--<label runat="server" id="" style="font-weight: 800; font-size: larger;"></label>--%>
+                            
+                            </td>
+                            
+                            <td>
+                                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlfilter" Style="width: 240px;">
+                                    <asp:ListItem Value="0">Please Select</asp:ListItem>
+                                    <asp:ListItem Value="1">By AID</asp:ListItem>
+                                    <asp:ListItem Value="2">By First Name</asp:ListItem>
+                                    <asp:ListItem Value="3">By Country</asp:ListItem>
+
+                                </asp:DropDownList><br />
+                            </td>
+                            <td>
+                                <div id="DivddlAID" runat="server">
+                                    <asp:DropDownList runat="server" ID="ddlapplicant" OnSelectedIndexChanged="ddlapplicant_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" Style="width: 240px; margin-top: -20px;"></asp:DropDownList>
+                                </div>
+                                <div id="DivddlName" runat="server">
+                                    <asp:DropDownList runat="server" ID="ddlfirstname" OnSelectedIndexChanged="ddlfirstname_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" Style="width: 240px; margin-top: -20px;"></asp:DropDownList>
+                                </div>
+                                <div id="DivddlCountry" runat="server">
+                                    <asp:DropDownList runat="server" ID="ddlcountry" OnSelectedIndexChanged="ddlcountry_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" Style="width: 240px; margin-top: -20px;"></asp:DropDownList>
+                                </div>
+                            </td>
+                            <td>
+                                <span style="margin-left: 100px;">
+                                    <asp:Button runat="server" ID="downloadbtn" Text="Download List" OnClick="downloadbtn_Click" CssClass="btn btn-success" Visible="true" />
+                                </span>
+                            </td>
+                        </tr>
+                    </table>                   
                 </div>
              
                  <div class="tab-content card-body">
@@ -68,12 +98,20 @@
                         PageSize="9"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="UserGridView_RowCancelingEdit" OnRowEditing="UserGridView_RowEditing" OnRowUpdating="UserGridView_RowUpdating" OnRowDeleting="UserGridView_RowDeleting" OnPageIndexChanging="UserGridView_PageIndexChanging" OnRowCommand="UserGridView_RowCommand" OnRowDataBound="UserGridView_RowDataBound" OnRowCreated="UserGridView_RowCreated" OnRowUpdated="UserGridView_RowUpdated">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="UserGridView_RowCancelingEdit" OnRowEditing="UserGridView_RowEditing" OnRowUpdating="UserGridView_RowUpdating" OnRowDeleting="UserGridView_RowDeleting" OnPageIndexChanging="UserGridView_PageIndexChanging" OnRowCommand="UserGridView_RowCommand" OnRowDataBound="UserGridView_RowDataBound" OnRowCreated="UserGridView_RowCreated">
 
                         <Columns>
 
                             <asp:BoundField DataField="id" HeaderText="AID" InsertVisible="False"
-                                ReadOnly="True" ControlStyle-CssClass="tblregist" />
+                                ReadOnly="True" ControlStyle-CssClass="tblregist" Visible="false"/>
+
+                             <asp:TemplateField HeaderText="AID"> 
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkmagae" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Manage" Text='<%#Bind("applicantid") %>'></asp:LinkButton>
+                                                                    <asp:Label ID="lblaid" runat="server" Text='<%#Bind("applicantid") %>' Visible="false"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                              <asp:TemplateField HeaderText="OTP"> 
                                 <ItemTemplate>
                                     <asp:Label ID="lblapplicantid" runat="server" Text='<%#Bind("applicantid") %>' Visible="false"></asp:Label>
@@ -85,6 +123,11 @@
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkapprove" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Verify" Text="Verify Applicant" OnClientClick='<%# Eval("applicantid","return ConfirmOnVerify({0})") %>'></asp:LinkButton>
                                     
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Status"> 
+                                <ItemTemplate>
+                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status"> 
@@ -159,11 +202,6 @@
                                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("countryofresidence") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Status"> 
-                                <ItemTemplate>
-                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
                             
                              
                         </Columns>
@@ -177,12 +215,56 @@
     </div>
     <script>
        
-       
+         $("#<%=ddlfilter.ClientID%>").change(function () {
+             var filterid = $("#<%=ddlfilter.ClientID%>").val();
+             if (filterid == 1) {
+                 $("#<%=DivddlAID.ClientID%>").show();                 
+                 $("#<%=DivddlName.ClientID%>").hide();
+                 $("#<%=DivddlCountry.ClientID%>").hide();
+             }
+             else if (filterid == 2) {
+                 $("#<%=DivddlName.ClientID%>").show();
+                 $("#<%=DivddlAID.ClientID%>").hide();
+                 $("#<%=DivddlCountry.ClientID%>").hide();
+             }
+             else if (filterid == 3) {
+                 $("#<%=DivddlCountry.ClientID%>").show();
+                  $("#<%=DivddlAID.ClientID%>").hide();
+                 $("#<%=DivddlName.ClientID%>").hide();
+             }
+             else {
+                 $("#<%=DivddlAID.ClientID%>").hide();
+                 $("#<%=DivddlName.ClientID%>").hide();
+                 $("#<%=DivddlCountry.ClientID%>").hide();
+             }
+            });
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#manageregistration_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#registeredapplicants').addClass('active');
+
+           var filterid = $("#<%=ddlfilter.ClientID%>").val();
+             if (filterid == 1) {
+                 $("#<%=DivddlAID.ClientID%>").show();
+                 $("#<%=DivddlName.ClientID%>").hide();
+                 $("#<%=DivddlCountry.ClientID%>").hide();
+             }
+             else if (filterid == 2) {
+                 $("#<%=DivddlName.ClientID%>").show();
+                 $("#<%=DivddlAID.ClientID%>").hide();
+                 $("#<%=DivddlCountry.ClientID%>").hide();
+             }
+             else if (filterid == 3) {
+                 $("#<%=DivddlCountry.ClientID%>").show();
+                  $("#<%=DivddlAID.ClientID%>").hide();
+                 $("#<%=DivddlName.ClientID%>").hide();
+             }
+             else {
+                 $("#<%=DivddlAID.ClientID%>").hide();
+                 $("#<%=DivddlName.ClientID%>").hide();
+                 $("#<%=DivddlCountry.ClientID%>").hide();
+             }
         });
     </script>
 

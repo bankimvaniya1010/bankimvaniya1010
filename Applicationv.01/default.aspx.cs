@@ -21,7 +21,7 @@ public partial class _Default : System.Web.UI.Page
     Common objCom = new Common();
     public int UniversityID = -1;
     public int isfullservice;
-    public string applicantname, universityname, ScheduleNow;
+    public string applicantname, universityname, ScheduleNow,Country_of_study;
     public bool? isVerifiedByAdmin;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -37,6 +37,9 @@ public partial class _Default : System.Web.UI.Page
         Session["Applicant"] = UserID;
 
         var data = db.applicantdetails.Where(x=>x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+        if (data != null && data.countryofeducationInstitution != null)
+            Country_of_study = objCom.GetCountryDiscription(Convert.ToInt32(data.countryofeducationInstitution));
+
         isVerifiedByAdmin = data.isverifiedbyAdmin;
         Session["isVerifiedByAdmin"] = isVerifiedByAdmin;
 
@@ -51,9 +54,16 @@ public partial class _Default : System.Web.UI.Page
             ifnotverifiedshow.Attributes.Add("style","display:block");
         else
             ifverifiedshow.Attributes.Add("style", "display:block");
+        if (isfullservice == 0)
+            gteDiv.Attributes.Add("style", "display:block;");
+        else
+            DivOthers.Attributes.Add("style", "display:block;");
+        allQuestions = objCom.FaqQuestionList("30", UniversityID, isfullservice);
+        if(allQuestions.Count == 0)
+            DivOthers.Attributes.Add("style", "display:none;");
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList("30", UniversityID, isfullservice);
+            
 
             if (Session["isDomesticStudent"] == null)
                 domesticDiv.Style.Remove("display");

@@ -293,7 +293,7 @@ public partial class gte_report : System.Web.UI.Page
                     string type2 = Request.QueryString["type"].ToString();
                     if (type2 == "final")
                         populateCommentsAndReviews();
-                    else if(type2== "draft")
+                    else if (type2 == "draft")
                     {
                         div1.Attributes.Add("style", "display:none");
                         div2.Attributes.Add("style", "display:none");

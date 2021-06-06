@@ -34,6 +34,7 @@
                                         <asp:ListItem Value="0" Selected="True">Please select </asp:ListItem>
                                         <asp:ListItem Value="1">Video </asp:ListItem>
                                         <asp:ListItem Value="2">PDF</asp:ListItem>
+                                        <asp:ListItem Value="3">PPT</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -103,7 +104,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                    <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True"/>
 
                                 </Columns>
 
@@ -126,11 +127,15 @@
            
            var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
            
-           if (type == 1 && fileExtension != "mp4" && fileExtension != "3gp" && fileExtension != "mp3" && fileExtension != "ogv") {
+           if (type == 1 && fileExtension != "mp4" && fileExtension != "3gp" && fileExtension != "mp3" && fileExtension != "ogv" && fileExtension !="wmv" && fileExtension !="mov") {
                alert("Invalid File");
                return false;
            }
            if (type == 2 && fileExtension != "pdf") {
+               alert("Invalid File");
+               return false;
+           }
+           if (type == 3 && fileExtension != "pptx" && fileExtension != "ppt") {
                alert("Invalid File");
                return false;
            }
@@ -154,7 +159,8 @@
 
                 var formData = new FormData();
                 var data = $("#ContentPlaceHolder1_FileUpload")[0].files[0];
-                formData.append("doc_name", $("#<%=txtsectinname.ClientID%>").val());
+               formData.append("doc_name", $("#<%=txtsectinname.ClientID%>").val());
+               formData.append("doc_type", $("#<%=ddltype.ClientID%>").val());
                 formData.append("files", data);
 
                 var dummyProgress = 1;

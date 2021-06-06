@@ -45,12 +45,12 @@ public partial class schedule_conselling : System.Web.UI.Page
         int? proctor_id = 0;
         string virtualmeetinginfo = string.Empty;
         //to expire meeting
-        var schedule_data_list = db1.applicant_meeting_schedule.Where(x => x.applicant_id == UserID && x.university_id == UniversityID && x.is_meetingtime_expires == null).ToList();
+        var schedule_data_list = db1.applicant_meeting_schedule.Where(x => x.applicant_id == UserID && x.university_id == UniversityID && x.is_meetingtime_expires == null && x.is_otpverified != true).ToList();
         if (schedule_data_list.Count >= 1)
         {
             foreach (var item in schedule_data_list)
             {
-                item.is_meetingtime_expires = false;
+                item.is_meetingtime_expires = true;
                 if (item.proctor_id != null)
                 {
                     proctor_id = item.proctor_id;
@@ -171,13 +171,36 @@ public partial class schedule_conselling : System.Web.UI.Page
         html = html.Replace("@resetURLd", webURL + "forgetpassword.aspx");
         var adminurl = webURL + "login.aspx";
         html = html.Replace("@adminLoginurl", adminurl);
+        var subject = string.Empty;
         if (university.full_service == 0)
-            html = html.Replace("team", "GTE Direct Team");
+        {
+            subject = "GTE Direct Centre";
+            html = html.Replace("@srvicename", "GTE Direct Centre");
+            html = html.Replace("@team", "GTE Direct Team");
+        }
         else if (university.full_service == 2)
-            html = html.Replace("team", "The Assessment Centre Team");
+        {
+            subject = "Assessment Centre";
+            html = html.Replace("@srvicename", "Assessment Centre");
+            html = html.Replace("@team", "The Assessment Centre Team");
+        }
         else
-            html = html.Replace("team", "The Application Centre Team");
+        {
+            subject = "Application Centre";
+            html = html.Replace("@srvicename", "Application Centre");
+            html = html.Replace("@team", "The Application Centre Team");
+        }
+
+        if (university.full_service == 0)
+            html = html.Replace("@team", "GTE Direct Team");
+        else if (university.full_service == 2)
+            html = html.Replace("@team", "The Assessment Centre Team");
+        else
+            html = html.Replace("@team", "The Application Centre Team");
         
-        objCom.SendMail(studentemail, html, "GTE Direct: #2 Get ready for your Online Assessment Steps 7 to 11");
+        objCom.SendMail(studentemail, html, subject+": #2 Get ready for your Online Assessment Steps 7 to 11");
+        if (webURL.Contains("http://localhost:50180") || webURL.Contains("http://qc.")) { }
+        else
+            objCom.SendMail("support@gte.direct", html, subject + ": #2 Get ready for your Online Assessment Steps 7 to 11");
     }
 }

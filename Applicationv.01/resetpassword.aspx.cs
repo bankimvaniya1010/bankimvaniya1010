@@ -59,6 +59,9 @@ public partial class Resetpassword : System.Web.UI.Page
                     servicename = "Application";
                     statement = "start your application, continue an existing application, upload additional documents or check the status of a previously-submitted application.";
                 }
+                var subject = "Password Reset Email";
+                if (university.full_service == 0)
+                    subject = "GTE Direct : Password Reset Email";
                
                 html = html.Replace("@UniversityName", university.university_name);
                 html = html.Replace("@universityLogo", webURL + "/Docs/" + Utility.GetUniversityId() + "/" + university.logo);
@@ -69,7 +72,12 @@ public partial class Resetpassword : System.Web.UI.Page
                 html = html.Replace("@statement", statement);
 
                 html = html.Replace("@Loginurl", webURL + "login.aspx");
-                objCom.SendMail(login.email.Trim(), html, "Password Reset Email");
+                if(university.full_service == 0)
+                    html = html.Replace("team", "GTE Direct Team");
+                else
+                    html = html.Replace("team", "The "+ servicename + "Centres Team");
+
+                objCom.SendMail(login.email.Trim(), html,subject );
                 lblMessage.Text = "Password has been set and sent to your registered email address.";
 
                 var isRecordPresent = db.applicantdetails.Any(x => x.applicantid == login.studentid && x.universityid == universityID);

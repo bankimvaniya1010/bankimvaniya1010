@@ -54,7 +54,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.address = txtUniAddress.Value.Trim();
                 universityObj.website = txtUniWebsite.Value.Trim();
                 universityObj.contact_person = txtUniContactPerson.Value.Trim();
-                universityObj.affiliation = Convert.ToInt32(txtUniAffiliation.Value);
+                universityObj.affiliation = txtUniAffiliation.Value;
                 universityObj.email = txtEmail.Value.Trim();
                 universityObj.mobile = txtMobile.Value.Trim();
                 universityObj.chatid = txtunichatId.Value.Trim();
@@ -70,7 +70,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.distance_from_railway = txtUniRailDistance.Value.Trim() + " " + railDistanceUnit.Value.Trim();
                 universityObj.getting_around = txtUniGettingAround.Value.Trim();
                 universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
-                universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
+               // universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
                 universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
                 universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
                 universityObj.full_service = Convert.ToInt32(subscription.SelectedValue);

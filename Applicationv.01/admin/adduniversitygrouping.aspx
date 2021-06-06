@@ -20,18 +20,20 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlUniversity" runat="server" class="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlUniversity" runat="server" class="form-control" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-sm-8">
+                     <div class="form-group row" id="divChk" runat="server">
+                           <asp:CheckBoxList RepeatDirection="Horizontal" RepeatColumns="2" ID="chk_universitylist" runat="server"></asp:CheckBoxList>                        
+                    </div>
+                  <%--  <div class="col-sm-8">
                         <div class="row">
-                            <div id="otherUniversityDiv" class="col-md-6">
+                            <div id="otherUniversityDiv" class="col-md-12">
                             </div>
                         </div>
-                    </div>
+                    </div>--%>
 
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
@@ -50,7 +52,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#<%=ddlUniversity.ClientID%>").change(function () {
+            <%--$("#<%=ddlUniversity.ClientID%>").change(function () {
                 $('#otherUniversityDiv').empty();
                 var universityValue = $('#<%=ddlUniversity.ClientID%>').val();
                 $('#<%=ddlUniversity.ClientID%> option').each(function (index, option) {
@@ -58,12 +60,19 @@
                         var id = $(this).val();
                         var value = $(this).val();
                         var text = option.innerText;
-                        $('<label />', { 'for': 'cb' + id, id:'label'+id }).appendTo('#otherUniversityDiv');
-                        $('<input />', { type: 'checkbox', id: 'cb' + id, value: value, name: 'university' }).appendTo('#label' + id);
-                        $('#label' + id).append(text);
+                         var $container = $('#otherUniversityDiv');
+                            $container.append($('<label style="margin-right: 29px;">').text(text)
+                            .prepend($('<input type="checkbox" style="margin-right: 5px;" name="university" id="cb' + id + '" OnClick="javascript:SelectSingle(' + id + ')"/>').val(value)));
+
+
+                        //$('<div>', { 'class': 'cb'}).appendTo('#otherUniversityDiv');
+                        //$('<label />', { 'for': 'cb' + id, id:'label'+id }).appendTo('#otherUniversityDiv');
+                        //$('<input />', { type: 'checkbox', id: 'cb' + id, value: value, name: 'university' }).appendTo('#label' + id);
+                        //$('#label' + id).append(text);
+                       
                     }
                 });
-            });
+            });--%>
 
         });
         function validateForm() {
@@ -74,13 +83,13 @@
             });
 
             if (universityValue == 0 || isNaN(parseInt(universityValue))) {
-                alert("Please select University Country");
+                alert("Please select University");
                 return false;
             }
-            else if (count == 0) {
-                alert("Please check university for mapping");
-                return false;
-            }
+            //else if (count == 0) {
+            //    alert("Please check university for mapping");
+            //    return false;
+            //}
 
             return true;
             

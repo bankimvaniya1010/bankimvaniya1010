@@ -15,11 +15,23 @@
       <div class="container page__container">
         <div class="row">
             <div class="col-md-12">
+                
+                   <div class="card">
+                      <p style="padding-left: 21px"><%=firstname  %>, the tutorial below is the industry's first and most comprehensive Genuine Student (GS) & Genuine Temporary Entrant (GTE) Tutorial Study Guide. This study guide gives you accurate information on GS and GTE requirements & Student Visa conditions for <%=nameofcountry %>. 
+This tutorial, worth AU$50, is offered to you free of cost by <%=universityname  %>. It is the ultimate guide for international students who want to study in Australia.
 
-                <%
-                    if (otherDocCount > 0)
-                    {
-                    %>
+                       </p>
+
+                        <p style="padding-left: 21px"><%=firstname  %>, the Tutorial below includes the industry's first and most comprehensive Genuine
+Student (GS) & Genuine Temporary Entrant (GTE) Tutorial, which will offer you first-hand
+information on GS, GTE & Student Visa conditions. This Tutorial worth $50, is offered to you
+free of cost by <%=universityname  %>. It is the ultimate guide for international students who want
+to study in Australia.</p>
+<p style="padding-left: 21px">Please go through this tutorial in detail, as it would help with your GTE Certification and
+Assessment and also aid in producing better quality Course and Visa Applications.</p>
+              
+                   </div>
+               
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
                    <%-- <h5> Please read the following documents:</h5>--%>
                     <div class="pdf-container clearfix">
@@ -53,7 +65,7 @@
                             </div>                            
                         <%} } %>
                         </div>
-                </div>                  <%} %> 
+                </div>              
                 
                 <%
                     if (videoCount > 0)
@@ -94,17 +106,7 @@
                     </div>
                  <%} %> 
                         
-                 <% else {  %>
-                        <div class="list-group-item" id="employerwebsite">
-                            <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                <div class="form-row">                                                            
-                                    <div class="col-md-6">
-                                        <asp:Label ID="LabelMessage" runat="server" text="No Tutorial available"></asp:Label>                                                  
-                                    </div>
-                                </div>
-                            </div>
-                         </div>   
-                    <%} %>                
+                          
             </div>
            <%-- <div class="col-md-4">               
                 <div class="card">

@@ -140,7 +140,7 @@ public partial class gte_certificate1 : System.Web.UI.Page
     }
     public static string RandomAplhaNumericString() // Generated Format "GTE-AR-ABC12345"
     {
-        const string chars = "GTE-AR-";
+        const string chars = "ABCD";
         Random random = new Random();
         int randomNumber = random.Next(0, 9999);
         string aplhaNumericNumber = "";

@@ -29,11 +29,11 @@ public partial class admin_login : System.Web.UI.Page
         int isfullservice = (int)Session["isfullservice"];
 
         if (isfullservice == 0)
-            isfullservicethenlbl = " GTE ONLINE CENTER (GOC)";
+            isfullservicethenlbl = " GTE DIRECT CENTRE";
         else if (isfullservice == 1)
-            isfullservicethenlbl = " APPLICATION CENTER";
+            isfullservicethenlbl = " APPLICATION CENTRE";
         else if (isfullservice == 2)
-            isfullservicethenlbl = " ASSESSMENT CENTER";
+            isfullservicethenlbl = " ASSESSMENT CENTRE";
         studlogin = webURL + "login.aspx";
     }
     protected void btn_login_Click(object sender, EventArgs e)

@@ -169,7 +169,7 @@
 
             $("#<%=linkCertificate.ClientID%>").click(function () {
                 var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
-                location.replace(hostName + "gte_certificate.aspx");
+                location.replace(hostName + "gte_certificateN.aspx");
             });
         });
     </script>

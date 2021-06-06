@@ -20,6 +20,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
     string webURL = String.Empty;
     private string constr, query;
     public int fullservice;
+    public string lbltotal = "0", lblavailable="0";
     List<exam_subjectmaster> appliedsubjectlist = new List<exam_subjectmaster>();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -35,10 +36,27 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         universityID = Utility.GetUniversityId();
         fullservice = Convert.ToInt32(Session["isfullservice"]);
         roleID = Convert.ToInt32(Session["Role"]);
-        BindApplicant();
+        Bindlabel(universityID);
+        //BindApplicant();
         if (!IsPostBack)
         {
-            BindApplicant();
+            if (ddlapplicant.SelectedValue != null && ddlapplicant.SelectedValue != "0" &&  ddlapplicant.SelectedValue != "")
+            {
+                int applicantid = Convert.ToInt32(ddlapplicant.SelectedValue);
+                BindApplicant(string.Empty, applicantid, 0, "0");
+            }
+            if (ddlcountry.SelectedValue != null && ddlcountry.SelectedValue != "0" && ddlcountry.SelectedValue != "")
+            {
+                int countryid = Convert.ToInt32(ddlcountry.SelectedValue);
+                BindApplicant(string.Empty, 0, countryid, "0");
+            }
+            if (ddlfirstname.SelectedValue != null && ddlfirstname.SelectedValue != "0" && ddlfirstname.SelectedValue != "")
+            {
+                string firestname = ddlfirstname.SelectedValue;
+                BindApplicant(string.Empty, 0, 0, firestname);
+            }
+            else
+                BindApplicant();
             Bindlabel(universityID);
         }
     }
@@ -46,7 +64,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         try
         {
             var studentcount_byuniveristy = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
-            lbltotal.InnerText = studentcount_byuniveristy.ToString();
+            lbltotal = studentcount_byuniveristy.ToString();
 
             int registeredapplicantcCount = (from ad in db.applicantdetails
                                              join sd in db.students on ad.applicantid equals sd.studentid
@@ -56,7 +74,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             var value1 = Convert.ToInt32(studentcount_byuniveristy);
             var availableApplicant_Count = value1 - registeredapplicantcCount;
 
-            lblavailable.InnerText = availableApplicant_Count.ToString();
+            lblavailable = availableApplicant_Count.ToString();
         }
         catch (Exception ex)
         {
@@ -64,7 +82,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         }
     }
 
-    private void BindApplicant(string type = "NOdownload")
+    private void BindApplicant(string type = "NOdownload",int applicant_id = 0, int countryid = 0, string firstname = "0")
     {
         try
         {
@@ -77,11 +95,11 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
 
                              join u in db.university_master on gtead.universityid equals u.universityid
 
-                             join sd in db.gte_applicantdetails on gtead.applicantid equals sd.applicantid into data
-                             from sdata in data.Where(x=>x.universityid == universityID).DefaultIfEmpty()
+                             //join sd in db.gte_applicantdetails on gtead.applicantid equals sd.applicantid into data
+                             //from sdata in data.Where(x=>x.universityid == universityID).DefaultIfEmpty()
 
-                             join cm in db.countriesmaster on sdata.residencecountry equals cm.id into countrydata
-                             from cmdata in countrydata.DefaultIfEmpty()
+                             //join cm in db.countriesmaster on sdata.residencecountry equals cm.id into countrydata
+                             //from cmdata in countrydata.DefaultIfEmpty()
 
                              where gtead.universityid == universityID && gtead.isdeletedbyAdmin == false 
                              select new Details()
@@ -90,28 +108,42 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  applicantid = gtead.applicantid,
                                  universityId = u.universityid,
                                  university_name = u.university_name,
-                                 firstname = gtead.firstname == null ? string.Empty : gtead.firstname,
+                                 firstname = s.name == null ? string.Empty : s.name,
                                  lastname = gtead.lastname == null ? string.Empty : gtead.lastname,
                                  email = gtead.email == null ? s.email : gtead.email,
                                  registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
                                  mobile = gtead.mobileno == null ? string.Empty : gtead.mobileno,
-                                 countryofresidence = string.IsNullOrEmpty(cmdata.country_name) ? string.Empty : cmdata.country_name,
+                                 countryofresidence = string.Empty,
+                                 countryid = gtead.residentialcountry == null? null : gtead.residentialcountry,
                                  Status = "Prospect",
+                                 isverifiedbyAdmin = gtead.isverifiedbyAdmin,
                                  approve = gtead.isverifiedbyAdmin == true ? "Approved" : "Pending",
                                  suspend = gtead.isdeletedbyAdmin == true?"Deleted":string.Empty,
-
+                                 Isreportcompleted = gtead.Is_clarification_submitted,
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
                 foreach (var itm in applicant) {
                     int applicantid = Convert.ToInt32(itm.applicantid);
                     if (string.IsNullOrEmpty(itm.countryofresidence))
                     {
-                        var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == itm.universityId).FirstOrDefault();
+                        var data = db.gte_applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == itm.universityId).FirstOrDefault();
                         if (data != null)
                         {
-                            itm.countryofresidence = objCom.GetCountryDiscription(Convert.ToInt32(data.residentialcountry));
+                            itm.countryofresidence = objCom.GetCountryDiscription(Convert.ToInt32(data.residencecountry));
                         }
-                        
+                        else
+                            itm.countryofresidence = objCom.GetCountryDiscription(Convert.ToInt32(itm.countryid));
+
                     }
+                    //status
+                    itm.Status = "Registered";
+                    if (itm.isverifiedbyAdmin == true)
+                        itm.Status = "Verified";
+                    var schedule = db.applicant_meeting_schedule.Where(x => x.applicant_id == itm.applicantid && x.university_id == universityID).ToList();
+                    if (schedule.Count > 0)
+                        itm.Status = "Scheduled";
+                    if(itm.Isreportcompleted == true)
+                        itm.Status = "Completed";
+
                 }
             }
             else if(fullservice == 2)
@@ -134,19 +166,30 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  applicantid = ad.applicantid,
                                  universityId = u.universityid,
                                  university_name = u.university_name,
-                                 firstname = ad.firstname == null ? string.Empty : ad.firstname,
+                                 firstname = s.name == null ? string.Empty : s.name,
                                  lastname = ad.lastname == null ? string.Empty : ad.lastname,
                                  email = ad.email == null ? s.email : ad.email,
                                  registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
                                  mobile = ad.mobileno == null ? string.Empty : ad.mobileno,
                                  countryofresidence = c.country_name == null ? string.Empty : c.country_name,
+                                 countryid = ad.residentialcountry,
                                  Status = "Prospect",
                                  approve = ad.isverifiedbyAdmin == true ? "Approved" : "Pending",
+                                 isverifiedbyAdmin = ad.isverifiedbyAdmin,
                                  suspend = ad.isdeletedbyAdmin == true ? "Deleted" : string.Empty,
                                  classId = ad.classId,
                                  groupId = ad.groupId,
                                  studentID =ad.studentid,
-                             }).Distinct().OrderByDescending(x => x.applicantid).ToList();              
+                                 Isreportcompleted = ad.Is_clarification_submitted,
+                             }).Distinct().OrderByDescending(x => x.applicantid).ToList();
+                foreach (var itm in applicant)
+                {
+                    int applicantid = Convert.ToInt32(itm.applicantid);                    
+                    //status
+                    itm.Status = "Registered";
+                    if (itm.isverifiedbyAdmin == true)
+                        itm.Status = "Verified";
+                }
             }
             else
             {
@@ -168,16 +211,19 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  applicantid = ad.applicantid,
                                  universityId = u.universityid,
                                  university_name = u.university_name,
-                                 firstname = ad.firstname == null ? string.Empty : ad.firstname,
+                                 firstname = s.name == null ? string.Empty : s.name,
                                  lastname = ad.lastname == null ? string.Empty : ad.lastname,
                                  email = ad.email == null ? s.email : ad.email,
                                  registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
                                  mobile = ad.mobileno == null ? string.Empty : ad.mobileno,
                                  countryofresidence = c.country_name == null ? string.Empty : c.country_name,
+                                 countryid = ad.residentialcountry,
                                  Status = "Prospect",
+                                 isverifiedbyAdmin = ad.isverifiedbyAdmin,
                                  approve = ad.isverifiedbyAdmin == true ? "Approved" : "Pending",
                                  suspend = ad.isdeletedbyAdmin == true ? "Deleted" : string.Empty,
-                                 
+                                 Isreportcompleted = ad.Is_clarification_submitted,
+
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
             }
             //Starts filling up any form - Applicant
@@ -199,7 +245,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                         data.groupname = groupnname;
                     appliedsubjectlist.Clear();
 
-                    var subjectapplied = db.exam_applicant_subjectmapping.Where(x => x.universityid == data.universityId && x.applicantid == data.applicantid).Select(x=>x.subjectid).ToList();
+                    var subjectapplied = db.exam_applicant_subjectmapping.Where(x => x.universityid == data.universityId && x.applicantid == data.applicantid).Select(x => x.subjectid).ToList();
                     foreach (var item in subjectapplied)
                     {
                         int subjectid = Convert.ToInt32(item);
@@ -211,7 +257,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                         String numberList = "";
                         for (int i = 0; i < appliedsubjectlist.Count; i++)
                         {
-                            if(type == "download")
+                            if (type == "download")
                                 numberList += appliedsubjectlist[i].description + ",";
                             else
                                 numberList += appliedsubjectlist[i].description + "<br/>" + Environment.NewLine;
@@ -223,10 +269,13 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                         data.Subjects = string.Empty;
                 }
             }
-            else
+            else if (fullservice == 1)
             {
                 foreach (var item in applicant)
                 {
+                    item.Status = "Registered";
+                    if (item.isverifiedbyAdmin == true)
+                        item.Status = "Verified";
                     var personalDetails = db.applicantdetails.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
                     var educationDetails = db.applicanteducationdetails.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
                     var languageCompetency = db.applicantlanguagecompetency.Where(x => x.applicantid == item.applicantid && x.universityid == universityID).FirstOrDefault();
@@ -266,10 +315,77 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                     }
                 }
             }
-            
+           
+
+            ListItem lst = new ListItem("Search By AID", "0");
+            ListItem lst0 = new ListItem("Show All", "0");
+            ddlapplicant.DataSource = applicant.OrderBy(x => x.applicantid).ToList();
+            ddlapplicant.DataTextField = "applicantid";
+            ddlapplicant.DataValueField = "applicantid";
+            ddlapplicant.DataBind();
+            ddlapplicant.Items.Insert(0, lst);
+            //ddlapplicant.Items.FindByValue("0").Selected = true;
+            //ddlapplicant.Items.Insert(0, lst0);
+
+            ListItem lst1 = new ListItem("Search By First Name", "0");
+            ListItem lst10 = new ListItem("Show All", "0");
+            ddlfirstname.DataSource = applicant.OrderBy(x=>x.firstname).ToList();
+            ddlfirstname.DataTextField = "firstname";
+            ddlfirstname.DataValueField = "firstname";
+            ddlfirstname.DataBind();
+            ddlfirstname.Items.Insert(0, lst1);
+           // ddlfirstname.Items.FindByValue("0").Selected = true;
+            //ddlfirstname.Items.Insert(0, lst10);
+            RemoveDuplicateItems(ddlfirstname);
+
+            var data1 = applicant;
+            if (data1 != null)
+                data1 = data1.Where(x => x.countryid != null && x.countryid != 0).Distinct().ToList();
+            ListItem lst2 = new ListItem("Search By Country", "0");
+            ListItem lst20 = new ListItem("Show All", "0");
+            ddlcountry.DataSource = data1.Distinct().ToList();
+            ddlcountry.DataTextField = "countryofresidence";
+            ddlcountry.DataValueField = "countryid";
+            ddlcountry.DataBind();
+            ddlcountry.Items.Insert(0, lst2);
+            //ddlcountry.Items.FindByValue("0").Selected = true;
+            //ddlcountry.Items.Insert(0, lst20);
+
+            RemoveDuplicateItems(ddlcountry);
+
+            if (applicant_id != 0 || countryid != 0 || firstname != "0")
+            {
+                var filterlist = applicant;
+                if (applicant_id != 0)
+                {
+                    filterlist = filterlist.Where(x => x.applicantid == applicant_id).ToList();
+                    ddlapplicant.Items.FindByValue(applicant_id.ToString()).Selected = true;
+                    ddlcountry.ClearSelection();
+                    ddlfirstname.ClearSelection();
+                }
+                if (countryid != 0)
+                {
+                    filterlist = filterlist.Where(x => x.countryid == countryid).ToList();
+                    ddlcountry.Items.FindByValue(countryid.ToString()).Selected = true;
+                    ddlapplicant.ClearSelection();
+                    ddlfirstname.ClearSelection();
+                }
+                if (firstname != "0")
+                {
+                    filterlist = filterlist.Where(x => x.firstname == firstname).ToList();
+                    ddlfirstname.Items.FindByValue(firstname.ToString()).Selected = true;
+                    ddlcountry.ClearSelection();
+                    ddlapplicant.ClearSelection();
+                }
+
+                applicant = filterlist;
+            }
+
+
             UserGridView.DataSource = applicant;
             UserGridView.DataBind();
-           
+
+            
         }
         catch (Exception ex)
         {
@@ -277,9 +393,47 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         }
     }
 
+    void RemoveDuplicateItems(DropDownList ddl)
+    {
+        for (int i = 0; i < ddl.Items.Count; i++)
+        {
+            ddl.SelectedIndex = i;
+            string str = ddl.SelectedItem.ToString();
+            for (int counter = i + 1; counter < ddl.Items.Count; counter++)
+            {
+                ddl.SelectedIndex = counter;
+                string compareStr = ddl.SelectedItem.ToString();
+                if (str == compareStr)
+                {
+                    ddl.Items.RemoveAt(counter);
+                    counter = counter - 1;
+                }
+            }
+        }  
+        
+        ddl.ClearSelection();
+    }
+
     protected DataTable BindDatatable()
     {
-        BindApplicant("download");
+
+        if (ddlapplicant.SelectedValue != null && ddlapplicant.SelectedValue != "0" && ddlapplicant.SelectedValue != "")
+        {
+            int applicantid = Convert.ToInt32(ddlapplicant.SelectedValue);
+            BindApplicant("download", applicantid, 0, "0");
+        }
+        if (ddlcountry.SelectedValue != null && ddlcountry.SelectedValue != "0" && ddlcountry.SelectedValue!="")
+        {
+            int countryid = Convert.ToInt32(ddlcountry.SelectedValue);
+            BindApplicant("download", 0, countryid, "0");
+        }
+        if (ddlfirstname.SelectedValue != null && ddlfirstname.SelectedValue != string.Empty && ddlfirstname.SelectedValue != "0")
+        {
+            string firestname = ddlfirstname.SelectedValue;
+            BindApplicant("download", 0, 0, firestname);
+        }
+        else
+            BindApplicant("download");
         DataTable dt = new DataTable();
         // all columns
         dt.Columns.Add("Applicant Id", typeof(Int32));
@@ -325,6 +479,8 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             Response.Buffer = true;
             Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "RegisteredApplicant_List.xls"));
             Response.ContentType = "application/ms-excel";
+           
+            int countryid = Convert.ToInt32(ddlcountry.SelectedValue);
             DataTable dt = BindDatatable();
             string str = string.Empty;
             foreach (DataColumn dtcol in dt.Columns)
@@ -365,6 +521,8 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         public string countryofresidence { get; set; }
         public string Status { get; set; }
         public string approve { get; set; }
+        public bool? Isreportcompleted { get; set; }
+        public bool? isverifiedbyAdmin { get; set; }
         public string suspend { get; set; }
         public int? classId { get; set; }
         public int? groupId { get; set; }
@@ -372,6 +530,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         public string groupname { get; set; }
         public string Subjects { get; set; }
         public string studentID { get; set; }
+        public int? countryid { get; set; }
     }
 
     protected void UserGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -382,7 +541,23 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
     protected void UserGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         UserGridView.EditIndex = e.NewEditIndex;
-        BindApplicant();
+        if (ddlapplicant.SelectedValue != null && ddlapplicant.SelectedValue != "0" && ddlapplicant.SelectedValue != "")
+        {
+            int applicantid = Convert.ToInt32(ddlapplicant.SelectedValue);
+            BindApplicant(string.Empty, applicantid, 0, "0");
+        }
+        if (ddlcountry.SelectedValue != null && ddlcountry.SelectedValue != "0" && ddlcountry.SelectedValue != "")
+        {
+            int countryid = Convert.ToInt32(ddlcountry.SelectedValue);
+            BindApplicant(string.Empty, 0, countryid, "0");
+        }
+        if (ddlfirstname.SelectedValue != null && ddlfirstname.SelectedValue != "0")
+        {
+            string firestname = ddlfirstname.SelectedValue;
+            BindApplicant(string.Empty, 0, 0, firestname);
+        }
+        else
+            BindApplicant();
     }
 
     protected void UserGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -421,7 +596,23 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 if (mode == "new")
                     db.applicantdetails.Add(objstude);
                 db.SaveChanges();
-                BindApplicant();
+                if (ddlapplicant.SelectedValue != null && ddlapplicant.SelectedValue != "0" && ddlapplicant.SelectedValue != "")
+                {
+                    int applicantid = Convert.ToInt32(ddlapplicant.SelectedValue);
+                    BindApplicant(string.Empty, applicantid, 0, "0");
+                }
+                if (ddlcountry.SelectedValue != null && ddlcountry.SelectedValue != "0" && ddlcountry.SelectedValue != "")
+                {
+                    int countryid = Convert.ToInt32(ddlcountry.SelectedValue);
+                    BindApplicant(string.Empty, 0, countryid, "0");
+                }
+                if (ddlfirstname.SelectedValue != null && ddlfirstname.SelectedValue != "0")
+                {
+                    string firestname = ddlfirstname.SelectedValue;
+                    BindApplicant(string.Empty, 0, 0, firestname);
+                }
+                else
+                    BindApplicant();
                 Bindlabel(universityID);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant deleted successfully.)')", true);
             }
@@ -456,13 +647,34 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                 db.SaveChanges();
                 
                 Bindlabel(universityID);
-                BindApplicant();
+                if (ddlapplicant.SelectedValue != null && ddlapplicant.SelectedValue != "0" && ddlapplicant.SelectedValue != "")
+                {
+                    int applicantid = Convert.ToInt32(ddlapplicant.SelectedValue);
+                    BindApplicant(string.Empty, applicantid, 0, "0");
+                }
+                if (ddlcountry.SelectedValue != null && ddlcountry.SelectedValue != "0" && ddlcountry.SelectedValue != "")
+                {
+                    int countryid = Convert.ToInt32(ddlcountry.SelectedValue);
+                    BindApplicant(string.Empty, 0, countryid, "0");
+                }
+                if (ddlfirstname.SelectedValue != null && ddlfirstname.SelectedValue != "0")
+                {
+                    string firestname = ddlfirstname.SelectedValue;
+                    BindApplicant(string.Empty, 0, 0, firestname);
+                }
+                else
+                    BindApplicant();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant verified successfully.'", true);
             }
             if (e.CommandName.Equals("Edit"))
             {
                 int ApplicantID = Convert.ToInt32(e.CommandArgument);
                 Response.Redirect(webURL + "admin/edit_studentDetails.aspx?ID="+ ApplicantID, true);
+            }
+            if (e.CommandName.Equals("Manage"))
+            {
+                int ApplicantID = Convert.ToInt32(e.CommandArgument);
+                Response.Redirect(webURL + "admin/manageapplicant.aspx?ID=" + ApplicantID, true);
             }
             if (e.CommandName.Equals("resend"))
             {
@@ -503,7 +715,28 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                     sb.Append("Thank you" + "<br/>");
                     sb.Append("Support Team." + "<br/>");
                     objCom.SendMail(adminData.email , sb.ToString(), "Your OTP resend request was successful for applicant ID " + ApplicantID);
+                    if (webURL.Contains("http://localhost:50180") || webURL.Contains("http://qc.")) { }
+                    else
+                        objCom.SendMail("support@gte.direct", sb.ToString(), "Your OTP resend request was successful for applicant ID " + ApplicantID);
 
+
+                    if (ddlapplicant.SelectedValue != null && ddlapplicant.SelectedValue != "0" && ddlapplicant.SelectedValue != "")
+                    {
+                        int applicantid = Convert.ToInt32(ddlapplicant.SelectedValue);
+                        BindApplicant(string.Empty, applicantid, 0, "0");
+                    }
+                    if (ddlcountry.SelectedValue != null && ddlcountry.SelectedValue != "0" && ddlcountry.SelectedValue != "")
+                    {
+                        int countryid = Convert.ToInt32(ddlcountry.SelectedValue);
+                        BindApplicant(string.Empty, 0, countryid, "0");
+                    }
+                    if (ddlfirstname.SelectedValue != null && ddlfirstname.SelectedValue != "0")
+                    {
+                        string firestname = ddlfirstname.SelectedValue;
+                        BindApplicant(string.Empty, 0, 0, firestname);
+                    }
+                    else
+                        BindApplicant();
                 }
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Invalid password.')", true);
@@ -523,13 +756,13 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             {
                 e.Row.Cells[0].CssClass = "locked";
                 Label lblapplicantid = (Label)e.Row.FindControl("lblapplicantid");
-                Label lblstatus = (Label)e.Row.FindControl("Label6");
+                Label lblstatus = (Label)e.Row.FindControl("Label5");
                 LinkButton lnkapprove = ((LinkButton)e.Row.FindControl("lnkapprove"));
 
-                if (lblstatus.Text == "Approved")
-                    lnkapprove.Attributes.Add("style", "display:none");
-                else
+                if (lblstatus.Text == "Registered")
                     lnkapprove.Attributes.Add("style", "display:block");
+                else
+                    lnkapprove.Attributes.Add("style", "display:none");
 
                 int applicantid = Convert.ToInt32(lblapplicantid.Text);
                 Label Label7 = (Label)e.Row.FindControl("Label7");
@@ -545,6 +778,13 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                     Label7.Attributes.Add("style", "display:block");
                 }
 
+                LinkButton lnkmagae = ((LinkButton)e.Row.FindControl("lnkmagae"));
+                Label lblaid = (Label)e.Row.FindControl("lblaid");
+                if (fullservice == 2 || fullservice == 1)
+                {
+                    lblaid.Visible = true;
+                    lnkmagae.Attributes.Add("style", "display:none");
+                }
             }
         }
         catch (Exception ex)
@@ -580,30 +820,33 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         }
     }
 
-    protected void UserGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    protected void ddlapplicant_SelectedIndexChanged(object sender, EventArgs e)
     {
-        //if (fullservice == 1 || fullservice == 0)
-        //{
-        //    ((DataControlField)UserGridView.Columns
-        //        .Cast<DataControlField>()
-        //        .Where(fld => fld.HeaderText == "Class")
-        //        .SingleOrDefault()).Visible = false;
-        //    ((DataControlField)UserGridView.Columns
-        //        .Cast<DataControlField>()
-        //        .Where(fld => fld.HeaderText == "Group")
-        //        .SingleOrDefault()).Visible = false;
-        //    //((DataControlField)UserGridView.Columns
-        //    //    .Cast<DataControlField>()
-        //    //    .Where(fld => fld.HeaderText == "Subjects")
-        //    //    .SingleOrDefault()).Visible = false;
-        //    ((DataControlField)UserGridView.Columns
-        //        .Cast<DataControlField>()
-        //        .Where(fld => fld.HeaderText == "StudentID")
-        //        .SingleOrDefault()).Visible = false;
-        //    ((DataControlField)UserGridView.Columns
-        //       .Cast<DataControlField>()
-        //       .Where(fld => fld.HeaderText == "Edit")
-        //       .SingleOrDefault()).Visible = false;
-        //}
+
+        if (ddlapplicant.SelectedValue != null)
+        {
+            int applicantid = Convert.ToInt32(ddlapplicant.SelectedValue);            
+            BindApplicant(string.Empty, applicantid, 0, "0");
+        }
+    }
+
+    protected void ddlfirstname_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ddlapplicant.ClearSelection();
+        ddlcountry.ClearSelection();
+        if (ddlfirstname.SelectedValue != null)
+        {
+            string firestname = ddlfirstname.SelectedValue;
+            BindApplicant(string.Empty, 0, 0, firestname);
+        }
+    }
+
+    protected void ddlcountry_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlcountry.SelectedValue != null)
+        {
+            int countryid = Convert.ToInt32(ddlcountry.SelectedValue);
+            BindApplicant(string.Empty, 0, countryid, "0");
+        }
     }
 }
