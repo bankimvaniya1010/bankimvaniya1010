@@ -92,19 +92,23 @@ public class Common
             SmtpClient SmtpServer = new SmtpClient(ConfigurationManager.AppSettings["Smtp"]);
 
             string address = string.Empty;
-            int uniid = Utility.GetUniversityId();
+            int uniid =Utility.GetUniversityId();
             int service = GetUniversityservice(uniid);
-
+            string displayName = string.Empty;
             if (service == 0)
-                address = "support@studecare.com";
-            else if (service == 1)
                 address = "support@gte.direct";
+            else if (service == 1)
+                address = "support@studecare.com";
             else if (service == 2)
                 address = "support@testyt.com";
             else
                 address = ConfigurationManager.AppSettings["FromMail"];
 
-            mail.From = new MailAddress(address, "Application Center Admin");
+            if (service == 0)
+                displayName = "GTE DIRECT";
+            else
+                displayName = "Application Center Admin";
+            mail.From = new MailAddress(address, displayName);
             //  mail.To.Add(ConfigurationManager.AppSettings["ToMail"]);
             mail.To.Add(EmailId);
             // MailAddress copy = new MailAddress(ConfigurationManager.AppSettings["FromMail"]);
@@ -116,6 +120,7 @@ public class Common
             mail.Subject = subject;
             mail.Body = body;
             mail.IsBodyHtml = true;
+
             // Attachment data = new Attachment(Path);
             // your path may look like Server.MapPath("~/file.ABC")
             // mail.Attachments.Add(data);
@@ -198,7 +203,22 @@ public class Common
         }
         return CourseName;
     }
-    
+
+    public string GetCode(int id)
+    {
+        string code = "";
+        try
+        {
+            var countrycode = db.countrycode_master.Where(x => x.id == id).FirstOrDefault();
+            if (countrycode != null)
+                code = countrycode.code;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return code;
+    }
     public string Get_AgentName(int id)
     {
         string agentName = "";
@@ -262,9 +282,10 @@ public class Common
     public string GetApplicantFirstName(int applicantid)
     {
         string firstname = "";
+        int  universityID =Utility.GetUniversityId();
         try
         {
-            var data = db.applicantdetails.Where(x => x.applicantid == applicantid).FirstOrDefault();
+            var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
             if (data != null)
                 firstname = data.firstname;
         }
@@ -277,9 +298,10 @@ public class Common
     public string GetApplicantLastName(int applicantid)
     {
         string lastname = "";
+        int universityID =Utility.GetUniversityId();
         try
         {
-            var data = db.applicantdetails.Where(x => x.applicantid == applicantid).FirstOrDefault();
+            var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
             if (data != null)
                 lastname = data.lastname;
         }
@@ -918,7 +940,7 @@ public class Common
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var studymode = db.countriesmaster.ToList();
+            var studymode = db.countriesmaster.OrderBy(x=>x.country_name).ToList();
             if (addCitizenshipFlag)
             {
                 lst.Value += "_False";
@@ -1734,13 +1756,324 @@ public class Common
         }
         return HighestDegree;
     }
+    public string GetSection2_BlckClr(int applicantid, int section2_questionid) {
+        int universityID =Utility.GetUniversityId();
+        string clr = string.Empty;
+        try
+        {
+            var applicantresponseID = db.gte_questions_applicant_response.Where(x => x.gte_question_id == section2_questionid && x.applicant_id == applicantid && x.university_id == universityID).Select(x => x.gte_answer_id).FirstOrDefault();
+            if (applicantresponseID != null)
+            {
+                var response_clr = db.gte_answer_master.Where(x => x.id == applicantresponseID).FirstOrDefault();
+                if (response_clr != null)
+                {
+                    if (response_clr.gte_score > response_clr.gte_risk_score)
+                        clr = "green";
+                    else
+                        clr = "red";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return clr;
+    }
+    public int GetSection2AnswerID(int applicantid, int section2_questionid)
+    {
+        int universityID =Utility.GetUniversityId();
+        int section2_response_ID = 0;
+        try
+        {
+            var data = db.gte_questions_applicant_response.Where(x => x.university_id == universityID && x.applicant_id == applicantid && x.gte_question_id == section2_questionid).FirstOrDefault();
+            if (data != null)
+                section2_response_ID = data.gte_answer_id;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return section2_response_ID;
+    }
 
+    public string GetSection2Answer(int applicantid , int section2_questionid)
+    {
+        int universityID =Utility.GetUniversityId();
+        string section2_question_response = "";
+        try
+        {
+            var applicantresponseID = db.gte_questions_applicant_response.Where(x => x.gte_question_id == section2_questionid && x.applicant_id ==applicantid && x.university_id == universityID).Select(x=>x.gte_answer_id).FirstOrDefault();
+            if (applicantresponseID != null)
+            {
+                string response_string = db.gte_answer_master.Where(x => x.id == applicantresponseID).Select(x => x.answer).FirstOrDefault();
+                if(response_string != null)
+                    section2_question_response = response_string;
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return section2_question_response;
+    }
+
+    public string Get_RGCmnt_Section2(int applicantid, int section2_questionid)
+    {
+        int universityID =Utility.GetUniversityId();
+        string sec2_RGCmnt = "";
+        try
+        {
+            var applicantresponseID = db.gte_questions_applicant_response.Where(x => x.gte_question_id == section2_questionid && x.applicant_id == applicantid && x.university_id == universityID).Select(x => x.gte_answer_id).FirstOrDefault();
+            if (applicantresponseID != null)
+            {
+                string counsellor_review_comments = db.gte_answer_master.Where(x => x.id == applicantresponseID).Select(x => x.counsellor_review_comments).FirstOrDefault();
+                if (counsellor_review_comments != null)
+                    sec2_RGCmnt = counsellor_review_comments;
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return sec2_RGCmnt;
+    }
+    public string GetSection3AnswerNew(int applicantid, int section3_questionid) {
+        int universityID =Utility.GetUniversityId();
+        string clr_response = string.Empty;
+        try
+        {
+            var applicantresponse = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == applicantid && x.university_id == universityID && x.question_id == section3_questionid).Select(x => x.applicant_response).FirstOrDefault();
+            if (applicantresponse != null)
+            {
+                var question_mark = db.gte_question_master_part2.Where(x => x.id == section3_questionid ).FirstOrDefault();
+                if (question_mark != null)
+                {
+                    int finalScore=0;
+                    string type = string.Empty;
+                   
+                    if (applicantresponse == true) {
+                        int true_gtescore; int true_riskscore;
+
+                        true_gtescore = question_mark.true_gte_score;
+                        true_riskscore = question_mark.true_risk_score;
+
+                        if (true_gtescore > true_riskscore)
+                        {
+                            finalScore = true_gtescore; type = "GTE";
+                        }
+                        else
+                        {
+                            finalScore = true_riskscore;
+                            type = "RISK";
+                        }
+                    }
+                    else if (applicantresponse == false) {
+                        int false_gtescore; int false_riskscore;
+
+                        false_gtescore = question_mark.false_gte_score;
+                        false_riskscore = question_mark.false_risk_score;
+
+                        if (false_gtescore > false_riskscore)
+                        {
+                            finalScore = false_gtescore; type = "GTE";
+                        }
+                        else
+                        {
+                            finalScore = false_riskscore; type = "RISK";
+                        }
+                    }
+                    if (type == "GTE")
+                    {
+                        if (finalScore == 1)
+                            clr_response = "bg-green-l";
+                        else if (finalScore == 2)
+                            clr_response = "bg-green";
+                        else if(finalScore >= 3)
+                            clr_response = "bg-green";
+                    }
+                    else if (type == "RISK")
+                    {
+                        if (finalScore == 1)
+                            clr_response = "bg-yellow";
+                        else if (finalScore == 2)
+                            clr_response = "bg-orange";
+                        else if (finalScore >= 3)
+                            clr_response = "bg-red";
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return clr_response;
+    }
+
+    public string GetSection_2_classclr(int applicantid, int section2_questionid)
+    {
+        int universityID =Utility.GetUniversityId();
+        string clr_response = string.Empty;
+        try
+        {
+            var gte_answer_id = db.gte_questions_applicant_response.Where(x => x.university_id == universityID && x.applicant_id == applicantid && x.gte_question_id == section2_questionid ).Select(x => x.gte_answer_id).FirstOrDefault();
+            if (gte_answer_id != null)
+            {
+                var question_mark = db.gte_answer_master.Where(x => x.id == gte_answer_id).FirstOrDefault();
+                if (question_mark != null)
+                {
+                    int finalScore = 0;
+                    string type = string.Empty;
+                    int gte_score; int risk_score;
+
+                    gte_score = question_mark.gte_score;
+                    risk_score= question_mark.gte_risk_score;
+
+                    if (gte_score > risk_score)
+                    {
+                        finalScore = gte_score; type = "GTE";
+                    }
+                    else
+                    {
+                        finalScore = risk_score;type = "RISK";
+                    }
+                    
+                    if (type == "GTE")
+                    {
+                        if (finalScore == 1)
+                            clr_response = "bg-green-l";
+                        else if (finalScore == 2)
+                            clr_response = "bg-green";
+                        else if (finalScore >= 3)
+                            clr_response = "bg-green";
+                    }
+                    else if (type == "RISK")
+                    {
+                        if (finalScore == 1)
+                            clr_response = "bg-yellow";
+                        else if (finalScore == 2)
+                            clr_response = "bg-orange";
+                        else if (finalScore >= 3)
+                            clr_response = "bg-red";
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return clr_response;
+    }
+
+    public string GetSection_auto_classclr(int id, int Istrue)
+    {
+        int universityID =Utility.GetUniversityId();
+        string clr_response = string.Empty;
+        try
+        {
+            var gte_auto_section = db.gte_section1_autogenrated_master.Where(x => x.id == id).FirstOrDefault();
+            if (gte_auto_section != null)
+            {
+                int finalScore = 0;
+                string type = string.Empty;
+                if (Istrue == 1)
+                {
+                    int true_gtescore =Convert.ToInt32(gte_auto_section.true_gte_score);
+                    int true_riskscore=Convert.ToInt32(gte_auto_section.true_risk_score);
+
+                    if (true_gtescore > true_riskscore)
+                    {
+                        finalScore = true_gtescore; type = "GTE";
+                    }
+                    else
+                    {
+                        finalScore = true_riskscore; type = "RISK";
+                    }
+                }
+                else
+                {
+                    int false_gtescore = Convert.ToInt32(gte_auto_section.false_gte_score);
+                    int false_riskscore = Convert.ToInt32(gte_auto_section.false_risk_score);
+
+                    if (false_gtescore > false_riskscore)
+                    {
+                        finalScore = false_gtescore; type = "GTE";
+                    }
+                    else
+                    {
+                        finalScore = false_riskscore; type = "RISK";
+                    }
+                }
+                if (type == "GTE")
+                {
+                    if (finalScore == 1 || finalScore == 0)
+                        clr_response = "bg-green-l";
+                    else if (finalScore == 2)
+                        clr_response = "bg-green";
+                    else if (finalScore >= 3)
+                        clr_response = "bg-green";
+                }
+                else if (type == "RISK")
+                {
+                    if (finalScore == 1 || finalScore == 0 )
+                        clr_response = "bg-yellow";
+                    else if (finalScore == 2)
+                        clr_response = "bg-orange";
+                    else if (finalScore >= 3)
+                        clr_response = "bg-red";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return clr_response;
+    }
+
+    public bool? GetSection3Answer(int applicantid, int section3_questionid)
+    {
+
+        int universityID =Utility.GetUniversityId();
+        bool? section3_question_response = false;
+        try
+        {
+            var applicantresponse = db.gte_question_part2_applicant_response.Where(x => x.university_id == universityID && x.applicant_id == applicantid  && x.question_id == section3_questionid).Select(x => x.applicant_response).FirstOrDefault();
+            if (applicantresponse != null)
+                section3_question_response = applicantresponse;
+            else
+                return false;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return section3_question_response;
+    }
+
+    public int GetStudy_systemlevel(int id)
+    {
+        int systemlevel = 0;
+        try
+        {
+            var major = db.studylevelmaster.Where(x=>x.studylevelid == id).Select(x=>x.systemLevel).FirstOrDefault();
+            if (major != null)
+                systemlevel = Convert.ToInt32(major);
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return systemlevel;
+    }
     public string Getworkexperience(int id)
     {
         string workexperienceyears = "";
         try
         {
-            var major = db.workexperienceyearsmaster.FirstOrDefault();
+            var major = db.workexperienceyearsmaster.Where(x=>x.workexperienceyearsid == id).FirstOrDefault();
             if (major != null)
                 workexperienceyears = major.description;
         }
@@ -1780,6 +2113,26 @@ public class Common
         }
         return tuitionAndlivingcostmaster;
     }
+    public void Bindadmisionfactor_dropdown_master(DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var studymode = db.admisionfactor_dropdown_master.ToList();
+
+            ddl.DataSource = studymode;
+            ddl.DataTextField = "description";
+            ddl.DataValueField = "id";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+
+
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
     public string GetHighestStudyField(int id)
     {
         string Highestfieldofstudy = "";
@@ -1795,6 +2148,87 @@ public class Common
         }
         return Highestfieldofstudy;        
     }
+    public string GetClarification_applicantResponse(int applicantid, int CQ_questionid )
+    {
+        string response = "";
+        try
+        {
+            int universityid =Utility.GetUniversityId();
+            var CQ_Response = db.gte_clarification_applicantresponse.Where(x=>x.applicant_id == applicantid && x.university_id == universityid && x.clarification_question_id == CQ_questionid).FirstOrDefault();
+            if (CQ_Response != null)
+                response = CQ_Response.applicant_response;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return response;
+    }
+    public string GetClarification_Question(int CQ_questionid)
+    {
+        string question = "";
+        try
+        {
+            int universityid =Utility.GetUniversityId();
+            var CQ_Response = db.gte_clarification_questionmaster.Where(x=>x.id == CQ_questionid).FirstOrDefault();
+            if (CQ_Response != null)
+                question = CQ_Response.clarification_question;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return question;
+    }
+    public string GetBroadFieldDescription(int id)
+    {
+        string broadfield = "";
+        try
+        {
+            var broad = db.course_broadFields_master.Where(x=>x.id == id).FirstOrDefault();
+            if (broad != null)
+                broadfield = broad.fieldname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return broadfield;
+    }
+
+    public string GetNarrowFieldDescription(int id)
+    {
+        string narrowField = "";
+        try
+        {
+            var narrow = db.course_narrowFields_master.Where(x => x.id == id).FirstOrDefault();
+            if (narrow != null)
+                narrowField = narrow.fieldname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return narrowField;
+    }
+
+
+    public string GetDetailedFieldDescription(int id)
+    {
+        string detailField = "";
+        try
+        {
+            var detailmaster = db.course_detailsField_master.Where(x => x.id == id).FirstOrDefault();
+            if (detailmaster != null)
+                detailField = detailmaster.fieldname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return detailField;
+    }
+
     [Serializable]
     public class FieldList
     {
@@ -1832,5 +2266,197 @@ public class Common
             log.WriteLog(ex.ToString());
         }
 
+    }
+    public string getSes1_correctans(int id)
+    {
+        string correctanswer = "";
+        try
+        {
+            var master = db.gte_preliminary_section_questionmaster.Where(x => x.gte_questionID == id).FirstOrDefault();
+            if (master != null)
+                correctanswer = master.correctanswer;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return correctanswer;
+    }
+
+    public string getApplicant_sec1_ans(int applicantID,int universityID,int queID)
+    {
+        string answer = "";
+        try
+        {
+            var master = db.gtepreliminarysection_applicantanswers.Where(x => x.gte_preliminary_section_question_id == queID && x.applicantId == applicantID && x.universityId == universityID).FirstOrDefault();
+            if (master != null)
+                answer = master.answer;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return answer;
+    }
+
+    public string getSes2_correctans(int id)
+    {
+        string correctanswer = "";
+        try
+        {
+            var master = db.gte_preliminary_questionmaster.Where(x => x.gte_preliminaryid == id).FirstOrDefault();
+            if (master != null)
+                correctanswer = master.correctanswer;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return correctanswer;
+    }
+
+    public string getApplicant_sec2_ans(int applicantID, int universityID, int queID)
+    {
+        string answer = "";
+        try
+        {
+            var master = db.gte_preliminaryapplicantanswers.Where(x => x.gte_preliminary_question_id == queID && x.applicantid == applicantID && x.universityId == universityID).FirstOrDefault();
+            if (master != null)
+                answer = master.answer;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return answer;
+    }
+    public int? gte_sec1_auto_GTEscore(int auto_queID, bool GTEscore)
+    {
+        int uniid =Utility.GetUniversityId();
+        int? score = 0;
+        try
+        {
+            var master = db.gte_section1_autogenrated_master.Where(x => x.id == auto_queID).FirstOrDefault();
+            if (master != null)
+            {
+                if(GTEscore == true)
+                    score = master.true_gte_score;
+                else
+                    score = master.false_gte_score;
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return score;
+    }
+    public int? gte_sec1_auto_RISKscore(int auto_queID, bool RISKscore)
+    {
+        int uniid =Utility.GetUniversityId();
+        int? score = 0;
+        try
+        {
+            var master = db.gte_section1_autogenrated_master.Where(x => x.id == auto_queID).FirstOrDefault();
+            if (master != null)
+            {
+                if (RISKscore == true)
+                    score = master.true_risk_score;
+                else
+                    score = master.false_risk_score;
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return score;
+    }
+    public bool? GetIS_oldOrNew_applicant(int applicantID) {
+        bool? answer = false;
+        try
+        {
+            int universityID =Utility.GetUniversityId();
+            var details = db.applicantdetails.Where(x => x.applicantid == applicantID && x.universityid == universityID).FirstOrDefault();
+            if (details != null)
+                answer = details.Isold_or_new_applicant;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return answer;
+    }
+    public string GetDocumentName(int id)
+    {
+        string docName = "";
+        try
+        {
+            var major = db.primaryfieldmaster.Where(x=>x.formid == 15 && x.primaryfieldid == id).FirstOrDefault();
+            if (major != null)
+                docName = major.primaryfiledname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return docName;
+    }
+    public string GetMatrixValue(string colid, int tagid, int property, int aid)
+    {
+        int uid =Utility.GetUniversityId();
+        string value = "";
+        try
+        {
+            var major = db.gte_report_matrixValue.Where(x => x.applicantid == aid && x.universityid == uid && x.tag_id == tagid && x.colname == colid).FirstOrDefault();
+            if (major != null)
+            {
+                if (property == 1)
+                    value = major.percentage;
+                else if (property == 2)
+                    value = major.score;
+                else if (property == 3)
+                    value = major.block_class;
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return value;
+    }
+    public string Get_gte_docName(int doc_id)
+    {
+        int uid =Utility.GetUniversityId();
+        string value = "";
+        try
+        {
+            var data = db.primaryfieldmaster.Where(x=>x.formid== 15 && x.primaryfieldid == doc_id).FirstOrDefault();
+            if (data != null)
+                value = data.primaryfiledname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return value;
+    }
+    public bool Is_doc_submittedbyapplicant(int aid , int doc_id)
+    {
+        int uid =Utility.GetUniversityId();
+        bool result = false;
+        try
+        {
+            var data = db.gte_applicantdocument.Where(x => x.applicantid == aid && x.universityid == uid && x.documentid == doc_id).FirstOrDefault();
+            if (data != null)
+                result = true;
+            else
+                result = false;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return result;
     }
 }
