@@ -699,12 +699,126 @@ public partial class view_exampaper3 : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public static string RefreshTime(int assignID)
+    public static string RefreshTime(int examid, int assignid , string user)
     {
-        var time = "0";
-        showTime(assignID);
+        //var time = "0";
+        string sessionreadingTime = string.Empty, sessionwritingTime = string.Empty, sessionUploadTime = string.Empty;
+        Logger objLog = new Logger();
+        int UniversityID = Utility.GetUniversityId();
+        try
+        {
+            GTEEntities db1 = new GTEEntities();
+            var exam_assign = db1.exam_assign.Where(x => x.assignid == assignid).FirstOrDefault();
+            
+            if (exam_assign != null)
+            {
+                HttpContext.Current.Session["readingtime"] = null;
+                HttpContext.Current.Session["uploadtime"] = null;
+                HttpContext.Current.Session["totalResponseTime"] = null;
 
-        return JsonConvert.SerializeObject(time);
+                var exammaster = db1.exam_master.Where(x => x.universityID == UniversityID && x.exampapersid == exam_assign.exampapersid).FirstOrDefault();
+                var examschedule = db1.exam_schedule.Where(x => x.universityid == UniversityID && x.exampapersid == exam_assign.exampapersid && x.exam_datetime == exam_assign.exam_datetime).FirstOrDefault();
+                if (exammaster != null)
+                {
+                    if (examschedule != null)
+                    {
+                        string current_UTC_Time = DateTime.UtcNow.ToString("hh:mm:ss");
+                        DateTime current_UTCDatetime = Convert.ToDateTime(current_UTC_Time);
+
+                        string UTC_examstart = Convert.ToDateTime(examschedule.exam_datetime_utc).ToString("hh:mm:ss");
+                        DateTime UTC_examstartDatetime = Convert.ToDateTime(examschedule.exam_datetime_utc);
+
+                        int exam_ReadingTime = Convert.ToInt32(exammaster.exam_readingduration);
+                        int exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                        int exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+
+                        string ReadingTime_start = UTC_examstart;
+                        string str_ReadingTime_end = UTC_examstartDatetime.AddMinutes(exam_ReadingTime).ToString("hh:mm:ss");
+                        DateTime date_read = Convert.ToDateTime(str_ReadingTime_end);
+
+                        string WritingTime_start = str_ReadingTime_end;
+                        string str_WritingTime_end = date_read.AddMinutes(exam_WritingTime).ToString("hh:mm:ss");
+                        DateTime date_write = Convert.ToDateTime(str_WritingTime_end);
+
+                        string uploadTime_start = str_WritingTime_end;
+                        string str_UploadTime_end = date_write.AddMinutes(exam_UploadTime).ToString("hh:mm:ss");
+
+                        TimeSpan? set_Readingtime = null;
+                        TimeSpan? set_Writingtime = null;
+                        TimeSpan? set_Uploadtime = null;
+
+                        if (exammaster.uploadtype == 3)
+                        {
+                            if (UTC_examstart == current_UTC_Time)
+                            {
+                                exam_ReadingTime = Convert.ToInt32(exammaster.exam_readingduration);
+                                exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                                exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+                                HttpContext.Current.Session["readingtime"] = exammaster.exam_readingduration;
+                                HttpContext.Current.Session["totalResponseTime"] = exammaster.exam_duration;
+                                HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
+                            }
+                            else
+                            {
+                                set_Readingtime = DateTime.Parse(str_ReadingTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                if (set_Readingtime.ToString() == "00:00:00" || set_Readingtime.ToString().Contains("-"))
+                                {
+                                    HttpContext.Current.Session["readingtime"] = string.Empty;
+                                    set_Writingtime = DateTime.Parse(str_WritingTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                    if (set_Writingtime.ToString() == "00:00:00" || set_Writingtime.ToString().Contains("-"))
+                                    {
+                                        HttpContext.Current.Session["totalResponseTime"] = string.Empty;
+                                        set_Uploadtime = DateTime.Parse(str_UploadTime_end).Subtract(DateTime.Parse(current_UTC_Time));
+                                        if (set_Uploadtime.ToString() == "00:00:00" || set_Uploadtime.ToString().Contains("-"))
+                                        {
+                                            HttpContext.Current.Session["uploadtime"] = string.Empty;
+                                        }
+                                        else
+                                        {
+                                            HttpContext.Current.Session["readingtime"] = string.Empty;
+                                            HttpContext.Current.Session["totalResponseTime"] = string.Empty;
+                                            HttpContext.Current.Session["uploadtime"] = set_Uploadtime;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        HttpContext.Current.Session["readingtime"] = string.Empty;
+                                        HttpContext.Current.Session["totalResponseTime"] = set_Writingtime;
+                                        HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
+                                    }
+                                }
+                                else
+                                {
+                                    HttpContext.Current.Session["readingtime"] = set_Readingtime;
+                                    HttpContext.Current.Session["totalResponseTime"] = exammaster.exam_duration;
+                                    HttpContext.Current.Session["uploadtime"] = exammaster.exam_uploadduration;
+                                }
+
+                                exam_WritingTime = Convert.ToInt32(exammaster.exam_duration);
+                                exam_UploadTime = Convert.ToInt32(exammaster.exam_uploadduration);
+
+
+                                sessionreadingTime = HttpContext.Current.Session["readingtime"].ToString();
+                                sessionwritingTime = HttpContext.Current.Session["totalResponseTime"].ToString();
+                                sessionUploadTime = HttpContext.Current.Session["uploadtime"].ToString();
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        { objLog.WriteLog(ex.ToString()); }
+        var choiceObj = new
+        {
+            rtm = sessionreadingTime,
+            etm = sessionwritingTime,
+            utm = sessionUploadTime,
+        };
+        //showTime(assignID);
+
+        return JsonConvert.SerializeObject(choiceObj);
     }
 
     [WebMethod]
