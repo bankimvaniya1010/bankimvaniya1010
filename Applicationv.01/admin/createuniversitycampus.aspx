@@ -14,7 +14,6 @@
         <div class="card">
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
-                    
                     <div class="form-group row">
                          <label for="campID" class="col-sm-3 col-form-label form-label">University</label>
                             <div class="col-sm-8">
@@ -25,7 +24,20 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Main Campus</label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlmaincampus" runat="server" class="form-control">
+                                        <asp:ListItem Value="0">Please Select</asp:ListItem>
+                                        <asp:ListItem Value="1">Yes</asp:ListItem>
+                                        <asp:ListItem Value="2">No</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                          <label for="campName" class="col-sm-3 col-form-label form-label">Campus Name</label>
                             <div class="col-sm-8">
@@ -36,6 +48,272 @@
                             </div>
                         </div>
                     </div>
+                     <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Select Country</label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlcountry" runat="server" class="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Select City</label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlcity" runat="server" class="form-control"></asp:DropDownList>
+                                    <asp:HiddenField runat="server" ID="hidCityID"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Campus Setting</label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlcampussetting" runat="server" class="form-control">
+                                        <asp:ListItem Value="0">Please Select</asp:ListItem>
+                                        <asp:ListItem Value="1">Urban</asp:ListItem>
+                                        <asp:ListItem Value="2">SubUrban</asp:ListItem>
+                                        <asp:ListItem Value="3">countryside</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                         <label for="campName" class="col-sm-3 col-form-label form-label">Campus Address</label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtcampusaddress" type="text" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                            <label for="uniLatitude" class="col-sm-3 col-form-label form-label">Campus Latitude</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input id="txtLatitude" type="text" runat="server" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="uniLongitude" class="col-sm-3 col-form-label form-label">Campus Longitude</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input id="txtLongitude" type="text" runat="server" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     <div class="form-group row">
+                            <label for="uniAirport" class="col-sm-3 col-form-label form-label">Closest Airport to Campus</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input id="txtclosetairport" type="text" runat="server" class="form-control" placeholder="Closest Airport to Institution" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="uniAirportDistance" class="col-sm-3 col-form-label form-label">Distance from closest airport</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input id="txtCampusAirportDistance" type="text" runat="server" class="form-control" placeholder="Distance from closest airport" />
+                                    </div>
+                                    <asp:DropDownList id="airDistanceUnit" name="distanceUnit" runat="server" class="form-control col-md-4">
+                                        <asp:ListItem value="0">Please Select Unit</asp:ListItem>
+                                        <asp:ListItem value="KM">KM</asp:ListItem>
+                                        <asp:ListItem value="Miles">Miles</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="uniRailDistance" class="col-sm-3 col-form-label form-label">Distance closest Railway Station to campus</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input id="txtCampusclosestRailDistance" type="text" runat="server" class="form-control" placeholder="Distance from closest Railway Station" />
+                                    </div>
+                                    <asp:DropDownList id="railclosestDistanceUnit" name="distanceUnit" runat="server" class="form-control col-md-4">
+                                        <asp:ListItem value="0">Please Select Unit</asp:ListItem>
+                                        <asp:ListItem value="KM">KM</asp:ListItem>
+                                        <asp:ListItem value="Miles">Miles</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-group row">
+                            <label for="uniAirportDistance" class="col-sm-3 col-form-label form-label">Distance from Railway station</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input id="txtCampusrailwaydistance" type="text" runat="server" class="form-control" placeholder="Distance from closest airport" />
+                                    </div>
+                                    
+                                    <asp:DropDownList id="ddlrailwaydistanceunit" name="distanceUnit" runat="server" class="form-control col-md-4">
+                                        <asp:ListItem value="0">Please Select Unit</asp:ListItem>
+                                        <asp:ListItem value="KM">KM</asp:ListItem>
+                                        <asp:ListItem value="Miles">Miles</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="uniGettingAround" class="col-sm-3 col-form-label form-label">Getting Around</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input id="txtcampusGettingAround" type="text" runat="server" class="form-control" placeholder="Getting Around" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-group row">
+                            <label for="uniGettingAround" class="col-sm-3 col-form-label form-label">Place of interest near the campus</label>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <asp:FileUpload runat="server" ID="placeofinterestcampusimage"/>
+                                        <input id="txtplaceofinterestcampus_description" type="text" runat="server" class="form-control" />
+                                        <input id="txtplaceofinterestcampus_distance" type="text" runat="server" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <asp:HiddenField ID="hidFacilityCount" runat="server" Value="0" />
+                    <asp:HiddenField ID="hidFacilities" runat="server" Value="" />
+                    <asp:HiddenField ID="hidFacilityCost" runat="server" Value="" />
+                    <asp:HiddenField ID="hidFacilityPrice" runat="server" Value="" />
+                    <asp:HiddenField ID="hidFacilityLocation" runat="server" Value="" />
+                    <asp:HiddenField ID="hidFacilityDistance" runat="server" Value="" />
+                    <div id="facilityContainer" class="form-group row"><input id="btnAddFacility" type="button" class="form-control" value="Add Facility" /></div>
+                    
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Fraternities </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlFraternities" runat="server" class="form-control">
+                                        <asp:ListItem Value="0">Please Select</asp:ListItem>
+                                        <asp:ListItem Value="1">Yes</asp:ListItem>
+                                        <asp:ListItem Value="2">No</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Sororities  </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlSororities" runat="server" class="form-control">
+                                        <asp:ListItem Value="0">Please Select</asp:ListItem>
+                                        <asp:ListItem Value="1">Yes</asp:ListItem>
+                                        <asp:ListItem Value="2">No</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Total Students on Campus   </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <input type="text" id="txttotalstu_campus" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Male % on Campus   </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <input type="text" id="txtmale_percentage" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Female % on Campus   </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <input type="text" id="txtfemale_percentage" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">Average Age  </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <input type="text" id="txtaverageage" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">% of Domestic Students </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <input type="text" id="txtdomesticstude" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">% In State Students </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <input type="text" id="txtstatestude" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">% of International Students </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <input type="text" id="txtinternationalstude" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label for="campID" class="col-sm-3 col-form-label form-label">No of Nationalities </label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <input type="text" id="txtnoofnationalty" runat="server" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<%--
 
                     <div class="form-group row">
                          <label for="campDescription" class="col-sm-3 col-form-label form-label">Campus Description</label>
@@ -68,36 +346,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                         <label for="campID" class="col-sm-3 col-form-label form-label">Select Country</label>
-                            <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlcountry" runat="server" class="form-control"></asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                         <label for="campID" class="col-sm-3 col-form-label form-label">Select City</label>
-                            <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlcity" runat="server" class="form-control"></asp:DropDownList>
-                                    <asp:HiddenField runat="server" ID="hidCityID"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <asp:HiddenField ID="hidFacilityCount" runat="server" Value="0" />
-                    <asp:HiddenField ID="hidFacilities" runat="server" Value="" />
-                    <asp:HiddenField ID="hidFacilityCost" runat="server" Value="" />
-                    <asp:HiddenField ID="hidFacilityPrice" runat="server" Value="" />
-                    <asp:HiddenField ID="hidFacilityLocation" runat="server" Value="" />
-                    <asp:HiddenField ID="hidFacilityDistance" runat="server" Value="" />
-                    <div id="facilityContainer" class="form-group row"><input id="btnAddFacility" type="button" class="form-control" value="Add Facility" /></div>
+                    </div>--%>
 
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
@@ -291,13 +540,13 @@
 
         function validateForm() {
 
-            var universityValue = $('#<%=ddlUniversity.ClientID%>').val();
+            <%--var universityValue = $('#<%=ddlUniversity.ClientID%>').val();
             var campName = $('#<%=txtCampName.ClientID%>').val();
             var campDescription = $('#<%=txtCampDescription.ClientID%>').val();
             var campResearch = $('#<%=txtCampResearch.ClientID%>').val();
             var campFacultyDescription = $('#<%=txtFacultyDescription.ClientID%>').val();
             var country = $('#<%=ddlcountry.ClientID%>').val();
-            var city = $('#<%=ddlcity.ClientID%>').val();
+            var city = $('#<%=ddlcity.ClientID%>').val();--%>
 
             if (universityValue == 0 || isNaN(parseInt(universityValue))) {
                 alert("Please select university for campus");

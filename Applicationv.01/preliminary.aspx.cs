@@ -15,17 +15,19 @@ public partial class preliminary : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     protected List<tutorialmaster> allDocuments = new List<tutorialmaster>();
     private GTEEntities db = new GTEEntities();
-    int UserID = 0, ApplicantID = 0;
+    int UserID = 0;
     Logger objLog = new Logger();
     protected string Score, Results = "";
     string webURL = String.Empty;
     int UniversityID = -1;
+    protected int isFullService;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
+        isFullService = (int)Session["isfullservice"];
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         var isDeclarationDoneByApplicant = (bool)Session["DeclarationDoneByApplicant"];
         if (isDeclarationDoneByApplicant)
@@ -53,7 +55,14 @@ public partial class preliminary : System.Web.UI.Page
     {
         int isFullService = (int)Session["isfullservice"];
         if (isFullService == 0)
-            Response.Redirect(webURL + "gte_studentdetails.aspx?formid=21", true);
+        {
+            Response.Redirect(webURL + "gte_studentdetailsN.aspx?formid=21", true);
+            //bool? IS_oldOrNew_applicant = objCom.GetIS_oldOrNew_applicant(UserID);
+            //if(IS_oldOrNew_applicant == true)
+            //    Response.Redirect(webURL + "gte_studentdetailsN.aspx?formid=21", true);
+            //else
+            //    Response.Redirect(webURL + "gte_studentdetails.aspx?formid=21", true);
+        }
         else
             Response.Redirect(webURL + "preliminaryquestion.aspx", true);
 

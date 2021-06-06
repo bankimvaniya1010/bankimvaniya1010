@@ -9,15 +9,42 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active"></li>
         </ol>
-        <h1 class="h2">Applicant list</h1>
+      
         <div class="card">
             <div class="tab-content card-body">
-               <div class="table-responsive">
+               <%-- <table id="filtertble" runat="server">
+                    <tr>
+                        <td>
+                            <h1 class="h2">Applicant List</h1>
+                        </td>
+                        <td>
+                            <asp:DropDownList runat="server" CssClass="form-control" ID="ddlfilter" Style="width: 240px;">
+                                <asp:ListItem Value="0">Please Select</asp:ListItem>
+                                <asp:ListItem Value="1">By AID</asp:ListItem>
+                                <asp:ListItem Value="2">By Proctor ID</asp:ListItem>
+                                <asp:ListItem Value="3">By Proctor Name</asp:ListItem>
+
+                            </asp:DropDownList><br />
+                        </td>
+                        <td>
+                            <div id="DivAID" runat="server">
+                                <asp:DropDownList runat="server" ID="ddlAID" OnSelectedIndexChanged="ddlApplicantID_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" Style="width: 240px; margin-top: -20px;"></asp:DropDownList>
+                            </div>
+                            <div id="DivPID" runat="server">
+                                <asp:DropDownList runat="server" ID="ddlProctorID" OnSelectedIndexChanged="ddlProctorID_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" Style="width: 240px; margin-top: -20px;"></asp:DropDownList>
+                            </div>
+                            <div id="DivPName" runat="server">
+                                <asp:DropDownList runat="server" ID="ddlProctorName" OnSelectedIndexChanged="ddlProctorName_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" Style="width: 240px; margin-top: -20px;"></asp:DropDownList>
+                            </div>
+
+                    </tr>
+                </table>--%>
+               <div class="table-responsive" style="white-space:nowrap;">
                     <asp:GridView ID="gvapplicantlist" CssClass="table" runat="server" AutoGenerateColumns="False"
                         DataKeyNames="id"
                         AllowPaging="True"
                         CellPadding="2"
-                        PageSize="25"
+                        PageSize="10"
                         BorderStyle="None"
                         BorderWidth="1px"
                         CellSpacing="2" ShowHeaderWhenEmpty="false" EmptyDataText="No Records Found" OnRowCancelingEdit="gvapplicantlist_RowCancelingEdit" OnRowCommand="gvapplicantlist_RowCommand" OnRowEditing="gvapplicantlist_RowEditing" OnRowUpdating="gvapplicantlist_RowUpdating" OnDataBound="gvapplicantlist_DataBound" OnRowDeleting="gvapplicantlist_RowDeleting" OnRowDataBound="gvapplicantlist_RowDataBound" OnPageIndexChanging="gvapplicantlist_PageIndexChanging" OnRowCreated="gvapplicantlist_RowCreated">
@@ -25,9 +52,9 @@
                         <Columns>
 
                             <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
-                                ReadOnly="True" SortExpression="id" />
+                                ReadOnly="True" SortExpression="id" Visible="false"/>
 
-                            <asp:TemplateField HeaderText="Applicant ID">
+                            <asp:TemplateField HeaderText="AID">
                                 <EditItemTemplate>
                                     <asp:Label ID="lblname" runat="server" Text='<%# Bind("applicant_id") %>'></asp:Label>
                                 </EditItemTemplate>
@@ -35,7 +62,21 @@
                                     <asp:Label ID="lblname" runat="server" Text='<%# Bind("applicant_id") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Assign" ShowHeader="False"> 
 
+                                <EditItemTemplate>
+
+                                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
+
+                                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+
+                                </EditItemTemplate>                              
+
+                                <ItemTemplate>
+                                    <a href="/admin/assignproctor_.aspx?id=<%# Eval("id") %>">Assign Proctor</a>
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Applicant Name">
                                 <EditItemTemplate>
                                     <asp:Label ID="lblname" runat="server" Text='<%# Bind("applicantname") %>'></asp:Label>
@@ -120,21 +161,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 
-
-                                <EditItemTemplate>
-
-                                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
-
-                                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
-
-                                </EditItemTemplate>                              
-
-                                <ItemTemplate>
-                                    <a href="/admin/assignproctor_.aspx?id=<%# Eval("id") %>">Assign Proctor</a>
-                                </ItemTemplate>
-
-                            </asp:TemplateField>
+                           
 
                              <%--<asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                 <EditItemTemplate>
@@ -160,14 +187,61 @@
             </div>
 
         </div>
-    <script>
+        <script>
+          <%--  $("#<%=ddlfilter.ClientID%>").change(function () {
+                var filterid = $("#<%=ddlfilter.ClientID%>").val();
+              if (filterid == 1) {
+                  $("#<%=DivAID.ClientID%>").show();
+                 $("#<%=DivPID.ClientID%>").hide();
+                 $("#<%=DivPName.ClientID%>").hide();
+             }
+             else if (filterid == 2) {
+                 $("#<%=DivAID.ClientID%>").hide();
+                 $("#<%=DivPID.ClientID%>").show();
+                 $("#<%=DivPName.ClientID%>").hide();
+             }
+             else if (filterid == 3) {
+                 $("#<%=DivAID.ClientID%>").hide();
+                 $("#<%=DivPID.ClientID%>").hide();
+                 $("#<%=DivPName.ClientID%>").show();
+             }
+             else {
+                 $("#<%=DivAID.ClientID%>").hide();
+                 $("#<%=DivPID.ClientID%>").hide();
+                 $("#<%=DivPName.ClientID%>").hide();
+              }
+          });--%>
 		$(document).ready(function () {
-                $('.sidebar-menu-item').removeClass('open');
+	        $('.sidebar-menu-item').removeClass('open');
                 $('#managemeeting_schedule_list').addClass('open');
                 $('.sidebar-menu-item').removeClass('active');
                 $('#scheduledapplicant_list').addClass('active');
+
+<%--             var filterid = $("#<%=ddlfilter.ClientID%>").val();
+             if (filterid == 1) {
+                 $("#<%=DivAID.ClientID%>").show();
+                 $("#<%=DivPID.ClientID%>").hide();
+                 $("#<%=DivPName.ClientID%>").hide();
+             }
+             else if (filterid == 2) {
+                 $("#<%=DivAID.ClientID%>").hide();
+                 $("#<%=DivPID.ClientID%>").show();
+                 $("#<%=DivPName.ClientID%>").hide();
+             }
+             else if (filterid == 3) {
+                $("#<%=DivAID.ClientID%>").hide();
+                 $("#<%=DivPID.ClientID%>").hide();
+                 $("#<%=DivPName.ClientID%>").show();
+             }             
+             else {
+                 $("#<%=DivAID.ClientID%>").hide();
+                 $("#<%=DivPID.ClientID%>").hide();
+                 $("#<%=DivPName.ClientID%>").hide();
+              }
         });
-	</script>
+         --%>
+        </script>
+  
 </asp:Content>
 
 

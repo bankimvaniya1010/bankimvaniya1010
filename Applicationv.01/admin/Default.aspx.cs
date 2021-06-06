@@ -16,13 +16,13 @@ public partial class admin_Default : System.Web.UI.Page
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
-        isfullservice =  (int)Session["isfullservice"];
+        isfullservice = (int)Session["isfullservice"];
         if (isfullservice == 1)
-            isfullservicethenlbl.Text = "TO THE APPLICATION CENTER";
+            isfullservicethenlbl.Text = "TO THE APPLICATION CENTRE";
         else if (isfullservice == 0)
-            isfullservicethenlbl.Text = "TO THE GTE DIRECT ONLINE CENTER (GOC)";
+            isfullservicethenlbl.Text = "TO THE GTE DIRECT ONLINE CENTRE";
         else if (isfullservice == 2)
-            isfullservicethenlbl.Text = "TO THE ASSESSMENT CENTER";
+            isfullservicethenlbl.Text = "TO THE ASSESSMENT CENTRE";
 
     }
 }

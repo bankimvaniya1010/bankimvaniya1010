@@ -11,7 +11,8 @@ public partial class admin_admin : System.Web.UI.MasterPage
     int adminID = 0 , roleid = 0;    
     string webURL = String.Empty;
     public string roleName = string.Empty;
-    public string fullservice = string.Empty;
+    public string fullservice = string.Empty, manageapplicationLink= string.Empty;
+    public int? applicantid = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,6 +25,11 @@ public partial class admin_admin : System.Web.UI.MasterPage
         lbladminname.Text = name;
         fullservice = Convert.ToString(Session["isfullservice"]);
         roleName = Utility.GetRoleName();
+        
+        int universityID = Utility.GetUniversityId();
+        var applicant = db.applicantdetails.Where(x => x.universityid == universityID && x.isdeletedbyAdmin == false).OrderByDescending(x=>x.applicantid).ToList();
+        if(applicant.Count > 0)
+            applicantid = applicant.Select(x => x.applicantid).FirstOrDefault();
     }
 
 }

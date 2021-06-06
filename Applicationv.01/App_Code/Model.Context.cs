@@ -35,6 +35,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<admisionfactor_dropdown_master> admisionfactor_dropdown_master { get; set; }
     public virtual DbSet<agentmaster> agentmaster { get; set; }
     public virtual DbSet<agenumber_master> agenumber_master { get; set; }
+    public virtual DbSet<al_country_mapping_master> al_country_mapping_master { get; set; }
+    public virtual DbSet<al_group_master> al_group_master { get; set; }
     public virtual DbSet<alternateadressproofmaster> alternateadressproofmaster { get; set; }
     public virtual DbSet<alternatedobproof> alternatedobproof { get; set; }
     public virtual DbSet<alternateidproofmaster> alternateidproofmaster { get; set; }
@@ -136,12 +138,16 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<group_master> group_master { get; set; }
     public virtual DbSet<gte_answer_master> gte_answer_master { get; set; }
     public virtual DbSet<gte_applicantdetails> gte_applicantdetails { get; set; }
-    public virtual DbSet<gte_applicantdetails_autogenrated_clarificationquestionmaster> gte_applicantdetails_autogenrated_clarificationquestionmaster { get; set; }
     public virtual DbSet<gte_applicantdocument> gte_applicantdocument { get; set; }
     public virtual DbSet<gte_certificatelevel_description> gte_certificatelevel_description { get; set; }
     public virtual DbSet<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
     public virtual DbSet<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
     public virtual DbSet<gte_declaration_master> gte_declaration_master { get; set; }
+    public virtual DbSet<gte_old_answer_master> gte_old_answer_master { get; set; }
+    public virtual DbSet<gte_old_question_master_part2> gte_old_question_master_part2 { get; set; }
+    public virtual DbSet<gte_old_question_part2_applicant_response> gte_old_question_part2_applicant_response { get; set; }
+    public virtual DbSet<gte_old_questions_applicant_response> gte_old_questions_applicant_response { get; set; }
+    public virtual DbSet<gte_old_questions_master> gte_old_questions_master { get; set; }
     public virtual DbSet<gte_preliminary_questionmaster> gte_preliminary_questionmaster { get; set; }
     public virtual DbSet<gte_preliminary_section_questionmaster> gte_preliminary_section_questionmaster { get; set; }
     public virtual DbSet<gte_preliminaryapplicantanswers> gte_preliminaryapplicantanswers { get; set; }
@@ -151,6 +157,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
     public virtual DbSet<gte_questions_master> gte_questions_master { get; set; }
     public virtual DbSet<gte_report_admin_comment> gte_report_admin_comment { get; set; }
+    public virtual DbSet<gte_report_matrixValue> gte_report_matrixValue { get; set; }
+    public virtual DbSet<gte_section1_autogenrated_master> gte_section1_autogenrated_master { get; set; }
     public virtual DbSet<gte_statementofpurpose> gte_statementofpurpose { get; set; }
     public virtual DbSet<gte_student_sop> gte_student_sop { get; set; }
     public virtual DbSet<gte_studymode_master> gte_studymode_master { get; set; }
@@ -222,6 +230,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<type_master> type_master { get; set; }
     public virtual DbSet<typeofworkexperiencemaster> typeofworkexperiencemaster { get; set; }
     public virtual DbSet<university_application_decision_master> university_application_decision_master { get; set; }
+    public virtual DbSet<university_coursefiled_mapping> university_coursefiled_mapping { get; set; }
+    public virtual DbSet<university_datamapping> university_datamapping { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }

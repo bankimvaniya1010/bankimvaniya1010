@@ -27,19 +27,21 @@ public partial class details : System.Web.UI.Page
         }
         else
             applicantid = Convert.ToInt32(Request.QueryString["id"].ToString());
-
-        
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
-        universityGTMCode = university.university_gtm_code;
-
-        if (!IsPostBack)
+        try
         {
-            Bind_Class(universityID);
-            Bind_Group(universityID);
-            Bind_Subject(universityID);
-            populate();
+            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
+            universityGTMCode = university.university_gtm_code;
+
+            if (!IsPostBack)
+            {
+                Bind_Class(universityID);
+                Bind_Group(universityID);
+                Bind_Subject(universityID);
+                populate();
+            }
         }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 
     public void populate() {

@@ -14,8 +14,9 @@ public partial class admin_viewVideo : System.Web.UI.Page
     int ApplicantID = 0;
     Logger objLog = new Logger();
     string webURL = String.Empty;
-    int UniversityID = -1;
+    int UniversityID = -1, fullservice;
     public List<details> allDocuments = new List<details>();
+    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,6 +24,8 @@ public partial class admin_viewVideo : System.Web.UI.Page
         UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+
+        fullservice = Convert.ToInt32(Session["isfullservice"]);
 
         if (!IsPostBack)
         {
@@ -36,7 +39,16 @@ public partial class admin_viewVideo : System.Web.UI.Page
                                 type = vm.type,
                                 sectionname =vm.sectioname,
                             }).ToList();
-
+            if (fullservice == 0 && allDocuments.Count == 0) {
+                allDocuments = (from vm in db.admin_videomaster                                
+                                where vm.videoID == 15 || vm.videoID == 16
+                                select new details()
+                                {
+                                    url = webURL + "Docs/AdminHelpingVideo/" + vm.videopath,
+                                    type = vm.type,
+                                    sectionname = vm.sectioname,
+                                }).ToList();
+            }
             videoCount = allDocuments.Where(c => c.type == 1).ToList().Count;
             otherDocCount = allDocuments.Where(c => c.type == 2).ToList().Count;
         }

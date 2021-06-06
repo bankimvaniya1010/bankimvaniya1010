@@ -27,6 +27,7 @@ public partial class admin : System.Web.UI.MasterPage
     public bool? isVerifiedByAdmin;
     public int gtesubService;
     public string CertificateURL, SOPPageURL, gtestudentdetailpageURL, gtedocumentuploadURL;
+    public string CID;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -38,8 +39,11 @@ public partial class admin : System.Web.UI.MasterPage
         string lastname = objCom.GetApplicantLastName(UserID);
         applicantname = firstname + " " + lastname;
 
-        isVerifiedByAdmin = db.applicantdetails.Where(x => x.applicantid == UserID).Select(x => x.isverifiedbyAdmin).FirstOrDefault();
+        var data = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+        isVerifiedByAdmin = data.isverifiedbyAdmin;
         Session["isVerifiedByAdmin"] = isVerifiedByAdmin;
+
+        CID = data.gtereportNO;//.Replace("GTE-AR-", ""); ;
 
         var gteQuestionPart2Count = db.gte_question_master_part2.Count();
         var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
@@ -79,17 +83,17 @@ public partial class admin : System.Web.UI.MasterPage
         verticalnavigationcolor = (string)Session["universityverticalnavigationcolor"];
         fontColor = (string)Session["universityfontColor"];
         headercolor = (string)Session["universityheadercolor"];
-        int isfullservice =  (int)Session["isfullservice"];
+        int isfullservice = (int)Session["isfullservice"];
         
         if (isfullservice == 0)
-            isfullservicethenlbl.Text = "GTE Online Center (GOC)";
+            isfullservicethenlbl.Text = "GTE DIRECT CENTRE";
         else if (isfullservice == 1)
-            isfullservicethenlbl.Text = "APPLICATION CENTER";
+            isfullservicethenlbl.Text = "APPLICATION CENTRE";
         else if (isfullservice == 2)
-            isfullservicethenlbl.Text = "Assessment Center";
+            isfullservicethenlbl.Text = "Assessment Centre";
 
         
-        bool Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(UserID);
+        bool? Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(UserID);
         if (Isold_or_new_applicant == true)
         {
             gtestudentdetailpageURL = "gte_studentdetailsN.aspx?formid=21";
@@ -103,7 +107,7 @@ public partial class admin : System.Web.UI.MasterPage
             CertificateURL = "gte_certificate.aspx";
             SOPPageURL = "gte_sop.aspx?formid=26";
             gtedocumentuploadURL = "gte_documentupload.aspx?formid=15";
-        }
+        }       
     }
 
     private void populateSelectedLanguage()

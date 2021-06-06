@@ -21,7 +21,10 @@ public partial class gte_tutorial : System.Web.UI.Page
     bool? istutorialcomplete;
     int formId = 0;
     gte_progressbar gteProgressBar = new gte_progressbar();
-    string username = string.Empty;
+    public string username = string.Empty;
+    public string firstname = string.Empty;
+    public string universityname = string.Empty;
+    public string nameofcountry = string.Empty;
     string useremail = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -39,6 +42,11 @@ public partial class gte_tutorial : System.Web.UI.Page
         students loggedInApplicant = (students)Session["LoginInfo"];
         username = loggedInApplicant.name;
         useremail = loggedInApplicant.email;
+        universityname = objCom.GetUniversityName(UniversityID);
+        firstname = objCom.GetApplicantFirstName(UserID).ToUpper();
+        var countryofeducationInstitution = db.applicantdetails.Where(x => x.universityid == UniversityID && x.applicantid == UserID).Select(x => x.countryofeducationInstitution).FirstOrDefault();
+        nameofcountry =objCom.GetCountryDiscription(Convert.ToInt32(countryofeducationInstitution));
+
         var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
         if (!isVerifiedByAdmin)
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
@@ -57,11 +65,19 @@ public partial class gte_tutorial : System.Web.UI.Page
             otherDocCount = allDocuments.Where(c => c.type != "video").ToList().Count;
             pptDocumentCount = allDocuments.Where(c => c.type == "ppt").ToList().Count();
 
-            var data = db.gte_tutorialmaster.Where(x => x.status == 1 && x.universityid == UniversityID && x.type == "pdf").Select(x => new {
+            dynamic data;
+            data = db.gte_tutorialmaster.Where(x => x.status == 1 && x.universityid == UniversityID && x.type == "pdf" && x.is_commontutoial != 1).Select(x => new {
                 title = x.title,
                 link = webURL + "Docs/GteTutorial/" + x.documentpath + "#toolbar=0"
-            }).ToList().Take(1);
-
+            }).Take(1).ToList();
+            if (data.Count == 0)
+            {
+                data = db.gte_tutorialmaster.Where(x => x.status == 1 && x.serviceId == 0 && x.type == "pdf").Select(x => new {
+                    title = x.title,
+                    link = webURL + "Docs/GteTutorial/" + x.documentpath + "#toolbar=0"
+                }).Take(1).ToList();
+            }
+            
             questionList.DataSource = data;
             questionList.DataBind();
 

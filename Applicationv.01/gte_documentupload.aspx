@@ -167,7 +167,7 @@
                 req.open("POST", 'uploaddocuments.aspx/uploadDoc', true);
                 req.send(formData);
             }--%>
-            return true;
+            return flag;
         }
                     
         function validfileExtention(filepath , hidDocumentPath) {
@@ -180,8 +180,8 @@
             var fileExtension = filepath.substring(filepath.lastIndexOf(".") + 1).toString().toLowerCase();
             if (filepath != "")
             {  
-                if (fileExtension != "pdf" && fileExtension != "jpg" && fileExtension != "docx" && fileExtension != "xlsx")                    
-                    return false;                                   
+                if (fileExtension != "pdf" && fileExtension != "jpg" && fileExtension != "docx" && fileExtension != "xlsx")
+                    return false;
             }
             return true;
         }

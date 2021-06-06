@@ -27,7 +27,7 @@ public partial class registerconfimation : System.Web.UI.Page
 
         int isfullservice = university.full_service;
         if (isfullservice == 0)
-            fullservicelbl = "GTE Online Center (GOC)";        
+            fullservicelbl = "GTE Direct Center";        
         else if (isfullservice == 1)
             fullservicelbl = "APPLICATION CENTER";
         else if (isfullservice == 2)

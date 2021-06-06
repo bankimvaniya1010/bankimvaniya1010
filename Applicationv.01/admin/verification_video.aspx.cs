@@ -140,7 +140,10 @@ public partial class admin_verification_video : System.Web.UI.Page
             objLog.WriteLog(ex.StackTrace.ToString());
         }
     }
-
+    protected void backNavLink_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "admin/manageapplicant.aspx?ID=" + applicantid, true);
+    }
     //protected void vvideodownload_Click(object sender, EventArgs e)
     //{
     //    try {

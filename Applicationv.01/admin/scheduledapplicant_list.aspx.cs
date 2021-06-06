@@ -56,7 +56,7 @@ public partial class admin_scheduledapplicant_list : System.Web.UI.Page
                                        proctorEmail = string.IsNullOrEmpty(x.email) ? "" : x.email,
                                        proctorMobile = string.IsNullOrEmpty(x.mobile) ? "" : x.mobile,
                                        meetingInfo = q.virtualmeetinginfo,
-                                   }).SortBy("id").ToList();
+                                   }).OrderByDescending(x => x.id).ToList();
 
             }
             else {
@@ -80,7 +80,7 @@ public partial class admin_scheduledapplicant_list : System.Web.UI.Page
                                        proctorEmail = string.IsNullOrEmpty(x.email) ? "" : x.email,
                                        proctorMobile = string.IsNullOrEmpty(x.mobile) ? "" : x.mobile,
                                        meetingInfo = q.virtualmeetinginfo,
-                                   }).SortBy("id").ToList();
+                                   }).OrderByDescending(x => x.id).ToList();
             }
             
             if (StudentList != null)
@@ -181,10 +181,43 @@ public partial class admin_scheduledapplicant_list : System.Web.UI.Page
     {
         if (roleName.ToLower() == "gte admin" || roleName.ToLower() == "gte user")
         {
-            ((DataControlField)gvapplicantlist.Columns
+            
+               ((DataControlField)gvapplicantlist.Columns
                 .Cast<DataControlField>()
                 .Where(fld => fld.HeaderText == "OTP")
                 .SingleOrDefault()).Visible = false;
+
+            ((DataControlField)gvapplicantlist.Columns
+                .Cast<DataControlField>()
+                .Where(fld => fld.HeaderText == "Assign")
+                .SingleOrDefault()).Visible = false;
         }
     }
+
+    //protected void ddlApplicantID_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    if (ddlApplicantID.SelectedValue != "0")
+    //    {
+    //        int cityid = Convert.ToInt32(ddlApplicantID.SelectedValue);
+    //        BindGrid(0, 0, cityid);
+    //    }
+    //}
+
+    //protected void ddlProctorID_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    if (ddlCity.SelectedValue != "0")
+    //    {
+    //        int cityid = Convert.ToInt32(ddlCity.SelectedValue);
+    //        BindGrid(0, 0, cityid);
+    //    }
+    //}
+
+    //protected void ddlProctorName_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    if (ddlCity.SelectedValue != "0")
+    //    {
+    //        int cityid = Convert.ToInt32(ddlCity.SelectedValue);
+    //        BindGrid(0, 0, cityid);
+    //    }
+    //}
 }

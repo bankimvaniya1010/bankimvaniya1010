@@ -56,26 +56,26 @@ public partial class admin_gtereport : System.Web.UI.Page
             {
                 universityID = Utility.GetUniversityId();
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                ViewState["downloadPdf"] = downloadPdf;               
-                
-                var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo , x.notes_disclaimer,x.university_name,x.full_service }).FirstOrDefault();
+                ViewState["downloadPdf"] = downloadPdf;
+
+                var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo, x.notes_disclaimer, x.university_name, x.full_service }).FirstOrDefault();
                 logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
                 _universityName = universityDetails.university_name;
 
                 lblapplicantid.Text = Convert.ToString(ApplicantID);
                 if (universityDetails.full_service == 1)
                 {
-                    var applicantdoc = db.applicantdocumentmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && (x.documentname == "Profile Photo for Application Centre" || x.documentname== "Recent Passport-size Photograph")).Select(x=>x.filename).FirstOrDefault();
+                    var applicantdoc = db.applicantdocumentmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && (x.documentname == "Profile Photo for Application Centre" || x.documentname == "Recent Passport-size Photograph")).Select(x => x.filename).FirstOrDefault();
                     if (applicantdoc != null)
                         studentphoto = webURL + "/Docs/" + ApplicantID + "/Documents/" + applicantdoc;
                     //other details
-                    var applicantdetail = db.applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).Select(x => new { x.nationality, x.residentialcountry, x.dateofbirth ,x.postalcountry ,x.issameaspostal}).FirstOrDefault();
+                    var applicantdetail = db.applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).Select(x => new { x.nationality, x.residentialcountry, x.dateofbirth, x.postalcountry, x.issameaspostal }).FirstOrDefault();
                     var coursedetails = db.applicationmaster.Where(x => x.universityid == universityID && x.applicantid == ApplicantID && x.preferenceid == 1).Select(x => new { x.course }).FirstOrDefault();
 
                     if (applicantdetail != null)
                     {
                         lblnationality.Text = objCom.GetCountryDiscription(Convert.ToInt32(applicantdetail.nationality));
-                        if(applicantdetail.issameaspostal != null && applicantdetail.issameaspostal == 1)
+                        if (applicantdetail.issameaspostal != null && applicantdetail.issameaspostal == 1)
                             lblcountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(applicantdetail.postalcountry));
                         else
                             lblcountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(applicantdetail.residentialcountry));
@@ -83,7 +83,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                         Age objAge = new Age(Dob, DateTime.Now);
                         lblage.Text = Convert.ToString(objAge.Years);
                     }
-                    if(coursedetails!= null && coursedetails.course != null)
+                    if (coursedetails != null && coursedetails.course != null)
                         lblcoursename.Text = objCom.GetCourseName(Convert.ToInt32(coursedetails.course));
                 }
                 else if (universityDetails.full_service == 0)
@@ -91,7 +91,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                     var gte_applicantdetails = db.gte_applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).FirstOrDefault();
                     if (gte_applicantdetails != null && gte_applicantdetails.profilepicturepath != "")
                         studentphoto = webURL + "/Docs/GTEProfileDetail/" + gte_applicantdetails.profilepicturepath;
-                    var gtestudentdetails = db.gte_applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).Select(x => new { x.nationality, x.residencecountry, x.dateofbirth,x.coursename }).FirstOrDefault();
+                    var gtestudentdetails = db.gte_applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).Select(x => new { x.nationality, x.residencecountry, x.dateofbirth, x.coursename }).FirstOrDefault();
                     if (gtestudentdetails != null)
                     {
                         lblnationality.Text = objCom.GetCountryDiscription(Convert.ToInt32(gtestudentdetails.nationality));
@@ -104,12 +104,12 @@ public partial class admin_gtereport : System.Web.UI.Page
                 }
                 var Personal = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
                 _studentName = Personal.firstname + " " + Personal.lastname;
-                               
+
                 if (!IsPostBack)
                 {
                     DateTime currentDate = DateTime.Now;
                     _institutionID = universityID.ToString();
-                    _reportType = "AU - GS &amp; GTE (TYPE 1)";
+                    _reportType = "AU - GS &am GTE (TYPE 1)";
                     _reportDate = currentDate.ToString("dd-MMM-y");
                     _notesDisclaimer = universityDetails.notes_disclaimer;
                     _reportNo = "ECU - " + currentDate.Year + currentDate.ToString("MM") + currentDate.ToString("dd") + currentDate.Hour + currentDate.Minute + ApplicantID;
@@ -148,17 +148,17 @@ public partial class admin_gtereport : System.Web.UI.Page
                             _paragraph5 = gte_student_sop.gte_sop_para5;
                         }
                     }
-                    var section2_max_score_by_tag = db.gte_answer_master
-                                                      .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score, x.gte_questions_master.tag })
+                    var section2_max_score_by_tag = db.gte_old_answer_master
+                                                      .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score, x.gte_old_questions_master.tag })
                                                       .GroupBy(x => x.gte_question_id)
                                                       .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), x.FirstOrDefault().tag })
                                                       .GroupBy(x => x.tag)
                                                       .Select(x => new { gte_max_by_tag = x.Sum(y => y.max_gte_score_per_question), risk_max_by_tag = x.Sum(y => y.max_risk_score_per_question), tag = x.Key })
                                                       .OrderBy(x => x.tag).ToList();
 
-                    var applicant_section2_score = db.gte_questions_applicant_response
+                    var applicant_section2_score = db.gte_old_questions_applicant_response
                                                      .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
-                                                     .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score, x.gte_questions_master.tag })
+                                                     .Select(x => new { x.gte_question_id, x.gte_old_answer_master.gte_risk_score, x.gte_old_answer_master.gte_score, x.gte_old_questions_master.tag })
                                                      .Distinct()
                                                      .GroupBy(x => x.tag)
                                                      .Select(x => new { applicant_risk_score = x.Sum(y => y.gte_risk_score), applicant_gte_score = x.Sum(y => y.gte_score), x.FirstOrDefault().tag })
@@ -182,18 +182,19 @@ public partial class admin_gtereport : System.Web.UI.Page
                         }
                     }
 
-                    var section3_max_score_by_tag = db.gte_question_master_part2
+                    var section3_max_score_by_tag = db.gte_old_question_master_part2
                                                       .GroupBy(x => x.tag)
                                                       .Select(x => new { gte_score = x.Sum(y => y.true_gte_score + y.false_gte_score), risk_score = x.Sum(y => y.true_risk_score + y.false_risk_score), tag = x.Key })
                                                       .OrderBy(x => x.tag).ToList();
 
-                    var applicant_section3_score = db.gte_question_part2_applicant_response
+                    var applicant_section3_score = db.gte_old_question_part2_applicant_response
+
                                                      .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
                                                      .Select(x => new
                                                      {
-                                                         x.gte_question_master_part2.tag,
-                                                         gte_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_gte_score : x.gte_question_master_part2.false_gte_score,
-                                                         risk_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_risk_score : x.gte_question_master_part2.false_risk_score
+                                                         x.gte_old_question_master_part2.tag,
+                                                         gte_score_per_question = x.applicant_response.Value ? x.gte_old_question_master_part2.true_gte_score : x.gte_old_question_master_part2.false_gte_score,
+                                                         risk_score_per_question = x.applicant_response.Value ? x.gte_old_question_master_part2.true_risk_score : x.gte_old_question_master_part2.false_risk_score
                                                      })
                                                      .GroupBy(x => x.tag)
                                                      .Select(x => new { applicant_gte_score = x.Sum(y => y.gte_score_per_question), applicant_risk_score = x.Sum(y => y.risk_score_per_question), tag = x.Key })
@@ -217,17 +218,17 @@ public partial class admin_gtereport : System.Web.UI.Page
                         }
                     }
 
-                    var overall_section2_max_score = db.gte_answer_master
+                    var overall_section2_max_score = db.gte_old_answer_master
                                                        .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score })
                                                        .GroupBy(x => x.gte_question_id)
                                                        .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), questionId = x.Key });
 
-                    var overall_applicant_section2_score = db.gte_questions_applicant_response
+                    var overall_applicant_section2_score = db.gte_old_questions_applicant_response
                                                              .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
-                                                             .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score })
+                                                             .Select(x => new { x.gte_question_id, x.gte_old_answer_master.gte_risk_score, x.gte_old_answer_master.gte_score })
                                                              .Distinct();
 
-                    var overall_section3_max_score = db.gte_question_master_part2
+                    var overall_section3_max_score = db.gte_old_question_master_part2
                                                        .Select(x => new
                                                        {
                                                            max_gte_score_per_question = x.true_gte_score > x.false_gte_score ? x.true_gte_score : x.false_gte_score,
@@ -235,13 +236,13 @@ public partial class admin_gtereport : System.Web.UI.Page
                                                            questionId = x.id
                                                        });
 
-                    var overall_applicant_section3_score = db.gte_question_part2_applicant_response
+                    var overall_applicant_section3_score = db.gte_old_question_part2_applicant_response
                                                              .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
                                                              .Select(x => new
                                                              {
-                                                                 questionId = x.gte_question_master_part2.id,
-                                                                 gte_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_gte_score : x.gte_question_master_part2.false_gte_score,
-                                                                 risk_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_risk_score : x.gte_question_master_part2.false_risk_score
+                                                                 questionId = x.gte_old_question_master_part2.id,
+                                                                 gte_score_per_question = x.applicant_response.Value ? x.gte_old_question_master_part2.true_gte_score : x.gte_old_question_master_part2.false_gte_score,
+                                                                 risk_score_per_question = x.applicant_response.Value ? x.gte_old_question_master_part2.true_risk_score : x.gte_old_question_master_part2.false_risk_score
                                                              });
 
                     decimal overall_max_gte_score = overall_section2_max_score.Sum(x => x.max_gte_score_per_question) + overall_section3_max_score.Sum(x => x.max_gte_score_per_question);

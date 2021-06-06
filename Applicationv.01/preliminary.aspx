@@ -17,12 +17,28 @@
             <div class="col-md-8">
 
                 <%
-                    if (otherDocCount > 0)
+                    if (otherDocCount > 0 || isFullService == 0)
                     {
                     %>
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
-                    <h5>Please read the following documents:</h5>
+                    <p style="padding-left: 21px">Please read and fully understand the instructions provided in
+the documents below. Ensure you meet the technical
+requirements and are well set up for the assessment.
+This assessment is designed for desktop/laptop use only, using
+the Google Chrome browser. Attempting to complete this
+assessment using a mobile device or using any other browser
+may result in your assessment being unsuccessful.</p><p style="padding-left:21px">
+In case you need clarifications please write to
+<a href="support@gte.direct">support@gte.direct</a></p>
+
                     <div class="pdf-container clearfix">
+                        <%if (isFullService == 0)
+                            { %>
+                         <div class="pdf-wrpr">
+                         <a href="Docs/beforeyoustart_defaulttutorial/GTE CANDIDATE BOOKLET.pdf" target="_blank"><i class="fa-file-pdf fa"></i></a>
+                             <div class="pdf-dcrp">Candidate Handbook</div>
+                             </div>
+                        <%} %>
                         <%for (int v = 0; v < allDocuments.Count; v++)
                             {
                             string docType = allDocuments[v].type;
@@ -57,22 +73,25 @@
                     </div>
                 </div>            <%} %>  
                   <%
-                    if (videoCount > 0 || otherDocCount > 0)
-                    {
+    if (videoCount > 0 || otherDocCount > 0)
+    {
                     %>
                 <div class="card" id="declaration" runat="server">
                     <div class="card-body">
-                        <label  style="font-size:small;">I have Read and fully Understood the information contained in the above documents and videos </label>
+                        <label  style="font-size:small;">I have read and fully Understood the information contained in the above documents and videos</label>
                         <div class="media align-items-center">  
                             <div class="form-row" style="align-content:center">
-                                <asp:Button runat="server" CssClass="btn-success" Text="Next" OnClick="Unnamed_Click"/>
+                                <asp:Button runat="server" CssClass="btn btn-success" Text="Next" OnClick="Unnamed_Click"/>
                                 <%--<a href="gte_studentdetails.aspx?formid=21" class="btn btn-success">Next</a>                                      --%>
                             </div>
                         </div>
                     </div>
                 </div>
                    <%} %>
-                 <% else {  %>
+                 <% else
+    {
+        if (isFullService != 0)
+        { %>
                   <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
@@ -84,7 +103,8 @@
                                     </div>
                                 </div>
                             </div>   
-                    <%} %>
+                    <%}
+    } %>
             </div>
 
             <div class="col-md-4">               
@@ -95,7 +115,7 @@
 	                        <li>Completing this section is necessary</li><br />
 	                        <li>Read all the attached documents in detail and watch the given videos carefully</li><br />
 	                        <li>Accept the declaration given below that you have read the documents and watched the videos required</li><br />
-	                        <li>Click on ‘Next’ to proceed to Step 2 of the Tutorial.</li><br />
+	                        <li>Click on <a href="gte_studentdetailsN.aspx?formid=21">Next</a> to proceed to Step 3 - Your Details.</li><br />
 	                        <%--<li>To go to the next section you need to successfully answer the test question and achieve >65% grade.</li><br />
 	                        <li>Else you would required to take the test again post going through the tutorial again.</li><br />
 	                        <li>Lastly please accept the declarations.</li>--%>
@@ -103,7 +123,7 @@
                     </div>
                 </div>
                     <div class="banImg-wrp">
-                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                        <%--<img src="/assets/images/Banner1.jpg" class="img-fluid">--%>
                     </div>
                     <div class="card faq-qwrp" id="questions" runat="server">
                     

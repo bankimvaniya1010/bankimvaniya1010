@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <%--<div class="form-group">
                             <label class="form-label" for="email">UserName:</label>
                             <div class="input-group input-group-merge">
                                 <input id="username" runat="server" type="text" required="" class="form-control form-control-prepended" placeholder="Your username">
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="form-group">
                             <label class="form-label" for="email">Email address:</label>
                             <div class="input-group input-group-merge">

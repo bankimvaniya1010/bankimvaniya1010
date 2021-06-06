@@ -133,7 +133,7 @@
                                 </select>   
                             </li>
                             <li>
-                                <a href="logout.aspx">Logout</a>
+                                <span style="font-weight:900;"><a href="logout.aspx">Logout</a></span>
                             </li>
                             <!-- // END User dropdown -->
 
@@ -167,7 +167,7 @@
                             <div class="sidebar-p-y">
 
                                 <!-- Account menu -->
-                                <div class="sidebar-heading"><%=applicantname %></div>
+                                <div class="sidebar-heading" style="margin-top: -20px;"><%=applicantname %></div>
                                 <ul class="sidebar-menu">
                                       <li class="sidebar-menu-item" id="preliminary_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
@@ -362,8 +362,8 @@
                                     <li class="sidebar-menu-item" id="Dashboard" runat="server">
                                         <a class="sidebar-menu-button" href="Default.aspx">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/message board.png" /></i>
-                                            <span class="sidebar-menu-text">Dashboard </span>
+                                                <img src="assets/images/menu_icons/dashboard.png" /></i>
+                                            <span class="sidebar-menu-text"> 1. Dashboard </span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="Li1" runat="server" visible ="false"> 
@@ -376,64 +376,64 @@
                                     <li class="sidebar-menu-item" id="Instructions" runat="server">
                                         <a class="sidebar-menu-button" href="preliminary.aspx">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/before you start.png" /></i>
-                                            <span class="sidebar-menu-text">Before you start </span>
+                                                <img src="assets/images/menu_icons/Before You Start.png" /></i>
+                                            <span class="sidebar-menu-text">2. Before you start </span>
                                         </a>
                                     </li>
-                                     <%-- <li class="sidebar-menu-item" id="gtestudentdetail" runat="server">
+                                      <li class="sidebar-menu-item" id="gtestudentdetail" runat="server">
                                         <a class="sidebar-menu-button" href="<%=gtestudentdetailpageURL %>"">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/student info.png" /></i>
-                                            <span class="sidebar-menu-text">Your Details  </span>
+                                                <img src="assets/images/menu_icons/Your_Details.png" /></i>
+                                            <span class="sidebar-menu-text">3. Your Details  </span>
                                         </a>
-                                    </li>--%>
+                                    </li>
                                     <li class="sidebar-menu-item" id="Declaration" runat="server">
                                         <a class="sidebar-menu-button" href="gte_declaration.aspx?formid=20">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/student application.png" /></i>
-                                            <span class="sidebar-menu-text">Declaration  </span>
+                                                <img src="assets/images/menu_icons/Declaration_ICON.png" /></i>
+                                            <span class="sidebar-menu-text">4. Declaration  </span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="Tutorial" runat="server">
                                         <a class="sidebar-menu-button" href="gte_tutorial.aspx?formid=17">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/message board.png" /></i>
-                                            <span class="sidebar-menu-text">Tutorial</span>
+                                                <img src="assets/images/menu_icons/Tutorial.png" /></i>
+                                            <span class="sidebar-menu-text">5. Tutorial</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="Verification" runat="server">
                                         <a class="sidebar-menu-button" href="schedule_conselling.aspx?name=<%=username %>&email=<%=useremail%>">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/message board.png" /></i>
-                                            <span class="sidebar-menu-text">Schedule Now </span>
+                                                <img src="assets/images/menu_icons/ScheduleNow_ICON.png" /></i>
+                                            <span class="sidebar-menu-text">6. Schedule Now </span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="Certification" runat="server">
                                         <a class="sidebar-menu-button" href="gte_preliminary_section.aspx?formid=18">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/gte.png" /></i>
-                                            <span class="sidebar-menu-text">Certification  </span>
+                                                <img src="assets/images/menu_icons/certificate.png" /></i>
+                                            <span class="sidebar-menu-text">7. Certification  </span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="ViewCertificate" runat="server">
-                                        <a class="sidebar-menu-button" href="<%=CertificateURL %>"">
+                                        <a class="sidebar-menu-button" href="gte_certificateN_IN.aspx"> <%--href="<%=CertificateURL %>"">--%>
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/message board.png" /></i>
-                                            <span class="sidebar-menu-text">View Certificate </span>
+                                                <img src="assets/images/menu_icons/View_Certificate.png" /></i>
+                                            <span class="sidebar-menu-text">8. View Certificate </span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="GTEAssessment" runat="server">
                                         <a class="sidebar-menu-button" href="gte_questions1.aspx?formid=22">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/admissions offer.png" /></i>
-                                            <span class="sidebar-menu-text">GTE Assessment</span>
+                                                <img src="assets/images/menu_icons/GTE_Assessment.png" /></i>
+                                            <span class="sidebar-menu-text">9. GTE Assessment</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="SOPBuilder" runat="server">
                                         <a class="sidebar-menu-button" href="<%=SOPPageURL %>"">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                                 <img src="assets/images/menu_icons/admissions offer.png" /></i>
-                                            <span class="sidebar-menu-text">SOP Builder</span>
+                                            <span class="sidebar-menu-text">10. SOP Builder</span>
                                         </a>
                                     </li>
                                       <li class="sidebar-menu-item" id="CounsellorAdvise" runat="server" visible="false">
@@ -446,15 +446,22 @@
                                       <li class="sidebar-menu-item" id="DocumentsUpload" runat="server">
                                         <a class="sidebar-menu-button" href="<%=gtedocumentuploadURL %>"">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="assets/images/menu_icons/admissions offer.png" /></i>
-                                            <span class="sidebar-menu-text">Documents Upload</span>
+                                                <img src="assets/images/menu_icons/DocumentUpload_ICON.png" /></i>
+                                            <span class="sidebar-menu-text">11. Documents Upload</span>
                                         </a>
                                     </li>
-                                     <li class="sidebar-menu-item" id="GTEREport" runat="server">
-                                        <a class="sidebar-menu-button" href="gte_ReportN.aspx">
+                                     <li class="sidebar-menu-item" id="GTEREport" runat="server" visible="false">
+                                        <a class="sidebar-menu-button" href="gte_ReportN.aspx?CID=<%=CID %>">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                                 <img src="assets/images/menu_icons/admissions offer.png" /></i>
                                             <span class="sidebar-menu-text">GTE Report</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="GTECounsellor" runat="server" visible="false">
+                                        <a class="sidebar-menu-button" href="counsellor_report.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/admissions offer.png" /></i>
+                                            <span class="sidebar-menu-text">GTE Counsellor</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="Gte_list">
@@ -480,7 +487,7 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="gteCertificate">
-                                                <a class="sidebar-menu-button" href="gte_certificate.aspx">
+                                                <a class="sidebar-menu-button" href="gte_certificateN_IN.aspx">
                                                     <span class="sidebar-menu-text">View GTE Certificate</span>
                                                 </a>
                                             </li>
@@ -491,7 +498,7 @@
                                             </li>                                            
                                         </ul>
                                     </li>
-                                    <li class="sidebar-menu-item" id="gteevalution_list">
+                                    <%--<li class="sidebar-menu-item" id="gteevalution_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#evaluation">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/admissions offer.png" /></i>
                                           AI-based GTE Evaluation
@@ -523,7 +530,7 @@
                                                 <a class="sidebar-menu-button" href="gte_videoquestion.aspx">
                                                     <span class="sidebar-menu-text">Video Upload</span>
                                                 </a>
-                                            </li>--%>
+                                            </li>
                                              <li class="sidebar-menu-item" id="gte_sop_draft">
                                                 <a class="sidebar-menu-button" href="gte_sop_draft.aspx">
                                                     <span class="sidebar-menu-text">Draft SOP</span>
@@ -564,7 +571,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>     
+                                    </li>     --%>
                                      <li class="sidebar-menu-item" id="admissionsOffer_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#admissionsOffer">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/admissions offer.png" /></i>
@@ -711,7 +718,7 @@
     <script src="assets/vendor/material-design-kit.js"></script>
 
     <!-- App JS -->
-    <script src="assets/js/app.js"></script>
+    <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/app.js"></script>
 
     <!-- Highlight.js -->
     <script src="assets/js/hljs.js"></script>
@@ -1018,20 +1025,40 @@
                     $("#ViewCertificate").hide();
                 }
             }
-            if (fullService == 0)
-                $("#gteevalution_list").show();
-            $("#Dashboard").hide();
-            $("#Instructions").hide();
+            if (fullService == 0) {
+                $("#Dashboard").show();
+                $("#Instructions").show();
+                $("#gtestudentdetail").show();
+                $("#Declaration").show();
+                $("#Tutorial").show();
+                $("#Certification").show();
+                $("#ViewCertificate").show();
+                $("#GTEAssessment").show();
+                $("#SOPBuilder").show();
+                $("#DocumentsUpload").show();
+                $("#GTEREport").show();
+                $("#Verification").show();
+                $("#preliminary_list").hide();
+                $("#schedulecounselling").hide();
+                $("#Gte_list").hide();
+                $("#profile_list").hide();
+            }
+            else {
+                $("#gtestudentdetail").hide();
+            }
+                //$("#gteevalution_list").show();
+            //$("#Dashboard").hide();
+            //$("#Instructions").hide();
             //$("#gtestudentdetail").hide();
-            $("#Declaration").hide();
-            $("#Tutorial").hide();
-            $("#Certification").hide();
-            $("#ViewCertificate").hide();
-            $("#GTEAssessment").hide();
-            $("#SOPBuilder").hide();
-            $("#DocumentsUpload").hide();
-            $("#GTEREport").hide();
-            $("#Verification").hide();
+            //$("#Declaration").hide();
+            //$("#Tutorial").hide();
+            //$("#Certification").hide();
+            //$("#ViewCertificate").hide();
+            //$("#GTEAssessment").hide();
+            //$("#SOPBuilder").hide();
+            //$("#DocumentsUpload").hide();
+            //$("#GTEREport").hide();
+            //$("#Verification").hide();
             
            <%-- var questioncompleted = '<%=questioncompleted%>';
             var isclarificationquestionset = '<%=isclarificationquestionset%>'

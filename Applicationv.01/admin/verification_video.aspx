@@ -5,7 +5,13 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">STUDENT VERIFICATION VIDEO</li>
         </ol>
-        <h1 class="h2">STUDENT VERIFICATION VIDEO</h1>
+          <table>
+            <tr>
+                <td><h1 class="h2">STUDENT VERIFICATION VIDEO</h1></td>
+                <td><div style="margin-left: 200%;"><asp:Button id="backNavLink" runat="server" class="btn btn-success" Text="Back to Manage " onclick="backNavLink_Click"/></div></td>
+            </tr>
+        </table>
+        
     </div>
     <div class="page ">
         <div class="container page__container">
