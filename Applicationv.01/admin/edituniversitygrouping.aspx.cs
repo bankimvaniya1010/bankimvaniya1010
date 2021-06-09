@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class admin_edituniversitygrouping : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
-
+    int headUniversityId=0;
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
@@ -19,57 +19,12 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (Request.QueryString["headUniversityID"] != null)
         {
-            int headUniversityId;
-            if (!Int32.TryParse(Request.QueryString["headUniversityID"], out headUniversityId))
-                Response.Redirect(webURL + "admin/default.aspx");
-
+            headUniversityId = Convert.ToInt32(Request.QueryString["headUniversityID"]);
             if (!IsPostBack)
             {
-                var existingMapping = (from mappings in db.universitygrouping
-                                       where mappings.groupingheaduniversityid == headUniversityId
-                                       select mappings).ToList();
-
-                if (existingMapping != null)
-                {
-                    ViewState["headUniversityID"] = headUniversityId;
-                    bindUniversityDropDown(headUniversityId);
-
-                    List<university_master> notSelectedUniversityList = db.university_master.ToList();
-                    foreach (var item in existingMapping)
-                        notSelectedUniversityList.Remove(notSelectedUniversityList.Where(x => x.universityid == item.universityid).First());
-
-                    notSelectedUniversityList.Remove(notSelectedUniversityList.Where(x => x.universityid == headUniversityId).First());
-
-                    var selectedUniversityList = (from universities in db.university_master
-                                                  join mappings in db.universitygrouping on universities.universityid equals mappings.universityid
-                                                  where universities.universityid == mappings.universityid && mappings.groupingheaduniversityid == headUniversityId
-                                                  select universities).ToList();
-
-                    foreach (var item in notSelectedUniversityList)
-                    {
-                        if (item.universityid != headUniversityId)
-                        {
-                            ListItem checkBox = new ListItem();
-                            checkBox.Text = item.university_name;
-                            checkBox.Selected = false;
-                            checkBox.Value = Convert.ToString(item.universityid);
-                            checkBoxList.Items.Add(checkBox);
-                        }
-                    }
-
-                    foreach (var item in selectedUniversityList)
-                    {
-                        ListItem checkBox = new ListItem();
-                        checkBox.Text = item.university_name;
-                        checkBox.Selected = true;
-                        checkBox.Value = Convert.ToString(item.universityid);
-                        checkBoxList.Items.Add(checkBox);
-                        //set checked properties of checke box with mappings;
-                    }
-
-                }
-                else
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('No University/universities present under this university')", true);
+                bindUniversityDropDown(headUniversityId);
+                
+                BindMappped(headUniversityId);
             }
             
         }
@@ -77,68 +32,78 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
             Response.Redirect(webURL + "admin/default.aspx");
     }
 
-    private void bindUniversityDropDown(int universityId)
+    
+    private void bindUniversityDropDown(int headUniversityId)
     {
         try
         {
             ListItem lst = new ListItem("Please select university", "0");
-            List<university_master> universityMaster = db.university_master.ToList();
+            List<university_master> universityMaster = db.university_master.OrderBy(x => x.university_name).ToList();
 
             ddlUniversity.DataSource = universityMaster;
             ddlUniversity.DataTextField = "university_name";
             ddlUniversity.DataValueField = "universityid";
             ddlUniversity.DataBind();
             ddlUniversity.Items.Insert(0, lst);
-            ddlUniversity.SelectedIndex = universityId;
+            ddlUniversity.Items.FindByValue(headUniversityId.ToString()).Selected = true;
+
+            chk_universitylist.DataSource = universityMaster;
+            chk_universitylist.DataTextField = "university_name";
+            chk_universitylist.DataValueField = "universityid";
+            chk_universitylist.DataBind();
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.StackTrace.ToString());
         }
     }
-
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        int groupHeadUniversity = Convert.ToInt32(ddlUniversity.SelectedItem.Value);
-        string[] selectedUniversity;
-
-        if (Request.Form["university"] == null)
-        {
-            selectedUniversity = new string[checkBoxList.Items.Count];
-            for (int i = 0, j = 0; i < checkBoxList.Items.Count; i++)
-            {
-                if (checkBoxList.Items[i].Selected == true) 
-                {
-                    selectedUniversity.SetValue(checkBoxList.Items[i].Value, j); // add selected Item text to the String.
-                    j++;
-                }
-            }
-        }
-        else
-            selectedUniversity = Request.Form["university"].Split(',');
-
-        int existingGroupHeadID = Convert.ToInt32(ViewState["headUniversityID"]);
         var existingGrouping = (from mapping in db.universitygrouping
-                                where mapping.groupingheaduniversityid == existingGroupHeadID
+                                where mapping.groupingheaduniversityid == headUniversityId
                                 select mapping).ToList();
 
         db.universitygrouping.RemoveRange(existingGrouping);
         db.SaveChanges();
         try
         {
-            foreach (string s in selectedUniversity)
+            foreach (ListItem li in chk_universitylist.Items)
             {
-                if (!string.IsNullOrEmpty(s))
+                if (li.Selected)
                 {
                     universitygrouping groupingObj = new universitygrouping();
-                    groupingObj.groupingheaduniversityid = groupHeadUniversity;
-                    groupingObj.universityid = Convert.ToInt32(s);
+                    groupingObj.groupingheaduniversityid = headUniversityId;
+                    groupingObj.universityid = Convert.ToInt32(li.Value);
 
                     db.universitygrouping.Add(groupingObj);
                     db.SaveChanges();
                 }
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                       "alert('Record Inserted Successfully.');window.location='" + webURL + "admin/universitygroupingmaster.aspx';", true);
+                
             }
-            Response.Redirect(webURL + "admin/universitygroupingmaster.aspx");
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.StackTrace.ToString());
+        }
+    }
+    protected void ddlUniversity_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int uid = Convert.ToInt32(ddlUniversity.SelectedValue);
+        if (uid != 0)
+            BindMappped(uid);
+    }
+    private void BindMappped(int universityID)
+    {
+        try
+        {
+            chk_universitylist.ClearSelection();
+            var universityWise = db.universitygrouping.Where(x => x.groupingheaduniversityid == universityID).ToList();
+            for (int k = 0; k < universityWise.Count; k++)
+            {
+                chk_universitylist.Items.FindByValue(universityWise[k].universityid.ToString()).Selected = true;
+            }
         }
         catch (Exception ex)
         {

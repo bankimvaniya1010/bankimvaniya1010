@@ -609,7 +609,7 @@ section .section-title {
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <asp:TextBox ID="TextBox1" class="form-control" TextMode="MultiLine" runat="server" Style="width: 600px; height: 140px"></asp:TextBox>
+                                                                <asp:TextBox ID="tctcoursedescription" class="form-control" TextMode="MultiLine" runat="server" Style="width: 600px; height: 140px"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1725,7 +1725,7 @@ section .section-title {
                 alert("Please enter Institution Email ID");
                 return false;
             }
-            else if (txtMobile == '') {
+            else if (txtMobile == '' && !(checOnlykNum.test(txtMobile))) {
                 alert("Please enter valid university mobile number");
                 return false;
             }
@@ -1762,7 +1762,7 @@ section .section-title {
                 alert("Please select GTE service subscription for university.");
                 return false;
             }
-            else if (nofapplicant == "" || !(checOnlykNum.test(nofapplicant))) {
+            else if (nofapplicant == "" && !(checOnlykNum.test(nofapplicant))) {
                 alert("Please enter valid applicant to be registered.");
                 return false;
             }
@@ -1790,7 +1790,7 @@ section .section-title {
                 alert("Please enter valid Host Url");
                 return false;
             }
-            else if (validfileExtention($("#<%=logo.ClientID%>").val(), $("#<%=hidLogo.ClientID%>").val())) { }
+            else if (!validfileExtention($("#<%=logo.ClientID%>").val(), $("#<%=hidLogo.ClientID%>").val())) { }
             else if (headercolor == '' || !colorcodeRegex.test(headercolor)) {
                 alert("Please enter Valid header strip Color.");
                 return false;
@@ -1803,9 +1803,76 @@ section .section-title {
                 alert("Please enter Valid Font Color.");
                 return false;
             }
-
-
-
+            else if ($("#<%=txtTotalEnrolledStudents.ClientID%>").val() != "" && !(checOnlykNum.test($("#<%=txtTotalEnrolledStudents.ClientID%>").val()))) {
+                alert("Please enter Total Enrolled Students. Only number inputs allowed");
+                return false;
+            }
+            else if ($("#<%=txtDoctoralStudents.ClientID%>").val() != "" && !(checOnlykNum.test($("#<%=txtDoctoralStudents.ClientID%>").val()))) {
+                alert("Please enter Doctoral Students. Only number inputs allowed");
+                return false;
+            }
+            else if ($("#<%=txtGraduateStudents.ClientID%>").val() != "" && !(checOnlykNum.test($("#<%=txtGraduateStudents.ClientID%>").val()))) {
+                alert("Please enter Graduate Students. Only number inputs allowed");
+                return false;
+            }
+            else if ($("#<%=txtUnderGraduateStudents.ClientID%>").val() != "" && !(checOnlykNum.test($("#<%=txtUnderGraduateStudents.ClientID%>").val()))) {
+                alert("Please enter Under Graduate Students. Only number inputs allowed");
+                return false;
+            }
+            else if ($("#<%=txtCertificate_DiplomaStudents.ClientID%>").val() != "" && !(checOnlykNum.test($("#<%=txtCertificate_DiplomaStudents.ClientID%>").val()))) {
+                alert("Please enter Certificate / Diploma Students. Only number inputs allowed");
+                return false;
+            }
+            else if ($("#<%=txtNon_awardStudents.ClientID%>").val() != "" && !(checOnlykNum.test($("#<%=txtNon_awardStudents.ClientID%>").val()))) {
+                alert("Please enter Non-award Students . Only number inputs allowed");
+                return false;
+            }
+            else if ($("#<%=txtSchoolEducationStudents.ClientID%>").val() != "" && !(checOnlykNum.test($("#<%=txtSchoolEducationStudents.ClientID%>").val()))) {
+                alert("Please enter School Education Students . Only number inputs allowed");
+                return false;
+            }
+            else if ($("#<%=txtNoofAcademicStaff.ClientID%>").val() != "" && !(checOnlykNum.test($("#<%=txtNoofAcademicStaff.ClientID%>").val()))) {
+                alert("Please enter No of Academic Staff. Only number inputs allowed");
+                return false;
+            }
+            else if (txtUniLatitude != "" && (isNaN(txtUniLatitude) || isNaN(parseFloat(txtUniLatitude)))) {
+                alert("Please enter appropriate Institution Latitude format. eg. 34.5553");
+                return false;
+            }
+            else if (txtUniLongitude != "" &&(isNaN(txtUniLongitude) || isNaN(parseFloat(txtUniLongitude)))) {
+                alert("Please enter appropriate Institution Longitude format. eg. 34.5553");
+                return false;
+            }
+            //else if (UniTimeZoneValue == 0 || isNaN(parseInt(UniTimeZoneValue))) {
+            //    alert("Please select university time zone");
+            //    return false;
+            //}
+            //else if (txtUniAirport == '') {
+            //    alert("Please enter airport name");
+            //    return false;
+            //}
+            else if (txtUniAirportDistance != "" &&(!airDistanceUnit || isNaN(parseFloat(txtUniAirportDistance)))) {
+                if (txtUniAirportDistance != '' && !airDistanceUnit)
+                    alert("Please select distance unit");
+                else
+                    alert("Please enter nearest airport distance from university");
+                return false;
+            }
+            else if (txtUniRailDistance != "" && (!railDistanceUnit || isNaN(parseFloat(txtUniRailDistance)))) {
+                if (txtUniRailDistance != '' && !railDistanceUnit)
+                    alert("Please select distance unit");
+                else
+                    alert("Please enter nearest railway station distance from university");
+                return false;
+            }
+            else if (txtYearEstablish != ""&& (isNaN(parseInt(txtYearEstablish)) || parseInt(txtYearEstablish) >= new Date().getFullYear())) {
+                alert("Please enter correct university establishment year");
+                return false;
+            }
+            //else if (txtUniGettingAround == '') {
+            //    alert("Please enter Institution Getting Around");
+            //    return false;
+            //}
             //else if (institutionflag == 0) {
             //    alert("Please select Partner Type");
             //    return false;
@@ -1818,10 +1885,7 @@ section .section-title {
             //    alert("Please enter Institution Type");
             //    return false;
             //}
-            //else if (txtYearEstablish == '' || isNaN(parseInt(txtYearEstablish)) || parseInt(txtYearEstablish) >= new Date().getFullYear()) {
-            //    alert("Please enter correct university establishment year");
-            //    return false;
-            //}
+            
             //else if (txtUniSDescription == '') {
             //    alert("Please enter Institution  Short Description");
             //    return false;
@@ -1834,41 +1898,9 @@ section .section-title {
             //    alert("Please enter university chat ID");
             //    return false;
             //}
+            
            
-            //else if (txtUniLatitude == '' || isNaN(txtUniLatitude) || isNaN(parseFloat(txtUniLatitude))) {
-            //    alert("Please enter appropriate Institution Latitude format. eg. 34.5553");
-            //    return false;
-            //}
-            //else if (txtUniLongitude == '' || isNaN(txtUniLongitude) || isNaN(parseFloat(txtUniLongitude))) {
-            //    alert("Please enter appropriate Institution Longitude format. eg. 34.5553");
-            //    return false;
-            //}
-            //else if (UniTimeZoneValue == 0 || isNaN(parseInt(UniTimeZoneValue))) {
-            //    alert("Please select university time zone");
-            //    return false;
-            //}
-            //else if (txtUniAirport == '') {
-            //    alert("Please enter airport name");
-            //    return false;
-            //}
-            //else if (txtUniAirportDistance == '' || !airDistanceUnit || isNaN(parseFloat(txtUniAirportDistance))) {
-            //    if (txtUniAirportDistance != '' && !airDistanceUnit)
-            //        alert("Please select distance unit");
-            //    else
-            //        alert("Please enter nearest airport distance from university");
-            //    return false;
-            //}
-            //else if (txtUniRailDistance == '' || !railDistanceUnit || isNaN(parseFloat(txtUniRailDistance))) {
-            //    if (txtUniRailDistance != '' && !railDistanceUnit)
-            //        alert("Please select distance unit");
-            //    else
-            //        alert("Please enter nearest railway station distance from university");
-            //    return false;
-            //}
-            //else if (txtUniGettingAround == '') {
-            //    alert("Please enter Institution Getting Around");
-            //    return false;
-            //}
+            
           
             //else if (txtNotesDisclaimer == '') {
             //    alert("Please enter Institution Notes and disclaimer");
@@ -1972,11 +2004,18 @@ section .section-title {
 
        
         $(document).ready(function () {
-            for (var i = 0; i < 71; i++)
-                $("#ContentPlaceHolder1_CheckBoxList2_" + i + "").prop("disabled", "disabled");
+            for (var i = 0; i < 71; i++) {
+                if ($("#ContentPlaceHolder1_CheckBoxList2_" + i + "").is(':checked')) { }
+                else
+                    $("#ContentPlaceHolder1_CheckBoxList2_" + i + "").prop("disabled", "disabled");
+            }
 
-            for (var i = 0; i < 356; i++)
-                $("#ContentPlaceHolder1_CheckBoxList3_" + i + "").prop("disabled", "disabled");
+
+            for (var i = 0; i < 356; i++) {
+                if ($("#ContentPlaceHolder1_CheckBoxList3_" + i + "").is(':checked')) { }
+                else
+                    $("#ContentPlaceHolder1_CheckBoxList3_" + i + "").prop("disabled", "disabled");
+            }
 
             $("#<%=CheckBoxList1.ClientID %>").find('input[type="checkbox"]').click(function () {
                 var leng = $(this).length;
@@ -2001,6 +2040,7 @@ section .section-title {
                 }
             });
             //
+            
         });
         function bydefaultcheck(broadID, Ischeck) {
              $.ajax({
@@ -2014,15 +2054,19 @@ section .section-title {
                         var result = JSON.parse(response.d);
                        
                        for (var i = 0; i < result.length; i++) {
-                           if (Ischeck == true) {
-                               $("#ContentPlaceHolder1_CheckBoxList2_" + result[i].id + "").prop("checked", true);
-                               $("#ContentPlaceHolder1_CheckBoxList2_" + result[i].id + "").prop("disabled","disabled");
-                               byDeafultCheckDetailed(result[i].id, true);
-                           }
-                           else {
-                               $("#ContentPlaceHolder1_CheckBoxList2_" + result[i].id + "").prop("checked", false);
-                               $("#ContentPlaceHolder1_CheckBoxList2_" + result[i].id + "").removeAttr("disabled");
-                               byDeafultCheckDetailed(result[i].id, false);
+                           for (var y = 0; y < 71; y++) {
+                               if ($("#ContentPlaceHolder1_CheckBoxList2_" + y + "").val() == result[i].id) {
+                                   if (Ischeck == true) {
+                                       $("#ContentPlaceHolder1_CheckBoxList2_" + y + "").prop("checked", true);
+                                       $("#ContentPlaceHolder1_CheckBoxList2_" + y + "").removeAttr("disabled");
+                                       byDeafultCheckDetailed(result[i].id, true);
+                                   }
+                                   else {
+                                       $("#ContentPlaceHolder1_CheckBoxList2_" + y + "").prop("checked", false);
+                                       $("#ContentPlaceHolder1_CheckBoxList2_" + y + "").prop("disabled", "disabled");
+                                       byDeafultCheckDetailed(result[i].id, false);
+                                   }
+                               }
                            }
                        }
                     }
@@ -2040,17 +2084,22 @@ section .section-title {
                 success: function (response) {
                    if (response.d) {
                         var result = JSON.parse(response.d);
-                       
+
                        for (var i = 0; i < result.length; i++) {
-                           if (Ischeck == true) {
-                               $("#ContentPlaceHolder1_CheckBoxList3_" + result[i].id + "").prop("checked", true);
-                               $("#ContentPlaceHolder1_CheckBoxList3_" + result[i].id + "").removeAttr("disabled");
-                           }
-                           else {
-                               $("#ContentPlaceHolder1_CheckBoxList3_" + result[i].id + "").prop("checked", false);
-                               $("#ContentPlaceHolder1_CheckBoxList3_" + result[i].id + "").prop("disabled","disabled");
+                           for (var y = 0; y < 356; y++) {
+                               if ($("#ContentPlaceHolder1_CheckBoxList3_" + y + "").val() == result[i].id) {
+                                   if (Ischeck == true) {
+                                       $("#ContentPlaceHolder1_CheckBoxList3_" + y + "").prop("checked", true);
+                                       $("#ContentPlaceHolder1_CheckBoxList3_" + y + "").removeAttr("disabled");
+                                   }
+                                   else {
+                                       $("#ContentPlaceHolder1_CheckBoxList3_" + y + "").prop("checked", false);
+                                       $("#ContentPlaceHolder1_CheckBoxList3_" + y + "").prop("disabled", "disabled");
+                                   }
+                               }
                            }
                        }
+                      
                     }
                 }
             });

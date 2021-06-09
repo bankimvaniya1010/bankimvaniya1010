@@ -191,8 +191,9 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
 
                 if (existingUninversity.time_zone != null && existingUninversity.time_zone != "0")
                 {
-                    ddlTimeZone.ClearSelection();
-                    ddlTimeZone.Items.FindByValue(existingUninversity.time_zone.ToString());
+                    ddlTimeZone.SelectedValue = existingUninversity.time_zone;
+                    //ddlTimeZone.ClearSelection();
+                    //ddlTimeZone.Items.FindByValue(existingUninversity.time_zone.ToString());
                 }
                 hidCityField.Value = Convert.ToString(existingUninversity.cityid);
                 bindCityDropdown(Convert.ToInt32(existingUninversity.countryid));
@@ -494,6 +495,7 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
                 PopulateMapping(CheckBoxList1, universityId, 31);
                 PopulateMapping(CheckBoxList2, universityId, 32);
                 PopulateMapping(CheckBoxList3, universityId, 33);
+                tctcoursedescription.Text = existingUninversity.courseDescription ;
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University does not exists')", true);
@@ -747,27 +749,40 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
     {
         try {
             //COURSES
+            List<int> broadID_list = new List<int>();
             foreach (ListItem li in CheckBoxList1.Items)
             {
+                
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 31, "BORAD_FIELD", universityObj.universityid);
+                    broadID_list.Add(Convert.ToInt32(li.Value));
                 }
+                if (broadID_list.Count > 0)
+                    SavedMapped(31, "BORAD_FIELD", universityObj.universityid, broadID_list);
             }
+
+            List<int> narrow_List = new List<int>();
             foreach (ListItem li in CheckBoxList2.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 32, "NARROW_FIELD", universityObj.universityid);
+                    narrow_List.Add(Convert.ToInt32(li.Value));
                 }
+                if(narrow_List.Count > 0)
+                    SavedMapped(32, "NARROW_FIELD", universityObj.universityid, narrow_List);
             }
+            List<int> detailed_Field = new List<int>();
             foreach (ListItem li in CheckBoxList3.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 33, "DETAILED_FIELD", universityObj.universityid);
+                    detailed_Field.Add(Convert.ToInt32(li.Value));
                 }
+                if(detailed_Field.Count > 0)
+                    SavedMapped(33, "DETAILED_FIELD", universityObj.universityid, detailed_Field);
             }
+
+            universityObj.courseDescription = tctcoursedescription.Text;
             //STUDENT STATS
             universityObj.TotalEnrolledStudents = txtTotalEnrolledStudents.Text;
             universityObj.DoctoralStudents = txtDoctoralStudents.Text;
@@ -810,12 +825,16 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
 
             universityObj.international_percentage = txtInternational.Text;
             universityObj.domestic_percentage = txtDomestic.Text;
+
+            List<int> lst = new List<int>();
             foreach (ListItem li in testList.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 41, "TESTS REQUIRED", universityObj.universityid);
+                    lst.Add(Convert.ToInt32(li.Value));
                 }
+                if(lst.Count > 0)
+                    SavedMapped(41, "TESTS REQUIRED", universityObj.universityid, lst);
             }
             if (ddlSelectivity.SelectedValue != "0")
             {
@@ -915,12 +934,16 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
             universityObj.avgTuitionFee = txtAvgTuitionFee.Text;
             universityObj.AvgFinancialAidPackage = txtAvgFinancialAidPackage.Text;
             universityObj.FinancialneedMet = txtFinancialneedMet.Text;
+
+            List<int> lst_domesticstudent = new List<int>();
             foreach (ListItem li in chkdomesticstudent.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 51, "Fee_anda-funding_domesti", universityObj.universityid);
+                    lst_domesticstudent.Add(Convert.ToInt32(li.Value));
                 }
+                if(lst_domesticstudent.Count > 0)
+                    SavedMapped(51, "Fee_anda-funding_domesti", universityObj.universityid, lst_domesticstudent);
             }
             if (chkstudecarescholarship_.Checked == true)
                 universityObj.studecarescholarship = 1;
@@ -1036,7 +1059,8 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
                 universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
             if (txtUniLongitude.Value != "")
                 universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
-            universityObj.time_zone = ddlTimeZone.SelectedValue;
+            if(ddlTimeZone.SelectedValue != "0")
+                universityObj.time_zone = ddlTimeZone.SelectedValue;
             universityObj.closest_airport = txtUniAirport.Value.Trim();
             universityObj.distance_from_airport = txtUniAirportDistance.Value.Trim() + " " + airDistanceUnit.Value.Trim();
             universityObj.distance_from_railway = txtUniRailDistance.Value.Trim() + " " + railDistanceUnit.Value.Trim();
@@ -1051,24 +1075,28 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
         catch (Exception ex) { objLog.WriteLog("tab7="+ex.StackTrace.ToString()); }
     }
     
-    private void SavedMapped(string chknumber, int fieldID, string fieldname,int uid) {
+    private void SavedMapped(int fieldID, string fieldname,int uid,List<int> lst_ID) {
         try {
 
-            IEnumerable<university_datamapping> list = db.university_datamapping.Where(x =>x.university_id == uid && x.fieldname == fieldID && x.chkfield_id == chknumber).ToList();
-            // Use Remove Range function to delete all records at once
-            db.university_datamapping.RemoveRange(list);
-            // Save changes
-            db.SaveChanges();
-            
-            university_datamapping objmapping = new university_datamapping();
-            
-            objmapping.fieldname = fieldID;
-            objmapping.fieldname_ = fieldname;
-            objmapping.chkfield_id = chknumber;
-            objmapping.university_id = uid;
-            db.university_datamapping.Add(objmapping);
-            db.SaveChanges();
+            if (lst_ID.Count > 0)
+            {
+                IEnumerable<university_datamapping> list = db.university_datamapping.Where(x => x.university_id == uid && x.fieldname == fieldID).ToList();
+                // Use Remove Range function to delete all records at once
+                db.university_datamapping.RemoveRange(list);
+                // Save changes
+                db.SaveChanges();
+                foreach (var item in lst_ID)
+                {
+                    university_datamapping objmapping = new university_datamapping();
 
+                    objmapping.fieldname = fieldID;
+                    objmapping.fieldname_ = fieldname;
+                    objmapping.chkfield_id = item.ToString();
+                    objmapping.university_id = uid;
+                    db.university_datamapping.Add(objmapping);
+                    db.SaveChanges();
+                }
+            }
         }
         catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
@@ -1109,7 +1137,7 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
                       {
                           fieldname = nf.fieldname,
                           id = nf.id,
-                      }).Distinct().OrderBy(x => x.fieldname).ToList();
+                      }).Distinct().OrderBy(x => x.id).ToList();
 
         return JsonConvert.SerializeObject(narrow);
     }
@@ -1127,7 +1155,7 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
                     {
                         fieldname = df.fieldname,
                         id = df.id,
-                    }).Distinct().OrderBy(x => x.fieldname).ToList();
+                    }).Distinct().OrderBy(x => x.id).ToList();
 
         return JsonConvert.SerializeObject(temp);
     }
