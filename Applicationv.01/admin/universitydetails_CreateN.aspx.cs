@@ -437,24 +437,26 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
             objLog.WriteLog(ex.StackTrace.ToString());
         }
     }
-    private void SavedMapped(int fieldID, string fieldname, int uid, List<int> lst_ID)
+    private void SavedMapped(string chknumber, int fieldID, string fieldname, int uid)
     {
         try
         {
-            if (lst_ID.Count > 0)
+            var mode = "new";
+            university_datamapping objmapping = new university_datamapping();
+            var data = db.university_datamapping.Where(x => x.fieldname == fieldID && x.chkfield_id == chknumber).FirstOrDefault();
+            if (data != null)
             {
-                foreach (var item in lst_ID)
-                {
-                    university_datamapping objmapping = new university_datamapping();
-
-                    objmapping.fieldname = fieldID;
-                    objmapping.fieldname_ = fieldname;
-                    objmapping.chkfield_id = item.ToString();
-                    objmapping.university_id = uid;
-                    db.university_datamapping.Add(objmapping);
-                    db.SaveChanges();
-                }
+                mode = "update";
+                objmapping = data;
             }
+            objmapping.fieldname = fieldID;
+            objmapping.fieldname_ = fieldname;
+            objmapping.chkfield_id = chknumber;
+            objmapping.university_id = uid;
+            if (mode == "new")
+                db.university_datamapping.Add(objmapping);
+            db.SaveChanges();
+
         }
         catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
@@ -545,37 +547,26 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
         try
         {
             //COURSES
-            List<int> broadID_list = new List<int>();
             foreach (ListItem li in CheckBoxList1.Items)
             {
-
                 if (li.Selected)
                 {
-                    broadID_list.Add(Convert.ToInt32(li.Value));
+                    SavedMapped(li.Value, 31, "BORAD_FIELD", universityObj.universityid);
                 }
-                if (broadID_list.Count > 0)
-                    SavedMapped(31, "BORAD_FIELD", universityObj.universityid, broadID_list);
             }
-
-            List<int> narrow_List = new List<int>();
             foreach (ListItem li in CheckBoxList2.Items)
             {
                 if (li.Selected)
                 {
-                    narrow_List.Add(Convert.ToInt32(li.Value));
+                    SavedMapped(li.Value, 32, "NARROW_FIELD", universityObj.universityid);
                 }
-                if (narrow_List.Count > 0)
-                    SavedMapped(32, "NARROW_FIELD", universityObj.universityid, narrow_List);
             }
-            List<int> detailed_Field = new List<int>();
             foreach (ListItem li in CheckBoxList3.Items)
             {
                 if (li.Selected)
                 {
-                    detailed_Field.Add(Convert.ToInt32(li.Value));
+                    SavedMapped(li.Value, 33, "DETAILED_FIELD", universityObj.universityid);
                 }
-                if (detailed_Field.Count > 0)
-                    SavedMapped(33, "DETAILED_FIELD", universityObj.universityid, detailed_Field);
             }
             universityObj.courseDescription = tctcoursedescription.Text;
             //STUDENT STATS
@@ -621,18 +612,13 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
 
             universityObj.international_percentage = txtInternational.Text;
             universityObj.domestic_percentage = txtDomestic.Text;
-
-            List<int> lst = new List<int>();
             foreach (ListItem li in testList.Items)
             {
                 if (li.Selected)
                 {
-                    lst.Add(Convert.ToInt32(li.Value));
+                    SavedMapped(li.Value, 41, "TESTS REQUIRED", universityObj.universityid);
                 }
-                if (lst.Count > 0)
-                    SavedMapped(41, "TESTS REQUIRED", universityObj.universityid, lst);
             }
-            
             if (ddlSelectivity.SelectedValue != "0")
             {
                 universityObj.selectivity = Convert.ToInt32(ddlSelectivity.SelectedValue);
@@ -731,15 +717,12 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
             universityObj.avgTuitionFee = txtAvgTuitionFee.Text;
             universityObj.AvgFinancialAidPackage = txtAvgFinancialAidPackage.Text;
             universityObj.FinancialneedMet = txtFinancialneedMet.Text;
-            List<int> lst_domesticstudent = new List<int>();
             foreach (ListItem li in chkdomesticstudent.Items)
             {
                 if (li.Selected)
                 {
-                    lst_domesticstudent.Add(Convert.ToInt32(li.Value));
+                    SavedMapped(li.Value, 51, "Fee_anda-funding_domesti", universityObj.universityid);
                 }
-                if (lst_domesticstudent.Count > 0)
-                    SavedMapped(51, "Fee_anda-funding_domesti", universityObj.universityid, lst_domesticstudent);
             }
             if (chkstudecarescholarship_.Checked == true)
                 universityObj.studecarescholarship = 1;
