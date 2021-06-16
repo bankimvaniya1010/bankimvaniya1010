@@ -60,17 +60,20 @@
                         <p>
                             Thank you for registering with <%=universityName %> – <%=fullservicelbl %>.                        
                         </p>
-                        <p>Your Username is:<b> <%=email %> </b></p>                        
+                        <p><b>Your Username is: <%=email %> </b></p>                        
                         <p>
-                            An email has been sent to <%=email %> along with a one-time password (OTP). Please use your given username and OTP to login to the <%=fullservicelbl %> for the first time.On your first login, you will be asked to set a new password. Be sure to set a password that you can easily remember. In case you forget your password, you could always click on "Forget Password?" on the Student Login page and set a new one.
+                            An email has been sent to <%=email %> along with a one-time password (OTP). Please use your given username and OTP to login to the <%=fullservicelbl %> for the first time.                            
                         </p>
                         <p>
-                            If an email from us is not in your Inbox, please check your 'Junk Mail' or 'Spam Folder' as it may have been redirected by your email service provider.
+                         If an email from us is not in your Inbox, please check your "Junk Mail" or "Spam Folder" as it may have been redirected by your email service provider.
                         </p>                        
-                        <p>
-                            To login to <%=universityName %> – <%=fullservicelbl %>, <a href="login.aspx" target="_blank">click here</a>.
+                        <p>                            
+                            To login to <%=universityName %> – <%=fullservicelbl %> please use the link below:<br/>
+                            <a href="login.aspx" target="_blank">click here</a>.
                         </p>                       
+                        <p>It is handy to bookmark this link for future use.</p>
 
+                        <p>Need help? Write to us at <a href="support@gte.direct">support@gte.direct</p>
                     </div>
                    
                 </div>

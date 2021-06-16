@@ -38,7 +38,8 @@ public partial class schedulemeeting_otp : System.Web.UI.Page
         else
             meetingtime = Request.QueryString["meetingtime"];
 
-        scheduledata = db.applicant_meeting_schedule.Where(x => x.applicant_id == UserID && x.university_id == UniversityID && x.is_meetingtime_expires == null).FirstOrDefault();
+        DateTime date = Convert.ToDateTime(meetingtime);
+        scheduledata = db.applicant_meeting_schedule.Where(x => x.applicant_id == UserID && x.university_id == UniversityID && x.applicant_time_zone == date).FirstOrDefault();
 
         if (scheduledata != null)
         {
@@ -175,11 +176,12 @@ public partial class schedulemeeting_otp : System.Web.UI.Page
             if (mode == "new")
                 db.applicant_meeting_schedule.Add(objapplicant_meeting_schedule);
             db.SaveChanges();
-            int isFullService = (int)Session["FullService"];
-            if(isFullService == 0)
-                Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
-            else
-                Response.Redirect(webURL + "gte_questions1.aspx?formid=22", true);
+            Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
+            //int isFullService = (int)Session["FullService"];
+            //if(isFullService == 0)
+            //    Response.Redirect(webURL + "gte_preliminary_section.aspx?formid=18", true);
+            //else
+            //    Response.Redirect(webURL + "gte_questions1.aspx?formid=22", true);
         }
     }
 }

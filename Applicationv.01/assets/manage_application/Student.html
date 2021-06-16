@@ -1,0 +1,2087 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0033)http://qc.testyt.com/default.aspx -->
+<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Student - Dashboard</title>
+  
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex">
+    <link href="./Student_files/tipso.min.css" rel="stylesheet">
+    <!-- Perfect Scrollbar -->
+    <link type="text/css" href="./Student_files/perfect-scrollbar.css" rel="stylesheet">
+    <!-- Flatpickr -->
+    <link type="text/css" href="./Student_files/flatpickr.css" rel="stylesheet">
+    <link type="text/css" href="./Student_files/flatpickr.rtl.css" rel="stylesheet">
+    <link type="text/css" href="./Student_files/flatpickr-airbnb.css" rel="stylesheet">
+    <link type="text/css" href="./Student_files/flatpickr-airbnb.rtl.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link type="text/css" href="./Student_files/material-icons.css" rel="stylesheet">
+    <link type="text/css" href="./Student_files/material-icons.rtl.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link type="text/css" href="./Student_files/fontawesome.css" rel="stylesheet">
+    <link type="text/css" href="./Student_files/fontawesome.rtl.css" rel="stylesheet">
+    <script async="" src="./Student_files/gtm.js.download"></script><script src="./Student_files/jquery.min.js.download"></script>
+
+    <!-- Flatpickr -->
+    <script src="./Student_files/flatpickr.min.js.download"></script>
+    <script src="./Student_files/flatpickr.js.download"></script>
+    <!-- App CSS -->
+    <link type="text/css" href="./Student_files/app.css" rel="stylesheet">
+    <link type="text/css" href="./Student_files/app.rtl.css" rel="stylesheet">
+    <link type="text/css" href="./Student_files/intlTelInput.css" rel="stylesheet">
+    <script src="./Student_files/widget.js.download" jv-id="Xd2jISnzXE" async=""></script>
+
+    <script src="./Student_files/jquery-ui-1.12.1.min.js.download"></script>
+    <link type="text/css" href="./Student_files/jquery-ui-1.12.1.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="./Student_files/WebCam.js.download"></script>
+
+    <!--Code for disabling browser back button-->
+    <script type="text/javascript">
+        function disablePrev() { window.history.forward() }
+        window.onload = disablePrev();
+        window.onpageshow = function (evt) { if (evt.persisted) disablePrev() }
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '');
+    </script>
+    <!-- End Google Tag Manager -->
+    <script>
+            var uniFontColor = '';
+            var uniheadercolor = ''
+            var uniVerticalnavcolor = ''
+            // setter fontcolor
+            document.documentElement.style.setProperty('--font-color', uniFontColor);
+            // getter
+            document.documentElement.style.getPropertyValue('--font-color');
+
+            // setter header color
+            document.documentElement.style.setProperty('--header-color', uniheadercolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--header-color');
+
+            // setter vertical nav color
+            document.documentElement.style.setProperty('--background-color', uniVerticalnavcolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--background-color');
+    </script>
+<style type="text/css">/*
+ * Visual Studio 2015 dark style
+ * Author: Nicolas LLOBERA <nllobera@gmail.com>
+ */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #1E1E1E;
+  color: #DCDCDC;
+}
+
+.hljs-keyword,
+.hljs-literal,
+.hljs-symbol,
+.hljs-name {
+  color: #569CD6;
+}
+.hljs-link {
+  color: #569CD6;
+  text-decoration: underline;
+}
+
+.hljs-built_in,
+.hljs-type {
+  color: #4EC9B0;
+}
+
+.hljs-number,
+.hljs-class {
+  color: #B8D7A3;
+}
+
+.hljs-string,
+.hljs-meta-string {
+  color: #D69D85;
+}
+
+.hljs-regexp,
+.hljs-template-tag {
+  color: #9A5334;
+}
+
+.hljs-subst,
+.hljs-function,
+.hljs-title,
+.hljs-params,
+.hljs-formula {
+  color: #DCDCDC;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #57A64A;
+  font-style: italic;
+}
+
+.hljs-doctag {
+  color: #608B4E;
+}
+
+.hljs-meta,
+.hljs-meta-keyword,
+.hljs-tag {
+  color: #9B9B9B;
+}
+
+.hljs-variable,
+.hljs-template-variable {
+  color: #BD63C5;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-builtin-name {
+  color: #9CDCFE;
+}
+
+.hljs-section {
+  color: gold;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/*.hljs-code {
+  font-family:'Monospace';
+}*/
+
+.hljs-bullet,
+.hljs-selector-tag,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #D7BA7D;
+}
+
+.hljs-addition {
+  background-color: #144212;
+  display: inline-block;
+  width: 100%;
+}
+
+.hljs-deletion {
+  background-color: #600;
+  display: inline-block;
+  width: 100%;
+}
+</style><style type="text/css">.fade-enter-active, .fade-leave-active {
+    transition: opacity .15s linear;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+</style><style type="text/css">/* workaround for https://github.com/bootstrap-vue/bootstrap-vue/issues/1560 */
+/* source: _input-group.scss */
+
+.input-group > .input-group-prepend > .b-dropdown > .btn,
+.input-group > .input-group-append:not(:last-child) > .b-dropdown > .btn,
+.input-group > .input-group-append:last-child > .b-dropdown:not(:last-child):not(.dropdown-toggle) > .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group > .input-group-append > .b-dropdown > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .b-dropdown > .btn,
+.input-group > .input-group-prepend:first-child > .b-dropdown:not(:first-child) > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+</style><style type="text/css">/* Special styling for type=range and type=color input */
+input.form-control[type="range"],
+input.form-control[type="color"] {
+    height: 2.25rem;
+}
+input.form-control.form-control-sm[type="range"],
+input.form-control.form-control-sm[type="color"] {
+    height: 1.9375rem;
+}
+input.form-control.form-control-lg[type="range"],
+input.form-control.form-control-lg[type="color"] {
+    height: 3rem;
+}
+
+/* Less padding on type=color */
+input.form-control[type="color"] {
+    padding: 0.25rem 0.25rem;
+}
+input.form-control.form-control-sm[type="color"] {
+    padding: 0.125rem 0.125rem;
+}
+</style><style type="text/css">/* Add support for fixed layout table */
+table.b-table.b-table-fixed {
+    table-layout: fixed;
+}
+
+/* Busy table styling */
+table.b-table[aria-busy='false'] {
+    opacity: 1;
+}
+table.b-table[aria-busy='true'] {
+    opacity: 0.6;
+}
+
+/* Sort styling */
+table.b-table > thead > tr > th,
+table.b-table > tfoot > tr > th {
+    position: relative;
+}
+table.b-table > thead > tr > th.sorting,
+table.b-table > tfoot > tr > th.sorting {
+    padding-right: 1.5em;
+    cursor: pointer;
+}
+table.b-table > thead > tr > th.sorting::before,
+table.b-table > thead > tr > th.sorting::after,
+table.b-table > tfoot > tr > th.sorting::before,
+table.b-table > tfoot > tr > th.sorting::after {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    opacity: 0.4;
+    padding-bottom: inherit;
+    font-size: inherit;
+    line-height: 180%;
+}
+table.b-table > thead > tr > th.sorting::before,
+table.b-table > tfoot > tr > th.sorting::before {
+    right: 0.75em;
+    content: '\2191';
+}
+table.b-table > thead > tr > th.sorting::after,
+table.b-table > tfoot > tr > th.sorting::after {
+    right: 0.25em;
+    content: '\2193';
+}
+table.b-table > thead > tr > th.sorting_asc::after,
+table.b-table > thead > tr > th.sorting_desc::before,
+table.b-table > tfoot > tr > th.sorting_asc::after,
+table.b-table > tfoot > tr > th.sorting_desc::before {
+    opacity: 1;
+}
+
+/* Stacked table layout */
+/* Derived from http://blog.adrianroselli.com/2017/11/a-responsive-accessible-table.html */
+/* Always stacked */
+table.b-table.b-table-stacked {
+    width: 100%;
+}
+table.b-table.b-table-stacked,
+table.b-table.b-table-stacked > tbody,
+table.b-table.b-table-stacked > tbody > tr,
+table.b-table.b-table-stacked > tbody > tr > td,
+table.b-table.b-table-stacked > tbody > tr > th,
+table.b-table.b-table-stacked > caption {
+    display: block;
+}
+
+/* Hide stuff we can't deal with, or shouldn't show */
+table.b-table.b-table-stacked > thead,
+table.b-table.b-table-stacked > tfoot,
+table.b-table.b-table-stacked > tbody > tr.b-table-top-row,
+table.b-table.b-table-stacked > tbody > tr.b-table-bottom-row {
+    display: none;
+}
+
+/* inter-row top border */
+table.b-table.b-table-stacked > tbody > tr > :first-child {
+    border-top-width: 0.4rem;
+}
+
+/* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+table.b-table.b-table-stacked > tbody > tr > [data-label] {
+    display: grid;
+    grid-template-columns: 40% auto;
+    grid-gap: 0.25rem 1rem;
+}
+
+/* generate row cell "heading" */
+table.b-table.b-table-stacked > tbody > tr > [data-label]::before {
+    content: attr(data-label);
+    display: inline;
+    text-align: right;
+    overflow-wrap: break-word;
+    font-weight: bold;
+    font-style: normal;
+}
+
+@media all and (max-width: 575.99px) {
+    /* Under SM */
+    table.b-table.b-table-stacked-sm {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-sm,
+    table.b-table.b-table-stacked-sm > tbody,
+    table.b-table.b-table-stacked-sm > tbody > tr,
+    table.b-table.b-table-stacked-sm > tbody > tr > td,
+    table.b-table.b-table-stacked-sm > tbody > tr > th,
+    table.b-table.b-table-stacked-sm > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-sm > thead,
+    table.b-table.b-table-stacked-sm > tfoot,
+    table.b-table.b-table-stacked-sm > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-sm > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-sm > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-sm > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-sm > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 767.99px) {
+    /* under MD  */
+    table.b-table.b-table-stacked-md {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-md,
+    table.b-table.b-table-stacked-md > tbody,
+    table.b-table.b-table-stacked-md > tbody > tr,
+    table.b-table.b-table-stacked-md > tbody > tr > td,
+    table.b-table.b-table-stacked-md > tbody > tr > th,
+    table.b-table.b-table-stacked-md > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-md > thead,
+    table.b-table.b-table-stacked-md > tfoot,
+    table.b-table.b-table-stacked-md > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-md > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-md > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-md > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-md > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 991.99px) {
+    /* under LG  */
+    table.b-table.b-table-stacked-lg {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-lg,
+    table.b-table.b-table-stacked-lg > tbody,
+    table.b-table.b-table-stacked-lg > tbody > tr,
+    table.b-table.b-table-stacked-lg > tbody > tr > td,
+    table.b-table.b-table-stacked-lg > tbody > tr > th,
+    table.b-table.b-table-stacked-lg > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-lg > thead,
+    table.b-table.b-table-stacked-lg > tfoot,
+    table.b-table.b-table-stacked-lg > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-lg > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-lg > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-lg > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-lg > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 1199.99px) {
+    /* under XL  */
+    table.b-table.b-table-stacked-xl {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-xl,
+    table.b-table.b-table-stacked-xl > tbody,
+    table.b-table.b-table-stacked-xl > tbody > tr,
+    table.b-table.b-table-stacked-xl > tbody > tr > td,
+    table.b-table.b-table-stacked-xl > tbody > tr > th,
+    table.b-table.b-table-stacked-xl > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-xl > thead,
+    table.b-table.b-table-stacked-xl > tfoot,
+    table.b-table.b-table-stacked-xl > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-xl > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-xl > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-xl > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-xl > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+/* Details row styling */
+table.b-table > tbody > tr.b-table-details > td {
+    border-top: none;
+}
+</style><style type="text/css">.fade-enter-active, .fade-leave-active {
+    transition: opacity .15s linear;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}
+
+/* workaround for https://github.com/bootstrap-vue/bootstrap-vue/issues/1560 */
+/* source: _input-group.scss */
+
+.input-group > .input-group-prepend > .b-dropdown > .btn,
+.input-group > .input-group-append:not(:last-child) > .b-dropdown > .btn,
+.input-group > .input-group-append:last-child > .b-dropdown:not(:last-child):not(.dropdown-toggle) > .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group > .input-group-append > .b-dropdown > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .b-dropdown > .btn,
+.input-group > .input-group-prepend:first-child > .b-dropdown:not(:first-child) > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Special styling for type=range and type=color input */
+input.form-control[type="range"],
+input.form-control[type="color"] {
+    height: 2.25rem;
+}
+input.form-control.form-control-sm[type="range"],
+input.form-control.form-control-sm[type="color"] {
+    height: 1.9375rem;
+}
+input.form-control.form-control-lg[type="range"],
+input.form-control.form-control-lg[type="color"] {
+    height: 3rem;
+}
+
+/* Less padding on type=color */
+input.form-control[type="color"] {
+    padding: 0.25rem 0.25rem;
+}
+input.form-control.form-control-sm[type="color"] {
+    padding: 0.125rem 0.125rem;
+}
+
+/* Add support for fixed layout table */
+table.b-table.b-table-fixed {
+    table-layout: fixed;
+}
+
+/* Busy table styling */
+table.b-table[aria-busy='false'] {
+    opacity: 1;
+}
+table.b-table[aria-busy='true'] {
+    opacity: 0.6;
+}
+
+/* Sort styling */
+table.b-table > thead > tr > th,
+table.b-table > tfoot > tr > th {
+    position: relative;
+}
+table.b-table > thead > tr > th.sorting,
+table.b-table > tfoot > tr > th.sorting {
+    padding-right: 1.5em;
+    cursor: pointer;
+}
+table.b-table > thead > tr > th.sorting::before,
+table.b-table > thead > tr > th.sorting::after,
+table.b-table > tfoot > tr > th.sorting::before,
+table.b-table > tfoot > tr > th.sorting::after {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    opacity: 0.4;
+    padding-bottom: inherit;
+    font-size: inherit;
+    line-height: 180%;
+}
+table.b-table > thead > tr > th.sorting::before,
+table.b-table > tfoot > tr > th.sorting::before {
+    right: 0.75em;
+    content: '\2191';
+}
+table.b-table > thead > tr > th.sorting::after,
+table.b-table > tfoot > tr > th.sorting::after {
+    right: 0.25em;
+    content: '\2193';
+}
+table.b-table > thead > tr > th.sorting_asc::after,
+table.b-table > thead > tr > th.sorting_desc::before,
+table.b-table > tfoot > tr > th.sorting_asc::after,
+table.b-table > tfoot > tr > th.sorting_desc::before {
+    opacity: 1;
+}
+
+/* Stacked table layout */
+/* Derived from http://blog.adrianroselli.com/2017/11/a-responsive-accessible-table.html */
+/* Always stacked */
+table.b-table.b-table-stacked {
+    width: 100%;
+}
+table.b-table.b-table-stacked,
+table.b-table.b-table-stacked > tbody,
+table.b-table.b-table-stacked > tbody > tr,
+table.b-table.b-table-stacked > tbody > tr > td,
+table.b-table.b-table-stacked > tbody > tr > th,
+table.b-table.b-table-stacked > caption {
+    display: block;
+}
+
+/* Hide stuff we can't deal with, or shouldn't show */
+table.b-table.b-table-stacked > thead,
+table.b-table.b-table-stacked > tfoot,
+table.b-table.b-table-stacked > tbody > tr.b-table-top-row,
+table.b-table.b-table-stacked > tbody > tr.b-table-bottom-row {
+    display: none;
+}
+
+/* inter-row top border */
+table.b-table.b-table-stacked > tbody > tr > :first-child {
+    border-top-width: 0.4rem;
+}
+
+/* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+table.b-table.b-table-stacked > tbody > tr > [data-label] {
+    display: grid;
+    grid-template-columns: 40% auto;
+    grid-gap: 0.25rem 1rem;
+}
+
+/* generate row cell "heading" */
+table.b-table.b-table-stacked > tbody > tr > [data-label]::before {
+    content: attr(data-label);
+    display: inline;
+    text-align: right;
+    overflow-wrap: break-word;
+    font-weight: bold;
+    font-style: normal;
+}
+
+@media all and (max-width: 575.99px) {
+    /* Under SM */
+    table.b-table.b-table-stacked-sm {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-sm,
+    table.b-table.b-table-stacked-sm > tbody,
+    table.b-table.b-table-stacked-sm > tbody > tr,
+    table.b-table.b-table-stacked-sm > tbody > tr > td,
+    table.b-table.b-table-stacked-sm > tbody > tr > th,
+    table.b-table.b-table-stacked-sm > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-sm > thead,
+    table.b-table.b-table-stacked-sm > tfoot,
+    table.b-table.b-table-stacked-sm > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-sm > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-sm > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-sm > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-sm > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 767.99px) {
+    /* under MD  */
+    table.b-table.b-table-stacked-md {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-md,
+    table.b-table.b-table-stacked-md > tbody,
+    table.b-table.b-table-stacked-md > tbody > tr,
+    table.b-table.b-table-stacked-md > tbody > tr > td,
+    table.b-table.b-table-stacked-md > tbody > tr > th,
+    table.b-table.b-table-stacked-md > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-md > thead,
+    table.b-table.b-table-stacked-md > tfoot,
+    table.b-table.b-table-stacked-md > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-md > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-md > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-md > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-md > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 991.99px) {
+    /* under LG  */
+    table.b-table.b-table-stacked-lg {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-lg,
+    table.b-table.b-table-stacked-lg > tbody,
+    table.b-table.b-table-stacked-lg > tbody > tr,
+    table.b-table.b-table-stacked-lg > tbody > tr > td,
+    table.b-table.b-table-stacked-lg > tbody > tr > th,
+    table.b-table.b-table-stacked-lg > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-lg > thead,
+    table.b-table.b-table-stacked-lg > tfoot,
+    table.b-table.b-table-stacked-lg > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-lg > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-lg > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-lg > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-lg > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+@media all and (max-width: 1199.99px) {
+    /* under XL  */
+    table.b-table.b-table-stacked-xl {
+        width: 100%;
+    }
+    table.b-table.b-table-stacked-xl,
+    table.b-table.b-table-stacked-xl > tbody,
+    table.b-table.b-table-stacked-xl > tbody > tr,
+    table.b-table.b-table-stacked-xl > tbody > tr > td,
+    table.b-table.b-table-stacked-xl > tbody > tr > th,
+    table.b-table.b-table-stacked-xl > caption {
+        display: block;
+    }
+    /* hide stuff we can't deal with, or shouldn't show */
+    table.b-table.b-table-stacked-xl > thead,
+    table.b-table.b-table-stacked-xl > tfoot,
+    table.b-table.b-table-stacked-xl > tbody > tr.b-table-top-row,
+    table.b-table.b-table-stacked-xl > tbody > tr.b-table-bottom-row {
+        display: none;
+    }
+    /* inter-row top border */
+    table.b-table.b-table-stacked-xl > tbody > tr > :first-child {
+        border-top-width: 0.4rem;
+    }
+    /* convert TD/TH contents to "cells". Caveat: child elements become cells! */
+    table.b-table.b-table-stacked-xl > tbody > tr > [data-label] {
+        display: grid;
+        grid-template-columns: 40% auto;
+        grid-gap: 0.25rem 1rem;
+    }
+    /* generate row cell "heading" */
+    table.b-table.b-table-stacked-xl > tbody > tr > [data-label]::before {
+        content: attr(data-label);
+        display: inline;
+        text-align: right;
+        overflow-wrap: break-word;
+        font-weight: bold;
+        font-style: normal;
+    }
+}
+
+/* Details row styling */
+table.b-table > tbody > tr.b-table-details > td {
+    border-top: none;
+}
+</style><style type="text/css">
+.app-settings-button[data-v-da67e022] {
+  top: 132px !important;
+}
+</style><style type="text/css">.app-settings-button[data-v-a8bfd972]{position:fixed;top:100px}.app-settings-button--right[data-v-a8bfd972]{right:0;border-top-right-radius:0;border-bottom-right-radius:0}.app-settings-button--left[data-v-a8bfd972]{left:0;border-top-left-radius:0;border-bottom-left-radius:0}</style><style type="text/css">#settings .mdk-drawer__content{width:300px}#settings .mdk-drawer__scrim{background-color:rgba(56,59,61,.5)}#settings .col-form-label{font-size:.75rem;text-transform:uppercase;color:#b8bdc2;line-height:1rem;font-weight:500}</style><style type="text/css">.ps-container{position:relative}</style><style type="text/css">.form-image-group{position:relative}.form-image-group .form-check{margin:0}.form-image-group .form-check-inline .form-check-input{position:absolute;z-index:-1;opacity:0}.form-image-group label{cursor:pointer;margin:0;padding:4px;border:1px solid #f0f1f2;border-radius:.25rem}.form-image-group :checked~label{padding:2px;border:3px solid #2196f3}.is-valid .form-image-group :checked~label{border-color:#66bb6a}.is-invalid .form-image-group label{border-color:#f44336}</style><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body class=" layout-fluid">
+
+    <div class="preloader" style="display: none;">
+        <div class="sk-double-bounce">
+            <div class="sk-child sk-double-bounce1"></div>
+            <div class="sk-child sk-double-bounce2"></div>
+        </div>
+    </div>
+
+    <!-- Header Layout -->
+    <div class="mdk-header-layout js-mdk-header-layout frnd-hdr" data-domfactory-upgraded="mdk-header-layout">
+
+        <!-- Header -->
+
+        <div id="header" data-fixed="" class="mdk-header js-mdk-header mb-0" data-domfactory-upgraded="mdk-header" style="padding-top: 64px;"><div class="mdk-header__bg"><div class="mdk-header__bg-front"></div><div class="mdk-header__bg-rear"></div></div>
+            <div class="mdk-header__content">
+
+                <!-- Navbar -->
+                <nav id="default-navbar" class="navbar navbar-expand navbar-dark bg-primary m-0 mdk-header--fixed" data-primary="data-primary">
+                    <div class="container-fluid">
+                        <!-- Toggle sidebar -->
+                        <button class="navbar-toggler d-block" data-toggle="sidebar" type="button">
+                            <span class="material-icons">menu</span>
+                        </button>
+                       
+                        <!-- Brand -->
+                        <a href="http://qc.testyt.com/default.aspx" class="navbar-brand">
+                            <img src="./Student_files/qc.png" class="logo-img img-fluid" style="max-height: 60px;transform: translateY(-50%);">
+                            <span class="d-none d-xs-md-block"><span id="lbluniversityName">QC University 50</span>  - <span id="isfullservicethenlbl">GTE DIRECT CENTRE</span></span>
+                        </a>
+
+                        <div class="flex"></div>
+
+                        <ul class="nav navbar-nav flex-nowrap head-nav">
+
+                            <!-- User dropdown -->
+                            <li class="nav-item ml-1 ml-md-3">
+                                                                   
+                                    Welcome  &nbsp;<b><span id="lblusername">Aishwarya H Sawant</span></b>
+                               <!-- <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="login.aspx">
+                                        <i class="material-icons">lock</i> Logout
+                                    </a>
+                                </div> -->
+                            </li>
+                            <li class="nav-item dropdown ml-1 ml-md-3">
+                                <select name="ctl00$ddlseclanguage" id="ddlseclanguage">
+	<option value="0">Select Language</option>
+	<option value="zh">Chinese</option>
+	<option value="ar">Arabic</option>
+</select>   
+                            </li>
+                            <li>
+                                <a href="http://qc.testyt.com/logout.aspx">Logout</a>
+                            </li>
+                            <!-- // END User dropdown -->
+
+                        </ul>
+                        <!-- // END Menu -->
+                    </div>
+                </nav>
+                <!-- // END Navbar -->
+                <div class="head-bgbtm"></div>
+            </div>
+        </div>
+
+        <!-- // END Header -->
+
+        <!-- Header Layout Content -->
+        <div class="mdk-header-layout__content" style="padding-top: 84px;">
+
+            <div data-push="" data-responsive-width="992px" class="mdk-drawer-layout js-mdk-drawer-layout" data-domfactory-upgraded="mdk-drawer-layout">
+                <div class="mdk-drawer-layout__content page " style="transform: translate3d(0px, 0px, 0px);">
+
+                    <form method="post" action="http://qc.testyt.com/default.aspx" id="ctl00">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="2O2LvI1iALtDSIVP63bskrYI3V4QJlX374HDQzPvigdxcWIMFOuI6IejRk+BRGBPR1yU1Np3TqwQdngsfsWy+Z+KCBTp1CuDq2PP0XyNqqVhXhLAe4Z3bYejIQEkMBJN/QbwgKhDaH86D/tmkSVt7eruzZyo1A9/8qTDd/qTiynSao33SRPW2DDbCueCGTfeiuTDME5G1HWZKjnTYDfdUvJid2qVErX5Y+4r55/dz1POnLPzXN5KrfRBIwfaT9hl+2nHnd+48edlkNxF79qoX8skFc93ZSCWSWNwPlrr7EmcYSEe927uAZt9I1bA55KQ9o6p98Y/FW9YHHBxLHscaBJuJBDFTB81EPi+o7UsFPZmxapwlTwVtyuCYXw1mMTioQIDdGMoKcUYsFcPgaOpXoGn3CkbW7ADVj9wP+QB5UL1RzgShPx9dhai9f/U40O6OCq3OXXYVEcsOn2faubVh007EwvcYl3kOvH4VfdXIMeD0QLpqRILWVuxMCJ8eMIfEpKiI64PdP3O75uncvLBwz962c1IcLt3Yv/F7KZFtFo=">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="MfvYFmXaN8Fc7L1H/Fu5MOskGWu+yXlvnw/W1HrjP2GI84ETyoyDrlN89i9P/tOx47W/3l9NUOv/631DsQS51xaQCAAcPVyFlYV38AW0oSTw7B6oJKHLatCkDPqaeMfs">
+</div>
+                        
+
+    <div class="col-lg container-fluid page__container">
+        <ol class="breadcrumb" style="    margin-top: -22px;    margin-bottom: 14px;">
+            <li class="breadcrumb-item"><a href="http://qc.testyt.com/default.aspx">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <div class="pg-title">Manage Applications</div>
+                <div class="bk-app-list"><img src="back.png"><span>Back to <br>Applicants List</span></div>    
+            </div>
+            
+            <div class="col-lg-6 col-12">
+                <div class="search-bar">
+                    <input type="text">
+                    <button><img src="search-icon.png"></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="nxt-prv-bnt-wrpr">
+                    <div class="pre-nxt-btn"><img src="previous.png"></div>
+                    <div class="pre-nxt-btn"><img src="next.png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <div class="app-id-wrpr">
+                    <div class="app-id-txt">Applicant ID</div>
+                    <div class="app-id-no">234</div>
+                </div>
+                <div class="stp-icon-wrpr">
+                    <img src="stp.png">
+                    <div class="clearfix">
+                        <div class="stp-date">02.01.2021</div>
+                        <div class="stp-date">02.01.2021</div>
+                        <div class="stp-date">02.01.2021</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="clearfix text-center">
+                    <div class="box-info bg-orange">
+                      <div class="box-info-label">
+                        LEVEL OF RISK
+                      </div>
+                      <div class="box-info-ttl">
+                        HIGH
+                      </div>
+                      <div class="box-info-mrk">
+                        31%
+                      </div>
+                    </div>
+                    <div class="box-info bg-yellow">
+                      <div class="box-info-label">
+                        SATISFACTION
+                      </div>
+                      <div class="box-info-ttl">
+                        MODERATE
+                      </div>
+                      <div class="box-info-mrk">
+                        72%
+                      </div>
+                    </div>
+                    <div class="box-info bg-orange">
+                      <div class="box-info-label">
+                        SEVERITY
+                      </div>
+                      <div class="box-info-ttl">
+                        HIGH
+                      </div>
+                      <div class="box-info-mrk">
+                        49
+                      </div>
+                    </div>
+                    <div class="recm-caaut-wrpr">
+                      <img src="tumb.png">
+                      <div class="recm-caaut-txt">
+                        RECOMMENDED <br>WITH CAUTION
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 col-12">
+                <table cellpadding="0" cellspacing="0" class="frm-tab-cer">
+                    <tbody><tr>
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">FAMILY NAME</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">FIRST NAME</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">MIDDLE NAME/S</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-2">
+                               <tbody><tr>
+                                   <td class="third-row-label">DATE OF BIRTH</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                                   <td class="third-row-label third-row-label-g">GENDER</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">COUNTRY OF RESIDENCE</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">PASSPORT NO.</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">NATIONALITY</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr>
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">INSTITUTION APPLIED</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr> 
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">COURSE APPLIED</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr> 
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">PACKAGE APPLIED</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                    <tr> 
+                       <td>
+                           <table cellpadding="0" cellspacing="0" class="frm-tab-cer-inner frm-tab-cer-inner-1">
+                               <tbody><tr>
+                                   <td class="third-row-label">FACILITATING AGENT</td>
+                                   <td class="third-row-input">
+                                    <input type="text" name="">
+                                       
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                       </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="col-lg-5 col-12">
+                <div class="row ul-img-wrpr">
+                    <div class="col-lg-5 col-12">
+                        <img src="user-img.png" class="img-fluid">
+                    </div>
+                    <div class="col-lg-7 col-12">
+                        <div class="app-id-no text-center">GTE-AR-ABC12345</div>
+                        <div class="rgt-btn-wrpr rgt-btn-wrpr-icon"><img src="ml-us-icon.png">ASSESSMENT REPORT <br>PROCTOR FEEDBACK</div>
+                        <div class="rgt-btn-wrpr">Documents upload reminder</div>
+                        <div class="rgt-btn-wrpr">Resend Final Report</div>
+                        <div class="rgt-btn-wrpr">Create Applicant Notification</div>
+                        <div class="rgt-btn-wrpr">Resend OTP to Applicant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row btm-info-img-row">
+            <div class="col-12">
+               <div class="btm-info-img-wrpr">
+                   <img src="pr-dt.png">
+               </div>
+               <div class="btm-info-img-wrpr">
+                   <img src="cr-ud.png">
+               </div>
+               <div class="btm-info-img-wrpr">
+                   <img src="st-pr.png">
+               </div> 
+               <div class="btm-info-img-wrpr">
+                   <img src="fn-sg.png">
+               </div>
+               <div class="btm-info-img-wrpr">
+                   <img src="pro-rep.png">
+               </div>
+               <div class="btm-info-img-wrpr">
+                   <img src="app-doc.png">
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="apll-doc-txt">Applicant Documents</div>
+                <div class="app-qus-anw-wrpr">
+                    <div class="app-qus-anw-ttl">DOCUMENTS REQUESTED</div>
+                    <div class="app-qus-anw-q">Documents as evidence of Identity:</div>
+                    <div class="app-qus-anw-a"><span class="app-qus-anw-yes">YES</span>Copy of the bio page of passport</div>
+                    <div class="app-qus-anw-a"><span class="app-qus-anw-yes">YES</span>Certified copy of birth certificate</div>
+                    <div class="app-qus-anw-a"><span class="app-qus-anw-no">NO</span>Copy of Drivers Licence</div>
+                    <div class="app-qus-anw-a"><span class="app-qus-anw-no">NO</span>Copy of National Identity Card</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+         
+            var isfullservice = '0';
+            if (isfullservice == 0)
+                $("#ContentPlaceHolder1_service_gte_instructions").show();
+            else if (isfullservice == 2)
+                $("#ContentPlaceHolder1_service2_instructions").show();
+            else
+                $("#ContentPlaceHolder1_defaultinstructions").show();
+        });
+          $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Dashboard').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Dashboard').addClass('active');
+        });
+
+    </script>
+
+                    </form>
+
+                </div>
+
+                <div class="mdk-drawer js-mdk-drawer" id="default-drawer" data-align="start" data-position="left" data-domfactory-upgraded="mdk-drawer" data-persistent="" data-opened=""><div class="mdk-drawer__scrim" style=""></div>
+                    <div class="mdk-drawer__content " style="">
+                        <div class="sidebar sidebar-left sidebar-dark bg-dark o-hidden ps ps--active-y" data-perfect-scrollbar="">
+                            <div class="sidebar-p-y">
+
+                                <!-- Account menu -->
+                                <div class="sidebar-heading" style="margin-top: -20px;">Aishwarya H Sawant</div>
+                                <ul class="sidebar-menu">
+                                      <li class="sidebar-menu-item" id="preliminary_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#preliminary">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/before you start.png"></i>
+                                          Before you start 
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="preliminary">
+                                            <li class="sidebar-menu-item" id="preliminarys">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/preliminary.aspx">
+                                                    <span class="sidebar-menu-text">Tutorial &amp; Instructions </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="preliminaryquestion">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/preliminaryquestion.aspx">
+                                                    <span class="sidebar-menu-text">Test your Knowledge</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicantdeclaration">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantdeclaration.aspx">
+                                                    <span class="sidebar-menu-text">Declarations</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                      <li class="sidebar-menu-item" id="schedulecounselling" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#counselling">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/message board.png"></i>
+                                           Schedule your Evaluation
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="counselling">
+                                            <li class="sidebar-menu-item" id="schedule">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/schedule_conselling.aspx?name=Aishwarya%20H%20Sawant&amp;email=aishwarya@sodelsolutions.com">
+                                                    <span class="sidebar-menu-text">Schedule Now</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="counsellingcenter_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#counsellingcenter">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/message board.png"></i>
+                                           Counselling Center
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="counsellingcenter">
+                                            <li class="sidebar-menu-item" id="counselling_center">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/counselling_center.aspx?name=Aishwarya%20H%20Sawant&amp;email=aishwarya@sodelsolutions.com">
+                                                    <span class="sidebar-menu-text">Counselling Center</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="profile_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#profile">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/profile.png"></i>
+                                           Manage Profile
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="profile">
+                                            <li class="sidebar-menu-item" id="changepassword">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/updatepassword.aspx">
+                                                    <span class="sidebar-menu-text">Change Password</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="updatepreferences">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/updateprefernces.aspx">
+                                                    <span class="sidebar-menu-text">Update Preferences </span>
+                                                </a>
+                                            </li>
+                                             <li class="sidebar-menu-item" id="studedetails" style="display:none">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/student_details.aspx?formid=29">
+                                                    <span class="sidebar-menu-text">Student Details</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>                                  
+                                    <li class="sidebar-menu-item" id="personal_menu_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#personal_menu">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/student info.png"></i>
+                                            Your Details
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="personal_menu">
+                                           
+                                            <li class="sidebar-menu-item" id="personaldetails">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/personaldetails.aspx?formid=1">
+                                                    <span class="sidebar-menu-text">Personal Details</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicantcontactdetail">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantcontactdetail.aspx?formid=2">
+                                                    <span class="sidebar-menu-text">Contact Details</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="knowyourstudent">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/knowyourstudent.aspx?formid=3">
+                                                    <span class="sidebar-menu-text">Identification Details</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicanteducation">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicanteducation.aspx?formid=4">
+                                                    <span class="sidebar-menu-text">Education Qualifications</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicantlanguage">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantlanguage.aspx?formid=5">
+                                                    <span class="sidebar-menu-text">English Competency</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicantworkexperience">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantworkexperience.aspx?formid=7">
+                                                    <span class="sidebar-menu-text">Work Experience</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicantsocial">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantsocial.aspx?formid=8">
+                                                    <span class="sidebar-menu-text">Social Profile</span>
+                                                </a>
+                                            </li>
+                                             <li class="sidebar-menu-item" style="display:none" id="applicantrefrencecheck">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantrefrencecheck.aspx?formid=6">
+                                                    <span class="sidebar-menu-text">Reference Check</span>
+                                                </a>
+                                            </li>                                            
+                                            <li class="sidebar-menu-item" id="applicantreview">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantreview.aspx">
+                                                    <span class="sidebar-menu-text">Review &amp; Submit</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="clarificationquestion">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/clarificationquestion.aspx">
+                                                    <span class="sidebar-menu-text">Clarification Question(s)</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="uploaddocuments">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/uploaddocuments.aspx">
+                                                    <span class="sidebar-menu-text"> Documents Upload</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="studentapplication_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#Application">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/student application.png"></i>
+                                                Your Application
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="Application">
+                                            <li class="sidebar-menu-item" id="applicantcourse">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/courseapplication.aspx">
+                                                    <span class="sidebar-menu-text">Application</span>
+                                                </a>
+                                            </li>    
+                                            <li class="sidebar-menu-item" id="your_sop">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicant_sop.aspx">
+                                                    <span class="sidebar-menu-text">SOP / Essay</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicantcredittransfer">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantcredittransfer.aspx?formid=12">
+                                                    <span class="sidebar-menu-text">Credit Transfer</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="studentapplication_finances" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#Finances">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/your finance.png"></i>
+                                                Your Finances
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="Finances">
+                                            
+                                            <li class="sidebar-menu-item" id="applicantscholarship">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantscholarships.aspx">
+                                                    <span class="sidebar-menu-text">Scholarships</span>
+                                                </a>
+                                            </li>
+                                             <li class="sidebar-menu-item" id="applicantscholarshipstatus">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantscholarshipstatus.aspx">
+                                                    <span class="sidebar-menu-text">Scholarships Status</span>
+                                                </a>
+                                            </li>
+                                             <li class="sidebar-menu-item" id="applicantfunding">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantfunding.aspx?formid=11">
+                                                    <span class="sidebar-menu-text">Cost Calculator</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li id="Dashboard" class="sidebar-menu-item open active" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/Default.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/message board.png"></i>
+                                            <span class="sidebar-menu-text">Dashboard </span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li id="Instructions" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/preliminary.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/before you start.png"></i>
+                                            <span class="sidebar-menu-text">Before you start </span>
+                                        </a>
+                                    </li>
+                                      <li id="gtestudentdetail" class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_studentdetailsN.aspx?formid=21" "="">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/student info.png"></i>
+                                            <span class="sidebar-menu-text">Your Details  </span>
+                                        </a>
+                                    </li>
+                                    <li id="Declaration" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_declaration.aspx?formid=20">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/student application.png"></i>
+                                            <span class="sidebar-menu-text">Declaration  </span>
+                                        </a>
+                                    </li>
+                                    <li id="Tutorial" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_tutorial.aspx?formid=17">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/message board.png"></i>
+                                            <span class="sidebar-menu-text">Tutorial</span>
+                                        </a>
+                                    </li>
+                                    <li id="Verification" class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/schedule_conselling.aspx?name=Aishwarya%20H%20Sawant&amp;email=aishwarya@sodelsolutions.com">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/message board.png"></i>
+                                            <span class="sidebar-menu-text">Schedule Now </span>
+                                        </a>
+                                    </li>
+                                    <li id="Certification" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_preliminary_section.aspx?formid=18">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/gte.png"></i>
+                                            <span class="sidebar-menu-text">Certification  </span>
+                                        </a>
+                                    </li>
+                                    <li id="ViewCertificate" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_certificateN.aspx" "="">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/message board.png"></i>
+                                            <span class="sidebar-menu-text">View Certificate </span>
+                                        </a>
+                                    </li>
+                                    <li id="GTEAssessment" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_questions1.aspx?formid=22">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/admissions offer.png"></i>
+                                            <span class="sidebar-menu-text">GTE Assessment</span>
+                                        </a>
+                                    </li>
+                                    <li id="SOPBuilder" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_sop_builder.aspx?formid=26" "="">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/admissions offer.png"></i>
+                                            <span class="sidebar-menu-text">SOP Builder</span>
+                                        </a>
+                                    </li>
+                                      
+                                      <li id="DocumentsUpload" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_supportingdocument.aspx" "="">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/admissions offer.png"></i>
+                                            <span class="sidebar-menu-text">Documents Upload</span>
+                                        </a>
+                                    </li>
+                                     <li id="GTEREport" class="sidebar-menu-item" style="">
+                                        <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_ReportN.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="./Student_files/admissions offer.png"></i>
+                                            <span class="sidebar-menu-text">GTE Report</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="Gte_list" style="display: none;">
+                                        <a class="sidebar-menu-button" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#Gte">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/gte.png"></i>
+                                            GTE Certification 
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="Gte">                                           
+                                            <li class="sidebar-menu-item" id="gtetutorial">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_tutorial.aspx?formid=17">
+                                                    <span class="sidebar-menu-text">GS &amp; GTE Tutorial </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gtepreliminarysection1">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_preliminary_section.aspx?formid=18">
+                                                    <span class="sidebar-menu-text">Certificate Test - Stage 1</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gtepreliminarysection2" style="display:none;">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_preliminaryquestion.aspx?formid=19">
+                                                    <span class="sidebar-menu-text">Certificate Test - Stage 2</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gteCertificate">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_certificate.aspx">
+                                                    <span class="sidebar-menu-text">View GTE Certificate</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gtedeclaration">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/gte_declaration.aspx?formid=20">
+                                                    <span class="sidebar-menu-text">Declaration</span>
+                                                </a>
+                                            </li>                                            
+                                        </ul>
+                                    </li>
+                                    
+                                     <li class="sidebar-menu-item" id="admissionsOffer_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#admissionsOffer">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/admissions offer.png"></i>
+                                            Your Choices
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="admissionsOffer">
+                                            <li class="sidebar-menu-item" id="applicantchoices">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantchoicestatus.aspx">
+                                                    <span class="sidebar-menu-text">View Status</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>                                     
+                                    <li class="sidebar-menu-item" id="viewCOE_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#coeOffers">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/Coe.png"></i>
+                                           Your Offers
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="coeOffers">
+                                            <li class="sidebar-menu-item" id="applicantcoes">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantcoe.aspx">
+                                                    <span class="sidebar-menu-text">View Generated COE(s)</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="visaapplication_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#visaapplication">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/your visa.png"></i>
+                                            Visa Center
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="visaapplication">
+                                            <li class="sidebar-menu-item" id="applicantvisa">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/australiavisainstruction.aspx">
+                                                    <span class="sidebar-menu-text">Australian Visa Form</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="verifyandsubmit">
+                                                <a class="sidebar-menu-button">
+                                                    <span class="sidebar-menu-text">Verify and submit  </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="visadocumentupload">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/australiavisadocumentupload.aspx">
+                                                    <span class="sidebar-menu-text">Documents upload  </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="Viewvisastatus">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/visastatus.aspx">
+                                                    <span class="sidebar-menu-text">View Status </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li class="sidebar-menu-item" id="feepayment_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#payments">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/fee payment.png"></i>
+                                           Fee &amp; Payments 
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="payments">
+                                            <li class="sidebar-menu-item" id="yourpayment">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicant_payments.aspx">
+                                                    <span class="sidebar-menu-text">Your Payment</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li class="sidebar-menu-item" id="predeparture_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#predeparture">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/pre departure.png"></i>
+                                          Pre-Departure
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="predeparture">
+                                            <li class="sidebar-menu-item" id="predeparturetutorial">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/predeparturetutorial.aspx">
+                                                    <span class="sidebar-menu-text">Tutorial</span>
+                                                </a>
+                                            </li>
+                                         </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="supportservice_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#services">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/Support services.png"></i>
+                                           Support Services
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="services">
+                                            <li class="sidebar-menu-item" id="supportservices">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/applicantsupportservices.aspx">
+                                                    <span class="sidebar-menu-text">Support Services</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="exam_list" style="display: none;">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="http://qc.testyt.com/default.aspx#exam_menu">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="./Student_files/Support services.png"></i>
+                                        Assessment Module
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="exam_menu">
+                                            <li class="sidebar-menu-item" id="exammodule">
+                                                <a class="sidebar-menu-button" href="http://qc.testyt.com/exammodule.aspx">
+                                                    <span class="sidebar-menu-text">Your Assessments</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 561px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 250px;"></div></div></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- App Settings FAB -->
+            <div id="app-settings"><div data-v-da67e022=""><button data-v-a8bfd972="" data-v-da67e022="" type="button" class="btn btn-dark app-settings-button app-settings-button--right" aria-controls="settings" aria-expanded="false"><i data-v-a8bfd972="" class="material-icons">settings</i></button> <div data-v-da67e022="" id="settings" data-align="end" class="mdk-drawer js-mdk-drawer" data-position="right" data-domfactory-upgraded="mdk-drawer"><div class="mdk-drawer__scrim" style=""></div><div class="mdk-drawer__content" style=""><div class="ps-container sidebar o-hidden sidebar-light sidebar-right bg-transparent border-1 ps ps--active-y"><div class="p-2"><div class="card mb-1"><div role="button" class="card-header" aria-controls="settings-layout" aria-expanded="true"><h5 class="card-title">Layout</h5></div> <div id="settings-layout" class="collapse show" role="tabpanel"><div class="card-body"><fieldset id="__BVID__11" role="group" aria-labelledby="__BVID__11__BV_label_" class="b-form-group form-group"><legend id="__BVID__11__BV_label_" class="col-form-label pt-0">Layout</legend><div role="group" aria-labelledby="__BVID__11__BV_label_" class=""><div role="radiogroup" tabindex="-1" class="row no-gutters flex-nowrap form-image-group"><div class="col"><div class="form-check form-check-inline"><input id="layout-default" type="radio" name="layout" autocomplete="off" class="form-check-input" value="default"><label for="layout-default" class="form-check-label"><img src="./Student_files/navigation-side.svg" alt="Layout Fluid" class="img-fluid"></label></div></div><div class="col ml-2"><div class="form-check form-check-inline"><input id="layout-fixed" type="radio" name="layout" autocomplete="off" class="form-check-input" value="fixed"><label for="layout-fixed" class="form-check-label"><img src="./Student_files/navigation-top.svg" alt="Layout Fixed" class="img-fluid"></label></div></div></div> <!----> <!----> <!----> <!----><!----><!----><!----></div></fieldset><fieldset id="__BVID__15" role="group" aria-labelledby="__BVID__15__BV_label_" class="b-form-group form-group mb-0"><legend id="__BVID__15__BV_label_" class="col-form-label pt-0">Text Direction</legend><div role="group" aria-labelledby="__BVID__15__BV_label_" class=""><!----> <!----> <!----> <div class="custom-checkbox-toggle custom-control-inline mr-1 custom-control custom-checkbox custom-control-inline"><input id="group-layout-1" type="checkbox" autocomplete="off" true-value="true" class="custom-control-input" value="true"><label for="group-layout-1" class="custom-control-label">&nbsp;</label></div> <label for="group-layout-1" class="mb-0"><span class="form-label m-0">Text Direction</span></label><!----><!----><!----></div></fieldset></div></div></div><div class="card mb-1"><div role="button" class="card-header collapsed" aria-controls="settings-mainDrawer" aria-expanded="false"><h5 class="card-title">Main Drawer</h5></div> <div id="settings-mainDrawer" role="tabpanel" style="display: none;" class="collapse"><div class="card-body"><fieldset id="__BVID__20" role="group" aria-labelledby="__BVID__20__BV_label_" class="b-form-group form-group"><legend id="__BVID__20__BV_label_" class="col-form-label pt-0">Align</legend><div role="group" aria-labelledby="__BVID__20__BV_label_" class=""><!----> <div id="group-mainDrawer-0" role="radiogroup" tabindex="-1" class=""><div class="custom-control custom-radio custom-control-inline"><input id="group-mainDrawer-0__BV_radio_0_opt_" type="radio" name="group-mainDrawer-0" autocomplete="off" class="custom-control-input" value="start"><label for="group-mainDrawer-0__BV_radio_0_opt_" class="custom-control-label"><span>Start</span></label></div><div class="custom-control custom-radio custom-control-inline"><input id="group-mainDrawer-0__BV_radio_1_opt_" type="radio" name="group-mainDrawer-0" autocomplete="off" class="custom-control-input" value="end"><label for="group-mainDrawer-0__BV_radio_1_opt_" class="custom-control-label"><span>End</span></label></div></div> <!----> <!----> <!----><!----><!----><!----></div></fieldset><fieldset id="__BVID__24" role="group" aria-labelledby="__BVID__24__BV_label_" class="b-form-group form-group mb-0"><legend id="__BVID__24__BV_label_" class="col-form-label pt-0">Sidebar Skin</legend><div role="group" aria-labelledby="__BVID__24__BV_label_" class=""><!----> <div id="group-mainDrawer-1" role="radiogroup" tabindex="-1" class=""><div class="custom-control custom-radio custom-control-inline"><input id="group-mainDrawer-1__BV_radio_0_opt_" type="radio" name="group-mainDrawer-1" autocomplete="off" class="custom-control-input" value="dark"><label for="group-mainDrawer-1__BV_radio_0_opt_" class="custom-control-label"><span>Dark</span></label></div><div class="custom-control custom-radio custom-control-inline"><input id="group-mainDrawer-1__BV_radio_1_opt_" type="radio" name="group-mainDrawer-1" autocomplete="off" class="custom-control-input" value="light"><label for="group-mainDrawer-1__BV_radio_1_opt_" class="custom-control-label"><span>Light</span></label></div><div class="custom-control custom-radio custom-control-inline"><input id="group-mainDrawer-1__BV_radio_2_opt_" type="radio" name="group-mainDrawer-1" autocomplete="off" class="custom-control-input" value="transparent"><label for="group-mainDrawer-1__BV_radio_2_opt_" class="custom-control-label"><span>Transparent</span></label></div></div> <!----> <!----> <!----><!----><!----><!----></div></fieldset></div></div></div><div class="card mb-1"><div role="button" class="card-header collapsed" aria-controls="settings-mainNavbar" aria-expanded="false"><h5 class="card-title">Main Navbar</h5></div> <div id="settings-mainNavbar" role="tabpanel" style="display: none;" class="collapse"><div class="card-body"><fieldset id="__BVID__32" role="group" aria-labelledby="__BVID__32__BV_label_" class="b-form-group form-group mb-0"><legend id="__BVID__32__BV_label_" class="col-form-label pt-0">Main Navbar</legend><div role="group" aria-labelledby="__BVID__32__BV_label_" class=""><!----> <div id="group-mainNavbar-0" role="radiogroup" tabindex="-1" class=""><div class="custom-control custom-radio custom-control-inline"><input id="group-mainNavbar-0__BV_radio_0_opt_" type="radio" name="group-mainNavbar-0" autocomplete="off" class="custom-control-input" value="primary"><label for="group-mainNavbar-0__BV_radio_0_opt_" class="custom-control-label"><span>Primary</span></label></div><div class="custom-control custom-radio custom-control-inline"><input id="group-mainNavbar-0__BV_radio_1_opt_" type="radio" name="group-mainNavbar-0" autocomplete="off" class="custom-control-input" value="light"><label for="group-mainNavbar-0__BV_radio_1_opt_" class="custom-control-label"><span>Light</span></label></div><div class="custom-control custom-radio custom-control-inline"><input id="group-mainNavbar-0__BV_radio_2_opt_" type="radio" name="group-mainNavbar-0" autocomplete="off" class="custom-control-input" value="dark"><label for="group-mainNavbar-0__BV_radio_2_opt_" class="custom-control-label"><span>Dark</span></label></div></div> <!----> <!----> <!----><!----><!----><!----></div></fieldset></div></div></div>  <!----></div><div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 559px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 498px;"></div></div></div></div></div></div></div>
+
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    
+
+    <!-- Bootstrap -->
+    <script src="./Student_files/popper.min.js.download"></script>
+    <script src="./Student_files/bootstrap.min.js.download"></script>
+
+    <!-- Perfect Scrollbar -->
+    <script src="./Student_files/perfect-scrollbar.min.js.download"></script>
+
+    <!-- MDK -->
+    <script src="./Student_files/dom-factory.js.download"></script>
+    <script src="./Student_files/material-design-kit.js.download"></script>
+
+    <!-- App JS -->
+    <script src="./Student_files/app.js.download"></script>
+
+    <!-- Highlight.js -->
+    <script src="./Student_files/hljs.js.download"></script>
+
+    <!-- App Settings (safe to remove) -->
+    <script src="./Student_files/app-settings.js.download"></script>
+
+
+    <!-- Global Settings -->
+    <script src="./Student_files/settings.js.download"></script>
+
+    <!-- Moment.js -->
+    <script src="./Student_files/moment.min.js.download"></script>
+    <script src="./Student_files/moment-range.min.js.download"></script>
+
+    <!-- Chart.js -->
+    <script src="./Student_files/Chart.min.js.download"></script>
+
+    <!-- UI Charts Page JS -->
+    <script src="./Student_files/chartjs-rounded-bar.js.download"></script>
+    <script src="./Student_files/chartjs.js.download"></script>
+
+    <!-- Chart.js Samples -->
+
+    <!-- Required by countdown -->
+    <script src="./Student_files/moment.min.js.download"></script>
+    <!-- Easy Countdown -->
+    <script src="./Student_files/jquery.countdown.min.js.download"></script>
+    <script src="./Student_files/tipso.min.js.download"></script>
+    <script src="./Student_files/intlTelInput-jquery.min.js.download"></script>
+    <script src="./Student_files/intlTelInput.min.js.download"></script>
+    <script src="./Student_files/prism.js.download"></script>
+    <!-- Init -->
+    <script src="./Student_files/countdown.js.download"></script>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <script>
+        function SOAfterConfirmationFunction(data) {
+            //logic using the data object passed to the function
+            var UniversityID = '50';
+            var ApplicantID = '205';
+            var meetingtime = data.bookingInfo.MeetingTimes["0"].UTCTime;
+            var CustomerTime = data.bookingInfo.MeetingTimes["0"].CustomerTime;
+            var msg = data.bookingInfo.Note;
+            var customername = data.bookingInfo.CustomerName;
+            var customeremail = data.bookingInfo.CustomerEmail;
+            var custormerphone = data.bookingInfo.CustomerPhone;
+            var eventtyprname = data.bookingInfo.EventTypeName;            
+            var userData = {
+                universityid :UniversityID,
+                applicantid : ApplicantID,
+                name: customername,
+                email: customeremail,
+                eventtype: eventtyprname,
+                message: msg,
+                meetingtime: meetingtime,
+                CustomerTime: CustomerTime
+            };
+
+            var uData = JSON.stringify(userData);
+            $.ajax({
+                type: "POST",
+                url: "schedule_conselling.aspx/AddBookingData",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{ 'uData': '"+ uData +"' }",
+            });            
+        }
+    </script>
+    <script>
+        function showFaqQuestion(question, answer) {
+            $('body').append('<div class="modal" id="faq-ans-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="faq-modal-header modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="faq-question">' + question + '</div><div class="faq-answer">' + answer + '</div></div></div></div></div>');                                    
+            $('#faq-ans-modal').modal('show');
+             $('#faq-ans-modal').on('hidden.bs.modal', function () {
+                 $('#faq-ans-modal').remove();
+            });
+        }
+        $(document).ready(function () {
+            var fullService = ("0");
+            var declarationCompleted = ("True".toLowerCase() == "true");
+            var studentDetailsCompleted = ("False".toLowerCase() == "true");
+            var isDomesticStudent = ("False".toLowerCase() == "true");
+            var GteDeclarationDoneByApplicant = ("True".toLowerCase() == "true");
+            var UniversityID = '50';
+            var gtesubService = '0';
+
+            if (fullService == 0) {//hide when its gte service
+                $("#counsellingcenter_list").hide();
+                //$("#updatepreferences").hide();
+                //$("#profile_list").hide();
+            }
+            if (fullService == 1 || fullService == 0) {
+                $("#exam_list").hide();
+                if (!declarationCompleted) {
+                    $("#gtepart1").hide();
+                    $("#gtepart2").hide();
+                    //$("#gtevideoquestion").hide();
+                    $("#gtestudent_sop").hide();
+                    $("#gte_sop_draft").hide();
+                    $("#draftgtereport").hide();
+                    $("#gte_downlload_your_sop").hide();
+                    $("#download_gtereport").hide();
+                    $("#gtedocument_list").hide();
+                    $("#gtedocmentupload").hide();
+                    $("#schedulecounselling").show();
+                    $("#admissionsOffer_list").hide();
+                    $("#studentapplication_list").hide();
+                    $("#visaapplication_list").hide();
+                    $("#feepayment_list").hide();
+                    $("#viewCOE_list").hide();
+                    $("#predeparture_list").hide();
+                    $("#personal_menu_list").hide();
+                    $("#studentapplication_list").hide();
+                    $("#supportservice_list").hide();
+                    $("#studentapplication_finances").hide();
+                    $("#admissionsOffer_list").hide();
+                    if (fullService == 0) {
+                        $("#gtestudentdetail").show();
+                        //$("#preliminary_list").hide();
+                        $("#personal_menu_list").hide();
+                        $("#studentapplication_list").hide();
+                    }
+                    else if (fullService == 1) {
+                        $("#gteevalution_list").hide();
+                        $("#gtestudentdetail").hide();
+                        $("#preliminary_list").show();
+                    }
+
+                    if (isDomesticStudent)
+                        $("#Gte_list").hide();
+                }
+                else {
+                    $("#schedulecounselling").show();
+                    $("#admissionsOffer_list").show();
+                    $("#studentapplication_list").show();
+                    $("#visaapplication_list").show();
+                    $("#feepayment_list").show();
+                    $("#viewCOE_list").show();
+                    $("#predeparture_list").show();
+                    $("#supportservice_list").show();
+                    $("#gtepart1").show();
+                    $("#gtepart2").hide();//$("#gtepart2").show();
+                    //$("#gtevideoquestion").show();
+                    $("#gtestudent_sop").show();
+                    $("#gte_sop_draft").show();
+                    $("#draftgtereport").show();
+                    $("#gte_downlload_your_sop").show();
+                    $("#download_gtereport").show();
+                    $("#gtedocmentupload").show();
+                    $("#gtedocument_list").show();
+                    $("#studentapplication_finances").show();
+                    if (fullService == 0) {
+                        $("#gtestudentdetail").show();
+                        //$("#preliminary_list").hide();
+                        $("#personal_menu_list").hide();
+                        $("#studentapplication_list").hide();
+
+                        $("#profile_list").hide();
+                        $("#studentapplication_finances").hide();
+                        $("#admissionsOffer_list").hide();
+                        $("#viewCOE_list").hide();
+                        $("#visaapplication_list").hide();
+                        $("#feepayment_list").hide();
+                        $("#predeparture_list").hide();
+                        $("#supportservice_list").hide();
+                    }
+                    else if (fullService == 1) {
+                       // $("#gtestudentdetail").hide();
+                        $("#preliminary_list").show();
+                        $("#personal_menu_list").show();
+                        $("#studentapplication_list").show();
+
+                    }
+
+                    if (!studentDetailsCompleted) {
+                        $("#gtepart1").hide();
+                        $("#gtepart2").hide();
+                        $("#gtevideoquestion").hide();
+                        $("#gtestudent_sop").hide();
+                        $("#gte_sop_draft").hide();
+                        $("#draftgtereport").hide();
+                        $("#gte_downlload_your_sop").hide();
+                        $("#download_gtereport").hide();
+                        $("#gtedocmentupload").hide();
+                        $("#gteevalution_list").hide();
+                    }
+                    if (fullService == 1) {
+                        if (studentDetailsCompleted) {
+                            if (!GteDeclarationDoneByApplicant) {
+                                $("#gteevalution_list").hide();
+                                $("#gtepart1").hide();
+                                $("#gtepart2").hide();
+                                $("#gtestudent_sop").hide();
+                                $("#gte_sop_draft").hide();
+                                $("#draftgtereport").hide();
+                                $("#gte_downlload_your_sop").hide();
+                                $("#download_gtereport").hide();
+                                $("#gtedocmentupload").hide();
+                                $("#gtedocument_list").hide();
+                            }
+                        }
+                    }
+
+                    if (isDomesticStudent) {
+                        $("#Gte_list").hide();
+                        $("#gteevalution_list").hide();
+                        $("#gtedocument_list").hide();
+                        $("#visaapplication_list").hide();
+                        $("#predeparture_list").hide();
+                    }
+
+                }
+
+            }
+            else if (fullService == 2) {
+                $("#studedetails").show();
+                $("#schedulecounselling").hide();
+                $("#updatepreferences").hide();
+                $("#counsellingcenter_list").hide();
+                //$("#preliminary_list").hide();
+                $("#personal_menu_list").hide();
+                $("#studentapplication_list").hide();
+                $("#studentapplication_finances").hide();
+                $("#Gte_list").hide();
+                $("#gteevalution_list").hide();
+                $("#gtedocument_list").hide();
+                $("#Verification").hide();
+                $("#admissionsOffer_list").hide();
+                $("#viewCOE_list").hide();
+                $("#visaapplication_list").hide();
+                $("#feepayment_list").hide();
+                $("#predeparture_list").hide();
+                $("#supportservice_list").hide();
+            }
+            else if (fullService == 3) {
+                $("#GTEAssessment").hide();
+                $("#SOPBuilder").hide();
+                $("#CounsellorAdvise").hide();
+                $("#DocumentsUpload").hide();
+            }
+            else if (fullService == 4) {//Evalution
+                $("#Certification").hide();
+                $("#ViewCertificate").hide();
+                $("#Tutorial").hide();
+
+            }
+
+            if (fullService != 0 || fullService != 1) {
+                $("#Dashboard").hide();
+                $("#Instructions").hide();
+                //$("#gtestudentdetail").hide();
+                $("#Declaration").hide();
+                $("#Tutorial").hide();
+                $("#Certification").hide();
+                $("#ViewCertificate").hide();
+                $("#GTEAssessment").hide();
+                $("#SOPBuilder").hide();
+                $("#DocumentsUpload").hide();
+                $("#GTEREport").hide();               
+            }
+            
+                
+
+            if (fullService == 3 || fullService == 4 /*|| fullService == 0*/) {
+                $("#preliminary_list").hide();
+                $("#schedulecounselling").hide();
+            }
+            if (fullService == 3 || fullService == 4) {
+                $("#exam_list").hide();
+                $("#schedulecounselling").hide();
+                 $("#studedetails").show();
+                $("#schedulecounselling").hide();
+                $("#updatepreferences").hide();
+                $("#counsellingcenter_list").hide();
+                $("#profile_list").hide();
+                $("#personal_menu_list").hide();
+                $("#studentapplication_list").hide();
+                $("#studentapplication_finances").hide();
+                $("#gtedocument_list").hide();
+                $("#admissionsOffer_list").hide();
+                $("#viewCOE_list").hide();
+                $("#visaapplication_list").hide();
+                $("#feepayment_list").hide();
+                $("#predeparture_list").hide();
+                $("#supportservice_list").hide();
+            }
+            if (fullService == 1) {
+                $("#Dashboard").hide();
+                if (gtesubService == 2) {
+                   
+                    $("#GTEAssessment").hide();
+                    $("#SOPBuilder").hide();
+                    $("#CounsellorAdvise").hide();
+                    $("#DocumentsUpload").hide();
+                }
+                else if (gtesubService == 3) {
+                    $("#Tutorial").hide();
+                    $("#Certification").hide();
+                    $("#ViewCertificate").hide();
+                }
+            }
+            if (fullService == 0) {
+                $("#Dashboard").show();
+                $("#Instructions").show();
+                $("#gtestudentdetail").show();
+                $("#Declaration").show();
+                $("#Tutorial").show();
+                $("#Certification").show();
+                $("#ViewCertificate").show();
+                $("#GTEAssessment").show();
+                $("#SOPBuilder").show();
+                $("#DocumentsUpload").show();
+                $("#GTEREport").show();
+                $("#Verification").show();
+                $("#preliminary_list").hide();
+                $("#schedulecounselling").hide();
+                $("#Gte_list").hide();
+                $("#profile_list").hide();
+            }
+            else {
+                $("#gtestudentdetail").hide();
+            }
+                //$("#gteevalution_list").show();
+            //$("#Dashboard").hide();
+            //$("#Instructions").hide();
+            //$("#gtestudentdetail").hide();
+            //$("#Declaration").hide();
+            //$("#Tutorial").hide();
+            //$("#Certification").hide();
+            //$("#ViewCertificate").hide();
+            //$("#GTEAssessment").hide();
+            //$("#SOPBuilder").hide();
+            //$("#DocumentsUpload").hide();
+            //$("#GTEREport").hide();
+            //$("#Verification").hide();
+            
+           
+
+            $("#ddlseclanguage").change(function () {
+            var selectedvalue = $("#ddlseclanguage").val();
+                $.ajax({
+                    type: "POST",
+                    url: "default.aspx/SetSecondaryLanguage",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{ 'tempP': '"+selectedvalue+"' }",
+                });
+            });            
+        });
+
+     var isVerifiedByAdmin = 'True';
+     function ajaxcalltocheckidVerified() {
+            var UserID = '205';
+            $.ajax({
+                type: "POST",
+                url: "default.aspx/isstudentverified",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{'UserID': '" + UserID + "'}",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                        if (result == "1") {
+                             True = true;
+                             var hostName = "http://qc.testyt.com/";
+                             location.replace(hostName + "default.aspx");
+                        }
+                    }
+                }
+            });
+
+        }
+        if (isVerifiedByAdmin == "False")
+            setInterval(ajaxcalltocheckidVerified, 1000);
+        
+    </script>
+    
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>
+          <div class="modal-body">
+           <div id="userAlertMsg"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: blue;">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+</body></html>

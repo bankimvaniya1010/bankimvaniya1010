@@ -15,7 +15,7 @@ public partial class register : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     string webURL = String.Empty;
-    protected string LoginURL = "";
+    protected string LoginURL = "", fullservice = "";
     public string logourl = string.Empty;
     public string universityGTMCode = string.Empty;
     public int? noofregistered = 0;
@@ -26,8 +26,16 @@ public partial class register : System.Web.UI.Page
         var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
         logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         universityGTMCode = university.university_gtm_code;
-        if(university.numberof_applicant != null)
-            noofregistered =Convert.ToInt32(university.numberof_applicant);
+        if (university.numberof_applicant != null)
+            noofregistered = Convert.ToInt32(university.numberof_applicant);
+        if (university.full_service == 0)
+            gtehandbook.Visible = true;
+        else
+        {
+            gtehandbook.Visible = false;
+            chk2.Visible = false;
+        }
+        fullservice = university.full_service.ToString();
     }
 
     protected void btnSignUp_Click(object sender, EventArgs e)
@@ -38,7 +46,7 @@ public partial class register : System.Web.UI.Page
         applicantdetails objapplicant = new applicantdetails();
         try
         {
-            var registeredapplicant = (from ad in db.applicantdetails                                       
+            var registeredapplicant = (from ad in db.applicantdetails
                                        where ad.universityid == universityID && ad.isdeletedbyAdmin == false
                                        select ad.applicantid).ToList();
             if (noofregistered != 0 && registeredapplicant.Count >= noofregistered)
@@ -82,19 +90,29 @@ public partial class register : System.Web.UI.Page
                     objapplicant.Is_clarification_submitted = false;
                     objapplicant.isverifiedbyAdmin = false;
                     objapplicant.isdeletedbyAdmin = false;
-                    objapplicant.Isold_or_new_applicant = false;
+                    objapplicant.Isold_or_new_applicant = true;
+                    objapplicant.verification_key_ = Guid.NewGuid().ToString();
                     db.applicantdetails.Add(objapplicant);
                     db.SaveChanges();
+                    var vString = objapplicant.verification_key_;
                     var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
                     //sender email notification to university 
                     if (university.emai_notification1 != null)
                     {
-                        sendNotification(university.emai_notification1, email.Value, id);
+                        sendNotification(university.emai_notification1, email.Value, id, vString);
                     }
 
                     if (university.emai_notification2 != null)
                     {
-                        sendNotification(university.emai_notification2, email.Value, id);
+                        sendNotification(university.emai_notification2, email.Value, id, vString);
+                    }
+                    if (university.emai_notification1 == "support@gte.direct" || university.emai_notification2 == "support@gte.direct")
+                    { }
+                    else
+                    {
+                        if (webURL.Contains("http://localhost:50180") || webURL.Contains("http://qc.")) { }
+                        else
+                            sendNotification("support@gte.direct", email.Value, id, vString);
                     }
                     //end
                     string html = string.Empty;
@@ -103,7 +121,7 @@ public partial class register : System.Web.UI.Page
                     if (university.full_service == 0) // if (Utility.GetUniversityId() == 13) exsisting now change acc #376
                     {
                         html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/gte_direct_signupNotification.html"));
-                        emailsubject = "Welcome to GTE-Direct Online Centre (GOC)";
+                        emailsubject = "GTE Direct: #1 Login and complete Steps 1 to 6 (Pre-Assessment)";
                     }
                     else if (university.full_service == 1)
                     {
@@ -125,7 +143,7 @@ public partial class register : System.Web.UI.Page
                     LoginURL = webURL + "/login.aspx?active=1";
                     html = html.Replace("@activeLoginurl", LoginURL);
                     html = html.Replace("@Loginurl", webURL + "login.aspx");
-                    html = html.Replace("@UniversityEmailID", university.email);
+                    html = html.Replace("@UniversityEmailID", "support@gte.direct"/*university.email*/);
                     html = html.Replace("@UniversityChatID", university.chatid);
                     html = html.Replace("@UniversityMobileNumber", university.mobile);
                     html = html.Replace("@applicantid", id.ToString());
@@ -141,15 +159,40 @@ public partial class register : System.Web.UI.Page
         catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
 
-    private void sendNotification(string notificationemail, string studentemail,int studentid) {
+    private void sendNotification(string notificationemail, string studentemail, int studentid, string veri_string) {
         var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
 
         string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerNotification.html"));
         html = html.Replace("@UniversityName", university.university_name);
         html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);
-        
+
         html = html.Replace("@Email", studentemail);
         html = html.Replace("@studentid", Convert.ToString(studentid));
-        objCom.SendMail(notificationemail, html, "New Applicant Registered");
+        var adminurl = webURL + "admin/login.aspx";
+        html = html.Replace("@adminLoginurl", adminurl);
+
+        var verifyapplicant = webURL + "verifyapplicant.aspx?key=" + veri_string;
+        html = html.Replace("@verifyapplicant", verifyapplicant);
+
+        var subject = string.Empty;
+        if (university.full_service == 0)
+        {
+            subject = "GTE Direct Centre";
+            html = html.Replace("@srvicename", "GTE Direct Centre");
+            html = html.Replace("@team", "GTE Direct Team");
+        }
+        else if (university.full_service == 2)
+        {
+            subject = "Assessment Centre";
+            html = html.Replace("@srvicename", "Assessment Centre");
+            html = html.Replace("@team", "The Assessment Centre Team");
+        }
+        else
+        {
+            subject = "Application Centre";
+            html = html.Replace("@srvicename", "Application Centre");
+            html = html.Replace("@team", "The Application Centre Team");
+        }
+        objCom.SendMail(notificationemail, html, "You have a New Registration in your "+subject+". Please verify.");
     }
 }

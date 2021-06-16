@@ -38,10 +38,23 @@ public partial class edituniversitydetails : System.Web.UI.Page
                 {
                     ViewState["universityID"] = universityId;
                     objCommon.BindCountries(ddlCountry);
-                    objCommon.BindTimeZone(ddlTimeZone);                    
+                    objCommon.BindTimeZone(ddlTimeZone);
 
-                    string[] airportDistanceValue = existingUninversity.distance_from_airport.Split(' ');
-                    string[] railDistanceValue = existingUninversity.distance_from_railway.Split(' ');
+                    string[] airportDistanceValue = null;
+                    string[] railDistanceValue = null;
+
+                    if (existingUninversity.distance_from_airport != null)
+                    {
+                        airportDistanceValue = existingUninversity.distance_from_airport.Split(' ');
+                    }
+                    if (existingUninversity.distance_from_railway != null)
+                    {
+                        railDistanceValue = existingUninversity.distance_from_railway.Split(' ');
+                    }
+
+
+                    //string[] airportDistanceValue = existingUninversity.distance_from_airport.Split(' ');
+                    //string[] railDistanceValue = existingUninversity.distance_from_railway.Split(' ');
 
                     txtUniName.Value = existingUninversity.university_name;
                     ddlflag.Items.FindByValue(existingUninversity.university_flag.ToString()).Selected = true;                     
@@ -49,7 +62,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtUniAddress.Value = existingUninversity.address;
                     txtUniContactPerson.Value = existingUninversity.contact_person;
                     txtUniWebsite.Value = existingUninversity.website;
-                    txtUniAffiliation.Value = existingUninversity.affiliation.ToString();
+                    //txtUniAffiliation.Value = existingUninversity.affiliation.ToString();
                     txtEmail.Value = existingUninversity.email;
                     txtMobile.Value = existingUninversity.mobile;
                     txtunichatId.Value = existingUninversity.chatid;
@@ -59,29 +72,53 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtUniLDescription.Value = existingUninversity.long_description;
                     txtUniAirport.Value = existingUninversity.closest_airport;
                     txtapplicantno.Value = existingUninversity.numberof_applicant.ToString();
-                    txtUniAirportDistance.Value = airportDistanceValue[0];
-                    foreach (ListItem item in airDistanceUnit.Items)
+                    if (airportDistanceValue != null)
                     {
-                        if (item.Text == airportDistanceValue[1])
+                        txtUniAirportDistance.Value = airportDistanceValue[0];
+                        foreach (ListItem item in airDistanceUnit.Items)
                         {
-                            item.Selected = true;
-                            break;
+                            if (item.Text == airportDistanceValue[1])
+                            {
+                                item.Selected = true;
+                                break;
+                            }
                         }
                     }
+                    if (railDistanceValue != null)
+                    {
+                        txtUniRailDistance.Value = railDistanceValue[0];
+                        foreach (ListItem item in railDistanceUnit.Items)
+                        {
+                            if (item.Text == railDistanceValue[1])
+                            {
+                                item.Selected = true;
+                                break;
+                            }
+                        }
+                    }
+                    //txtUniAirportDistance.Value = airportDistanceValue[0];
+                    //foreach (ListItem item in airDistanceUnit.Items)
+                    //{
+                    //    if (item.Text == airportDistanceValue[1])
+                    //    {
+                    //        item.Selected = true;
+                    //        break;
+                    //    }
+                    //}
 
-                    txtUniRailDistance.Value = railDistanceValue[0];
-                    foreach (ListItem item in railDistanceUnit.Items)
-                    {
-                        if (item.Text == railDistanceValue[1])
-                        {
-                            item.Selected = true;
-                            break;
-                        }
-                    }
+                    //txtUniRailDistance.Value = railDistanceValue[0];
+                    //foreach (ListItem item in railDistanceUnit.Items)
+                    //{
+                    //    if (item.Text == railDistanceValue[1])
+                    //    {
+                    //        item.Selected = true;
+                    //        break;
+                    //    }
+                    //}
 
                     txtUniGettingAround.Value = existingUninversity.getting_around;
                     txtUniLatitude.Value = Convert.ToString(existingUninversity.latitude);
-                    txtUniLongitude.Value = Convert.ToString(existingUninversity.longitude);
+                    //txtUniLongitude.Value = Convert.ToString(existingUninversity.longitude);
 
                     ddlTimeZone.SelectedValue = existingUninversity.time_zone;
                     hidCityField.Value = Convert.ToString(existingUninversity.cityid);
@@ -175,7 +212,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.address = txtUniAddress.Value.Trim();
             universityObj.website = txtUniWebsite.Value.Trim();
             universityObj.contact_person = txtUniContactPerson.Value.Trim();
-            universityObj.affiliation = Convert.ToInt32(txtUniAffiliation.Value);
+            universityObj.affiliation = txtUniAffiliation.Value;
             universityObj.email = txtEmail.Value.Trim();
             universityObj.mobile = txtMobile.Value.Trim();
             universityObj.chatid = txtunichatId.Value.Trim();
@@ -191,7 +228,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.distance_from_railway = txtUniRailDistance.Value.Trim() + " " + railDistanceUnit.Value.Trim();
             universityObj.getting_around = txtUniGettingAround.Value.Trim();
             universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
-            universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
+            //universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
             universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
             universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
             universityObj.full_service = Convert.ToInt32(subscription.SelectedValue);

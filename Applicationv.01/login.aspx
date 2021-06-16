@@ -81,7 +81,7 @@
     <body class="login">
         <div class="d-flex align-items-center" style="min-height: 100vh">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
-                <div class="text-center mt-5 mb-1">
+                <div class="text-center mb-1">
                     <div class="avatar avatar-lg">
                         <%--<img src="assets/images/logo/primary.svg" class="avatar-img rounded-circle" alt="LearnPlus" />--%>
                     </div>
@@ -90,12 +90,12 @@
                     <a class="navbar-brand m-0">The <%=isfullservicethenlbl %></a>
                 </div>
                 <div class="card navbar-shadow">
-                    <div class="card-header text-center" style="position: relative;">
+                    <div class="card-header text-center" style="position: relative;margin-bottom: -8px;">
                         <div class="frnd-hdr logo-img">
                             <img src="<%=logourl %>" class="logo-img"/>
                         </div>
-                        <h4 class="card-title">Student Login</h4>
-                        <p class="card-subtitle">Access your account</p>
+                        <h4 class="card-title">Student Login Portal</h4>
+                        <p class="card-subtitle" style="color: black;">Access your account</p>
                     </div>
                     <div class="card-body">
 

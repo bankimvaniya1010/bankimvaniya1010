@@ -12,7 +12,7 @@ using NReco.PdfGenerator;
 
 public partial class admin_applicantlist : System.Web.UI.Page
 {
-    int roleID = 0, ApplicantID = 0, universityID = 0;
+    int roleID = 0, applicantID = 0, universityID = 0;
     string universityName;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
@@ -43,27 +43,31 @@ public partial class admin_applicantlist : System.Web.UI.Page
         try
         {
             var applicant = (from ad in db.applicantdetails
-                             join cm in db.countriesmaster on ad.nationality equals cm.id into cmdata
-                             from x in cmdata.DefaultIfEmpty()
-                             join am in db.applicationmaster on ad.universityid equals am.universityid into amdata
-                             from x1 in amdata.Where(c => c.preferenceid == 1 && c.applicantid == ad.applicantid).DefaultIfEmpty()
-                             join course in db.coursemaster on x1.course equals course.courseid into coursedata
-                             from x2 in coursedata.DefaultIfEmpty()
-                             join coursedate in db.course_dates on x1.course equals coursedate.courseid into dateData
-                             from x3 in dateData.Where(a => a.id.ToString() == x1.commencementdate).DefaultIfEmpty()
+                             //join cm in db.countriesmaster on ad.nationality equals cm.id into cmdata
+                             //from x in cmdata.DefaultIfEmpty()
+                             //join am in db.applicationmaster on ad.universityid equals am.universityid into amdata
+                             //from x1 in amdata.Where(c => c.preferenceid == 1 && c.applicantid == ad.applicantid).DefaultIfEmpty()
+                             //join course in db.coursemaster on x1.course equals course.courseid into coursedata
+                             //from x2 in coursedata.DefaultIfEmpty()
+                             //join coursedate in db.course_dates on x1.course equals coursedate.courseid into dateData
+                             //from x3 in dateData.Where(a => a.id.ToString() == x1.commencementdate).DefaultIfEmpty()
                              join sm in db.students on ad.applicantid equals sm.studentid into studentData
                              from x4 in studentData.DefaultIfEmpty()
                              where ad.universityid == universityID && ad.isdeletedbyAdmin == false
-                             select new
+                             select new details()
                              {
                                  applicantid = ad.applicantid,
-                                 nationality = (x == null) ? string.Empty : x.country_name,
-                                 courseapplied = (x2 == null) ? string.Empty : x2.coursename,
+                                 nationality = string.Empty ,
+                                 nationalityID = ad.nationality,
+                                 courseapplied = string.Empty,//(x2 == null) ? string.Empty : x2.coursename,
                                  name = ad.firstname + " " + ad.lastname,
                                  applicationstartdate = x4.creationdate,
-                                 commencementdate = (x3 == null) ? (DateTime?)null : x3.commencementdate,
+                                 commencementdate = string.Empty//(x3 == null) ? (DateTime?)null : x3.commencementdate,
 
                              }).SortBy("applicantid").ToList();
+            foreach (var item in applicant) {
+                item.nationality = objCom.GetCountryDiscription(item.nationality);
+            }
             if (applicant != null)
             {
                 gvApplicant.DataSource = applicant;
@@ -74,6 +78,18 @@ public partial class admin_applicantlist : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+
+    }
+
+    public class details
+    {
+        public int? applicantid { get; set; }
+        public int? nationalityID { get; set; }
+        public string nationality { get; set; }
+        public string name { get; set; }
+        public string courseapplied { get; set; }
+        public DateTime applicationstartdate { get; set; }
+        public string commencementdate { get; set; }
 
     }
 
@@ -180,15 +196,26 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 downloadApplicantDetails(ID);
             }
             if (Comamandname.Equals("GTE Student Detail"))
-            {               
-                //var Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(ID);
-                //if (Isold_or_new_applicant == true)
-                //    Response.Redirect(webURL + "admin/gte_studentdetailsN.aspx?userid=" + ID + "&formid=" + form.formid, true);
-                //else
-                Response.Redirect(webURL + "admin/gte_studentdetailsaspx.aspx?userid=" + ID + "&formid=" + form.formid, true);
+            {
+                var Is_new_applicant = objCom.GetIS_oldOrNew_applicant(ID);
+                if (Is_new_applicant == true)
+                    Response.Redirect(webURL + "admin/gte_studentdetailsN.aspx?userid=" + ID + "&formid=" + form.formid, true);
+                else
+                    Response.Redirect(webURL + "admin/gte_studentdetailsaspx.aspx?userid=" + ID + "&formid=" + form.formid, true);
             }
             if (Comamandname.Equals("FeedBackGTE"))
-                Response.Redirect(webURL + "admin/gtereport.aspx?downloadPdf=0&type=Final&id=" + ID, true);
+            {
+                var Is_new_applicant = objCom.GetIS_oldOrNew_applicant(ID);
+                var CID = db.applicantdetails.Where(x => x.applicantid == ID && x.universityid == universityID).FirstOrDefault();
+
+                if (Is_new_applicant == true)
+                    if(!string.IsNullOrEmpty(CID.gtereportNO))
+                    Response.Redirect(webURL + "admin/gte_report_feedback.aspx?downloadPdf=0&CID=" + CID.gtereportNO, true);
+                else
+                    Response.Redirect(webURL + "admin/gtereport.aspx?downloadPdf=0&type=Final&id=" + ID, true);
+
+                //Response.Redirect(webURL + "admin/gtereport.aspx?downloadPdf=0&type=Final&id=" + ID, true);
+            }
             if (Comamandname.Equals("draftFeedBackGTE"))
                 Response.Redirect(webURL + "admin/gtereport.aspx?downloadPdf=0&type=Draft&id=" + ID, true);
 
@@ -244,11 +271,11 @@ public partial class admin_applicantlist : System.Web.UI.Page
             string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
             string fileName = Guid.NewGuid() + ".pdf";
             string filePath = string.Concat(dirPath, "\\", fileName);
-            //var Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(ApplicantID);
-            //if (Isold_or_new_applicant == true)
-            //    htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificateN.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + ApplicantID + "&universityId=" + universityID, null, filePath);
-            //else
-            htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificate1.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + ApplicantID + "&universityId=" + universityID, null, filePath);
+            var Is_new_applicant = objCom.GetIS_oldOrNew_applicant(ApplicantID);
+            if (Is_new_applicant == true)
+                htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificateN.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + ApplicantID + "&universityId=" + universityID, null, filePath);
+            else
+                htmlToPdf.GeneratePdfFromFile(webURL + "gte_certificate1.aspx?token=XS7MKjHLunMAvqzCGr&downloadPdf=1&applicantId=" + ApplicantID + "&universityId=" + universityID, null, filePath);
 
             var mode = "new";
             gte_progressbar objmapping = new gte_progressbar();
@@ -283,12 +310,12 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
 
-        //var Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(ApplicantID);
-        //if (Isold_or_new_applicant == true)
-        //    htmlToPdf.GeneratePdfFromFile(webURL + "admin/sop_reportN.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
-        //else
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/sopreport.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
-        
+        var Is_new_applicant = objCom.GetIS_oldOrNew_applicant(applicantID);
+        if (Is_new_applicant == true)
+            htmlToPdf.GeneratePdfFromFile(webURL + "sop_reportN.aspx?token=YKUcfdhNWwp17azByk&applicantId=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
+        else
+            htmlToPdf.GeneratePdfFromFile(webURL + "admin/sopreport.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
+
         Response.ContentType = "application/pdf";
         Response.AppendHeader("Content-Disposition", "attachment; filename="+type+"_SOP_Report_" + fileName);
         Response.TransmitFile(filePath);
@@ -339,11 +366,17 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
-        
-        //if (Isold_or_new_applicant == true)
-        //    htmlToPdf.GeneratePdfFromFile(webURL + "admin/gte_ReportN.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
-        //else
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/gtereport.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID+"&type="+type + "&downloadPdf=1", null, filePath);
+        var Is_new_applicant = objCom.GetIS_oldOrNew_applicant(applicantID);
+        if (Is_new_applicant == true)
+        {
+            var CID = db.applicantdetails.Where(x => x.applicantid == applicantID && x.universityid == universityID).FirstOrDefault();
+
+            if (Is_new_applicant == true)
+                if (!string.IsNullOrEmpty(CID.gtereportNO))
+                    htmlToPdf.GeneratePdfFromFile(webURL + "gte_ReportN.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID + "&CID=" + CID.gtereportNO + "&downloadPdf=1", null, filePath);
+        }
+        else
+            htmlToPdf.GeneratePdfFromFile(webURL + "admin/gtereport.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID + "&type=" + type + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
         Response.AppendHeader("Content-Disposition", "attachment; filename="+type+"_GTE_Report_" + fileName);
@@ -1171,56 +1204,67 @@ public partial class admin_applicantlist : System.Web.UI.Page
             int applicantid = Convert.ToInt32(e.Row.Cells[0].Text);
             if (LinkButton6 != null)
             {
-                //var Isold_or_new_applicant = objCom.GetIS_oldOrNew_applicant(applicantid);
-                //dynamic isgtedetils;
-                //if (Isold_or_new_applicant == true)
-                //{
-                //    isgtedetils = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).Where(x => x.Isdetailscompleted == true).FirstOrDefault();
-                //    LinkButton4.Style.Add("display", "none");
-                //    if (isgtedetils.Is_clarification_submitted == true)
-                //        lnkDownloadSOPReport.Style.Add("display", "block");
-                //    else
-                //        lnkDownloadSOPReport.Style.Add("display", "none");
-                //}
-                //else
-                //    isgtedetils = db.gte_applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
-
-                var isgtedetils = db.gte_applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
-                if (isgtedetils == null)
-                    LinkButton6.Style.Add("display", "none");
-            }
-
-            if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
-            {
-                int applicant_id = Convert.ToInt32(e.Row.Cells[0].Text);
-
-                var displayLinkButton = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
-                                          .Select(x => x.is_sop_submitted_by_applicant).FirstOrDefault();
-
-                var displatdraft = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
-                                          .Select(x => x.is_sop_submitted_draft).FirstOrDefault();
-
-                var displaygteertificate = db.gte_progressbar.Where(x => x.applicantid == applicant_id && x.universityId == universityID)
-                                          .Select(x => x.is_gte_preliminarysection2_completed).FirstOrDefault();
-                if (displaygteertificate == null || displaygteertificate == false)
-                    LinkButton8.Style.Add("display", "none");
-                if (displatdraft == null)
+                var Is_new_applicant = objCom.GetIS_oldOrNew_applicant(applicantid);
+                dynamic isgtedetils;
+                if (Is_new_applicant == true)
                 {
+                    isgtedetils = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
+                    if (isgtedetils.Isdetailscompleted == true)
+                        LinkButton6.Style.Add("display", "block");
+                    else
+                        LinkButton6.Style.Add("display", "none");
                     LinkButton4.Style.Add("display", "none");
                     LinkButton5.Style.Add("display", "none");
+                    if (isgtedetils.Is_clarification_submitted == true)
+                    {
+                        lnkDownloadSOPReport.Style.Add("display", "block");
+                        lnkGteReportFeedBack.Style.Add("display", "block");
+                    }
+                    else
+                    {
+                        lnkDownloadSOPReport.Style.Add("display", "none");
+                        lnkGteReportFeedBack.Style.Add("display", "none");
+                    }
                 }
-
-                if (!displayLinkButton)
+                else
                 {
-                    lnkDownloadGteReport.Style.Add("display", "none");
-                    lnkVerificationVideo.Style.Add("display", "none");
-                    lnkGteReportFeedBack.Style.Add("display", "none");
-                    lnkDownloadSOPReport.Style.Add("display", "none");
-                    
+                    if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
+                    {
+                        int applicant_id = Convert.ToInt32(e.Row.Cells[0].Text);
+
+                        var displayLinkButton = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
+                                                  .Select(x => x.is_sop_submitted_by_applicant).FirstOrDefault();
+
+                        var displatdraft = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
+                                                  .Select(x => x.is_sop_submitted_draft).FirstOrDefault();
+
+                        var displaygteertificate = db.gte_progressbar.Where(x => x.applicantid == applicant_id && x.universityId == universityID)
+                                                  .Select(x => x.is_gte_preliminarysection2_completed).FirstOrDefault();
+                        if (displaygteertificate == null || displaygteertificate == false)
+                            LinkButton8.Style.Add("display", "none");
+                        if (displatdraft == null)
+                        {
+                            LinkButton4.Style.Add("display", "none");
+                            LinkButton5.Style.Add("display", "none");
+                        }
+
+                        if (!displayLinkButton)
+                        {
+                            lnkDownloadGteReport.Style.Add("display", "none");
+                            lnkVerificationVideo.Style.Add("display", "none");
+                            lnkGteReportFeedBack.Style.Add("display", "none");
+                            lnkDownloadSOPReport.Style.Add("display", "none");
+
+                        }
+                    }
                 }
 
-               
+                //var isgtedetils = db.gte_applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
+                //if (isgtedetils == null)
+                //    LinkButton6.Style.Add("display", "none");
             }
+
+           
             if (roleName.ToLower() == "university admin staff 2")
             {
                 LinkButton2.Style.Add("display", "none");

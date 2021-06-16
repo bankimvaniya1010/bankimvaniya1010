@@ -4,8 +4,12 @@
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <script src="assets/js/qrcode.min.js"></script>
     <script src="assets/js/qrcode.js"></script>
-
-
+    <style>
+        video::-webkit-media-controls-fullscreen-button, video::-webkit-media-controls-play-button, video::-webkit-media-controls-pausebutton {
+    display: none;
+}
+   
+    </style>
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
@@ -87,15 +91,23 @@
                                                     <div class="col-md-6">
                                                          <%--<a href="<%# Eval("audiovideofilepath") %>" target="_blank" id="aurdiovideohyperlink">View File</a>--%>
                                                          <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:none;": "display:block;border: none;"%>">
-                                                            <video height="57px"; width="348px";  oncontextmenu="return false;" id="myAudio" controls controlslist="nodownload" disablepictureinpicture>
+                                                            <video height="57px"; width="348px";  oncontextmenu="return false;" id="myAudio" controls controlslist="nodownload" disablepictureinpicture style="border-style: groove;">
                                                                 <source src='<%# Eval("audiovideofilepath") %>'>
-                                                            </video>
+                                                            </video><br/>
+                                                             
+                                                             <button id="player" type="button" onclick="javascript:toggleSound();" class="btn btn-success" style="margin-left: 79px;">
+                                                                 PLAY
+                                                             </button>
+                                                             
                                                         </div>
                                                         
                                                         <div style="<%# Eval("iffile_isaudio_orvideo") == null? "display:block;": "display:none;border: none;"%>">
-                                                            <video width="320" height="240" oncontextmenu="return false;" id="myVideo" controls controlslist="nodownload" disablepictureinpicture>
+                                                            <video width="320" height="240" oncontextmenu="return false;" id="myVideo" controls="controls" controlslist="nodownload" disablepictureinpicture  style="border-style: groove;">
                                                                 <source src='<%# Eval("audiovideofilepath") %>'>
-                                                            </video>
+                                                            </video><br/>
+                                                            <button id="player1" type="button" onclick="javascript:toggleSound1();" class="btn btn-success" style="margin-left: 79px;">
+                                                                 PLAY
+                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -190,8 +202,7 @@
     </div>
     
     <script>
-
-
+       
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$exampaper']").click(function () {
                 if ($("#<%=rblupload.ClientID%>").is(":checked")) {
@@ -221,6 +232,8 @@
                 $("#<%=QRCodeDiv.ClientID%>").show();
                 $("#<%=uploadDiv.ClientID%>").hide();
             }
+
+          
         });
 
         var applicantid = '<%=HttpContext.Current.Session["UserID"]%>';
@@ -235,7 +248,7 @@
 
         // your input string
         //Convert hh:mm:ss7  string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
-        var secondsS;
+       <%-- var secondsS;
         if (hms.includes(":"))
             secondsS = hms.split(':').reverse().reduce((prev, curr, i) => prev + curr * Math.pow(60, i), 0);
         else
@@ -393,7 +406,7 @@
                 else
                     return true;
             }
-        }
+        }--%>
 
         setInterval(ajaxcalltocheckisanswersubmitted, 1000);
 
@@ -421,18 +434,60 @@
         }
         setInterval(ajaxcalltocheckRefreshTime, 1000);
         function ajaxcalltocheckRefreshTime() {
-            var assignID = '<%= assignID%>';
-             var exampaperid = '<%= exampaperid%>';
+            var assignid = '<%= assignID%>';
+            var examid = '<%= exampaperid%>';
+            var user = 'student';
              $.ajax({
                  type: "POST",
                  url: "view_exampaper3.aspx/RefreshTime",
                  contentType: "application/json; charset=utf-8",
                  dataType: "json",
-                  data: "{'assignID': '" + assignID + "'}",
+                 data: "{'examid': '" + examid + "','assignid': '" + assignid + "', 'user': '" + user + "'}",
                  success: function (response) {
                      if (response.d) {
                          var result = JSON.parse(response.d);
+                         var t = result.rtm;
+                         
+                         reading_countdown.innerHTML = result.rtm;
+                         countdownEl.innerHTML = result.etm;
+                         upload_countdown.innerHTML = result.utm;
 
+                         
+                         if (reading_countdown.innerHTML == '00:05:00') {
+                             $('#userAlertMsg').html("Only 5 minutes remaining");
+                             $('#alertModal').modal('show');
+                         }
+                         
+                         if (countdownEl.innerHTML == '00:10:00') {
+                             $('#userAlertMsg').html("Only 10 minutes remaining");
+                             $('#alertModal').modal('show');
+                         }
+
+                         if (upload_countdown.innerHTML == '00:05:00') {
+                             $('#userAlertMsg').html("Only 5 minutes remaining");
+                             $('#alertModal').modal('show');
+                         }
+
+                         if (reading_countdown.innerHTML == "") {
+                             reading_countdown.style.display = 'none';
+                             $("#<%=lblreading.ClientID%>").hide();
+                         }
+                         if (countdownEl.innerHTML == "") {
+                             countdownEl.style.display = 'none';
+                             $("#<%=lblexamtime.ClientID%>").hide();
+                             $("#<%=questionList.ClientID%>").hide();
+                             $('#userAlertMsg').html("Please stop writing and upload your answer sheets now. The assessment time for this assessment is over, If you continue answering the assessment, you would be disqualified");
+                             $('#alertModal').modal('show');
+                         }
+                         if (upload_countdown.innerHTML == "") {
+                             upload_countdown.style.display = 'none';
+                             $("#<%=lbluploadtime.ClientID%>").hide();
+                             $('#userAlertMsg').html("Assessmnent upload time exhausted");
+                             $('#alertModal').modal('show');
+                             ajaxcall();
+                             var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                             location.replace(hostName + "exammodule.aspx");
+                         }
                      }
                  }
              });
@@ -602,15 +657,41 @@
                 $('#audiiovideoDIv').hide();
             };
         }
-      //  var audio =document.getElementById("myAudio");
-      //  audio.onplay = function () {
-      //      audio.controls = false;//.removeAttribute('controls');
-      //      //alert("The video has started to play");
-      //  };
-      //var vid =document.getElementById("myVideo");
-      //  vid.onplay = function () {
-      //      vid.controls = false;//.removeAttribute('controls');
-      //      //alert("The video has started to play");
-      //  };
+       
+       $(document).keydown(function (event) {
+            if (event.keyCode == 32) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+                return false;
+            }
+        });
+
+        document.getElementById('myAudio').style.pointerEvents = 'none';
+        document.getElementById('myVideo').style.pointerEvents = 'none';
+        document.addEventListener('dblclick', function (event) {
+            //alert("Double-click disabled!");
+            event.preventDefault();
+            event.stopPropagation();
+        }, true //capturing phase!!
+        );
+         function toggleSound() {
+            var audioElem = document.getElementById('myAudio');
+            audioElem.play();
+            //audioElem.removeAttribute('controls');
+            var btnid = document.getElementById('player');
+            btnid.setAttribute("style", "display:none;");
+
+        }
+        function toggleSound1() {
+            var audioElem1 = document.getElementById('myVideo');
+            audioElem1.play();
+            audioElem1.setAttribute("controls","controls");
+            //audioElem.removeAttribute('controls');
+            var btnid1 = document.getElementById('player1');
+            btnid1.setAttribute("style", "display:none;");
+
+        }
+
     </script>
+
 </asp:Content>

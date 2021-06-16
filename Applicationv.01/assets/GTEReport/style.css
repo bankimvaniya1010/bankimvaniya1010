@@ -1,6 +1,5 @@
 .certificate-wrpr {
-    max-width: 800px;
-    width: 100%;
+    width: 800px;
     margin: 0 auto;
     padding: 30px;
 }
@@ -163,7 +162,7 @@ tr.first-row {}
     border-bottom: 2px dotted #d8d8d8;
 }
 .wid-460{width: 585px;}
-.box-info {float: left;width: 81px;font-size: 10px;font-weight: bold;margin-right: 6px;}
+.box-info {float: left;width: 74px;font-size: 10px;font-weight: bold;margin-right: 6px;}
 
 .box-info-label {
     color: #fff;
@@ -176,7 +175,7 @@ tr.first-row {}
 .bg-yellow {
     background-color: #ffff00 !important;
 }
-.bg-bg-darkblue{
+.bg-darkblue{
     background-color: darkblue !important;
 }
 .bg-chocolate {
@@ -207,7 +206,7 @@ tr.first-row {}
 
 .recm-caaut-wrpr {
     float: left;
-    padding: 7px 3px 7px 80px;
+    padding: 7px 3px 7px 72px;
     position: relative;
     background-color: #000;
     color: #fff;
@@ -215,8 +214,11 @@ tr.first-row {}
 
 .recm-caaut-wrpr img {
     position: absolute;
-    left: 15px;
+    left: 10px;
     top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
 .recm-txt-img{padding-right: 3px;}
@@ -390,7 +392,7 @@ td.criteria-tbl-sb-hding {
     font-size: 10px;
     background-color: #d9d9d9;
     padding: 6px 10px;
-    margin: 0 19px 0;
+    
     min-height: 96px;
     position: relative;
 }
@@ -547,6 +549,9 @@ td.rgt-img img {
 .water-mark {
     position: absolute;
     font-size: 87px;
+    -webkit-transform: rotate(-50deg);
+    -moz-transform: rotate(-50deg);
+    -ms-transform: rotate(-50deg);
     transform: rotate(-50deg);
     top: 44%;
     color: #ccc;
@@ -567,7 +572,11 @@ table.tb-chb-wrpr {
 .us-msg-wrpr-1:before {
     right: -18px;
     left: auto;
-    transform: rotate(176deg);
+border-right: 0;
+    border-left: 28px solid #d9d9d9;
+}
+
+
 }
 .usr-img-td-1{
     padding-right: 15px;
@@ -583,3 +592,11 @@ table.tb-chb-wrpr {
 }
 .graphclr{width: 2px !important;height: 6px !important;}
 .textalign{text-align: left !important; font-size: 7px !important;}
+.pr-cmt-box{    width: 584px !important;
+    margin-left: 24px !important;}
+.app-cmt-box{    width: 482px !important;
+    margin-left: 20px !important;
+    margin-right: 16px !important;}
+.potentiaol-cmt-box{ width: 558px !important;
+    margin-left: 7px !important;
+    margin-right: 18px !important;}

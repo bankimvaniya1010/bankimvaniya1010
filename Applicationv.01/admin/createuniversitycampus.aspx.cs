@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
@@ -17,7 +18,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string roleName = string.Empty;
     int universityID = 0;
-
+    string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -73,12 +74,54 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
 
             if (string.IsNullOrEmpty(existingUniversityCampus))
             {
+                universityCampusObj.Ismaincampus = Convert.ToInt32(ddlmaincampus.SelectedValue);
                 universityCampusObj.campusname = txtCampName.Value.Trim();
-                universityCampusObj.description = txtCampDescription.Value.Trim();
+                universityCampusObj.campuscountry = Convert.ToInt32(ddlcountry.SelectedValue);
+                universityCampusObj.cityid = Convert.ToInt32(hidCityID.Value);
+                universityCampusObj.campussetting = Convert.ToInt32(ddlcampussetting.SelectedValue);
+                universityCampusObj.campusaddress = txtcampusaddress.Value.Trim();
+                universityCampusObj.campuslatitude = txtLatitude.Value.Trim();
+                universityCampusObj.campuslongitude = txtLongitude.Value.Trim();
+
+                universityCampusObj.closest_airport = txtclosetairport.Value.Trim();
+                universityCampusObj.distance_from_airport = txtCampusAirportDistance.Value.Trim();
+                universityCampusObj.airDistanceUnit = airDistanceUnit.SelectedValue;
+                universityCampusObj.closest_distance_from_railway = txtCampusclosestRailDistance.Value.Trim();
+                universityCampusObj.railclosestDistanceUnit = railclosestDistanceUnit.SelectedValue;
+                universityCampusObj.distance_from_railway = txtCampusrailwaydistance.Value.Trim();
+                universityCampusObj.railwaydistanceunit = ddlrailwaydistanceunit.SelectedValue;
+                universityCampusObj.getting_around = txtcampusGettingAround.Value.Trim();
+
+                if (placeofinterestcampusimage.HasFile)
+                {
+                    docPath = docPath + "/" + universityID + "/";
+                    if (!Directory.Exists(docPath))
+                        Directory.CreateDirectory(docPath);
+                    string extension = Path.GetExtension(placeofinterestcampusimage.PostedFile.FileName);
+                    string filename = Guid.NewGuid() + extension;
+                    placeofinterestcampusimage.SaveAs(docPath + filename);
+                    universityCampusObj.placeofintrestimage = filename;
+               }
+                universityCampusObj.placeofintrestdescription = txtplaceofinterestcampus_description.Value.Trim();
+                universityCampusObj.placeofintrestdistance = txtplaceofinterestcampus_distance.Value.Trim();
+
+                universityCampusObj.Fraternities = Convert.ToInt32(ddlFraternities.SelectedValue);
+                universityCampusObj.Sororities = Convert.ToInt32(ddlSororities.SelectedValue);
+                universityCampusObj.totalstudent_campus = txttotalstu_campus.Value.Trim();
+                universityCampusObj.male_percentage = txtmale_percentage.Value.Trim();
+                universityCampusObj.female_percentage = txtfemale_percentage.Value.Trim();
+                universityCampusObj.averageage = txtaverageage.Value.Trim();
+                universityCampusObj.domesticstude = txtdomesticstude.Value.Trim();
+                universityCampusObj.statestude = txtstatestude.Value.Trim();
+                universityCampusObj.internationalstude = txtinternationalstude.Value.Trim();
+                universityCampusObj.noofnationalty = txtnoofnationalty.Value.Trim();
+
+
                 universityCampusObj.universityid = universityId;
-                universityCampusObj.faculty_description = txtFacultyDescription.Value.Trim();
-                universityCampusObj.research = txtCampResearch.Value.Trim();
-                universityCampusObj.cityid = Convert.ToInt32(hidCityID.Value);            
+                universityCampusObj.faculty_description = ".";
+                universityCampusObj.research = ".";
+                universityCampusObj.description= ".";
+
                 db.universitycampus.Add(universityCampusObj);
                 db.SaveChanges();
 

@@ -51,16 +51,16 @@
                 <div class="card navbar-shadow">
                     <div class="card-header text-center" style="position: relative;">
                         <div class="frnd-hdr logo-img">
-                            <img src="<%=logourl %>" class="logo-img img-fluid"/>
+                            <img src="<%=logourl %>" class="logo-img img-fluid" />
                         </div>
                         <h4 class="card-title">Student Sign Up</h4>
-                        <p class="card-subtitle" style="color:black">Create your account</p>
+                        <p class="card-subtitle" style="color: black">Create your account</p>
                     </div>
                     <div class="card-body">
 
-                         <div class="form-group" runat="server" visible="false" id="lblerror" >
-                            <label class="form-label badge-danger" for="course" >User is already registered with entered email address</label>
-                            
+                        <div class="form-group" runat="server" visible="false" id="lblerror">
+                            <label class="form-label badge-danger" for="course">User is already registered with entered email address</label>
+
                         </div>
 
                         <div class="">
@@ -83,42 +83,44 @@
                                         <span class="far fa-envelope"></span>
                                     </div>
                                 </div>
-                            </div>                           
+                            </div>
                         </div>
                         <asp:Button ID="buttonlogin" runat="server" Text="Sign Up" CssClass="btn btn-primary btn-block mb-3" OnClick="btnSignUp_Click" target="_blank" />
-                         
-                        <div class="form-group text-center" style="margin-bottom:-36px;">
+
+                        <div class="form-group text-center" style="margin-bottom: -36px;">
+
                             <div class="custom-control custom-checkbox">
-                                <input id="terms" type="checkbox" class="custom-control-input" checked required="">
-                                <label for="terms" class="custom-control-label text-black-70">I agree to the <Label class="text-black-70" style="text-decoration: underline;" id="lblterms">Terms of Use</Label></label>
+<asp:CheckBox runat="server" ID="chk1" /><label class="label text-black-70" id="lblterms" runat="server"><a href="assets/Privacy Policy_Final_v20210430.pdf" target="_blank">Terms of Use</a></label>
+                                <br />
+                                <asp:CheckBox runat="server" ID="chk2" /><label class="label text-black-70" id="gtehandbook" runat="server">I have read the <a href="https://www.gtedirect.com/student-handbook" target="_blank">Student Handbook</a><%--<Label class="text-black-70" style="text-decoration: underline;" id="lblterms">Terms of Use</Label>--%></label>
                             </div>
                             <br>
-                             <%--<div style="font-size: small;">
+                            <%--<div style="font-size: small;">
                                 <label> * Please use your personal email address rather than your work or school email address because this is the email address we will use to communicate with you. So, your email address needs to be one that you will always have access to even when you leave your current employer or school.</label>
                             </div>--%>
                         </div>
 
                     </div>
-                    <div class="card-footer text-center text-black-50" style="color:black">Already signed up? <a href="login.aspx" target="_blank">Login</a></div>
+                    <div class="card-footer text-center text-black-50" style="color: black">Already signed up? <a href="login.aspx" target="_blank">Login</a></div>
                 </div>
             </div>
         </div>
         <div style="display: none;" runat="server">
-                <div class="modal" id="IELTS-modal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="faq-modal-header modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="">
-                                    <span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </span>
-                                </div>
+            <div class="modal" id="IELTS-modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="faq-modal-header modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="">
+                                <span>NOT SET </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </form>
     <!-- jQuery -->
     <script src="assets/vendor/jquery.min.js"></script>
@@ -150,17 +152,32 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <script language="javascript" type="text/javascript">
-        $('#lblterms').click(function () {
-                var IELTSModal = $('#IELTS-modal');
-                $('body').append(IELTSModal);
-                $('#IELTS-modal').modal('show');
-            });
+        $(document).ready(function () {
+            //$('#lblterms').click(function () {
+            //    var IELTSModal = $('#IELTS-modal');
+            //    $('body').append(IELTSModal);
+            //    $('#IELTS-modal').modal('show');
+
+
+            //});
+        });
+
+        //$('#lblterms').click(function () {
+        //    var IELTSModal = $('#IELTS-modal');
+        //    $('body').append(IELTSModal);
+        //    $('#IELTS-modal').modal('show');
+        //});
+
         $(function () {
             $('#buttonlogin').click(function () {
                 var summary = "";
                 summary += isvalidname();
                 summary += isvalidemail();
                 summary += isvalidterms();
+                if (<%=fullservice%> == "0")
+                    summary += isvalidtermsgte();   
+                
+
                 if (summary != "") {
                     alert(summary);
                     return false;
@@ -186,7 +203,7 @@
             else {
 
                 var userinput = $("#email").val();
-                var pattern =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
                 if (!pattern.test(userinput)) {
                     return ("Please enter a valid e-mail address" + "\n");
@@ -198,19 +215,31 @@
         }
         function isvalidterms() {
 
-            if ($("#terms").prop('checked') == true) {
+            if ($("#chk1").prop('checked') == true) {
                 return "";
             }
             else {
-                return ("Please check terms & conditions " + "\n");
+                return ("Please confirm that you agree to the Terms of Use" + "\n");               
             }
+
         }
-         var uniheadercolor = '<%=Session["headercolor"]%>';           
+
+        function isvalidtermsgte() {
+            if ($("#chk2").prop('checked') == true) {
+                        return "";
+                    }
+                    else {
+                        return ("Please confirm that you agree to the Terms of Use and have read the Student Handbook " + "\n");
+                    } 
+               
+        }
+
+        var uniheadercolor = '<%=Session["headercolor"]%>';
         // setter header color
         document.documentElement.style.setProperty('--header-color', uniheadercolor);
         // getter
         document.documentElement.style.getPropertyValue('--header-color');
-            
+
     </script>
 
 </body>

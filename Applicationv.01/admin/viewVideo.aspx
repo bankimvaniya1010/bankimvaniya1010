@@ -13,11 +13,11 @@
     <div class="page ">
       <div class="container page__container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
 
                
             <%
-                    if (otherDocCount > 0)
+                    if (allDocuments.Count > 0)
                     {
                     %>
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
@@ -26,7 +26,7 @@
                         <%for (int v = 0; v < allDocuments.Count; v++)
                             {
                             int? docType = allDocuments[v].type;
-                            if (docType != 2)
+                            if (docType != 1)
                             {
                             %>
                             <div class="pdf-wrpr">
@@ -50,7 +50,11 @@
                               {
                               %>
                             <div class="col-md-4 col-6 pdf-wrpr">
-                                 <video class="img-fluid video-img mx-auto d-block" src="<%=allDocuments[v].url %>" onclick="openLink('<%=allDocuments[v].url %>')"></video>                                
+                                 <video width="290" height="240" id="myAudio" controls controlslist="nodownload" disablepictureinpicture style="border-style: groove;">
+                                                                <source src='<%=allDocuments[v].url %>'>
+                                                            </video>
+
+                                 <%--<video class="img-fluid video-img mx-auto d-block" src="<%=allDocuments[v].url %>" onclick="openLink('<%=allDocuments[v].url %>')"></video>                                --%>
                                 <div class="pdf-dcrp"><%=allDocuments[v].sectionname %></div>
                             </div>
                         <%}
@@ -59,7 +63,7 @@
                 </div>            <%} %>
 
                 <%
-                    if (videoCount == 0 && otherDocCount == 0)
+                    if (allDocuments.Count == 0)
                     {
                 %>
                 <div class="list-group-item" id="employerwebsite">

@@ -40,6 +40,14 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
+    <%--gtemanage--%>
+    <%--<script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/manage_application/style.css"></script>--%>
+     <!--Code for disabling browser back button-->
+    <script type="text/javascript">
+        function disablePrev() { window.history.forward() }
+        window.onload = disablePrev();
+        window.onpageshow = function (evt) { if (evt.persisted) disablePrev() }
+    </script>
 
 </head>
 
@@ -119,8 +127,53 @@
                        
                         <!-- Account menu -->
                        
-                        <ul class="sidebar-menu">
-                            <li class="sidebar-menu-item" id="dashboard_list">
+                        <ul class="sidebar-menu" style="margin-top: -18px;">
+
+                             <li class="sidebar-menu-item" id="dashboard" runat="server" style="margin-bottom: -12px;">
+                                        <a class="sidebar-menu-button" href="Default.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/Dashboard_ICON.png">
+                                            </i>
+                                            <span class="sidebar-menu-text">Dashboard </span>
+                                        </a>
+                                    </li>
+
+                             <li class="sidebar-menu-item" id="beforeyous" runat="server" style="margin-bottom: -12px;">
+                                        <a class="sidebar-menu-button" href="viewVideo.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                            <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/Training_Center.png">
+                                                </i>
+                                            <span class="sidebar-menu-text">Training Centre  </span>
+                                        </a>
+                                    </li>
+
+                             <li class="sidebar-menu-item" id="registeredapplicants" runat="server" style="margin-bottom: -12px;">
+                                 
+                                        <a class="sidebar-menu-button" href="registered_applicantlist.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                            <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/View_Registration.png">
+                                 </i>
+                                            <span class="sidebar-menu-text">View Registration </span>
+                                        </a>
+                                    </li>
+
+                             <li class="sidebar-menu-item" id="bulkregistrations" runat="server" style="margin-bottom: -12px;">
+                                        <a class="sidebar-menu-button" href="bulkregistrations.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/BulkRegistration_ICON.png">
+                                            </i>
+                                            <span class="sidebar-menu-text">Bulk Registration </span>
+                                        </a>
+                                    </li>
+                            <li class="sidebar-menu-item" id="manage_applications" runat="server" style="margin-bottom: -12px;">
+                                        <a class="sidebar-menu-button" href="manageapplicant.aspx?ID=<%=applicantid %>">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/ManageApplication_ICON.png">
+                                            </i>
+                                            <span class="sidebar-menu-text">Manage Applications </span>
+                                        </a>
+                                    </li>
+                            <%--<li class="sidebar-menu-item" id="dashboard_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#dashboar_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                     Dashboard
@@ -129,19 +182,30 @@
                                 <ul class="sidebar-submenu sm-indent collapse" id="dashboar_menu">
                                     <li class="sidebar-menu-item" id="dashboard">
                                         <a class="sidebar-menu-button" href="Default.aspx">
-                                            <span class="sidebar-menu-text">Dashboard</span>
+                                            <span class="sidebar-menu-text">Tutorial</span>
                                         </a>
                                     </li> 
-                                    <li class="sidebar-menu-item" id="helpingvideo">
+                                     <li class="sidebar-menu-item" id="BuyCredits" style="display:none;">
+                                        <a class="sidebar-menu-button" href="buyCredits.aspx">
+                                            <span class="sidebar-menu-text">Buy Credits</span>
+                                        </a>
+                                    </li> 
+                                </ul>
+                            </li>
+                             <li class="sidebar-menu-item" id="beforeyoustart_List">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#beforeyoustart">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    Before You Start
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="beforeyoustart">
+                                   
+                                    <li class="sidebar-menu-item" id="beforeyous">
                                         <a class="sidebar-menu-button" href="viewVideo.aspx">
                                             <span class="sidebar-menu-text">Tutorial</span>
                                         </a>
                                     </li> 
-<%--                                    <li class="sidebar-menu-item" id="registeredapplicants">
-                                        <a class="sidebar-menu-button" href="registered_applicantlist.aspx">
-                                            <span class="sidebar-menu-text">View Registrations</span>
-                                        </a>
-                                    </li> --%>
+
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="manageregistration_list">
@@ -163,8 +227,16 @@
                                         </a>
                                     </li> 
                                 </ul>
-                            </li>
-                            <li class="sidebar-menu-item" id="manageprofile_list">
+                            </li>--%>
+                            <li class="sidebar-menu-item" id="manageprofile_list" runat="server" style="margin-bottom: -12px;" visible="true">
+                                        <a class="sidebar-menu-button" href="updatepassword.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/RolesAndPermission_ICON.png">
+                                            </i>
+                                            <span class="sidebar-menu-text">Change Password </span>
+                                        </a>
+                                    </li>
+                           <%-- <li class="sidebar-menu-item" id="manageprofile_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manage_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                     Manage Profile
@@ -173,14 +245,16 @@
                                 <ul class="sidebar-submenu sm-indent collapse" id="manage_menu">
                                     <li class="sidebar-menu-item" id="manageprofile">
                                         <a class="sidebar-menu-button" href="updatepassword.aspx">
-                                            <span class="sidebar-menu-text">Update password</span>
+                                            <span class="sidebar-menu-text">Update Password</span>
                                         </a>
                                     </li> 
                                 </ul>
-                            </li>
+                            </li>--%>
                             <li class="sidebar-menu-item" id="manageapplicantions_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manageapplicantions_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/ManageApplication_ICON.png">
+                                    </i>
                                    Manage Applications
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -197,7 +271,15 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="sidebar-menu-item" id="role_list">
+                            <li class="sidebar-menu-item" id="role_list" runat="server" style="margin-bottom: -12px;" visible="true">
+                                        <a class="sidebar-menu-button" href="editusers.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/RolesAndPermission_ICON.png">
+                                            </i>
+                                            <span class="sidebar-menu-text">Create User</span>
+                                        </a>
+                                    </li>
+                            <%--<li class="sidebar-menu-item" id="role_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#role_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                    Roles & Permissions
@@ -210,7 +292,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>--%>
                             <li class="sidebar-menu-item" id="assessmentroles_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#assessmentroles_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -345,7 +427,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="payment_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#payment_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_payment.png">
+                                    </i>
                                    Manage Payment
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -359,7 +443,9 @@
                             </li> 
                             <li class="sidebar-menu-item" id="city_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#city_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_cities.png">
+                                    </i>
                                    Setup & Manage Cities
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -373,13 +459,15 @@
                             </li>
                              <li class="sidebar-menu-item" id="institution_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#institution_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/setup_manage_institue.png">
+                                    </i>
                                   Setup & Manage Institution
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse" id="institution_menu">
                                       <li class="sidebar-menu-item" id="createuniversity"> 
-                                        <a class="sidebar-menu-button" href="createuniversity.aspx">
+                                        <a class="sidebar-menu-button" href="universitydetails_CreateN.aspx">
                                             <span class="sidebar-menu-text">Create Institution </span>
                                         </a>
                                     </li>
@@ -403,7 +491,11 @@
                                             <span class="sidebar-menu-text">View all Institutions</span>
                                         </a>
                                     </li>
-                                   
+                                     <li class="sidebar-menu-item" id="universitymaster_goLive"> 
+                                        <a class="sidebar-menu-button" href="universitymaster_golive.aspx">
+                                            <span class="sidebar-menu-text">Institutions GO Live</span>
+                                        </a>
+                                    </li>
 
                                    <li class="sidebar-menu-item" id="universitygroupingmaster">
                                         <a class="sidebar-menu-button" href="universitygroupingmaster.aspx">
@@ -414,7 +506,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="CustomizeForms_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#CustomizeForms_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/customize_forms.png">
+                                    </i>
                                    Customize Forms
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -553,7 +647,9 @@
                             </li>                          
                             <li class="sidebar-menu-item" id="course_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#course_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_course.png">
+                                    </i>
                                    Manage Course
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -567,7 +663,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="careeroutcomes_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#outcomes_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_career_outcomes.png">
+                                    </i>
                                    Manage Career Outcomes
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -591,7 +689,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="FaqManage_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#FaqManage_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_faq's.png">
+                                    </i>
                                    Manage FAQ's
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -610,7 +710,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="managetooltips_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#managetooltips_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_tooltips.png">
+                                    </i>
                                   Manage Tooltips
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -639,7 +741,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="Costcalculator_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Costcalculator_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_costcalculator.png">
+                                    </i>
                                    Manage Cost Calculator
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -688,7 +792,9 @@
                             </li> 
                             <li class="sidebar-menu-item" id="tutorial_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#tutorial_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/Tutorial_ICON.png">
+                                    </i>
                                    Setup and Manage Tutorials
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -717,7 +823,9 @@
                             </li> 
                             <li class="sidebar-menu-item" id="gte_list">
                                 <a class="sidebar-menu-button" data-toggle="collapse" href="#gte_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_gte.png">
+                                    </i>
                                    Manage GTE
                                     <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -746,7 +854,9 @@
                             </li>                           
                             <li class="sidebar-menu-item" id="Scholarships_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Scholarships_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/setup&manage_scholarships.png">
+                                    </i>
                                    Setup & Manage Scholarships
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -765,7 +875,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="managelanguages_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#managelanguages_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_languages.png">
+                                    </i>
                                    Manage Languages
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -779,7 +891,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="managemeeting_schedule_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#managemeeting_schedule">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/ManageMeetingSchedule.png">
+                                    </i>
                                    Manage Meeting Schedule
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -791,14 +905,16 @@
                                     </li>                                   
                                     <li class="sidebar-menu-item" id="scheduledapplicant_list"> 
                                         <a class="sidebar-menu-button" href="scheduledapplicant_list.aspx">
-                                            <span class="sidebar-menu-text">Schedule Once List</span>
+                                            <span class="sidebar-menu-text">Scheduled Assessments</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="videolist">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#video">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_helping_video.png">
+                                    </i>
                                    Manage Helping Videos
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -863,12 +979,17 @@
             var assessmentadmin = roleName.toLowerCase() == "assessment admin";
             var assessmentuser = roleName.toLowerCase() == "assessment user";
 
-            if (roleName == "Admin")
+            if (roleName == "Admin") {
                 $("#videolist").show();
-            else
+                $("#universitymaster_goLive").show();
+            }
+            else {
                 $("#videolist").hide();
+                $("#universitymaster_goLive").hide();
+            }
             
             if (fullservice == 2) {
+                //$("#manage_applications").hide();
                 if (roleName == "Admin") {
                     $("#buildpaper_list").show();
                     $("#tutorial_list").show();
@@ -1005,6 +1126,18 @@
                 $("#careeroutcomes_list").hide();
                 $("#payment_list").hide();
                 $("#courseApplication").hide();
+            }
+            if (fullservice == 1) {
+                $("#manageapplicantions_list").show();
+                $("#manage_applications").hide();
+            }
+            else if (fullservice == 2) {
+                $("#manage_applications").hide()
+                $("#manageapplicantions_list").hide();
+            }
+            else if (fullservice == 0) {
+                $("#manageapplicantions_list").hide();
+                $("#manage_applications").show();
             }
      });
    <%--  var UniversityID = '<%= Utility.GetUniversityId()%>';

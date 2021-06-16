@@ -126,6 +126,20 @@ public partial class agenumber_master
     public string description { get; set; }
 }
 
+public partial class al_country_mapping_master
+{
+    public int id { get; set; }
+    public Nullable<int> countryid { get; set; }
+    public string al_group_id { get; set; }
+    public string value { get; set; }
+}
+
+public partial class al_group_master
+{
+    public int id { get; set; }
+    public string AL_tag { get; set; }
+}
+
 public partial class alternateadressproofmaster
 {
     public int id { get; set; }
@@ -262,10 +276,14 @@ public partial class applicantdetails
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
     public Nullable<bool> isapplicatverified { get; set; }
-    public bool Isold_or_new_applicant { get; set; }
+    public Nullable<bool> Isold_or_new_applicant { get; set; }
+    public Nullable<bool> Is_clarification_submitted { get; set; }
+    public Nullable<System.DateTime> Is_clarification_submitted_date { get; set; }
+    public string gtereportNO { get; set; }
     public int isLoggedIn { get; set; }
     public Nullable<bool> isdeletedbyAdmin { get; set; }
     public Nullable<bool> isverifiedbyAdmin { get; set; }
+    public string verification_key_ { get; set; }
     public Nullable<int> title { get; set; }
     public string firstname { get; set; }
     public Nullable<bool> ispassportfirstname { get; set; }
@@ -288,6 +306,7 @@ public partial class applicantdetails
     public string spousename { get; set; }
     public Nullable<int> spousenationality { get; set; }
     public Nullable<System.DateTime> spousedob { get; set; }
+    public string noofdependence { get; set; }
     public Nullable<System.DateTime> marriagedate { get; set; }
     public Nullable<int> higheststudycompleted { get; set; }
     public Nullable<int> fieldofhigheststudy { get; set; }
@@ -386,7 +405,6 @@ public partial class applicantdetails
     public Nullable<int> broadFieldIDyouwillComplete { get; set; }
     public Nullable<int> narrowFieldIDyouwillComplete { get; set; }
     public Nullable<int> detailedFieldIDyouwillComplete { get; set; }
-    public Nullable<bool> Is_clarification_submitted { get; set; }
     public Nullable<bool> Isdetailscompleted { get; set; }
     public Nullable<int> Ispackage { get; set; }
     public string what_package { get; set; }
@@ -2143,17 +2161,6 @@ public partial class gte_applicantdetails
     public Nullable<int> levelofcourse { get; set; }
 }
 
-public partial class gte_applicantdetails_autogenrated_clarificationquestionmaster
-{
-    public int id { get; set; }
-    public string question_tag { get; set; }
-    public string condition { get; set; }
-    public Nullable<int> true_gte_score { get; set; }
-    public Nullable<int> true_risk_score { get; set; }
-    public Nullable<int> false_gte_score { get; set; }
-    public Nullable<int> false_risk_score { get; set; }
-}
-
 public partial class gte_applicantdocument
 {
     public int applicantdocumentid { get; set; }
@@ -2229,6 +2236,92 @@ public partial class GTE_documentverification
     public string remarks { get; set; }
 }
 
+public partial class gte_old_answer_master
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_old_answer_master()
+    {
+        this.gte_old_questions_applicant_response = new HashSet<gte_old_questions_applicant_response>();
+    }
+
+    public int id { get; set; }
+    public string answer { get; set; }
+    public int gte_score { get; set; }
+    public int gte_risk_score { get; set; }
+    public int gte_question_id { get; set; }
+    public string counsellor_review_comments { get; set; }
+
+    public virtual gte_old_questions_master gte_old_questions_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_old_questions_applicant_response> gte_old_questions_applicant_response { get; set; }
+}
+
+public partial class gte_old_question_master_part2
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_old_question_master_part2()
+    {
+        this.gte_old_question_part2_applicant_response = new HashSet<gte_old_question_part2_applicant_response>();
+    }
+
+    public int id { get; set; }
+    public string question { get; set; }
+    public string tag { get; set; }
+    public string RG_Comments { get; set; }
+    public int true_gte_score { get; set; }
+    public int true_risk_score { get; set; }
+    public int false_gte_score { get; set; }
+    public int false_risk_score { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_old_question_part2_applicant_response> gte_old_question_part2_applicant_response { get; set; }
+}
+
+public partial class gte_old_question_part2_applicant_response
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int university_id { get; set; }
+    public Nullable<bool> applicant_response { get; set; }
+    public int question_id { get; set; }
+    public int response_time { get; set; }
+
+    public virtual gte_old_question_master_part2 gte_old_question_master_part2 { get; set; }
+}
+
+public partial class gte_old_questions_applicant_response
+{
+    public int id { get; set; }
+    public Nullable<int> gte_question_id { get; set; }
+    public Nullable<int> gte_answer_id { get; set; }
+    public Nullable<int> applicant_id { get; set; }
+    public Nullable<int> university_id { get; set; }
+    public Nullable<int> applicant_response_time { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
+
+    public virtual gte_old_answer_master gte_old_answer_master { get; set; }
+    public virtual gte_old_questions_master gte_old_questions_master { get; set; }
+}
+
+public partial class gte_old_questions_master
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_old_questions_master()
+    {
+        this.gte_old_answer_master = new HashSet<gte_old_answer_master>();
+        this.gte_old_questions_applicant_response = new HashSet<gte_old_questions_applicant_response>();
+    }
+
+    public int id { get; set; }
+    public string question { get; set; }
+    public string tag { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_old_answer_master> gte_old_answer_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_old_questions_applicant_response> gte_old_questions_applicant_response { get; set; }
+}
+
 public partial class gte_preliminary_questionmaster
 {
     public int gte_preliminaryid { get; set; }
@@ -2281,6 +2374,7 @@ public partial class gte_progressbar
     public string gte_perdentage_score { get; set; }
     public string certificate_name { get; set; }
     public Nullable<System.DateTime> certificate_creation_date { get; set; }
+    public Nullable<System.DateTime> certificate_creation_dateTime { get; set; }
     public Nullable<System.DateTime> gte_declaration_completed_date { get; set; }
     public string activity_ip { get; set; }
     public string performance_category { get; set; }
@@ -2371,8 +2465,46 @@ public partial class gte_report_admin_comment
     public string student_document_comments { get; set; }
     public string student_recommended { get; set; }
     public string final_recommendation { get; set; }
+    public Nullable<int> verificationreport_4_1 { get; set; }
+    public Nullable<int> verificationreport_4_2 { get; set; }
+    public Nullable<int> verificationreport_4_3 { get; set; }
+    public string verificationreport_proctorremark { get; set; }
+    public Nullable<int> proctoringreport_5_1 { get; set; }
+    public Nullable<int> proctoringreport_5_2 { get; set; }
+    public Nullable<int> proctoringreport_5_3 { get; set; }
+    public Nullable<int> proctoringreport_5_4 { get; set; }
+    public Nullable<int> proctoringreport_5_5 { get; set; }
+    public Nullable<int> proctoringreport_5_6 { get; set; }
+    public string proctoringreport_proctorremark { get; set; }
+    public Nullable<int> recommendedwithcaution { get; set; }
+    public Nullable<System.DateTime> reported_date { get; set; }
+    public string final_levelofrisk { get; set; }
+    public string final_satisfaction { get; set; }
+    public string final_severity { get; set; }
+}
 
-    public virtual gte_student_sop gte_student_sop { get; set; }
+public partial class gte_report_matrixValue
+{
+    public int id { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> tag_id { get; set; }
+    public string colname { get; set; }
+    public string percentage { get; set; }
+    public string score { get; set; }
+    public string block_class { get; set; }
+}
+
+public partial class gte_section1_autogenrated_master
+{
+    public int id { get; set; }
+    public string question_tag { get; set; }
+    public Nullable<int> question_id { get; set; }
+    public string condition { get; set; }
+    public Nullable<int> true_gte_score { get; set; }
+    public Nullable<int> true_risk_score { get; set; }
+    public Nullable<int> false_gte_score { get; set; }
+    public Nullable<int> false_risk_score { get; set; }
 }
 
 public partial class gte_statementofpurpose
@@ -2388,12 +2520,6 @@ public partial class gte_statementofpurpose
 
 public partial class gte_student_sop
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public gte_student_sop()
-    {
-        this.gte_report_admin_comment = new HashSet<gte_report_admin_comment>();
-    }
-
     public int id { get; set; }
     public int applicant_id { get; set; }
     public int universityid { get; set; }
@@ -2412,9 +2538,6 @@ public partial class gte_student_sop
     public System.DateTime created_at { get; set; }
     public Nullable<System.DateTime> deleted_at { get; set; }
     public Nullable<System.DateTime> edited_at { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<gte_report_admin_comment> gte_report_admin_comment { get; set; }
 }
 
 public partial class gte_studymode_master
@@ -2772,7 +2895,7 @@ public partial class primary_location_master
     public string state_code { get; set; }
     public string state { get; set; }
     public string primary_zipcode { get; set; }
-    public string type { get; set; }
+    public string location__type { get; set; }
     public string latitude { get; set; }
     public string longitude { get; set; }
     public string elevation { get; set; }
@@ -2857,6 +2980,8 @@ public partial class question_tag_master
 {
     public int id { get; set; }
     public string tagname { get; set; }
+    public Nullable<int> gte_max_total_score { get; set; }
+    public Nullable<int> risk_max_total_score { get; set; }
 }
 
 public partial class realtionshipmaster
@@ -3102,6 +3227,7 @@ public partial class studylevelmaster
     public string studylevel { get; set; }
     public string levelofcode { get; set; }
     public string systemLevel { get; set; }
+    public string AL_grouping_id { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<coursemaster> coursemaster { get; set; }
@@ -3291,6 +3417,25 @@ public partial class university_application_decision_master
     public string decision_description { get; set; }
 }
 
+public partial class university_coursefiled_mapping
+{
+    public int id { get; set; }
+    public Nullable<int> university_id { get; set; }
+    public Nullable<int> field_name_id { get; set; }
+    public Nullable<int> field_id { get; set; }
+}
+
+public partial class university_datamapping
+{
+    public int id { get; set; }
+    public Nullable<int> university_id { get; set; }
+    public Nullable<int> fieldname { get; set; }
+    public string fieldname_ { get; set; }
+    public string chkfield_id { get; set; }
+    public string Column_6 { get; set; }
+    public string Column_7 { get; set; }
+}
+
 public partial class university_master
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -3331,6 +3476,7 @@ public partial class university_master
     }
 
     public int universityid { get; set; }
+    public string Is_active { get; set; }
     public Nullable<int> uni_id { get; set; }
     public Nullable<int> university_flag { get; set; }
     public Nullable<int> codetype { get; set; }
@@ -3357,7 +3503,7 @@ public partial class university_master
     public Nullable<int> acceptedminage { get; set; }
     public string hosturl { get; set; }
     public string chatid { get; set; }
-    public Nullable<int> affiliation { get; set; }
+    public string affiliation { get; set; }
     public Nullable<int> size { get; set; }
     public Nullable<int> setting { get; set; }
     public Nullable<int> ReligiousAffiliation { get; set; }
@@ -3385,18 +3531,34 @@ public partial class university_master
     public string ofInternationalStudents { get; set; }
     public string NoofNationalities { get; set; }
     public Nullable<int> impDates { get; set; }
+    public string impdatesDescription { get; set; }
     public string avgTuitionFee { get; set; }
     public string AvgFinancialAidPackage { get; set; }
     public string FinancialneedMet { get; set; }
-    public string accreditation { get; set; }
+    public Nullable<int> studecarescholarship { get; set; }
+    public string accreditation_description { get; set; }
+    public string AccreditationName { get; set; }
+    public string AccreditationFile_path { get; set; }
     public string timesHigherEducationRanking { get; set; }
+    public string TimesHigherEducationRanking_year { get; set; }
+    public string QSWorldUniversityRanking_year { get; set; }
     public string QSWorldUniversityRanking { get; set; }
     public string academicRankingofWorldUniversities { get; set; }
-    public string rankings { get; set; }
-    public string awards { get; set; }
-    public string subjectRankings { get; set; }
-    public Nullable<decimal> longitude { get; set; }
+    public string academicRankingofWorldUniversities_year { get; set; }
+    public string rankings_description { get; set; }
+    public string rankings_name { get; set; }
+    public string rankings_year { get; set; }
+    public string rankings_path { get; set; }
+    public string awards_descriptiom { get; set; }
+    public string awards_name { get; set; }
+    public string awards_year { get; set; }
+    public string awards_path { get; set; }
+    public string subjectRankings_description { get; set; }
+    public string subjectRankings_name { get; set; }
+    public string subjectRankings_year { get; set; }
+    public string subjectRankings_path { get; set; }
     public Nullable<decimal> latitude { get; set; }
+    public Nullable<decimal> longitude { get; set; }
     public string time_zone { get; set; }
     public string closest_airport { get; set; }
     public string distance_from_airport { get; set; }
@@ -3426,6 +3588,41 @@ public partial class university_master
     public Nullable<System.DateTime> recordsavedat_numberof_applicant { get; set; }
     public string totalcapacity { get; set; }
     public string nooflocation { get; set; }
+    public string admission_description { get; set; }
+    public string internationalstudent_description { get; set; }
+    public string applied_male_percentage { get; set; }
+    public string applied_female_percentage { get; set; }
+    public string expected_male_percentage { get; set; }
+    public string expected_female_percentage { get; set; }
+    public string decline_male_percentage { get; set; }
+    public string decline_female_percentage { get; set; }
+    public string AcceptanceRate { get; set; }
+    public Nullable<int> selectivity { get; set; }
+    public string FreshmanAdmitted_male_percentage { get; set; }
+    public string FreshmanAdmitted_female_percentage { get; set; }
+    public string international_percentage { get; set; }
+    public string domestic_percentage { get; set; }
+    public Nullable<int> interviewRequired { get; set; }
+    public Nullable<int> Applicantfee { get; set; }
+    public Nullable<int> Essay { get; set; }
+    public Nullable<int> Recommendations { get; set; }
+    public Nullable<int> Secondary_school_record { get; set; }
+    public Nullable<int> Standardized_test_scores { get; set; }
+    public Nullable<int> Alumni_relationship { get; set; }
+    public Nullable<int> Extracurricular_activities { get; set; }
+    public Nullable<int> Particular_talent { get; set; }
+    public Nullable<int> Volunteer_Work { get; set; }
+    public Nullable<int> Work_Experience { get; set; }
+    public Nullable<int> personal_qualities { get; set; }
+    public Nullable<int> Class_rank { get; set; }
+    public Nullable<int> Geographical_residence { get; set; }
+    public Nullable<int> Minority_affiliation { get; set; }
+    public Nullable<int> State_residency { get; set; }
+    public Nullable<int> Interview { get; set; }
+    public Nullable<int> Religious_commitment { get; set; }
+    public Nullable<int> Genuine_Assessment { get; set; }
+    public Nullable<int> importantdateddl { get; set; }
+    public string funding_avgtutionfee { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

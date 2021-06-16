@@ -462,11 +462,12 @@
             });
             
         }
+       
         setInterval(tohidecontent, 1000);
 
         function tohidecontent() {
             var examid = $("#<%=ddlexam.ClientID%>").val();
-            var assignid = $("#<%=ddlExamDateTime.ClientID%>").val();
+            var assignid = $("#<%=ddlExamDateTime.ClientID%>").val();       
             var universityid = $("#<%=ddlUniversity.ClientID%>").val();
             var proctorid = $("#<%=ddlexaminer.ClientID%>").val();
             if (examid != null && proctorid != null && assignid != 0) {
@@ -485,26 +486,14 @@
                             }
                         }
                     }
-                });
+                });            
             }
+
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        var readingtime = '<%=Session["readingtime"]%>';
-        var uploadtime ='<%=Session["uploadtime"]%>';
-        var hms = '<%=Session["totalResponseTime"]%>';
-
-        <%--var readingtime = '<%=sessionreadingTime%>';
-        var uploadtime ='<%=sessionUploadTime%>';
-        var hms = '<%=sessionwritingTime%>';--%>
-
-
-        const countdownEl = document.getElementById('countdown');
-        const reading_countdown = document.getElementById('reading_countdown');
-        const upload_countdown = document.getElementById('upload_countdown');
-
-
-        // your input string
+      
+<%--        // your input string
         //Convert hh:mm:ss7  string to seconds in one line. Also allowed h:m:s format and mm:ss, m:s etc
         var secondsS;
         if (hms.includes(":"))
@@ -649,7 +638,54 @@
             }
             else
                 return true;
-        }
+        }--%>
+           var readingtime = '<%=Session["readingtime"]%>';
+        var uploadtime ='<%=Session["uploadtime"]%>';
+        var hms = '<%=Session["totalResponseTime"]%>';
+        
+        const countdownEl = document.getElementById('countdown');
+        const reading_countdown = document.getElementById('reading_countdown');
+        const upload_countdown = document.getElementById('upload_countdown');
 
+
+        setInterval(ajaxcalltocheckRefreshTime, 1000);
+        function ajaxcalltocheckRefreshTime() {
+              var examid = $("#<%=ddlexam.ClientID%>").val();
+            var assignid = $("#<%=ddlExamDateTime.ClientID%>").val();
+            var universityid = $("#<%=ddlUniversity.ClientID%>").val();
+            var proctorid = $("#<%=ddlexaminer.ClientID%>").val();
+            var user = 'admin';
+                $.ajax({
+                    type: "POST",
+                    url: "examassessment_management.aspx/RefreshTime_admin",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'examid': '" + examid + "','assignid': '" + assignid + "', 'user': '" + user + "'}",
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            var t = result.rtm;
+                            countdownEl.innerHTML = result.etm;
+                            reading_countdown.innerHTML = result.rtm;
+                            upload_countdown.innerHTML = result.utm;
+
+                            
+                         if (reading_countdown.innerHTML == "") {
+                             reading_countdown.style.display = 'none';
+                             $("#<%=lblreading.ClientID%>").hide();
+                         }
+                         if (countdownEl.innerHTML == "") {
+                             countdownEl.style.display = 'none';
+                             $("#<%=lblexamtime.ClientID%>").hide();
+                         }
+                         if (upload_countdown.innerHTML == "") {
+                             upload_countdown.style.display = 'none';
+                             $("#<%=lbluploadtime.ClientID%>").hide();
+                         }
+                        }
+                    }
+                });
+             
+         }
     </script>
 </asp:Content>

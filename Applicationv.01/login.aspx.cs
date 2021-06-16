@@ -37,10 +37,10 @@ public partial class login : System.Web.UI.Page
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
         universityGTMCode = universityDetails.university_gtm_code;
 
-        isFullService =  (int)Session["isfullservice"];
+        isFullService = (int)Session["isfullservice"];
         
         if (isFullService == 0)
-            isfullservicethenlbl = " GTE Online Center (GOC)";
+            isfullservicethenlbl = " GTE DIRECT CENTRE";
         else if(isFullService == 1)
             isfullservicethenlbl = " APPLICATION CENTER";
         else if (isFullService == 2)
@@ -174,33 +174,34 @@ public partial class login : System.Web.UI.Page
                             var applicantdetail = db.applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
 
                             Session["isVerifiedByAdmin"] = applicantdetail.isverifiedbyAdmin;
-                            ////logic to set old or new applicant
-                            //if (isFullService == 0 || isFullService == 1)
-                            //{
-                            //    if (applicantdetail != null)
-                            //    {
-                            //        if (applicantdetail.Isold_or_new_applicant != true)
-                            //        {
-                            //            //level1 of applicantdetails
-                            //            var gtedetail = db.gte_applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
-                            //            if (gtedetail == null)
-                            //                SaveApplicantAsNew(chkUser.studentid);
-                            //            else
-                            //            {//level 2 of gte certificate
-                            //                var gteProgress = db.gte_progressbar.Where(x => x.applicantid == chkUser.studentid && x.universityId == universityID).FirstOrDefault();
-                            //                if (gteProgress != null && gteProgress.is_gte_certificate_generated != true)
-                            //                    SaveApplicantAsNew(chkUser.studentid);
-                            //                else
-                            //                {//level3 check for gte assessment & sop
-                            //                    var IssopComplteted = db.gte_student_sop.Where(x => x.applicant_id== chkUser.studentid && x.universityid== universityID).FirstOrDefault();
-                            //                    if(IssopComplteted != null && IssopComplteted.is_sop_submitted_by_applicant != true)
-                            //                        SaveApplicantAsNew(chkUser.studentid);
-                            //                }
-                            //            }
-                            //        }
+                            //logic to set old or new applicant
+                            if (isFullService == 0 || isFullService == 1)
+                            {
+                                if (applicantdetail != null)
+                                {
+                                    if (applicantdetail.Isold_or_new_applicant != true)
+                                    {
+                                        //level 2 of gte certificate
+                                        var gteProgress = db.gte_progressbar.Where(x => x.applicantid == chkUser.studentid && x.universityId == universityID).FirstOrDefault();
+                                        if (gteProgress != null && gteProgress.is_gte_certificate_generated != true)
+                                            SaveApplicantAsNew(chkUser.studentid);
+                                        
+                                        else
+                                        {//level1 of applicantdetails
+                                            var gtedetail = db.gte_applicantdetails.Where(x => x.applicantid == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
+                                            if (gtedetail == null)
+                                                SaveApplicantAsNew(chkUser.studentid);
+                                            else
+                                            {//level3 check for gte assessment & sop
+                                                var IssopComplteted = db.gte_student_sop.Where(x => x.applicant_id == chkUser.studentid && x.universityid == universityID).FirstOrDefault();
+                                                if (IssopComplteted != null && IssopComplteted.is_sop_submitted_by_applicant != true)
+                                                    SaveApplicantAsNew(chkUser.studentid);
+                                            }
+                                        }
+                                    }
 
-                            //    }
-                            //}
+                                }
+                            }
 
 
                             if (isFullService == 2)
