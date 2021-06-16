@@ -494,6 +494,7 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
                 PopulateMapping(CheckBoxList1, universityId, 31);
                 PopulateMapping(CheckBoxList2, universityId, 32);
                 PopulateMapping(CheckBoxList3, universityId, 33);
+                tctcoursedescription.Text = existingUninversity.courseDescription ;
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University does not exists')", true);
@@ -768,6 +769,8 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
                     SavedMapped(li.Value, 33, "DETAILED_FIELD", universityObj.universityid);
                 }
             }
+
+            universityObj.courseDescription = tctcoursedescription.Text;
             //STUDENT STATS
             universityObj.TotalEnrolledStudents = txtTotalEnrolledStudents.Text;
             universityObj.DoctoralStudents = txtDoctoralStudents.Text;
@@ -1109,7 +1112,7 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
                       {
                           fieldname = nf.fieldname,
                           id = nf.id,
-                      }).Distinct().OrderBy(x => x.fieldname).ToList();
+                      }).Distinct().OrderBy(x => x.id).ToList();
 
         return JsonConvert.SerializeObject(narrow);
     }
@@ -1127,7 +1130,7 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
                     {
                         fieldname = df.fieldname,
                         id = df.id,
-                    }).Distinct().OrderBy(x => x.fieldname).ToList();
+                    }).Distinct().OrderBy(x => x.id).ToList();
 
         return JsonConvert.SerializeObject(temp);
     }

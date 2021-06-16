@@ -568,6 +568,7 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
                     SavedMapped(li.Value, 33, "DETAILED_FIELD", universityObj.universityid);
                 }
             }
+            universityObj.courseDescription = tctcoursedescription.Text;
             //STUDENT STATS
             universityObj.TotalEnrolledStudents = txtTotalEnrolledStudents.Text;
             universityObj.DoctoralStudents = txtDoctoralStudents.Text;
@@ -859,7 +860,7 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
         try
         {
             var existingUniversity = (from universities in db.university_master
-                                      where universities.university_name.Equals(txtUniName.Value.Trim())
+                                      where universities.university_name.Equals(txtUniName.Value.Trim()) && universities.hosturl.Equals(txthosturl.Value.Trim())
                                       select universities.university_name).FirstOrDefault();
             if (string.IsNullOrEmpty(existingUniversity))
             {

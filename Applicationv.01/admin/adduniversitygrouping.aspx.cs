@@ -70,7 +70,8 @@ public partial class admin_adduniversitygrouping : System.Web.UI.Page
                         
                     }
                 }
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                       "alert('Record Inserted Successfully');window.location='" + webURL + "admin/universitygroupingmaster.aspx';", true);
             }
         }
         catch (Exception ex)

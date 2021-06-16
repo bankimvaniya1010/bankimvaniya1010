@@ -18,7 +18,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
         webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-
+        
         if (!IsPostBack)
         {
             if (Request.QueryString["cityID"] != null)
@@ -31,17 +31,8 @@ public partial class admin_editcitydetails : System.Web.UI.Page
 
                 if (existingCity != null)
                 {
-                    ViewState["cityID"] = cityID;
                     objCommon.BindCountries(ddlCountry);
-
-                    txtCityAround.Value = existingCity.around;
-                    txtCityDescription.Value = existingCity.description;
-                    txtCityName.Value = existingCity.name;
-                    txtCityWeather.Value = existingCity.weather;
-                    txtCityReaching.Value = existingCity.geting_there;
-                    txtCityCost.Value = existingCity.cost_of_living;
-
-                    ddlCountry.SelectedIndex = Convert.ToInt32(existingCity.country_id);
+                    populate(existingCity);
                 }
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('City does not exists')", true);
@@ -50,6 +41,24 @@ public partial class admin_editcitydetails : System.Web.UI.Page
             else
                 Response.Redirect(webURL + "admin/default.aspx");
         }
+    }
+    private void populate(citymaster existingCity) {
+        try {
+
+            txtCityAround.Value = existingCity.around;
+            txtCityDescription.Value = existingCity.description;
+            txtCityName.Value = existingCity.name;
+            txtCityWeather.Value = existingCity.weather;
+            txtCityReaching.Value = existingCity.geting_there;
+            txtCityCost.Value = existingCity.cost_of_living;
+            if (existingCity.country_id != null)
+            {
+                ddlCountry.ClearSelection();
+                ddlCountry.Items.FindByValue(existingCity.country_id.ToString()).Selected = true;
+
+            }
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)

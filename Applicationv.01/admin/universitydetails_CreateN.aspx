@@ -247,9 +247,6 @@ section .section-title {
                                                                     <asp:ListItem Value="0">GTE Service</asp:ListItem>
                                                                     <asp:ListItem Value="3">GTE(Certification)</asp:ListItem>
                                                                     <asp:ListItem Value="4">GTE(Evalution)</asp:ListItem>
-                                                                    <asp:ListItem Value="1">Full Service</asp:ListItem>
-                                                                    <asp:ListItem Value="2">Examination module</asp:ListItem>
-
                                                                 </asp:DropDownList>
                                                             </div>
                                                         </div>
@@ -607,7 +604,7 @@ section .section-title {
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <asp:TextBox ID="TextBox1" class="form-control" TextMode="MultiLine" runat="server" Style="width: 600px; height: 140px"></asp:TextBox>
+                                                                <asp:TextBox ID="tctcoursedescription" class="form-control" TextMode="MultiLine" runat="server" Style="width: 600px; height: 140px"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1608,7 +1605,7 @@ section .section-title {
             $("#<%=ddlCountry.ClientID%>").change(function () {
                 $.ajax({
                     type: "GET",
-                    url: "createuniversity.aspx/GetCityDropdown",
+                    url: "universitydetails_CreateN.aspx/GetCityDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: { countryId: $("#<%=ddlCountry.ClientID%>").val() },
@@ -1964,7 +1961,21 @@ section .section-title {
             return true;
         }
         
+      
         $(document).ready(function () {
+            for (var i = 0; i < 71; i++) {
+                if ($("#ContentPlaceHolder1_CheckBoxList2_" + i + "").is(':checked')) { }
+                else
+                    $("#ContentPlaceHolder1_CheckBoxList2_" + i + "").prop("disabled", "disabled");
+            }
+
+
+            for (var i = 0; i < 356; i++) {
+                if ($("#ContentPlaceHolder1_CheckBoxList3_" + i + "").is(':checked')) { }
+                else
+                    $("#ContentPlaceHolder1_CheckBoxList3_" + i + "").prop("disabled", "disabled");
+            }
+
             $("#<%=CheckBoxList1.ClientID %>").find('input[type="checkbox"]').click(function () {
                 var leng = $(this).length;
                 var BroadID = $(this).val();
@@ -1988,6 +1999,7 @@ section .section-title {
                 }
             });
             //
+            
         });
         function bydefaultcheck(broadID, Ischeck) {
              $.ajax({
@@ -2001,13 +2013,19 @@ section .section-title {
                         var result = JSON.parse(response.d);
                        
                        for (var i = 0; i < result.length; i++) {
-                           if (Ischeck == true) {
-                               $("#ContentPlaceHolder1_CheckBoxList2_" + result[i].id + "").prop("checked", true);
-                               byDeafultCheckDetailed(result[i].id, true);
-                           }
-                           else {
-                               $("#ContentPlaceHolder1_CheckBoxList2_" + result[i].id + "").prop("checked", false);
-                               byDeafultCheckDetailed(result[i].id, false);
+                           for (var y = 0; y < 71; y++) {
+                               if ($("#ContentPlaceHolder1_CheckBoxList2_" + y + "").val() == result[i].id) {
+                                   if (Ischeck == true) {
+                                       $("#ContentPlaceHolder1_CheckBoxList2_" + y + "").prop("checked", true);
+                                       $("#ContentPlaceHolder1_CheckBoxList2_" + y + "").removeAttr("disabled");
+                                       byDeafultCheckDetailed(result[i].id, true);
+                                   }
+                                   else {
+                                       $("#ContentPlaceHolder1_CheckBoxList2_" + y + "").prop("checked", false);
+                                       $("#ContentPlaceHolder1_CheckBoxList2_" + y + "").prop("disabled", "disabled");
+                                       byDeafultCheckDetailed(result[i].id, false);
+                                   }
+                               }
                            }
                        }
                     }
@@ -2025,13 +2043,22 @@ section .section-title {
                 success: function (response) {
                    if (response.d) {
                         var result = JSON.parse(response.d);
-                       
+
                        for (var i = 0; i < result.length; i++) {
-                           if (Ischeck == true) 
-                               $("#ContentPlaceHolder1_CheckBoxList3_" + result[i].id + "").prop("checked", true);
-                           else 
-                               $("#ContentPlaceHolder1_CheckBoxList3_" + result[i].id + "").prop("checked", false);
+                           for (var y = 0; y < 356; y++) {
+                               if ($("#ContentPlaceHolder1_CheckBoxList3_" + y + "").val() == result[i].id) {
+                                   if (Ischeck == true) {
+                                       $("#ContentPlaceHolder1_CheckBoxList3_" + y + "").prop("checked", true);
+                                       $("#ContentPlaceHolder1_CheckBoxList3_" + y + "").removeAttr("disabled");
+                                   }
+                                   else {
+                                       $("#ContentPlaceHolder1_CheckBoxList3_" + y + "").prop("checked", false);
+                                       $("#ContentPlaceHolder1_CheckBoxList3_" + y + "").prop("disabled", "disabled");
+                                   }
+                               }
+                           }
                        }
+                      
                     }
                 }
             });
@@ -2039,3 +2066,4 @@ section .section-title {
 
     </script>
 </asp:Content>
+

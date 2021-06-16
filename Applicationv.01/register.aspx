@@ -90,7 +90,7 @@
                         <div class="form-group text-center" style="margin-bottom: -36px;">
 
                             <div class="custom-control custom-checkbox">
-                                <asp:CheckBox runat="server" ID="chk1" /><label class="label text-black-70" id="lblterms" runat="server"><a href="assets/Privacy Policy_Final_v20210430.pdf" target="_blank">Terms of Use</label>
+<asp:CheckBox runat="server" ID="chk1" /><label class="label text-black-70" id="lblterms" runat="server"><a href="assets/Privacy Policy_Final_v20210430.pdf" target="_blank">Terms of Use</a></label>
                                 <br />
                                 <asp:CheckBox runat="server" ID="chk2" /><label class="label text-black-70" id="gtehandbook" runat="server">I have read the <a href="https://www.gtedirect.com/student-handbook" target="_blank">Student Handbook</a><%--<Label class="text-black-70" style="text-decoration: underline;" id="lblterms">Terms of Use</Label>--%></label>
                             </div>
