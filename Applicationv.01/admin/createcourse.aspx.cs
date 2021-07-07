@@ -59,11 +59,11 @@ public partial class admin_createcourse : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             dynamic Universiity;
             if (roleName.ToLower() == "admin")
-                Universiity = db.university_master.ToList();
+                Universiity = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                Universiity = db.university_master.Where(x => x.universityid == universityID).ToList();
+                Universiity = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddlUniversity.DataSource = Universiity;

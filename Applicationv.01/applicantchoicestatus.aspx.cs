@@ -33,7 +33,7 @@ public partial class applicantchoicestatus : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
-            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.application_instruction).FirstOrDefault();
+            universityInstruction.InnerText = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.application_instruction).FirstOrDefault();
             bindDataList();
         }
     }
@@ -62,7 +62,7 @@ public partial class applicantchoicestatus : System.Web.UI.Page
                         id = item.applicationmasterid,
                         choice = item.preferenceid,
                         universityId,
-                        universityName = db.university_master.Where(x => x.universityid == universityId).Select(x => x.university_name).FirstOrDefault(),
+                        universityName = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId).Select(x => x.university_name).FirstOrDefault(),
                         campusName = db.universitycampus.Where(x => x.campusid == item.campus).Select(x => x.campusname).FirstOrDefault(),
                         courseName = db.coursemaster.Where(x => x.courseid == item.course).Select(x => x.coursename).FirstOrDefault(),
                         commencementDate = db.course_dates.Where(x => x.id == commencementDate).Select(x => x.commencementdate).FirstOrDefault().ToString("dd/MM/yyyy"),
@@ -222,7 +222,7 @@ public partial class applicantchoicestatus : System.Web.UI.Page
     public static string GetTermsCondition(string option, int universityId)
     {
         GTEEntities db1 = new GTEEntities();
-        var universityDetails = db1.university_master.Where(x => x.universityid == universityId).FirstOrDefault();
+        var universityDetails = db1.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId).FirstOrDefault();
         if (option == "accept")
             return JsonConvert.SerializeObject(new { universityDetails.acceptance_terms });
         else if (option == "reject")

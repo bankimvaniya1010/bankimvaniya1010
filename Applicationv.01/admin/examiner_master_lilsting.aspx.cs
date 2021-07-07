@@ -42,6 +42,7 @@ public partial class admin_examiner_master_lilsting : System.Web.UI.Page
                      on q.universityId equals um.universityid
                      join am in db.adminusers on q.adminrecordID equals am.adminid into adminData
                      from x in adminData.DefaultIfEmpty()
+                     where um.IsDeleted != 1
                      select new
                         {
                             id = q.examinerID,
@@ -59,7 +60,7 @@ public partial class admin_examiner_master_lilsting : System.Web.UI.Page
                         on q.universityId equals um.universityid
                         join am in db.adminusers on q.adminrecordID equals am.adminid into adminData
                         from x in adminData.DefaultIfEmpty()
-                        where q.universityId == universityID
+                        where q.universityId == universityID && um.IsDeleted != 1
                         select new
                         {
                             id = q.examinerID,

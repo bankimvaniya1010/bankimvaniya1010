@@ -305,7 +305,7 @@ public partial class admin_exam_assign : System.Web.UI.Page
                         var studentdetail = db.students.Where(x => x.studentid == objassign.applicantid).Select(x => new { x.name, x.email }).FirstOrDefault();
                         var examname = db.exam_master.Where(x => x.universityID == objassign.universityID && x.exampapersid == objassign.exampapersid).Select(x => x.exam_name).FirstOrDefault();
                         var proctordetails = db.examiner_master.Where(x => x.examinerID == proctorid).Select(x => new { x.name, x.email }).FirstOrDefault();
-                        var university = db.university_master.Where(x => x.universityid == objassign.universityID).FirstOrDefault();
+                        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == objassign.universityID).FirstOrDefault();
 
                         var timezone = db.exam_schedule.Where(x => x.exampapersid == selectedexampapersid && x.universityid == selecteduniversityID && x.exam_datetime == selectedexamtime && x.examassignerid == selectedexamassignerId).Select(x => new { x.utctimezone , x.exam_datetime_utc}).FirstOrDefault();
                         

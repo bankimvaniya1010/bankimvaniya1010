@@ -65,7 +65,7 @@ public partial class admin : System.Web.UI.MasterPage
             Bindseclanguagelist();
             populateSelectedLanguage();
         }
-        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.fontcolor, x.headerstripcolor, x.verticalnavigationcolor, x.logo, x.sub_gte_service }).FirstOrDefault();
+        var universityDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.fontcolor, x.headerstripcolor, x.verticalnavigationcolor, x.logo, x.sub_gte_service }).FirstOrDefault();
         if (Session["universitylogo"] == null || Session["universityverticalnavigationcolor"] == null || Session["universityfontColor"] == null || Session["universityheadercolor"] == null)
         {
             Session["universitylogo"] = universityDetails.logo;

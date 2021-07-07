@@ -73,7 +73,7 @@ public class Common
         int Service = -1;
         try
         {
-            var GetService = db.university_master.Where(x => x.universityid == universityid).FirstOrDefault();
+            var GetService = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityid && x.IsDeleted != 1).FirstOrDefault();
             if (GetService != null)
                 Service = GetService.full_service;
         }
@@ -460,7 +460,7 @@ public class Common
         string UniversityName = "";
         try
         {
-            var GetUniversity = db.university_master.Where(x => x.universityid == id).FirstOrDefault();
+            var GetUniversity = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == id).FirstOrDefault();
             if (GetUniversity != null)
                 UniversityName = GetUniversity.university_name;
         }
@@ -976,9 +976,9 @@ public class Common
             ListItem lst = new ListItem("Please select", "0");
             dynamic Universities;
             if (roleName.ToLower() == "admin")
-                Universities = db.university_master.ToList();
+                Universities = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
-                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+                Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
 
             ddl.DataSource = Universities;
             ddl.DataTextField = "university_name";

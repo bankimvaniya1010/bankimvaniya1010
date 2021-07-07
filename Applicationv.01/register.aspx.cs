@@ -23,7 +23,7 @@ public partial class register : System.Web.UI.Page
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
         logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         universityGTMCode = university.university_gtm_code;
         if (university.numberof_applicant != null)
@@ -95,7 +95,7 @@ public partial class register : System.Web.UI.Page
                     db.applicantdetails.Add(objapplicant);
                     db.SaveChanges();
                     var vString = objapplicant.verification_key_;
-                    var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                    var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                     //sender email notification to university 
                     if (university.emai_notification1 != null)
                     {
@@ -160,7 +160,7 @@ public partial class register : System.Web.UI.Page
     }
 
     private void sendNotification(string notificationemail, string studentemail, int studentid, string veri_string) {
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
 
         string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerNotification.html"));
         html = html.Replace("@UniversityName", university.university_name);

@@ -25,7 +25,7 @@ public partial class applicant_sop : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCom.FaqQuestionList();
-            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.sop_instruction_for_applicant).FirstOrDefault();
+            universityInstruction.InnerText = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.sop_instruction_for_applicant).FirstOrDefault();
 
             var sop_details = db.student_sop.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).FirstOrDefault();
             if (sop_details != null)

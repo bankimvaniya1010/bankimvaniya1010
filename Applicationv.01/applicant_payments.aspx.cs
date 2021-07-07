@@ -29,7 +29,7 @@ public partial class applicant_payments : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCom.FaqQuestionList();
-            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.fee_payment_instructions).FirstOrDefault();
+            universityInstruction.InnerText = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.fee_payment_instructions).FirstOrDefault();
 
             BindGrid();
         }

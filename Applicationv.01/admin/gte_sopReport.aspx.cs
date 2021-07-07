@@ -86,7 +86,7 @@ public partial class admin_gte_sopReport : System.Web.UI.Page
             if (applicantdetails.countryofeducationInstitution != null)
                 ViewState["Countryapplyingtostudy"] = objCommon.GetCountryDiscription(Convert.ToInt32(applicantdetails.countryofeducationInstitution));
 
-            var institutionDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.logo, cityName = x.citymaster.name }).FirstOrDefault();
+            var institutionDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.logo, cityName = x.citymaster.name }).FirstOrDefault();
 
             if (institutionDetails != null)
             {                

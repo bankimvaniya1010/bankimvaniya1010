@@ -251,7 +251,7 @@ public partial class createuser : System.Web.UI.Page
                         db.examiner_master.Add(objmapping);
                         db.SaveChanges();
 
-                        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                         string rolename = db.rolemaster.Where(x => x.roleid == objmapping.roleid).Select(x => x.rolename).FirstOrDefault();
 
                         if (objmapping.email != null)

@@ -104,11 +104,11 @@ public partial class admin_sutdymode : System.Web.UI.Page
         {
             dynamic universitymaster;
             if (roleName.ToLower() == "admin")
-                universitymaster = db.university_master.ToList();
+                universitymaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                universitymaster = db.university_master.Where(x => x.universityid == universityID).ToList();
+                universitymaster = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
             
             DropDownList ddlUniversityEdit = (e.Row.FindControl("ddlUniversity") as DropDownList);
@@ -259,9 +259,9 @@ public partial class admin_sutdymode : System.Web.UI.Page
         ListItem lst = new ListItem("Please select", "0");
         List<university_master> universitymaster = new List<university_master>();
         if (roleName == "Admin")
-            universitymaster = db.university_master.ToList();
+            universitymaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
         else
-            universitymaster = db.university_master.Where(x => x.universityid == universityID).ToList();
+            universitymaster = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
 
         ddlEmptyRecorduniversity.DataSource = universitymaster;
         ddlEmptyRecorduniversity.DataTextField = "university_name";

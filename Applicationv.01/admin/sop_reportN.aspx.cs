@@ -91,7 +91,7 @@ public partial class admin_sop_reportN : System.Web.UI.Page
                 }
             }
 
-            var institutionDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
+            var institutionDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
 
             if (institutionDetails != null)
             {

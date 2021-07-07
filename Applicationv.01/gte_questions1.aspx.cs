@@ -173,7 +173,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                     if (applicantdetails.cityofeducationInstitution != null)
                         ViewState["eduCity"] = objCommon.GetCityName(applicantdetails.cityofeducationInstitution);
 
-                    //var institutionDetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
+                    //var institutionDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
 
                     //if (institutionDetails != null)
                     //{
@@ -435,7 +435,7 @@ public partial class gte_questions1 : System.Web.UI.Page
         {
             dynamic applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault(); ;
             int isFullService = (int)Session["FullService"];
-            //var institutionDetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
+            //var institutionDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
             //if (institutionDetails != null)
             //{
             //    //ViewState["eduInstitution"] = institutionDetails.university_name;
@@ -532,7 +532,7 @@ public partial class gte_questions1 : System.Web.UI.Page
     {
         dynamic applicantdetails;
         int isFullService = (int)Session["FullService"];
-        //var institutionDetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
+        //var institutionDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
         //if (institutionDetails != null)
         //{
         //    ViewState["eduInstitution"] = institutionDetails.university_name;
@@ -747,7 +747,7 @@ public partial class gte_questions1 : System.Web.UI.Page
             lblmsg.Visible = false;
             //dynamic applicantdetails;
             int isFullService = (int)Session["FullService"];
-            //var institutionDetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
+            //var institutionDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
             //if (institutionDetails != null)
             //{
             //    ViewState["eduInstitution"] = institutionDetails.university_name;
@@ -1076,7 +1076,7 @@ public partial class gte_questions1 : System.Web.UI.Page
         {
             var studentEmailAddress = db.students.Where(x => x.studentid == UserID).Select(x => x.email).FirstOrDefault();
             var name = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.firstname).FirstOrDefault();
-            var universitydetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+            var universitydetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
 
             foreach (var question in sendEmailQuestionList)
             {

@@ -98,7 +98,7 @@ public partial class admin_gte_sopreport_View : System.Web.UI.Page
             if (applicantdetails != null && applicantdetails.nationality > 0)
                 ViewState["nationality"] = objCommon.GetCountryDiscription(Convert.ToInt32(applicantdetails.nationality));
 
-            var institutionDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
+            var institutionDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
 
             if (institutionDetails != null)
             {

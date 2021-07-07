@@ -26,7 +26,7 @@ public partial class visastatus : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
-            var instruction = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.visa_instructions).FirstOrDefault();
+            var instruction = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.visa_instructions).FirstOrDefault();
             if (instruction == null || instruction == "")
                 universityInstruction.InnerText = "No Instructions Set By Institution";
             else

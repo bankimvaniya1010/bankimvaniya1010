@@ -26,7 +26,7 @@ public partial class applicantsupportservices : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
-            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.supprot_service_instructions).FirstOrDefault();
+            universityInstruction.InnerText = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.supprot_service_instructions).FirstOrDefault();
             BindDateList();
         }
 

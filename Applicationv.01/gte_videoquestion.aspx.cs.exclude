@@ -45,7 +45,7 @@ public partial class gte_videoquestion : System.Web.UI.Page
                 if (applicantdetails.postalcity != null)
                     city = applicantdetails.postalcity;
                 if (applicantdetails.universityid.HasValue)
-                    InstituteName = db.university_master.Where(x => x.universityid == applicantdetails.universityid).Select(x => x.university_name).FirstOrDefault();
+                    InstituteName = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == applicantdetails.universityid).Select(x => x.university_name).FirstOrDefault();
 
             }
         }

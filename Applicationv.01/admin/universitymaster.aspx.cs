@@ -49,6 +49,7 @@ public partial class admin_universitymaster : System.Web.UI.Page
                 universitiesList = (from um in db.university_master
                                     join cities in db.citymaster on um.cityid equals cities.city_id
                                     join countries in db.countriesmaster on um.countryid equals countries.id
+                                    where um.IsDeleted != 1 && um.IsDeleted != 1
                                     select new Details
                                     {
                                         univerityID = um.universityid,
@@ -107,7 +108,7 @@ public partial class admin_universitymaster : System.Web.UI.Page
                 universitiesList = (from um in db.university_master
                                     join cities in db.citymaster on um.cityid equals cities.city_id
                                     join countries in db.countriesmaster on um.countryid equals countries.id
-                                    where um.universityid == universityID
+                                    where um.universityid == universityID && um.IsDeleted != 1
                                     select new Details
                                     {
                                         univerityID = um.universityid,
@@ -156,7 +157,13 @@ public partial class admin_universitymaster : System.Web.UI.Page
                 universityGridView.DataSource = universitiesList;
                 universityGridView.DataBind();
             }
-
+            if (roleName.ToLower() != "admin")
+            {
+                ((DataControlField)universityGridView.Columns
+                 .Cast<DataControlField>()
+                 .Where(fld => fld.HeaderText == "Delete")
+                 .SingleOrDefault()).Visible = false;
+            }
         }
         catch (Exception ex)
         {
@@ -260,5 +267,38 @@ public partial class admin_universitymaster : System.Web.UI.Page
         }
         else
             BindGrid();
+    }
+
+
+    protected void universityGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try {
+            if (e.CommandName.Equals("Delete")) {
+                int UID = Convert.ToInt32(e.CommandArgument);
+                var mode = "new";
+                university_master objmapping = new university_master();
+                var data = db.university_master.Where(x => x.universityid == UID).FirstOrDefault();
+                if (data != null) {
+                    mode = "update";
+                    objmapping = data;
+                }
+                objmapping.IsDeleted = 1;
+                if (mode == "new")
+                    db.university_master.Add(objmapping);
+                db.SaveChanges();
+                BindGrid();
+                
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+
+    protected void universityGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+
     }
 }

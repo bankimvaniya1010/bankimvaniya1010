@@ -36,7 +36,7 @@ public partial class admin_viewinfo : System.Web.UI.Page
             if (objApplicant[0].universityid != null)
             {
                 int universityID = Convert.ToInt32(objApplicant[0].universityid);
-                var institute = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                var institute = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                 if (institute != null)
                     Institutename = institute.university_name;
             }

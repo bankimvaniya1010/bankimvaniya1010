@@ -33,7 +33,7 @@ public partial class login : System.Web.UI.Page
             Session["universityId"] = universityID;
         active = Request.QueryString["active"];
 
-        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo, x.university_gtm_code}).FirstOrDefault();
+        var universityDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.universityid, x.logo, x.university_gtm_code}).FirstOrDefault();
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
         universityGTMCode = universityDetails.university_gtm_code;
 
@@ -151,7 +151,7 @@ public partial class login : System.Web.UI.Page
                             Session["UserID"] = chkUser.studentid;
                             Session["Role"] = "student";
                             isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid, universityID);
-                            isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
+                            isFullService = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
                             if (isFullService == 1)
                             {

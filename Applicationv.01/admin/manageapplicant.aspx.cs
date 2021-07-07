@@ -1267,7 +1267,7 @@ public partial class admin_manageapplicant : System.Web.UI.Page
 
             if (adminData.password == password)
             {
-                var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
 
                 //resnd otp to applicant as well as loggedin admin
 
@@ -1303,7 +1303,7 @@ public partial class admin_manageapplicant : System.Web.UI.Page
     protected void btnfinalreport_Click(object sender, EventArgs e)
     {
         try {
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
             var details = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
             var students = db.students.Where(x => x.studentid == ApplicantID).FirstOrDefault();
             var gtereportsubmitteddate = db.gte_report_admin_comment.Where(x => x.applicant_id == ApplicantID && x.university_id == universityID).FirstOrDefault();
@@ -1509,7 +1509,7 @@ public partial class admin_manageapplicant : System.Web.UI.Page
             }
             if (DocRequirement.Count > 0) {
 
-                var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                 var sheduleData = db.applicant_meeting_schedule.Where(x => x.applicant_id == ApplicantID && x.university_id == universityID && x.is_otpverified == true).FirstOrDefault();
                 var proctorname = string.Empty;
                 if (sheduleData != null)

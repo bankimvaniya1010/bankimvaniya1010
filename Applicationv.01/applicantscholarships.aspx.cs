@@ -29,7 +29,7 @@ public partial class applicantscholarships : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
-            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.scholarship_instruction).FirstOrDefault();
+            universityInstruction.InnerText = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.scholarship_instruction).FirstOrDefault();
 
             var allScholarshipList = (from sm in db.scholarships.AsNoTracking()
                                       join usm in db.universitywise_scholarshipmapping on sm.id equals usm.scholarshipId
@@ -59,7 +59,7 @@ public partial class applicantscholarships : System.Web.UI.Page
     {
         try
         {
-            var universityName = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.university_name).FirstOrDefault();
+            var universityName = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.university_name).FirstOrDefault();
             foreach (var item in allScholarshipList)
             {
                 if (item.awarded_by.Contains("University"))

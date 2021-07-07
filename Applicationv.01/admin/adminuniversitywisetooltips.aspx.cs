@@ -65,8 +65,8 @@ public partial class admin_adminuniversitywisetooltips : System.Web.UI.Page
             dynamic Universities;
             if (roleName.ToLower() == "admin")
                 Universities = (from a in db.university_master
-
-                         select new
+                                where a.IsDeleted != 1
+                                select new
                          {
                              universityid = a.universityid,
                              university_name = a.university_name
@@ -74,7 +74,7 @@ public partial class admin_adminuniversitywisetooltips : System.Web.UI.Page
             else
 				{
 					universityID = Convert.ToInt32(Session["universityId"]);
-                	Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+                	Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID && x.IsDeleted != 1).ToList();
 			 	}
             ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";

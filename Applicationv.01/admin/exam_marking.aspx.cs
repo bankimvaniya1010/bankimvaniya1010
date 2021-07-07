@@ -41,11 +41,11 @@ public partial class admin_exam_marking : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             dynamic Universities;
             if (roleName.ToLower() == "admin")
-                Universities = db.university_master.ToList();
+                Universities = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+                Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddluniversity.DataSource = Universities;
@@ -563,7 +563,7 @@ public partial class admin_exam_marking : System.Web.UI.Page
                 // send mail to student the date of release
                 var examname = db.exam_master.Where(x => x.exampapersid == objmappping.examid).FirstOrDefault();
                 var studentDetails = db.students.Where(x => x.studentid == objmappping.applicantid).FirstOrDefault();
-                var university = db.university_master.Where(x => x.universityid == objmappping.universityid).FirstOrDefault();
+                var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == objmappping.universityid).FirstOrDefault();
 
                 string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/ResultDeclaration_Notification.html"));
                 string emailsubject = "Your " + examname.exam_name + " result declaration date.";

@@ -18,6 +18,22 @@
     right: -16px;
     top: 4px;
 }
+[dir=ltr] label.d-lbl {
+    font-weight: 700;
+}
+.dropdown-lst {
+    display: inline-block;
+    width: 99px;
+    text-align: center;
+}
+select#ContentPlaceHolder1_ddlcurrency {
+    display: inline-block;
+    width: 50%;
+}
+input#ContentPlaceHolder1_txtfee {
+    display: inline-block;
+    width: 49%;
+}
 .pdf-doc-wrpr {padding: 20px 15px 0;}
 .pdf-container {margin: 0 -15px;}
 .pdf-wrpr {width: 100px;float: left;margin: 0 0 20px 15px;text-align: center;}

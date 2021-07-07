@@ -36,11 +36,11 @@ public partial class admin_createuniversitycrendentials : System.Web.UI.Page
             ListItem lst = new ListItem("Please select university", "0");
             dynamic universityMaster;
             if (roleName.ToLower() == "admin")
-                universityMaster = db.university_master.ToList();
+                universityMaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                universityMaster = db.university_master.Where(x => x.universityid == universityID).ToList();
+                universityMaster = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddlUniversity.DataSource = universityMaster;

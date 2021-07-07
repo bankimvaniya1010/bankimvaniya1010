@@ -28,7 +28,7 @@ public partial class applicantcoe : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
-            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.coe_instruction).FirstOrDefault();
+            universityInstruction.InnerText = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.coe_instruction).FirstOrDefault();
             bindDataList();
         }
     }
@@ -60,7 +60,7 @@ public partial class applicantcoe : System.Web.UI.Page
                         id = item.applicationmasterid,
                         choice = item.preferenceid,
                         universityId,
-                        universityName = db.university_master.Where(x => x.universityid == universityId).Select(x => x.university_name).FirstOrDefault(),
+                        universityName = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId && x.IsDeleted != 1).Select(x => x.university_name).FirstOrDefault(),
                         campusName = db.universitycampus.Where(x => x.campusid == item.campus).Select(x => x.campusname).FirstOrDefault(),
                         courseName = db.coursemaster.Where(x => x.courseid == item.course).Select(x => x.coursename).FirstOrDefault(),
                         commencementDate = db.course_dates.Where(x => x.id == commencementDate).Select(x => x.commencementdate).FirstOrDefault().ToString("dd/MM/yyyy"),

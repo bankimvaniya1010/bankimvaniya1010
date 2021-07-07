@@ -29,6 +29,7 @@ public partial class admin_universitygroupingmaster : System.Web.UI.Page
             var mappingList = (from mappings in db.universitygrouping
                                join groupheaduniversities in db.university_master on mappings.groupingheaduniversityid equals groupheaduniversities.universityid
                                join universities in db.university_master on mappings.universityid equals universities.universityid
+                               where universities.IsDeleted != 1
                                select new {
                                    groupHeadUniversityID = mappings.groupingheaduniversityid,
                                    groupHeadUniversityName = groupheaduniversities.university_name,

@@ -30,7 +30,7 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
             {
                 if (Int32.TryParse(Request.QueryString["universityID"], out universityID))
                 {
-                    ddlUniversity.SelectedIndex = universityID;
+                    ddlUniversity.Items.FindByValue(universityID.ToString()).Selected = true;
                     BindGrid(universityID);
                 }
             }
@@ -44,11 +44,11 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
             ListItem lst = new ListItem("Please select university", "0");
             dynamic universityMaster;
             if (roleName.ToLower() == "admin")
-                universityMaster = db.university_master.ToList();
+                universityMaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                universityMaster = db.university_master.Where(x => x.universityid == universityID).ToList();
+                universityMaster = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddlUniversity.DataSource = universityMaster;
@@ -69,7 +69,7 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
         {
             var campusList = (from unicampus in db.universitycampus
                               join university in db.university_master on unicampus.universityid equals university.universityid
-                              where unicampus.universityid == universityID
+                              where unicampus.universityid == universityID && university.IsDeleted != 1
                               select new
                               {
                                   campusID = unicampus.campusid,
