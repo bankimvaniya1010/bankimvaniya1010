@@ -127,14 +127,14 @@
                        
                         <!-- Account menu -->
                        
-                        <ul class="sidebar-menu" style="margin-top: -18px;">
+                        <ul class="sidebar-menu" style="margin-top: -18px;" id="allserivce">
 
                              <li class="sidebar-menu-item" id="dashboard" runat="server" style="margin-bottom: -12px;">
                                         <a class="sidebar-menu-button" href="Default.aspx">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                                 <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/Dashboard_ICON.png">
                                             </i>
-                                            <span class="sidebar-menu-text">Dashboard </span>
+                                            <span class="sidebar-menu-text">My Dashboard </span>
                                         </a>
                                     </li>
 
@@ -143,7 +143,7 @@
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                             <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/Training_Center.png">
                                                 </i>
-                                            <span class="sidebar-menu-text">Training Centre  </span>
+                                            <span class="sidebar-menu-text">Tutrial & Resource</span>
                                         </a>
                                     </li>
 
@@ -931,8 +931,30 @@
                                     </li>    
                                 </ul>
                             </li>
+                            <li class="sidebar-menu-item" id="classlist">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#classModule">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_helping_video.png">
+                                    </i>
+                                   Manage Classes
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="classModule">
+                                    <li class="sidebar-menu-item" id="createclass_service5"> 
+                                        <a class="sidebar-menu-button" href="ec_manageclass.aspx">
+                                            <span class="sidebar-menu-text">Create Class</span>
+                                        </a>
+                                    </li>                                   
+                                   <li class="sidebar-menu-item" id="schedule_service5"> 
+                                        <a class="sidebar-menu-button" href="ec_assignclass_mange.aspx">
+                                            <span class="sidebar-menu-text">Schedule & Assign</span>
+                                        </a>
+                                    </li>    
+                                </ul>
+                            </li>
                         </ul>
                       
+                       
                         <!-- // END Components Menu -->                        
                     </div>
                 </div>
@@ -1138,6 +1160,31 @@
             else if (fullservice == 0) {
                 $("#manageapplicantions_list").hide();
                 $("#manage_applications").show();
+            }
+
+
+            if (fullservice == 5) {
+                $("#managemeeting_schedule_list").hide();
+                $("#managelanguages_list").hide();
+                $("#Scholarships_list").hide();
+                $("#gte_list").hide();
+                $("#tutorial_list").hide();
+                $("#Costcalculator_list").hide();
+                $("#managetooltips_list").hide();
+                $("#FaqManage_list").hide();
+                $("#careeroutcomes_list").hide();
+                $("#course_list").hide();
+                $("#CustomizeForms_list").hide();
+                $("#institution_list").hide();
+                $("#city_list").hide();
+                $("#payment_list").hide();
+                $("#manageapplicantions_list").hide();
+                $("#manage_applications").hide();
+                $("#role_list").hide();
+                $("#videolist").hide();
+            }
+            else {
+                $("#classlist").hide();
             }
      });
    <%--  var UniversityID = '<%= Utility.GetUniversityId()%>';

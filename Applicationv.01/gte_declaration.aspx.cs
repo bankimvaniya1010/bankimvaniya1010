@@ -57,7 +57,7 @@ public partial class gte_declaration : System.Web.UI.Page
             return;
         }
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
-        var university = db.university_master.Where(x => x.universityid == UniversityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).FirstOrDefault();
         UniLogURL = webURL + "/Docs/" + university.universityid + "/" + university.logo;
 
         if (!IsPostBack)

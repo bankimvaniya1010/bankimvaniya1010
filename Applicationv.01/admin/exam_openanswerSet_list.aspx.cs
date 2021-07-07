@@ -34,11 +34,11 @@ public partial class admin_exam_openanswerSet_list : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             dynamic Universities;
             if (roleName.ToLower() == "admin")
-                Universities = db.university_master.ToList();
+                Universities = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+                Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddlUniversity.DataSource = Universities;
@@ -123,7 +123,7 @@ public partial class admin_exam_openanswerSet_list : System.Web.UI.Page
         {
             var examlList = (from em in db.exam_openanswer_master
                              join um in db.university_master on em.universityid equals um.universityid
-                             where em.universityid == selecteduniversityid && em.examinerid == selectedexaminerId
+                             where em.universityid == selecteduniversityid && em.examinerid == selectedexaminerId && um.IsDeleted != 1
                              select new
                              {
                                  questionid = em.questionid,

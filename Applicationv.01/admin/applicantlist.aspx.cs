@@ -385,7 +385,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
     }
     private void downloadApplicantDetails(int applicantID)
     {
-        universityName = db.university_master.Where(x => x.universityid == universityID).Select(x => x.university_name).FirstOrDefault();
+        universityName = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID && x.IsDeleted != 1).Select(x => x.university_name).FirstOrDefault();
         var applicantdetails = db.applicantdetails.Where(x => x.applicantid == applicantID && x.universityid == universityID).FirstOrDefault();
         var applicantemployerdetails = db.applicantemployerdetails.Where(x => x.applicantid == applicantID && x.universityid == universityID).ToList();
         var applicantlanguagecompetency = db.applicantlanguagecompetency.Where(x => x.applicantid == applicantID && x.universityid == universityID).FirstOrDefault();

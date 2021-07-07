@@ -243,8 +243,11 @@ section .section-title {
                                                                 <asp:DropDownList ID="subscription" name="gtesubscription" runat="server" class="form-control">
                                                                     <asp:ListItem Value="">Please Select</asp:ListItem>
                                                                     <asp:ListItem Value="0">GTE Service</asp:ListItem>
+                                                                    <asp:ListItem Value="1">Full Service</asp:ListItem>
+                                                                    <asp:ListItem Value="2">Assessment Service</asp:ListItem>
                                                                     <asp:ListItem Value="3">GTE(Certification)</asp:ListItem>
                                                                     <asp:ListItem Value="4">GTE(Evalution)</asp:ListItem>
+                                                                    <asp:ListItem Value="5">E-Class Service</asp:ListItem>
                                                                 </asp:DropDownList>
                                                             </div>
                                                         </div>

@@ -44,7 +44,7 @@ public partial class applicantscholarshipstatus : System.Web.UI.Page
                 if (item.scholarships.awarded_by.Contains("University"))
                 {
                     var universityId = Convert.ToInt32(Regex.Replace(item.scholarships.awarded_by, "[^0-9]+", string.Empty));
-                    item.scholarships.awarded_by = db.university_master.Where(x => x.universityid == universityId).Select(x => x.university_name).FirstOrDefault();
+                    item.scholarships.awarded_by = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId).Select(x => x.university_name).FirstOrDefault();
                     awarded_by = item.scholarships.awarded_by.ToString();
                 }
                 else

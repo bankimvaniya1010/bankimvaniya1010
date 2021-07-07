@@ -27,7 +27,7 @@ public partial class admin_gtemanagedeclaration_master : System.Web.UI.Page
             var declarationList = (from d in db.gte_declaration_master
                                    join um in db.university_master
                                    on d.universityId equals um.universityid
-
+                                   where um.IsDeleted != 1
                                    select new
                                    {
                                        id = d.Id,

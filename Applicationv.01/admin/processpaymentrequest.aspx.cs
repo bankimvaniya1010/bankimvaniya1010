@@ -61,7 +61,7 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
         {
             var studentEmailAddress = db.students.Where(x => x.studentid == applicantid).Select(x => x.email).FirstOrDefault();
             var details = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityid).FirstOrDefault();
-            var universitydetails = db.university_master.Where(x => x.universityid == universityid).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+            var universitydetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityid).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
 
             string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/paymentverifiedNotification.html"));
             html = html.Replace("@UniversityName", universitydetails.university_name);

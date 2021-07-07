@@ -53,6 +53,7 @@ public partial class admin_universitymaster_golive : System.Web.UI.Page
                 universitiesList = (from um in db.university_master
                                     join cities in db.citymaster on um.cityid equals cities.city_id
                                     join countries in db.countriesmaster on um.countryid equals countries.id
+                                    where um.IsDeleted != 1
                                     select new Details
                                     {
                                         univerityID = um.universityid,
@@ -62,7 +63,7 @@ public partial class admin_universitymaster_golive : System.Web.UI.Page
                                         address = um.address,
                                         countryID = um.countryid,
                                         CityID = um.cityid,
-                                        url = "https://" + um.hosturl + "admin/login.aspx",
+                                        url = "https://" + um.hosturl + "/admin/login.aspx",
                                         cricoscode = um.CRICOS_Code,
                                         contactname= um.contact_person,
                                         contactpersonposition = um.UniContactPersonPosition,
@@ -113,7 +114,7 @@ public partial class admin_universitymaster_golive : System.Web.UI.Page
                 universitiesList = (from um in db.university_master
                                     join cities in db.citymaster on um.cityid equals cities.city_id
                                     join countries in db.countriesmaster on um.countryid equals countries.id
-                                    where um.universityid == universityID
+                                    where um.universityid == universityID && um.IsDeleted != 1
                                     select new Details
                                     {
                                         univerityID = um.universityid,
@@ -272,7 +273,7 @@ public partial class admin_universitymaster_golive : System.Web.UI.Page
 
                 if (c.Checked)
                 {
-                    var dData = db.university_master.Where(x => x.universityid == uid).FirstOrDefault();
+                    var dData = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == uid).FirstOrDefault();
                     if (dData != null)
                     {
                         objmapping = dData;
@@ -294,7 +295,7 @@ public partial class admin_universitymaster_golive : System.Web.UI.Page
     {
         try
         {
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
             dynamic admindata;
             int isFullService = university.full_service;
 
@@ -351,7 +352,7 @@ public partial class admin_universitymaster_golive : System.Web.UI.Page
     {
         try
         {
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
             dynamic admindata;
             int isFullService = university.full_service;
 
@@ -409,7 +410,7 @@ public partial class admin_universitymaster_golive : System.Web.UI.Page
                 Label lbluid = (Label)e.Row.FindControl("lbluid");
                 CheckBox MemberCheck = (CheckBox)e.Row.FindControl("MemberCheck");
                 int uid = Convert.ToInt32(lbluid.Text);
-                var data = db.university_master.Where(x => x.universityid == uid).FirstOrDefault();
+                var data = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == uid).FirstOrDefault();
                 if (data != null)
                 {
                     if (data.Is_active == "1")

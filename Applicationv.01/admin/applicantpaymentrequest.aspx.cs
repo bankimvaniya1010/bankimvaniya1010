@@ -228,7 +228,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
     {
         try
         {
-            var universitydetails = db.university_master.Where(x => x.universityid == universityId).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+            var universitydetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId && x.IsDeleted != 1).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
 
             var studentEmailAddress = db.students.Where(x => x.studentid == applicantId).Select(x => x.email).FirstOrDefault();
             var name = db.applicantdetails.Where(x => x.applicantid == applicantId && x.universityid == universityId).Select(x => x.firstname).FirstOrDefault();

@@ -76,8 +76,8 @@ public partial class personaldetails : System.Web.UI.Page
             SetToolTips();
             SetControlsUniversitywise();
 
-            int? maxAge = db.university_master.Where(x => x.universityid == universityID).Select(x => x.acceptedmaxage).First();
-            int? minAge = db.university_master.Where(x => x.universityid == universityID).Select(x => x.acceptedminage).First();
+            int? maxAge = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.acceptedmaxage).First();
+            int? minAge = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.acceptedminage).First();
 
             GlobalVariables.universityMaxAge = Convert.ToInt32(maxAge);
             GlobalVariables.universityMinAge = Convert.ToInt32(minAge);
@@ -812,7 +812,7 @@ public partial class personaldetails : System.Web.UI.Page
         var applicantNameDetails = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { x.firstname, x.lastname, x.middlename}).FirstOrDefault();
         string applicantName = applicantNameDetails.firstname + " " + applicantNameDetails.middlename + " " + applicantNameDetails.lastname;
         string applicantFirstName = applicantNameDetails.firstname;
-        var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+        var univresityDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
 
         string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/agentRegistrationNotification.html"));
         html = html.Replace("@UniversityName", univresityDetails.university_name);

@@ -63,7 +63,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
     private void Bindlabel(int universityID) {
         try
         {
-            var studentcount_byuniveristy = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
+            var studentcount_byuniveristy = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
             lbltotal = studentcount_byuniveristy.ToString();
 
             int registeredapplicantcCount = (from ad in db.applicantdetails
@@ -101,7 +101,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                              //join cm in db.countriesmaster on sdata.residencecountry equals cm.id into countrydata
                              //from cmdata in countrydata.DefaultIfEmpty()
 
-                             where gtead.universityid == universityID && gtead.isdeletedbyAdmin == false 
+                             where gtead.universityid == universityID && gtead.isdeletedbyAdmin == false && u.IsDeleted != 1
                              select new Details()
                              {
                                  id = gtead.applicantid,
@@ -159,7 +159,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                              join um in db.university_master on ad.universityid equals um.universityid into umData
                              from u in umData.DefaultIfEmpty()
                              
-                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false
+                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false && u.IsDeleted != 1
                              select new Details()
                              {
                                  id = ad.applicantid,
@@ -204,7 +204,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                              join um in db.university_master on ad.universityid equals um.universityid into umData
                              from u in umData.DefaultIfEmpty()
 
-                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false
+                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false && u.IsDeleted != 1
                              select new Details()
                              {
                                  id = ad.applicantid,
@@ -687,7 +687,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
 
                 if (adminData.password == password)
                 {
-                    var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                    var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                     
                     //resnd otp to applicant as well as loggedin admin
                    

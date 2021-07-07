@@ -39,7 +39,7 @@ public partial class exammodule : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCom.FaqQuestionList();
-            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.examInstruction).FirstOrDefault();
+            universityInstruction.InnerText = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => x.examInstruction).FirstOrDefault();
             Session["totalResponseTime"] = null;
             bindDataList(string.Empty);
             ifexamexpires();

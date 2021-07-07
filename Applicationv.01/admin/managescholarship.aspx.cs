@@ -42,7 +42,7 @@ public partial class admin_managescholarship : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select university", "0");
-            List<university_master> universityMaster = db.university_master.ToList();
+            List<university_master> universityMaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
 
             ddlUniversity.DataSource = universityMaster;
             ddlUniversity.DataTextField = "university_name";

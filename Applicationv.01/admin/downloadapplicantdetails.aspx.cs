@@ -72,7 +72,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     //if (CustomControls.Count > 0)
                     //    objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
-                    var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                    var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                     logoURL = webURL + "/Docs/" + universityID + "/" + university.logo;
                     // Personal Detail Page
                     SetPersonalControlsUniversitywise(1);

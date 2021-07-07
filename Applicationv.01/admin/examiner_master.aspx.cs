@@ -54,11 +54,11 @@ public partial class admin_examiner_master : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             dynamic Universities;
             if (roleName.ToLower() == "admin")
-                Universities = db.university_master.ToList();
+                Universities = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+                Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddlUniversity.DataSource = Universities;
@@ -95,7 +95,7 @@ public partial class admin_examiner_master : System.Web.UI.Page
                 db.examiner_master.Add(objmapping);
                 db.SaveChanges();
                 //send email to examiner
-                var university = db.university_master.Where(x => x.universityid == slecteduniversityId).FirstOrDefault();
+                var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == slecteduniversityId).FirstOrDefault();
                 string rolename = db.rolemaster.Where(x => x.roleid == objmapping.roleid).Select(x => x.rolename).FirstOrDefault();
 
                 if (objmapping.email != null)

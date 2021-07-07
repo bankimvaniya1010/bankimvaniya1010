@@ -26,8 +26,8 @@ public partial class admin_managedeclaration_master : System.Web.UI.Page
             var declarationList = (from d in db.declaration_master
                                 join um in db.university_master
                                 on d.universityId equals um.universityid
-
-                                select new
+                                where um.IsDeleted != 1
+                                   select new
                                 {
                                     id = d.Id,
                                     description = d.statement_description.Replace(Environment.NewLine, "<br />"),

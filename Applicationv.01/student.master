@@ -891,7 +891,7 @@
                         $("#supportservice_list").hide();
                     }
                     else if (fullService == 1) {
-                       // $("#gtestudentdetail").hide();
+                        $("#Verification").hide();
                         $("#preliminary_list").show();
                         $("#personal_menu_list").show();
                         $("#studentapplication_list").show();
@@ -1059,6 +1059,7 @@
             //$("#DocumentsUpload").hide();
             //$("#GTEREport").hide();
             //$("#Verification").hide();
+          
             
            <%-- var questioncompleted = '<%=questioncompleted%>';
             var isclarificationquestionset = '<%=isclarificationquestionset%>'

@@ -104,8 +104,8 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
             objCom.BindCountries(ddlpostalCountry);
             objCom.BindCountries(ddlResidentialCountry);
             BindGender();
-            int? maxAge = db.university_master.Where(x => x.universityid == universityID).Select(x => x.acceptedmaxage).First();
-            int? minAge = db.university_master.Where(x => x.universityid == universityID).Select(x => x.acceptedminage).First();
+            int? maxAge = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.acceptedmaxage).First();
+            int? minAge = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.acceptedminage).First();
             if (maxAge != null)
                 GlobalVariables.universityMaxAge = Convert.ToInt32(maxAge);
             if (minAge != null)
@@ -135,7 +135,7 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
                         join uc in db.universitycampus on universityid equals uc.universityid into uniData
                         from campus in uniData.DefaultIfEmpty()
 
-                        where uni.universityid == universityid
+                        where uni.universityid == universityid && uni.IsDeleted != 1
                         select new data()
                         {
                             country_name = em.country_name,
@@ -178,7 +178,7 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
                               join um in db.university_master on em.id equals um.countryid into primaryData
                               from uni in primaryData.DefaultIfEmpty()
 
-                              where uni.universityid == universityid
+                              where uni.universityid == universityid && uni.IsDeleted != 1
                               select new data()
                               {
                                   country_name = em.country_name,
@@ -215,7 +215,7 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
                     join uc in db1.universitycampus on universityid equals uc.universityid into uniData
                     from campus in uniData.DefaultIfEmpty()
 
-                    where uni.universityid == universityid
+                    where uni.universityid == universityid && uni.IsDeleted != 1
                     select new data()
                     {
                         country_name = em.country_name,
@@ -1074,7 +1074,7 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
             cityDetails.AddRange(db1.universitycampus.Where(x => x.campusid == campusid).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name }).ToList());
 
         if (cityDetails.Count == 0)
-            cityDetails.Add(db1.university_master.Where(x => x.universityid == universityId).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name }));
+            cityDetails.Add(db1.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name }));
 
         return JsonConvert.SerializeObject(cityDetails.Distinct());
     }
@@ -1245,9 +1245,9 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
             var universities = db.universitygrouping.Where(x => x.groupingheaduniversityid == univerisityHeadId).Select(x => x.universityid).ToList();
 
             foreach (int universityId in universities)
-                objUniversities.Add(db.university_master.Where(x => x.universityid == universityId).Select(x => new uniData { university_name = x.university_name, universityid = x.universityid, uniflag = x.university_flag }).FirstOrDefault());
+                objUniversities.Add(db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId).Select(x => new uniData { university_name = x.university_name, universityid = x.universityid, uniflag = x.university_flag }).FirstOrDefault());
 
-            objUniversities.Add(db.university_master.Where(x => x.universityid == universityID).Select(x => new uniData { university_name = x.university_name, universityid = x.universityid, uniflag = x.university_flag }).FirstOrDefault());
+            objUniversities.Add(db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new uniData { university_name = x.university_name, universityid = x.universityid, uniflag = x.university_flag }).FirstOrDefault());
 
             objUniversities.RemoveAll(x => x.uniflag != 1);
             ddluniversityname.DataSource = objUniversities.OrderBy(x=>x.university_name).ToList();
@@ -1310,7 +1310,7 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
     //public void sendemail(string email)
     //{
     //    var applicantNameDetails = db.students.Where(x => x.studentid == userID).Select(x => new { x.name }).FirstOrDefault();
-    //    var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+    //    var univresityDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
 
     //    string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/gte_agentResgistrationNotification.html"));
     //    html = html.Replace("@UniversityName", univresityDetails.university_name);
@@ -1349,7 +1349,7 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
         int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
         string webURL = Utility.GetWebUrl();
         var applicantNameDetails = db.students.Where(x => x.studentid == userID).Select(x => new { x.name }).FirstOrDefault();
-        var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.full_service }).FirstOrDefault();
+        var univresityDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.full_service }).FirstOrDefault();
 
         string html = File.ReadAllText(System.Web.HttpContext.Current.Server.MapPath("/assets/Emailtemplate/gte_agentResgistrationNotification.html"));
 

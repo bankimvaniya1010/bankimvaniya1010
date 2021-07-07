@@ -38,7 +38,7 @@ public partial class verifystudent : System.Web.UI.Page
                         student.isverified = true;
                         db.SaveChanges();
                         universityID = Utility.GetUniversityId();
-                        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                         string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationwithotp.html"));
                         html = html.Replace("@UniversityName", university.university_name);
                         html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);

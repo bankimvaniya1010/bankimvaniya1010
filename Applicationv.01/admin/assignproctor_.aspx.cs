@@ -83,7 +83,7 @@ public partial class admin_assignproctor_ : System.Web.UI.Page
             if (meetingData != null)
             {
                 lbluniversityid.InnerText = meetingData.university_id.ToString();
-                ddlUniversity.InnerText = db.university_master.Where(x=>x.universityid == meetingData.university_id).Select(x=>x.university_name).FirstOrDefault();
+                ddlUniversity.InnerText = db.university_master.Where(x=>x.universityid == meetingData.university_id && x.IsDeleted != 1).Select(x=>x.university_name).FirstOrDefault();
                 lblstudentname.InnerText = db.applicantdetails.Where(x => x.applicantid == meetingData.applicant_id && x.universityid == meetingData.university_id).Select(x => x.firstname + "" + x.lastname).FirstOrDefault();
                 lblapplicantid.InnerText = meetingData.applicant_id.ToString();
                 lblutcmeetingtime.InnerText = meetingData.utc_meeting_time.ToString();
@@ -159,7 +159,7 @@ public partial class admin_assignproctor_ : System.Web.UI.Page
                 db.applicant_meeting_schedule.Add(objmapping);
             db.SaveChanges();
             //send email to proctor
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID && x.IsDeleted != 1).FirstOrDefault();
             var studentname = db.applicantdetails.Where(x => x.applicantid == objmapping.applicant_id && x.universityid == objmapping.university_id).Select(x => x.firstname + " " + x.lastname).FirstOrDefault();
             var proctordata = db.proctor_master.Where(x => x.proctorID == objmapping.proctor_id).FirstOrDefault();
 
@@ -189,7 +189,7 @@ public partial class admin_assignproctor_ : System.Web.UI.Page
         string webURL = Utility.GetWebUrl();
         Common objCom = new Common();
 
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID && x.IsDeleted != 1).FirstOrDefault();
         var objSchedule = db.applicant_meeting_schedule.Where(x => x.applicant_id == applicantid && x.university_id == universityID && x.is_meetingtime_expires == null).FirstOrDefault();
         var proctordata = db.proctor_master.Where(x => x.proctorID == proctor_id).FirstOrDefault();
         var applicantdata = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();

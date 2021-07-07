@@ -177,7 +177,7 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
         {
             var studentEmailAddress = db.students.Where(x => x.studentid == applicantId).Select(x => x.email).FirstOrDefault();
             var details = db.applicantdetails.Where(x => x.applicantid == applicantId && x.universityid == universityId).FirstOrDefault();
-            var universitydetails = db.university_master.Where(x => x.universityid == universityId).Select(x => new { x.university_name, x.logo,x.cityid,x.countryid }).FirstOrDefault();
+            var universitydetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId).Select(x => new { x.university_name, x.logo,x.cityid,x.countryid }).FirstOrDefault();
 
             string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/decisionupdationNotification.html"));
             html = html.Replace("@UniversityName", universitydetails.university_name);

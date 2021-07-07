@@ -55,48 +55,65 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
     }
 
     private void BindUniversityCampus(universitycampus existingUninversityCampus) {
-        bindUniversityDropdown(existingUninversityCampus.universityid);
-        objcom.BindCountries(ddlcountry);
-        if (existingUninversityCampus.Ismaincampus != null)
-            ddlmaincampus.Items.FindByValue(existingUninversityCampus.Ismaincampus.ToString()).Selected = true;
-        txtCampName.Value = existingUninversityCampus.campusname;
+        try {
 
-        var countryID = db.citymaster.Where(x => x.city_id == existingUninversityCampus.cityid).Select(x => x.country_id).FirstOrDefault();
-        BindCity(countryID);
-        ddlcity.Items.FindByValue(existingUninversityCampus.cityid.ToString()).Selected = true;
-        ddlcountry.Items.FindByValue(countryID.ToString()).Selected = true;
-        if (existingUninversityCampus.campussetting != null)
-            ddlcampussetting.Items.FindByValue(existingUninversityCampus.campussetting.ToString()).Selected = true;
-        txtcampusaddress.Value = existingUninversityCampus.campusaddress;
-        txtLatitude.Value = existingUninversityCampus.campuslatitude;
-        txtLongitude.Value = existingUninversityCampus.campuslongitude;
-        txtclosetairport.Value = existingUninversityCampus.closest_airport;
-        txtCampusAirportDistance.Value = existingUninversityCampus.distance_from_airport;
-        if(existingUninversityCampus.airDistanceUnit != null)
-            airDistanceUnit.Items.FindByValue(existingUninversityCampus.airDistanceUnit.ToString()).Selected = true;        
-        txtCampusclosestRailDistance.Value = existingUninversityCampus.closest_distance_from_railway;
-        if(existingUninversityCampus.railclosestDistanceUnit != null)
-             railclosestDistanceUnit.Items.FindByValue(existingUninversityCampus.railclosestDistanceUnit.ToString()).Selected = true;
-        txtCampusrailwaydistance.Value = existingUninversityCampus.distance_from_railway;
-        if (existingUninversityCampus.railwaydistanceunit != null)
-            ddlrailwaydistanceunit.Items.FindByValue(existingUninversityCampus.railwaydistanceunit.ToString()).Selected = true;
-        txtcampusGettingAround.Value = existingUninversityCampus.getting_around;
+            objcom.BindInstitution(ddlUniversity, existingUninversityCampus.universityid);
+            if (existingUninversityCampus.universityid != 0)
+            {
+                ddlUniversity.ClearSelection();
+                ddlUniversity.Items.FindByValue(existingUninversityCampus.universityid.ToString()).Selected = true;
+            }
+            objcom.BindCountries(ddlcountry);
+            if (existingUninversityCampus.Ismaincampus != null)
+                ddlmaincampus.Items.FindByValue(existingUninversityCampus.Ismaincampus.ToString()).Selected = true;
+            txtCampName.Value = existingUninversityCampus.campusname;
 
-        txtplaceofinterestcampus_description.Value = existingUninversityCampus.placeofintrestdescription;
-        txtplaceofinterestcampus_distance.Value = existingUninversityCampus.placeofintrestdistance;
-        if(existingUninversityCampus.Fraternities != null)
-            railclosestDistanceUnit.Items.FindByValue(existingUninversityCampus.Fraternities.ToString()).Selected = true;
-        if (existingUninversityCampus.Sororities != null)
-            ddlSororities.Items.FindByValue(existingUninversityCampus.Sororities.ToString()).Selected = true;
-        
-        txttotalstu_campus.Value = existingUninversityCampus.totalstudent_campus;
-        txtmale_percentage.Value = existingUninversityCampus.male_percentage;
-        txtfemale_percentage.Value = existingUninversityCampus.female_percentage;
-        txtaverageage.Value = existingUninversityCampus.averageage;
-        txtdomesticstude.Value = existingUninversityCampus.domesticstude;
-        txtstatestude.Value= existingUninversityCampus.statestude ;
-        txtinternationalstude.Value = existingUninversityCampus.internationalstude;
-        txtnoofnationalty.Value= existingUninversityCampus.noofnationalty;
+            var countryID = db.citymaster.Where(x => x.city_id == existingUninversityCampus.cityid).Select(x => x.country_id).FirstOrDefault();
+            BindCity(countryID);
+            if (existingUninversityCampus.cityid != 0)
+            {
+                ddlcity.Items.FindByValue(existingUninversityCampus.cityid.ToString()).Selected = true;
+                hidCityID.Value = existingUninversityCampus.cityid.ToString();
+            }
+            if (countryID != 0)
+                ddlcountry.Items.FindByValue(countryID.ToString()).Selected = true;
+            if (existingUninversityCampus.campussetting != null && existingUninversityCampus.campussetting != 0)
+                ddlcampussetting.Items.FindByValue(existingUninversityCampus.campussetting.ToString()).Selected = true;
+            txtcampusaddress.Value = existingUninversityCampus.campusaddress;
+            txtLatitude.Value = existingUninversityCampus.campuslatitude;
+            txtLongitude.Value = existingUninversityCampus.campuslongitude;
+            txtclosetairport.Value = existingUninversityCampus.closest_airport;
+            txtCampusAirportDistance.Value = existingUninversityCampus.distance_from_airport;
+            if (existingUninversityCampus.airDistanceUnit != null)
+                airDistanceUnit.Items.FindByValue(existingUninversityCampus.airDistanceUnit.ToString()).Selected = true;
+            txtCampusclosestRailDistance.Value = existingUninversityCampus.closest_distance_from_railway;
+            if (existingUninversityCampus.railclosestDistanceUnit != null && existingUninversityCampus.railclosestDistanceUnit != "0")
+                railclosestDistanceUnit.Items.FindByValue(existingUninversityCampus.railclosestDistanceUnit.ToString()).Selected = true;
+            txtCampusrailwaydistance.Value = existingUninversityCampus.distance_from_railway;
+            if (existingUninversityCampus.railwaydistanceunit != null && existingUninversityCampus.railwaydistanceunit != "0")
+                ddlrailwaydistanceunit.Items.FindByValue(existingUninversityCampus.railwaydistanceunit.ToString()).Selected = true;
+            txtcampusGettingAround.Value = existingUninversityCampus.getting_around;
+
+            txtplaceofinterestcampus_description.Value = existingUninversityCampus.placeofintrestdescription;
+            txtplaceofinterestcampus_distance.Value = existingUninversityCampus.placeofintrestdistance;
+            if (existingUninversityCampus.Fraternities != null && existingUninversityCampus.Fraternities != 0)
+                ddlFraternities.Items.FindByValue(existingUninversityCampus.Fraternities.ToString()).Selected = true;
+            if (existingUninversityCampus.Sororities != null && existingUninversityCampus.Sororities != 0)
+                ddlSororities.Items.FindByValue(existingUninversityCampus.Sororities.ToString()).Selected = true;
+
+            txttotalstu_campus.Value = existingUninversityCampus.totalstudent_campus;
+            txtmale_percentage.Value = existingUninversityCampus.male_percentage;
+            txtfemale_percentage.Value = existingUninversityCampus.female_percentage;
+            txtaverageage.Value = existingUninversityCampus.averageage;
+            txtdomesticstude.Value = existingUninversityCampus.domesticstude;
+            txtstatestude.Value = existingUninversityCampus.statestude;
+            txtinternationalstude.Value = existingUninversityCampus.internationalstude;
+            txtnoofnationalty.Value = existingUninversityCampus.noofnationalty;
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.StackTrace.ToString());
+        }
     }
     
     private void bindUniversityDropdown(int universityID)
@@ -106,11 +123,11 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
             ListItem lst = new ListItem("Please select university", "0");
             dynamic universityMaster;
             if (roleName.ToLower() == "admin")
-                universityMaster = db.university_master.ToList();
+                universityMaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityIDs = Convert.ToInt32(Session["universityId"]);
-                universityMaster = db.university_master.Where(x => x.universityid == universityIDs).ToList();
+                universityMaster = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityIDs).ToList();
             }
 
             ddlUniversity.DataSource = universityMaster;
@@ -118,7 +135,7 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
             ddlUniversity.DataValueField = "universityid";
             ddlUniversity.DataBind();
             ddlUniversity.Items.Insert(0, lst);
-            ddlUniversity.SelectedIndex = universityID;
+            //ddlUniversity.SelectedIndex = universityID;
             
         }
         catch (Exception ex)

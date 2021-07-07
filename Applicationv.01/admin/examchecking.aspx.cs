@@ -51,11 +51,11 @@ public partial class admin_examchecking : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             dynamic Universities;
             if (roleName.ToLower() == "admin")
-                Universities = db.university_master.ToList();
+                Universities = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+                Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddlUniversity.DataSource = Universities;
@@ -255,7 +255,7 @@ public partial class admin_examchecking : System.Web.UI.Page
                 //send passkey to examiner
                 var Examiner = db.examiner_master.Where(x => x.examinerID == objassign.examinerId).Select(x => new { x.name, x.email, x.examinerkey }).FirstOrDefault();
                 var examname = db.exam_master.Where(x => x.universityID == objassign.institutionId && x.exampapersid == objassign.ExamId).Select(x => x.exam_name).FirstOrDefault();
-                var university = db.university_master.Where(x => x.universityid == objassign.institutionId).FirstOrDefault();
+                var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == objassign.institutionId).FirstOrDefault();
                 var timezone = db.exam_schedule.Where(x => x.exampapersid == objassign.ExamId && x.universityid == objassign.institutionId && x.exam_datetime == objassign.scheduledate_time).Select(x => x.utctimezone).FirstOrDefault();
 
                 if (objassign.examinerId != null)

@@ -29,7 +29,7 @@ public partial class details : System.Web.UI.Page
             applicantid = Convert.ToInt32(Request.QueryString["id"].ToString());
         try
         {
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
             logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
             universityGTMCode = university.university_gtm_code;
 
