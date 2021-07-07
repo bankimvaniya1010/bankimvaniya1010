@@ -25,7 +25,7 @@ public partial class admin_predeparturetutoriallisting : System.Web.UI.Page
             var tutorialList = (from q in db.predeparturetutorialmaster
                                 join um in db.university_master
                                 on q.universityid equals um.universityid
-
+                                where um.IsDeleted != 1
                                 select new
                                 {
                                     id = q.predeparturetutorialid,

@@ -319,7 +319,7 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
     
     private void sendNotification_toUniversityMail(int universityID, string email1 , string email2)
     {
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
         dynamic admindata;
         int isFullService = university.full_service;//(int)Session["FullService"];
 
@@ -361,7 +361,7 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
    }
 
     private void sendNotification_toUser(int universityID, string email) {
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
         dynamic admindata;
         int isFullService = university.full_service;//(int)Session["FullService"];
 
@@ -860,7 +860,7 @@ public partial class admin_universitydetails_CreateN : System.Web.UI.Page
         try
         {
             var existingUniversity = (from universities in db.university_master
-                                      where universities.university_name.Equals(txtUniName.Value.Trim()) && universities.hosturl.Equals(txthosturl.Value.Trim())
+                                      where universities.university_name.Equals(txtUniName.Value.Trim()) && universities.hosturl.Equals(txthosturl.Value.Trim()) && universities.IsDeleted != 1
                                       select universities.university_name).FirstOrDefault();
             if (string.IsNullOrEmpty(existingUniversity))
             {

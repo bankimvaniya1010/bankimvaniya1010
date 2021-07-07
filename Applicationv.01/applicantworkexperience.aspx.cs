@@ -416,7 +416,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
 
             string applicantName = applicantNameDetails.firstname + " " + applicantNameDetails.middlename + " " + applicantNameDetails.lastname;
             string applicantFirstName = applicantNameDetails.firstname;
-            var universitydetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.cityid }).FirstOrDefault();
+            var universitydetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.cityid }).FirstOrDefault();
 
             if (rblEmploymentYes.Checked)
             {

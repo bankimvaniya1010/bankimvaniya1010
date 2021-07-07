@@ -45,7 +45,9 @@ public partial class admin_createcity : System.Web.UI.Page
 
                 db.citymaster.Add(cityObj);
                 db.SaveChanges();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Record Inserted successfully.');window.location='" + webURL + "admin/citymaster.aspx';", true);
+                
             }
             else
             {

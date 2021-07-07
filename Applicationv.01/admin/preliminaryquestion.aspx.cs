@@ -36,7 +36,7 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
             var QuestionList = (from q in db.preliminary_questionmaster
                                 join um in db.university_master
                                 on q.universityid equals um.universityid
-
+                                where um.IsDeleted != 1
                                 select new
                                 {
                                     preliminaryid = q.preliminaryid,
@@ -190,11 +190,11 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
         ListItem lst = new ListItem("Please select", "0");
         dynamic University;
         if (roleName.ToLower() == "admin")
-            University = db.university_master.ToList();
+            University = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
         else
         {
             universityID = Convert.ToInt32(Session["universityId"]);
-            University = db.university_master.Where(x => x.universityid == universityID).ToList();
+            University = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
         }
 
         if (e.Row.RowType == DataControlRowType.DataRow)

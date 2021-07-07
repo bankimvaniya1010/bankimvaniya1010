@@ -60,7 +60,7 @@ public partial class student_details : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var Universities = db.university_master.Where(x => x.universityid == universityID).ToList();//.Where(x=>x.universityid == universityID).ToList();
+            var Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();//.Where(x=>x.universityid == universityID).ToList();
             ddlinstitution.DataSource = Universities;
             ddlinstitution.DataTextField = "university_name";
             ddlinstitution.DataValueField = "universityid";

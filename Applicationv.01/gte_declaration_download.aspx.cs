@@ -40,7 +40,7 @@ public partial class gte_declaration_download : System.Web.UI.Page
         if (download == 1)
             btnDiv.Attributes.Add("style", "display:block;margin-left: 810px;width: 50%;padding: 10px;");
 
-        var university = db.university_master.Where(x => x.universityid == UniversityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).FirstOrDefault();
         UniLogURL = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         //ApplicantID = Convert.ToInt32(Session["UserID"].ToString());        
         //isFullService = (int)Session["FullService"];

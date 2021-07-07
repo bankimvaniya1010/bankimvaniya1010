@@ -87,7 +87,7 @@ public partial class schedule_conselling : System.Web.UI.Page
                 //send email to proctor
                 if (proctor_id != 0)
                 {
-                    var university = db1.university_master.Where(x => x.universityid == UniversityID).FirstOrDefault();
+                    var university = db1.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).FirstOrDefault();
                     var studentname = db1.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.firstname + " " + x.lastname).FirstOrDefault();
                     var proctordata = db1.proctor_master.Where(x => x.proctorID == proctor_id).FirstOrDefault();
 
@@ -146,7 +146,7 @@ public partial class schedule_conselling : System.Web.UI.Page
         string webURL = Utility.GetWebUrl();
         Common objCom = new Common();
 
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
         var objSchedule = db.applicant_meeting_schedule.Where(x => x.applicant_id == applicantid && x.university_id == universityID && x.is_meetingtime_expires == null).FirstOrDefault();
         var proctordata = db.proctor_master.Where(x => x.proctorID == proctor_id).FirstOrDefault();
         var applicantdata = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();

@@ -42,7 +42,7 @@ public partial class applicantreview : System.Web.UI.Page
             string Institutename = "";
             if (objApplicant[0].universityid != null)
             {
-                var institute = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                var institute = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                 if (institute != null)
                     Institutename = institute.university_name;
             }

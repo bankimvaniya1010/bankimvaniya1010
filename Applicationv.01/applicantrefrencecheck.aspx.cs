@@ -177,7 +177,7 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
                 if ((profileInfo.firstname != null) && (profileInfo.lastname != null))
                     Applicantname = Title + " " + profileInfo.firstname.ToString() + " " + profileInfo.lastname.ToString();
             }
-            var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.cityid }).FirstOrDefault();
+            var univresityDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.cityid }).FirstOrDefault();
             
             string url = webURL + "referencecheck.aspx?referncekey=" + objReference.referncekey;
             string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/referencecheckNotification.html"));

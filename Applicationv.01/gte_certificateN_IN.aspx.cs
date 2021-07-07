@@ -302,7 +302,7 @@ public partial class gte_certificateN_IN : System.Web.UI.Page
                 Div_OLD_Certificate.Attributes.Add("style", "display:block");
                 //showContentOLd(applicantId);
             }
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
             institutionLogo = webURL + "/Docs/" + university.universityid + "/" + university.logo;
 
             var Personal = db.applicantdetails.Where(x => x.applicantid == applicantId && x.universityid == universityID).FirstOrDefault();

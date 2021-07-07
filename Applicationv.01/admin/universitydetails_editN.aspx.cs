@@ -66,7 +66,7 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
     private void PopulateUniversity(int universityId) {
         try {
 
-            university_master existingUninversity = db.university_master.Where(obj => obj.universityid == universityId).First();
+            university_master existingUninversity = db.university_master.Where(obj => obj.universityid == universityId && obj.IsDeleted != 1).First();
                         
             if (existingUninversity != null)
             {
@@ -655,7 +655,7 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
     {
         int universityID = Convert.ToInt32(ViewState["universityID"]);
         int check = -1;
-        university_master universityObj = db.university_master.Where(x => x.universityid == universityID).First();
+        university_master universityObj = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).First();
         try
         {
             docPath = docPath + "/" + universityObj.universityid + "/";
@@ -748,27 +748,38 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
     {
         try {
             //COURSES
+            List<int> broadIDList = new List<int>();
             foreach (ListItem li in CheckBoxList1.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 31, "BORAD_FIELD", universityObj.universityid);
+                    broadIDList.Add(Convert.ToInt32(li.Value));
+                    
                 }
             }
+           SavedMapped(31, "BORAD_FIELD", universityObj.universityid,broadIDList);
+            
+            List<int> narrowList = new List<int>();
             foreach (ListItem li in CheckBoxList2.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 32, "NARROW_FIELD", universityObj.universityid);
+                    narrowList.Add(Convert.ToInt32(li.Value));
+
                 }
             }
+           SavedMapped(32, "NARROW_FIELD", universityObj.universityid,narrowList);
+
+            List<int> deatiledList = new List<int>();
             foreach (ListItem li in CheckBoxList3.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 33, "DETAILED_FIELD", universityObj.universityid);
+                    deatiledList.Add(Convert.ToInt32(li.Value));
                 }
             }
+            SavedMapped(33, "DETAILED_FIELD", universityObj.universityid, deatiledList);
+
 
             universityObj.courseDescription = tctcoursedescription.Text;
             //STUDENT STATS
@@ -813,13 +824,17 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
 
             universityObj.international_percentage = txtInternational.Text;
             universityObj.domestic_percentage = txtDomestic.Text;
+
+            List<int> lst = new List<int>();
             foreach (ListItem li in testList.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 41, "TESTS REQUIRED", universityObj.universityid);
+                    lst.Add(Convert.ToInt32(li.Value));
                 }
             }
+            SavedMapped(41, "TESTS REQUIRED", universityObj.universityid, lst);
+
             if (ddlSelectivity.SelectedValue != "0")
             {
                 universityObj.selectivity = Convert.ToInt32(ddlSelectivity.SelectedValue);
@@ -918,13 +933,17 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
             universityObj.avgTuitionFee = txtAvgTuitionFee.Text;
             universityObj.AvgFinancialAidPackage = txtAvgFinancialAidPackage.Text;
             universityObj.FinancialneedMet = txtFinancialneedMet.Text;
+
+            List<int> chkdomesticstudentlst = new List<int>();
             foreach (ListItem li in chkdomesticstudent.Items)
             {
                 if (li.Selected)
                 {
-                    SavedMapped(li.Value, 51, "Fee_anda-funding_domesti", universityObj.universityid);
+                    chkdomesticstudentlst.Add(Convert.ToInt32(li.Value));
                 }
             }
+            SavedMapped(51, "Fee_anda-funding_domesti", universityObj.universityid, chkdomesticstudentlst);
+
             if (chkstudecarescholarship_.Checked == true)
                 universityObj.studecarescholarship = 1;
 
@@ -1054,23 +1073,27 @@ public partial class admin_universitydetails_editN : System.Web.UI.Page
         catch (Exception ex) { objLog.WriteLog("tab7="+ex.StackTrace.ToString()); }
     }
     
-    private void SavedMapped(string chknumber, int fieldID, string fieldname,int uid) {
+    private void SavedMapped(int fieldID, string fieldname,int uid, List<int> selectedID) {
         try {
 
-            IEnumerable<university_datamapping> list = db.university_datamapping.Where(x =>x.university_id == uid && x.fieldname == fieldID && x.chkfield_id == chknumber).ToList();
+            IEnumerable<university_datamapping> list = db.university_datamapping.Where(x =>x.university_id == uid && x.fieldname == fieldID).ToList();
             // Use Remove Range function to delete all records at once
             db.university_datamapping.RemoveRange(list);
             // Save changes
             db.SaveChanges();
-            
-            university_datamapping objmapping = new university_datamapping();
-            
-            objmapping.fieldname = fieldID;
-            objmapping.fieldname_ = fieldname;
-            objmapping.chkfield_id = chknumber;
-            objmapping.university_id = uid;
-            db.university_datamapping.Add(objmapping);
-            db.SaveChanges();
+
+            foreach (var item in selectedID) {
+
+                university_datamapping objmapping = new university_datamapping();
+
+                objmapping.fieldname = fieldID;
+                objmapping.fieldname_ = fieldname;
+                objmapping.chkfield_id = item.ToString();
+                objmapping.university_id = uid;
+                db.university_datamapping.Add(objmapping);
+                db.SaveChanges();
+
+            }
 
         }
         catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }

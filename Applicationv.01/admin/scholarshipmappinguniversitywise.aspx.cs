@@ -50,7 +50,7 @@ public partial class admin_scholarshipmappinguniversitywise : System.Web.UI.Page
                     if (item.awarded_by.Contains("University"))
                     {
                         int universityId = Convert.ToInt32(Regex.Replace(item.awarded_by, "[^0-9]+", string.Empty));
-                        item.awarded_by = db.university_master.Where(x => x.universityid == universityId).Select(x => x.university_name).FirstOrDefault();
+                        item.awarded_by = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityId).Select(x => x.university_name).FirstOrDefault();
                     }                  
                     
                     var choiceObj = new

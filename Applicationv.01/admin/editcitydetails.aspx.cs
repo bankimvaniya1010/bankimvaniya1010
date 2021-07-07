@@ -31,6 +31,8 @@ public partial class admin_editcitydetails : System.Web.UI.Page
 
                 if (existingCity != null)
                 {
+                    ddlCountry.Enabled = false;
+                    ddlCountry.Attributes.Add("class", "form-control");
                     objCommon.BindCountries(ddlCountry);
                     populate(existingCity);
                 }
@@ -63,7 +65,10 @@ public partial class admin_editcitydetails : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        int cityID = Convert.ToInt32(ViewState["cityID"]);
+        int cityID;
+        if (!Int32.TryParse(Request.QueryString["cityID"], out cityID))
+            Response.Redirect(webURL + "admin/default.aspx");
+        
         citymaster cityObj = db.citymaster.Where(x => x.city_id == cityID).First();
         try
         {

@@ -55,7 +55,7 @@ public partial class registeragent : System.Web.UI.Page
 
                 int universityID = Utility.GetUniversityId();
                 StringBuilder sb = new StringBuilder();
-                var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.full_service }).FirstOrDefault();
+                var univresityDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.full_service }).FirstOrDefault();
                 var subject = "Registration with GTE";
                 if (univresityDetails.full_service == 0)
                     subject = "GTE Centre: Congratulations! You have successfully registered your agency.";

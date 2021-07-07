@@ -1,6 +1,15 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="universitymaster.aspx.cs" Inherits="admin_universitymaster" MasterPageFile="~/admin/admin.master" %>
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    <script type="text/javascript">
+         
+        function ConfirmOnDelete(item) {
+            if (confirm("Are you sure to delete: " + item + "?") == true)
+                return true;
+            else
+                return false;
+        }
+        </script>
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
@@ -52,7 +61,7 @@
                         BorderStyle="None"
                         AllowPaging="True"
                         BorderWidth="1px" DataKeyNames="univerityID"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="universityGridView_RowEditing" OnPageIndexChanging="universityGridView_PageIndexChanging1">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="universityGridView_RowEditing" OnPageIndexChanging="universityGridView_PageIndexChanging1" OnRowCommand="universityGridView_RowCommand" OnRowDeleting="universityGridView_RowDeleting"> 
 
                        <Columns>
                            <asp:BoundField DataField="univerityID" HeaderText="UID" InsertVisible="False"
@@ -60,6 +69,11 @@
                              <asp:TemplateField HeaderText="Action">
                                <ItemTemplate>
                                    <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                               </ItemTemplate>
+                            </asp:TemplateField>
+                           <asp:TemplateField HeaderText="Delete">
+                               <ItemTemplate>
+                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("univerityID")%>' CommandName="Delete" Text="Delete" OnClientClick='<%# Eval("univerityID","return ConfirmOnDelete({0})") %>'></asp:LinkButton>
                                </ItemTemplate>
                             </asp:TemplateField>
                            

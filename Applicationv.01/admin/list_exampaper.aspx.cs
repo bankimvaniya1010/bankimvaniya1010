@@ -35,7 +35,7 @@ public partial class admin_list_exampaper : System.Web.UI.Page
         {            
             var examlList = (from em in db.exam_master
                              join um in db.university_master on em.universityID equals um.universityid
-                             where em.universityID == selecteduniversityid && em.examinerId == selectedexaminerId
+                             where em.universityID == selecteduniversityid && em.examinerId == selectedexaminerId && um.IsDeleted != 1
                              select new {
                                  exampapersid= em.exampapersid,
                                  universityid = em.universityID,
@@ -65,11 +65,11 @@ public partial class admin_list_exampaper : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             dynamic Universities;
             if (roleName.ToLower() == "admin")
-                Universities = db.university_master.ToList();
+                Universities = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+                Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddlUniversity.DataSource = Universities;

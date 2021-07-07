@@ -22,7 +22,7 @@ public partial class registerconfimation : System.Web.UI.Page
     {
         email = Request.QueryString["email"];
         universityID = Utility.GetUniversityId();
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
         universityName = university.university_name;
 
         int isfullservice = university.full_service;

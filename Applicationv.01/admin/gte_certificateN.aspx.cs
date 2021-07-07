@@ -250,7 +250,7 @@ public partial class admin_gte_certificateN : System.Web.UI.Page
         {
             //objLog.WriteLog("Applicant ID: " + applicantId + " University Id: " + universityID);
 
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
             institutionLogo = webURL + "/Docs/" + university.universityid + "/" + university.logo;
 
             var Personal = db.applicantdetails.Where(x => x.applicantid == applicantId && x.universityid == universityID).FirstOrDefault();

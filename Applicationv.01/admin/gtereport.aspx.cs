@@ -58,7 +58,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
                 ViewState["downloadPdf"] = downloadPdf;
 
-                var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo, x.notes_disclaimer, x.university_name, x.full_service }).FirstOrDefault();
+                var universityDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.universityid, x.logo, x.notes_disclaimer, x.university_name, x.full_service }).FirstOrDefault();
                 logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
                 _universityName = universityDetails.university_name;
 

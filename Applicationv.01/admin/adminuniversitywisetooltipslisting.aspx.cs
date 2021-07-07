@@ -39,7 +39,7 @@ public partial class admin_adminuniversitywisetooltipslisting : System.Web.UI.Pa
             dynamic Universities;
             if (roleName.ToLower() == "admin")
                 Universities = (from a in db.university_master
-
+                                where a.IsDeleted != 1
                                 select new
                                 {
                                     universityid = a.universityid,
@@ -48,7 +48,7 @@ public partial class admin_adminuniversitywisetooltipslisting : System.Web.UI.Pa
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+                Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID && x.IsDeleted != 1).ToList();
             }
 
             ddlUniversity.DataSource = Universities;

@@ -43,11 +43,11 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
             ListItem lst = new ListItem("Please select university", "0");
             dynamic universityMaster;
             if (roleName.ToLower() == "admin")
-                universityMaster = db.university_master.ToList();
+                universityMaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
             else
             {
                 universityID = Convert.ToInt32(Session["universityId"]);
-                universityMaster = db.university_master.Where(x => x.universityid == universityID).ToList();
+                universityMaster = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
             }
 
             ddlUniversity.DataSource = universityMaster;
@@ -76,20 +76,25 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
             {
                 universityCampusObj.Ismaincampus = Convert.ToInt32(ddlmaincampus.SelectedValue);
                 universityCampusObj.campusname = txtCampName.Value.Trim();
-                universityCampusObj.campuscountry = Convert.ToInt32(ddlcountry.SelectedValue);
+                if(ddlcountry.SelectedValue!= "0")
+                    universityCampusObj.campuscountry = Convert.ToInt32(ddlcountry.SelectedValue);
                 universityCampusObj.cityid = Convert.ToInt32(hidCityID.Value);
-                universityCampusObj.campussetting = Convert.ToInt32(ddlcampussetting.SelectedValue);
+                if(ddlcampussetting.SelectedValue != "0")
+                    universityCampusObj.campussetting = Convert.ToInt32(ddlcampussetting.SelectedValue);
                 universityCampusObj.campusaddress = txtcampusaddress.Value.Trim();
                 universityCampusObj.campuslatitude = txtLatitude.Value.Trim();
                 universityCampusObj.campuslongitude = txtLongitude.Value.Trim();
 
                 universityCampusObj.closest_airport = txtclosetairport.Value.Trim();
                 universityCampusObj.distance_from_airport = txtCampusAirportDistance.Value.Trim();
-                universityCampusObj.airDistanceUnit = airDistanceUnit.SelectedValue;
+                if (airDistanceUnit.SelectedValue != "0")
+                    universityCampusObj.airDistanceUnit = airDistanceUnit.SelectedValue;
                 universityCampusObj.closest_distance_from_railway = txtCampusclosestRailDistance.Value.Trim();
-                universityCampusObj.railclosestDistanceUnit = railclosestDistanceUnit.SelectedValue;
+                if (railclosestDistanceUnit.SelectedValue != "0")
+                    universityCampusObj.railclosestDistanceUnit = railclosestDistanceUnit.SelectedValue;
                 universityCampusObj.distance_from_railway = txtCampusrailwaydistance.Value.Trim();
-                universityCampusObj.railwaydistanceunit = ddlrailwaydistanceunit.SelectedValue;
+                if (ddlrailwaydistanceunit.SelectedValue != "0")
+                    universityCampusObj.railwaydistanceunit = ddlrailwaydistanceunit.SelectedValue;
                 universityCampusObj.getting_around = txtcampusGettingAround.Value.Trim();
 
                 if (placeofinterestcampusimage.HasFile)
@@ -104,9 +109,10 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
                }
                 universityCampusObj.placeofintrestdescription = txtplaceofinterestcampus_description.Value.Trim();
                 universityCampusObj.placeofintrestdistance = txtplaceofinterestcampus_distance.Value.Trim();
-
-                universityCampusObj.Fraternities = Convert.ToInt32(ddlFraternities.SelectedValue);
-                universityCampusObj.Sororities = Convert.ToInt32(ddlSororities.SelectedValue);
+                if (ddlFraternities.SelectedValue != "0")
+                    universityCampusObj.Fraternities = Convert.ToInt32(ddlFraternities.SelectedValue);
+                if (ddlSororities.SelectedValue != "0")
+                    universityCampusObj.Sororities = Convert.ToInt32(ddlSororities.SelectedValue);
                 universityCampusObj.totalstudent_campus = txttotalstu_campus.Value.Trim();
                 universityCampusObj.male_percentage = txtmale_percentage.Value.Trim();
                 universityCampusObj.female_percentage = txtfemale_percentage.Value.Trim();
@@ -149,8 +155,8 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
                     db.facility_campus_mapping.Add(mapping);
                     db.SaveChanges();
                 }
-
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                       "alert('Record Inserted successfully.');window.location='" + webURL + "admin/universitycampusmaster.aspx';", true);
             }
             else
             {

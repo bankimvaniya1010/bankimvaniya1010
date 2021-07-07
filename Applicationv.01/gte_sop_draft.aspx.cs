@@ -371,7 +371,7 @@ public partial class gte_sop_draft : System.Web.UI.Page
                 }
                 if (item.statement.Contains("#Answer_19#"))
                 {
-                    var uniName = db.university_master.Where(x => x.universityid == applicantdetails.universityid).Select(x => x.university_name).FirstOrDefault();
+                    var uniName = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == applicantdetails.universityid).Select(x => x.university_name).FirstOrDefault();
                     item.statement = item.statement.Replace("#Answer_19#", uniName);
                 }
                 if (item.statement.Contains("#Answer_20#"))
@@ -400,7 +400,7 @@ public partial class gte_sop_draft : System.Web.UI.Page
     {
         if (text.Contains("#City#") || text.Contains("#EducationalInstitution#"))
         {
-            var institutionDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
+            var institutionDetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
             if (institutionDetails != null)
             {
                 text = text.Replace("#City#", institutionDetails.cityName);

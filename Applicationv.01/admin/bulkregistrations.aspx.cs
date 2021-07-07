@@ -244,7 +244,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
         try
         {
             //check count set by institution for registration
-            var universitycount1 = db.university_master.Where(x => x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
+            var universitycount1 = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.numberof_applicant).FirstOrDefault();
             var universitycount = Convert.ToInt32(universitycount1);
             var registeredapplicant = (from ad in db.applicantdetails
                                        join sd in db.students on ad.applicantid equals sd.studentid
@@ -327,7 +327,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
 
                         var vString = objapplicant.verification_key_;
 
-                        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                        var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
                         //sender email notification to university 
                         if (university.emai_notification1 != null)
                         {
@@ -452,7 +452,7 @@ public partial class admin_bulkregistrations : System.Web.UI.Page
     {
         try
         {
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
 
             string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerNotification.html"));
             html = html.Replace("@UniversityName", university.university_name);

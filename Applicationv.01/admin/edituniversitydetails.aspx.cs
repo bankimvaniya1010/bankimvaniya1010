@@ -204,7 +204,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
     {
         int universityID = Convert.ToInt32(ViewState["universityID"]);
         int check = -1;
-        university_master universityObj = db.university_master.Where(x => x.universityid == universityID).First();
+        university_master universityObj = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).First();
         try
         {
             universityObj.university_name = txtUniName.Value.Trim();

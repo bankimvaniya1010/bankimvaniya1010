@@ -143,7 +143,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
         {
             var studentEmailAddress = db.students.Where(x => x.studentid == UserID).Select(x => x.email).FirstOrDefault();
             var name = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.firstname).FirstOrDefault();
-            var universitydetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+            var universitydetails = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
 
             foreach (var question in sendEmailQuestionList)
             {                

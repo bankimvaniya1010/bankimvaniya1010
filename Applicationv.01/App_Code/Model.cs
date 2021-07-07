@@ -419,6 +419,7 @@ public partial class applicantdetails
     public Nullable<int> workexperience { get; set; }
     public Nullable<int> Iscurrentlyworking { get; set; }
     public Nullable<int> Isjoboffered { get; set; }
+    public Nullable<int> gradeid { get; set; }
 
     public virtual students students { get; set; }
 }
@@ -1644,6 +1645,85 @@ public partial class documentvalidationbyagent
     public Nullable<int> agentid { get; set; }
     public Nullable<System.DateTime> lastupdatedate { get; set; }
     public string remarks { get; set; }
+}
+
+public partial class ec_class_assign
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> IsDeleted { get; set; }
+    public Nullable<int> gradeid { get; set; }
+    public Nullable<int> subjectid { get; set; }
+    public Nullable<int> classid { get; set; }
+    public Nullable<int> classstartdateid { get; set; }
+    public Nullable<int> recurrenceid { get; set; }
+    public string repeatsevery_day { get; set; }
+    public Nullable<System.DateTime> enddate_daily { get; set; }
+    public string repeateevery_week { get; set; }
+    public string daysof_week { get; set; }
+    public Nullable<System.DateTime> enddate_weekly { get; set; }
+    public string repeateevery_months { get; set; }
+    public string day_months { get; set; }
+    public Nullable<int> ddlday { get; set; }
+    public Nullable<int> ddlday1 { get; set; }
+    public Nullable<System.DateTime> enddate_monthly { get; set; }
+    public string class_starttime { get; set; }
+    public string class_endtime { get; set; }
+}
+
+public partial class ec_class_assign_student_mapping
+{
+    public int id { get; set; }
+    public Nullable<int> assign_id { get; set; }
+    public Nullable<int> studentid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string day_name { get; set; }
+}
+
+public partial class ec_class_date_master
+{
+    public int id { get; set; }
+    public Nullable<int> classid { get; set; }
+    public Nullable<System.DateTime> class_startdate { get; set; }
+    public Nullable<System.DateTime> class_deadLinedate { get; set; }
+    public Nullable<System.DateTime> class_deadLinedate_utc { get; set; }
+}
+
+public partial class ec_class_location_mapping_master
+{
+    public int id { get; set; }
+    public Nullable<int> classid { get; set; }
+    public Nullable<int> locationid { get; set; }
+}
+
+public partial class ec_class_master
+{
+    public int id { get; set; }
+    public int universityid { get; set; }
+    public string classname { get; set; }
+    public string classdescription { get; set; }
+    public string webpageurl { get; set; }
+    public Nullable<int> majorid { get; set; }
+    public Nullable<int> levelid { get; set; }
+    public Nullable<int> gradeid { get; set; }
+    public Nullable<int> subjectid { get; set; }
+    public Nullable<int> modeid { get; set; }
+    public string virtuallink { get; set; }
+    public Nullable<int> classsetting { get; set; }
+    public Nullable<int> location { get; set; }
+    public Nullable<int> type { get; set; }
+    public Nullable<int> duration_year { get; set; }
+    public Nullable<int> duration_month { get; set; }
+    public Nullable<int> duration_day { get; set; }
+    public Nullable<int> duration_hours { get; set; }
+    public Nullable<int> fee_currency { get; set; }
+    public string fee_amount { get; set; }
+    public string requirement { get; set; }
+    public string instruction { get; set; }
+    public string instructionfilepath { get; set; }
+    public Nullable<int> booklatestatus { get; set; }
+    public string startdate { get; set; }
+    public string bookingdeadline { get; set; }
 }
 
 public partial class educational_institutionmaster
@@ -3476,6 +3556,7 @@ public partial class university_master
     }
 
     public int universityid { get; set; }
+    public int IsDeleted { get; set; }
     public string Is_active { get; set; }
     public Nullable<int> uni_id { get; set; }
     public Nullable<int> university_flag { get; set; }

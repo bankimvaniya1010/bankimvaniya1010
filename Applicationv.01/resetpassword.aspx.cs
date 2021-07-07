@@ -24,7 +24,7 @@ public partial class Resetpassword : System.Web.UI.Page
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
-        university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
         logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         universityGTMCode = university.university_gtm_code;
     }
@@ -105,7 +105,7 @@ public partial class Resetpassword : System.Web.UI.Page
                 Session["UserID"] = login.studentid;
                 Session["Role"] = "student";
                 isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(login.studentid, universityID);
-                isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
+                isFullService = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
                 if (isFullService == 1)
                 {

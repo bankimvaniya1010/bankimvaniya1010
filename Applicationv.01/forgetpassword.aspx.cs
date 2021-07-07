@@ -21,7 +21,7 @@ public partial class forgetpassword : System.Web.UI.Page
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
-        university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).FirstOrDefault();
         logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         universityGTMCode = university.university_gtm_code;
     }

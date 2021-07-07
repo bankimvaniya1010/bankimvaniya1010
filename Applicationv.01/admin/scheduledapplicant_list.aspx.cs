@@ -41,8 +41,8 @@ public partial class admin_scheduledapplicant_list : System.Web.UI.Page
                                    join ad in db.applicantdetails on q.applicant_id equals ad.applicantid
                                    join prom in db.proctor_master on q.proctor_id equals prom.proctorID into procdata
                                    from x in procdata.DefaultIfEmpty()
-                                   where q.is_meetingtime_expires == null && ad.universityid == q.university_id && q.university_id == UniversityID
-                                   select new
+                                   where q.is_meetingtime_expires == null && ad.universityid == q.university_id && q.university_id == UniversityID && um.IsDeleted != 1
+                               select new
                                    {
                                        id = q.id,
                                        applicant_id = q.applicant_id,
@@ -65,8 +65,8 @@ public partial class admin_scheduledapplicant_list : System.Web.UI.Page
                                    join ad in db.applicantdetails on q.applicant_id equals ad.applicantid 
                                    join prom in db.proctor_master on q.proctor_id equals prom.proctorID into procdata
                                    from x in procdata.DefaultIfEmpty()
-                                   where q.is_meetingtime_expires == null && ad.universityid == q.university_id
-                                   select new
+                                   where q.is_meetingtime_expires == null && ad.universityid == q.university_id && um.IsDeleted != 1
+                                select new
                                    {
                                        id = q.id,
                                        applicant_id = q.applicant_id,

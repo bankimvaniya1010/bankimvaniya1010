@@ -81,7 +81,8 @@
                            </asp:TemplateField>
                            <asp:TemplateField HeaderText="HostURL">
                                <ItemTemplate>
-                                   <a runat="server" href='<%# Bind("url") %>' target="_blank" id="exampath">URL</a>
+                                   
+                                   <a runat="server" href='<%# Bind("url") %>' target="_blank" id="exampath"><asp:Label ID="Label1" runat="server" Text='<%# Bind("url") %>'></asp:Label></a>
                                     
                                 </ItemTemplate>
                            </asp:TemplateField>

@@ -320,6 +320,7 @@
                                         <asp:ListItem value="0">GTE Service</asp:ListItem>
                                         <asp:ListItem value="1">Full Service</asp:ListItem>
                                         <asp:ListItem value="2">Examination module</asp:ListItem>
+                                        <%--<asp:ListItem value="5">eClass Service</asp:ListItem>--%>
                                     </asp:DropDownList>
                                 </div>
                             </div>
