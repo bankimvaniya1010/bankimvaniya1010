@@ -1,0 +1,97 @@
+﻿using Amazon.Rekognition.Model;
+using Amazon.S3;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
+using System.Web.UI;
+
+using System.Web.UI.WebControls;
+
+public partial class gte_facecomparision : System.Web.UI.Page
+{
+    Logger objLog = new Logger();
+    public static int UserID;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        UserID = Convert.ToInt32(Session["UserID"].ToString());
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = false)]
+    public static void AddBookingData(string data_uri)
+    {
+        int UniversityID = Utility.GetUniversityId();
+        string x = data_uri.Replace("data:image/jpeg;base64,", "");//data:image\/(png|jpeg|jpg);base64,
+        //string path = "Docs/webcamCapture/" + UniversityID + " / " + UserID + ".png";
+        string filename = HttpContext.Current.Server.MapPath("Docs/webcamCapture/h1.png");
+        Base64ToImage(x).Save(filename);
+    }
+    public static System.Drawing.Image Base64ToImage(string base64String)
+    {
+        byte[] imageBytes = Convert.FromBase64String(base64String);
+        MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+        ms.Write(imageBytes, 0, imageBytes.Length);
+        System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+        return image;
+    }
+
+    protected void Unnamed_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            //CompareFaces obj = new CompareFaces();
+            //if (!string.IsNullOrEmpty(obj.Example()))
+            //    lbl.Text = obj.Example();
+            //else
+            //    lbl.Text = "Blank";
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    protected void detectbtn_Click(object sender, EventArgs e)
+    {
+
+        //var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("myaccesskey", "mysecretkey");
+
+        //var client = new AmazonS3Client(awsCredentials);
+        //var response = client.CompareFaces(new CompareFacesRequest
+        //{
+        //    SimilarityThreshold = 90,
+        //    SourceImage = new Image
+        //    {
+        //        S3Object = new S3Object
+        //        {
+        //            Bucket = "mybucket",
+        //            Name = "mysourceimage"
+        //        }
+        //    },
+        //    TargetImage = new Image
+        //    {
+        //        S3Object = new S3Object
+        //        {
+        //            Bucket = "mybucket",
+        //            Name = "mytargetimage"
+        //        }
+        //    }
+        //});
+
+        //List<CompareFacesMatch> faceMatches = response.FaceMatches;
+        //ComparedSourceImageFace sourceImageFace = response.SourceImageFace;
+
+        //try
+        //{
+        //    DetectFaces objdetect = new DetectFaces();
+        //    var result = objdetect.Example();
+        //}
+        //catch (Exception ex)
+        //{
+        //    objLog.WriteLog(ex.ToString());
+        //}
+    }
+}
