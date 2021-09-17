@@ -17,7 +17,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Manage Class</li>
         </ol>
-        <h1 class="h2">Manage Class</h1>
+        <h1 class="h2">CREATE & SCHEDULE A CLASS</h1>
 
 
         <div runat="server" id="creatediv" style="display: block">
@@ -26,8 +26,8 @@
                     <table>
                         <tr>
                             <td>
-                                <asp:Button ID="btn_addnew" runat="server" Text="Create New" CssClass="btn btn-success" OnClick="btn_addnew_Click" />
-                                <asp:Button ID="btn_downloadexcel" runat="server" Text="Download List of All Classes" CssClass="btn btn-success" OnClick="btn_downloadexcel_Click" />
+                                <asp:Button ID="btn_addnew" runat="server" Text="Create & Schedule a New Class" CssClass="btn btn-success" OnClick="btn_addnew_Click" />
+                                <asp:Button ID="btn_downloadexcel" runat="server" Text="Download List of All Class(es)" CssClass="btn btn-success" OnClick="btn_downloadexcel_Click" />
                                 <br />
                             </td>
                         </tr>
@@ -73,19 +73,19 @@
                         DataKeyNames="classid"
                         AllowPaging="True"
                         CellPadding="2"
-                        PageSize="25"
+                        PageSize="10"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="QuestiontGridView_PageIndexChanging" OnRowDeleting="QuestiontGridView_RowDeleting" OnRowCommand="QuestiontGridView_RowCommand" OnRowEditing="QuestiontGridView_RowEditing">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="QuestiontGridView_PageIndexChanging" OnRowDeleting="QuestiontGridView_RowDeleting" OnRowCommand="QuestiontGridView_RowCommand" OnRowEditing="QuestiontGridView_RowEditing" OnRowDataBound="QuestiontGridView_RowDataBound">
 
                         <Columns>
 
                             <asp:TemplateField HeaderText="Delete">
                                 <ItemTemplate>
+                                    <asp:Label ID="lblIsClassInUse" runat="server" Text='<%#Bind("IsClassInUse") %>'></asp:Label>
                                     <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("classid")%>' CommandName="Delete" Text="Delete" OnClientClick='<%# Eval("classid","return ConfirmOnDelete({0})") %>'></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            
                             <asp:TemplateField HeaderText="Edit">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#Eval("classid")%>' CommandName="Edit" Text="Edit"></asp:LinkButton>
@@ -94,7 +94,23 @@
 
                             <asp:BoundField DataField="classid" HeaderText="Class Code" InsertVisible="False"
                                 ReadOnly="True" />
-
+                            
+                            <asp:TemplateField HeaderText="Assign Student(s)">
+                                <ItemTemplate>
+                                    <a runat="server" href='<%# Bind("link_assignstudent") %>' target="_blank" id="exampath">Assign</a>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Assign Instructor(s)">
+                                <ItemTemplate>
+                                    <a runat="server" href='<%# Bind("link_assignInstructor") %>' target="_blank" id="link2">Assign</a>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Duplicate">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkDuplicate" runat="server" CommandArgument='<%#Eval("classid")%>' CommandName="Duplicate" Text="Duplicate"></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Institution Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lbluniveristy" runat="server" Text='<%# Bind("univeristyname") %>'></asp:Label>
@@ -115,14 +131,14 @@
                                     <asp:Label ID="lblsubject" runat="server" Text='<%# Bind("subject") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Mode">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblmode" runat="server" Text='<%# Bind("mode") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Type">
                                 <ItemTemplate>
                                     <asp:Label ID="lbltype" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Mode">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblmode" runat="server" Text='<%# Bind("mode") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Duration">
@@ -135,9 +151,29 @@
                                     <asp:Label ID="lblfee" runat="server" Text='<%# Bind("fee") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Bookable">
+                            <asp:TemplateField HeaderText="Location">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblBooklate" runat="server" Text='<%# Bind("booklate") %>'></asp:Label>
+                                    <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("Location") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Start Date">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblstartdate" runat="server" Text='<%# Bind("startdate") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Recurrence">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblRecurrence" runat="server" Text='<%# Bind("Recurrence") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Avialability">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAvialability" runat="server" Text='<%# Bind("Avialability") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Bookable Status">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblbookablestatus" runat="server" Text='<%# Bind("bookablestatus") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

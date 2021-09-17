@@ -41,7 +41,7 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("Please select university", "0");
+            ListItem lst = new ListItem("Please select institution", "0");
             dynamic universityMaster;
             if (roleName.ToLower() == "admin")
                 universityMaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();

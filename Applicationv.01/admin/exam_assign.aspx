@@ -205,7 +205,7 @@
 
             var flag = false;
            <%--if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-               alert("Please Select University");--%>
+               alert("Please select institution");--%>
            if ($("#<%=ddlexam.ClientID%>").val() == "0")
                alert("Please Select exam");
            else if ($("#<%=ddlExamDateTime.ClientID%>").val() == "0")

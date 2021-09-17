@@ -139,6 +139,6 @@ public partial class clarificationquestion : System.Web.UI.Page
 
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {        
-        Response.Redirect(webURL + "uploaddocuments.aspx", true);
+        Response.Redirect(webURL + "gte_supportingdocument.aspx", true);
     }
 }

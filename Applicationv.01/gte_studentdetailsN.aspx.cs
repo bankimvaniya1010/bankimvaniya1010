@@ -44,8 +44,8 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         var isFullService = (int)Session["FullService"];
-        if (isFullService == 1)
-            Response.Redirect(webURL + "default.aspx", true);
+        //if (isFullService == 1)
+        //    Response.Redirect(webURL + "default.aspx", true);
 
         var isVerifiedByAdmin = (bool)Session["isVerifiedByAdmin"];
         if (!isVerifiedByAdmin)
@@ -573,7 +573,8 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
             objapplicantdetails.lastname = txtLastName.Value;
 
             string dateofBirth = ddlYear.SelectedValue + "-" + ddlMonth.SelectedValue + "-" + hidDOBDate.Value;
-            objapplicantdetails.dateofbirth = Convert.ToDateTime(dateofBirth);
+            if(objapplicantdetails.dateofbirth == null)
+                objapplicantdetails.dateofbirth = Convert.ToDateTime(dateofBirth);
 
             //objapplicantdetails.dateofbirth = Convert.ToDateTime(txtdob.Value);
             objapplicantdetails.countryof_citizenship = Convert.ToInt32(ddlnationality.SelectedValue);
@@ -1143,7 +1144,7 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             if (displayAll)
             {
-                var fields = db.studylevelmaster.ToList();
+                var fields = db.studylevelmaster.OrderBy(x=>x.studylevel).ToList();
 
                 ddl.DataSource = fields;
                 ddl.DataTextField = "studylevel";

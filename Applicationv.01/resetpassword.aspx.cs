@@ -99,7 +99,7 @@ public partial class Resetpassword : System.Web.UI.Page
 
                 bool isDeclarationDoneByApplicant = false;
                 bool isGteDeclarationDoneByApplicant;
-                
+                bool is_service5_DeclarationDoneByApplicant = false;
 
                 Session["LoginInfo"] = login;
                 Session["UserID"] = login.studentid;
@@ -118,7 +118,13 @@ public partial class Resetpassword : System.Web.UI.Page
                     isDeclarationCompleted = isGteDeclarationDoneByApplicant;
                     isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(login.studentid, universityID);
                 }
+                else if (isFullService == 5)
+                {
+                    is_service5_DeclarationDoneByApplicant = objCom.Is_service5_DeclarationDoneByApplicant(login.studentid, universityID);
+                    isProfileDetailsCompletedByApplicant = objCom.Set_eclass_StudentDetailsCompletedStatus(login.studentid, universityID);
+                }
 
+                Session["service5_DeclarationDoneByApplicant"] = is_service5_DeclarationDoneByApplicant;
                 Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
                 Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;
                 Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;

@@ -7,9 +7,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Bulk Registrations</li>
+            <li class="breadcrumb-item active">BULK USER REGISTRATION</li>
         </ol>
-        <h1 class="h2">Bulk Registrations</h1>
+        <h1 class="h2">BULK USER REGISTRATION</h1>
 
         <div class="card">            
             <div class="tab-content card-body">
@@ -20,9 +20,9 @@
                            <div class="list-group-item" id="Div4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label4" for="title" class="col-md-3 col-form-label form-label">Instructions: </label>
+                                        <label runat="server" id="label4" for="title" class="col-md-3 col-form-label form-label">Read the Instructions: </label>
                                         <div class="col-md-8">                                            
-                                            <label runat="server" id="lbltotal"> For bulk registrations you could simply upload a .csv file with the name and email address. Please download the sample .csv file format. <b>Do not delete or edit the headers</b>. Simply populate the names, email addresses, Class and Group .save the file and upload.</label>
+                                            <label runat="server" id="lbltotal"> For bulk registrations, download the sample .csv file.<b>Please do not delete or edit the headers</b>. Simply populate the details of all students under those headers and then, save and upload the .csv file.</label>
                                         </div>
                                     </div>
                                 </div>
@@ -30,9 +30,9 @@
                            <div class="list-group-item" id="Div1" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">download sample file</label>
+                                        <label runat="server" id="label1" for="title" class="col-md-3 col-form-label form-label">Download the Sample File:</label>
                                         <div class="col-md-6">                                            
-                                             <a href='<%=demolink %>' target="_blank">View</a>
+                                             <a href='<%=demolink %>' target="_blank">Download File</a>
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
                            <div class="list-group-item" id="Div2" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="label2" for="title" class="col-md-3 col-form-label form-label">upload data</label>
+                                        <label runat="server" id="label2" for="title" class="col-md-3 col-form-label form-label">upload the Completed Sample File:</label>
                                         <div class="col-md-6">    
                                             <asp:FileUpload runat="server" ID="postedFile"/>
                                         </div>
@@ -61,7 +61,18 @@
                                     </div>
                                 </div>
                             </div>
-                      
+                      <div class="list-group-item" id="Div8" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-title">
+                                    <div class="form-row">
+                                        <label runat="server" id="label7" for="title" class="col-md-3 col-form-label form-label"></label>
+                                        <div class="col-md-8">                                            
+                                            <label runat="server" id="Label8"> 
+                                                Note that for bulk registrations, there is no need to verify the registration of each student that is included in the completed sample file uploaded. The registration of all students in the completed sample file uploaded is auto-verified.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                          <div class="" id="Div7" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">

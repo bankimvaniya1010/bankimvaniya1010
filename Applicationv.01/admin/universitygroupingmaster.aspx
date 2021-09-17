@@ -35,9 +35,19 @@
                                     <asp:Label ID="lblUniversityList" runat="server" Text='<%# Bind("universitiesNames") %>'></asp:Label>
                                 </ItemTemplate>
                            </asp:TemplateField>
+                            
                            <asp:TemplateField HeaderText="Action">
                                <ItemTemplate>
                                    <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                               </ItemTemplate>
+                            </asp:TemplateField>
+                             
+                           <asp:TemplateField HeaderText="Course Mapping">
+                               <ItemTemplate>
+                                   <u><a href="<%# Eval("Managecourselink") %>" target="_blank">
+                                        Manage Course
+                                    </a></u>
+                                    
                                </ItemTemplate>
                             </asp:TemplateField>
                        </Columns>

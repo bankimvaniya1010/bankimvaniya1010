@@ -101,8 +101,7 @@
                                         <div class="col-md-9">
                                             <input type="radio" id="rbtnMale" runat="server" name="gender" required>Male</input>
                                             <input type="radio" id="rbtnFemale" runat="server" name="gender" required>Female</input>
-                                            <input type="radio" id="rbtnOther" runat="server" name="gender" required>Other</input>
-                                            <input type="radio" id="rbtnPreferNot" runat="server" name="gender" required>Prefer not to say</input>
+                                            <input type="radio" id="rbtnOther" runat="server" name="gender" required>X (Indeterminate/Intersex/Unspecified)</input>
                                              <span class="helpicon"><i id="icGender" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -542,7 +541,7 @@
                 alert("Please enter middle name");
             else if (!$("#<%=passportMiddleName.ClientID%>").prop('checked'))
                 alert("Kindly confirm middle name is same as passport name");--%>
-            else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rbtnFemale.ClientID%>").is(':checked') || $("#<%=rbtnMale.ClientID%>").is(':checked') || $("#<%=rbtnOther.ClientID%>").is(':checked') || $("#<%=rbtnPreferNot.ClientID%>").is(':checked')))
+            else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rbtnFemale.ClientID%>").is(':checked') || $("#<%=rbtnMale.ClientID%>").is(':checked') || $("#<%=rbtnOther.ClientID%>").is(':checked')))
                 alert("Please Select Option to record Gender");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0") || ($("#<%=hidDOBDate.ClientID%>").val() == "")))
                 alert("Please Select valid date of birth");

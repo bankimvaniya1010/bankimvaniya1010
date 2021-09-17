@@ -756,7 +756,7 @@
                 return false;
             }
             else if (UniTimeZoneValue == 0 || isNaN(parseInt(UniTimeZoneValue))) {
-                alert("Please select university time zone");
+                alert("Please select institution time zone");
                 return false;
             }
             else if (txtUniAirport == '') {

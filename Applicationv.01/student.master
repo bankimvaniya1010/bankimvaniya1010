@@ -193,7 +193,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                      <li class="sidebar-menu-item" id="schedulecounselling">
+                                   <%--   <li class="sidebar-menu-item" id="schedulecounselling">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#counselling">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/message board.png" /></i>
                                            Schedule your Evaluation
@@ -206,7 +206,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>--%>
                                     <li class="sidebar-menu-item" id="counsellingcenter_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#counsellingcenter">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/message board.png" /></i>
@@ -303,13 +303,28 @@
                                                     <span class="sidebar-menu-text">Clarification Question(s)</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-menu-item" id="uploaddocuments">
+                                            <li class="sidebar-menu-item" id="uploaddocuments" style="display:none;">
                                                 <a class="sidebar-menu-button" href="uploaddocuments.aspx">
                                                     <span class="sidebar-menu-text"> Documents Upload</span>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="sidebar-menu-item" id="gtedocument_fullservice_upload">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#gtedocument_fullservice_upload_menu">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/admissions offer.png" /></i>
+                                            Document Upload
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="gtedocument_fullservice_upload_menu">
+                                            <li class="sidebar-menu-item" id="Li8" runat="server">
+                                                <a class="sidebar-menu-button" href="<%=gtedocumentuploadURL %>"">
+                                                   
+                                                    <span class="sidebar-menu-text">Your Documents </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>       
                                      <li class="sidebar-menu-item" id="studentapplication_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Application">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/student application.png" /></i>
@@ -464,7 +479,64 @@
                                             <span class="sidebar-menu-text">GTE Counsellor</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item" id="Gte_list">
+                                    <li class="sidebar-menu-item" id="Gte_new_list">
+                                        <a class="sidebar-menu-button" data-toggle="collapse"  href="#page_gte">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/gte.png" /></i>
+                                            Your Assessments 
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="page_gte">
+                                            <li class="sidebar-menu-item" id="pgae0">
+                                                <a class="sidebar-menu-button" href="<%=gtestudentdetailpageURL %>">
+                                                    <span class="sidebar-menu-text">Personal Details</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="pgae1">
+                                                <a class="sidebar-menu-button" href="gte_declaration.aspx?formid=20">
+                                                    <span class="sidebar-menu-text">Declaration</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="Li2" runat="server">
+                                                <a class="sidebar-menu-button" href="gte_tutorial.aspx?formid=17">
+                                                   
+                                                    <span class="sidebar-menu-text">Tutorial</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="Li3" runat="server">
+                                                <a class="sidebar-menu-button" href="schedule_conselling.aspx?name=<%=username %>&email=<%=useremail%>">
+                                                    
+                                                    <span class="sidebar-menu-text">Schedule Now </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="Li4" runat="server">
+                                                <a class="sidebar-menu-button" href="gte_preliminary_section.aspx?formid=18">
+                                                    
+                                                    <span class="sidebar-menu-text">Certification  </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="Li5" runat="server">
+                                                <a class="sidebar-menu-button" href="gte_certificateN_IN.aspx"><%--href="<%=CertificateURL %>"">--%>
+                                                   
+                                                    <span class="sidebar-menu-text">View Certificate </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="Li6" runat="server">
+                                                <a class="sidebar-menu-button" href="gte_questions1.aspx?formid=22">
+                                                   
+                                                    <span class="sidebar-menu-text">GTE Assessment</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="Li7" runat="server">
+                                                <a class="sidebar-menu-button" href="<%=SOPPageURL %>"">
+                                                   
+                                                    <span class="sidebar-menu-text">SOP Builder</span>
+                                                </a>
+                                            </li> 
+                                           
+                                        </ul>
+                                    </li>
+                                     
+                                    <%--<li class="sidebar-menu-item" id="Gte_list">
                                         <a class="sidebar-menu-button" data-toggle="collapse"  href="#Gte">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/gte.png" /></i>
                                             GTE Certification 
@@ -498,6 +570,8 @@
                                             </li>                                            
                                         </ul>
                                     </li>
+                                   --%>
+                                   
                                     <%--<li class="sidebar-menu-item" id="gteevalution_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#evaluation">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/admissions offer.png" /></i>
@@ -687,6 +761,69 @@
                                             </li>
                                         </ul>
                                     </li>
+                                      <li class="sidebar-menu-item" id="ec_dashboard" runat="server">
+                                        <a class="sidebar-menu-button" href="Default.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/dashboard.png" /></i>
+                                            <span class="sidebar-menu-text"> My Dashboard </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="ec_beforyou" runat="server">
+                                        <a class="sidebar-menu-button" href="es_beforyou.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/before you start.png" /></i>
+                                            <span class="sidebar-menu-text"> Before You Start</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="ec_declareaion" runat="server">
+                                        <a class="sidebar-menu-button" href="ec_declareaion.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/Declaration_ICON.png" /></i>
+                                            <span class="sidebar-menu-text">Service Agreement</span>
+                                        </a>
+                                    </li>
+                                      <li class="sidebar-menu-item" id="ec_applicantdetils" runat="server" style="display:block;">
+                                        <a class="sidebar-menu-button" href="ec_applicantdetails.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/Declaration_ICON.png" /></i>
+                                            <span class="sidebar-menu-text">Your Details</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="ec_bookkclass" runat="server">
+                                        <a class="sidebar-menu-button" href="ec_book_class.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/DocumentUpload_ICON.png" /></i>
+                                            <span class="sidebar-menu-text"> Book a Class</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="ec_my_class" runat="server">
+                                        <a class="sidebar-menu-button" href="ec_my_class.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/DocumentUpload_ICON.png" /></i>
+                                            <span class="sidebar-menu-text"> My Class</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="ec_create_my_study_materials" runat="server">
+                                        <a class="sidebar-menu-button" href="ec_create_my_study_materials.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/Declaration_ICON.png" /></i>
+                                            <span class="sidebar-menu-text">My Study Materials</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="assignments_list" runat="server">
+                                        <a class="sidebar-menu-button" href="ec_create_my_assignments.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/Declaration_ICON.png" /></i>
+                                            <span class="sidebar-menu-text">My Assignments</span>
+                                        </a>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="ec_yourpayment" runat="server">
+                                        <a class="sidebar-menu-button" href="ec_applicant_payments.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/fee payment.png" /></i>
+                                            <span class="sidebar-menu-text">My Payments</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -802,6 +939,7 @@
             });
         }
         $(document).ready(function () {
+            //debugger;
             var fullService = ("<%=Session["FullService"]%>");
             var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
@@ -817,6 +955,7 @@
             }
             if (fullService == 1 || fullService == 0) {
                 $("#exam_list").hide();
+                $("#Verification").hide();
                 if (!declarationCompleted) {
                     $("#gtepart1").hide();
                     $("#gtepart2").hide();
@@ -840,6 +979,7 @@
                     $("#supportservice_list").hide();
                     $("#studentapplication_finances").hide();
                     $("#admissionsOffer_list").hide();
+                    $("#Gte_new_list").hide();
                     if (fullService == 0) {
                         $("#gtestudentdetail").show();
                         //$("#preliminary_list").hide();
@@ -874,6 +1014,7 @@
                     $("#download_gtereport").show();
                     $("#gtedocmentupload").show();
                     $("#gtedocument_list").show();
+                    $("#Gte_new_list").show();
                     $("#studentapplication_finances").show();
                     if (fullService == 0) {
                         $("#gtestudentdetail").show();
@@ -909,6 +1050,7 @@
                         $("#download_gtereport").hide();
                         $("#gtedocmentupload").hide();
                         $("#gteevalution_list").hide();
+                        $("#Gte_new_list").hide();
                     }
                     if (fullService == 1) {
                         if (studentDetailsCompleted) {
@@ -923,6 +1065,13 @@
                                 $("#download_gtereport").hide();
                                 $("#gtedocmentupload").hide();
                                 $("#gtedocument_list").hide();
+                                $("#Li2").hide();
+                                $("#Li3").hide();
+                                $("#Li4").hide();
+                                $("#Li5").hide();
+                                $("#Li6").hide();
+                                $("#Li7").hide();
+                                $("#Li8").hide();
                             }
                         }
                     }
@@ -963,12 +1112,21 @@
                 $("#SOPBuilder").hide();
                 $("#CounsellorAdvise").hide();
                 $("#DocumentsUpload").hide();
+                $("#Gte_new_list").hide();
+
+                $("#Dashboard").show();
+                $("#Instructions").show();
+                $("#gtestudentdetail").show();
+                $("#Declaration").show();
+                $("#Tutorial").show();
+                $("#Certification").show();
+                $("#ViewCertificate").show();
             }
             else if (fullService == 4) {//Evalution
                 $("#Certification").hide();
                 $("#ViewCertificate").hide();
                 $("#Tutorial").hide();
-
+                $("#Gte_new_list").hide();
             }
 
             if (fullService != 0 || fullService != 1) {
@@ -982,16 +1140,59 @@
                 $("#GTEAssessment").hide();
                 $("#SOPBuilder").hide();
                 $("#DocumentsUpload").hide();
-                $("#GTEREport").hide();               
+                $("#GTEREport").hide();
             }
-            
-                
-
-            if (fullService == 3 || fullService == 4 /*|| fullService == 0*/) {
+            if (fullService == 5) {
+                $("#gtedocument_fullservice_upload").hide();
+                $("#Gte_new_list").hide();
+                $("#Dashboard").hide();
+                $("#Instructions").hide();
+                $("#gtestudentdetail").hide();
+                $("#Declaration").hide();
+                $("#Tutorial").hide();
+                $("#Certification").hide();
+                $("#ViewCertificate").hide();
+                $("#GTEAssessment").hide();
+                $("#SOPBuilder").hide();
+                $("#DocumentsUpload").hide();
+                $("#GTEREport").hide();
+                $("#Verification").hide();
                 $("#preliminary_list").hide();
                 $("#schedulecounselling").hide();
+                $("#Gte_list").hide();
+                $("#profile_list").hide();
+                $("#counsellingcenter_list").hide();
+                $("#personal_menu_list").hide();
+                $("#studentapplication_list").hide();
+                $("#studentapplication_finances").hide();
+                $("#viewCOE_list").hide();
+                $("#admissionsOffer_list").hide();
+                $("#visaapplication_list").hide();
+                $("#feepayment_list").hide();
+                $("#predeparture_list").hide();
+                $("#supportservice_list").hide();
+                $("#exam_list").hide();
+                $("#ec_dashboard").show();
+                $("#ec_beforyou").show();
+                $("#ec_my_class").show();
+
             }
+            else {
+                $("#ec_dashboard").hide();
+                $("#ec_beforyou").hide();
+                $("#ec_my_class").hide();
+                $("#ec_declareaion").hide();
+                $("#ec_applicantdetils").hide();
+                $("#ec_bookkclass").hide();
+                $("#ec_create_my_study_materials").hide();
+                $("#assignments_list").hide();
+                $("#ec_yourpayment").hide();
+            }
+                
+            
             if (fullService == 3 || fullService == 4) {
+                $("#preliminary_list").hide();
+                $("#schedulecounselling").hide();
                 $("#exam_list").hide();
                 $("#schedulecounselling").hide();
                  $("#studedetails").show();
@@ -1025,8 +1226,10 @@
                     $("#ViewCertificate").hide();
                 }
             }
+
             if (fullService == 0) {
                 $("#Dashboard").show();
+                $("#Gte_new_list").hide();
                 $("#Instructions").show();
                 $("#gtestudentdetail").show();
                 $("#Declaration").show();
@@ -1046,21 +1249,7 @@
             else {
                 $("#gtestudentdetail").hide();
             }
-                //$("#gteevalution_list").show();
-            //$("#Dashboard").hide();
-            //$("#Instructions").hide();
-            //$("#gtestudentdetail").hide();
-            //$("#Declaration").hide();
-            //$("#Tutorial").hide();
-            //$("#Certification").hide();
-            //$("#ViewCertificate").hide();
-            //$("#GTEAssessment").hide();
-            //$("#SOPBuilder").hide();
-            //$("#DocumentsUpload").hide();
-            //$("#GTEREport").hide();
-            //$("#Verification").hide();
-          
-            
+             
            <%-- var questioncompleted = '<%=questioncompleted%>';
             var isclarificationquestionset = '<%=isclarificationquestionset%>'
             if (questioncompleted == 0 || isclarificationquestionset == 0)

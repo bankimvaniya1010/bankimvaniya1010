@@ -363,6 +363,7 @@
           <Property Name="classId" Type="int" />
           <Property Name="groupId" Type="int" />
           <Property Name="subjectId" Type="int" />
+          <Property Name="gradeid" Type="int" />
           <Property Name="studentid" Type="varchar" MaxLength="100" />
           <Property Name="idproofId" Type="int" />
           <Property Name="idproofNumber" Type="varchar" MaxLength="100" />
@@ -392,7 +393,16 @@
           <Property Name="workexperience" Type="int" />
           <Property Name="Iscurrentlyworking" Type="int" />
           <Property Name="Isjoboffered" Type="int" />
-          <Property Name="gradeid" Type="int" />
+          <Property Name="Is_employeesby" Type="int" />
+          <Property Name="guardian_name" Type="varchar" MaxLength="100" />
+          <Property Name="guardian_relationship" Type="int" />
+          <Property Name="guardian_email" Type="varchar" MaxLength="100" />
+          <Property Name="guardian_countrycode" Type="int" />
+          <Property Name="guardian_mobileno" Type="varchar" MaxLength="100" />
+          <Property Name="career_major" Type="int" />
+          <Property Name="career_minor" Type="int" />
+          <Property Name="career_broad" Type="int" />
+          <Property Name="career_detailed" Type="int" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -1454,40 +1464,218 @@
           <Property Name="lastupdatedate" Type="datetime" Precision="0" />
           <Property Name="remarks" Type="varchar" MaxLength="200" />
         </EntityType>
-        <EntityType Name="ec_class_assign">
+        <EntityType Name="ec_applicant_declaration_master">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
           <Property Name="universityid" Type="int" />
-          <Property Name="IsDeleted" Type="int" />
-          <Property Name="gradeid" Type="int" />
-          <Property Name="subjectid" Type="int" />
-          <Property Name="classid" Type="int" />
-          <Property Name="classstartdateid" Type="int" />
-          <Property Name="recurrenceid" Type="int" />
-          <Property Name="repeatsevery_day" Type="varchar" MaxLength="50" />
-          <Property Name="enddate_daily" Type="datetime" Precision="0" />
-          <Property Name="repeateevery_week" Type="varchar" MaxLength="50" />
-          <Property Name="daysof_week" Type="varchar" MaxLength="50" />
-          <Property Name="enddate_weekly" Type="datetime" Precision="0" />
-          <Property Name="repeateevery_months" Type="varchar" MaxLength="50" />
-          <Property Name="day_months" Type="varchar" MaxLength="50" />
-          <Property Name="ddlday" Type="int" />
-          <Property Name="ddlday1" Type="int" />
-          <Property Name="enddate_monthly" Type="datetime" Precision="0" />
-          <Property Name="class_starttime" Type="varchar" MaxLength="50" />
-          <Property Name="class_endtime" Type="varchar" MaxLength="50" />
+          <Property Name="is_declaration_completed" Type="int" />
+          <Property Name="declaration_completed_date" Type="datetime" Precision="0" />
+          <Property Name="is_tutorial_completed" Type="int" />
+          <Property Name="activity_ip" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="ec_class_assign_student_mapping">
+        <EntityType Name="ec_assign_study_material">
+          <Key>
+            <PropertyRef Name="asm_id" />
+          </Key>
+          <Property Name="asm_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="asm_universityid" Type="int" Nullable="false" />
+          <Property Name="asm_grade_id" Type="int" />
+          <Property Name="asm_subject_id" Type="int" />
+          <Property Name="asm_class_id" Type="int" />
+          <Property Name="asm_start_date" Type="int" />
+          <Property Name="asm_study_material" Type="varchar" MaxLength="100" />
+          <Property Name="asm_time_zone" Type="varchar" MaxLength="200" />
+          <Property Name="asm_type" Type="int" />
+          <Property Name="asm_mode" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_assign_study_material_date_wise">
+          <Key>
+            <PropertyRef Name="asmd_id" />
+          </Key>
+          <Property Name="asmd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="asmd_asm_id" Type="int" />
+          <Property Name="asmd_material_id" Type="int" />
+          <Property Name="asmd_start_date" Type="datetime" Precision="0" />
+          <Property Name="asmd_stop_time" Type="datetime" Precision="0" />
+          <Property Name="asmd_start_utc_date" Type="datetime" Precision="0" />
+          <Property Name="asm_stop_utc_date" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ec_assignment_answersheet">
+          <Key>
+            <PropertyRef Name="answesheetid" />
+          </Key>
+          <Property Name="answesheetid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityID" Type="int" />
+          <Property Name="assignID" Type="int" />
+          <Property Name="assignschedule_Id" Type="int" />
+          <Property Name="assignmentid" Type="int" />
+          <Property Name="assignment_papersheetID" Type="int" />
+          <Property Name="assignment_start_date" Type="datetime" Precision="0" />
+          <Property Name="uploded_at" Type="datetime" Precision="0" />
+          <Property Name="uplodedAt" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="anshwesheetpath" Type="varchar" MaxLength="2000" />
+          <Property Name="ispdfgenrated" Type="int" />
+          <Property Name="genratedanswerpdfPath" Type="varchar" MaxLength="100" />
+          <Property Name="extra_anshwesheetpath" Type="varchar" MaxLength="200" />
+          <Property Name="response_time" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ec_assignment_checked_master">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="assign_id" Type="int" />
-          <Property Name="studentid" Type="int" />
+          <Property Name="applicantid" Type="int" />
           <Property Name="universityid" Type="int" />
-          <Property Name="day_name" Type="varchar" MaxLength="50" />
+          <Property Name="assignId" Type="int" />
+          <Property Name="answersheetid" Type="int" />
+          <Property Name="is_assignment_checked" Type="int" />
+          <Property Name="checkedfile_path_by_admin" Type="varchar" MaxLength="100" />
+          <Property Name="marks" Type="int" />
+          <Property Name="checker_comments" Type="varchar" MaxLength="200" />
+          <Property Name="adminid" Type="int" />
+          <Property Name="result_release_timezone" Type="varchar" MaxLength="100" />
+          <Property Name="result_release_datetime" Type="datetime" Precision="0" />
+          <Property Name="result_release_datetime_utc" Type="datetime" Precision="0" />
+          <Property Name="assignment_checked_at" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ec_assignment_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="assignment_name" Type="varchar" MaxLength="200" />
+          <Property Name="assignment_type" Type="int" />
+          <Property Name="question_order_settings" Type="int" />
+          <Property Name="allowusertodownload" Type="int" />
+          <Property Name="gradeid" Type="varchar" MaxLength="1000" />
+          <Property Name="subjectid" Type="varchar" MaxLength="1000" />
+          <Property Name="checkingguide" Type="varchar" MaxLength="100" />
+          <Property Name="userfile" Type="varchar" MaxLength="100" />
+          <Property Name="remarks" Type="varchar" MaxLength="300" />
+          <Property Name="self_check" Type="int" />
+          <Property Name="created_by" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_assignment_papers_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityID" Type="int" />
+          <Property Name="assignmentid" Type="int" />
+          <Property Name="marks" Type="int" />
+          <Property Name="exampaper_path" Type="varchar" MaxLength="100" />
+          <Property Name="extrasheetpath" Type="varchar" MaxLength="100" />
+          <Property Name="audiovideofilepath" Type="varchar" MaxLength="100" />
+          <Property Name="fileinstruction" Type="varchar" MaxLength="1000" />
+          <Property Name="is_audiovideofile_onetimeview" Type="int" />
+          <Property Name="question_typeid" Type="int" />
+          <Property Name="selected_questionId" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_assignments_assign">
+          <Key>
+            <PropertyRef Name="assignId" />
+          </Key>
+          <Property Name="assignId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="assignschedule_Id" Type="int" />
+          <Property Name="applicantId" Type="int" />
+          <Property Name="assignmentId" Type="int" />
+          <Property Name="Is_assignemtCompleted" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="adminId" Type="int" />
+          <Property Name="assignment_date_id" Type="int" />
+          <Property Name="Is_assignment_checked" Type="int" />
+          <Property Name="Is_result_declared" Type="int" />
+          <Property Name="marks" Type="int" />
+          <Property Name="total_marks" Type="int" />
+          <Property Name="result_release_timezone" Type="varchar" MaxLength="100" />
+          <Property Name="result_release_datetime" Type="datetime" Precision="0" />
+          <Property Name="result_release_datetime_utc" Type="datetime" Precision="0" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ec_assignments_assignschedule_date_master">
+          <Key>
+            <PropertyRef Name="asmd_id" />
+          </Key>
+          <Property Name="asmd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="assignschedule_id" Type="int" />
+          <Property Name="assignment_id" Type="int" />
+          <Property Name="asmd_start_date" Type="datetime" Precision="0" />
+          <Property Name="asmd_stop_time" Type="datetime" Precision="0" />
+          <Property Name="asmd_start_utc_date" Type="datetime" Precision="0" />
+          <Property Name="asm_stop_utc_date" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ec_assignments_assignschedule_master">
+          <Key>
+            <PropertyRef Name="asm_id" />
+          </Key>
+          <Property Name="asm_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="asm_universityid" Type="int" Nullable="false" />
+          <Property Name="asm_grade_id" Type="int" />
+          <Property Name="asm_subject_id" Type="int" />
+          <Property Name="asm_type_id" Type="int" />
+          <Property Name="asm_mode_id" Type="int" />
+          <Property Name="asm_class_id" Type="int" />
+          <Property Name="asm_start_date" Type="int" />
+          <Property Name="asm_assignment_id" Type="varchar" MaxLength="100" />
+          <Property Name="asm_time_zone" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ec_assignments_assignschedule_student_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="assignschedule_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_beforeyou_admin">
+          <Key>
+            <PropertyRef Name="bfu_id" />
+          </Key>
+          <Property Name="bfu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bfu_course_id" Type="int" />
+          <Property Name="bfu_decreaption" Type="varchar" MaxLength="255" />
+          <Property Name="bfu_file_type" Type="int" />
+          <Property Name="bfu_file" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ec_broad_career_filed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="broad_code" Type="varchar" MaxLength="50" />
+          <Property Name="broad_name" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ec_careerfield_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="career_majorID" Type="int" />
+          <Property Name="career_minorID" Type="int" />
+          <Property Name="career_broadID" Type="int" />
+          <Property Name="career_detailedID" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_class_applicationmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="classid" Type="int" />
+          <Property Name="Is_suspened" Type="int" />
+          <Property Name="Is_class_assignedby_admin" Type="int" />
+          <Property Name="adminID" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="eligibility_response" Type="int" />
+          <Property Name="booking_datetime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="ec_class_date_master">
           <Key>
@@ -1499,13 +1687,17 @@
           <Property Name="class_deadLinedate" Type="datetime" Precision="0" />
           <Property Name="class_deadLinedate_utc" Type="datetime" Precision="0" />
         </EntityType>
-        <EntityType Name="ec_class_location_mapping_master">
+        <EntityType Name="ec_class_date_schedule_master">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="classid" Type="int" />
-          <Property Name="locationid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="classID" Type="int" />
+          <Property Name="class_datetime_start" Type="datetime" Precision="0" />
+          <Property Name="class_datetime_start_utc" Type="datetime" Precision="0" />
+          <Property Name="class_datetime_end" Type="datetime" Precision="0" />
+          <Property Name="class_datetime_end_utc" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="ec_class_master">
           <Key>
@@ -1518,25 +1710,259 @@
           <Property Name="webpageurl" Type="varchar" MaxLength="200" />
           <Property Name="majorid" Type="int" />
           <Property Name="levelid" Type="int" />
+          <Property Name="broadFieldID" Type="int" />
+          <Property Name="narrowFieldID" Type="int" />
+          <Property Name="detailedFieldID" Type="int" />
           <Property Name="gradeid" Type="int" />
+          <Property Name="groupid" Type="int" />
           <Property Name="subjectid" Type="int" />
+          <Property Name="type" Type="int" />
           <Property Name="modeid" Type="int" />
           <Property Name="virtuallink" Type="varchar" MaxLength="100" />
-          <Property Name="classsetting" Type="int" />
           <Property Name="location" Type="int" />
-          <Property Name="type" Type="int" />
           <Property Name="duration_year" Type="int" />
           <Property Name="duration_month" Type="int" />
           <Property Name="duration_day" Type="int" />
           <Property Name="duration_hours" Type="int" />
           <Property Name="fee_currency" Type="int" />
           <Property Name="fee_amount" Type="varchar" MaxLength="50" />
-          <Property Name="requirement" Type="varchar" MaxLength="200" />
-          <Property Name="instruction" Type="varchar" MaxLength="200" />
+          <Property Name="enrollment_fee_amount" Type="varchar" MaxLength="50" />
+          <Property Name="timezone" Type="varchar" MaxLength="100" />
+          <Property Name="startdate" Type="datetime" Precision="0" />
+          <Property Name="startdate_utc" Type="datetime" Precision="0" />
+          <Property Name="bookingdeadline" Type="datetime" Precision="0" />
+          <Property Name="bookingdeadline_utc" Type="datetime" Precision="0" />
+          <Property Name="recurrenceid" Type="int" />
+          <Property Name="repeatsevery_day" Type="varchar" MaxLength="50" />
+          <Property Name="enddate_daily" Type="datetime" Precision="0" />
+          <Property Name="repeateevery_week" Type="varchar" MaxLength="50" />
+          <Property Name="daysof_week" Type="varchar" MaxLength="50" />
+          <Property Name="enddate_weekly" Type="datetime" Precision="0" />
+          <Property Name="repeateevery_months" Type="varchar" MaxLength="50" />
+          <Property Name="rbl_daysofmonth" Type="int" />
+          <Property Name="day_months" Type="varchar" MaxLength="50" />
+          <Property Name="ddlday" Type="int" />
+          <Property Name="ddlday1" Type="int" />
+          <Property Name="enddate_monthly" Type="datetime" Precision="0" />
+          <Property Name="class_starttime" Type="varchar" MaxLength="50" />
+          <Property Name="class_starttime_utc" Type="varchar" MaxLength="50" />
+          <Property Name="class_endtime" Type="varchar" MaxLength="50" />
+          <Property Name="class_endtime_utc" Type="varchar" MaxLength="50" />
+          <Property Name="classsetting" Type="int" />
+          <Property Name="instruction" Type="varchar" MaxLength="2000" />
+          <Property Name="availability" Type="int" />
+          <Property Name="requirement" Type="varchar" MaxLength="2000" />
           <Property Name="instructionfilepath" Type="varchar" MaxLength="100" />
           <Property Name="booklatestatus" Type="int" />
-          <Property Name="startdate" Type="varchar" MaxLength="50" />
-          <Property Name="bookingdeadline" Type="varchar" MaxLength="50" />
+          <Property Name="Is_singelInstructor" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_detailed_career_filed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="detailed_code" Type="varchar" MaxLength="50" />
+          <Property Name="detailed_name" Type="varchar" MaxLength="50" />
+          <Property Name="detailed_description" Type="varchar" MaxLength="5000" />
+        </EntityType>
+        <EntityType Name="ec_grademaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ec_major_career_filed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="major_code" Type="varchar" MaxLength="50" />
+          <Property Name="major_name" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ec_mcq_question_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="subjectid" Type="int" />
+          <Property Name="gradeid" Type="int" />
+          <Property Name="question_for" Type="int" />
+          <Property Name="question" Type="varchar" MaxLength="2000" />
+          <Property Name="questionname" Type="varchar" MaxLength="200" />
+          <Property Name="answer1" Type="varchar" MaxLength="200" />
+          <Property Name="answer2" Type="varchar" MaxLength="200" />
+          <Property Name="answer3" Type="varchar" MaxLength="200" />
+          <Property Name="answer4" Type="varchar" MaxLength="200" />
+          <Property Name="answer_description1" Type="varchar" MaxLength="500" />
+          <Property Name="answer_description2" Type="varchar" MaxLength="200" />
+          <Property Name="answer_description3" Type="varchar" MaxLength="400" />
+          <Property Name="answer_description4" Type="varchar" MaxLength="500" />
+          <Property Name="correctanswer" Type="int" />
+          <Property Name="marks" Type="varchar" MaxLength="200" />
+          <Property Name="time" Type="varchar" MaxLength="100" />
+          <Property Name="created_by" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_minor_career_filed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="minor_code" Type="varchar" MaxLength="50" />
+          <Property Name="minor_name" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ec_mode_master">
+          <Key>
+            <PropertyRef Name="mode_id" />
+          </Key>
+          <Property Name="mode_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mode_description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ec_openquestion_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="subjectid" Type="int" />
+          <Property Name="gradeid" Type="int" />
+          <Property Name="question_for" Type="int" />
+          <Property Name="questionname" Type="varchar" MaxLength="200" />
+          <Property Name="questiontype" Type="int" />
+          <Property Name="question" Type="varchar" MaxLength="300" />
+          <Property Name="uploadedfile_url" Type="varchar" MaxLength="100" />
+          <Property Name="checkingguid_url" Type="varchar" MaxLength="100" />
+          <Property Name="correctanswer" Type="varchar" MaxLength="100" />
+          <Property Name="marks" Type="varchar" MaxLength="100" />
+          <Property Name="time" Type="varchar" MaxLength="100" />
+          <Property Name="created_by" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_payment_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicant_id" Type="int" />
+          <Property Name="university_id" Type="int" />
+          <Property Name="class_id" Type="int" />
+          <Property Name="applicationmaster_id" Type="int" />
+          <Property Name="request_date" Type="date" />
+          <Property Name="payment_for" Type="int" />
+          <Property Name="due_date" Type="date" />
+          <Property Name="amount" Type="int" />
+          <Property Name="currency_id" Type="int" />
+          <Property Name="instruction" Type="varchar" MaxLength="2000" />
+          <Property Name="payment_proof_file_name" Type="varchar" MaxLength="100" />
+          <Property Name="payment_status" Type="int" />
+          <Property Name="payment_verified_date" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'def.GTE.ec_service_user_master' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ec_service_user_master">
+          <Property Name="userid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="roleid" Type="int" />
+          <Property Name="passkey" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="username" Type="varchar" MaxLength="200" />
+          <Property Name="email" Type="varchar" MaxLength="200" />
+          <Property Name="mobile" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+        </EntityType>-->
+        <EntityType Name="ec_status_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ec_student_assign_in_study_material">
+          <Key>
+            <PropertyRef Name="sasm_id" />
+          </Key>
+          <Property Name="sasm_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sasm_asm_id" Type="int" />
+          <Property Name="sasm_universityid" Type="int" />
+          <Property Name="sasm_stud_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_study_material">
+          <Key>
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="material_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="material_name" Type="varchar" MaxLength="100" />
+          <Property Name="material_type" Type="int" />
+          <Property Name="material_document" Type="varchar" MaxLength="255" />
+          <Property Name="material_link" Type="varchar" MaxLength="255" />
+          <Property Name="material_grade" Type="varchar" MaxLength="50" />
+          <Property Name="material_subject" Type="varchar" MaxLength="50" />
+          <Property Name="remarks" Type="varchar" MaxLength="255" />
+          <Property Name="created_by" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ec_truefalse_question_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="subjectid" Type="int" />
+          <Property Name="gradeid" Type="int" />
+          <Property Name="question_for" Type="int" />
+          <Property Name="question" Type="varchar" MaxLength="2000" />
+          <Property Name="questionname" Type="varchar" MaxLength="200" />
+          <Property Name="answer1" Type="varchar" MaxLength="200" />
+          <Property Name="answer2" Type="varchar" MaxLength="200" />
+          <Property Name="answer_description1" Type="varchar" MaxLength="500" />
+          <Property Name="answer_description2" Type="varchar" MaxLength="200" />
+          <Property Name="correctanswer" Type="int" />
+          <Property Name="marks" Type="varchar" MaxLength="200" />
+          <Property Name="time" Type="varchar" MaxLength="100" />
+          <Property Name="created_by" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_tutorialmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="is_commontutoial" Type="int" />
+          <Property Name="serviceId" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="documentpath" Type="varchar" MaxLength="200" />
+          <Property Name="videourl" Type="varchar" MaxLength="100" />
+          <Property Name="title" Type="varchar" MaxLength="1000" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="institute_service_wise" Type="int" />
+        </EntityType>
+        <EntityType Name="ec_type_master">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ec_uploadanswer_master">
+          <Key>
+            <PropertyRef Name="questionid" />
+          </Key>
+          <Property Name="questionid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adminid" Type="int" />
+          <Property Name="univesityid" Type="int" />
+          <Property Name="subjectid" Type="int" />
+          <Property Name="gradeid" Type="int" />
+          <Property Name="questiondescription" Type="varchar" MaxLength="1000" />
+          <Property Name="questionpath" Type="varchar" MaxLength="50" />
+          <Property Name="extrasheetpath" Type="varchar" MaxLength="50" />
+          <Property Name="extrafilepath" Type="varchar" MaxLength="50" />
+          <Property Name="fileinstruction" Type="varchar" MaxLength="1000" />
+          <Property Name="marks" Type="varchar" MaxLength="50" />
+          <Property Name="duration" Type="varchar" MaxLength="50" />
+          <Property Name="question_for" Type="int" />
+          <Property Name="checking_file" Type="varchar" MaxLength="50" />
+          <Property Name="ischeckonce" Type="int" />
         </EntityType>
         <EntityType Name="educational_institutionmaster">
           <Key>
@@ -1860,6 +2286,7 @@
           <Property Name="examinerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="adminrecordID" Type="int" />
           <Property Name="universityId" Type="int" />
+          <Property Name="university_serviceid" Type="int" />
           <Property Name="roleid" Type="int" />
           <Property Name="examinerkey" Type="varchar" MaxLength="50" />
           <Property Name="name" Type="varchar" MaxLength="100" />
@@ -3005,6 +3432,16 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="decision_description" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="university_course_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="main_universityID" Type="int" />
+          <Property Name="grouped_universityID" Type="int" />
+          <Property Name="courseID" Type="int" />
+          <Property Name="course_campus_mapping_ID" Type="int" />
+        </EntityType>
         <EntityType Name="university_coursefiled_mapping">
           <Key>
             <PropertyRef Name="id" />
@@ -3179,6 +3616,7 @@
           <Property Name="Genuine_Assessment" Type="int" />
           <Property Name="importantdateddl" Type="int" />
           <Property Name="funding_avgtutionfee" Type="varchar" MaxLength="1000" />
+          <Property Name="fee_payment_details" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -5023,11 +5461,39 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="declaration_master" EntityType="Self.declaration_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="ec_class_assign" EntityType="Self.ec_class_assign" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="ec_class_assign_student_mapping" EntityType="Self.ec_class_assign_student_mapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_applicant_declaration_master" EntityType="Self.ec_applicant_declaration_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assign_study_material" EntityType="Self.ec_assign_study_material" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assign_study_material_date_wise" EntityType="Self.ec_assign_study_material_date_wise" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assignment_answersheet" EntityType="Self.ec_assignment_answersheet" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assignment_checked_master" EntityType="Self.ec_assignment_checked_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assignment_master" EntityType="Self.ec_assignment_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assignment_papers_master" EntityType="Self.ec_assignment_papers_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assignments_assign" EntityType="Self.ec_assignments_assign" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assignments_assignschedule_date_master" EntityType="Self.ec_assignments_assignschedule_date_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assignments_assignschedule_master" EntityType="Self.ec_assignments_assignschedule_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_assignments_assignschedule_student_mapping" EntityType="Self.ec_assignments_assignschedule_student_mapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_beforeyou_admin" EntityType="Self.ec_beforeyou_admin" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_broad_career_filed_master" EntityType="Self.ec_broad_career_filed_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_careerfield_mapping" EntityType="Self.ec_careerfield_mapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_class_applicationmaster" EntityType="Self.ec_class_applicationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="ec_class_date_master" EntityType="Self.ec_class_date_master" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="ec_class_location_mapping_master" EntityType="Self.ec_class_location_mapping_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_class_date_schedule_master" EntityType="Self.ec_class_date_schedule_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="ec_class_master" EntityType="Self.ec_class_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_detailed_career_filed_master" EntityType="Self.ec_detailed_career_filed_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_grademaster" EntityType="Self.ec_grademaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_major_career_filed_master" EntityType="Self.ec_major_career_filed_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_mcq_question_master" EntityType="Self.ec_mcq_question_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_minor_career_filed_master" EntityType="Self.ec_minor_career_filed_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_mode_master" EntityType="Self.ec_mode_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_openquestion_master" EntityType="Self.ec_openquestion_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_payment_details" EntityType="Self.ec_payment_details" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_status_master" EntityType="Self.ec_status_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_student_assign_in_study_material" EntityType="Self.ec_student_assign_in_study_material" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_study_material" EntityType="Self.ec_study_material" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_truefalse_question_master" EntityType="Self.ec_truefalse_question_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_tutorialmaster" EntityType="Self.ec_tutorialmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_type_master" EntityType="Self.ec_type_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_uploadanswer_master" EntityType="Self.ec_uploadanswer_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educational_institutionmaster" EntityType="Self.educational_institutionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationalinstitution_country_city_mappingmaster" EntityType="Self.educationalinstitution_country_city_mappingmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationdetailcheck_referee_response" EntityType="Self.educationdetailcheck_referee_response" Schema="GTE" store:Type="Tables" />
@@ -5157,6 +5623,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="type_master" EntityType="Self.type_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="typeofworkexperiencemaster" EntityType="Self.typeofworkexperiencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_application_decision_master" EntityType="Self.university_application_decision_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="university_course_mapping" EntityType="Self.university_course_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_coursefiled_mapping" EntityType="Self.university_coursefiled_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_datamapping" EntityType="Self.university_datamapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_master" EntityType="Self.university_master" Schema="GTE" store:Type="Tables" />
@@ -5804,11 +6271,39 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="declaration_master" EntityType="GTEModel.declaration_master" />
           <EntitySet Name="disabilitymaster" EntityType="GTEModel.disabilitymaster" />
           <EntitySet Name="documentvalidationbyagent" EntityType="GTEModel.documentvalidationbyagent" />
-          <EntitySet Name="ec_class_assign" EntityType="GTEModel.ec_class_assign" />
-          <EntitySet Name="ec_class_assign_student_mapping" EntityType="GTEModel.ec_class_assign_student_mapping" />
+          <EntitySet Name="ec_applicant_declaration_master" EntityType="GTEModel.ec_applicant_declaration_master" />
+          <EntitySet Name="ec_assign_study_material" EntityType="GTEModel.ec_assign_study_material" />
+          <EntitySet Name="ec_assign_study_material_date_wise" EntityType="GTEModel.ec_assign_study_material_date_wise" />
+          <EntitySet Name="ec_assignment_answersheet" EntityType="GTEModel.ec_assignment_answersheet" />
+          <EntitySet Name="ec_assignment_checked_master" EntityType="GTEModel.ec_assignment_checked_master" />
+          <EntitySet Name="ec_assignment_master" EntityType="GTEModel.ec_assignment_master" />
+          <EntitySet Name="ec_assignment_papers_master" EntityType="GTEModel.ec_assignment_papers_master" />
+          <EntitySet Name="ec_assignments_assign" EntityType="GTEModel.ec_assignments_assign" />
+          <EntitySet Name="ec_assignments_assignschedule_date_master" EntityType="GTEModel.ec_assignments_assignschedule_date_master" />
+          <EntitySet Name="ec_assignments_assignschedule_master" EntityType="GTEModel.ec_assignments_assignschedule_master" />
+          <EntitySet Name="ec_assignments_assignschedule_student_mapping" EntityType="GTEModel.ec_assignments_assignschedule_student_mapping" />
+          <EntitySet Name="ec_beforeyou_admin" EntityType="GTEModel.ec_beforeyou_admin" />
+          <EntitySet Name="ec_broad_career_filed_master" EntityType="GTEModel.ec_broad_career_filed_master" />
+          <EntitySet Name="ec_careerfield_mapping" EntityType="GTEModel.ec_careerfield_mapping" />
+          <EntitySet Name="ec_class_applicationmaster" EntityType="GTEModel.ec_class_applicationmaster" />
           <EntitySet Name="ec_class_date_master" EntityType="GTEModel.ec_class_date_master" />
-          <EntitySet Name="ec_class_location_mapping_master" EntityType="GTEModel.ec_class_location_mapping_master" />
+          <EntitySet Name="ec_class_date_schedule_master" EntityType="GTEModel.ec_class_date_schedule_master" />
           <EntitySet Name="ec_class_master" EntityType="GTEModel.ec_class_master" />
+          <EntitySet Name="ec_detailed_career_filed_master" EntityType="GTEModel.ec_detailed_career_filed_master" />
+          <EntitySet Name="ec_grademaster" EntityType="GTEModel.ec_grademaster" />
+          <EntitySet Name="ec_major_career_filed_master" EntityType="GTEModel.ec_major_career_filed_master" />
+          <EntitySet Name="ec_mcq_question_master" EntityType="GTEModel.ec_mcq_question_master" />
+          <EntitySet Name="ec_minor_career_filed_master" EntityType="GTEModel.ec_minor_career_filed_master" />
+          <EntitySet Name="ec_mode_master" EntityType="GTEModel.ec_mode_master" />
+          <EntitySet Name="ec_openquestion_master" EntityType="GTEModel.ec_openquestion_master" />
+          <EntitySet Name="ec_payment_details" EntityType="GTEModel.ec_payment_details" />
+          <EntitySet Name="ec_status_master" EntityType="GTEModel.ec_status_master" />
+          <EntitySet Name="ec_student_assign_in_study_material" EntityType="GTEModel.ec_student_assign_in_study_material" />
+          <EntitySet Name="ec_study_material" EntityType="GTEModel.ec_study_material" />
+          <EntitySet Name="ec_truefalse_question_master" EntityType="GTEModel.ec_truefalse_question_master" />
+          <EntitySet Name="ec_tutorialmaster" EntityType="GTEModel.ec_tutorialmaster" />
+          <EntitySet Name="ec_type_master" EntityType="GTEModel.ec_type_master" />
+          <EntitySet Name="ec_uploadanswer_master" EntityType="GTEModel.ec_uploadanswer_master" />
           <EntitySet Name="educational_institutionmaster" EntityType="GTEModel.educational_institutionmaster" />
           <EntitySet Name="educationalinstitution_country_city_mappingmaster" EntityType="GTEModel.educationalinstitution_country_city_mappingmaster" />
           <EntitySet Name="educationdetailcheck_referee_response" EntityType="GTEModel.educationdetailcheck_referee_response" />
@@ -5938,6 +6433,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="type_master" EntityType="GTEModel.type_master" />
           <EntitySet Name="typeofworkexperiencemaster" EntityType="GTEModel.typeofworkexperiencemaster" />
           <EntitySet Name="university_application_decision_master" EntityType="GTEModel.university_application_decision_master" />
+          <EntitySet Name="university_course_mapping" EntityType="GTEModel.university_course_mapping" />
           <EntitySet Name="university_coursefiled_mapping" EntityType="GTEModel.university_coursefiled_mapping" />
           <EntitySet Name="university_datamapping" EntityType="GTEModel.university_datamapping" />
           <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
@@ -6871,6 +7367,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="classId" Type="Int32" />
           <Property Name="groupId" Type="Int32" />
           <Property Name="subjectId" Type="Int32" />
+          <Property Name="gradeid" Type="Int32" />
           <Property Name="studentid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="idproofId" Type="Int32" />
           <Property Name="idproofNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -6900,7 +7397,16 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="workexperience" Type="Int32" />
           <Property Name="Iscurrentlyworking" Type="Int32" />
           <Property Name="Isjoboffered" Type="Int32" />
-          <Property Name="gradeid" Type="Int32" />
+          <Property Name="Is_employeesby" Type="Int32" />
+          <Property Name="guardian_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="guardian_relationship" Type="Int32" />
+          <Property Name="guardian_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="guardian_countrycode" Type="Int32" />
+          <Property Name="guardian_mobileno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="career_major" Type="Int32" />
+          <Property Name="career_minor" Type="Int32" />
+          <Property Name="career_broad" Type="Int32" />
+          <Property Name="career_detailed" Type="Int32" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdetails_students" FromRole="applicantdetails" ToRole="students" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
@@ -8043,40 +8549,218 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="lastupdatedate" Type="DateTime" />
           <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ec_class_assign">
+        <EntityType Name="ec_applicant_declaration_master">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
           <Property Name="universityid" Type="Int32" />
-          <Property Name="IsDeleted" Type="Int32" />
-          <Property Name="gradeid" Type="Int32" />
-          <Property Name="subjectid" Type="Int32" />
-          <Property Name="classid" Type="Int32" />
-          <Property Name="classstartdateid" Type="Int32" />
-          <Property Name="recurrenceid" Type="Int32" />
-          <Property Name="repeatsevery_day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="enddate_daily" Type="DateTime" />
-          <Property Name="repeateevery_week" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="daysof_week" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="enddate_weekly" Type="DateTime" />
-          <Property Name="repeateevery_months" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="day_months" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ddlday" Type="Int32" />
-          <Property Name="ddlday1" Type="Int32" />
-          <Property Name="enddate_monthly" Type="DateTime" />
-          <Property Name="class_starttime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="class_endtime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_declaration_completed" Type="Int32" />
+          <Property Name="declaration_completed_date" Type="DateTime" />
+          <Property Name="is_tutorial_completed" Type="Int32" />
+          <Property Name="activity_ip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ec_class_assign_student_mapping">
+        <EntityType Name="ec_assign_study_material">
+          <Key>
+            <PropertyRef Name="asm_id" />
+          </Key>
+          <Property Name="asm_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="asm_universityid" Type="Int32" Nullable="false" />
+          <Property Name="asm_grade_id" Type="Int32" />
+          <Property Name="asm_subject_id" Type="Int32" />
+          <Property Name="asm_class_id" Type="Int32" />
+          <Property Name="asm_start_date" Type="Int32" />
+          <Property Name="asm_study_material" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="asm_time_zone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="asm_type" Type="Int32" />
+          <Property Name="asm_mode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_assign_study_material_date_wise">
+          <Key>
+            <PropertyRef Name="asmd_id" />
+          </Key>
+          <Property Name="asmd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="asmd_asm_id" Type="Int32" />
+          <Property Name="asmd_material_id" Type="Int32" />
+          <Property Name="asmd_start_date" Type="DateTime" />
+          <Property Name="asmd_stop_time" Type="DateTime" />
+          <Property Name="asmd_start_utc_date" Type="DateTime" />
+          <Property Name="asm_stop_utc_date" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="ec_assignment_answersheet">
+          <Key>
+            <PropertyRef Name="answesheetid" />
+          </Key>
+          <Property Name="answesheetid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityID" Type="Int32" />
+          <Property Name="assignID" Type="Int32" />
+          <Property Name="assignschedule_Id" Type="Int32" />
+          <Property Name="assignmentid" Type="Int32" />
+          <Property Name="assignment_papersheetID" Type="Int32" />
+          <Property Name="assignment_start_date" Type="DateTime" />
+          <Property Name="uploded_at" Type="DateTime" />
+          <Property Name="uplodedAt" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="anshwesheetpath" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ispdfgenrated" Type="Int32" />
+          <Property Name="genratedanswerpdfPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="extra_anshwesheetpath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="response_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_assignment_checked_master">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="assign_id" Type="Int32" />
-          <Property Name="studentid" Type="Int32" />
+          <Property Name="applicantid" Type="Int32" />
           <Property Name="universityid" Type="Int32" />
-          <Property Name="day_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="assignId" Type="Int32" />
+          <Property Name="answersheetid" Type="Int32" />
+          <Property Name="is_assignment_checked" Type="Int32" />
+          <Property Name="checkedfile_path_by_admin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="marks" Type="Int32" />
+          <Property Name="checker_comments" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="adminid" Type="Int32" />
+          <Property Name="result_release_timezone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="result_release_datetime" Type="DateTime" />
+          <Property Name="result_release_datetime_utc" Type="DateTime" />
+          <Property Name="assignment_checked_at" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="ec_assignment_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="assignment_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="assignment_type" Type="Int32" />
+          <Property Name="question_order_settings" Type="Int32" />
+          <Property Name="allowusertodownload" Type="Int32" />
+          <Property Name="gradeid" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="subjectid" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="checkingguide" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="userfile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="self_check" Type="Int32" />
+          <Property Name="created_by" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_assignment_papers_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityID" Type="Int32" />
+          <Property Name="assignmentid" Type="Int32" />
+          <Property Name="marks" Type="Int32" />
+          <Property Name="exampaper_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="extrasheetpath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="audiovideofilepath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fileinstruction" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="is_audiovideofile_onetimeview" Type="Int32" />
+          <Property Name="question_typeid" Type="Int32" />
+          <Property Name="selected_questionId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_assignments_assign">
+          <Key>
+            <PropertyRef Name="assignId" />
+          </Key>
+          <Property Name="assignId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="assignschedule_Id" Type="Int32" />
+          <Property Name="applicantId" Type="Int32" />
+          <Property Name="assignmentId" Type="Int32" />
+          <Property Name="Is_assignemtCompleted" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="adminId" Type="Int32" />
+          <Property Name="assignment_date_id" Type="Int32" />
+          <Property Name="Is_assignment_checked" Type="Int32" />
+          <Property Name="Is_result_declared" Type="Int32" />
+          <Property Name="marks" Type="Int32" />
+          <Property Name="total_marks" Type="Int32" />
+          <Property Name="result_release_timezone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="result_release_datetime" Type="DateTime" />
+          <Property Name="result_release_datetime_utc" Type="DateTime" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ec_assignments_assignschedule_date_master">
+          <Key>
+            <PropertyRef Name="asmd_id" />
+          </Key>
+          <Property Name="asmd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="assignschedule_id" Type="Int32" />
+          <Property Name="assignment_id" Type="Int32" />
+          <Property Name="asmd_start_date" Type="DateTime" />
+          <Property Name="asmd_stop_time" Type="DateTime" />
+          <Property Name="asmd_start_utc_date" Type="DateTime" />
+          <Property Name="asm_stop_utc_date" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="ec_assignments_assignschedule_master">
+          <Key>
+            <PropertyRef Name="asm_id" />
+          </Key>
+          <Property Name="asm_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="asm_universityid" Type="Int32" Nullable="false" />
+          <Property Name="asm_grade_id" Type="Int32" />
+          <Property Name="asm_subject_id" Type="Int32" />
+          <Property Name="asm_type_id" Type="Int32" />
+          <Property Name="asm_mode_id" Type="Int32" />
+          <Property Name="asm_class_id" Type="Int32" />
+          <Property Name="asm_start_date" Type="Int32" />
+          <Property Name="asm_assignment_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="asm_time_zone" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_assignments_assignschedule_student_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="assignschedule_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_beforeyou_admin">
+          <Key>
+            <PropertyRef Name="bfu_id" />
+          </Key>
+          <Property Name="bfu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bfu_course_id" Type="Int32" />
+          <Property Name="bfu_decreaption" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="bfu_file_type" Type="Int32" />
+          <Property Name="bfu_file" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_broad_career_filed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="broad_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="broad_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_careerfield_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="career_majorID" Type="Int32" />
+          <Property Name="career_minorID" Type="Int32" />
+          <Property Name="career_broadID" Type="Int32" />
+          <Property Name="career_detailedID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_class_applicationmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="classid" Type="Int32" />
+          <Property Name="Is_suspened" Type="Int32" />
+          <Property Name="Is_class_assignedby_admin" Type="Int32" />
+          <Property Name="adminID" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="eligibility_response" Type="Int32" />
+          <Property Name="booking_datetime" Type="DateTime" />
         </EntityType>
         <EntityType Name="ec_class_date_master">
           <Key>
@@ -8088,13 +8772,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="class_deadLinedate" Type="DateTime" />
           <Property Name="class_deadLinedate_utc" Type="DateTime" />
         </EntityType>
-        <EntityType Name="ec_class_location_mapping_master">
+        <EntityType Name="ec_class_date_schedule_master">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="classid" Type="Int32" />
-          <Property Name="locationid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="classID" Type="Int32" />
+          <Property Name="class_datetime_start" Type="DateTime" />
+          <Property Name="class_datetime_start_utc" Type="DateTime" />
+          <Property Name="class_datetime_end" Type="DateTime" />
+          <Property Name="class_datetime_end_utc" Type="DateTime" />
         </EntityType>
         <EntityType Name="ec_class_master">
           <Key>
@@ -8107,25 +8795,246 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="webpageurl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="majorid" Type="Int32" />
           <Property Name="levelid" Type="Int32" />
+          <Property Name="broadFieldID" Type="Int32" />
+          <Property Name="narrowFieldID" Type="Int32" />
+          <Property Name="detailedFieldID" Type="Int32" />
           <Property Name="gradeid" Type="Int32" />
+          <Property Name="groupid" Type="Int32" />
           <Property Name="subjectid" Type="Int32" />
+          <Property Name="type" Type="Int32" />
           <Property Name="modeid" Type="Int32" />
           <Property Name="virtuallink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="classsetting" Type="Int32" />
           <Property Name="location" Type="Int32" />
-          <Property Name="type" Type="Int32" />
           <Property Name="duration_year" Type="Int32" />
           <Property Name="duration_month" Type="Int32" />
           <Property Name="duration_day" Type="Int32" />
           <Property Name="duration_hours" Type="Int32" />
           <Property Name="fee_currency" Type="Int32" />
           <Property Name="fee_amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="requirement" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="instruction" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="enrollment_fee_amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="timezone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="startdate" Type="DateTime" />
+          <Property Name="startdate_utc" Type="DateTime" />
+          <Property Name="bookingdeadline" Type="DateTime" />
+          <Property Name="bookingdeadline_utc" Type="DateTime" />
+          <Property Name="recurrenceid" Type="Int32" />
+          <Property Name="repeatsevery_day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enddate_daily" Type="DateTime" />
+          <Property Name="repeateevery_week" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="daysof_week" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enddate_weekly" Type="DateTime" />
+          <Property Name="repeateevery_months" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rbl_daysofmonth" Type="Int32" />
+          <Property Name="day_months" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ddlday" Type="Int32" />
+          <Property Name="ddlday1" Type="Int32" />
+          <Property Name="enddate_monthly" Type="DateTime" />
+          <Property Name="class_starttime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="class_starttime_utc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="class_endtime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="class_endtime_utc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classsetting" Type="Int32" />
+          <Property Name="instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="availability" Type="Int32" />
+          <Property Name="requirement" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="instructionfilepath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="booklatestatus" Type="Int32" />
-          <Property Name="startdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="bookingdeadline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Is_singelInstructor" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_detailed_career_filed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="detailed_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="detailed_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="detailed_description" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_grademaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_major_career_filed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="major_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_mcq_question_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="subjectid" Type="Int32" />
+          <Property Name="gradeid" Type="Int32" />
+          <Property Name="question_for" Type="Int32" />
+          <Property Name="question" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="questionname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer_description1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="answer_description2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer_description3" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="answer_description4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="correctanswer" Type="Int32" />
+          <Property Name="marks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="created_by" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_minor_career_filed_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="minor_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="minor_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_mode_master">
+          <Key>
+            <PropertyRef Name="mode_id" />
+          </Key>
+          <Property Name="mode_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mode_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_openquestion_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="subjectid" Type="Int32" />
+          <Property Name="gradeid" Type="Int32" />
+          <Property Name="question_for" Type="Int32" />
+          <Property Name="questionname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="questiontype" Type="Int32" />
+          <Property Name="question" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="uploadedfile_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="checkingguid_url" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="correctanswer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="marks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="created_by" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_payment_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" />
+          <Property Name="university_id" Type="Int32" />
+          <Property Name="class_id" Type="Int32" />
+          <Property Name="applicationmaster_id" Type="Int32" />
+          <Property Name="request_date" Type="DateTime" />
+          <Property Name="payment_for" Type="Int32" />
+          <Property Name="due_date" Type="DateTime" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="currency_id" Type="Int32" />
+          <Property Name="instruction" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="payment_proof_file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="payment_status" Type="Int32" />
+          <Property Name="payment_verified_date" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="ec_status_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_student_assign_in_study_material">
+          <Key>
+            <PropertyRef Name="sasm_id" />
+          </Key>
+          <Property Name="sasm_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sasm_asm_id" Type="Int32" />
+          <Property Name="sasm_universityid" Type="Int32" />
+          <Property Name="sasm_stud_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_study_material">
+          <Key>
+            <PropertyRef Name="material_id" />
+          </Key>
+          <Property Name="material_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="material_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="material_type" Type="Int32" />
+          <Property Name="material_document" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="material_link" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="material_grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="material_subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="created_by" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_truefalse_question_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="subjectid" Type="Int32" />
+          <Property Name="gradeid" Type="Int32" />
+          <Property Name="question_for" Type="Int32" />
+          <Property Name="question" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="questionname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer_description1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="answer_description2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="correctanswer" Type="Int32" />
+          <Property Name="marks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="created_by" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_tutorialmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="is_commontutoial" Type="Int32" />
+          <Property Name="serviceId" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="documentpath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="institute_service_wise" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ec_type_master">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ec_uploadanswer_master">
+          <Key>
+            <PropertyRef Name="questionid" />
+          </Key>
+          <Property Name="questionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adminid" Type="Int32" />
+          <Property Name="univesityid" Type="Int32" />
+          <Property Name="subjectid" Type="Int32" />
+          <Property Name="gradeid" Type="Int32" />
+          <Property Name="questiondescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="questionpath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="extrasheetpath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="extrafilepath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fileinstruction" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="marks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="question_for" Type="Int32" />
+          <Property Name="checking_file" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ischeckonce" Type="Int32" />
         </EntityType>
         <EntityType Name="educational_institutionmaster">
           <Key>
@@ -8450,6 +9359,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="examinerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="adminrecordID" Type="Int32" />
           <Property Name="universityId" Type="Int32" />
+          <Property Name="university_serviceid" Type="Int32" />
           <Property Name="roleid" Type="Int32" />
           <Property Name="examinerkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -9710,6 +10620,16 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="decision_description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="university_course_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="main_universityID" Type="Int32" />
+          <Property Name="grouped_universityID" Type="Int32" />
+          <Property Name="courseID" Type="Int32" />
+          <Property Name="course_campus_mapping_ID" Type="Int32" />
+        </EntityType>
         <EntityType Name="university_coursefiled_mapping">
           <Key>
             <PropertyRef Name="id" />
@@ -9884,6 +10804,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="Genuine_Assessment" Type="Int32" />
           <Property Name="importantdateddl" Type="Int32" />
           <Property Name="funding_avgtutionfee" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fee_payment_details" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_university_master_admincomments" FromRole="university_master" ToRole="admincomments" />
           <NavigationProperty Name="adminuniversitywisetooltips" Relationship="GTEModel.fk_adminuniversitywisetooltips_university_master" FromRole="university_master" ToRole="adminuniversitywisetooltips" />
           <NavigationProperty Name="applicantdocumentmaster" Relationship="GTEModel.FK_applicantdocumentmaster_university_master" FromRole="university_master" ToRole="applicantdocumentmaster" />
@@ -11964,7 +12885,16 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
-                <ScalarProperty Name="gradeid" ColumnName="gradeid" />
+                <ScalarProperty Name="career_detailed" ColumnName="career_detailed" />
+                <ScalarProperty Name="career_broad" ColumnName="career_broad" />
+                <ScalarProperty Name="career_minor" ColumnName="career_minor" />
+                <ScalarProperty Name="career_major" ColumnName="career_major" />
+                <ScalarProperty Name="guardian_mobileno" ColumnName="guardian_mobileno" />
+                <ScalarProperty Name="guardian_countrycode" ColumnName="guardian_countrycode" />
+                <ScalarProperty Name="guardian_email" ColumnName="guardian_email" />
+                <ScalarProperty Name="guardian_relationship" ColumnName="guardian_relationship" />
+                <ScalarProperty Name="guardian_name" ColumnName="guardian_name" />
+                <ScalarProperty Name="Is_employeesby" ColumnName="Is_employeesby" />
                 <ScalarProperty Name="Isjoboffered" ColumnName="Isjoboffered" />
                 <ScalarProperty Name="Iscurrentlyworking" ColumnName="Iscurrentlyworking" />
                 <ScalarProperty Name="workexperience" ColumnName="workexperience" />
@@ -11994,6 +12924,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="idproofNumber" ColumnName="idproofNumber" />
                 <ScalarProperty Name="idproofId" ColumnName="idproofId" />
                 <ScalarProperty Name="studentid" ColumnName="studentid" />
+                <ScalarProperty Name="gradeid" ColumnName="gradeid" />
                 <ScalarProperty Name="subjectId" ColumnName="subjectId" />
                 <ScalarProperty Name="groupId" ColumnName="groupId" />
                 <ScalarProperty Name="classId" ColumnName="classId" />
@@ -13226,39 +14157,230 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ec_class_assign">
-            <EntityTypeMapping TypeName="GTEModel.ec_class_assign">
-              <MappingFragment StoreEntitySet="ec_class_assign">
-                <ScalarProperty Name="class_endtime" ColumnName="class_endtime" />
-                <ScalarProperty Name="class_starttime" ColumnName="class_starttime" />
-                <ScalarProperty Name="enddate_monthly" ColumnName="enddate_monthly" />
-                <ScalarProperty Name="ddlday1" ColumnName="ddlday1" />
-                <ScalarProperty Name="ddlday" ColumnName="ddlday" />
-                <ScalarProperty Name="day_months" ColumnName="day_months" />
-                <ScalarProperty Name="repeateevery_months" ColumnName="repeateevery_months" />
-                <ScalarProperty Name="enddate_weekly" ColumnName="enddate_weekly" />
-                <ScalarProperty Name="daysof_week" ColumnName="daysof_week" />
-                <ScalarProperty Name="repeateevery_week" ColumnName="repeateevery_week" />
-                <ScalarProperty Name="enddate_daily" ColumnName="enddate_daily" />
-                <ScalarProperty Name="repeatsevery_day" ColumnName="repeatsevery_day" />
-                <ScalarProperty Name="recurrenceid" ColumnName="recurrenceid" />
-                <ScalarProperty Name="classstartdateid" ColumnName="classstartdateid" />
-                <ScalarProperty Name="classid" ColumnName="classid" />
+          <EntitySetMapping Name="ec_applicant_declaration_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_applicant_declaration_master">
+              <MappingFragment StoreEntitySet="ec_applicant_declaration_master">
+                <ScalarProperty Name="activity_ip" ColumnName="activity_ip" />
+                <ScalarProperty Name="is_tutorial_completed" ColumnName="is_tutorial_completed" />
+                <ScalarProperty Name="declaration_completed_date" ColumnName="declaration_completed_date" />
+                <ScalarProperty Name="is_declaration_completed" ColumnName="is_declaration_completed" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assign_study_material">
+            <EntityTypeMapping TypeName="GTEModel.ec_assign_study_material">
+              <MappingFragment StoreEntitySet="ec_assign_study_material">
+                <ScalarProperty Name="asm_mode" ColumnName="asm_mode" />
+                <ScalarProperty Name="asm_type" ColumnName="asm_type" />
+                <ScalarProperty Name="asm_time_zone" ColumnName="asm_time_zone" />
+                <ScalarProperty Name="asm_study_material" ColumnName="asm_study_material" />
+                <ScalarProperty Name="asm_start_date" ColumnName="asm_start_date" />
+                <ScalarProperty Name="asm_class_id" ColumnName="asm_class_id" />
+                <ScalarProperty Name="asm_subject_id" ColumnName="asm_subject_id" />
+                <ScalarProperty Name="asm_grade_id" ColumnName="asm_grade_id" />
+                <ScalarProperty Name="asm_universityid" ColumnName="asm_universityid" />
+                <ScalarProperty Name="asm_id" ColumnName="asm_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assign_study_material_date_wise">
+            <EntityTypeMapping TypeName="GTEModel.ec_assign_study_material_date_wise">
+              <MappingFragment StoreEntitySet="ec_assign_study_material_date_wise">
+                <ScalarProperty Name="asm_stop_utc_date" ColumnName="asm_stop_utc_date" />
+                <ScalarProperty Name="asmd_start_utc_date" ColumnName="asmd_start_utc_date" />
+                <ScalarProperty Name="asmd_stop_time" ColumnName="asmd_stop_time" />
+                <ScalarProperty Name="asmd_start_date" ColumnName="asmd_start_date" />
+                <ScalarProperty Name="asmd_material_id" ColumnName="asmd_material_id" />
+                <ScalarProperty Name="asmd_asm_id" ColumnName="asmd_asm_id" />
+                <ScalarProperty Name="asmd_id" ColumnName="asmd_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assignment_answersheet">
+            <EntityTypeMapping TypeName="GTEModel.ec_assignment_answersheet">
+              <MappingFragment StoreEntitySet="ec_assignment_answersheet">
+                <ScalarProperty Name="response_time" ColumnName="response_time" />
+                <ScalarProperty Name="extra_anshwesheetpath" ColumnName="extra_anshwesheetpath" />
+                <ScalarProperty Name="genratedanswerpdfPath" ColumnName="genratedanswerpdfPath" />
+                <ScalarProperty Name="ispdfgenrated" ColumnName="ispdfgenrated" />
+                <ScalarProperty Name="anshwesheetpath" ColumnName="anshwesheetpath" />
+                <ScalarProperty Name="uplodedAt" ColumnName="uplodedAt" />
+                <ScalarProperty Name="uploded_at" ColumnName="uploded_at" />
+                <ScalarProperty Name="assignment_start_date" ColumnName="assignment_start_date" />
+                <ScalarProperty Name="assignment_papersheetID" ColumnName="assignment_papersheetID" />
+                <ScalarProperty Name="assignmentid" ColumnName="assignmentid" />
+                <ScalarProperty Name="assignschedule_Id" ColumnName="assignschedule_Id" />
+                <ScalarProperty Name="assignID" ColumnName="assignID" />
+                <ScalarProperty Name="universityID" ColumnName="universityID" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="answesheetid" ColumnName="answesheetid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assignment_checked_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_assignment_checked_master">
+              <MappingFragment StoreEntitySet="ec_assignment_checked_master">
+                <ScalarProperty Name="assignment_checked_at" ColumnName="assignment_checked_at" />
+                <ScalarProperty Name="result_release_datetime_utc" ColumnName="result_release_datetime_utc" />
+                <ScalarProperty Name="result_release_datetime" ColumnName="result_release_datetime" />
+                <ScalarProperty Name="result_release_timezone" ColumnName="result_release_timezone" />
+                <ScalarProperty Name="adminid" ColumnName="adminid" />
+                <ScalarProperty Name="checker_comments" ColumnName="checker_comments" />
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="checkedfile_path_by_admin" ColumnName="checkedfile_path_by_admin" />
+                <ScalarProperty Name="is_assignment_checked" ColumnName="is_assignment_checked" />
+                <ScalarProperty Name="answersheetid" ColumnName="answersheetid" />
+                <ScalarProperty Name="assignId" ColumnName="assignId" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assignment_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_assignment_master">
+              <MappingFragment StoreEntitySet="ec_assignment_master">
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="self_check" ColumnName="self_check" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="userfile" ColumnName="userfile" />
+                <ScalarProperty Name="checkingguide" ColumnName="checkingguide" />
                 <ScalarProperty Name="subjectid" ColumnName="subjectid" />
                 <ScalarProperty Name="gradeid" ColumnName="gradeid" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="allowusertodownload" ColumnName="allowusertodownload" />
+                <ScalarProperty Name="question_order_settings" ColumnName="question_order_settings" />
+                <ScalarProperty Name="assignment_type" ColumnName="assignment_type" />
+                <ScalarProperty Name="assignment_name" ColumnName="assignment_name" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ec_class_assign_student_mapping">
-            <EntityTypeMapping TypeName="GTEModel.ec_class_assign_student_mapping">
-              <MappingFragment StoreEntitySet="ec_class_assign_student_mapping">
-                <ScalarProperty Name="day_name" ColumnName="day_name" />
+          <EntitySetMapping Name="ec_assignment_papers_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_assignment_papers_master">
+              <MappingFragment StoreEntitySet="ec_assignment_papers_master">
+                <ScalarProperty Name="selected_questionId" ColumnName="selected_questionId" />
+                <ScalarProperty Name="question_typeid" ColumnName="question_typeid" />
+                <ScalarProperty Name="is_audiovideofile_onetimeview" ColumnName="is_audiovideofile_onetimeview" />
+                <ScalarProperty Name="fileinstruction" ColumnName="fileinstruction" />
+                <ScalarProperty Name="audiovideofilepath" ColumnName="audiovideofilepath" />
+                <ScalarProperty Name="extrasheetpath" ColumnName="extrasheetpath" />
+                <ScalarProperty Name="exampaper_path" ColumnName="exampaper_path" />
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="assignmentid" ColumnName="assignmentid" />
+                <ScalarProperty Name="universityID" ColumnName="universityID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assignments_assign">
+            <EntityTypeMapping TypeName="GTEModel.ec_assignments_assign">
+              <MappingFragment StoreEntitySet="ec_assignments_assign">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="result_release_datetime_utc" ColumnName="result_release_datetime_utc" />
+                <ScalarProperty Name="result_release_datetime" ColumnName="result_release_datetime" />
+                <ScalarProperty Name="result_release_timezone" ColumnName="result_release_timezone" />
+                <ScalarProperty Name="total_marks" ColumnName="total_marks" />
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="Is_result_declared" ColumnName="Is_result_declared" />
+                <ScalarProperty Name="Is_assignment_checked" ColumnName="Is_assignment_checked" />
+                <ScalarProperty Name="assignment_date_id" ColumnName="assignment_date_id" />
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Is_assignemtCompleted" ColumnName="Is_assignemtCompleted" />
+                <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
+                <ScalarProperty Name="applicantId" ColumnName="applicantId" />
+                <ScalarProperty Name="assignschedule_Id" ColumnName="assignschedule_Id" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="studentid" ColumnName="studentid" />
-                <ScalarProperty Name="assign_id" ColumnName="assign_id" />
+                <ScalarProperty Name="assignId" ColumnName="assignId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assignments_assignschedule_date_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_assignments_assignschedule_date_master">
+              <MappingFragment StoreEntitySet="ec_assignments_assignschedule_date_master">
+                <ScalarProperty Name="asm_stop_utc_date" ColumnName="asm_stop_utc_date" />
+                <ScalarProperty Name="asmd_start_utc_date" ColumnName="asmd_start_utc_date" />
+                <ScalarProperty Name="asmd_stop_time" ColumnName="asmd_stop_time" />
+                <ScalarProperty Name="asmd_start_date" ColumnName="asmd_start_date" />
+                <ScalarProperty Name="assignment_id" ColumnName="assignment_id" />
+                <ScalarProperty Name="assignschedule_id" ColumnName="assignschedule_id" />
+                <ScalarProperty Name="asmd_id" ColumnName="asmd_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assignments_assignschedule_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_assignments_assignschedule_master">
+              <MappingFragment StoreEntitySet="ec_assignments_assignschedule_master">
+                <ScalarProperty Name="asm_time_zone" ColumnName="asm_time_zone" />
+                <ScalarProperty Name="asm_assignment_id" ColumnName="asm_assignment_id" />
+                <ScalarProperty Name="asm_start_date" ColumnName="asm_start_date" />
+                <ScalarProperty Name="asm_class_id" ColumnName="asm_class_id" />
+                <ScalarProperty Name="asm_mode_id" ColumnName="asm_mode_id" />
+                <ScalarProperty Name="asm_type_id" ColumnName="asm_type_id" />
+                <ScalarProperty Name="asm_subject_id" ColumnName="asm_subject_id" />
+                <ScalarProperty Name="asm_grade_id" ColumnName="asm_grade_id" />
+                <ScalarProperty Name="asm_universityid" ColumnName="asm_universityid" />
+                <ScalarProperty Name="asm_id" ColumnName="asm_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_assignments_assignschedule_student_mapping">
+            <EntityTypeMapping TypeName="GTEModel.ec_assignments_assignschedule_student_mapping">
+              <MappingFragment StoreEntitySet="ec_assignments_assignschedule_student_mapping">
+                <ScalarProperty Name="assignschedule_id" ColumnName="assignschedule_id" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_beforeyou_admin">
+            <EntityTypeMapping TypeName="GTEModel.ec_beforeyou_admin">
+              <MappingFragment StoreEntitySet="ec_beforeyou_admin">
+                <ScalarProperty Name="bfu_file" ColumnName="bfu_file" />
+                <ScalarProperty Name="bfu_file_type" ColumnName="bfu_file_type" />
+                <ScalarProperty Name="bfu_decreaption" ColumnName="bfu_decreaption" />
+                <ScalarProperty Name="bfu_course_id" ColumnName="bfu_course_id" />
+                <ScalarProperty Name="bfu_id" ColumnName="bfu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_broad_career_filed_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_broad_career_filed_master">
+              <MappingFragment StoreEntitySet="ec_broad_career_filed_master">
+                <ScalarProperty Name="broad_name" ColumnName="broad_name" />
+                <ScalarProperty Name="broad_code" ColumnName="broad_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_careerfield_mapping">
+            <EntityTypeMapping TypeName="GTEModel.ec_careerfield_mapping">
+              <MappingFragment StoreEntitySet="ec_careerfield_mapping">
+                <ScalarProperty Name="career_detailedID" ColumnName="career_detailedID" />
+                <ScalarProperty Name="career_broadID" ColumnName="career_broadID" />
+                <ScalarProperty Name="career_minorID" ColumnName="career_minorID" />
+                <ScalarProperty Name="career_majorID" ColumnName="career_majorID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_class_applicationmaster">
+            <EntityTypeMapping TypeName="GTEModel.ec_class_applicationmaster">
+              <MappingFragment StoreEntitySet="ec_class_applicationmaster">
+                <ScalarProperty Name="booking_datetime" ColumnName="booking_datetime" />
+                <ScalarProperty Name="eligibility_response" ColumnName="eligibility_response" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="adminID" ColumnName="adminID" />
+                <ScalarProperty Name="Is_class_assignedby_admin" ColumnName="Is_class_assignedby_admin" />
+                <ScalarProperty Name="Is_suspened" ColumnName="Is_suspened" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -13274,11 +14396,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ec_class_location_mapping_master">
-            <EntityTypeMapping TypeName="GTEModel.ec_class_location_mapping_master">
-              <MappingFragment StoreEntitySet="ec_class_location_mapping_master">
-                <ScalarProperty Name="locationid" ColumnName="locationid" />
-                <ScalarProperty Name="classid" ColumnName="classid" />
+          <EntitySetMapping Name="ec_class_date_schedule_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_class_date_schedule_master">
+              <MappingFragment StoreEntitySet="ec_class_date_schedule_master">
+                <ScalarProperty Name="class_datetime_end_utc" ColumnName="class_datetime_end_utc" />
+                <ScalarProperty Name="class_datetime_end" ColumnName="class_datetime_end" />
+                <ScalarProperty Name="class_datetime_start_utc" ColumnName="class_datetime_start_utc" />
+                <ScalarProperty Name="class_datetime_start" ColumnName="class_datetime_start" />
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -13286,25 +14412,51 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="ec_class_master">
             <EntityTypeMapping TypeName="GTEModel.ec_class_master">
               <MappingFragment StoreEntitySet="ec_class_master">
-                <ScalarProperty Name="bookingdeadline" ColumnName="bookingdeadline" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="Is_singelInstructor" ColumnName="Is_singelInstructor" />
                 <ScalarProperty Name="booklatestatus" ColumnName="booklatestatus" />
                 <ScalarProperty Name="instructionfilepath" ColumnName="instructionfilepath" />
-                <ScalarProperty Name="instruction" ColumnName="instruction" />
                 <ScalarProperty Name="requirement" ColumnName="requirement" />
+                <ScalarProperty Name="availability" ColumnName="availability" />
+                <ScalarProperty Name="instruction" ColumnName="instruction" />
+                <ScalarProperty Name="classsetting" ColumnName="classsetting" />
+                <ScalarProperty Name="class_endtime_utc" ColumnName="class_endtime_utc" />
+                <ScalarProperty Name="class_endtime" ColumnName="class_endtime" />
+                <ScalarProperty Name="class_starttime_utc" ColumnName="class_starttime_utc" />
+                <ScalarProperty Name="class_starttime" ColumnName="class_starttime" />
+                <ScalarProperty Name="enddate_monthly" ColumnName="enddate_monthly" />
+                <ScalarProperty Name="ddlday1" ColumnName="ddlday1" />
+                <ScalarProperty Name="ddlday" ColumnName="ddlday" />
+                <ScalarProperty Name="day_months" ColumnName="day_months" />
+                <ScalarProperty Name="rbl_daysofmonth" ColumnName="rbl_daysofmonth" />
+                <ScalarProperty Name="repeateevery_months" ColumnName="repeateevery_months" />
+                <ScalarProperty Name="enddate_weekly" ColumnName="enddate_weekly" />
+                <ScalarProperty Name="daysof_week" ColumnName="daysof_week" />
+                <ScalarProperty Name="repeateevery_week" ColumnName="repeateevery_week" />
+                <ScalarProperty Name="enddate_daily" ColumnName="enddate_daily" />
+                <ScalarProperty Name="repeatsevery_day" ColumnName="repeatsevery_day" />
+                <ScalarProperty Name="recurrenceid" ColumnName="recurrenceid" />
+                <ScalarProperty Name="bookingdeadline_utc" ColumnName="bookingdeadline_utc" />
+                <ScalarProperty Name="bookingdeadline" ColumnName="bookingdeadline" />
+                <ScalarProperty Name="startdate_utc" ColumnName="startdate_utc" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="timezone" ColumnName="timezone" />
+                <ScalarProperty Name="enrollment_fee_amount" ColumnName="enrollment_fee_amount" />
                 <ScalarProperty Name="fee_amount" ColumnName="fee_amount" />
                 <ScalarProperty Name="fee_currency" ColumnName="fee_currency" />
                 <ScalarProperty Name="duration_hours" ColumnName="duration_hours" />
                 <ScalarProperty Name="duration_day" ColumnName="duration_day" />
                 <ScalarProperty Name="duration_month" ColumnName="duration_month" />
                 <ScalarProperty Name="duration_year" ColumnName="duration_year" />
-                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="classsetting" ColumnName="classsetting" />
                 <ScalarProperty Name="virtuallink" ColumnName="virtuallink" />
                 <ScalarProperty Name="modeid" ColumnName="modeid" />
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+                <ScalarProperty Name="groupid" ColumnName="groupid" />
                 <ScalarProperty Name="gradeid" ColumnName="gradeid" />
+                <ScalarProperty Name="detailedFieldID" ColumnName="detailedFieldID" />
+                <ScalarProperty Name="narrowFieldID" ColumnName="narrowFieldID" />
+                <ScalarProperty Name="broadFieldID" ColumnName="broadFieldID" />
                 <ScalarProperty Name="levelid" ColumnName="levelid" />
                 <ScalarProperty Name="majorid" ColumnName="majorid" />
                 <ScalarProperty Name="webpageurl" ColumnName="webpageurl" />
@@ -13312,6 +14464,216 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="classname" ColumnName="classname" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_detailed_career_filed_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_detailed_career_filed_master">
+              <MappingFragment StoreEntitySet="ec_detailed_career_filed_master">
+                <ScalarProperty Name="detailed_description" ColumnName="detailed_description" />
+                <ScalarProperty Name="detailed_name" ColumnName="detailed_name" />
+                <ScalarProperty Name="detailed_code" ColumnName="detailed_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_grademaster">
+            <EntityTypeMapping TypeName="GTEModel.ec_grademaster">
+              <MappingFragment StoreEntitySet="ec_grademaster">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_major_career_filed_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_major_career_filed_master">
+              <MappingFragment StoreEntitySet="ec_major_career_filed_master">
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_mcq_question_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_mcq_question_master">
+              <MappingFragment StoreEntitySet="ec_mcq_question_master">
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
+                <ScalarProperty Name="answer_description4" ColumnName="answer_description4" />
+                <ScalarProperty Name="answer_description3" ColumnName="answer_description3" />
+                <ScalarProperty Name="answer_description2" ColumnName="answer_description2" />
+                <ScalarProperty Name="answer_description1" ColumnName="answer_description1" />
+                <ScalarProperty Name="answer4" ColumnName="answer4" />
+                <ScalarProperty Name="answer3" ColumnName="answer3" />
+                <ScalarProperty Name="answer2" ColumnName="answer2" />
+                <ScalarProperty Name="answer1" ColumnName="answer1" />
+                <ScalarProperty Name="questionname" ColumnName="questionname" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="question_for" ColumnName="question_for" />
+                <ScalarProperty Name="gradeid" ColumnName="gradeid" />
+                <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_minor_career_filed_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_minor_career_filed_master">
+              <MappingFragment StoreEntitySet="ec_minor_career_filed_master">
+                <ScalarProperty Name="minor_name" ColumnName="minor_name" />
+                <ScalarProperty Name="minor_code" ColumnName="minor_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_mode_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_mode_master">
+              <MappingFragment StoreEntitySet="ec_mode_master">
+                <ScalarProperty Name="mode_description" ColumnName="mode_description" />
+                <ScalarProperty Name="mode_id" ColumnName="mode_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_openquestion_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_openquestion_master">
+              <MappingFragment StoreEntitySet="ec_openquestion_master">
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
+                <ScalarProperty Name="checkingguid_url" ColumnName="checkingguid_url" />
+                <ScalarProperty Name="uploadedfile_url" ColumnName="uploadedfile_url" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="questiontype" ColumnName="questiontype" />
+                <ScalarProperty Name="questionname" ColumnName="questionname" />
+                <ScalarProperty Name="question_for" ColumnName="question_for" />
+                <ScalarProperty Name="gradeid" ColumnName="gradeid" />
+                <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_payment_details">
+            <EntityTypeMapping TypeName="GTEModel.ec_payment_details">
+              <MappingFragment StoreEntitySet="ec_payment_details">
+                <ScalarProperty Name="payment_verified_date" ColumnName="payment_verified_date" />
+                <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+                <ScalarProperty Name="payment_proof_file_name" ColumnName="payment_proof_file_name" />
+                <ScalarProperty Name="instruction" ColumnName="instruction" />
+                <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="due_date" ColumnName="due_date" />
+                <ScalarProperty Name="payment_for" ColumnName="payment_for" />
+                <ScalarProperty Name="request_date" ColumnName="request_date" />
+                <ScalarProperty Name="applicationmaster_id" ColumnName="applicationmaster_id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_status_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_status_master">
+              <MappingFragment StoreEntitySet="ec_status_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_student_assign_in_study_material">
+            <EntityTypeMapping TypeName="GTEModel.ec_student_assign_in_study_material">
+              <MappingFragment StoreEntitySet="ec_student_assign_in_study_material">
+                <ScalarProperty Name="sasm_stud_id" ColumnName="sasm_stud_id" />
+                <ScalarProperty Name="sasm_universityid" ColumnName="sasm_universityid" />
+                <ScalarProperty Name="sasm_asm_id" ColumnName="sasm_asm_id" />
+                <ScalarProperty Name="sasm_id" ColumnName="sasm_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_study_material">
+            <EntityTypeMapping TypeName="GTEModel.ec_study_material">
+              <MappingFragment StoreEntitySet="ec_study_material">
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="material_subject" ColumnName="material_subject" />
+                <ScalarProperty Name="material_grade" ColumnName="material_grade" />
+                <ScalarProperty Name="material_link" ColumnName="material_link" />
+                <ScalarProperty Name="material_document" ColumnName="material_document" />
+                <ScalarProperty Name="material_type" ColumnName="material_type" />
+                <ScalarProperty Name="material_name" ColumnName="material_name" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_truefalse_question_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_truefalse_question_master">
+              <MappingFragment StoreEntitySet="ec_truefalse_question_master">
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
+                <ScalarProperty Name="answer_description2" ColumnName="answer_description2" />
+                <ScalarProperty Name="answer_description1" ColumnName="answer_description1" />
+                <ScalarProperty Name="answer2" ColumnName="answer2" />
+                <ScalarProperty Name="answer1" ColumnName="answer1" />
+                <ScalarProperty Name="questionname" ColumnName="questionname" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="question_for" ColumnName="question_for" />
+                <ScalarProperty Name="gradeid" ColumnName="gradeid" />
+                <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_tutorialmaster">
+            <EntityTypeMapping TypeName="GTEModel.ec_tutorialmaster">
+              <MappingFragment StoreEntitySet="ec_tutorialmaster">
+                <ScalarProperty Name="institute_service_wise" ColumnName="institute_service_wise" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="videourl" ColumnName="videourl" />
+                <ScalarProperty Name="documentpath" ColumnName="documentpath" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="serviceId" ColumnName="serviceId" />
+                <ScalarProperty Name="is_commontutoial" ColumnName="is_commontutoial" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_type_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_type_master">
+              <MappingFragment StoreEntitySet="ec_type_master">
+                <ScalarProperty Name="type_description" ColumnName="type_description" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ec_uploadanswer_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_uploadanswer_master">
+              <MappingFragment StoreEntitySet="ec_uploadanswer_master">
+                <ScalarProperty Name="ischeckonce" ColumnName="ischeckonce" />
+                <ScalarProperty Name="checking_file" ColumnName="checking_file" />
+                <ScalarProperty Name="question_for" ColumnName="question_for" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="fileinstruction" ColumnName="fileinstruction" />
+                <ScalarProperty Name="extrafilepath" ColumnName="extrafilepath" />
+                <ScalarProperty Name="extrasheetpath" ColumnName="extrasheetpath" />
+                <ScalarProperty Name="questionpath" ColumnName="questionpath" />
+                <ScalarProperty Name="questiondescription" ColumnName="questiondescription" />
+                <ScalarProperty Name="gradeid" ColumnName="gradeid" />
+                <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+                <ScalarProperty Name="univesityid" ColumnName="univesityid" />
+                <ScalarProperty Name="adminid" ColumnName="adminid" />
+                <ScalarProperty Name="questionid" ColumnName="questionid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -13663,6 +15025,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="examinerkey" ColumnName="examinerkey" />
                 <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="university_serviceid" ColumnName="university_serviceid" />
                 <ScalarProperty Name="universityId" ColumnName="universityId" />
                 <ScalarProperty Name="adminrecordID" ColumnName="adminrecordID" />
                 <ScalarProperty Name="examinerID" ColumnName="examinerID" />
@@ -14911,6 +16274,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="university_course_mapping">
+            <EntityTypeMapping TypeName="GTEModel.university_course_mapping">
+              <MappingFragment StoreEntitySet="university_course_mapping">
+                <ScalarProperty Name="course_campus_mapping_ID" ColumnName="course_campus_mapping_ID" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="grouped_universityID" ColumnName="grouped_universityID" />
+                <ScalarProperty Name="main_universityID" ColumnName="main_universityID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="university_coursefiled_mapping">
             <EntityTypeMapping TypeName="GTEModel.university_coursefiled_mapping">
               <MappingFragment StoreEntitySet="university_coursefiled_mapping">
@@ -14937,6 +16311,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="university_master">
             <EntityTypeMapping TypeName="GTEModel.university_master">
               <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="fee_payment_details" ColumnName="fee_payment_details" />
                 <ScalarProperty Name="funding_avgtutionfee" ColumnName="funding_avgtutionfee" />
                 <ScalarProperty Name="importantdateddl" ColumnName="importantdateddl" />
                 <ScalarProperty Name="Genuine_Assessment" ColumnName="Genuine_Assessment" />

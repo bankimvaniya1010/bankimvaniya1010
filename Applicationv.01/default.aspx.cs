@@ -50,10 +50,18 @@ public partial class _Default : System.Web.UI.Page
             isfullservicethenlbl.Text = "TO THE GTE DIRECT CENTRE";
         else if (isfullservice == 2)
             isfullservicethenlbl.Text = "TO ASSESSMENT CENTER";
+        else if (isfullservice == 5)
+        {
+            isfullservicethenlbl.Visible = true;
+            isfullservicethenlbl.Text = "welcome to " + universityname + "’s Learning Resources Centre";
+        }
+
         if (isVerifiedByAdmin != true)
-            ifnotverifiedshow.Attributes.Add("style","display:block");
-        else
-            ifverifiedshow.Attributes.Add("style", "display:block");
+            ifnotverifiedshow.Attributes.Add("style", "display:block");
+        else {
+            if (isfullservice != 5)
+                ifverifiedshow.Attributes.Add("style", "display:block");
+        }
         if (isfullservice == 0)
             gteDiv.Attributes.Add("style", "display:block;");
         else
@@ -63,8 +71,6 @@ public partial class _Default : System.Web.UI.Page
             DivOthers.Attributes.Add("style", "display:none;");
         if (!IsPostBack)
         {
-            
-
             if (Session["isDomesticStudent"] == null)
                 domesticDiv.Style.Remove("display");
             else

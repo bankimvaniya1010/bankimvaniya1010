@@ -80,7 +80,7 @@
             });
 
             if (universityValue == 0 || isNaN(parseInt(universityValue))) {
-                alert("Please select University");
+                alert("Please select institution");
                 return false;
             }
             //else if (count == 0) {

@@ -247,7 +247,7 @@ section .section-title {
                                                                     <asp:ListItem Value="2">Assessment Service</asp:ListItem>
                                                                     <asp:ListItem Value="3">GTE(Certification)</asp:ListItem>
                                                                     <asp:ListItem Value="4">GTE(Evalution)</asp:ListItem>
-                                                                    <asp:ListItem Value="5">E-Class Service</asp:ListItem>
+                                                                    <%--<asp:ListItem Value="5">E-Class Service</asp:ListItem>--%>
                                                                 </asp:DropDownList>
                                                             </div>
                                                         </div>
@@ -1844,7 +1844,7 @@ section .section-title {
             //    return false;
             //}
             //else if (UniTimeZoneValue == 0 || isNaN(parseInt(UniTimeZoneValue))) {
-            //    alert("Please select university time zone");
+            //    alert("Please select institution time zone");
             //    return false;
             //}
             //else if (txtUniAirport == '') {
@@ -1990,10 +1990,10 @@ section .section-title {
                 var BroadID = $(this).val();
 
                 if ($(this).is(':checked')) {
-                    bydefaultcheck(BroadID, true)
+                    bydefaultcheck(BroadID, true);
                 }
                 else {
-                    bydefaultcheck(BroadID, false)
+                    bydefaultcheck(BroadID, false);
                 }
             });
              $("#<%=CheckBoxList2.ClientID %>").find('input[type="checkbox"]').click(function () {
@@ -2001,10 +2001,10 @@ section .section-title {
                 var narrowID = $(this).val();
 
                  if ($(this).is(':checked')) {
-                     byDeafultCheckDetailed(narrowID, true)
+                     byDeafultCheckDetailed(narrowID, true);
                 }
                 else {
-                    byDeafultCheckDetailed(narrowID, false)
+                     byDeafultCheckDetailed(narrowID, false);
                 }
             });
             //

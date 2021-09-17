@@ -434,8 +434,12 @@
                 alert("Please enter Valid e-mail address");
             else if (!$("#<%=mobile.ClientID%>").is(':hidden') && $("#<%=txtMobile.ClientID%>").val() == "")
                 alert("Please enter mobile no");
+             else if (!(checOnlykNum.test($("#<%=txtMobile.ClientID%>").val())))
+                alert("Please enter valid mobile number");
             else if (!$("#<%=phone.ClientID%>").is(':hidden') && $("#<%=txtHomePhone.ClientID%>").val() == "")
                 alert("Please enter home phone");
+             else if (!(checOnlykNum.test($("#<%=txtHomePhone.ClientID%>").val())))
+                alert("Please enter valid home number");
             else if (!$("#<%=skype.ClientID%>").is(':hidden') && !($("#<%=rblSkypeYes.ClientID%>").is(':checked') || $("#<%=rblSkypeNo.ClientID%>").is(':checked')))
                 alert("Please Select Option to record your Skype ID");
             else if (!$("#<%=skype.ClientID%>").is(':hidden') && $("#<%=rblSkypeYes.ClientID%>").is(':checked') && $("#<%=txtSkype.ClientID%>").val() == "")

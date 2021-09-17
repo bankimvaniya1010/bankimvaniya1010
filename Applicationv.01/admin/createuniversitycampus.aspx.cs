@@ -40,7 +40,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("Please select university", "0");
+            ListItem lst = new ListItem("Please select institution", "0");
             dynamic universityMaster;
             if (roleName.ToLower() == "admin")
                 universityMaster = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
@@ -160,7 +160,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University Campus already exists')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('INSTITUTION CAMPUS already exists')", true);
             }
         }
         catch (Exception ex)

@@ -102,7 +102,7 @@
                                 <h3>Select Level Of Study  +</h3>
                                 <div id="studylevelcontainer">
                                     <p>
-                                        <asp:RadioButtonList ID="rbllevelofstudy" runat="server" RepeatColumns="3" CssClass="course-radioButtonList"></asp:RadioButtonList>
+                                        <asp:RadioButtonList ID="rbllevelofstudy" runat="server" RepeatColumns="2" CssClass="course-radioButtonList"></asp:RadioButtonList>
                                     </p>
                                 </div>
 
@@ -352,7 +352,7 @@
                                            <asp:HiddenField runat="server" ID="HidSelectedDateID" />
                                            <asp:HiddenField runat="server" ID="HidSelectedDateText" />
                                             </td>
-                                            <td id="commencementDateContainer" style="vertical-align: initial;"</td>
+                                            <td id="commencementDateContainer" style="vertical-align: initial;"></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">
@@ -412,7 +412,7 @@
             var campusID = $("#ContentPlaceHolder1_courseGridView_Hidcampusid_" + id).val();
             var modeofstudyID = $("#ContentPlaceHolder1_courseGridView_Hidmodeofstudyid_" + id).val();
             var coursename = $("#ContentPlaceHolder1_courseGridView_lblCourse_" + id).text();
-            var campusname = $("#ContentPlaceHolder1_courseGridView_lblCampus_" + id).text();
+            var campusname = $("#ContentPlaceHolder1_courseGridView_Label1_" + id).text();
             var studymode = $("#ContentPlaceHolder1_courseGridView_lblStudymode_" + id).text();
             var fee = $("#ContentPlaceHolder1_courseGridView_lblCoursefee_" + id).text();
             var currency = $("#ContentPlaceHolder1_courseGridView_lblcurrency_" + id).text();
@@ -420,14 +420,15 @@
             var selectedlevelofstudyID = $("#ContentPlaceHolder1_courseGridView_HidlevelofstudyID_" + id).val();
             var selectedmajor = $("#ContentPlaceHolder1_courseGridView_Hidlblmajor_" + id).val();
             var selectedMajorID = $("#ContentPlaceHolder1_courseGridView_HidmajorDisciplineID_" + id).val();
-
+            var universityname = $("ContentPlaceHolder1_courseGridView_lbluniversityname_" + id).val();
+            var universityID = $("ContentPlaceHolder1_courseGridView_Hiduniversityid_" + id).val();
             //data from rb
             var selectedcountryID = $("#ContentPlaceHolder1_courseGridView_HidSelectedcampusCountryID_" + id).val();
             var selectedCountryname = $("#ContentPlaceHolder1_courseGridView_HidSelectedcampusCountryName_" + id).val();
             var selectedCityname = $("#ContentPlaceHolder1_courseGridView_HidSelectedcampusCityName_" + id).val();
             var selectedcityID = $("#ContentPlaceHolder1_courseGridView_HidSelectedcampusCityID_" + id).val();
             $("#<%= lblCourseName.ClientID%>").val(coursename).html(coursename);
-            $("#<%= HidInstitutionId.ClientID%>").val(universityID).html(universityID);
+            <%--$("#<%= HidInstitutionId.ClientID%>").val(universityID).html(universityID);--%>
             $("#<%= lblCampus.ClientID%>").val(campusname).html(campusname);
             $("#<%= HidCampusname.ClientID%>").val(campusname).html(campusname);
             $("#<%= HidCampusID.ClientID%>").val(campusID).html(campusID);
@@ -445,6 +446,11 @@
             $("#<%= HidMajorID.ClientID%>").val(selectedMajorID).html(selectedMajorID);
             $("#<%= lblFee.ClientID%>").val(fee).html(fee);
             $("#<%= lblcurrencyshow.ClientID%>").val(currency).html(currency);
+            $("#<%= lblInstitution.ClientID%>").val(universityname).html(universityname);
+            $("#<%= HidUniversityName.ClientID%>").val(universityID).html(universityID);
+
+            getcommencemntsDates(courseid);
+            getcareerOutcomes(courseid);
 
             $.ajax({
                 type: "POST",
@@ -458,6 +464,7 @@
                         <%--$("#<%= uniName.ClientID%>").val(result[0].university_name).html(result[0].university_name);--%>
                         $("#<%= lblcoursedescription.ClientID%>").val(result[0].coursedescription).html(result[0].coursedescription);
                         $("#<%= lblInstitution.ClientID%>").val(result[0].university_name).html(result[0].university_name);
+                        $("#<%= HidInstitutionId.ClientID%>").val(result[0].universityid).html(result[0].universityid);
                         $("#<%= HidUniversityName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
                         $("#<%= lblEligibility.ClientID%>").val(result[0].eligibility).html(result[0].eligibility);
                         $("#<%= lblDuration.ClientID%>").val(result[0].courseduration).html(result[0].courseduration);
@@ -478,8 +485,7 @@
             });
             //scroll to top of info div
             //$(window).scrollTop($('#InfoRow').offset().top);
-            getcommencemntsDates(courseid);
-            getcareerOutcomes(courseid);
+          
         };
         function getcareerOutcomes(courseid) {
             $.ajax({
@@ -527,7 +533,7 @@
                             $("<%= HidSelectedDateID.ClientID %>").val("");
                         }
                         else
-                            $('#commencementDateContainer').append($('<label>').text("Not Set"));
+                            $('#commencementDateContainer').append($('<label id="empty">').text("Not Set"));
 
                         for (var i = 0; i < result.length; i++) {
                             var $target = $('#commencementDateContainer');
@@ -557,7 +563,7 @@
                 alert("Please Select Option to record eligibility response");
                 return false;
             }
-            else if ($('[name="commencementdate"]').length != 0 && $('[name="commencementdate"]:checked').length == 0) {
+            else if ($("#<%=HidSelectedDateID.ClientID%>").val() == "" && $('[name="commencementdate"]').length != 0 && $('[name="commencementdate"]:checked').length == 0) {
                 alert("Please select Commencement Date .");
                 return false;
             }
@@ -734,16 +740,16 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantcourse').addClass('active');
         });
-        $(document).keydown(function (event) {
-            if (event.keyCode == 123) { // Prevent F12
-                return false;
-            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-                return false;
-            }
-        });
-        $(document).on("contextmenu", function (e) {   //prevent inspect     
-            e.preventDefault();
-        });
+        //$(document).keydown(function (event) {
+        //    if (event.keyCode == 123) { // Prevent F12
+        //        return false;
+        //    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+        //        return false;
+        //    }
+        //});
+        //$(document).on("contextmenu", function (e) {   //prevent inspect     
+        //    e.preventDefault();
+        //});
 
         $(function () {
             $("#accordion").accordion({

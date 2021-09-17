@@ -6,10 +6,10 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Edit University Campus</li>
+            <li class="breadcrumb-item active">Edit INSTITUTION CAMPUS</li>
         </ol>
 
-        <h1 class="h2">University Campus Edit</h1>
+        <h1 class="h2">INSTITUTION CAMPUS Edit</h1>
 
         <div class="card">
             <div class="tab-content card-body">
@@ -333,11 +333,11 @@
             var city = $('#<%=ddlcity.ClientID%>').val();
 
             if (universityValue == 0 || isNaN(parseInt(universityValue))) {
-                alert("Please select university for campus");
+                alert("Please select institution for campus");
                 return false;
             }
             else if (campName == '') {
-                alert("Please enter university campus name");
+                alert("Please enter INSTITUTION CAMPUS name");
                 return false;
             }
             else if (campDescription == '') {

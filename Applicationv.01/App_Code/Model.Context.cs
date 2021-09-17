@@ -101,6 +101,39 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<declaration_master> declaration_master { get; set; }
     public virtual DbSet<disabilitymaster> disabilitymaster { get; set; }
     public virtual DbSet<documentvalidationbyagent> documentvalidationbyagent { get; set; }
+    public virtual DbSet<ec_applicant_declaration_master> ec_applicant_declaration_master { get; set; }
+    public virtual DbSet<ec_assign_study_material> ec_assign_study_material { get; set; }
+    public virtual DbSet<ec_assign_study_material_date_wise> ec_assign_study_material_date_wise { get; set; }
+    public virtual DbSet<ec_assignment_answersheet> ec_assignment_answersheet { get; set; }
+    public virtual DbSet<ec_assignment_checked_master> ec_assignment_checked_master { get; set; }
+    public virtual DbSet<ec_assignment_master> ec_assignment_master { get; set; }
+    public virtual DbSet<ec_assignment_papers_master> ec_assignment_papers_master { get; set; }
+    public virtual DbSet<ec_assignments_assign> ec_assignments_assign { get; set; }
+    public virtual DbSet<ec_assignments_assignschedule_date_master> ec_assignments_assignschedule_date_master { get; set; }
+    public virtual DbSet<ec_assignments_assignschedule_master> ec_assignments_assignschedule_master { get; set; }
+    public virtual DbSet<ec_assignments_assignschedule_student_mapping> ec_assignments_assignschedule_student_mapping { get; set; }
+    public virtual DbSet<ec_beforeyou_admin> ec_beforeyou_admin { get; set; }
+    public virtual DbSet<ec_broad_career_filed_master> ec_broad_career_filed_master { get; set; }
+    public virtual DbSet<ec_careerfield_mapping> ec_careerfield_mapping { get; set; }
+    public virtual DbSet<ec_class_applicationmaster> ec_class_applicationmaster { get; set; }
+    public virtual DbSet<ec_class_date_master> ec_class_date_master { get; set; }
+    public virtual DbSet<ec_class_date_schedule_master> ec_class_date_schedule_master { get; set; }
+    public virtual DbSet<ec_class_master> ec_class_master { get; set; }
+    public virtual DbSet<ec_detailed_career_filed_master> ec_detailed_career_filed_master { get; set; }
+    public virtual DbSet<ec_grademaster> ec_grademaster { get; set; }
+    public virtual DbSet<ec_major_career_filed_master> ec_major_career_filed_master { get; set; }
+    public virtual DbSet<ec_mcq_question_master> ec_mcq_question_master { get; set; }
+    public virtual DbSet<ec_minor_career_filed_master> ec_minor_career_filed_master { get; set; }
+    public virtual DbSet<ec_mode_master> ec_mode_master { get; set; }
+    public virtual DbSet<ec_openquestion_master> ec_openquestion_master { get; set; }
+    public virtual DbSet<ec_payment_details> ec_payment_details { get; set; }
+    public virtual DbSet<ec_status_master> ec_status_master { get; set; }
+    public virtual DbSet<ec_student_assign_in_study_material> ec_student_assign_in_study_material { get; set; }
+    public virtual DbSet<ec_study_material> ec_study_material { get; set; }
+    public virtual DbSet<ec_truefalse_question_master> ec_truefalse_question_master { get; set; }
+    public virtual DbSet<ec_tutorialmaster> ec_tutorialmaster { get; set; }
+    public virtual DbSet<ec_type_master> ec_type_master { get; set; }
+    public virtual DbSet<ec_uploadanswer_master> ec_uploadanswer_master { get; set; }
     public virtual DbSet<educational_institutionmaster> educational_institutionmaster { get; set; }
     public virtual DbSet<educationalinstitution_country_city_mappingmaster> educationalinstitution_country_city_mappingmaster { get; set; }
     public virtual DbSet<educationdetailcheck_referee_response> educationdetailcheck_referee_response { get; set; }
@@ -230,6 +263,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<type_master> type_master { get; set; }
     public virtual DbSet<typeofworkexperiencemaster> typeofworkexperiencemaster { get; set; }
     public virtual DbSet<university_application_decision_master> university_application_decision_master { get; set; }
+    public virtual DbSet<university_course_mapping> university_course_mapping { get; set; }
     public virtual DbSet<university_coursefiled_mapping> university_coursefiled_mapping { get; set; }
     public virtual DbSet<university_datamapping> university_datamapping { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }

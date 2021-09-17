@@ -118,7 +118,7 @@
        function validateForm() {
            var flag = false;
            if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-               alert("Please select University");
+               alert("Please select institution");
            else if ($("#<%=ddlclass.ClientID%>").val() == "0")
                alert("Please select class");
            else if ($("#<%=ddlgroup.ClientID%>").val() == "0")

@@ -44,11 +44,18 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
         public string subject{ get; set; }
         public int? modeID { get; set; }
         public string mode{ get; set; }
-        public int typeID { get; set; }
+        public int? typeID { get; set; }
         public string type{ get; set; }
         public string duration{ get; set; }
         public string fee { get; set; }
-        public string booklate { get; set; }
+        public string bookablestatus { get; set; }
+        public string IsClassInUse { get; set; }
+        public DateTime? startdate { get; set; }
+        public string Recurrence { get; set; }
+        public int? Avialability { get; set; }
+        public string Location { get; set; }
+        public string link_assignstudent { get; set; }
+        public string link_assignInstructor { get; set; }
     }
 
     private void BindDropdown() {
@@ -56,10 +63,11 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
         {
             applicant = (from cm in db.ec_class_master
                          join um in db.university_master on cm.universityid equals um.universityid
-                         join gm in db.grademaster on cm.gradeid equals gm.id into gradeData
+                         join gm in db.ec_grademaster on cm.gradeid equals gm.id into gradeData
                          from x in gradeData.DefaultIfEmpty()
                          join sm in db.subjectmaster on cm.subjectid equals sm.id
-                         join tm in db.type_master on cm.type equals tm.id
+                         join tm in db.ec_type_master on cm.type equals tm.type_id
+                         join mm in db.ec_mode_master on cm.modeid equals mm.mode_id
                          join currm in db.currency_master on cm.fee_currency equals currm.id
                          where cm.universityid == universityID
                          select new details
@@ -72,13 +80,26 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
                              subjectID = sm.id,
                              subject = sm.description,
                              modeID = cm.modeid,
-                             mode = cm.modeid == 1 ? "Online" : "F2F",
-                             typeID= tm.id,
-                             type = tm.description,
+                             mode = mm.mode_description,
+                             typeID= cm.type,
+                             type = tm.type_description,
                              duration = cm.duration_year + " Years " + cm.duration_month + " Months " + cm.duration_day + " Days " + cm.duration_hours + " Hours ",
                              fee = currm.currency_symbol + " " + cm.fee_amount,
-                             booklate = cm.booklatestatus == 1 ? "Yes" : "No",
+                             bookablestatus = cm.booklatestatus == 1 ? "Yes" : "No",
+                             IsClassInUse ="NO",
+                             startdate = cm.startdate,
+                             Recurrence = cm.recurrenceid == 1 ? "Daily" : cm.recurrenceid == 2 ? "Weekly" : "Monthly",
+                             Avialability = cm.availability,
+                             link_assignstudent = webURL + "admin/ec_class_create_assign_students.aspx?id=" + cm.id,
+                             link_assignInstructor = webURL + "admin/ec_class_create_assign_instructor.aspx?id=" + cm.id,
                          }).ToList();
+            foreach (var item in applicant)
+            {
+                var classAssign = db.ec_class_applicationmaster.Where(c => c.universityid == universityID && c.classid == item.classid).ToList();
+                if (classAssign.Count > 0)
+                    item.IsClassInUse = "In Use";
+            }
+
             ListItem lst = new ListItem("Search By", "0");
             
             if (applicant != null)
@@ -100,7 +121,7 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
 
                 ddlclassname.DataSource = applicant.OrderBy(x => x.classname).ToList();
                 ddlclassname.DataTextField = "classname";
-                ddlclassname.DataValueField = "classid";
+                ddlclassname.DataValueField = "classname";
                 ddlclassname.DataBind();
 
                 ddlgrade.DataSource = applicant.OrderBy(x => x.gradeID).ToList();
@@ -125,16 +146,17 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
         }
     }
 
-    private void BindGrid(int classid = 0, int gradeID = 0, int subjectID = 0, int modeID = 0, int typeID = 0)
+    private void BindGrid(string classid = "0", int gradeID = 0, int subjectID = 0, int modeID = 0, int typeID = 0)
     {
         try
         {
             applicant = (from cm in db.ec_class_master
                         join um in db.university_master on cm.universityid equals um.universityid
-                        join gm in db.grademaster on cm.gradeid equals gm.id into gradeData
+                        join gm in db.ec_grademaster on cm.gradeid equals gm.id into gradeData
                         from x in gradeData.DefaultIfEmpty()
                         join sm in db.subjectmaster on cm.subjectid equals sm.id
-                        join tm in db.type_master on cm.type equals tm.id
+                        join tm in db.ec_type_master on cm.type equals tm.type_id
+                        join mm in db.ec_mode_master on cm.modeid equals mm.mode_id
                         join currm in db.currency_master on cm.fee_currency equals currm.id
                         where cm.universityid == universityID
                          select new details
@@ -147,20 +169,32 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
                              subjectID = sm.id,
                              subject = sm.description,
                              modeID = cm.modeid,
-                             mode = cm.modeid == 1 ? "Online" : "F2F",
-                             typeID = tm.id,
-                             type = tm.description,
+                             mode = mm.mode_description,
+                             typeID = cm.type,
+                             type = tm.type_description,
                              duration = cm.duration_year + " Years " + cm.duration_month + " Months " + cm.duration_day + " Days " + cm.duration_hours + " Hours ",
                              fee = currm.currency_symbol + " " + cm.fee_amount,
-                             booklate = cm.booklatestatus == 1 ? "Yes" : "No",
+                             bookablestatus = cm.booklatestatus == 1 ? "Yes" : "No",
+                             IsClassInUse = "NO",
+                             startdate = cm.startdate,
+                             Recurrence = cm.recurrenceid == 1 ? "Daily" : cm.recurrenceid == 2 ? "Weekly" : "Monthly",
+                             Avialability = cm.availability,
+                             link_assignstudent = webURL+ "admin/ec_class_create_assign_students.aspx?id="+cm.id,
+                             link_assignInstructor = webURL + "admin/ec_class_create_assign_instructor.aspx?id=" + cm.id,
                          }).ToList();
+            foreach (var item in applicant)
+            {
+                var classAssign = db.ec_class_applicationmaster.Where(c => c.universityid == universityID && c.classid == item.classid).ToList();
+                if (classAssign.Count > 0)
+                    item.IsClassInUse = "In Use";
+            }
             if (applicant != null)
             {
-                if (classid != 0 || gradeID != 0 || subjectID != 0 || modeID != 0 || typeID != 0)
+                if (classid != "0" || gradeID != 0 || subjectID != 0 || modeID != 0 || typeID != 0)
                 {
-                    if (classid != 0)
+                    if (classid != "0")
                     {
-                        applicant = applicant.Where(x => x.classid == classid).ToList();
+                        applicant = applicant.Where(x => x.classname.Contains(classid)).ToList();
                         ddlclassname.Items.FindByValue(classid.ToString()).Selected = true;
                         //ddlcountry.ClearSelection();
                         //ddlfirstname.ClearSelection();
@@ -197,7 +231,7 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
 
                 }
 
-                QuestiontGridView.DataSource = applicant;
+                QuestiontGridView.DataSource = applicant.OrderByDescending(x=>x.classid).ToList();
                 QuestiontGridView.DataBind();
 
             }
@@ -211,12 +245,13 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
 
     protected void btn_addnew_Click(object sender, EventArgs e)
     {
-        Response.Redirect(webURL + "admin/ec_createclass.aspx", true);
+        Response.Redirect(webURL + "admin/ec_class_create.aspx", true);
     }
 
     protected void QuestiontGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-
+        QuestiontGridView.PageIndex = e.NewPageIndex;
+        BindGrid();
     }
 
     protected void QuestiontGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -237,7 +272,23 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
                 BindGrid();
             }
             if (e.CommandName.Equals("Edit")) {
-                Response.Redirect(webURL + "admin/ec_editclass.aspx?id=" + ID, true);
+                Response.Redirect(webURL + "admin/ec_class_create.aspx?id=" + ID, true);
+            }
+            if (e.CommandName.Equals("AssignStudent"))
+            {
+                Response.Redirect(webURL + "admin/ec_class_create_assign_students.aspx?id=" + ID, true);
+            }
+            if (e.CommandName.Equals("AssignInstructor"))
+            {
+                Response.Redirect(webURL + "admin/ec_class_create_assign_instructor.aspx?id=" + ID, true);
+            }
+            if (e.CommandName.Equals("Duplicate"))
+            {
+                ec_class_master em = db.ec_class_master.Where(b => b.id == ID).First();
+
+                db.ec_class_master.Add(em);
+                db.SaveChanges();
+                BindGrid();
             }
         }
         catch (Exception ex)
@@ -290,7 +341,7 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
         BindGrid();
         DataTable dt = new DataTable();
         // all columns
-        dt.Columns.Add("<strong>Class Code</strong>", typeof(Int32));
+        dt.Columns.Add("Class Code", typeof(Int32));
         dt.Columns.Add("Institution Name", typeof(string));
         dt.Columns.Add("Class Name", typeof(string));
         dt.Columns.Add("Grade", typeof(string));
@@ -308,7 +359,7 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
             for (var i = 0; i < applicant.Count; i++)
             {
                 var applicantemployerdetails = applicant[i];
-                dt.Rows.Add(applicantemployerdetails.classid, applicantemployerdetails.univeristyname, applicantemployerdetails.classname, applicantemployerdetails.grade, applicantemployerdetails.subject,applicantemployerdetails.mode, applicantemployerdetails.type, applicantemployerdetails.duration, applicantemployerdetails.fee, applicantemployerdetails.booklate);
+                dt.Rows.Add(applicantemployerdetails.classid, applicantemployerdetails.univeristyname, applicantemployerdetails.classname, applicantemployerdetails.grade, applicantemployerdetails.subject,applicantemployerdetails.mode, applicantemployerdetails.type, applicantemployerdetails.duration, applicantemployerdetails.fee, applicantemployerdetails.bookablestatus);
 
                 rowNumber++;
             }
@@ -318,32 +369,32 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
 
     protected void ddlclassname_SelectedIndexChanged(object sender, EventArgs e)
     {
-        int classID = Convert.ToInt32(ddlclassname.SelectedValue);
+        string classID = ddlclassname.SelectedValue;
         BindGrid(classID);
     }
 
     protected void ddlgrade_SelectedIndexChanged(object sender, EventArgs e)
     {
         int gradeID = Convert.ToInt32(ddlgrade.SelectedValue);
-        BindGrid(0, gradeID);
+        BindGrid("0", gradeID);
     }
 
     protected void ddlsubject_SelectedIndexChanged(object sender, EventArgs e)
     {
         int subjectID = Convert.ToInt32(ddlsubject.SelectedValue);
-        BindGrid(0,0, subjectID);
+        BindGrid("0",0, subjectID);
     }
 
     protected void ddlmode_SelectedIndexChanged(object sender, EventArgs e)
     {
         int modeID = Convert.ToInt32(ddlmode.SelectedValue);
-        BindGrid(0,0,0,modeID);
+        BindGrid("0",0,0,modeID);
     }
 
     protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)
     {
         int tyepID = Convert.ToInt32(ddltype.SelectedValue);
-        BindGrid(0,0,0,0,tyepID);
+        BindGrid("0",0,0,0,tyepID);
     }
     void RemoveDuplicateItems(DropDownList ddl)
     {
@@ -366,4 +417,33 @@ public partial class admin_ec_manageclass : System.Web.UI.Page
         ddl.ClearSelection();
     }
 
+
+    protected void QuestiontGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+                Label lblIsClassInUse = (Label)e.Row.FindControl("lblIsClassInUse");
+                LinkButton lnkDelete = ((LinkButton)e.Row.FindControl("lnkDelete"));
+
+                if (lblIsClassInUse.Text == "In Use")
+                {
+                    lnkDelete.Attributes.Add("style", "display:none");
+                    lblIsClassInUse.Attributes.Add("style", "display:block");
+                }
+                else
+                {
+                    lnkDelete.Attributes.Add("style", "display:block");
+                    lblIsClassInUse.Attributes.Add("style", "display:none");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+
+    }
 }

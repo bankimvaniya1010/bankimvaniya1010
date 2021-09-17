@@ -214,7 +214,7 @@
                            <%-- <div class="list-group-item" id="universityCampus" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-universitycampusname">
                                     <div class="form-row">
-                                        <label id="lblCampusName" runat="server" for="universitycampusname" class="col-md-3 col-form-label form-label">Please select university campus you are applying to  </label>
+                                        <label id="lblCampusName" runat="server" for="universitycampusname" class="col-md-3 col-form-label form-label">Please select institution campus you are applying to  </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlUniversityCampus" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -485,7 +485,7 @@
             else  if ($("#<%=ddlfieldofstudy.ClientID%>").val() == "0")
                 alert("Please select field of study applying to");
             <%--else  if ($("#<%=ddlUniversityCampus.ClientID%>").val() == "0")
-                alert("Please select university campus you are applying to");--%>
+                alert("Please select institution campus you are applying to");--%>
             else if ($("#<%=txtnameofcourse.ClientID%>").val() == "")
                 alert("Please enter name of course you are applying for");
             else if ($("#<%=ddlCommencementdateMonth.ClientID%>").val() == "0" && $("#<%=ddlCommencementdateYear.ClientID%>").val() == "0")

@@ -393,7 +393,7 @@ div#spinner
     z-index:2;
     overflow: auto;
 }
-.h5ctrl{font-size: large!important;font-weight: 600!important;width: auto;}
+.h5ctrl{font-size: large!important;font-weight: 600!important;width: auto;max-height: 47px!important;}
 .h5bgclr{background: lightgray!important;}
 .h5.form-control.col-md-4.h5details {background-color: black ;color: white;}
 .tblregist{left: 0;
@@ -625,6 +625,14 @@ padding-right:4px;}
 .certificatbtn{    margin: auto;
     width: 70%;
     margin-top: -31px;}
+.mrg-lft{margin-left: 20px;}
+.fullbtn{
+        background: transparent;
+    border: none;
+    text-decoration: underline;
+    color: rgba(33,150,243,.85);
+    font-weight: bold;
+}
 html{
 	--font-color: #040304;	
 	--header-color :#2196f3d9 ;/*#e51837;*/

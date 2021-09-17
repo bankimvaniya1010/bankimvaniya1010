@@ -139,7 +139,7 @@
       function validateForm() {
           var flag = false;
           if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-              alert("Please select university");
+              alert("Please select institution");
           else if ($("#<%=txtname.ClientID%>").val() == "")
               alert("Please enter name");
           else if ($("#<%=txtusername.ClientID%>").val() == "")

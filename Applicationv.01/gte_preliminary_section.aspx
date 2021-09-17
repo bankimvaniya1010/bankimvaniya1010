@@ -242,6 +242,11 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#gtepreliminarysection1').addClass('active');
 
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_new_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Li4').addClass('active');
+
                $("#<%=linkCertificate.ClientID%>").click(function () {
                 var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
                 location.replace(hostName + "gte_certificateN_IN.aspx");

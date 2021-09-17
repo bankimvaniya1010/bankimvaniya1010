@@ -55,11 +55,11 @@
                                 <EditItemTemplate>
                                      <asp:Label ID="lblUniversityEdit" style="display:none" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                     <asp:DropDownList ID="ddlUniversity"  runat="server" CssClass="form-control"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredUniversityEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please Select University ' ControlToValidate='ddlUniversity' />
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredUniversityEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please select institution ' ControlToValidate='ddlUniversity' />
                                 </EditItemTemplate>
                                 <FooterTemplate>
                                     <asp:DropDownList ID="ddlUniversityFooter" runat="server" CssClass="form-control"></asp:DropDownList>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredUniversityFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Please Select University ' ControlToValidate='ddlUniversityFooter' />
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredUniversityFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Please select institution ' ControlToValidate='ddlUniversityFooter' />
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>

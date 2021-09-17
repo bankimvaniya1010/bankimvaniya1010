@@ -149,6 +149,7 @@ public partial class admin_editcourse : System.Web.UI.Page
                         foreach (var maps in mappings)
                         {
                             ddlUniversityCampuses.Items.FindByValue(maps.campusid.ToString()).Selected = true;
+                            ddlUniversityCampuses.Items.FindByValue(maps.campusid.ToString()).Attributes.Add("disabled", "disabled");
                             hidUniversityCampuses.Value = hidUniversityCampuses.Value + maps.campusid + ",";
                         }
                     }
@@ -281,12 +282,12 @@ public partial class admin_editcourse : System.Web.UI.Page
     {
         int CourseID = Convert.ToInt32(ViewState["courseID"]);
 
-        var existingMappings = db.course_campus_mapping.Where(x => x.courseid == CourseID).ToList();
-        if (existingMappings != null)
-        {
-            db.course_campus_mapping.RemoveRange(existingMappings);
-            db.SaveChanges();
-        }
+        //var existingMappings = db.course_campus_mapping.Where(x => x.courseid == CourseID).ToList();
+        //if (existingMappings != null)
+        //{
+        //    db.course_campus_mapping.RemoveRange(existingMappings);
+        //    db.SaveChanges();
+        //}
         var hidExistingCommencementDateIdArr = hidExistingCommencementDateIds.Value.Split(Convert.ToChar(","));
         var existingCourseDates = db.course_dates.Where(x => x.courseid == CourseID && !hidExistingCommencementDateIdArr.Contains(x.id.ToString())).ToList();
         if (existingCourseDates != null)
@@ -364,8 +365,13 @@ public partial class admin_editcourse : System.Web.UI.Page
             var campusIds = hidUniversityCampuses.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var campusId in campusIds)
             {
-                course_campus_mapping mapping = new course_campus_mapping { courseid = CourseObj.courseid, campusid = Convert.ToInt32(campusId) };
-                db.course_campus_mapping.Add(mapping);
+                int camID = Convert.ToInt32(campusId);
+                var data = db.course_campus_mapping.Where(x=>x.courseid ==  CourseObj.courseid && x.campusid == camID).FirstOrDefault();
+                if (data == null)
+                {
+                    course_campus_mapping mapping = new course_campus_mapping { courseid = CourseObj.courseid, campusid = Convert.ToInt32(campusId) };
+                    db.course_campus_mapping.Add(mapping);
+                }
             }
             db.SaveChanges();
 

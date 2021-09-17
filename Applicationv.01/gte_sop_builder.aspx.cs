@@ -37,15 +37,7 @@ public partial class gte_sop_builder : System.Web.UI.Page
 
         if (Request.QueryString["downloadPdf"] != null)
             downloadPdf = Convert.ToInt32(Request.QueryString["downloadPdf"]);
-
-        //var objUser = (students)Session["LoginInfo"];
-        //UserID = objUser.studentid;
-        //if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
-        //{
-        //    Response.Redirect(webURL + "default.aspx", true);
-        //}
-        //else
-        //    formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        
         showContent();
     }
 
@@ -94,45 +86,40 @@ public partial class gte_sop_builder : System.Web.UI.Page
                 return;
             }
             //if set to certification
-            if (isFullService == 0)
+            //if (isFullService == 0)
+            //{
+
+            //}
+            var IsgteCertificatGenrated = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == universityID).Select(x => x.is_gte_certificate_generated).FirstOrDefault();
+            if (IsgteCertificatGenrated == false || IsgteCertificatGenrated == null)
             {
-                var IsgteCertificatGenrated = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == universityID).Select(x => x.is_gte_certificate_generated).FirstOrDefault();
-                if (IsgteCertificatGenrated == false || IsgteCertificatGenrated == null)
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Incomplete Certification. Please complete GTE Certification .');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                return;
+            }
+
+            // gte question1 
+
+            var answeredQuestion = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
+            var allQuestions = db.gte_questions_master.ToList();
+            if (answeredQuestion.Count == allQuestions.Count)
+            {
+                var answeredQuestion2 = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
+                var allQuestions2 = db.gte_question_master_part2.ToList();
+
+                if (answeredQuestion2.Count == allQuestions2.Count)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                            "alert('Incomplete Certification. Please complete GTE Certification .');window.location='" + Request.ApplicationPath + "default.aspx';", true);
-                    return;
-                }
-
-                // gte question1 
-
-                var answeredQuestion = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
-                var allQuestions = db.gte_questions_master.ToList();
-                if (answeredQuestion.Count == allQuestions.Count)
-                {
-                    var answeredQuestion2 = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
-                    var allQuestions2 = db.gte_question_master_part2.ToList();
-
-                    if (answeredQuestion2.Count == allQuestions2.Count)
+                    var applicantdetails_clarification = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                    if (applicantdetails_clarification != null)
                     {
-                        var applicantdetails_clarification = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
-                        if (applicantdetails_clarification != null)
+                        if (applicantdetails_clarification.Is_clarification_submitted != true)
                         {
-                            if (applicantdetails_clarification.Is_clarification_submitted != true)
-                            {
-                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                                  "alert('Incomplete GTE Assessment .');window.location='" + Request.ApplicationPath + "default.aspx';", true);
-                                return;
-                            }
-                            else
-                                SetString(UserID, universityID);
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                              "alert('Incomplete GTE Assessment .');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                            return;
                         }
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                                  "alert('Incomplete GTE Assessment .');window.location='" + Request.ApplicationPath + "default.aspx';", true);
-                        return;
+                        else
+                            SetString(UserID, universityID);
                     }
                 }
                 else
@@ -142,7 +129,12 @@ public partial class gte_sop_builder : System.Web.UI.Page
                     return;
                 }
             }
-
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                          "alert('Incomplete GTE Assessment .');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                return;
+            }
             var applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
             var gte_applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
 
@@ -196,7 +188,7 @@ public partial class gte_sop_builder : System.Web.UI.Page
                     ViewState["homeCountry"] = objCommon.GetCountryDiscription(Convert.ToInt32(applicantdetails.residentialcountry));
             }
 
-            if (isFullService == 0)
+            //if (isFullService == 0)
                 if (gte_applicantdetails != null && gte_applicantdetails.residencecountry != null)
                     ViewState["homeCountry"] = objCommon.GetCountryDiscription(Convert.ToInt32(gte_applicantdetails.residencecountry));
         }
