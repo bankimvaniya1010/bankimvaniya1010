@@ -1,7 +1,7 @@
-﻿using Amazon;
-using Amazon.S3;
-using Amazon.S3.Model;
-using Amazon.S3.Transfer;
+﻿//using Amazon;
+//using Amazon.S3;
+//using Amazon.S3.Model;
+//using Amazon.S3.Transfer;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -1464,48 +1464,48 @@ public partial class ec_applicantdetails : System.Web.UI.Page
         //    lbl.InnerText = "Error";
 
     }
-    private void SavetoAWS(FileUpload fileUdpload)
-    {
-        try
-        {
-            Stream st = fileUdpload.PostedFile.InputStream;
+    //private void SavetoAWS(FileUpload fileUdpload)
+    //{
+    //    try
+    //    {
+    //        Stream st = fileUdpload.PostedFile.InputStream;
 
-            string name = Path.GetFileName(fileUdpload.FileName);
-            string myBucketName = "applicantprofile"; //your s3 bucket name goes here  
-            string s3DirectoryName = "";
-            string s3FileName = userID + "_U" + universityID;//
-            bool a;
-            AmazonUploader myUploader = new AmazonUploader();
-            a = myUploader.sendMyFileToS3(st, myBucketName, s3DirectoryName, s3FileName);
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-    public class AmazonUploader
-    {
-        public bool sendMyFileToS3(System.IO.Stream localFilePath, string bucketName, string subDirectoryInBucket, string fileNameInS3)
-        {
-            IAmazonS3 client = new AmazonS3Client(RegionEndpoint.APSouth1);
-            TransferUtility utility = new TransferUtility(client);
-            TransferUtilityUploadRequest request = new TransferUtilityUploadRequest();
+    //        string name = Path.GetFileName(fileUdpload.FileName);
+    //        string myBucketName = "applicantprofile"; //your s3 bucket name goes here  
+    //        string s3DirectoryName = "";
+    //        string s3FileName = userID + "_U" + universityID;//
+    //        bool a;
+    //        AmazonUploader myUploader = new AmazonUploader();
+    //        a = myUploader.sendMyFileToS3(st, myBucketName, s3DirectoryName, s3FileName);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        objLog.WriteLog(ex.ToString());
+    //    }
+    //}
+    //public class AmazonUploader
+    //{
+    //    public bool sendMyFileToS3(System.IO.Stream localFilePath, string bucketName, string subDirectoryInBucket, string fileNameInS3)
+    //    {
+    //        IAmazonS3 client = new AmazonS3Client(RegionEndpoint.APSouth1);
+    //        TransferUtility utility = new TransferUtility(client);
+    //        TransferUtilityUploadRequest request = new TransferUtilityUploadRequest();
 
-            if (subDirectoryInBucket == "" || subDirectoryInBucket == null)
-            {
-                request.BucketName = bucketName; //no subdirectory just bucket name  
-            }
-            else
-            {   // subdirectory and bucket name  
-                request.BucketName = bucketName + @"/" + subDirectoryInBucket;
-            }
-            request.Key = fileNameInS3; //file name up in S3  
-            request.InputStream = localFilePath;
-            utility.Upload(request); //commensing the transfer  
+    //        if (subDirectoryInBucket == "" || subDirectoryInBucket == null)
+    //        {
+    //            request.BucketName = bucketName; //no subdirectory just bucket name  
+    //        }
+    //        else
+    //        {   // subdirectory and bucket name  
+    //            request.BucketName = bucketName + @"/" + subDirectoryInBucket;
+    //        }
+    //        request.Key = fileNameInS3; //file name up in S3  
+    //        request.InputStream = localFilePath;
+    //        utility.Upload(request); //commensing the transfer  
 
-            return true; //indicate that the file was sent  
-        }
-    }
+    //        return true; //indicate that the file was sent  
+    //    }
+    //}
 
     protected void Linkbutton1_Click(object sender, EventArgs e)
     {
