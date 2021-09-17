@@ -1,0 +1,64 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_facecomparision.aspx.cs" Inherits="gte_facecomparision" MasterPageFile="~/student.master"%>
+
+
+<asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+    <!-- CSS -->
+    <style>
+        #my_camera {
+            width: 320px;
+            height: 240px;
+            border: 1px solid black;
+        }
+    </style>
+
+    <div id="my_camera"></div>
+    <input type="button" value="Take Snapshot" onclick="take_snapshot()">
+    
+    <div id="results"></div>
+    <asp:Button runat="server" OnClick="Unnamed_Click" Text="Comparre" />
+    <asp:Button runat="server" ID="detectbtn" OnClick="detectbtn_Click" Text="detect"/>
+    <asp:Label runat="server" ID="lbl"/>
+    <!-- Webcam.min.js -->
+    <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/webcam.min.js"></script>
+    
+
+    <!-- Configure a few settings and attach camera -->
+    <script language="JavaScript">
+        Webcam.set({
+            width: 320,
+            height: 240,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+
+//< !--Code to handle taking the snapshot and displaying it locally-- >
+            function take_snapshot() {
+
+                // take snapshot and get image data
+                Webcam.snap(function (data_uri) {
+                    // display results in page
+                    document.getElementById('results').innerHTML =
+                        '<img src="' + data_uri + '"/>';
+
+                    $.ajax({
+                        type: "POST",
+                        url: "gte_verification.aspx/AddBookingData",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: "{ 'data_uri': '" + data_uri + "' }",
+                    });  
+
+                });
+        }
+
+
+         $(document).ready(function () {
+              //$('.sidebar-menu-item').removeClass('open');
+              //$('#preliminary_list').addClass('open');
+              $('.sidebar-menu-item').removeClass('active');
+              $('#Verification').addClass('active');
+          });
+    </script>
+</asp:Content>
+
