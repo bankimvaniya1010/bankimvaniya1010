@@ -468,7 +468,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Activate();
 
         worksheet.Cells[1, 1] = "Applicant ID";
-        worksheet.Cells[1, 2] = "University Name";
+        worksheet.Cells[1, 2] = "Institution";
         worksheet.Cells[1, 3] = "Passport Number";
         worksheet.Cells[1, 4] = "Date Of Issue";
         worksheet.Cells[1, 5] = "Expiry Date";
@@ -527,7 +527,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Activate();
 
         worksheet.Cells[1, 1] = "Applicant ID";
-        worksheet.Cells[1, 2] = "University Name";
+        worksheet.Cells[1, 2] = "Institution";
         worksheet.Cells[1, 3] = "Home Language";
         worksheet.Cells[1, 4] = "English Language Intensive Course";
         worksheet.Cells[1, 5] = "Country of English Language Intensive ";
@@ -638,7 +638,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Activate();
 
         worksheet.Cells[1, 1] = "Applicant Id";
-        worksheet.Cells[1, 2] = "University Name";
+        worksheet.Cells[1, 2] = "Institution";
         worksheet.Cells[1, 3] = "wish to record work experience";
         worksheet.Cells[1, 4] = "Employement Record Id";
         worksheet.Cells[1, 5] = "Organization Name";
@@ -728,7 +728,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
 
         ////High School
         worksheet.Cells[1, 1] = "Applicant ID";
-        worksheet.Cells[1, 2] = "University Name";
+        worksheet.Cells[1, 2] = "Institution";
         worksheet.Cells[1, 3] = "Completed High School ";
         worksheet.Cells[1, 4] = "Country Of Highest School";
         worksheet.Cells[1, 5] = "High School Start Date";
@@ -948,7 +948,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Activate();
 
         worksheet.Cells[1, 1] = "Applicant ID";
-        worksheet.Cells[1, 2] = "University Name";
+        worksheet.Cells[1, 2] = "Institution";
         worksheet.Cells[1, 3] = "Email ID";
         worksheet.Cells[1, 4] = "Mobile Number";
         worksheet.Cells[1, 5] = "Home Phone Number";
@@ -1055,7 +1055,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Activate();
 
         worksheet.Cells[1, 1] = "Applicant ID";
-        worksheet.Cells[1, 2] = "University Name";
+        worksheet.Cells[1, 2] = "Institution";
         worksheet.Cells[1, 3] = "Have LinkedIn Profile";
         worksheet.Cells[1, 4] = "LinkedIn Profile";
         worksheet.Cells[1, 5] = "Have Facebook Profile";
@@ -1092,7 +1092,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Activate();
 
         worksheet.Cells[1, 1] = "Applicant ID";
-        worksheet.Cells[1, 2] = "University Name";
+        worksheet.Cells[1, 2] = "Institution";
         worksheet.Cells[1, 3] = "First Name";
         worksheet.Cells[1, 4] = "Middle Name";
         worksheet.Cells[1, 5] = "Family Name";

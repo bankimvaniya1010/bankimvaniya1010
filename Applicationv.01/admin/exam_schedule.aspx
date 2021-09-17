@@ -161,7 +161,7 @@
            
            var flag = false;
            <%--if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-               alert("Please Select University");--%>
+               alert("Please select institution");--%>
            if ($("#<%=ddlexam.ClientID%>").val() == "0")
                alert("Please Select Exam");           
            else if ($("#<%=hidTimeZone.ClientID%>").val() == "")

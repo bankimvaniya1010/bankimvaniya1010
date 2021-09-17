@@ -39,27 +39,41 @@
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">List of Registered Applicants</li>
+            <li class="breadcrumb-item"><a href="Default.aspx">MY DASHBOARD</a></li>
+            <li class="breadcrumb-item active">USER REGISTRATIONS</li>
             
         </ol>
-        
+        <h1 class="h2">USER REGISTRATIONS
+
+        </h1>
 
         <div class="card" style="margin-top:-20px;">            
             <div class="tab-content card-body" style=" margin-left: -35px;">
                 <div style="margin-top: -19px; margin-bottom: -25px;">
                     <table>
                         <tr>
-                            <td><span runat="server" id="label4" style="margin-left: 33px;"><b>SUBSCRIBED :</b></span><span style="font-weight: 800; font-size: larger;"><%=lbltotal %></span>
-                               <%-- <label runat="server" id="lbltotal" style="font-weight: 800; font-size: larger;"></label>--%>
+                            <td><span runat="server" id="label4" style="margin-left: 33px;"><b>Number of Purchased Registration :</b></span>
+                                <%--<asp:TextBox runat="server" CssClass="form-control" Enabled="false" ID="lbl1"/>--%>
+                                <span style="font-weight: 800; font-size: larger;"><%=lbltotal %></span>
                             <br/>
-                                <span runat="server" id="label1" style="margin-left: 5%;margin-left: 31px;"><b>AVAILABLE : </b></span><span style="font-weight: 800; font-size: larger;"><%=lblavailable %></span>
-                                <%--<label runat="server" id="" style="font-weight: 800; font-size: larger;"></label>--%>
+                                <span runat="server" id="label1" style="margin-left: 5%;margin-left: 31px;"><b>Number of Available Registration : </b></span>
+                                <%--<asp:TextBox runat="server" CssClass="form-control" Enabled="false" ID="lbl2"/>--%>
+                                <span style="font-weight: 800; font-size: larger;"><%=lblavailable %></span>
                             
                             </td>
                             
+                           
                             <td>
-                                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlfilter" Style="width: 240px;">
+                                <span style="margin-left: 500px;">
+                                    <asp:Button runat="server" ID="downloadbtn" Text="Download List" OnClick="downloadbtn_Click" CssClass="btn btn-success" Visible="true" />
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                             <td>
+                                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlfilter" Style="width: 240px;margin-left: 33px;">
                                     <asp:ListItem Value="0">Please Select</asp:ListItem>
                                     <asp:ListItem Value="1">By AID</asp:ListItem>
                                     <asp:ListItem Value="2">By First Name</asp:ListItem>
@@ -78,13 +92,8 @@
                                     <asp:DropDownList runat="server" ID="ddlcountry" OnSelectedIndexChanged="ddlcountry_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" Style="width: 240px; margin-top: -20px;"></asp:DropDownList>
                                 </div>
                             </td>
-                            <td>
-                                <span style="margin-left: 100px;">
-                                    <asp:Button runat="server" ID="downloadbtn" Text="Download List" OnClick="downloadbtn_Click" CssClass="btn btn-success" Visible="true" />
-                                </span>
-                            </td>
                         </tr>
-                    </table>                   
+                    </table>
                 </div>
              
                  <div class="tab-content card-body">
@@ -111,7 +120,6 @@
                                                                     <asp:Label ID="lblaid" runat="server" Text='<%#Bind("applicantid") %>' Visible="false"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
                              <asp:TemplateField HeaderText="OTP"> 
                                 <ItemTemplate>
                                     <asp:Label ID="lblapplicantid" runat="server" Text='<%#Bind("applicantid") %>' Visible="false"></asp:Label>
@@ -145,14 +153,14 @@
                                     <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Edit" Text="Edit"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                             <asp:TemplateField HeaderText="First Name">                                                            
+                            <asp:TemplateField HeaderText="Student Name"> 
                                 <ItemTemplate>
-                                    <asp:Label ID="lblcreatdby" runat="server" Text='<%# Bind("firstname") %>'></asp:Label>
+                                    <asp:Label ID="lblapplicantid1" runat="server" Text='<%# Bind("fullname") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Family Name" >  
+                            <asp:TemplateField HeaderText="Mobile">
                                 <ItemTemplate>
-                                     <asp:Label ID="lbluniversity" runat="server" Text='<%# Bind("lastname") %>'></asp:Label>
+                                    <asp:Label ID="lblemail" runat="server" Text='<%# Bind("mobile") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Email" >  
@@ -160,50 +168,28 @@
                                      <asp:Label ID="lblrolename" runat="server" Text='<%# Bind("email") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="University Name">                                                            
-                                <ItemTemplate>
-                                    <asp:Label ID="lbltype" runat="server" Text='<%# Bind("university_name") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                           
-                            <asp:TemplateField HeaderText="Class" >  
+                             <asp:TemplateField HeaderText="Class" >  
                                 <ItemTemplate>
                                      <asp:Label ID="lblclassname" runat="server" Text='<%# Bind("classname") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Group" >  
+                             <asp:TemplateField HeaderText="Group" >  
                                 <ItemTemplate>
                                      <asp:Label ID="lblgroupname" runat="server" Text='<%# Bind("groupname") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <%--<asp:TemplateField HeaderText="Subjects" >  
-                                <ItemTemplate>
-                                     <asp:Label ID="lblSubjects" runat="server" Text='<%# Bind("Subjects") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>--%>
                              <asp:TemplateField HeaderText="StudentID" >  
                                 <ItemTemplate>
                                      <asp:Label ID="lblstudentID" runat="server" Text='<%# Bind("studentID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Mobile">                                                           
-                                <ItemTemplate>
-                                    <asp:Label ID="lblemail" runat="server" Text='<%# Bind("mobile") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Enrollment Date"> 
+                            
+                             <asp:TemplateField HeaderText="Registration Date & Time"> 
                                 <ItemTemplate>
                                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("registereDate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            
-                            <asp:TemplateField HeaderText="Country of Residence"> 
-                                <ItemTemplate>
-                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("countryofresidence") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            
-                             
+
                         </Columns>
                     </asp:GridView>
                         </div>

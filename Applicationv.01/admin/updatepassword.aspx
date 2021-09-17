@@ -5,12 +5,12 @@
 
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">CHANGE PASSWORD
+            <li class="breadcrumb-item"><a href="Default.aspx">MY DASHBOARD</a></li>
+            <li class="breadcrumb-item active">CHANGE MY PASSWORD
 
             </li>
         </ol>
-        <h1 class="h2">CHANGE PASSWORD
+        <h1 class="h2">CHANGE MY PASSWORD
 
         </h1>
 
@@ -28,7 +28,7 @@
                              <div class="list-group-item" id="exsistingpassword" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-password">
                                     <div class="form-row">
-                                        <label id="lblexsistingpassword" runat="server" for="exsistingpassword" class="col-md-3 col-form-label form-label">ENTER OLD PASSWORD</label>
+                                        <label id="lblexsistingpassword" runat="server" for="exsistingpassword" class="col-md-3 col-form-label form-label">ENTER YOUR OLD PASSWORD</label>
                                         <div class="col-md-6">
                                             <input id="txtexsistingpassword" runat="server" type="password" class="form-control">                                            
                                         </div>
@@ -38,7 +38,7 @@
                             <div class="list-group-item" id="password" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-password">
                                     <div class="form-row">
-                                        <label id="lblpassword" runat="server" for="password" class="col-md-3 col-form-label form-label">Enter New Password</label>
+                                        <label id="lblpassword" runat="server" for="password" class="col-md-3 col-form-label form-label">Enter YOUR New Password</label>
                                         <div class="col-md-6">
                                             <input id="txtpassword"  runat="server" type="password" class="form-control">                                            
                                         </div>
@@ -48,7 +48,7 @@
                             <div class="list-group-item" id="confirmpassword" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-confirmpassword">
                                     <div class="form-row">
-                                        <label id="lblconfirmpassword" runat="server" for="confirmpassword" class="col-md-3 col-form-label form-label">Confirm New Password</label>
+                                        <label id="lblconfirmpassword" runat="server" for="confirmpassword" class="col-md-3 col-form-label form-label">RE-Enter YOUR New Password</label>
                                         <div class="col-md-6">
                                             <input id="txtconfirmpassword" runat="server" type="password" class="form-control">                                            
                                         </div>

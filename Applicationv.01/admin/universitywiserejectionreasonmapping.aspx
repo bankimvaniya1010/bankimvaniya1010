@@ -5,9 +5,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Rejection Reason Mapping University Wise</li>
+            <li class="breadcrumb-item active">Rejection Reason Mapping Institution Wise</li>
         </ol>
-        <h1 class="h2">Rejection Reason Mapping University Wise</h1>
+        <h1 class="h2">Rejection Reason Mapping Institution Wise</h1>
 
         <div class="card">
 
@@ -63,7 +63,7 @@
         {
             var flag = false; 
             if ($("#<%=ddlUniversity.ClientID%>").val() === "0")
-                alert("Please Select University");
+                alert("Please select institution");
             else 
                 flag = true;
 

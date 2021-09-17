@@ -209,7 +209,7 @@
 
             var flag = false;
             if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-                alert("Please Select University");
+                alert("Please select institution");
             else if ($("#<%=ddlproctor.ClientID%>").val() == "0")
                 alert("Please select invigilator");
             else if ($("#<%=txtproctorpasskey.ClientID%>").val() == "")

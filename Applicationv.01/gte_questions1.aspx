@@ -399,6 +399,11 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#GTEAssessment').addClass('active');
 
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_new_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Li6').addClass('active');
+
             $('#lblClick').click(function () {
                 var IELTSModal = $('#IELTS-modal');
                 $('body').append(IELTSModal);

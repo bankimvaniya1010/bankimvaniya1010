@@ -223,6 +223,6 @@ public partial class admin_view_gteapplicantdocuments : System.Web.UI.Page
 
     protected void backNavLink_Click(object sender, EventArgs e)
     {
-        Response.Redirect(webURL + "admin/manageapplicant.aspx?ID=" + applicantid, true);
+        Response.Redirect(webURL + "admin/manage_applicant.aspx?ID=" + applicantid, true);
     }
 }

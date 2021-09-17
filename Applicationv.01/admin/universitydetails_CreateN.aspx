@@ -14,7 +14,7 @@ section .section-title {
     margin-bottom: 50px;
     text-transform: uppercase;
 }
-#tabs{
+#tabs{s
 	background: transparent;
     color: #000;
 }
@@ -249,7 +249,7 @@ section .section-title {
                                                                     <asp:ListItem Value="2">Assessment Service</asp:ListItem>
                                                                     <asp:ListItem Value="3">GTE(Certification)</asp:ListItem>
                                                                     <asp:ListItem Value="4">GTE(Evalution)</asp:ListItem>
-                                                                    <asp:ListItem Value="5">E-Class Service</asp:ListItem>
+                                                                    <%--<asp:ListItem Value="5">E-Class Service</asp:ListItem>--%>
                                                                 </asp:DropDownList>
                                                             </div>
                                                         </div>
@@ -1842,7 +1842,7 @@ section .section-title {
             //    return false;
             //}
             //else if (UniTimeZoneValue == 0 || isNaN(parseInt(UniTimeZoneValue))) {
-            //    alert("Please select university time zone");
+            //    alert("Please select institution time zone");
             //    return false;
             //}
             //else if (txtUniAirport == '') {

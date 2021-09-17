@@ -34,9 +34,14 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
                 if (!Int32.TryParse(Request.QueryString["universityId"], out universityID))
                     Response.Redirect(webURL + "admin/default.aspx", true);
 
+                int applicationmasterID = 0;
+                if (!string.IsNullOrEmpty(Request.QueryString["applicationmasterID"]))
+                    applicationmasterID = Convert.ToInt32(Request.QueryString["applicationmasterID"]);
+
+
                 bindPaymentDescription(universityID);
                 bindCurrency();
-                bindAppliedCourseNames(applicantID, universityID);
+                bindAppliedCourseNames(applicantID, universityID, applicationmasterID);
                 Session["applicantId"] = applicantID;
                 Session["universityId"] = universityID;
 
@@ -54,16 +59,21 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
         }
     }
 
-    private void bindAppliedCourseNames(int applicantId, int universityId)
+    private void bindAppliedCourseNames(int applicantId, int universityId,int applicationmasterID)
     {
         try
         {
             ListItem lst = new ListItem("Please select Course", "0");
             List<int?> offer_accepted_status = db.application_status_master.Where(x => x.status_description.ToUpper().Contains("OFFER ACCEPTED") || x.status_description.ToUpper().Contains("CONFIRMATION OF ENROLMENT GENERATED")).Select(x => x.id ).Cast<int?>().ToList();
-
-            var applicationMasterCourse = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId && offer_accepted_status.Contains(x.current_status))
+            dynamic applicationMasterCourse;
+            if (applicationmasterID == 0)
+                applicationMasterCourse = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId && offer_accepted_status.Contains(x.current_status))
                                    .Join(db.coursemaster, applicationmaster => applicationmaster.course, coursemaster => coursemaster.courseid,
                                     (applicationmaster, coursemaster) => new { applicationmaster.applicationmasterid , coursemaster.coursename }).ToList();
+            else
+                applicationMasterCourse = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId && offer_accepted_status.Contains(x.current_status) && x.applicationmasterid == applicationmasterID)
+                                   .Join(db.coursemaster, applicationmaster => applicationmaster.course, coursemaster => coursemaster.courseid,
+                                    (applicationmaster, coursemaster) => new { applicationmaster.applicationmasterid, coursemaster.coursename }).ToList();
 
             ddlStudentCourse.DataSource = applicationMasterCourse;
             ddlStudentCourse.DataTextField = "coursename";
@@ -79,8 +89,8 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
     {
         try
         {
-            payment_details existingPaymentDetail = db.payment_details.Where(obj => obj.id == paymentDetailsId).FirstOrDefault();
-            string paymentStatus = db.payment_status_master.Where(x => x.id == existingPaymentDetail.payment_status).Select(x => x.status_description).FirstOrDefault();
+            ec_payment_details existingPaymentDetail = db.ec_payment_details.Where(obj => obj.id == paymentDetailsId).FirstOrDefault();
+            string paymentStatus = db.ec_status_master.Where(x => x.id == existingPaymentDetail.payment_status).Select(x => x.description).FirstOrDefault();
             if (paymentStatus.ToUpper().Contains("PAYMENT VERIFIED"))
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Payment Status is verified, cannot edit this details'); window.location='" + webURL + "admin/processpaymentrequest.aspx?applicantId=" + existingPaymentDetail.applicant_id + "&universityId=" + existingPaymentDetail.university_id + "';", true);
             else if (existingPaymentDetail != null)
@@ -92,7 +102,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
                     ddlPaymentDescription.Items.FindByValue(existingPaymentDetail.payment_for.ToString()).Selected = true;
                 }
                 if (existingPaymentDetail.due_date != null)
-                    hidPaymentDueDate.Value = existingPaymentDetail.due_date.ToString("dd-MM-yyyy");
+                    hidPaymentDueDate.Value = Convert.ToDateTime(existingPaymentDetail.due_date).ToString("dd-MM-yyyy");
                 if (existingPaymentDetail.amount > 0)
                     txtPaymentAmount.Text = existingPaymentDetail.amount.ToString();
 

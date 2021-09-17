@@ -52,12 +52,20 @@ public partial class gte_questions1 : System.Web.UI.Page
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                 "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
 
+        //int isFullService1 = (int)Session["FullService"];
+        //bool? Isdetailscompleted = false;
+
+        //if (isFullService1 == 1)
+        //    Isdetailscompleted = objCommon.SetStudentDetailsCompletedStatus(UserID, UniversityID);
+        //else
+        //    Isdetailscompleted = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.Isdetailscompleted).FirstOrDefault();
+
 
         var Isdetailscompleted = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.Isdetailscompleted).FirstOrDefault();
         if (Isdetailscompleted == false)
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('Incomplete profile information. Please complete profile before proceeding.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                    "alert('Incomplete profile information. Please complete profile before proceeding.');window.location='" + Request.ApplicationPath + "gte_studentdetailsN.aspx?formid=21';", true);
 
         }
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
@@ -824,31 +832,39 @@ public partial class gte_questions1 : System.Web.UI.Page
             else
             {
                 int isFullService1 = (int)Session["FullService"];
-                if (isFullService1 == 1)
-                {
-                    var applicant_details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
-                    var application_details = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID && x.preferenceid.Value == 1).FirstOrDefault();
+                //if (isFullService1 == 1)
+                //{
+                //    var applicant_details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                //    var application_details = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID && x.preferenceid.Value == 1).FirstOrDefault();
 
-                    if (applicant_details == null || application_details == null)
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete student or application details. Please complete both before proceeding'); window.location='" + webURL + "default.aspx';", true);
-                    else
-                    {
-                        details.highestqualificationfield = applicant_details.fieldofhigheststudy.HasValue ? applicant_details.fieldofhigheststudy.Value : 1;
-                        details.fieldofstudyapplied = application_details.majorofdiscipline.HasValue ? application_details.majorofdiscipline.Value : 1;
-                        details.highestqualifiactionachieved = applicant_details.higheststudycompleted.HasValue ? applicant_details.higheststudycompleted.Value.ToString() : "1";
-                        details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value : 1;
-                    }
-                }
-                else if (isFullService1 == 0)
+                //    if (applicant_details == null)
+                //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete student or application details. Please complete both before proceeding'); window.location='" + webURL + "default.aspx';", true);
+                //    else
+                //    {
+                //        details.highestqualificationfield = applicant_details.fieldofhigheststudy.HasValue ? applicant_details.fieldofhigheststudy.Value : 1;
+                //        details.fieldofstudyapplied = application_details.majorofdiscipline.HasValue ? application_details.majorofdiscipline.Value : 1;
+                //        details.highestqualifiactionachieved = applicant_details.higheststudycompleted.HasValue ? applicant_details.higheststudycompleted.Value.ToString() : "1";
+                //        details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value : 1;
+                //    }
+                //}
+                //if (isFullService1 == 0)
+                //{
+                //    //bool Isold_or_new_applicant = objCommon.GetIS_oldOrNew_applicant(UserID);
+                //    if (Isold_or_new_applicant == true)
+                //    {
+                //        var data = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                //    }
+                //    else
+                //        details = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                //}
+                
+                //common for all now
+                if (Isold_or_new_applicant == true)
                 {
-                    //bool Isold_or_new_applicant = objCommon.GetIS_oldOrNew_applicant(UserID);
-                    if (Isold_or_new_applicant == true)
-                    {
-                        var data = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
-                    }
-                    else
-                        details = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                    var data = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
                 }
+                else
+                    details = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
                 if (details != null)
                 {
                     var clarification_questionsList = db.gte_clarification_questionmaster.ToList();

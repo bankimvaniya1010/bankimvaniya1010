@@ -143,17 +143,24 @@
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                             <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/Training_Center.png">
                                                 </i>
-                                            <span class="sidebar-menu-text">Tutrial & Resource</span>
+                                            <span class="sidebar-menu-text">Tutorials & Resource</span>
                                         </a>
                                     </li>
-
+                             <li class="sidebar-menu-item" id="manageprofile_list" runat="server" style="margin-bottom: -12px;" visible="true">
+                                        <a class="sidebar-menu-button" href="updatepassword.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/RolesAndPermission_ICON.png">
+                                            </i>
+                                            <span class="sidebar-menu-text">Change My Password </span>
+                                        </a>
+                                    </li>
                              <li class="sidebar-menu-item" id="registeredapplicants" runat="server" style="margin-bottom: -12px;">
                                  
                                         <a class="sidebar-menu-button" href="registered_applicantlist.aspx">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                             <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/View_Registration.png">
                                  </i>
-                                            <span class="sidebar-menu-text">View Registration </span>
+                                            <span class="sidebar-menu-text">User Registration </span>
                                         </a>
                                     </li>
 
@@ -162,7 +169,15 @@
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
                                                 <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/BulkRegistration_ICON.png">
                                             </i>
-                                            <span class="sidebar-menu-text">Bulk Registration </span>
+                                            <span class="sidebar-menu-text">Bulk User Registration </span>
+                                        </a>
+                                    </li>
+                              <li class="sidebar-menu-item" id="classbooking" runat="server" style="margin-bottom: -12px;">
+                                        <a class="sidebar-menu-button" href="ec_manage_class_booking.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/BulkRegistration_ICON.png">
+                                            </i>
+                                            <span class="sidebar-menu-text">Manage Class Booking</span>
                                         </a>
                                     </li>
                             <li class="sidebar-menu-item" id="manage_applications" runat="server" style="margin-bottom: -12px;">
@@ -202,7 +217,7 @@
                                    
                                     <li class="sidebar-menu-item" id="beforeyous">
                                         <a class="sidebar-menu-button" href="viewVideo.aspx">
-                                            <span class="sidebar-menu-text">Tutorial</span>
+                                         io   <span class="sidebar-menu-text">Tutorial</span>
                                         </a>
                                     </li> 
 
@@ -228,14 +243,7 @@
                                     </li> 
                                 </ul>
                             </li>--%>
-                            <li class="sidebar-menu-item" id="manageprofile_list" runat="server" style="margin-bottom: -12px;" visible="true">
-                                        <a class="sidebar-menu-button" href="updatepassword.aspx">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
-                                                <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/RolesAndPermission_ICON.png">
-                                            </i>
-                                            <span class="sidebar-menu-text">Change Password </span>
-                                        </a>
-                                    </li>
+                           
                            <%-- <li class="sidebar-menu-item" id="manageprofile_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manage_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -259,7 +267,12 @@
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse " id="manageapplicantions_menu">
-                                   <li class="sidebar-menu-item" id="applicantlist"> 
+                                    <li class="sidebar-menu-item" id="applicantion"> 
+                                        <a class="sidebar-menu-button" href="manage_application.aspx">
+                                            <span class="sidebar-menu-text">View & Manage Course Applications</span>
+                                        </a>
+                                    </li>    
+                                   <%--<li class="sidebar-menu-item" id="applicantlist"> 
                                         <a class="sidebar-menu-button" href="applicantlist.aspx">
                                             <span class="sidebar-menu-text">View & Manage Applications </span>
                                         </a>
@@ -268,7 +281,7 @@
                                         <a class="sidebar-menu-button" href="managestudentapplication.aspx">
                                             <span class="sidebar-menu-text">View & Manage Student Course Application </span>
                                         </a>
-                                    </li>
+                                    </li>--%>
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="role_list" runat="server" style="margin-bottom: -12px;" visible="true">
@@ -309,7 +322,9 @@
                             </li>
                             <li class="sidebar-menu-item" id="exammodule_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#exammodule_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_helping_video.png">
+                                    </i>
                                  Assessment Module
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
@@ -501,7 +516,8 @@
                                         <a class="sidebar-menu-button" href="universitygroupingmaster.aspx">
                                             <span class="sidebar-menu-text">Institution Grouping</span>
                                         </a>
-                                    </li>                                      
+                                    </li>  
+                                   
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="CustomizeForms_list">
@@ -942,12 +958,119 @@
                                 <ul class="sidebar-submenu sm-indent collapse" id="classModule">
                                     <li class="sidebar-menu-item" id="createclass_service5"> 
                                         <a class="sidebar-menu-button" href="ec_manageclass.aspx">
-                                            <span class="sidebar-menu-text">Create Class</span>
+                                            <span class="sidebar-menu-text">Create & Schedule</span>
                                         </a>
-                                    </li>                                   
+                                    </li>
                                    <li class="sidebar-menu-item" id="schedule_service5"> 
-                                        <a class="sidebar-menu-button" href="ec_assignclass_mange.aspx">
+                                        <a class="sidebar-menu-button" href="ec_class_create_assign_students_master.aspx">
+                                            <span class="sidebar-menu-text">Assign Student(s)</span>
+                                        </a>
+                                    </li> 
+                                    <%--<li class="sidebar-menu-item" id="assigninstructor"> 
+                                        <a class="sidebar-menu-button" href="ec_class_create_assign_instructor_master.aspx">
+                                            <span class="sidebar-menu-text">Assign Instructor(s)</span>
+                                        </a>
+                                    </li> --%>
+                                </ul>
+                            </li>
+                            
+                            <li class="sidebar-menu-item" id="studymateriallist">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#studyModule">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/studymaterial.png">
+                                    </i>
+                                   Manage Study Material
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="studyModule">
+                                    <li class="sidebar-menu-item" id="createstudymaterial6">
+                                        <a class="sidebar-menu-button" href="ec_manage_study_material.aspx">
+                                            <span class="sidebar-menu-text">Create</span>
+                                        </a>
+                                    </li> 
+                                    <li class="sidebar-menu-item" id="schedule_service6">
+                                        <a class="sidebar-menu-button" href="ec_assign_mange_study_material.aspx">
                                             <span class="sidebar-menu-text">Schedule & Assign</span>
+                                        </a>
+                                    </li> 
+                                </ul>
+                            </li>
+                              
+                            
+                            <li class="sidebar-menu-item" id="assignmentList" style="display:block;">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#assignmentModule">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_helping_video.png">
+                                    </i>
+                                   Manage Assignments
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="assignmentModule">
+                                    <li class="sidebar-menu-item" id="assignmentmaster"> 
+                                        <a class="sidebar-menu-button" href="ec_manage_assignment.aspx">
+                                            <span class="sidebar-menu-text">Create</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="shedule_assign"> 
+                                        <a class="sidebar-menu-button" href="ec_assignment_scheduleassign_master.aspx">
+                                            <span class="sidebar-menu-text">Schedule & Assign</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="checkassignment"> 
+                                        <a class="sidebar-menu-button" href="ec_check_assignment.aspx">
+                                            <span class="sidebar-menu-text">Check</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-menu-item" id="questionbank">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#questionbankModule">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/manage_helping_video.png">
+                                    </i>
+                                  Question Bank
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="questionbankModule">
+                                    <li class="sidebar-menu-item" id="mcqmaster"> 
+                                        <a class="sidebar-menu-button" href="ec_mcq_master.aspx">
+                                            <span class="sidebar-menu-text">MCQ Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="truefalsemaster"> 
+                                        <a class="sidebar-menu-button" href="ec_truefalse_master.aspx">
+                                            <span class="sidebar-menu-text">True or False Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="openquestionemaster"> 
+                                        <a class="sidebar-menu-button" href="ec_openquestion_master.aspx">
+                                            <span class="sidebar-menu-text">Open Question Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="uploadanswermaster"> 
+                                        <a class="sidebar-menu-button" href="ec_uploadanswer_master.aspx">
+                                            <span class="sidebar-menu-text">Upload Answer Master</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-menu-item" id="manageresources">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#resource_create">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                        <img src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/images/menu_icons/admin/studymaterial.png">
+                                    </i>
+                                   Manage Resources
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="resource_create">
+                                    <li class="sidebar-menu-item" id="creatematerialmaster">
+                                        <a class="sidebar-menu-button" href="ec_manage_resource_material_master.aspx">
+                                            <span class="sidebar-menu-text">Materials Master</span>
+                                        </a>
+                                    </li>                                  
+                                   <li class="sidebar-menu-item" id="resource_declare">
+                                        <a class="sidebar-menu-button" href="ec_manage_declaretion_master.aspx">
+                                            <span class="sidebar-menu-text">Declaration Master</span>
                                         </a>
                                     </li>    
                                 </ul>
@@ -1180,11 +1303,18 @@
                 $("#payment_list").hide();
                 $("#manageapplicantions_list").hide();
                 $("#manage_applications").hide();
-                $("#role_list").hide();
+                $("#exammodule_list").show();
                 $("#videolist").hide();
+                
             }
             else {
                 $("#classlist").hide();
+                $("#classbooking").hide();
+                $("#studymateriallist").hide();
+                $("#assignmentList").hide();
+                $("#questionbank").hide();
+                $("#manageresources").hide();
+
             }
      });
    <%--  var UniversityID = '<%= Utility.GetUniversityId()%>';
@@ -1193,7 +1323,8 @@
      else
          $("#exam_assessment_management2").hide();--%>
 
-        
+
+    
  </script>
    
 </body>

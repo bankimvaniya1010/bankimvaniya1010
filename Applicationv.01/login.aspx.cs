@@ -42,9 +42,11 @@ public partial class login : System.Web.UI.Page
         if (isFullService == 0)
             isfullservicethenlbl = " GTE DIRECT CENTRE";
         else if(isFullService == 1)
-            isfullservicethenlbl = " APPLICATION CENTER";
+            isfullservicethenlbl = " APPLICATION CENTRE";
         else if (isFullService == 2)
-            isfullservicethenlbl = "Assessment Center";
+            isfullservicethenlbl = "Assessment Centre";
+        else if (isFullService == 5)
+            isfullservicethenlbl = "LEARNING RESOURCES CENTRE";
         SaveStatus();
     }
     private void SaveStatus()
@@ -143,6 +145,7 @@ public partial class login : System.Web.UI.Page
                         {
                             bool isDeclarationDoneByApplicant = false;
                             bool isGteDeclarationDoneByApplicant;
+                            bool is_service5_DeclarationDoneByApplicant = false;
 
 
                             pnl_warning.Visible = false;
@@ -164,9 +167,15 @@ public partial class login : System.Web.UI.Page
                                 isDeclarationCompleted = isGteDeclarationDoneByApplicant;
                                 isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(chkUser.studentid, universityID);
                             }
+                            else if (isFullService == 5)
+                            {
+                                is_service5_DeclarationDoneByApplicant = objCom.Is_service5_DeclarationDoneByApplicant(chkUser.studentid, universityID);
+                                isProfileDetailsCompletedByApplicant= objCom.Set_eclass_StudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                            }
 
                             Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
                             Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;
+                            Session["service5_DeclarationDoneByApplicant"] = is_service5_DeclarationDoneByApplicant;
                             Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
                             Session["FullService"] = isFullService;
                             Session["DeclarationCompleted"] = isDeclarationCompleted;

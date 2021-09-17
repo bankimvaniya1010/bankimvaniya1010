@@ -231,7 +231,7 @@
             hiddefermentdate.val(count + 1);
             var DateContent = '<label for="defermentdates" class="col-sm-3 col-form-label form-label">Please enter Defermentdates date for course</label>' +
                           '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
-                          '<input id="txtdefermentdates_' + count + '" type="text" class="form-control" placeholder="Defermentdates Date" value="">' +
+                          '<input id="txtdefermentdates_' + count + '" type="text" class="form-control" placeholder="Defermentdates Date" value="" readonly>' +
                 '</div></div></div>';
             $("#defermentdatesDiv").append(DateContent);
             $('#txtdefermentdates_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
@@ -255,7 +255,7 @@
 
             var content = '<label for="commencementDates" class="col-sm-3 col-form-label form-label">Please enter commencement date for course</label>' +
                 '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
-                '<input id="txtCommencementDate_' + count + '" type="text" class="form-control" placeholder="Commencement Date" value="">' +
+                '<input id="txtCommencementDate_' + count + '" type="text" class="form-control" placeholder="Commencement Date" value="" readonly>' +
                 '</div></div></div>';
             $("#commencementDatesDiv").append(content);
             $('#txtCommencementDate_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
@@ -324,7 +324,7 @@
                 return false;
             }
             else if (university == 0) {
-                alert("Please select University");
+                alert("Please select institution");
                 return false;
             }
             else if (universityCampuses.length < 1) {

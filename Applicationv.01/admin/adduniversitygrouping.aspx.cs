@@ -26,7 +26,7 @@ public partial class admin_adduniversitygrouping : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("Please select university", "0");
+            ListItem lst = new ListItem("Please select institution", "0");
             List<university_master> universityMaster = db.university_master.OrderBy(x=>x.university_name).Where(x=>x.IsDeleted != 1).ToList();
 
             ddlUniversity.DataSource = universityMaster;
@@ -51,21 +51,24 @@ public partial class admin_adduniversitygrouping : System.Web.UI.Page
             db.universitygrouping.RemoveRange(list);
             // Save changes
             db.SaveChanges();
+            universitygrouping mappingObj = new universitygrouping();
             foreach (ListItem li in chk_universitylist.Items)
             {
-
                 if (li.Selected)
                 {
                     int uid = Convert.ToInt32(li.Value);
-
-                    universitygrouping mappingObj = new universitygrouping();
                     mappingObj.groupingheaduniversityid = groupHeadUniversity;
                     mappingObj.universityid = uid;
                     db.universitygrouping.Add(mappingObj);
                     db.SaveChanges();
                 }
-
             }
+
+            mappingObj.groupingheaduniversityid = groupHeadUniversity;
+            mappingObj.universityid = groupHeadUniversity;
+            db.universitygrouping.Add(mappingObj);
+            db.SaveChanges();
+
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('Record added successfully.');window.location='" + webURL + "admin/universitygroupingmaster.aspx';", true);
             
@@ -88,7 +91,7 @@ public partial class admin_adduniversitygrouping : System.Web.UI.Page
     private void BindCheckbox(int HeaduniversityID)
     {
         try {
-            ListItem lst = new ListItem("Please select university", "0");
+            ListItem lst = new ListItem("Please select institution", "0");
             List<university_master> universityMaster = db.university_master.OrderBy(x => x.university_name).Where(x=>x.universityid != HeaduniversityID && x.IsDeleted != 1).ToList();
             
             chk_universitylist.DataSource = universityMaster;

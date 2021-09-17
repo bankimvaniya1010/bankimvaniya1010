@@ -15,9 +15,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Universitywise Custom Field Listing </li>
+            <li class="breadcrumb-item active">InstitutionWise Custom Field Listing </li>
         </ol>
-        <h1 class="h2">Universitywise Custom Field Listing  </h1>
+        <h1 class="h2">InstitutionWise Custom Field Listing  </h1>
          <div class="media align-items-center">  
             <div class="form-row">
                 <a href="customfieldaddition.aspx" class="btn btn-success">Add New</a>                                      

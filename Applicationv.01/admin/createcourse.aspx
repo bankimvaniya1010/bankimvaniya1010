@@ -196,6 +196,11 @@
             var commencementDateCounter = $("#<%=hidCommencementDateCount.ClientID %>").val();
             $("#<%=hidCommencementDates.ClientID %>").val('');
 
+            if (commencementDateCounter == "0") {
+                    alert("Please select commencement date");
+                    return false;
+            }
+
             for (var i = 0; i < commencementDateCounter; i++) {
                 if ($('#txtCommencementDate_' + i).val() == "" || $('#txtCommencementDate_' + i).val() == null) {
                     alert("Please select commencement date");
@@ -212,6 +217,10 @@
             var defermentDatesCounter = $("#<%=HiddefermentdatesCount.ClientID %>").val();
             $("#<%=Hiddefermentdates.ClientID %>").val('');
 
+            if (defermentDatesCounter == "0") {
+                    alert("Please select Deferment date");
+                    return false;
+            }
             for (var i = 0; i < defermentDatesCounter; i++) {
                 if ($('#txtdefermentdates_' + i).val() == "" || $('#txtdefermentdates_' + i).val() == null) {
                     alert("Please select Deferment date");
@@ -231,7 +240,7 @@
             hiddefermentdate.val(count + 1);
             var DateContent = '<label for="defermentdates" class="col-sm-3 col-form-label form-label">Please enter Defermentdates date for course</label>' +
                           '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
-                          '<input id="txtdefermentdates_' + count + '" type="text" class="form-control" placeholder="Defermentdates Date" value="">' +
+                          '<input id="txtdefermentdates_' + count + '" type="text" class="form-control" placeholder="Defermentdates Date" value="" readonly>' +
                 '</div></div></div>';
             $("#defermentdatesDiv").append(DateContent);
             $('#txtdefermentdates_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
@@ -244,7 +253,7 @@
 
             var content = '<label for="commencementDates" class="col-sm-3 col-form-label form-label">Please enter commencement date for course</label>' +
                           '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
-                          '<input id="txtCommencementDate_' + count + '" type="text" class="form-control" placeholder="Commencement Date" value="">' +
+                          '<input id="txtCommencementDate_' + count + '" type="text" class="form-control" placeholder="Commencement Date" value="" readonly>' +
                 '</div></div></div>';            
             $("#commencementDatesDiv").append(content);
             $('#txtCommencementDate_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
@@ -301,7 +310,7 @@
                 return false;
             }
             else if (university == 0) {
-                alert("Please Select University");
+                alert("Please select institution");
                 return false;
             }
             else if (universityCampuses.length < 1) {

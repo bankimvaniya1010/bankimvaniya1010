@@ -164,10 +164,10 @@ In case you need clarifications please write to
         });
         }
           $(document).ready(function () {
-              //$('.sidebar-menu-item').removeClass('open');
-              //$('#preliminary_list').addClass('open');
+              $('.sidebar-menu-item').removeClass('open');
+              $('#preliminary_list').addClass('open');
               $('.sidebar-menu-item').removeClass('active');
-              $('#Instructions').addClass('active');
+              $('#preliminarys').addClass('active');
           });
         
     </script>

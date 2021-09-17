@@ -463,6 +463,12 @@
             $('#gte_questions_menu').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtestudent_sop').addClass('active');
+
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_new_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Li7').addClass('active');
+
         });
     </script>
 </asp:Content>

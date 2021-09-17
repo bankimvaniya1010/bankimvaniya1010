@@ -32,6 +32,7 @@ public partial class createuser : System.Web.UI.Page
         if (String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Utility.GetUniversityId();
+        isfullservice = (int)Session["isfullservice"];
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
             RecordId = -1;
@@ -104,7 +105,9 @@ public partial class createuser : System.Web.UI.Page
             else if (isfullservice == 1)//fullservice
                 roleMaster = db.rolemaster.Where(x => x.forservice.ToLower() == "full").ToList();
             else if (isfullservice == 2)//exam
-                roleMaster = db.rolemaster.Where(x => x.forservice.ToLower() == "assessment").ToList();            
+                roleMaster = db.rolemaster.Where(x => x.forservice.ToLower() == "assessment").ToList();
+            else if (isfullservice == 2)//ECLASS
+                roleMaster = db.rolemaster.Where(x => x.forservice.ToLower() == "EService").ToList();
             else
                 roleMaster = db.rolemaster.ToList();
 
@@ -248,6 +251,7 @@ public partial class createuser : System.Web.UI.Page
                         objmapping.password = usrObj.password;
                         objmapping.roleid = sub_roleid;
                         objmapping.adminrecordID = usrObj.adminid;
+                        objmapping.university_serviceid = isfullservice;
                         db.examiner_master.Add(objmapping);
                         db.SaveChanges();
 

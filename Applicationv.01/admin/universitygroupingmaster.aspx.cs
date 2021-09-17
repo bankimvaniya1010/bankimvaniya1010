@@ -33,14 +33,17 @@ public partial class admin_universitygroupingmaster : System.Web.UI.Page
                                select new {
                                    groupHeadUniversityID = mappings.groupingheaduniversityid,
                                    groupHeadUniversityName = groupheaduniversities.university_name,
-                                   universities_name = universities.university_name
+                                   universities_name = universities.university_name,
+                                   
                                }).ToList().GroupBy(x => x.groupHeadUniversityID);
 
             var groupedList = mappingList.Select(item => new {
                                 key = item.Key,
                                 universityHeadName = item.Select(x => x.groupHeadUniversityName).First(),
+                                Managecourselink = webURL+ "admin/course_institution_mapping.aspx?ID=" + item.Key,
                                 universitiesNames = item.Select(x => x.universities_name).ToList()
-                              }).ToList();
+
+            }).ToList();
 
             if (groupedList != null)
             {

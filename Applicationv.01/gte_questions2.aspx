@@ -126,6 +126,11 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#gtepart1').addClass('active');
 
+             $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_new_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+             $('#Li6').addClass('active');
+
             var minutesLabel = document.getElementById("minutes");	
             var secondsLabel = document.getElementById("seconds");	
             var totalSeconds = <%=(int)Session["totalResponseTimeQue2"]%>;	

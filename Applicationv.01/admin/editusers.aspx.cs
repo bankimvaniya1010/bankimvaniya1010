@@ -47,6 +47,8 @@ public partial class admin_editusers : System.Web.UI.Page
                 roletoshow = "full";
             else if (isfullservice == 2)//exam
                 roletoshow = "Assessment";
+            else if(isfullservice == 5)
+                roletoshow = "EService";
 
             if (roleName.ToLower() == "admin")
                 list = (from q in db.adminusers

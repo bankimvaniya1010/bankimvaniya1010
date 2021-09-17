@@ -393,7 +393,12 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#Dashboard').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#Dashboard').addClass('active');
+              $('#Dashboard').addClass('active');
+
+              $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_new_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Li5').addClass('active');
         });
 
     </script>

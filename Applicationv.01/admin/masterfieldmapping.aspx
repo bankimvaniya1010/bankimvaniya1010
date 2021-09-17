@@ -7,9 +7,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-                <li class="breadcrumb-item active">Univerty Wise Master Field Mapping </li>
+                <li class="breadcrumb-item active">Institution Wise Master Field Mapping</li>
         </ol>
-        <h1 class="h2">University Wise Master Field Mapping </h1>
+        <h1 class="h2">Institution Wise Master Field Mapping</h1>
 
         <div class="card">
            <div class="tab-content card-body">
@@ -17,7 +17,7 @@
 
 
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">University Name</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Institution</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -70,7 +70,7 @@
         {
              var flag = false; 
             if ($("#<%=ddlUniversity.ClientID%>").val() === "0")
-                alert("Please Select University");           
+                alert("Please select institution");           
 
             else if ($("#<%=ddlMaster.ClientID%>").val() === "0")
                 alert("Please Select Master");
