@@ -299,7 +299,7 @@
             var checOnlykNum = /^[0-9]*$/;
             var flag = false;
             <%--if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-                alert("Please select university");--%>
+                alert("Please select institution");--%>
             if ($("#<%=txtexamname.ClientID%>").val() == "")
                 alert("Please enter assessmnet name"); 
             else if ($("#<%=ddlclass.ClientID%>").val() == "")

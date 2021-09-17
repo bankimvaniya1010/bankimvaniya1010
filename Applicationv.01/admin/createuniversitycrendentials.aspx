@@ -16,7 +16,7 @@
                 <div class="tab-pane active" id="first">
                     
                     <div class="form-group row">
-                         <label for="university" class="col-sm-3 col-form-label form-label">Select University</label>
+                         <label for="university" class="col-sm-3 col-form-label form-label">select institution</label>
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -131,7 +131,7 @@
             var txtAwards = $('#<%=txtAwards.ClientID%>').val();
    
             if (universityValue == 0 || isNaN(parseInt(universityValue))) {
-                alert("Please select university");
+                alert("Please select institution");
                 return false;
             }
             else if (txtCredDescription == '') {

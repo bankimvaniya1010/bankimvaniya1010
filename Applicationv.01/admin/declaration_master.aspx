@@ -76,7 +76,7 @@
             var statementtype = $('#<%=txtheaderstatements.ClientID%>').val();
 
             if (university == 0) {
-                alert("Please select University");
+                alert("Please select institution");
                 return false;
             }
             else if (statementtype == '') {

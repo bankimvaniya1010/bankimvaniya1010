@@ -390,6 +390,7 @@ public partial class applicantdetails
     public Nullable<int> classId { get; set; }
     public Nullable<int> groupId { get; set; }
     public Nullable<int> subjectId { get; set; }
+    public Nullable<int> gradeid { get; set; }
     public string studentid { get; set; }
     public Nullable<int> idproofId { get; set; }
     public string idproofNumber { get; set; }
@@ -419,7 +420,16 @@ public partial class applicantdetails
     public Nullable<int> workexperience { get; set; }
     public Nullable<int> Iscurrentlyworking { get; set; }
     public Nullable<int> Isjoboffered { get; set; }
-    public Nullable<int> gradeid { get; set; }
+    public Nullable<int> Is_employeesby { get; set; }
+    public string guardian_name { get; set; }
+    public Nullable<int> guardian_relationship { get; set; }
+    public string guardian_email { get; set; }
+    public Nullable<int> guardian_countrycode { get; set; }
+    public string guardian_mobileno { get; set; }
+    public Nullable<int> career_major { get; set; }
+    public Nullable<int> career_minor { get; set; }
+    public Nullable<int> career_broad { get; set; }
+    public Nullable<int> career_detailed { get; set; }
 
     public virtual students students { get; set; }
 }
@@ -1647,37 +1657,202 @@ public partial class documentvalidationbyagent
     public string remarks { get; set; }
 }
 
-public partial class ec_class_assign
+public partial class ec_applicant_declaration_master
 {
     public int id { get; set; }
+    public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
-    public Nullable<int> IsDeleted { get; set; }
-    public Nullable<int> gradeid { get; set; }
-    public Nullable<int> subjectid { get; set; }
-    public Nullable<int> classid { get; set; }
-    public Nullable<int> classstartdateid { get; set; }
-    public Nullable<int> recurrenceid { get; set; }
-    public string repeatsevery_day { get; set; }
-    public Nullable<System.DateTime> enddate_daily { get; set; }
-    public string repeateevery_week { get; set; }
-    public string daysof_week { get; set; }
-    public Nullable<System.DateTime> enddate_weekly { get; set; }
-    public string repeateevery_months { get; set; }
-    public string day_months { get; set; }
-    public Nullable<int> ddlday { get; set; }
-    public Nullable<int> ddlday1 { get; set; }
-    public Nullable<System.DateTime> enddate_monthly { get; set; }
-    public string class_starttime { get; set; }
-    public string class_endtime { get; set; }
+    public Nullable<int> is_declaration_completed { get; set; }
+    public Nullable<System.DateTime> declaration_completed_date { get; set; }
+    public Nullable<int> is_tutorial_completed { get; set; }
+    public string activity_ip { get; set; }
 }
 
-public partial class ec_class_assign_student_mapping
+public partial class ec_assign_study_material
+{
+    public int asm_id { get; set; }
+    public int asm_universityid { get; set; }
+    public Nullable<int> asm_grade_id { get; set; }
+    public Nullable<int> asm_subject_id { get; set; }
+    public Nullable<int> asm_class_id { get; set; }
+    public Nullable<int> asm_start_date { get; set; }
+    public string asm_study_material { get; set; }
+    public string asm_time_zone { get; set; }
+    public Nullable<int> asm_type { get; set; }
+    public Nullable<int> asm_mode { get; set; }
+}
+
+public partial class ec_assign_study_material_date_wise
+{
+    public int asmd_id { get; set; }
+    public Nullable<int> asmd_asm_id { get; set; }
+    public Nullable<int> asmd_material_id { get; set; }
+    public Nullable<System.DateTime> asmd_start_date { get; set; }
+    public Nullable<System.DateTime> asmd_stop_time { get; set; }
+    public Nullable<System.DateTime> asmd_start_utc_date { get; set; }
+    public Nullable<System.DateTime> asm_stop_utc_date { get; set; }
+}
+
+public partial class ec_assignment_answersheet
+{
+    public int answesheetid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityID { get; set; }
+    public Nullable<int> assignID { get; set; }
+    public Nullable<int> assignschedule_Id { get; set; }
+    public Nullable<int> assignmentid { get; set; }
+    public Nullable<int> assignment_papersheetID { get; set; }
+    public Nullable<System.DateTime> assignment_start_date { get; set; }
+    public Nullable<System.DateTime> uploded_at { get; set; }
+    public Nullable<System.DateTime> uplodedAt { get; set; }
+    public string anshwesheetpath { get; set; }
+    public Nullable<int> ispdfgenrated { get; set; }
+    public string genratedanswerpdfPath { get; set; }
+    public string extra_anshwesheetpath { get; set; }
+    public string response_time { get; set; }
+}
+
+public partial class ec_assignment_checked_master
 {
     public int id { get; set; }
-    public Nullable<int> assign_id { get; set; }
-    public Nullable<int> studentid { get; set; }
+    public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
-    public string day_name { get; set; }
+    public Nullable<int> assignId { get; set; }
+    public Nullable<int> answersheetid { get; set; }
+    public Nullable<int> is_assignment_checked { get; set; }
+    public string checkedfile_path_by_admin { get; set; }
+    public Nullable<int> marks { get; set; }
+    public string checker_comments { get; set; }
+    public Nullable<int> adminid { get; set; }
+    public string result_release_timezone { get; set; }
+    public Nullable<System.DateTime> result_release_datetime { get; set; }
+    public Nullable<System.DateTime> result_release_datetime_utc { get; set; }
+    public Nullable<System.DateTime> assignment_checked_at { get; set; }
+}
+
+public partial class ec_assignment_master
+{
+    public int id { get; set; }
+    public int universityid { get; set; }
+    public string assignment_name { get; set; }
+    public Nullable<int> assignment_type { get; set; }
+    public Nullable<int> question_order_settings { get; set; }
+    public Nullable<int> allowusertodownload { get; set; }
+    public string gradeid { get; set; }
+    public string subjectid { get; set; }
+    public string checkingguide { get; set; }
+    public string userfile { get; set; }
+    public string remarks { get; set; }
+    public Nullable<int> self_check { get; set; }
+    public Nullable<int> created_by { get; set; }
+}
+
+public partial class ec_assignment_papers_master
+{
+    public int id { get; set; }
+    public Nullable<int> universityID { get; set; }
+    public Nullable<int> assignmentid { get; set; }
+    public Nullable<int> marks { get; set; }
+    public string exampaper_path { get; set; }
+    public string extrasheetpath { get; set; }
+    public string audiovideofilepath { get; set; }
+    public string fileinstruction { get; set; }
+    public Nullable<int> is_audiovideofile_onetimeview { get; set; }
+    public Nullable<int> question_typeid { get; set; }
+    public Nullable<int> selected_questionId { get; set; }
+}
+
+public partial class ec_assignments_assign
+{
+    public int assignId { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> assignschedule_Id { get; set; }
+    public Nullable<int> applicantId { get; set; }
+    public Nullable<int> assignmentId { get; set; }
+    public Nullable<int> Is_assignemtCompleted { get; set; }
+    public Nullable<int> status { get; set; }
+    public Nullable<int> adminId { get; set; }
+    public Nullable<int> assignment_date_id { get; set; }
+    public Nullable<int> Is_assignment_checked { get; set; }
+    public Nullable<int> Is_result_declared { get; set; }
+    public Nullable<int> marks { get; set; }
+    public Nullable<int> total_marks { get; set; }
+    public string result_release_timezone { get; set; }
+    public Nullable<System.DateTime> result_release_datetime { get; set; }
+    public Nullable<System.DateTime> result_release_datetime_utc { get; set; }
+    public System.DateTime created_at { get; set; }
+}
+
+public partial class ec_assignments_assignschedule_date_master
+{
+    public int asmd_id { get; set; }
+    public Nullable<int> assignschedule_id { get; set; }
+    public Nullable<int> assignment_id { get; set; }
+    public Nullable<System.DateTime> asmd_start_date { get; set; }
+    public Nullable<System.DateTime> asmd_stop_time { get; set; }
+    public Nullable<System.DateTime> asmd_start_utc_date { get; set; }
+    public Nullable<System.DateTime> asm_stop_utc_date { get; set; }
+}
+
+public partial class ec_assignments_assignschedule_master
+{
+    public int asm_id { get; set; }
+    public int asm_universityid { get; set; }
+    public Nullable<int> asm_grade_id { get; set; }
+    public Nullable<int> asm_subject_id { get; set; }
+    public Nullable<int> asm_type_id { get; set; }
+    public Nullable<int> asm_mode_id { get; set; }
+    public Nullable<int> asm_class_id { get; set; }
+    public Nullable<int> asm_start_date { get; set; }
+    public string asm_assignment_id { get; set; }
+    public string asm_time_zone { get; set; }
+}
+
+public partial class ec_assignments_assignschedule_student_mapping
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> assignschedule_id { get; set; }
+}
+
+public partial class ec_beforeyou_admin
+{
+    public int bfu_id { get; set; }
+    public Nullable<int> bfu_course_id { get; set; }
+    public string bfu_decreaption { get; set; }
+    public Nullable<int> bfu_file_type { get; set; }
+    public string bfu_file { get; set; }
+}
+
+public partial class ec_broad_career_filed_master
+{
+    public int id { get; set; }
+    public string broad_code { get; set; }
+    public string broad_name { get; set; }
+}
+
+public partial class ec_careerfield_mapping
+{
+    public int id { get; set; }
+    public Nullable<int> career_majorID { get; set; }
+    public Nullable<int> career_minorID { get; set; }
+    public Nullable<int> career_broadID { get; set; }
+    public Nullable<int> career_detailedID { get; set; }
+}
+
+public partial class ec_class_applicationmaster
+{
+    public int id { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> classid { get; set; }
+    public Nullable<int> Is_suspened { get; set; }
+    public Nullable<int> Is_class_assignedby_admin { get; set; }
+    public Nullable<int> adminID { get; set; }
+    public Nullable<int> status { get; set; }
+    public Nullable<int> eligibility_response { get; set; }
+    public Nullable<System.DateTime> booking_datetime { get; set; }
 }
 
 public partial class ec_class_date_master
@@ -1689,11 +1864,15 @@ public partial class ec_class_date_master
     public Nullable<System.DateTime> class_deadLinedate_utc { get; set; }
 }
 
-public partial class ec_class_location_mapping_master
+public partial class ec_class_date_schedule_master
 {
     public int id { get; set; }
-    public Nullable<int> classid { get; set; }
-    public Nullable<int> locationid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> classID { get; set; }
+    public Nullable<System.DateTime> class_datetime_start { get; set; }
+    public Nullable<System.DateTime> class_datetime_start_utc { get; set; }
+    public Nullable<System.DateTime> class_datetime_end { get; set; }
+    public Nullable<System.DateTime> class_datetime_end_utc { get; set; }
 }
 
 public partial class ec_class_master
@@ -1705,25 +1884,231 @@ public partial class ec_class_master
     public string webpageurl { get; set; }
     public Nullable<int> majorid { get; set; }
     public Nullable<int> levelid { get; set; }
+    public Nullable<int> broadFieldID { get; set; }
+    public Nullable<int> narrowFieldID { get; set; }
+    public Nullable<int> detailedFieldID { get; set; }
     public Nullable<int> gradeid { get; set; }
+    public Nullable<int> groupid { get; set; }
     public Nullable<int> subjectid { get; set; }
+    public Nullable<int> type { get; set; }
     public Nullable<int> modeid { get; set; }
     public string virtuallink { get; set; }
-    public Nullable<int> classsetting { get; set; }
     public Nullable<int> location { get; set; }
-    public Nullable<int> type { get; set; }
     public Nullable<int> duration_year { get; set; }
     public Nullable<int> duration_month { get; set; }
     public Nullable<int> duration_day { get; set; }
     public Nullable<int> duration_hours { get; set; }
     public Nullable<int> fee_currency { get; set; }
     public string fee_amount { get; set; }
-    public string requirement { get; set; }
+    public string enrollment_fee_amount { get; set; }
+    public string timezone { get; set; }
+    public Nullable<System.DateTime> startdate { get; set; }
+    public Nullable<System.DateTime> startdate_utc { get; set; }
+    public Nullable<System.DateTime> bookingdeadline { get; set; }
+    public Nullable<System.DateTime> bookingdeadline_utc { get; set; }
+    public Nullable<int> recurrenceid { get; set; }
+    public string repeatsevery_day { get; set; }
+    public Nullable<System.DateTime> enddate_daily { get; set; }
+    public string repeateevery_week { get; set; }
+    public string daysof_week { get; set; }
+    public Nullable<System.DateTime> enddate_weekly { get; set; }
+    public string repeateevery_months { get; set; }
+    public Nullable<int> rbl_daysofmonth { get; set; }
+    public string day_months { get; set; }
+    public Nullable<int> ddlday { get; set; }
+    public Nullable<int> ddlday1 { get; set; }
+    public Nullable<System.DateTime> enddate_monthly { get; set; }
+    public string class_starttime { get; set; }
+    public string class_starttime_utc { get; set; }
+    public string class_endtime { get; set; }
+    public string class_endtime_utc { get; set; }
+    public Nullable<int> classsetting { get; set; }
     public string instruction { get; set; }
+    public Nullable<int> availability { get; set; }
+    public string requirement { get; set; }
     public string instructionfilepath { get; set; }
     public Nullable<int> booklatestatus { get; set; }
-    public string startdate { get; set; }
-    public string bookingdeadline { get; set; }
+    public Nullable<int> Is_singelInstructor { get; set; }
+}
+
+public partial class ec_detailed_career_filed_master
+{
+    public int id { get; set; }
+    public string detailed_code { get; set; }
+    public string detailed_name { get; set; }
+    public string detailed_description { get; set; }
+}
+
+public partial class ec_grademaster
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
+public partial class ec_major_career_filed_master
+{
+    public int id { get; set; }
+    public string major_code { get; set; }
+    public string major_name { get; set; }
+}
+
+public partial class ec_mcq_question_master
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> subjectid { get; set; }
+    public Nullable<int> gradeid { get; set; }
+    public Nullable<int> question_for { get; set; }
+    public string question { get; set; }
+    public string questionname { get; set; }
+    public string answer1 { get; set; }
+    public string answer2 { get; set; }
+    public string answer3 { get; set; }
+    public string answer4 { get; set; }
+    public string answer_description1 { get; set; }
+    public string answer_description2 { get; set; }
+    public string answer_description3 { get; set; }
+    public string answer_description4 { get; set; }
+    public Nullable<int> correctanswer { get; set; }
+    public string marks { get; set; }
+    public string time { get; set; }
+    public Nullable<int> created_by { get; set; }
+}
+
+public partial class ec_minor_career_filed_master
+{
+    public int id { get; set; }
+    public string minor_code { get; set; }
+    public string minor_name { get; set; }
+}
+
+public partial class ec_mode_master
+{
+    public int mode_id { get; set; }
+    public string mode_description { get; set; }
+}
+
+public partial class ec_openquestion_master
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> subjectid { get; set; }
+    public Nullable<int> gradeid { get; set; }
+    public Nullable<int> question_for { get; set; }
+    public string questionname { get; set; }
+    public Nullable<int> questiontype { get; set; }
+    public string question { get; set; }
+    public string uploadedfile_url { get; set; }
+    public string checkingguid_url { get; set; }
+    public string correctanswer { get; set; }
+    public string marks { get; set; }
+    public string time { get; set; }
+    public Nullable<int> created_by { get; set; }
+}
+
+public partial class ec_payment_details
+{
+    public int id { get; set; }
+    public Nullable<int> applicant_id { get; set; }
+    public Nullable<int> university_id { get; set; }
+    public Nullable<int> class_id { get; set; }
+    public Nullable<int> applicationmaster_id { get; set; }
+    public Nullable<System.DateTime> request_date { get; set; }
+    public Nullable<int> payment_for { get; set; }
+    public Nullable<System.DateTime> due_date { get; set; }
+    public Nullable<int> amount { get; set; }
+    public Nullable<int> currency_id { get; set; }
+    public string instruction { get; set; }
+    public string payment_proof_file_name { get; set; }
+    public Nullable<int> payment_status { get; set; }
+    public Nullable<System.DateTime> payment_verified_date { get; set; }
+}
+
+public partial class ec_status_master
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
+public partial class ec_student_assign_in_study_material
+{
+    public int sasm_id { get; set; }
+    public Nullable<int> sasm_asm_id { get; set; }
+    public Nullable<int> sasm_universityid { get; set; }
+    public Nullable<int> sasm_stud_id { get; set; }
+}
+
+public partial class ec_study_material
+{
+    public int material_id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string material_name { get; set; }
+    public Nullable<int> material_type { get; set; }
+    public string material_document { get; set; }
+    public string material_link { get; set; }
+    public string material_grade { get; set; }
+    public string material_subject { get; set; }
+    public string remarks { get; set; }
+    public string created_by { get; set; }
+}
+
+public partial class ec_truefalse_question_master
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> subjectid { get; set; }
+    public Nullable<int> gradeid { get; set; }
+    public Nullable<int> question_for { get; set; }
+    public string question { get; set; }
+    public string questionname { get; set; }
+    public string answer1 { get; set; }
+    public string answer2 { get; set; }
+    public string answer_description1 { get; set; }
+    public string answer_description2 { get; set; }
+    public Nullable<int> correctanswer { get; set; }
+    public string marks { get; set; }
+    public string time { get; set; }
+    public Nullable<int> created_by { get; set; }
+}
+
+public partial class ec_tutorialmaster
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> is_commontutoial { get; set; }
+    public Nullable<int> serviceId { get; set; }
+    public string type { get; set; }
+    public string documentpath { get; set; }
+    public string videourl { get; set; }
+    public string title { get; set; }
+    public Nullable<int> status { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
+    public Nullable<int> institute_service_wise { get; set; }
+}
+
+public partial class ec_type_master
+{
+    public int type_id { get; set; }
+    public string type_description { get; set; }
+}
+
+public partial class ec_uploadanswer_master
+{
+    public int questionid { get; set; }
+    public Nullable<int> adminid { get; set; }
+    public Nullable<int> univesityid { get; set; }
+    public Nullable<int> subjectid { get; set; }
+    public Nullable<int> gradeid { get; set; }
+    public string questiondescription { get; set; }
+    public string questionpath { get; set; }
+    public string extrasheetpath { get; set; }
+    public string extrafilepath { get; set; }
+    public string fileinstruction { get; set; }
+    public string marks { get; set; }
+    public string duration { get; set; }
+    public Nullable<int> question_for { get; set; }
+    public string checking_file { get; set; }
+    public Nullable<int> ischeckonce { get; set; }
 }
 
 public partial class educational_institutionmaster
@@ -2032,6 +2417,7 @@ public partial class examiner_master
     public int examinerID { get; set; }
     public Nullable<int> adminrecordID { get; set; }
     public Nullable<int> universityId { get; set; }
+    public Nullable<int> university_serviceid { get; set; }
     public Nullable<int> roleid { get; set; }
     public string examinerkey { get; set; }
     public string name { get; set; }
@@ -3497,6 +3883,15 @@ public partial class university_application_decision_master
     public string decision_description { get; set; }
 }
 
+public partial class university_course_mapping
+{
+    public int id { get; set; }
+    public Nullable<int> main_universityID { get; set; }
+    public Nullable<int> grouped_universityID { get; set; }
+    public Nullable<int> courseID { get; set; }
+    public Nullable<int> course_campus_mapping_ID { get; set; }
+}
+
 public partial class university_coursefiled_mapping
 {
     public int id { get; set; }
@@ -3704,6 +4099,7 @@ public partial class university_master
     public Nullable<int> Genuine_Assessment { get; set; }
     public Nullable<int> importantdateddl { get; set; }
     public string funding_avgtutionfee { get; set; }
+    public string fee_payment_details { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

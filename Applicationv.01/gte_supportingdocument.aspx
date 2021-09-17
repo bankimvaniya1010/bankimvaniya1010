@@ -766,6 +766,11 @@
             $('#personal_menu_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#DocumentsUpload').addClass('active');
+
+            $('.sidebar-menu-item').removeClass('open');
+            $('#gtedocument_fullservice_upload').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Li8').addClass('active');
         });
     </script>
 </asp:Content>

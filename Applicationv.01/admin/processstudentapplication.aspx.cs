@@ -33,18 +33,29 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                 if (!Int32.TryParse(Request.QueryString["universityId"], out universityID))
                     Response.Redirect(webURL + "admin/default.aspx", true);
 
-                bindDataList(applicantID, universityID);
+
+                int applicationmasterID = 0;
+                if (!string.IsNullOrEmpty(Request.QueryString["applicationmasterID"]))
+                    applicationmasterID = Convert.ToInt32(Request.QueryString["applicationmasterID"]);
+
+
+                bindDataList(applicantID, universityID, applicationmasterID);
             }
             else
                 Response.Redirect(webURL + "admin/default.aspx", true);
         }
     }
 
-    private void bindDataList(int applicantId, int universityId)
+    private void bindDataList(int applicantId, int universityId,int applicationmasterID)
     {
         try
         {
-            var allChoicesList = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId).SortBy("preferenceid").ToList();
+            List<applicationmaster> allChoicesList;
+            if (applicationmasterID == 0)
+                allChoicesList = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId).SortBy("preferenceid").ToList();
+            else
+                allChoicesList = db.applicationmaster.Where(x => x.applicantid == applicantId && x.universityid == universityId && x.applicationmasterid == applicationmasterID).SortBy("preferenceid").ToList();
+            
             if (allChoicesList.Count == 0)
             {
                 emptyChoicesDiv.Visible = true;
@@ -57,7 +68,9 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                 var applicantChoicesList = new List<object>();
                 foreach (var item in allChoicesList)
                 {
-                    int commencementDate = Convert.ToInt32(item.commencementdate);
+                    int commencementDate = 0;
+                    if(item.commencementdate != null || item.commencementdate !="")
+                        commencementDate = Convert.ToInt32(item.commencementdate);
                     int currentStatus = Convert.ToInt32(item.current_status);
                     var choiceObj = new
                     {

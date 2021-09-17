@@ -112,7 +112,13 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#gteevalution_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#gteclarification').addClass('active');
+              $('#gteclarification').addClass('active');
+
+              $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_new_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Li6').addClass('active');
         });
+
     </script>
 </asp:Content>

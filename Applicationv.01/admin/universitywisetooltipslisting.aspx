@@ -17,7 +17,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Tooltips Listing </li>
         </ol>
-        <h1 class="h2">Student University Wise Tooltips Listing </h1>
+        <h1 class="h2">Student Institution Wise Tooltips Listing </h1>
         <div class="media align-items-center">  
             <div class="form-row">
                 <a href="universitywisetooltipsaddedit.aspx" class="btn btn-success">Add New</a>

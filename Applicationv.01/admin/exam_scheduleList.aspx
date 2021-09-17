@@ -154,7 +154,7 @@
 
             var flag = false;
             if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-                 alert("Please select University");
+                 alert("Please select institution");
              else if ($("#<%=ddlexaminer.ClientID%>").val() == "0")
                alert("Please select Assigner");
            else if ($("#<%=txtpasskey.ClientID%>").val() == "")

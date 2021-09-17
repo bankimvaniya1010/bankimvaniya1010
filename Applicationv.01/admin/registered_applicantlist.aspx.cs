@@ -110,6 +110,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  university_name = u.university_name,
                                  firstname = s.name == null ? string.Empty : s.name,
                                  lastname = gtead.lastname == null ? string.Empty : gtead.lastname,
+                                 fullname = gtead.firstname +" "+gtead.middlename +" "+ gtead.lastname,
                                  email = gtead.email == null ? s.email : gtead.email,
                                  registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
                                  mobile = gtead.mobileno == null ? string.Empty : gtead.mobileno,
@@ -120,6 +121,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  approve = gtead.isverifiedbyAdmin == true ? "Approved" : "Pending",
                                  suspend = gtead.isdeletedbyAdmin == true?"Deleted":string.Empty,
                                  Isreportcompleted = gtead.Is_clarification_submitted,
+
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
                 foreach (var itm in applicant) {
                     int applicantid = Convert.ToInt32(itm.applicantid);
@@ -168,9 +170,10 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  university_name = u.university_name,
                                  firstname = s.name == null ? string.Empty : s.name,
                                  lastname = ad.lastname == null ? string.Empty : ad.lastname,
+                                 fullname = ad.firstname + " " + ad.middlename + " " + ad.lastname,
                                  email = ad.email == null ? s.email : ad.email,
                                  registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
-                                 mobile = ad.mobileno == null ? string.Empty : ad.mobileno,
+                                 mobile = ad.mobileno == null ? string.Empty : string.IsNullOrEmpty(ad.countrycode)? ad.mobileno : "+"+ad.countrycode +"-"+ad.mobileno,
                                  countryofresidence = c.country_name == null ? string.Empty : c.country_name,
                                  countryid = ad.residentialcountry,
                                  Status = "Prospect",
@@ -193,18 +196,15 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             }
             else
             {
+                //fullservice
                 applicant = (from ad in db.applicantdetails
-
-                             join cm in db.countriesmaster on ad.residentialcountry equals cm.id into cmdata
-                             from c in cmdata.DefaultIfEmpty()
-                             
                              join sm in db.students on ad.applicantid equals sm.studentid into studentData
                              from s in studentData.DefaultIfEmpty()
 
                              join um in db.university_master on ad.universityid equals um.universityid into umData
                              from u in umData.DefaultIfEmpty()
 
-                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false && u.IsDeleted != 1
+                             where ad.universityid == universityID && ad.isdeletedbyAdmin == false /*&& ad.applicantid == 211*/
                              select new Details()
                              {
                                  id = ad.applicantid,
@@ -213,11 +213,12 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  university_name = u.university_name,
                                  firstname = s.name == null ? string.Empty : s.name,
                                  lastname = ad.lastname == null ? string.Empty : ad.lastname,
+                                 fullname = ad.firstname + " " + ad.middlename + " " + ad.lastname,
                                  email = ad.email == null ? s.email : ad.email,
                                  registereDate = (s.creationdate == null) ? (DateTime?)null : s.creationdate,
                                  mobile = ad.mobileno == null ? string.Empty : ad.mobileno,
-                                 countryofresidence = c.country_name == null ? string.Empty : c.country_name,
-                                 countryid = ad.residentialcountry,
+                                 countryofresidence = string.Empty ,
+                                 countryid = ad.residentialcountry == null? 0: ad.postalcountry,
                                  Status = "Prospect",
                                  isverifiedbyAdmin = ad.isverifiedbyAdmin,
                                  approve = ad.isverifiedbyAdmin == true ? "Approved" : "Pending",
@@ -225,6 +226,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                                  Isreportcompleted = ad.Is_clarification_submitted,
 
                              }).Distinct().OrderByDescending(x => x.applicantid).ToList();
+                
             }
             //Starts filling up any form - Applicant
             if (fullservice == 2)
@@ -269,10 +271,13 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
                         data.Subjects = string.Empty;
                 }
             }
-            else if (fullservice == 1)
+            else if (fullservice == 1 || fullservice == 5)
             {
                 foreach (var item in applicant)
                 {
+                    if (item.countryid == null || item.countryid == 0) { }
+                    else
+                        item.countryofresidence = db.countriesmaster.Where(x => x.id == item.countryid).Select(x => x.country_name).FirstOrDefault();
                     item.Status = "Registered";
                     if (item.isverifiedbyAdmin == true)
                         item.Status = "Verified";
@@ -437,7 +442,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         DataTable dt = new DataTable();
         // all columns
         dt.Columns.Add("Applicant Id", typeof(Int32));
-        dt.Columns.Add("University Name", typeof(string));
+        dt.Columns.Add("Institution", typeof(string));
         dt.Columns.Add("First Name", typeof(string));
         dt.Columns.Add("Family Name", typeof(string));
         dt.Columns.Add("Email", typeof(string));
@@ -514,6 +519,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
         public int? universityId { get; set; }
         public string university_name { get; set; }
         public string firstname { get; set; }
+        public string fullname { get; set; }
         public string lastname { get; set; }
         public string email { get; set; }
         public DateTime? registereDate { get; set; }
@@ -674,7 +680,11 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
             if (e.CommandName.Equals("Manage"))
             {
                 int ApplicantID = Convert.ToInt32(e.CommandArgument);
-                Response.Redirect(webURL + "admin/manageapplicant.aspx?ID=" + ApplicantID, true);
+                int fullservice_ = Convert.ToInt32(Session["isfullservice"]);
+                if (fullservice_ == 1)
+                    Response.Redirect(webURL + "admin/manage_applicant.aspx?ID=" + ApplicantID, true);
+                else
+                    Response.Redirect(webURL + "admin/manageapplicant.aspx?ID=" + ApplicantID, true);
             }
             if (e.CommandName.Equals("resend"))
             {
@@ -780,7 +790,7 @@ public partial class admin_registered_applicantlist : System.Web.UI.Page
 
                 LinkButton lnkmagae = ((LinkButton)e.Row.FindControl("lnkmagae"));
                 Label lblaid = (Label)e.Row.FindControl("lblaid");
-                if (fullservice == 2 || fullservice == 1)
+                if (fullservice == 2)
                 {
                     lblaid.Visible = true;
                     lnkmagae.Attributes.Add("style", "display:none");

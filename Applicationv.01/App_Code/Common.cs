@@ -1607,7 +1607,24 @@ public class Common
         }
         return false;
     }
-
+    public bool Is_service5_DeclarationDoneByApplicant(int applicantId, int universityID)
+    {
+        bool flag = false;
+        try
+        {
+            var applicantGteProgressInfo = db.ec_applicant_declaration_master.Where(x => x.applicantid == applicantId && x.universityid == universityID).FirstOrDefault();
+            if (applicantGteProgressInfo != null)
+            {
+                if (applicantGteProgressInfo.is_declaration_completed == 1)
+                    flag= true;
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return flag;
+    }
     public bool SetStudentDetailsCompletedStatus(int applicantId, int universityID)
     {
         try
@@ -1652,6 +1669,25 @@ public class Common
             log.WriteLog(ex.ToString());
         }
         return false;
+    }
+    public bool Set_eclass_StudentDetailsCompletedStatus(int applicantId, int universityID)
+    {
+        bool flag = false;
+        try
+        {
+            var applicantDetails = db.applicantdetails.Where(x => x.applicantid.Value == applicantId && x.universityid == universityID).FirstOrDefault();
+
+            if (applicantDetails != null)
+            {
+                if (applicantDetails.Isdetailscompleted == true)
+                    flag = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return flag;
     }
     public void SetCustomDataAdminComments(int formID, int applicatiID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv, List<admincomments> Comments)
     {

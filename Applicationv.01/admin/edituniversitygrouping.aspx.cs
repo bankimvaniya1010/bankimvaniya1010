@@ -32,7 +32,7 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
                 if (existingMapping != null)
                 {
                     ViewState["headUniversityID"] = headUniversityId;
-                    bindUniversityDropDown();
+                    bindUniversityDropDown(headUniversityId);
                     ddlUniversity.ClearSelection();
                     ddlUniversity.Items.FindByValue(headUniversityId.ToString()).Selected = true;
                     ddlUniversity.Enabled = false;
@@ -63,11 +63,11 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
         }
     }
 
-    private void bindUniversityDropDown()
+    private void bindUniversityDropDown(int headUniversityId)
     {
         try
         {
-            ListItem lst = new ListItem("Please select university", "0");
+            ListItem lst = new ListItem("Please select institution", "0");
             List<university_master> universityMaster = db.university_master.OrderBy(x=>x.university_name).ToList();
 
             ddlUniversity.DataSource = universityMaster;
@@ -80,6 +80,8 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
             chk_universitylist.DataTextField = "university_name";
             chk_universitylist.DataValueField = "universityid";
             chk_universitylist.DataBind();
+
+            chk_universitylist.Items.FindByValue(headUniversityId.ToString()).Enabled = false;
         }
         catch (Exception ex)
         {

@@ -161,7 +161,7 @@
         
         $("#<%=ddlRole.ClientID%>").change(function () {
              var mode = '<%=pagemode %>';
-            if ($("#<%=ddlRole.ClientID%>").val() == 13 || $("#<%=ddlRole.ClientID%>").val() == 14) {
+            if ($("#<%=ddlRole.ClientID%>").val() == 13 || $("#<%=ddlRole.ClientID%>").val() == 14 || $("#<%=ddlRole.ClientID%>").val() == 15 || $("#<%=ddlRole.ClientID%>").val() == 16) {
                 $("#<%=subroles.ClientID%>").show();
                 if (mode == 'new') {
                     $.ajax({

@@ -17,7 +17,8 @@ public partial class gte_preliminary_section : System.Web.UI.Page
     Common objCom = new Common();
     protected static List<faq> allQuestions = new List<faq>();
     private GTEEntities db = new GTEEntities();
-    int UserID = 0, ApplicantID = 0;
+    int UserID = 0, ApplicantID = 0 ;
+    
     Logger objLog = new Logger();
     string webURL = string.Empty;
     int UniversityID = -1;
@@ -36,6 +37,8 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        int isFullService = (int)Session["FullService"];
+
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "default.aspx", true);
@@ -48,15 +51,15 @@ public partial class gte_preliminary_section : System.Web.UI.Page
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                 "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
 
-
+        
         var Isdetailscompleted = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.Isdetailscompleted).FirstOrDefault();
         if (Isdetailscompleted == false)
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('Incomplete profile information. Please complete profile before proceeding.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                    "alert('Incomplete profile information. Please complete profile before proceeding.');window.location='" + Request.ApplicationPath + "gte_studentdetailsN.aspx?formid=21';", true);
             return;
         }
-        int isFullService = (int)Session["FullService"];
+        //int isFullService = (int)Session["FullService"];
         if (isFullService == 0)
         {
             var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];

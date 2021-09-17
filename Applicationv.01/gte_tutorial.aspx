@@ -168,6 +168,12 @@ Assessment and also aid in producing better quality Course and Visa Applications
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtetutorial').addClass('active');
+
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_new_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#Li2').addClass('active');
+
         });
         $("#<%=checkCondition.ClientID%>").change(function ()
      {

@@ -34,20 +34,29 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
                 if (!Int32.TryParse(Request.QueryString["universityId"], out universityID))
                     Response.Redirect(webURL + "admin/default.aspx", true);
 
+                int applicationmasterID = 0;
+                if(!string.IsNullOrEmpty(Request.QueryString["applicationmasterID"]))
+                    applicationmasterID = Convert.ToInt32(Request.QueryString["applicationmasterID"]);
+
                 Session["applicantId"] = applicantID;
                 Session["universityId"] = universityID;
-                bindDataList(applicantID, universityID);
+                Session["applicationmasterID"] = applicationmasterID;
+                bindDataList(applicantID, universityID, applicationmasterID);
             }
             else
                 Response.Redirect(webURL + "admin/default.aspx", true);
         }
     }
 
-    private void bindDataList(int applicantID, int universityID)
+    private void bindDataList(int applicantID, int universityID, int applicationmasterID = 0)
     {
         try
         {
-            var allPaymentDetailsList = db.payment_details.Where(x => x.applicant_id == applicantID && x.university_id == universityID).ToList();
+            dynamic allPaymentDetailsList;
+            if (applicationmasterID == 0)
+                allPaymentDetailsList = db.payment_details.Where(x => x.applicant_id == applicantID && x.university_id == universityID).ToList();
+            else
+                allPaymentDetailsList = db.payment_details.Where(x => x.applicant_id == applicantID && x.university_id == universityID && x.applicationmaster_id== applicationmasterID).ToList();
 
             paymentRequestGridView.DataSource = allPaymentDetailsList;
             paymentRequestGridView.DataBind();
@@ -101,6 +110,15 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
             string paymentDetails = db.payment_description_master.Where(x => x.id == paymentFor).Select(x => x.payment_description).FirstOrDefault();
             Label lblPaymentDetails = e.Row.FindControl("lblPaymentDetails") as Label;
             lblPaymentDetails.Text = paymentDetails;
+
+            PropertyInfo pcoursename = row.GetType().GetProperty("applicationmaster_id");
+            int ID = (int)pcoursename.GetValue(row, null);
+            int? courseid = db.applicationmaster.Where(x => x.applicationmasterid == ID).Select(x => x.course).FirstOrDefault();
+
+            string details = db.coursemaster.Where(x => x.courseid == courseid).Select(x => x.coursename).FirstOrDefault();
+
+            Label lblcoursename = e.Row.FindControl("lblcoursename") as Label;
+            lblcoursename.Text = details;
 
             PropertyInfo pRequestDate = row.GetType().GetProperty("request_date");
             string requestDate = pRequestDate.GetValue(row, null) == null ? string.Empty : pRequestDate.GetValue(row, null).ToString();
@@ -160,7 +178,11 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
                 var paymentDetails = db.payment_details.Where(x => x.id == paymentDetailsId).FirstOrDefault();
                 var applicationmaster = db.applicationmaster.Where(x => x.applicationmasterid == paymentDetails.applicationmaster_id).FirstOrDefault();
                 var applicationStatus = db.application_status_master.AsNoTracking().Select(x => new { x.id, x.status_description });
+                int id = Convert.ToInt32(ddlPaymentStatus.SelectedValue);
+                var payment_status_master = db.payment_status_master.Where(x => x.id == id).Select(x => x.status_description).FirstOrDefault();
+
                 paymentDetails.payment_status = Convert.ToInt32(ddlPaymentStatus.SelectedItem.Value);
+
                 if(ddlPaymentStatus.SelectedItem.Text.ToUpper().Contains("PAYMENT VERIFIED"))
                 {
                     paymentDetails.payment_verified_date = DateTime.Now;
@@ -168,7 +190,7 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
                 }
                 db.SaveChanges();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('Payment details updated successfully.');window.location='" + Request.ApplicationPath + "admin/processpaymentrequest.aspx?applicantId=" + applicantID + "&universityId=" + universityId + "';", true);                
+                    "alert('Payment details updated successfully.');window.location='" + Request.ApplicationPath + "admin/processpaymentrequest.aspx?applicantId=" + applicantID + "&applicationmasterID="+ applicationmaster .applicationmasterid+ "&universityId=" + universityId + "';", true);                
                 if (ddlPaymentStatus.SelectedItem.Text.ToUpper().Contains("PAYMENT VERIFIED"))
                     sendEmailsNotificationForPaymentVerified(applicantID, universityId);
                 else if (ddlPaymentStatus.SelectedItem.Text.ToUpper().Contains("PAYMENT REJECTED"))
@@ -186,6 +208,7 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
     {
         int applicantID = (int)Session["applicantId"];
         int universityId = (int)Session["universityId"];
-        Response.Redirect(webURL + "admin/applicantpaymentrequest.aspx?applicantId=" + applicantID + "&universityId=" + universityId, true);
+        int applicationmasterID = (int)Session["applicationmasterID"];
+        Response.Redirect(webURL + "admin/applicantpaymentrequest.aspx?applicantId=" + applicantID + "&applicationmasterID="+ applicationmasterID + "&universityId=" + universityId, true);
     }
 }

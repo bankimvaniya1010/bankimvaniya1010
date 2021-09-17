@@ -353,10 +353,10 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('.sidebar-menu-item').removeClass('open');
-            $('#managetooltips_list').addClass('open');
+              $('.sidebar-menu-item').removeClass('open');
+            $('#manageregistration_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#admintooltipslisting').addClass('active');
+            $('#registeredapplicants').addClass('active');
         });
     </script>
 </asp:Content>

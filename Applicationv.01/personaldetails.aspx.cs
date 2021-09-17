@@ -290,8 +290,6 @@ public partial class personaldetails : System.Web.UI.Page
                     rbtnFemale.Checked = true;
                 else if (profileInfo.gender == 2)
                     rbtnOther.Checked = true;
-                else if (profileInfo.gender == 3)
-                    rbtnPreferNot.Checked = true;
 
                 if (profileInfo.higheststudycompleted != null) {
                     ddlhigheststudy.ClearSelection();
@@ -478,9 +476,6 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.gender = 0;
             else if (rbtnOther.Checked)
                 objapplicantDetail.gender = 2;
-            else if (rbtnPreferNot.Checked)
-                objapplicantDetail.gender = 3;
-
             if (ddlNationality.SelectedValue != "")
             {
                 string[] array = ddlNationality.SelectedValue.Split('_');

@@ -94,7 +94,7 @@
         {
             var flag = false; 
             if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-                alert("Please Select University");
+                alert("Please select institution");
             else if ($("#<%=ddlForm.ClientID%>").val() == "0")
                 alert("Please Select Form");
             else 

@@ -17,6 +17,7 @@ public partial class gte_declaration : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     public bool? questionsCompleted = false;
     public bool applicantdetailsCompleted = false;
+    protected bool isGteDeclarationDoneByApplicant = false;
     int UserID = 0;
     Logger objLog = new Logger();
     Common objCom = new Common();
@@ -49,14 +50,16 @@ public partial class gte_declaration : System.Web.UI.Page
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                 "alert('Your account is not verified by administrator.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
 
+
         var Isdetailscompleted = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.Isdetailscompleted).FirstOrDefault();
-        if (Isdetailscompleted != true)
+        if (Isdetailscompleted == false)
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('Please complete your details section.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                    "alert('Incomplete profile information. Please complete profile before proceeding.');window.location='" + Request.ApplicationPath + "gte_studentdetailsN.aspx?formid=21';", true);
             return;
         }
-        var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
+
+        isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         var university = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == UniversityID).FirstOrDefault();
         UniLogURL = webURL + "/Docs/" + university.universityid + "/" + university.logo;
 
@@ -68,30 +71,28 @@ public partial class gte_declaration : System.Web.UI.Page
             if (gteProgressBar != null)
                 if (gteProgressBar.is_gte_preliminarysection1_completed != null && gteProgressBar.is_gte_preliminarysection2_completed != null)
                     questionsCompleted = gteProgressBar.is_gte_preliminarysection1_completed.Value && gteProgressBar.is_gte_preliminarysection2_completed.Value;
-            if (isFullService == 0) {
-                gtedecDiv.Attributes.Remove("style");
-                gtedecDiv.Attributes.Add("style", "display:block");
-                btnDownload.Visible = false;
-                Div2.Attributes.Add("style", "display:none");
 
-                var data = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
-                if (data != null)
-                {
-                    Student_name = data.firstname + " " + data.lastname;
-                    passport_number = data.passportno;
-                    dob = Convert.ToDateTime(data.dateofbirth).ToString("dd/MM/yyyy");
-                    current_address = data.postaladdrees1 + " " + data.postaladdrees2 + " " + data.postaladdrees3 + "," + data.postalstate + ", " + data.postalpostcode;
-                    Country_of_Citizenship = objCom.GetCountryDiscription(Convert.ToInt32(data.countryof_citizenship));
-                    if(data.nameofuniversityappliedfor != null)
-                        universityName = objCom.GetUniversityName(Convert.ToInt32(data.nameofuniversityappliedfor));
-                }
+            gtedecDiv.Attributes.Remove("style");
+            gtedecDiv.Attributes.Add("style", "display:block");
+            btnDownload.Visible = false;
+            Div2.Attributes.Add("style", "display:none");
+
+            var data = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+            if (data != null)
+            {
+                Student_name = data.firstname + " " + data.lastname;
+                passport_number = data.passportno;
+                dob = Convert.ToDateTime(data.dateofbirth).ToString("dd/MM/yyyy");
+                current_address = data.postaladdrees1 + " " + data.postaladdrees2 + " " + data.postaladdrees3 + "," + data.postalstate + ", " + data.postalpostcode;
+                Country_of_Citizenship = objCom.GetCountryDiscription(Convert.ToInt32(data.countryof_citizenship));
+                if (data.nameofuniversityappliedfor != null)
+                    universityName = objCom.GetUniversityName(Convert.ToInt32(data.nameofuniversityappliedfor));
             }
-            else {
 
-                allStatements = db.gte_declaration_master.Where(x => x.universityId == UniversityID).ToList();
+            allStatements = db.gte_declaration_master.Where(x => x.universityId == UniversityID).ToList();
                 if (allStatements.Count == 0)
                     Div2.Attributes.Add("style", "display:block");
-            }
+            
 
             
             var applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.Isdetailscompleted).FirstOrDefault();
@@ -109,14 +110,12 @@ public partial class gte_declaration : System.Web.UI.Page
                 
                 Div2.Attributes.Add("style", "display:none");
                 headlbl.Visible = false;
-                if (isFullService == 0)
-                {
-                    gtedecDiv.Attributes.Remove("style");
-                    gtedecDiv.Attributes.Add("style", "display:block");
-                    btnDownload.Visible = true;
-                    //gtedecDiv.Attributes.Add("style", "dispay:block;");
-                    declbl.Visible = false;
-                }
+                gtedecDiv.Attributes.Remove("style");
+                gtedecDiv.Attributes.Add("style", "display:block");
+                btnDownload.Visible = true;
+                //gtedecDiv.Attributes.Add("style", "dispay:block;");
+                declbl.Visible = false;
+
                 var gteprogressbar = db.gte_progressbar.Where(x => x.applicantid == UserID && x.universityId == UniversityID).FirstOrDefault();
                 if (gteprogressbar != null)
                 {

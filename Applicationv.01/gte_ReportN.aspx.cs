@@ -71,9 +71,10 @@ public partial class gte_ReportN : System.Web.UI.Page
             if ((Request.QueryString["CID"] != null) || (Request.QueryString["CID"].ToString() != ""))
                 CID = Request.QueryString["CID"];
 
-            var Personal = db.applicantdetails.Where(x => x.gtereportNO == CID).FirstOrDefault();           
-            ApplicantID = Convert.ToInt32(Personal.applicantid);
-            var data = db.gte_report_admin_comment.Where(x => x.applicant_id == Personal.applicantid && x.university_id == Personal.universityid).FirstOrDefault();
+            var Personal = db.applicantdetails.Where(x => x.gtereportNO == CID).FirstOrDefault();
+            ApplicantID =  Convert.ToInt32(Personal.applicantid);
+            universityID = Convert.ToInt32(Personal.universityid);
+            var data = db.gte_report_admin_comment.Where(x => x.applicant_id == ApplicantID && x.university_id == universityID).FirstOrDefault();
             if (data != null)
             {
                 fd1.Attributes.Add("style", "display:none;");

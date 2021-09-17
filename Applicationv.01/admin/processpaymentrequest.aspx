@@ -17,13 +17,23 @@
 
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                   <asp:GridView ID="paymentRequestGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"
+                   <asp:GridView ID="paymentRequestGridView" CssClass="table" runat="server" Width="100%" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="id"
                         CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowDataBound="paymentRequestGridView_RowDataBound" OnRowCommand="paymentRequestGridView_RowCommand">
 
                        <Columns>
+                            <asp:TemplateField HeaderText="RID">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblid" runat="server" Text='<%# Bind("id") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Course Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblcoursename" runat="server" Text='<%# Bind("applicationmaster_id") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Date">
                                 <ItemTemplate>
                                     <asp:Label ID="lblRequestDate" runat="server" Text='<%# Bind("request_date") %>'></asp:Label>

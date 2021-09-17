@@ -49,7 +49,7 @@ public partial class applicant_payments : System.Web.UI.Page
                                    .Join(db.coursemaster, applicationmaster => applicationmaster.course, coursemaster => coursemaster.courseid,
                                     (applicationmaster, coursemaster) => new { coursemaster.coursename }).Select(x => x.coursename).FirstOrDefault();
                 if (paymentStatus.ToUpper().Contains("PAYMENT VERIFIED"))
-                    paymentStatus = item.payment_verified_date.Value.ToString("dd-MM-yyyy");
+                    paymentStatus = "PAYMENT VERIFIED AT "+ item.payment_verified_date.Value.ToString("dd-MM-yyyy");
                 else if (paymentStatus.ToUpper().Contains("PAYMENT PENDING"))
                     paymentStatus = "PENDING";
                 else if (paymentStatus.ToUpper().Contains("PAYMENT REJECTED"))

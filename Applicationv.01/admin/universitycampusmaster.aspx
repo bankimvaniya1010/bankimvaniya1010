@@ -4,9 +4,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">University Campus Master</li>
+            <li class="breadcrumb-item active">INSITITUTION Campus Master</li>
         </ol>
-        <h1 class="h2">University Campus Master</h1>
+        <h1 class="h2">INSITITUTION Campus Master</h1>
 
         <div class="card">
             <div class="tab-content card-body">
@@ -29,7 +29,7 @@
                                     <asp:Label ID="lblCampName" runat="server" Text='<%# Bind("campusName") %>'></asp:Label>
                                 </ItemTemplate>
                            </asp:TemplateField>
-                           <asp:TemplateField HeaderText="University Name">
+                           <asp:TemplateField HeaderText="Institution">
                                <ItemTemplate>
                                     <asp:Label ID="lblCampUniName" runat="server" Text='<%# Bind("universityName") %>'></asp:Label>
                                 </ItemTemplate>
@@ -72,7 +72,7 @@
             var universityID = $('#<%=ddlUniversity.ClientID%>').val();
 
             if (universityID == 0 || isNaN(parseInt(universityValue))) {
-                alert("Please select university");
+                alert("Please select institution");
                 return false;
             }
 

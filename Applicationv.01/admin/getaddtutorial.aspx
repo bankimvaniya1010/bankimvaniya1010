@@ -130,7 +130,7 @@
            var validateurl = urlValue.includes("=");
            var flag = false;
            if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
-               alert("Please Select University");
+               alert("Please select institution");
            else if ($("#<%=ddlType.ClientID%>").val() == "0")
                alert("Please Select File Type");
            else if ($("#<%=ddlType.ClientID%>").val() == "video" && $("#<%=txtVideourl.ClientID%>").val() == "" || validateurl)

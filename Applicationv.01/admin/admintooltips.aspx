@@ -18,8 +18,6 @@
                 alert("Please enter Tooltips");
                 return false;
             }
-
-
             return true;
 
         }

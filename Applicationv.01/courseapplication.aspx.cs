@@ -16,13 +16,15 @@ public partial class courseapplication : System.Web.UI.Page
     int universityID, userID = 0;
     string webURL = String.Empty;
     public List<CoursegridData> courses = new List<CoursegridData>();
+    public List<CoursegridData> list = new List<CoursegridData>();
+    List<CoursegridData> temp = new List<CoursegridData>();
     public List<coursemaster> appliedcourseData = new List<coursemaster>();
     public string universityname;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        universityID = Utility.GetUniversityId();
+        universityID =  Utility.GetUniversityId();
         universityname = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.university_name).FirstOrDefault();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
@@ -51,50 +53,118 @@ public partial class courseapplication : System.Web.UI.Page
         HidpreferenceID.Value = (appliedcourseData.Count + 1).ToString();
     }
 
-    private void BindGrid(int cityID, int levelofstudyID, int majorID)
+    private void BindGrid(int CountryID,int cityID, int levelofstudyID, int majorID)
     {
         try
         {
-            courses = (from cm in db.coursemaster
-                       join um in db.university_master on cm.universityid equals um.universityid into umdData
-                       from x1 in umdData.DefaultIfEmpty()
-                       join sm in db.studymodemaster on cm.modeofstudyId equals sm.id into smdData
-                       from x2 in smdData.DefaultIfEmpty()
-                       join ucm in db.universitycampus on universityID equals ucm.universityid into ucmdData
-                       from x3 in ucmdData.DefaultIfEmpty()
-                       join citym in db.citymaster on x3.cityid equals citym.city_id into cityData
-                       from x4 in cityData.DefaultIfEmpty()
-                       join countrym in db.countriesmaster on x4.country_id equals countrym.id into countryData
-                       from x5 in countryData.DefaultIfEmpty()
-                       join sl in db.studylevelmaster on cm.levelofstudyId equals sl.studylevelid into sldData
-                       from x6 in sldData.DefaultIfEmpty()
-                       join major in db.majordiscipline_master on cm.majordisciplineId equals major.id into majorData
-                       from x7 in majorData.DefaultIfEmpty()
-                       join currency in db.currency_master on cm.currencyid equals currency.id into currencyData
-                       from x8 in currencyData.DefaultIfEmpty()
-                       where cm.universityid == universityID && cm.isactive == true && x1.IsDeleted != 1
-                       select new CoursegridData()
-                       {
-                           id = cm.courseid,
-                           coursename = cm.coursename,
-                           universityname = x1.university_name,
-                           universityid = x1.universityid,
-                           campus = x3.campusname,
-                           campusid = x3.campusid,
-                           campuscityID = x3.cityid,
-                           campuscityname = x4.name,
-                           campuscontryID = x4.country_id,
-                           campuscountryName = x5.country_name,
-                           modeofstudy = x2.description,
-                           modeofstudyid = x2.id,
-                           coursefee = cm.coursefee,
-                           levelodstudyID = cm.levelofstudyId,
-                           levelodstudy = x6.studylevel,
-                           major = x7.description,
-                           majorID = cm.majordisciplineId,
-                           currencysymbol = x8.currency_symbol,
+            var grouping = db.universitygrouping.Where(x => x.groupingheaduniversityid == universityID).ToList();
+            if (grouping.Count > 0)
+            {
+                foreach (var item in grouping) {
+                    int subUniversity = item.universityid;
+                    var applied_list_course = db.university_course_mapping.Where(x => x.main_universityID == universityID && x.grouped_universityID == subUniversity).ToList();
+                    foreach (var course_data in applied_list_course)
+                    {
+                        var record= (from cm in db.coursemaster
 
-                       }).ToList();
+
+                                     join course_campus in db.course_campus_mapping on course_data.course_campus_mapping_ID equals course_campus.id into mappData
+                                     from co_camp in mappData.DefaultIfEmpty()
+
+                                     join ucm in db.universitycampus on co_camp.campusid equals ucm.campusid into ucmdData
+                                     from x3 in ucmdData.DefaultIfEmpty()
+
+                                     join um in db.university_master on course_data.grouped_universityID equals um.universityid into umdData
+                                     from x1 in umdData.DefaultIfEmpty()
+                                     join sm in db.studymodemaster on cm.modeofstudyId equals sm.id into smdData
+                                     from x2 in smdData.DefaultIfEmpty()
+                                     join citym in db.citymaster on x3.cityid equals citym.city_id into cityData
+                                     from x4 in cityData.DefaultIfEmpty()
+                                     join countrym in db.countriesmaster on x4.country_id equals countrym.id into countryData
+                                     from x5 in countryData.DefaultIfEmpty()
+                                     join sl in db.studylevelmaster on cm.levelofstudyId equals sl.studylevelid into sldData
+                                     from x6 in sldData.DefaultIfEmpty()
+                                     join major in db.majordiscipline_master on cm.majordisciplineId equals major.id into majorData
+                                     from x7 in majorData.DefaultIfEmpty()
+                                     join currency in db.currency_master on cm.currencyid equals currency.id into currencyData
+                                     from x8 in currencyData.DefaultIfEmpty()
+                                     where cm.courseid == co_camp.courseid
+                                     select new CoursegridData()
+                                      {
+                                          id = cm.courseid,
+                                          coursename = cm.coursename,
+                                         universityname = x1.university_name,
+                                         universityid = x1.universityid,
+                                         UID = cm.universityid,
+                                         campus = x3.campusname,
+                                         campusid = x3.campusid,
+                                         campuscityID = x3.cityid,
+                                         campuscityname = x4.name,
+                                         campuscontryID = x4.country_id,
+                                         campuscountryName = x5.country_name,
+                                         modeofstudy = x2.description,
+                                         modeofstudyid = x2.id,
+                                         coursefee = cm.coursefee,
+                                         levelodstudyID = cm.levelofstudyId,
+                                         levelodstudy = x6.studylevel,
+                                         major = x7.description,
+                                         majorID = cm.majordisciplineId,
+                                         currencysymbol = x8.currency_symbol,
+
+                                     }).OrderBy(x => x.id).FirstOrDefault();
+                        temp.Add(record);
+                    }
+                }
+                courses = temp;
+                
+            }
+            else
+            {
+                courses = (from cm in db.coursemaster
+                           join um in db.university_master on cm.universityid equals um.universityid into umdData
+                           from x1 in umdData.DefaultIfEmpty()
+                           join sm in db.studymodemaster on cm.modeofstudyId equals sm.id into smdData
+                           from x2 in smdData.DefaultIfEmpty()
+                           join ucm in db.universitycampus on universityID equals ucm.universityid into ucmdData
+                           from x3 in ucmdData.DefaultIfEmpty()
+                           join citym in db.citymaster on x3.cityid equals citym.city_id into cityData
+                           from x4 in cityData.DefaultIfEmpty()
+                           join countrym in db.countriesmaster on x4.country_id equals countrym.id into countryData
+                           from x5 in countryData.DefaultIfEmpty()
+                           join sl in db.studylevelmaster on cm.levelofstudyId equals sl.studylevelid into sldData
+                           from x6 in sldData.DefaultIfEmpty()
+                           join major in db.majordiscipline_master on cm.majordisciplineId equals major.id into majorData
+                           from x7 in majorData.DefaultIfEmpty()
+                           join currency in db.currency_master on cm.currencyid equals currency.id into currencyData
+                           from x8 in currencyData.DefaultIfEmpty()
+                           where cm.universityid == universityID && cm.isactive == true && x1.IsDeleted != 1
+
+                           select new CoursegridData()
+                           {
+                               id = cm.courseid,
+                               coursename = cm.coursename,
+                               universityname = x1.university_name,
+                               universityid = x1.universityid,
+                               UID = cm.universityid,
+                               campus = x3.campusname,
+                               campusid = x3.campusid,
+                               campuscityID = x3.cityid,
+                               campuscityname = x4.name,
+                               campuscontryID = x4.country_id,
+                               campuscountryName = x5.country_name,
+                               modeofstudy = x2.description,
+                               modeofstudyid = x2.id,
+                               coursefee = cm.coursefee,
+                               levelodstudyID = cm.levelofstudyId,
+                               levelodstudy = x6.studylevel,
+                               major = x7.description,
+                               majorID = cm.majordisciplineId,
+                               currencysymbol = x8.currency_symbol,
+
+                           }).OrderBy(x => x.id).ToList();
+            }
+            if (CountryID != 0)
+                courses.RemoveAll(x => x.campuscontryID != CountryID);
             if (cityID != 0)
                 courses.RemoveAll(x => x.campuscityID != cityID);
             if (levelofstudyID != 0)
@@ -105,7 +175,7 @@ public partial class courseapplication : System.Web.UI.Page
             courseGridView.DataSource = courses;
             courseGridView.DataBind();
             Hidresultcount.Value = Convert.ToString(courses.Count);
-            lblresultcount.InnerText = Hidresultcount.Value;
+            lblresultcount.InnerText = Convert.ToString(courses.Count);
         }
         catch (Exception ex)
         {
@@ -330,17 +400,18 @@ public partial class courseapplication : System.Web.UI.Page
     public static string GetCourseDetails(int courseid)
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Utility.GetUniversityId();
+        
         var temp = (from cm in db1.coursemaster
                     join um in db1.university_master on cm.universityid equals um.universityid
-                    where cm.universityid == universityID1 && cm.courseid == courseid && um.IsDeleted != 1
+                    where cm.courseid == courseid 
                     select new
                     {
+                        university_name = um.university_name,
+                        universityid = cm.universityid,
                         coursedescription = string.IsNullOrEmpty(cm.coursedescription) ? "Not set" : cm.coursedescription,
                         courseduration = string.IsNullOrEmpty(cm.courseduration) ? "Not set" : cm.courseduration,
                         courseurl = string.IsNullOrEmpty(cm.courseurl) ? "#" : cm.courseurl,
                         eligibility = string.IsNullOrEmpty(cm.courseeligibility) ? "No Eligibility" : cm.courseeligibility.Replace(Environment.NewLine, "<br />"),
-                        university_name = um.university_name,
 
                     }).ToList();
         return JsonConvert.SerializeObject(temp);
@@ -350,7 +421,7 @@ public partial class courseapplication : System.Web.UI.Page
     public static string GetcareerOutcomes(int courseid)
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Utility.GetUniversityId();
+        
         var temp = (from cm in db1.careerposition_course_mapping
                     join om in db1.careeroutcomes_master on cm.careeroutcomeId equals om.careerID into outcomeData
                     from x1 in outcomeData.DefaultIfEmpty()
@@ -369,6 +440,7 @@ public partial class courseapplication : System.Web.UI.Page
     public static string GetCommenceDateDropdown(int courseid)
     {
         GTEEntities db1 = new GTEEntities();
+        
         var temp = db1.course_dates.Where(x => x.courseid == courseid && x.commencementdate > DateTime.Now).OrderBy(x => x.commencementdate).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd MMM, yyy "), x.id });//dd/MMM/yyyy
         return JsonConvert.SerializeObject(temp);
     }
@@ -382,7 +454,7 @@ public partial class courseapplication : System.Web.UI.Page
         int majorID = Convert.ToInt32(HidselectedmajorID.Value);
 
         coursegrid.Attributes.Add("style", "display:block");
-        BindGrid(CityID, levelodstudyID, majorID);
+        BindGrid(CountryID,CityID, levelodstudyID, majorID);
 
         //statusbar
         selectedcountry.InnerText = HidselectedcountryName.Value;
@@ -470,7 +542,7 @@ public partial class courseapplication : System.Web.UI.Page
     {
         courseGridView.PageIndex = e.NewPageIndex;
         coursegrid.Attributes.Add("style", "display:block");        
-        BindGrid(Convert.ToInt32(HidselectedcityID.Value), Convert.ToInt32(HidselectedstudylevelID.Value), Convert.ToInt32(HidselectedmajorID.Value));
+        BindGrid(Convert.ToInt32(HidselectedcountryID.Value),Convert.ToInt32(HidselectedcityID.Value), Convert.ToInt32(HidselectedstudylevelID.Value), Convert.ToInt32(HidselectedmajorID.Value));
     }
 
     [WebMethod]
@@ -616,6 +688,7 @@ public partial class courseapplication : System.Web.UI.Page
         public string coursename { get; set; }
         public string universityname { get; set; }
         public int universityid { get; set; }
+        public int? UID { get; set; }
         public string campus { get; set; }
         public int campusid { get; set; }
         public int campuscityID { get; set; }
@@ -644,6 +717,7 @@ public partial class courseapplication : System.Web.UI.Page
             this.levelodstudy = string.Empty;
             this.major = string.Empty;
             this.universityid = -1;
+            this.UID = -1;
             this.campusid = -1;
             this.campuscityID = -1;
             this.campuscontryID = -1;

@@ -7,7 +7,7 @@
     var field = $('#<%=ddlField.ClientID%>').val();
     var ToolTips = $('#<%=txtTooltips.ClientID%>').val();
      if (University == 0 || isNaN(parseInt(University))) {
-                alert("Please select University name ");
+                alert("Please select Institution ");
                 return false;
             }
             if (Form == 0 || isNaN(parseInt(Form))) {

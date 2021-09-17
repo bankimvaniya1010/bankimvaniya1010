@@ -133,6 +133,11 @@ public partial class register : System.Web.UI.Page
                         html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/assessment_signupNotification.html"));
                         emailsubject = "Your Assessment Centre Account has been created";
                     }
+                    else
+                    {
+                        html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/singup.html"));
+                        emailsubject = "Your Account has been created";
+                    }
 
                     html = html.Replace("@UniversityName", university.university_name);
                     html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);
@@ -186,6 +191,12 @@ public partial class register : System.Web.UI.Page
             subject = "Assessment Centre";
             html = html.Replace("@srvicename", "Assessment Centre");
             html = html.Replace("@team", "The Assessment Centre Team");
+        }
+        else if (university.full_service == 5)
+        {
+            subject = "Learning Resources Centre";
+            html = html.Replace("@srvicename", "Learning Resources Centre");
+            html = html.Replace("@team", "The Learning Resources Centre Team");
         }
         else
         {

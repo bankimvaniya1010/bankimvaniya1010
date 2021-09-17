@@ -69,7 +69,7 @@
                                     <asp:CheckBox ID="MemberCheck" runat="server"/>
                                </ItemTemplate>
                            </asp:TemplateField>
-                           <asp:TemplateField HeaderText="University Name">
+                           <asp:TemplateField HeaderText="Institution">
                                <ItemTemplate>
                                     <asp:Label ID="lblUniName" runat="server" Text='<%# Bind("universityName") %>'></asp:Label>
                                 </ItemTemplate>

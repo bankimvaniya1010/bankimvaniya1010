@@ -94,7 +94,7 @@
     var Description = $('#<%=txtDescription.ClientID%>').val();
     var Control = $('#<%=ddlControlType.ClientID%>').val();
             if (University == 0 || isNaN(parseInt(University))) {
-                alert("Please Select University ");
+                alert("Please select institution ");
                 return false;
             }
             else if (Form == 0 || isNaN(parseInt(Form))) {
