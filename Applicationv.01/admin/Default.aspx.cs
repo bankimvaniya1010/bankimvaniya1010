@@ -16,7 +16,7 @@ public partial class admin_Default : System.Web.UI.Page
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
-        isfullservice = (int)Session["isfullservice"];
+        isfullservice = 5;// (int)Session["isfullservice"];
         if (isfullservice == 1)
             isfullservicethenlbl.Text = "TO THE APPLICATION CENTRE";
         else if (isfullservice == 0)

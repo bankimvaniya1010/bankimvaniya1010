@@ -30,23 +30,23 @@
                         <div class="">
 
                             <div class="row" style="margin-left: -40px;margin-top:10px;">
-                                <div class="col-md-2" style="display: inline-block;">
+                                <div class="col-md-2.5" style="display: inline-block;margin-right:10px;">
                                     <asp:DropDownList runat="server" ID="ddlgrade" class="form-control" />
                                     <asp:HiddenField runat="server" ID="HidSelectedGrade" />
                                 </div>
-                                <div class="col-md-2" style="display: inline-block;">
+                                <div class="col-md-2.5" style="display: inline-block;margin-right:10px;">
                                     <asp:DropDownList runat="server" ID="ddlsubject" class="form-control" />
                                     <asp:HiddenField runat="server" ID="HidSelectedSubject" />
                                 </div>
-                                <div class="col-md-2" style="display: inline-block;">
+                                <div class="col-md-2.5" style="display: inline-block;margin-right:10px;">
                                     <asp:DropDownList runat="server" ID="ddltype" class="form-control" />
                                     <asp:HiddenField runat="server" ID="HidselectedType" />
                                 </div>
-                                <div class="col-md-2" style="display: inline-block;">
+                                <div class="col-md-2.5" style="display: inline-block;margin-right:10px;">
                                     <asp:DropDownList runat="server" ID="ddlMode" class="form-control" />
                                     <asp:HiddenField runat="server" ID="HidselectedMode" />
                                 </div>
-                                <div class="col-md-2" style="display: inline-block;">
+                                <div class="col-md-2" style="display: inline-block;margin-right:10px;" id="locationDiv" runat="server">
                                     <asp:DropDownList runat="server" ID="ddllocation" class="form-control" />
                                     <asp:HiddenField runat="server" ID="HidselectedLocation" />
                                 </div>
@@ -461,7 +461,13 @@
             //}
         }
 
-
+          $("#<%=ddlMode.ClientID%>").change(function () {
+            var modeID = $("#<%=ddlMode.ClientID%>").val();
+            if (modeID == 2) 
+                $("#<%=locationDiv.ClientID%>").hide();
+            else
+                $("#<%=locationDiv.ClientID%>").show();
+        });
 
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
@@ -473,6 +479,11 @@
                 $("#ContentPlaceHolder1_ddlmode option[value=3]").hide();
             else
                 $("#ContentPlaceHolder1_ddlmode option[value=3]").show();
+
+            if ($("#<%=ddlMode.ClientID%>").val() == 2)
+                $("#<%=locationDiv.ClientID%>").hide();
+            else
+                $("#<%=locationDiv.ClientID%>").show();
 
         });
         $("#<%=ddltype.ClientID%>").change(function () {

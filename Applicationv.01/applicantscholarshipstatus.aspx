@@ -3,7 +3,7 @@
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">SCHOLARSHIPS STATUS</li>
         </ol>
         <h1 class="h2">APPLY FOR SCHOLARSHIP(S) AND CHECK YOUR SCHOLARSHIP(S) STATUS</h1>

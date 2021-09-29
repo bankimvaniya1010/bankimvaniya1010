@@ -8,22 +8,22 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
-public partial class ec_join_MyClass : System.Web.UI.Page
+public partial class ec_class_join_offline : System.Web.UI.Page
 {
     Logger log = new Logger();
     private GTEEntities db = new GTEEntities();
     public int UserID = 0;
-    string webURL = String.Empty;
+    public string webURL = String.Empty;
     Common objCom = new Common();
     public int UniversityID = -1;
-    public int? classid, exampaperid;
+    public int? RecordID, exampaperid;
     public static TimeSpan? examtime = null;
     public static int pagerefreshed = 0;
     public string examname = "Not Set By Assessmnent creator.";
     public string studentname = "Not Set";
     public string InvigilatorName = "Not Set";
     public static TimeSpan? duration2 = null;
+    public string verificationStatus, classname, classdate, class_starttime, class_endtime, username, instructorname, profileURL;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,18 +32,16 @@ public partial class ec_join_MyClass : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        if ((Request.QueryString["classid"] == null) || (Request.QueryString["classid"].ToString() == ""))
+        if ((Request.QueryString["ID"] == null) || (Request.QueryString["ID"].ToString() == ""))
         {
             Response.Redirect(webURL + "default.aspx", true);
         }
         else
         {
-            classid = Convert.ToInt32(Request.QueryString["classid"]);
-            Session["classid"] = classid;
+            RecordID = Convert.ToInt32(Request.QueryString["ID"]);
+            Session["ID"] = RecordID;
         }
-
-        //exampaperid = db.exam_assign.Where(x => x.assignid == assignid).Select(x=>x.exampapersid).FirstOrDefault();
-
+        checkEntry_foreachClass();
         showexamDetails();
         SaveStatus();
     }
@@ -52,24 +50,23 @@ public partial class ec_join_MyClass : System.Web.UI.Page
     {
         try
         {
-            var exam_assign = db.ec_class_master.Where(x => x.id == classid).FirstOrDefault();
-            exampaperid = exam_assign.id;
-            //var examdetails = db.exam_master.Where(x => x.exampapersid == exampaperid).FirstOrDefault();
-            //var examscheduleDetails = db.exam_schedule.Where(x => x.exampapersid == exampaperid && x.universityid == exam_assign.universityID && x.exam_datetime == exam_assign.exam_datetime).FirstOrDefault();
-            //if (examdetails != null)
-            //{
-            //    examname = examdetails.exam_name;
+            verificationStatus = "- WAIT TO BE VERIFIED";
+            username = objCom.GetApplicantFirstName(UserID);
+            instructorname = "NOT SET";
+            var Record_details = db.ec_class_date_schedule_master.Where(x => x.id == RecordID).FirstOrDefault();
+            var class_details = db.ec_class_master.Where(x => x.id == Record_details.classID).FirstOrDefault();
 
-            //    lblutctime.InnerText = "UTC Date & Time : " + examscheduleDetails.exam_datetime_utc;
-            //    lblcusttime.InnerText = "Your Date & Time : " + examscheduleDetails.exam_datetime + " < " + examscheduleDetails.utctimezone + " > ";
+            classname = class_details.classname;
+            classdate = Convert.ToDateTime(Record_details.class_datetime_start).ToString("dd/MMM/yyyy");
+            class_starttime = Convert.ToDateTime(class_details.class_starttime).ToString("hh:mm tt");
+            class_endtime = Convert.ToDateTime(class_details.class_endtime).ToString("hh:mm tt");
 
-            //}
-            //var applicantname = db.applicantdetails.Where(x => x.applicantid == exam_assign.applicantid && x.universityid == exam_assign.universityID).FirstOrDefault();
-            //var proctorname = db.examiner_master.Where(x => x.examinerID == exam_assign.proctorid && x.roleid == 10).FirstOrDefault();
-            //if (applicantname != null)
-            //    studentname = applicantname.firstname + " " + applicantname.lastname;
-            //if (proctorname != null)
-            //    InvigilatorName = proctorname.name;
+            var Personal = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+            if (Personal != null) {
+                if (Personal.profilephoto != null)
+                    profileURL = webURL + "/Docs/GTEProfileDetail/" + Personal.profilephoto;
+            }
+
         }
         catch (Exception ex)
         {
@@ -198,6 +195,30 @@ public partial class ec_join_MyClass : System.Web.UI.Page
             db1.exam_assign.Add(objmapping);
         db1.SaveChanges();
         return JsonConvert.SerializeObject(response);
+    }
+    private void checkEntry_foreachClass()
+    {
+        try
+        {
+            var Record_details = db.ec_class_date_schedule_master.Where(x => x.id == RecordID).FirstOrDefault();
+
+            var details = db.ec_class_attendance_master.Where(x => x.universityid == UniversityID && x.applicantid == UserID && x.class_dateID == RecordID).FirstOrDefault();
+            if (details == null)
+            {
+                ec_class_attendance_master objmapping = new ec_class_attendance_master();
+
+                objmapping.applicantid = UserID;
+                objmapping.classID = Record_details.classID;
+                objmapping.class_dateID = RecordID;
+                objmapping.universityid = UniversityID;
+                db.ec_class_attendance_master.Add(objmapping);
+                db.SaveChanges();
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
     }
 }
 

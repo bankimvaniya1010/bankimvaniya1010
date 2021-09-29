@@ -112,6 +112,8 @@ public partial class gte_studentdetailsN : System.Web.UI.Page
                 GlobalVariables.universityMinAge = Convert.ToInt32(minAge);
             SetToolTips();
             populategteapplicantdetail();
+            var date = (from s in db.applicantdetails where s.applicantid == objUser.studentid select new { s.dateofbirth }).FirstOrDefault();
+            hdfDateFoBrith.Value = date.dateofbirth.ToString();
         }
     }
 

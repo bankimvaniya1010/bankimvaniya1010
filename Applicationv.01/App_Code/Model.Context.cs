@@ -28,10 +28,19 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<accommodationplan> accommodationplan { get; set; }
     public virtual DbSet<admin_videomaster> admin_videomaster { get; set; }
+    public virtual DbSet<adminabilitiesmaster> adminabilitiesmaster { get; set; }
     public virtual DbSet<admincomments> admincomments { get; set; }
+    public virtual DbSet<admincoursesource> admincoursesource { get; set; }
+    public virtual DbSet<admincoursesuitability> admincoursesuitability { get; set; }
+    public virtual DbSet<admincoursetype> admincoursetype { get; set; }
+    public virtual DbSet<admincoursetypefieldmapping> admincoursetypefieldmapping { get; set; }
+    public virtual DbSet<adminfeemode> adminfeemode { get; set; }
+    public virtual DbSet<adminskillsmaster> adminskillsmaster { get; set; }
+    public virtual DbSet<adminstudymode> adminstudymode { get; set; }
     public virtual DbSet<admintooltips> admintooltips { get; set; }
     public virtual DbSet<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
     public virtual DbSet<adminusers> adminusers { get; set; }
+    public virtual DbSet<adminworkactivitiesmaster> adminworkactivitiesmaster { get; set; }
     public virtual DbSet<admisionfactor_dropdown_master> admisionfactor_dropdown_master { get; set; }
     public virtual DbSet<agentmaster> agentmaster { get; set; }
     public virtual DbSet<agenumber_master> agenumber_master { get; set; }
@@ -116,6 +125,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<ec_broad_career_filed_master> ec_broad_career_filed_master { get; set; }
     public virtual DbSet<ec_careerfield_mapping> ec_careerfield_mapping { get; set; }
     public virtual DbSet<ec_class_applicationmaster> ec_class_applicationmaster { get; set; }
+    public virtual DbSet<ec_class_attendance_master> ec_class_attendance_master { get; set; }
     public virtual DbSet<ec_class_date_master> ec_class_date_master { get; set; }
     public virtual DbSet<ec_class_date_schedule_master> ec_class_date_schedule_master { get; set; }
     public virtual DbSet<ec_class_master> ec_class_master { get; set; }

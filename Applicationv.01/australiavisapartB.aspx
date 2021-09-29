@@ -3,7 +3,7 @@
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">Visa Detail
 
             </li>
@@ -95,11 +95,11 @@
             </div>
             <div class="form-group">
             <label>Commencement date</label>
-            <input type="text" name="" class="form-control" runat="server" id="eduProviderCommencementDate">
+            <input type="text" name="" class="form-control" onchange="dateCompare()" runat="server" id="eduProviderCommencementDate">
             </div>
             <div class="form-group">
             <label>Finish date</label>
-            <input type="text" name="" class="form-control" runat="server" id="eduProviderfinishDate">
+            <input type="text" name="" class="form-control" onchange="dateCompare()" runat="server" id="eduProviderfinishDate">
             </div>
             <div class="form-group">
                 <%--code to upload attachement document pending--%>
@@ -236,11 +236,11 @@
             <div class="row">
             <div class="col-6">
             <label>From</label>
-            <input type="text" name="" class="form-control" runat="server" id="txtpreviouslycourseDateFrom">
+            <input type="text" name="" class="form-control" onchange="fromtodateCompare()" runat="server" id="txtpreviouslycourseDateFrom">
             </div>
             <div class="col-6">
             <label>To</label>
-            <input type="text" name="" class="form-control" runat="server" id="txtpreviouslycourseDateTo">
+            <input type="text" name="" class="form-control" onchange="fromtodateCompare()" runat="server" id="txtpreviouslycourseDateTo">
             </div>
             </div>
             </div>
@@ -299,15 +299,15 @@
             </div>
             <div class="form-group">
             <label>Commencement date </label>
-            <input type="text" name="" class="form-control" runat="server" id="txtintendedcommencementdate">
+            <input type="text" name="" class="form-control" onchange=" dateCompare2()" runat="server" id="txtintendedcommencementdate">
             </div>
             <div class="form-group">
             <label>Finish date</label>
-            <input type="text" name="" class="form-control" runat="server" id="txtintendedfinishdate">
+            <input type="text" name="" class="form-control" onchange=" dateCompare2()" runat="server" id="txtintendedfinishdate">
             </div>
 
             <div class="form-group">
-            <label>Have you entrolled?</label>
+            <label>Have you entrolled? *</label>
             <div class="form-check-inline">
              <label class="form-check-label">
                <input type="radio" class="form-check-input" name="enrolment" runat="server" id="rbentrolmentNo">No
@@ -939,6 +939,8 @@
                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                     <div class="form-row"> 
                       <%--  <a href="australiavisadetail.aspx" class="btn btn-success" style="margin-right: 10px;">Back</a>--%>
+                                        <asp:HiddenField ID="hdfDateFoBrith" runat="server" />
+
                         <asp:Button ID="btnvisadetails" runat="server" Text="Submit & Proceed" CssClass="btn btn-success" OnClick="btnvisadetails_Click" OnClientClick ="return validateform()"/>
                         <div class="col-md-6">
                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>                                               
@@ -985,7 +987,178 @@
         </div>
  
     <script>  
+
+        function dateCompare() {
+            var d1 = new Date($("#<%=eduProviderCommencementDate.ClientID%>").val());
+            var d2 = new Date($("#<%=eduProviderfinishDate.ClientID%>").val());
+
+            if (d1 < d2) {
+                alert('Commencement date is less than Finish date ');
+                $("#<%=eduProviderfinishDate.ClientID%>").val('');
+            }
+        }
+        function dateCompare2() {
+            var d1 = new Date($("#<%=txtintendedcommencementdate.ClientID%>").val());
+            var d2 = new Date($("#<%=txtintendedfinishdate.ClientID%>").val());
+
+            if (d1 < d2) {
+                alert('Commencement date is less than Finish date ');
+                $("#<%=txtintendedfinishdate.ClientID%>").val('');
+            }
+        }
+        function fromtodateCompare() {
+            var d1 = new Date($("#<%=txtpreviouslycourseDateFrom.ClientID%>").val());
+            var d2 = new Date($("#<%=txtpreviouslycourseDateTo.ClientID%>").val());
+
+            if (d1 >= d2) {
+                alert('From Date is greater than To date ');
+                $("#<%=txtpreviouslycourseDateTo.ClientID%>").val('');
+            }
+        }
         $(document).ready(function () {
+            $("#<%=immediaterelativeDob.ClientID%>").change(function (e) {
+                var d1 = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                var d2 = new Date($("#<%=immediaterelativeDob.ClientID%>").val());
+
+            if (d1 != d2) {
+                alert('Date of birth is not same as per Passport Date of birth');
+                    $("#<%=immediaterelativeDob.ClientID%>").val('');
+                }
+            });
+
+            $("#<%=txtpreviouslycoursename.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            });
+
+            $("#<%=txtpreviouslycourseeducationproviderName.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            });
+
+            $("#<%=txtpreviouslycourseeducationproviderName1.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            });
+            $("#<%=txtintendcoursename.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            }); 
+
+            $("#<%=txtintendedprovidername.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            }); 
+
+            $("#<%=englishtestname.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            }); 
+            $("#<%=txtemployeroccupation1.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            });
+
+            $("#<%=txtjobofferedname.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+                
+            });
+            $("#<%=txttypeofbusiness.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            });
+            $("#<%=txtjobofferedaddress.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+                
+            });
+            $("#<%=immediaterelativename.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            });
+            $("#<%=immediaterelativerelationship1.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            });
+            $("#<%=txtclosestrelativerelationship.ClientID%>").keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z ]+$");
+                var strigChar = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (!regex.test(strigChar)) {
+                    return false;
+                }
+
+            }); 
+            $("#<%=txtclosestrelativecontactno.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });$("#<%=txttitleofpositionofferef.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtjobofferedcontactno.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=englishtestcertificateNO.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtsalarylevel1.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
             //32
             if ($("#<%=rbentrolmentYes.ClientID%>").is(":checked")) 
                 $("#<%=showoption.ClientID%>").show();
@@ -1416,6 +1589,8 @@
                 alert("Please enter postal code of field 40");
             else if ($("#<%=txtclosestrelativecontactno.ClientID%>").val() == "")
                 alert("Please enter contact number of field 40");
+            else if ($("#<%=txtsalarylevel.ClientID%>").val() == "")
+                alert("Please enter salary level number of field 36");
                 //41 42
             else if (!($("#<%=applytostudyinausstraliaNO.ClientID%>").is(':checked') || $("#<%=applytostudyinausstraliaYes.ClientID%>").is(':checked')))
                 alert("Please select Are you applying to study in Australia as a secondary school exchange student of field 41");

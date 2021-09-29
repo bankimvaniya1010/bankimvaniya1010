@@ -33,6 +33,12 @@ public partial class admin_videomaster
     public string videopath { get; set; }
 }
 
+public partial class adminabilitiesmaster
+{
+    public int id { get; set; }
+    public string abilities { get; set; }
+}
+
 public partial class admincomments
 {
     public int id { get; set; }
@@ -49,6 +55,150 @@ public partial class admincomments
     public virtual students students { get; set; }
     public virtual formmaster formmaster { get; set; }
     public virtual university_master university_master { get; set; }
+}
+
+public partial class admincoursesource
+{
+    public int id { get; set; }
+    public string coursesource { get; set; }
+}
+
+public partial class admincoursesuitability
+{
+    public int id { get; set; }
+    public string coursesuitability { get; set; }
+}
+
+public partial class admincoursetype
+{
+    public int id { get; set; }
+    public string coursetype { get; set; }
+}
+
+public partial class admincoursetypefieldmapping
+{
+    public int CourseID { get; set; }
+    public Nullable<int> CourseType { get; set; }
+    public Nullable<int> Source { get; set; }
+    public string PartnerCourseID { get; set; }
+    public string CourseImage { get; set; }
+    public string CourseAudioVideo { get; set; }
+    public string CourseBrochure { get; set; }
+    public string LinktoWebPageURL { get; set; }
+    public string CourseName { get; set; }
+    public Nullable<int> ProvidedByInstitutionName { get; set; }
+    public string ShortDescription { get; set; }
+    public Nullable<int> NumberofStudentsTakenCourse { get; set; }
+    public Nullable<int> LanguageCourseAvailableIn { get; set; }
+    public string CourseSuitablefor { get; set; }
+    public string LearningObjectives { get; set; }
+    public string MainFeatures { get; set; }
+    public string CourseContent { get; set; }
+    public string LongDescription { get; set; }
+    public Nullable<int> DurationYear { get; set; }
+    public Nullable<int> DurationMonth { get; set; }
+    public Nullable<int> DurationDays { get; set; }
+    public Nullable<int> DurationHours { get; set; }
+    public Nullable<int> Fee { get; set; }
+    public Nullable<int> ApplicationEnrollmentFee { get; set; }
+    public string FeePaymentMode { get; set; }
+    public Nullable<int> Mode { get; set; }
+    public string LocationsCampusBranch { get; set; }
+    public Nullable<int> Type { get; set; }
+    public Nullable<int> AverageNumberParticipantsClassSize { get; set; }
+    public Nullable<int> DomesticInternationalBoth { get; set; }
+    public string FundingAvailable { get; set; }
+    public string HousingAvailable { get; set; }
+    public Nullable<int> InstitutionType { get; set; }
+    public Nullable<int> InstitutionSetting { get; set; }
+    public Nullable<int> InstitutionSize { get; set; }
+    public Nullable<int> AcceptanceRate { get; set; }
+    public string DisabilityServicesAvailable { get; set; }
+    public string SelfPaced { get; set; }
+    public Nullable<System.DateTime> StartDateIntakeDate { get; set; }
+    public Nullable<System.DateTime> ApplicationDeadline { get; set; }
+    public string CourseOutcome { get; set; }
+    public string InstructorDirectorImage1 { get; set; }
+    public string InstructorDirectorName1 { get; set; }
+    public string InstructorDirectorDescription1 { get; set; }
+    public string InstructorDirectorImage2 { get; set; }
+    public string InstructorDirectorName2 { get; set; }
+    public string InstructorDirectorDescription2 { get; set; }
+    public string InstructorDirectorImage3 { get; set; }
+    public string InstructorDirectorName3 { get; set; }
+    public string InstructorDirectorDescription3 { get; set; }
+    public string InstructorDirectorImage4 { get; set; }
+    public string InstructorDirectorName4 { get; set; }
+    public string InstructorDirectorDescription4 { get; set; }
+    public string InstructorDirectorImage5 { get; set; }
+    public string InstructorDirectorName5 { get; set; }
+    public string InstructorDirectorDescription5 { get; set; }
+    public string DeferralPolicy { get; set; }
+    public string OfferAcceptanceRejectionPolicy { get; set; }
+    public string CancellationPolicy { get; set; }
+    public string RefundPolicy { get; set; }
+    public string PromotionTag1 { get; set; }
+    public string PromotionTag2 { get; set; }
+    public string ActiveNotActiveStatus { get; set; }
+    public string CertificationEarned { get; set; }
+    public string BroadFieldofStudy { get; set; }
+    public string NarrowFieldofStudy { get; set; }
+    public string DetailedFieldofStudy { get; set; }
+    public string MajorDiscipline { get; set; }
+    public string LevelofStudy { get; set; }
+    public string Skills { get; set; }
+    public string Abilities { get; set; }
+    public string WorkActivities { get; set; }
+    public string MajorFieldofCareers { get; set; }
+    public string MinorFieldofCareers { get; set; }
+    public string BroadFieldofCareers { get; set; }
+    public string EligibleforGovtSubsidy { get; set; }
+    public string DescriptionofGovtSubsidy { get; set; }
+    public string EligibleforScholarship { get; set; }
+    public string ScholarshipAvailable { get; set; }
+    public string Requirements { get; set; }
+    public Nullable<int> LevelStudyCompleted { get; set; }
+    public Nullable<int> SelectBaseQualificationCountry { get; set; }
+    public Nullable<int> SelectQualificationLevel { get; set; }
+    public string SubjectQualification { get; set; }
+    public string SubjectAndGrade { get; set; }
+    public string MoreSubjectsAndGrades { get; set; }
+    public string EnglishLanguageCompetency { get; set; }
+    public string AcceptableEnglishQualifications { get; set; }
+    public string EnglishLanguageCompetencyLevel { get; set; }
+    public string GraduateAdmissionTest { get; set; }
+    public string SelectGraduateAdmissionsTestsMinGrades { get; set; }
+    public string IsInterview { get; set; }
+    public string DetailsOfInterview { get; set; }
+    public string RelatedPathwayCourses { get; set; }
+    public string Grade { get; set; }
+    public string TimeZone { get; set; }
+    public string Recurrence { get; set; }
+    public string ClassStartTime { get; set; }
+    public string ClassEndTime { get; set; }
+    public string Instruction { get; set; }
+    public string InstructionFile { get; set; }
+    public string Group { get; set; }
+    public string Subject { get; set; }
+    public Nullable<int> Currency { get; set; }
+}
+
+public partial class adminfeemode
+{
+    public int id { get; set; }
+    public string feemode { get; set; }
+}
+
+public partial class adminskillsmaster
+{
+    public int id { get; set; }
+    public string skillsmaster { get; set; }
+}
+
+public partial class adminstudymode
+{
+    public int id { get; set; }
+    public string studymode { get; set; }
 }
 
 public partial class admintooltips
@@ -103,6 +253,12 @@ public partial class adminusers
     public virtual rolemaster rolemaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
+}
+
+public partial class adminworkactivitiesmaster
+{
+    public int id { get; set; }
+    public string workactivities { get; set; }
 }
 
 public partial class admisionfactor_dropdown_master
@@ -1175,6 +1331,11 @@ public partial class australiavisadetailmaster
     public string declarationsignature3 { get; set; }
     public Nullable<System.DateTime> declarationdate3 { get; set; }
     public Nullable<System.DateTime> recordsaved_at { get; set; }
+    public string C30docatt1 { get; set; }
+    public string C30docatt2 { get; set; }
+    public string C30docatt3 { get; set; }
+    public string C36docatt { get; set; }
+    public string C36docatt1 { get; set; }
 
     public virtual students students { get; set; }
     public virtual university_master university_master { get; set; }
@@ -1855,6 +2016,24 @@ public partial class ec_class_applicationmaster
     public Nullable<System.DateTime> booking_datetime { get; set; }
 }
 
+public partial class ec_class_attendance_master
+{
+    public int recordID { get; set; }
+    public Nullable<int> Ischeck { get; set; }
+    public Nullable<int> Is_class_started { get; set; }
+    public Nullable<int> classID { get; set; }
+    public Nullable<int> class_dateID { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> Is_loggedin { get; set; }
+    public Nullable<System.DateTime> login_time { get; set; }
+    public Nullable<System.DateTime> login_time_utc { get; set; }
+    public Nullable<System.DateTime> logged_out_time { get; set; }
+    public Nullable<System.DateTime> logged_out_time_utc { get; set; }
+    public string verify_status { get; set; }
+    public Nullable<int> verified_by { get; set; }
+}
+
 public partial class ec_class_date_master
 {
     public int id { get; set; }
@@ -1869,6 +2048,7 @@ public partial class ec_class_date_schedule_master
     public int id { get; set; }
     public Nullable<int> universityid { get; set; }
     public Nullable<int> classID { get; set; }
+    public Nullable<int> instructorID { get; set; }
     public Nullable<System.DateTime> class_datetime_start { get; set; }
     public Nullable<System.DateTime> class_datetime_start_utc { get; set; }
     public Nullable<System.DateTime> class_datetime_end { get; set; }

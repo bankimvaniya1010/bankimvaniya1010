@@ -78,7 +78,7 @@
     </style>
     <div class="container" style="margin-left:10px;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item"><a href="ec_assignclass_mange.aspx">My Assignments</a></li>
             <%--<li class="breadcrumb-item">create</li>--%>
         </ol>
@@ -181,9 +181,9 @@
                         </div>
                         <div class="border-top border-red"></div>
                        <div class="row" style="padding: 0%;">
-                           <button class="btn btn-success" type="button" style="width: 38%;font-size: 83%; height:50% " onclick=" window.open('<%=assignmentList[i].userdownloadfile%>','_blank')">View File</button>
+                           <button class="btn btn-success" type="button" style="width: 38%;font-size: 11px;height:23%;" onclick=" window.open('<%=assignmentList[i].userdownloadfile%>','_blank')">View File</button>
                         
-                           <button class="btn btn-success" type="button" style="<%=assignmentList[i].Is_toshow_checkingguid_link == 0 ? "display: none;": "display:block;font-size: 11px;height:23%;"  %>" onclick=" window.open('<%=assignmentList[i].checkingguid_link%>','_blank')">View Checking Guide</button>
+                           <button class="btn btn-success" type="button" style="<%=assignmentList[i].Is_toshow_checkingguid_link == 0 ? "display: none;": "display:block;font-size: 11px;height:23%"  %>" onclick=" window.open('<%=assignmentList[i].checkingguid_link%>','_blank')">View Checking Guide</button>
                            
                           <button class="btn btn-success" type="button" style="<%=assignmentList[i].assignment_Link == null ? "display: none;": "display:block;font-size: 11px;height:23%;"  %>" onclick=" window.open('<%=assignmentList[i].assignment_Link%>','_blank')">Go to Assignment</button>
                         </div>

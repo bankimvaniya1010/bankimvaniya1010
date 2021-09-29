@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class admin : System.Web.UI.MasterPage
@@ -83,7 +78,7 @@ public partial class admin : System.Web.UI.MasterPage
         verticalnavigationcolor = (string)Session["universityverticalnavigationcolor"];
         fontColor = (string)Session["universityfontColor"];
         headercolor = (string)Session["universityheadercolor"];
-        int isfullservice = (int)Session["isfullservice"];
+        int isfullservice = 5;// (int)Session["isfullservice"];
         
         if (isfullservice == 0)
             isfullservicethenlbl.Text = "GTE DIRECT CENTRE";

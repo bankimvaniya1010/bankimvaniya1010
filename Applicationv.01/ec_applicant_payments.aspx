@@ -3,7 +3,7 @@
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">YOUR PAYMENTS</li>
         </ol>
         <h1 class="h2">MAKE PAYMENT(S), UPLOAD PROOF OF PAYMENT(S) & VIEW PREVIOUS PAYMENT(S)</h1>
@@ -174,7 +174,7 @@
                     return false;
                 }
                 var ext = uploadedfile.val().split('.').pop();
-                if (!(ext.toLowerCase() == "pdf")) {
+                if (ext.toLowerCase() != "jpg" && ext.toLowerCase() != "png" && ext.toLowerCase() != "jpeg" && ext.toLowerCase() != "pdf" && ext.toLowerCase() != "docx") {
                     alert("Please upload payment proof in pdf format for payment no: " + (id + 1));
                     return false;
                 }

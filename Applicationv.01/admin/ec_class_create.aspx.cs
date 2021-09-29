@@ -243,10 +243,10 @@ public partial class admin_ec_class_create : System.Web.UI.Page
                 Hid_txtclassstarttime.Value = objec_class_master.class_starttime_utc;
                 txtclassendtime.Value = objec_class_master.class_endtime;
                 Hid_txtclassendtime.Value = objec_class_master.class_endtime_utc;
-                if (objec_class_master.Is_singelInstructor == 1)
-                    chkyes.Checked = true;
-                else if (objec_class_master.Is_singelInstructor == 2)
-                    chkNo.Checked = true;
+                //if (objec_class_master.Is_singelInstructor == 1)
+                //    chkyes.Checked = true;
+                //else if (objec_class_master.Is_singelInstructor == 2)
+                //    chkNo.Checked = true;
 
                 txtAvailability.Value = objec_class_master.availability.ToString();
                 txtrequirements.Text = objec_class_master.requirement;
@@ -623,10 +623,24 @@ public partial class admin_ec_class_create : System.Web.UI.Page
             //objec_class_master.startdate = Convert.ToDateTime(selectedexamdate_time.Value);
             //objec_class_master.startdate_utc = Convert.ToDateTime(hidexamutcdatetime.Value);
 
-            objec_class_master.startdate = Convert.ToDateTime(txtstartdate.Value);
-            objec_class_master.startdate_utc = Convert.ToDateTime(txtstartdate.Value);
-            objec_class_master.bookingdeadline = Convert.ToDateTime(selectedexamdate_time1.Value);
-            objec_class_master.bookingdeadline_utc = Convert.ToDateTime(hidexamutcdatetime1.Value);
+            if (txtstartdate.Value != "")
+            {
+                var vdateArr = txtstartdate.Value.Split(Convert.ToChar("-"));
+                objec_class_master.startdate = Convert.ToDateTime(txtstartdate.Value);
+            }
+            if (txtstartdate.Value != "")
+            {
+                objec_class_master.startdate_utc = Convert.ToDateTime(txtstartdate.Value);
+            }
+
+            //if (txtstartdate.Value != "")
+            //    objec_class_master.startdate = Convert.ToDateTime(txtstartdate.Value);
+            //if (txtstartdate.Value != "")
+            //    objec_class_master.startdate_utc = Convert.ToDateTime(txtstartdate.Value);
+            if (selectedexamdate_time1.Value != "")
+                objec_class_master.bookingdeadline = Convert.ToDateTime(selectedexamdate_time1.Value);
+            if (hidexamutcdatetime1.Value != "")
+                objec_class_master.bookingdeadline_utc = Convert.ToDateTime(hidexamutcdatetime1.Value);
 
             if (ddlrecurrence.SelectedValue != "0")
                 objec_class_master.recurrenceid = Convert.ToInt32(ddlrecurrence.SelectedValue);
@@ -634,12 +648,11 @@ public partial class admin_ec_class_create : System.Web.UI.Page
             if (ddlrecurrence.SelectedValue == "1")
             {
                 objec_class_master.repeatsevery_day = txtrepeatsevery_day.Value;
-
-                var ddateArr = txtenddate_daily.Value.Split(Convert.ToChar("-"));
-                var visadecisionreceived_date = Convert.ToDateTime(string.Concat(ddateArr[2], "-", ddateArr[1], "-", ddateArr[0]));
-                objec_class_master.enddate_daily = visadecisionreceived_date;
-
-                //objec_class_master.enddate_daily = Convert.ToDateTime(txtenddate_daily.Value);
+                if (txtenddate_daily.Value != "")
+                {
+                    objec_class_master.enddate_daily = Convert.ToDateTime(txtenddate_daily.Value);
+                }
+                
             }
             else if (ddlrecurrence.SelectedValue == "2")
             {
@@ -649,12 +662,11 @@ public partial class admin_ec_class_create : System.Web.UI.Page
                     if (lstDayofWeek.Items[i].Selected == true)
                         objec_class_master.daysof_week += Convert.ToInt32(lstDayofWeek.Items[i].Value) + ",";
                 }
+                if (txtenddate_weekly.Value != "")
+                {
+                    objec_class_master.enddate_weekly = Convert.ToDateTime(txtenddate_weekly.Value);
+                }
 
-                var ddateArr = txtenddate_weekly.Value.Split(Convert.ToChar("-"));
-                var visadecisionreceived_date = Convert.ToDateTime(string.Concat(ddateArr[2], "-", ddateArr[1], "-", ddateArr[0]));
-                objec_class_master.enddate_weekly = visadecisionreceived_date;
-
-                //objec_class_master.enddate_weekly = Convert.ToDateTime(txtenddate_weekly.Value);
             }
             else if (ddlrecurrence.SelectedValue == "3")
             {
@@ -672,21 +684,31 @@ public partial class admin_ec_class_create : System.Web.UI.Page
                     if (ddlday2.SelectedValue != "0")
                         objec_class_master.ddlday1 = Convert.ToInt32(ddlday2.SelectedValue);
                 }
-                var ddateArr = txtenddate_monthly.Value.Split(Convert.ToChar("-"));
-                var visadecisionreceived_date = Convert.ToDateTime(string.Concat(ddateArr[2], "-", ddateArr[1], "-", ddateArr[0]));
-                objec_class_master.enddate_monthly = visadecisionreceived_date;
-                //objec_class_master.enddate_monthly = Convert.ToDateTime(txtenddate_monthly.Value);
+                if (txtenddate_monthly.Value != "")
+                {
+                    objec_class_master.enddate_monthly = Convert.ToDateTime(txtenddate_monthly.Value);
+                }
             }
             objec_class_master.class_starttime = txtclassstarttime.Value;
-            objec_class_master.class_starttime_utc = Hid_txtclassstarttime.Value;
+            if (Hid_txtclassstarttime.Value != "Invalid date")
+            {
+                string[] s1 = Hid_txtclassstarttime.Value.Split('T');
+                objec_class_master.class_starttime_utc = s1[1];
+            }
+
             objec_class_master.class_endtime = txtclassendtime.Value;
-            objec_class_master.class_endtime_utc = Hid_txtclassendtime.Value;
+
+            if (Hid_txtclassendtime.Value != "Invalid date")
+            {
+                string[] s2 = Hid_txtclassendtime.Value.Split('T');
+                objec_class_master.class_endtime_utc = s2[1];
+            }
             objec_class_master.availability = Convert.ToInt32(txtAvailability.Value);
 
-            if (chkyes.Checked == true)
-                objec_class_master.Is_singelInstructor = 1;
-            else if (chkNo.Checked == true)
-                objec_class_master.Is_singelInstructor = 2;
+            //if (chkyes.Checked == true)
+            //    objec_class_master.Is_singelInstructor = 1;
+            //else if (chkNo.Checked == true)
+            //    objec_class_master.Is_singelInstructor = 2;
 
             objec_class_master.requirement = txtrequirements.Text;
             objec_class_master.instruction = txtinstructions.Text;
@@ -712,8 +734,13 @@ public partial class admin_ec_class_create : System.Web.UI.Page
 
             if (ddlbooklatestatus.SelectedValue != "0")
                 objec_class_master.booklatestatus = Convert.ToInt32(ddlbooklatestatus.SelectedValue);
-
-            string durationlbl = DateDiff(Convert.ToDateTime(txtstartdate.Value), Convert.ToDateTime(txtenddate_daily.Value));
+            DateTime end_date;
+            if (ddlrecurrence.SelectedValue == "1")
+                end_date = Convert.ToDateTime(txtenddate_daily.Value);
+            else
+                end_date = Convert.ToDateTime(txtenddate_weekly.Value);
+            
+            string durationlbl = DateDiff(Convert.ToDateTime(txtstartdate.Value), end_date);
             string[] str = durationlbl.Split(',');   //years + " ," + months + ","+ days + ",";
             objec_class_master.duration_year = Convert.ToInt32(str[0]);
             objec_class_master.duration_month = Convert.ToInt32(str[1]);
@@ -725,19 +752,37 @@ public partial class admin_ec_class_create : System.Web.UI.Page
             db.SaveChanges();
 
             int classid = Convert.ToInt32(lblcode.Text);
-            List<string> dayslist = null;
-            string[] str1 = Hid_txtclassstarttime.Value.Split('T');
-            string[] str2 = Hid_txtclassendtime.Value.Split('T');
+            
+            DateTime date_start = Convert.ToDateTime(txtstartdate.Value);
+            
 
-            if (ddlrecurrence.SelectedValue == "1")
-                calculate_scheduledates(classid,Convert.ToDateTime(txtstartdate.Value), Convert.ToDateTime(txtenddate_daily.Value), 1, Convert.ToInt32(txtrepeatsevery_day.Value), dayslist, txtclassstarttime.Value, txtclassendtime.Value, str1[1], str2[1], hidTimeZone.Value);
-            else if (ddlrecurrence.SelectedValue == "2")
-                calculate_scheduledates(classid, Convert.ToDateTime(txtstartdate.Value), Convert.ToDateTime(txtenddate_daily.Value), 2, Convert.ToInt32(txtrepeatsevery_day.Value), dayslist, txtclassstarttime.Value, txtclassendtime.Value, str1[1], str2[1], hidTimeZone.Value);
+            if (editpage == "0")
+            {
+                if (ddlrecurrence.SelectedValue == "1")
+                {
+                    DateTime date_end_daily = Convert.ToDateTime(txtenddate_daily.Value);
 
+                    calculate_scheduledates_daily(classid, date_start, date_end_daily, Convert.ToInt32(ddlrecurrence.SelectedValue), Convert.ToInt32(txtrepeatsevery_day.Value), TimeSpan.Parse(txtclassstarttime.Value), TimeSpan.Parse(txtclassendtime.Value), TimeSpan.Parse(objec_class_master.class_starttime_utc), TimeSpan.Parse(objec_class_master.class_endtime_utc), hidTimeZone.Value);
+                }
+                else if (ddlrecurrence.SelectedValue == "2")
+                {
+                    DateTime date_end_weekly = Convert.ToDateTime(txtenddate_weekly.Value); ;
+                    List<string> dayslist = new List<string>();
 
+                    for (int i = 0; i < lstDayofWeek.Items.Count; i++)
+                    {
+                        if (lstDayofWeek.Items[i].Selected == true)
+                        {
+                            var day = lstDayofWeek.Items[i].Text;
+                            dayslist.Add(day);
+                        }
+                    }
+                    calculate_scheduledates_weekly(classid, date_start, date_end_weekly, Convert.ToInt32(ddlrecurrence.SelectedValue), Convert.ToInt32(txtrepeateevery_week.Value), dayslist, TimeSpan.Parse(txtclassstarttime.Value), TimeSpan.Parse(txtclassendtime.Value), TimeSpan.Parse(objec_class_master.class_starttime_utc), TimeSpan.Parse(objec_class_master.class_endtime_utc), hidTimeZone.Value);
+                }
+            }
             if (mode == "new")
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                 "alert('Record Inserted Successfully');window.location='" + Request.ApplicationPath + "admin/ec_manageclass.aspx';", true);
+                 "alert('Record Inserted Successfully.Now assign instructor');window.location='" + Request.ApplicationPath + "admin/ec_class_create_assign_instructor.aspx?id="+classid+"';", true);
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                  "alert('Record updated Successfully');window.location='" + Request.ApplicationPath + "admin/ec_manageclass.aspx';", true);
@@ -745,59 +790,168 @@ public partial class admin_ec_class_create : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            objLog.WriteLog(ex.ToString());
+            objLog.WriteLog("main:"+ex.ToString());
         }
     }
-
-    private void calculate_scheduledates(int classid, DateTime startdate, DateTime enddate, int recurrence, int repeatsevery, List<string> lst_days, string class_starttime, string class_endtime, string class_starttime_utc, string class_endtime_utc,string timezone)
+    // Always uses Monday-to-Sunday weeks
+    public static DateTime GetStartOfWeek(DateTime input)
+    {
+        // Using +6 here leaves Monday as 0, Tuesday as 1 etc.
+        int dayOfWeek = (((int)input.DayOfWeek) + 6) % 7;
+        return input.Date.AddDays(-dayOfWeek);
+    }
+    //public static int GetWeeks(DateTime start, DateTime end)
+    //{
+    //    start = GetStartOfWeek(start);
+    //    end = GetStartOfWeek(end);
+    //    int days = (int)(end - start).TotalDays;
+    //    return (days / 7) + 1; // Adding 1 to be inclusive
+    //}
+    
+    private void calculate_scheduledates_daily(int classid, DateTime startdate, DateTime enddate, int recurrence, int repeatsevery, TimeSpan class_starttime, TimeSpan class_endtime, TimeSpan class_starttime_utc, TimeSpan class_endtime_utc, string timezone)
     {
         try
-        {
+        {  
             var list = db.ec_class_date_schedule_master.Where(x => x.universityid == universityID && x.classID == classid).ToList();
             db.ec_class_date_schedule_master.RemoveRange(list);
             db.SaveChanges();
-
-            var selected_start_Dates = new List<DateTime>();
-            var selected_end_Dates = new List<DateTime>();
-            for (var date = startdate; date <= enddate; date = date.AddDays(repeatsevery+1))
+            
+            for (var date = startdate; date <= enddate; date = date.AddDays(repeatsevery + 1))
             {
                 ec_class_date_schedule_master objmapping = new ec_class_date_schedule_master();
 
-                var day = date.Day;
-                var xy = Convert.ToDateTime(date).ToString("dd-MM-yyyy") + " " + class_starttime;
-                DateTime d1 = Convert.ToDateTime(xy);
-
-                var xy_utc = Convert.ToDateTime(date).ToString("dd-MM-yyyy") + " " + class_starttime_utc;
-                DateTime d1_utc = Convert.ToDateTime(xy_utc);
-
-
+                DateTime date_test = date;
+                TimeSpan time_d1= class_starttime;
+                DateTime result_d1 = date_test + time_d1;
+                TimeSpan time_d2 = class_starttime_utc;
+                DateTime result_d2 = date_test + time_d2;
                 //end
-                var ab = Convert.ToDateTime(date).ToString("dd-MM-yyyy") + " " + class_endtime;
-                DateTime d2 = Convert.ToDateTime(ab);
-
-                var ab_utc = Convert.ToDateTime(date).ToString("dd-MM-yyyy") + " " + class_endtime_utc;
-                DateTime d2_utc = Convert.ToDateTime(ab_utc);
-
-
-                selected_start_Dates.Add(d1);
-                selected_end_Dates.Add(d2);
-
+                TimeSpan time_d3 = class_endtime;
+                DateTime result_d3 = date_test + time_d3;
+                TimeSpan time_d4 = class_endtime_utc;
+                DateTime result_d4 = date_test + time_d4;
+                
                 objmapping.classID = classid;
                 objmapping.universityid = universityID;
-                objmapping.class_datetime_start = d1;
-                objmapping.class_datetime_end = d2;
-
-                objmapping.class_datetime_start_utc = d1_utc;
-                objmapping.class_datetime_end_utc = d2_utc;
+                objmapping.class_datetime_start = result_d1;
+                objmapping.class_datetime_end = result_d3;
+                objmapping.class_datetime_start_utc = result_d2;
+                objmapping.class_datetime_end_utc = result_d4;
                 db.ec_class_date_schedule_master.Add(objmapping);
                 db.SaveChanges();
             }
         }
         catch (Exception ex)
         {
-            objLog.WriteLog(ex.ToString());
+            objLog.WriteLog("Daily:" + ex.ToString());
         }
     }
+    private void calculate_scheduledates_weekly(int classid, DateTime startdate, DateTime enddate, int recurrence, int repeatsevery, List<string> lst_days, TimeSpan class_starttime, TimeSpan class_endtime, TimeSpan class_starttime_utc, TimeSpan class_endtime_utc,string timezone)
+    {
+        try
+        {
+            var list_ = db.ec_class_date_schedule_master.Where(x => x.universityid == universityID && x.classID == classid).ToList();
+            db.ec_class_date_schedule_master.RemoveRange(list_);
+            db.SaveChanges();
+
+            List<string> list = new List<string>();
+            List<DateTime> final_datelist = new List<DateTime>();
+            List<DateTime> final_datelist_2 = new List<DateTime>();
+
+            DateTime start = GetStartOfWeek(startdate);
+
+            foreach (var item in lst_days)
+            {
+                for (var date = start; date <= enddate; date = date.AddDays(1))
+                {
+                    if (date.DayOfWeek.ToString() == item)
+                    {
+                        string str = date + "," + date.DayOfWeek;
+                        list.Add(str);
+                    }
+                }
+            }
+            if (lst_days.Count > 0)
+            {
+                foreach (var item in lst_days)
+                {
+                    List<string> ab = list.Where(x => x.Contains(item)).ToList();
+                    List<DateTime> temp_datelist = new List<DateTime>();
+
+                    foreach (var ls in ab)
+                    {
+
+                        string[] split = ls.Split(',');
+
+                        if (split[1] == item)
+                        {
+                            string[] data = ls.Split(',');
+                            DateTime xy = Convert.ToDateTime(data[0]);
+                            temp_datelist.Add(xy);
+                        }
+                    }
+                    DateTime start_d1 = temp_datelist.First();
+                    DateTime end_d1 = temp_datelist.Last();
+
+                    for (var i = 0; i <= ab.Count; i = i + repeatsevery + 1)
+                    {
+                        if (i <= ab.Count - 1)
+                        {
+                            if (ab[i] != "" && ab[i] != null)
+                            {
+                                DateTime d = Convert.ToDateTime(ab[i]);
+                                if (startdate <= d && d <= enddate)
+                                    final_datelist.Add(d);
+                            }
+                        }
+                    }
+                }
+
+                var order_datelist = final_datelist.OrderByDescending(x => x).ToList();
+                foreach (var date in order_datelist)
+                {
+                    ec_class_date_schedule_master objmapping = new ec_class_date_schedule_master();
+                    var xy = Convert.ToDateTime(date).ToString("dd-MM-yyyy") + " " + class_starttime;
+                    //DateTime d1 = Convert.ToDateTime(xy);
+
+                    //var xy_utc = Convert.ToDateTime(date).ToString("dd-MM-yyyy") + " " + class_starttime_utc;
+                    //DateTime d1_utc = Convert.ToDateTime(xy_utc);
+
+                    ////end
+                    //var ab = Convert.ToDateTime(date).ToString("dd-MM-yyyy") + " " + class_endtime;
+                    //DateTime d2 = Convert.ToDateTime(ab);
+
+                    //var ab_utc = Convert.ToDateTime(date).ToString("dd-MM-yyyy") + " " + class_endtime_utc;
+                    //DateTime d2_utc = Convert.ToDateTime(ab_utc);
+
+                    DateTime date_test = date;
+                    TimeSpan time_d1 = class_starttime;
+                    DateTime result_d1 = date_test + time_d1;
+                    TimeSpan time_d2 = class_starttime_utc;
+                    DateTime result_d2 = date_test + time_d2;
+                    //end
+                    TimeSpan time_d3 = class_endtime;
+                    DateTime result_d3 = date_test + time_d3;
+                    TimeSpan time_d4 = class_endtime_utc;
+                    DateTime result_d4 = date_test + time_d4;
+
+                    objmapping.classID = classid;
+                    objmapping.universityid = universityID;
+                    objmapping.class_datetime_start = result_d1;
+                    objmapping.class_datetime_end = result_d3;
+                    objmapping.class_datetime_start_utc = result_d2;
+                    objmapping.class_datetime_end_utc = result_d4;
+                    db.ec_class_date_schedule_master.Add(objmapping);
+                    db.SaveChanges();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog("Weekly:" + ex.ToString());
+        }
+    }
+
     public static int GetMonthDifference(DateTime startDate, DateTime endDate)
     {
         int monthsApart = 12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month;

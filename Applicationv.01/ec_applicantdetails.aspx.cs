@@ -805,7 +805,7 @@ public partial class ec_applicantdetails : System.Web.UI.Page
                     rblDisabilityYes.Checked = true;
                 else if (applicantInfo.isdisable == 2)
                     rblDisabilityNo.Checked = true;
-                if (applicantInfo.disabilitydescription != null)
+                if (applicantInfo.disabilitydescription != null && applicantInfo.disabilitydescription != "0")
                 {
                     ddlDisability.ClearSelection();
                     ddlDisability.Items.FindByValue(applicantInfo.disabilitydescription.ToString()).Selected = true;

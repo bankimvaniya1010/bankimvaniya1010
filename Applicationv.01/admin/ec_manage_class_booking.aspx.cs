@@ -89,7 +89,9 @@ public partial class admin_ec_manage_class_booking : System.Web.UI.Page
         {
             applicant = (from cm in db.ec_class_applicationmaster
 
-                         join s in db.applicantdetails on cm.applicantid equals s.applicantid
+                         join x in db.applicantdetails on cm.applicantid equals x.applicantid into appData
+                         from s in appData.DefaultIfEmpty()
+
                          join u in db.university_master on cm.universityid equals u.universityid
                          join sm in db.ec_status_master on cm.status equals sm.id
 
@@ -100,7 +102,7 @@ public partial class admin_ec_manage_class_booking : System.Web.UI.Page
                          join modem in db.ec_mode_master on clsmst.modeid equals modem.mode_id
                          join typem in db.ec_type_master on clsmst.type equals typem.type_id
 
-                         where u.universityid == universityID && s.universityid == universityID && s.isdeletedbyAdmin == false && u.IsDeleted != 1
+                         where cm.universityid == universityID && u.universityid == universityID && s.universityid == universityID && s.isdeletedbyAdmin == false && u.IsDeleted != 1
                          select new Details()
                          {
                              id = cm.id,
@@ -581,29 +583,7 @@ public partial class admin_ec_manage_class_booking : System.Web.UI.Page
 
     protected void UserGridView_RowCreated(object sender, GridViewRowEventArgs e)
     {
-        if (objCom.GetUniversityservice(universityID) == 1 || objCom.GetUniversityservice(universityID) == 0)
-        {
-            ((DataControlField)UserGridView.Columns
-                .Cast<DataControlField>()
-                .Where(fld => fld.HeaderText == "Class")
-                .SingleOrDefault()).Visible = false;
-            ((DataControlField)UserGridView.Columns
-                .Cast<DataControlField>()
-                .Where(fld => fld.HeaderText == "Group")
-                .SingleOrDefault()).Visible = false;
-            //((DataControlField)UserGridView.Columns
-            //    .Cast<DataControlField>()
-            //    .Where(fld => fld.HeaderText == "Subjects")
-            //    .SingleOrDefault()).Visible = false;
-            ((DataControlField)UserGridView.Columns
-                .Cast<DataControlField>()
-                .Where(fld => fld.HeaderText == "StudentID")
-                .SingleOrDefault()).Visible = false;
-            ((DataControlField)UserGridView.Columns
-               .Cast<DataControlField>()
-               .Where(fld => fld.HeaderText == "Edit")
-               .SingleOrDefault()).Visible = false;
-        }
+        
     }
 
     protected void ddlapplicant_SelectedIndexChanged(object sender, EventArgs e)

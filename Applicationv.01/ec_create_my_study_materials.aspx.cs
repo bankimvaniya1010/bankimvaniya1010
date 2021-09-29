@@ -193,17 +193,24 @@ public partial class ec_create_my_study_materials : System.Web.UI.Page
                                        startdateutc = date.asmd_start_utc_date,
                                        stopdateutc = date.asm_stop_utc_date,
                                        toshow_material = "1",
-                                   }).OrderByDescending(x => x.material_id).ToList();
+                                   }).Distinct().OrderByDescending(x => x.material_id).ToList();
 
             foreach (var item in study_material_list)
             {
 
                 DateTime? currentutc = DateTime.UtcNow;
                 if (item.startdateutc <= currentutc && currentutc <= item.stopdateutc)
-                    temp.Add(item);
+                {
+                    var res = temp.Find(x => x.material_id == item.material_id);
+                    if(res == null)
+                        temp.Add(item);
+                }
                 //item.toshow_material = "1";
+                
             }
+
             study_material_list = temp;
+
             if (study_material_list.Any())
             {
                 if (study_material_list != null)

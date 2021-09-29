@@ -5,7 +5,7 @@
 
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">Work Experience/Employment Details
 
             </li>
@@ -272,6 +272,7 @@
                                 <div class="list-group-item" id="btnviv" runat="server" >
                                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                         <div class="form-row justify-content-between">
+                                            <asp:HiddenField ID="hdfDateFoBrith" runat="server" />
                                             <asp:Button ID="btn_Save" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btn_Save_Click" OnClientClick="return validateForm()" />
                                             <asp:Button ID="gotoNextPage" runat="server" Text="Go to Social Profile" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                             </div>
@@ -370,6 +371,67 @@
         }
 
         $(document).ready(function () {
+
+            $("#<%=txtStartDate.ClientID%>").change(function () {
+                debugger;
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                 const txtYearCompletion = new Date($("#<%=txtStartDate.ClientID%>").val());
+                 if (txtYearCompletion.getFullYear() <= d.getFullYear()) {
+                     alert("Please select START DATE OF EMPLOYMENT greater than DATE OF BIRTHDAY YEAR.");
+                     $("#<%=txtStartDate.ClientID%>").val('');
+                    $("#<%=txtEndate.ClientID%>").val('');
+                 }
+             });
+            $("#<%=txtEndate.ClientID%>").change(function () {
+                debugger;
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                const txtYearCompletion = new Date($("#<%=txtEndate.ClientID%>").val());
+                if (txtYearCompletion.getFullYear() <= d.getFullYear()) {
+                    alert("Please select END DATE OF EMPLOYMENT greater than DATE OF BIRTHDAY YEAR.");
+                    $("#<%=txtEndate.ClientID%>").val('');
+                }
+                debugger;
+                var txtStartDate = new Date($("#<%=txtStartDate.ClientID%>").val());
+
+                var diff = (txtStartDate.getTime() - txtYearCompletion.getTime()) / 1000;
+                diff /= (60 * 60 * 24);
+                var diffReje = Math.abs(Math.round(diff / 365.25));
+                var ddlexp = $('#<%=ddlworkexperience.ClientID%> :selected').val();
+                console.log(diffReje);
+                if (ddlexp == 2) {
+                    if (diffReje >= 1) {
+                        alert("Please select END DATE OF EMPLOYMENT and START DATE OF EMPLOYMENT in less than year.");
+                        $("#<%=txtEndate.ClientID%>").val('');
+                        $("#<%=txtEndate.ClientID%>").focus();
+                        return false;
+                    }
+
+                }
+                else if (ddlexp == 3) {
+                    if (!(diffReje >= 1 && diffReje <= 3)) {
+                        alert("Please select END DATE OF EMPLOYMENT and START DATE OF EMPLOYMENT in Between 1 and 3 years.");
+                        $("#<%=txtEndate.ClientID%>").val('');
+                        $("#<%=txtEndate.ClientID%>").focus();
+                        return false;
+                    }
+                }
+                else if (ddlexp == 4) {
+                    if (!(diffReje >= 3 && diffReje <= 7)) {
+                        alert("Please select END DATE OF EMPLOYMENT and START DATE OF EMPLOYMENT in Between 3 and 7 years.");
+                        $("#<%=txtEndate.ClientID%>").val('');
+                            $("#<%=txtEndate.ClientID%>").focus();
+                        return false;
+                    }
+                }
+                else if (ddlexp == 5)
+                    if (!(diffReje >= 7)) {
+                        alert("Please select END DATE OF EMPLOYMENT and START DATE OF EMPLOYMENT More than 7 years.");
+                        $("#<%=txtEndate.ClientID%>").val('');
+                        $("#<%=txtEndate.ClientID%>").focus();
+                        return false;
+                    }
+
+            });
 
               $('.fa-info-circle').tipso({
 				position: 'right',
