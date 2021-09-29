@@ -78,7 +78,7 @@ public partial class admin : System.Web.UI.MasterPage
         verticalnavigationcolor = (string)Session["universityverticalnavigationcolor"];
         fontColor = (string)Session["universityfontColor"];
         headercolor = (string)Session["universityheadercolor"];
-        int isfullservice = 5;// (int)Session["isfullservice"];
+        int isfullservice = (int)Session["isfullservice"];
         
         if (isfullservice == 0)
             isfullservicethenlbl.Text = "GTE DIRECT CENTRE";
