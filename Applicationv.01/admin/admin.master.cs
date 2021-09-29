@@ -24,7 +24,7 @@ public partial class admin_admin : System.Web.UI.MasterPage
         roleID= Convert.ToInt32(Session["Role"].ToString());
         string name = db.adminusers.Where(x => x.adminid == adminID).Select(x => x.name).FirstOrDefault();       
         lbladminname.Text = name;
-        fullservice = "5";// Convert.ToString(Session["isfullservice"]);
+        fullservice = Convert.ToString(Session["isfullservice"]);
         roleName = Utility.GetRoleName();
         
         int universityID = Utility.GetUniversityId();
