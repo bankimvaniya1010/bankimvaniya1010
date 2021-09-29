@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">BEFORE YOU START</li>
         </ol>
         <h1 class="h2">Before You Start </h1>

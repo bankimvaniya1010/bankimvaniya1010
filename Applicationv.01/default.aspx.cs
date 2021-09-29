@@ -43,7 +43,7 @@ public partial class _Default : System.Web.UI.Page
         isVerifiedByAdmin = data.isverifiedbyAdmin;
         Session["isVerifiedByAdmin"] = isVerifiedByAdmin;
 
-        isfullservice = (int)Session["isfullservice"];
+        isfullservice = 5;// (int)Session["isfullservice"];
         if (isfullservice == 1)
             isfullservicethenlbl.Text = "TO THE APPLICATION CENTER";
         else if (isfullservice == 0)

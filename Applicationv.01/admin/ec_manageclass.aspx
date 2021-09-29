@@ -14,7 +14,7 @@
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">Manage Class</li>
         </ol>
         <h1 class="h2">CREATE & SCHEDULE A CLASS</h1>
@@ -106,6 +106,7 @@
                                     <a runat="server" href='<%# Bind("link_assignInstructor") %>' target="_blank" id="link2">Assign</a>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                             
                             <asp:TemplateField HeaderText="Duplicate">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkDuplicate" runat="server" CommandArgument='<%#Eval("classid")%>' CommandName="Duplicate" Text="Duplicate"></asp:LinkButton>

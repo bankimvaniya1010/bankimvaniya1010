@@ -28,6 +28,8 @@ public partial class australiavisapartB : System.Web.UI.Page
             allQuestions = objCom.FaqQuestionList();
 
             populatepartBInfo();
+            var date = (from s in db.applicantdetails where s.applicantid == objUser.studentid select new { s.dateofbirth }).FirstOrDefault();
+            hdfDateFoBrith.Value = date.dateofbirth.ToString();
         }
     }
     protected void btnvisadetails_Click(object sender, EventArgs e)

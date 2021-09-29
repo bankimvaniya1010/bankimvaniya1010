@@ -92,7 +92,7 @@ public class Common
             SmtpClient SmtpServer = new SmtpClient(ConfigurationManager.AppSettings["Smtp"]);
 
             string address = string.Empty;
-            int uniid =Utility.GetUniversityId();
+            int uniid = Utility.GetUniversityId();
             int service = GetUniversityservice(uniid);
             string displayName = string.Empty;
             if (service == 0)
@@ -144,8 +144,8 @@ public class Common
         try
         {
             var GetTitle = db.titlemaster.Where(x => x.titleid == id).FirstOrDefault();
-        if (GetTitle != null)
-            title = GetTitle.titlename;
+            if (GetTitle != null)
+                title = GetTitle.titlename;
         }
         catch (Exception ex)
         {
@@ -154,13 +154,13 @@ public class Common
         return title;
     }
     public bool? is_review(int applicantid, int universityid)
-    {       
-        var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityid).Select(x=>x.is_review).FirstOrDefault();
+    {
+        var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityid).Select(x => x.is_review).FirstOrDefault();
         return data;
     }
     public int getclassid(string classname)
     {
-        int classid= 0;
+        int classid = 0;
         try
         {
             var Getclassid = db.class_master.Where(x => x.description.Trim().ToLower() == classname.ToLower()).FirstOrDefault();
@@ -240,8 +240,8 @@ public class Common
         try
         {
             var GetTitle = db.adminusers.Where(x => x.adminid == id).FirstOrDefault();
-        if (GetTitle != null)
-            agentName = GetTitle.name;
+            if (GetTitle != null)
+                agentName = GetTitle.name;
         }
         catch (Exception ex)
         {
@@ -255,8 +255,8 @@ public class Common
         try
         {
             var GetProof = db.alternateidproofmaster.Where(x => x.id == id).FirstOrDefault();
-        if (GetProof != null)
-            proofname = GetProof.description;
+            if (GetProof != null)
+                proofname = GetProof.description;
         }
         catch (Exception ex)
         {
@@ -282,7 +282,7 @@ public class Common
     public string GetApplicantFirstName(int applicantid)
     {
         string firstname = "";
-        int  universityID =Utility.GetUniversityId();
+        int universityID = Utility.GetUniversityId();
         try
         {
             var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
@@ -298,7 +298,7 @@ public class Common
     public string GetApplicantLastName(int applicantid)
     {
         string lastname = "";
-        int universityID =Utility.GetUniversityId();
+        int universityID = Utility.GetUniversityId();
         try
         {
             var data = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityID).FirstOrDefault();
@@ -317,8 +317,8 @@ public class Common
         try
         {
             var GetProof = db.alternatedobproof.Where(x => x.id == id).FirstOrDefault();
-        if (GetProof != null)
-            proofname = GetProof.description;
+            if (GetProof != null)
+                proofname = GetProof.description;
         }
         catch (Exception ex)
         {
@@ -332,8 +332,8 @@ public class Common
         try
         {
             var StudyMode = db.studymodemaster.Where(x => x.id == id).FirstOrDefault();
-        if (StudyMode != null)
-            studyMode = StudyMode.description;
+            if (StudyMode != null)
+                studyMode = StudyMode.description;
         }
         catch (Exception ex)
         {
@@ -347,8 +347,8 @@ public class Common
         try
         {
             var Medium = db.educationmediummaster.Where(x => x.id == id).FirstOrDefault();
-        if (Medium != null)
-            studyMedium = Medium.description;
+            if (Medium != null)
+                studyMedium = Medium.description;
         }
         catch (Exception ex)
         {
@@ -362,8 +362,8 @@ public class Common
         try
         {
             var Grade = db.grademaster.Where(x => x.id == id).FirstOrDefault();
-        if (Grade != null)
-            studygrade = Grade.description;
+            if (Grade != null)
+                studygrade = Grade.description;
         }
         catch (Exception ex)
         {
@@ -445,8 +445,8 @@ public class Common
         try
         {
             var GetDisability = db.disabilitymaster.Where(x => x.id == id).FirstOrDefault();
-        if (GetDisability != null)
-            Disability = GetDisability.description;
+            if (GetDisability != null)
+                Disability = GetDisability.description;
         }
         catch (Exception ex)
         {
@@ -477,8 +477,8 @@ public class Common
         try
         {
             var Qualification = db.qualificationmaster.Where(x => x.qualificationid == id).FirstOrDefault();
-        if (Qualification != null)
-            QualificationType = Qualification.qualificationname;
+            if (Qualification != null)
+                QualificationType = Qualification.qualificationname;
         }
         catch (Exception ex)
         {
@@ -493,8 +493,8 @@ public class Common
         try
         {
             var Realtionships = db.realtionshipmaster.Where(x => x.relationshiptid == id).FirstOrDefault();
-        if (Realtionships != null)
-            relationshipname = Realtionships.relationshipname;
+            if (Realtionships != null)
+                relationshipname = Realtionships.relationshipname;
         }
         catch (Exception ex)
         {
@@ -509,8 +509,8 @@ public class Common
         try
         {
             var GetCEFR = db.cefrlevelmaster.Where(x => x.id == id).FirstOrDefault();
-        if (GetCEFR != null)
-            CEFR = GetCEFR.name;
+            if (GetCEFR != null)
+                CEFR = GetCEFR.name;
         }
         catch (Exception ex)
         {
@@ -524,8 +524,8 @@ public class Common
         try
         {
             var GetVisa = db.visatype.Where(x => x.id == id).FirstOrDefault();
-        if (GetVisa != null)
-            VisaType = GetVisa.description;
+            if (GetVisa != null)
+                VisaType = GetVisa.description;
         }
         catch (Exception ex)
         {
@@ -539,8 +539,8 @@ public class Common
         try
         {
             var GetStudyOption = db.studyoptionmaster.Where(x => x.id == id).FirstOrDefault();
-        if (GetStudyOption != null)
-            StudyOption = GetStudyOption.description;
+            if (GetStudyOption != null)
+                StudyOption = GetStudyOption.description;
         }
         catch (Exception ex)
         {
@@ -554,8 +554,8 @@ public class Common
         try
         {
             var GetfamilyMember = db.familymember.Where(x => x.id == id).FirstOrDefault();
-        if (GetfamilyMember != null)
-            familyMember = GetfamilyMember.description;
+            if (GetfamilyMember != null)
+                familyMember = GetfamilyMember.description;
         }
         catch (Exception ex)
         {
@@ -569,8 +569,8 @@ public class Common
         try
         {
             var GetAccomdation = db.accommodationplan.Where(x => x.id == id).FirstOrDefault();
-        if (GetAccomdation != null)
-            Accomdation = GetAccomdation.description;
+            if (GetAccomdation != null)
+                Accomdation = GetAccomdation.description;
         }
         catch (Exception ex)
         {
@@ -584,8 +584,8 @@ public class Common
         try
         {
             var GetMeal = db.managemeal.Where(x => x.id == id).FirstOrDefault();
-        if (GetMeal != null)
-            Meal = GetMeal.description;
+            if (GetMeal != null)
+                Meal = GetMeal.description;
         }
         catch (Exception ex)
         {
@@ -599,8 +599,8 @@ public class Common
         try
         {
             var GetTransport = db.transportchoice.Where(x => x.id == id).FirstOrDefault();
-        if (GetTransport != null)
-            Transport = GetTransport.description;
+            if (GetTransport != null)
+                Transport = GetTransport.description;
         }
         catch (Exception ex)
         {
@@ -614,8 +614,8 @@ public class Common
         try
         {
             var GetTrips = db.trips.Where(x => x.id == id).FirstOrDefault();
-        if (GetTrips != null)
-            Trips = GetTrips.description;
+            if (GetTrips != null)
+                Trips = GetTrips.description;
         }
         catch (Exception ex)
         {
@@ -629,8 +629,8 @@ public class Common
         try
         {
             var GetEntertainment = db.entertainment.Where(x => x.id == id).FirstOrDefault();
-        if (GetEntertainment != null)
-            Entertainment = GetEntertainment.description;
+            if (GetEntertainment != null)
+                Entertainment = GetEntertainment.description;
         }
         catch (Exception ex)
         {
@@ -940,7 +940,7 @@ public class Common
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var studymode = db.countriesmaster.OrderBy(x=>x.country_name).ToList();
+            var studymode = db.countriesmaster.OrderBy(x => x.country_name).ToList();
             if (addCitizenshipFlag)
             {
                 lst.Value += "_False";
@@ -961,7 +961,7 @@ public class Common
                 ddl.DataBind();
                 ddl.Items.Insert(0, lst);
             }
-                
+
         }
         catch (Exception ex)
         {
@@ -976,7 +976,7 @@ public class Common
             ListItem lst = new ListItem("Please select", "0");
             dynamic Universities;
             if (roleName.ToLower() == "admin")
-                Universities = db.university_master.Where(x=>x.IsDeleted != 1).ToList();
+                Universities = db.university_master.Where(x => x.IsDeleted != 1).ToList();
             else
                 Universities = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).ToList();
 
@@ -991,7 +991,7 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
-   
+
     public void BindTimeZone(DropDownList ddl)
     {
         try
@@ -1018,14 +1018,14 @@ public class Common
                 faqList = db.faq.ToList();
             else
             {
-                if(formID == "30")
+                if (formID == "30")
                     faqList = (from q in db.faq
-                           join ufm in db.universitywise_faqmapping on q.id equals ufm.faq_questionID into unifaqData
-                           from x in unifaqData.DefaultIfEmpty()
-                           join uform in db.universitywiseformmapping on x.formid equals uform.formid into uniformData
-                           from x1 in uniformData.DefaultIfEmpty()
-                           where (x.universityid == universityId && x1.universityid == universityId && x1.formid.ToString() == formID && x.university_service == service)
-                           select q).ToList();
+                               join ufm in db.universitywise_faqmapping on q.id equals ufm.faq_questionID into unifaqData
+                               from x in unifaqData.DefaultIfEmpty()
+                               join uform in db.universitywiseformmapping on x.formid equals uform.formid into uniformData
+                               from x1 in uniformData.DefaultIfEmpty()
+                               where (x.universityid == universityId && x1.universityid == universityId && x1.formid.ToString() == formID && x.university_service == service)
+                               select q).ToList();
                 else
                     faqList = (from q in db.faq
                                join ufm in db.universitywise_faqmapping on q.id equals ufm.faq_questionID into unifaqData
@@ -1120,7 +1120,7 @@ public class Common
                     HyperLink hyperLinkcustombox = new HyperLink();
                     hyperLinkcustombox.ID = "hyperlink" + ControlsList[k].customfieldid;
 
-                   
+
                     mycontrol.Controls.Add(fileUploadcustombox);
                     mycontrol.Controls.Add(hyperLinkcustombox);
                 }
@@ -1211,7 +1211,7 @@ public class Common
         }
 
     }
-    public void AddCustomControlForSupervisor(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv , List<admincomments> Comments)
+    public void AddCustomControlForSupervisor(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv, List<admincomments> Comments)
     {
         try
         {
@@ -1258,7 +1258,7 @@ public class Common
                     //  lblinput.Attributes["class"] = "form-control";
                     // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
                     mycontrol.Controls.Add(lblinput);
-                                      
+
 
                     RadioButton rbYes = new RadioButton();
                     RadioButton rbNo = new RadioButton();
@@ -1289,7 +1289,7 @@ public class Common
                         }
                     }
                     adminControl.Controls.Add(rbYes);
-                    adminControl.Controls.Add(rbNo);                    
+                    adminControl.Controls.Add(rbNo);
                 }
             }
 
@@ -1400,16 +1400,18 @@ public class Common
             {
                 int customFieldId = CustomControls[k].customfieldid;
 
-                if (CustomControls[k].type.ToLower() == "textbox") {
+                if (CustomControls[k].type.ToLower() == "textbox")
+                {
                     string OptionID = "txt" + customFieldId;
                     TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
                     SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formID);
                 }
-                else if(CustomControls[k].type.ToLower() == "file")
+                else if (CustomControls[k].type.ToLower() == "file")
                 {
                     string fileOptionID = "file" + customFieldId;
                     FileUpload fileUploadDynamic = (FileUpload)mainDiv.FindControl(fileOptionID);
-                    if (fileUploadDynamic.HasFile) {
+                    if (fileUploadDynamic.HasFile)
+                    {
                         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GTEApplicantDocument";
                         DirectoryInfo di = new DirectoryInfo(dirPath);
                         if (!di.Exists)
@@ -1419,9 +1421,9 @@ public class Common
                         string filePath = string.Concat(dirPath, "/", fileName);
                         fileUploadDynamic.PostedFile.SaveAs(filePath);
                         SaveCustomValue(applicatID, customFieldId, fileName, formID);
-                    }                    
+                    }
                 }
-                
+
             }
         }
         catch (Exception ex)
@@ -1518,15 +1520,15 @@ public class Common
         }
         return Comments;
     }
-    public void SaveSupervisorComments(int applicantId, int universityID,int formID, int SupervisorID,string Comments, int supervisorAction)
+    public void SaveSupervisorComments(int applicantId, int universityID, int formID, int SupervisorID, string Comments, int supervisorAction)
     {
         try
         {
             var mode = "new";
             var supervisorComments = (from cInfo in db.supervisorcomments
-                                 where cInfo.applicantid == applicantId && cInfo.universityid == universityID
-                                 && cInfo.formid == formID 
-                                 select cInfo).FirstOrDefault();
+                                      where cInfo.applicantid == applicantId && cInfo.universityid == universityID
+                                      && cInfo.formid == formID
+                                      select cInfo).FirstOrDefault();
             supervisorcomments objComments = new supervisorcomments();
             if (supervisorComments != null)
             {
@@ -1554,12 +1556,12 @@ public class Common
         List<supervisorcomments> lstComments = new List<supervisorcomments>();
         try
         {
-           
+
             lstComments = (from cInfo in db.supervisorcomments
-                                      where cInfo.applicantid == applicantId && cInfo.universityid == universityID
-                                      && cInfo.formid == formID
-                                      select cInfo).ToList();
-           
+                           where cInfo.applicantid == applicantId && cInfo.universityid == universityID
+                           && cInfo.formid == formID
+                           select cInfo).ToList();
+
 
         }
         catch (Exception ex)
@@ -1616,7 +1618,7 @@ public class Common
             if (applicantGteProgressInfo != null)
             {
                 if (applicantGteProgressInfo.is_declaration_completed == 1)
-                    flag= true;
+                    flag = true;
             }
         }
         catch (Exception ex)
@@ -1792,8 +1794,9 @@ public class Common
         }
         return HighestDegree;
     }
-    public string GetSection2_BlckClr(int applicantid, int section2_questionid) {
-        int universityID =Utility.GetUniversityId();
+    public string GetSection2_BlckClr(int applicantid, int section2_questionid)
+    {
+        int universityID = Utility.GetUniversityId();
         string clr = string.Empty;
         try
         {
@@ -1818,7 +1821,7 @@ public class Common
     }
     public int GetSection2AnswerID(int applicantid, int section2_questionid)
     {
-        int universityID =Utility.GetUniversityId();
+        int universityID = Utility.GetUniversityId();
         int section2_response_ID = 0;
         try
         {
@@ -1833,17 +1836,17 @@ public class Common
         return section2_response_ID;
     }
 
-    public string GetSection2Answer(int applicantid , int section2_questionid)
+    public string GetSection2Answer(int applicantid, int section2_questionid)
     {
-        int universityID =Utility.GetUniversityId();
+        int universityID = Utility.GetUniversityId();
         string section2_question_response = "";
         try
         {
-            var applicantresponseID = db.gte_questions_applicant_response.Where(x => x.gte_question_id == section2_questionid && x.applicant_id ==applicantid && x.university_id == universityID).Select(x=>x.gte_answer_id).FirstOrDefault();
+            var applicantresponseID = db.gte_questions_applicant_response.Where(x => x.gte_question_id == section2_questionid && x.applicant_id == applicantid && x.university_id == universityID).Select(x => x.gte_answer_id).FirstOrDefault();
             if (applicantresponseID != null)
             {
                 string response_string = db.gte_answer_master.Where(x => x.id == applicantresponseID).Select(x => x.answer).FirstOrDefault();
-                if(response_string != null)
+                if (response_string != null)
                     section2_question_response = response_string;
             }
         }
@@ -1856,7 +1859,7 @@ public class Common
 
     public string Get_RGCmnt_Section2(int applicantid, int section2_questionid)
     {
-        int universityID =Utility.GetUniversityId();
+        int universityID = Utility.GetUniversityId();
         string sec2_RGCmnt = "";
         try
         {
@@ -1874,21 +1877,23 @@ public class Common
         }
         return sec2_RGCmnt;
     }
-    public string GetSection3AnswerNew(int applicantid, int section3_questionid) {
-        int universityID =Utility.GetUniversityId();
+    public string GetSection3AnswerNew(int applicantid, int section3_questionid)
+    {
+        int universityID = Utility.GetUniversityId();
         string clr_response = string.Empty;
         try
         {
             var applicantresponse = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == applicantid && x.university_id == universityID && x.question_id == section3_questionid).Select(x => x.applicant_response).FirstOrDefault();
             if (applicantresponse != null)
             {
-                var question_mark = db.gte_question_master_part2.Where(x => x.id == section3_questionid ).FirstOrDefault();
+                var question_mark = db.gte_question_master_part2.Where(x => x.id == section3_questionid).FirstOrDefault();
                 if (question_mark != null)
                 {
-                    int finalScore=0;
+                    int finalScore = 0;
                     string type = string.Empty;
-                   
-                    if (applicantresponse == true) {
+
+                    if (applicantresponse == true)
+                    {
                         int true_gtescore; int true_riskscore;
 
                         true_gtescore = question_mark.true_gte_score;
@@ -1904,7 +1909,8 @@ public class Common
                             type = "RISK";
                         }
                     }
-                    else if (applicantresponse == false) {
+                    else if (applicantresponse == false)
+                    {
                         int false_gtescore; int false_riskscore;
 
                         false_gtescore = question_mark.false_gte_score;
@@ -1925,7 +1931,7 @@ public class Common
                             clr_response = "bg-green-l";
                         else if (finalScore == 2)
                             clr_response = "bg-green";
-                        else if(finalScore >= 3)
+                        else if (finalScore >= 3)
                             clr_response = "bg-green";
                     }
                     else if (type == "RISK")
@@ -1949,11 +1955,11 @@ public class Common
 
     public string GetSection_2_classclr(int applicantid, int section2_questionid)
     {
-        int universityID =Utility.GetUniversityId();
+        int universityID = Utility.GetUniversityId();
         string clr_response = string.Empty;
         try
         {
-            var gte_answer_id = db.gte_questions_applicant_response.Where(x => x.university_id == universityID && x.applicant_id == applicantid && x.gte_question_id == section2_questionid ).Select(x => x.gte_answer_id).FirstOrDefault();
+            var gte_answer_id = db.gte_questions_applicant_response.Where(x => x.university_id == universityID && x.applicant_id == applicantid && x.gte_question_id == section2_questionid).Select(x => x.gte_answer_id).FirstOrDefault();
             if (gte_answer_id != null)
             {
                 var question_mark = db.gte_answer_master.Where(x => x.id == gte_answer_id).FirstOrDefault();
@@ -1964,7 +1970,7 @@ public class Common
                     int gte_score; int risk_score;
 
                     gte_score = question_mark.gte_score;
-                    risk_score= question_mark.gte_risk_score;
+                    risk_score = question_mark.gte_risk_score;
 
                     if (gte_score > risk_score)
                     {
@@ -1972,9 +1978,9 @@ public class Common
                     }
                     else
                     {
-                        finalScore = risk_score;type = "RISK";
+                        finalScore = risk_score; type = "RISK";
                     }
-                    
+
                     if (type == "GTE")
                     {
                         if (finalScore == 1)
@@ -2005,7 +2011,7 @@ public class Common
 
     public string GetSection_auto_classclr(int id, int Istrue)
     {
-        int universityID =Utility.GetUniversityId();
+        int universityID = Utility.GetUniversityId();
         string clr_response = string.Empty;
         try
         {
@@ -2016,8 +2022,8 @@ public class Common
                 string type = string.Empty;
                 if (Istrue == 1)
                 {
-                    int true_gtescore =Convert.ToInt32(gte_auto_section.true_gte_score);
-                    int true_riskscore=Convert.ToInt32(gte_auto_section.true_risk_score);
+                    int true_gtescore = Convert.ToInt32(gte_auto_section.true_gte_score);
+                    int true_riskscore = Convert.ToInt32(gte_auto_section.true_risk_score);
 
                     if (true_gtescore > true_riskscore)
                     {
@@ -2053,7 +2059,7 @@ public class Common
                 }
                 else if (type == "RISK")
                 {
-                    if (finalScore == 1 || finalScore == 0 )
+                    if (finalScore == 1 || finalScore == 0)
                         clr_response = "bg-yellow";
                     else if (finalScore == 2)
                         clr_response = "bg-orange";
@@ -2072,11 +2078,11 @@ public class Common
     public bool? GetSection3Answer(int applicantid, int section3_questionid)
     {
 
-        int universityID =Utility.GetUniversityId();
+        int universityID = Utility.GetUniversityId();
         bool? section3_question_response = false;
         try
         {
-            var applicantresponse = db.gte_question_part2_applicant_response.Where(x => x.university_id == universityID && x.applicant_id == applicantid  && x.question_id == section3_questionid).Select(x => x.applicant_response).FirstOrDefault();
+            var applicantresponse = db.gte_question_part2_applicant_response.Where(x => x.university_id == universityID && x.applicant_id == applicantid && x.question_id == section3_questionid).Select(x => x.applicant_response).FirstOrDefault();
             if (applicantresponse != null)
                 section3_question_response = applicantresponse;
             else
@@ -2094,7 +2100,7 @@ public class Common
         int systemlevel = 0;
         try
         {
-            var major = db.studylevelmaster.Where(x=>x.studylevelid == id).Select(x=>x.systemLevel).FirstOrDefault();
+            var major = db.studylevelmaster.Where(x => x.studylevelid == id).Select(x => x.systemLevel).FirstOrDefault();
             if (major != null)
                 systemlevel = Convert.ToInt32(major);
         }
@@ -2109,7 +2115,7 @@ public class Common
         string workexperienceyears = "";
         try
         {
-            var major = db.workexperienceyearsmaster.Where(x=>x.workexperienceyearsid == id).FirstOrDefault();
+            var major = db.workexperienceyearsmaster.Where(x => x.workexperienceyearsid == id).FirstOrDefault();
             if (major != null)
                 workexperienceyears = major.description;
         }
@@ -2182,15 +2188,15 @@ public class Common
         {
             log.WriteLog(ex.ToString());
         }
-        return Highestfieldofstudy;        
+        return Highestfieldofstudy;
     }
-    public string GetClarification_applicantResponse(int applicantid, int CQ_questionid )
+    public string GetClarification_applicantResponse(int applicantid, int CQ_questionid)
     {
         string response = "";
         try
         {
-            int universityid =Utility.GetUniversityId();
-            var CQ_Response = db.gte_clarification_applicantresponse.Where(x=>x.applicant_id == applicantid && x.university_id == universityid && x.clarification_question_id == CQ_questionid).FirstOrDefault();
+            int universityid = Utility.GetUniversityId();
+            var CQ_Response = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == applicantid && x.university_id == universityid && x.clarification_question_id == CQ_questionid).FirstOrDefault();
             if (CQ_Response != null)
                 response = CQ_Response.applicant_response;
         }
@@ -2205,8 +2211,8 @@ public class Common
         string question = "";
         try
         {
-            int universityid =Utility.GetUniversityId();
-            var CQ_Response = db.gte_clarification_questionmaster.Where(x=>x.id == CQ_questionid).FirstOrDefault();
+            int universityid = Utility.GetUniversityId();
+            var CQ_Response = db.gte_clarification_questionmaster.Where(x => x.id == CQ_questionid).FirstOrDefault();
             if (CQ_Response != null)
                 question = CQ_Response.clarification_question;
         }
@@ -2221,7 +2227,7 @@ public class Common
         string broadfield = "";
         try
         {
-            var broad = db.course_broadFields_master.Where(x=>x.id == id).FirstOrDefault();
+            var broad = db.course_broadFields_master.Where(x => x.id == id).FirstOrDefault();
             if (broad != null)
                 broadfield = broad.fieldname;
         }
@@ -2319,7 +2325,7 @@ public class Common
         return correctanswer;
     }
 
-    public string getApplicant_sec1_ans(int applicantID,int universityID,int queID)
+    public string getApplicant_sec1_ans(int applicantID, int universityID, int queID)
     {
         string answer = "";
         try
@@ -2368,14 +2374,14 @@ public class Common
     }
     public int? gte_sec1_auto_GTEscore(int auto_queID, bool GTEscore)
     {
-        int uniid =Utility.GetUniversityId();
+        int uniid = Utility.GetUniversityId();
         int? score = 0;
         try
         {
             var master = db.gte_section1_autogenrated_master.Where(x => x.id == auto_queID).FirstOrDefault();
             if (master != null)
             {
-                if(GTEscore == true)
+                if (GTEscore == true)
                     score = master.true_gte_score;
                 else
                     score = master.false_gte_score;
@@ -2389,7 +2395,7 @@ public class Common
     }
     public int? gte_sec1_auto_RISKscore(int auto_queID, bool RISKscore)
     {
-        int uniid =Utility.GetUniversityId();
+        int uniid = Utility.GetUniversityId();
         int? score = 0;
         try
         {
@@ -2408,11 +2414,12 @@ public class Common
         }
         return score;
     }
-    public bool? GetIS_oldOrNew_applicant(int applicantID) {
+    public bool? GetIS_oldOrNew_applicant(int applicantID)
+    {
         bool? answer = false;
         try
         {
-            int universityID =Utility.GetUniversityId();
+            int universityID = Utility.GetUniversityId();
             var details = db.applicantdetails.Where(x => x.applicantid == applicantID && x.universityid == universityID).FirstOrDefault();
             if (details != null)
                 answer = details.Isold_or_new_applicant;
@@ -2428,7 +2435,7 @@ public class Common
         string docName = "";
         try
         {
-            var major = db.primaryfieldmaster.Where(x=>x.formid == 15 && x.primaryfieldid == id).FirstOrDefault();
+            var major = db.primaryfieldmaster.Where(x => x.formid == 15 && x.primaryfieldid == id).FirstOrDefault();
             if (major != null)
                 docName = major.primaryfiledname;
         }
@@ -2440,7 +2447,7 @@ public class Common
     }
     public string GetMatrixValue(string colid, int tagid, int property, int aid)
     {
-        int uid =Utility.GetUniversityId();
+        int uid = Utility.GetUniversityId();
         string value = "";
         try
         {
@@ -2463,11 +2470,11 @@ public class Common
     }
     public string Get_gte_docName(int doc_id)
     {
-        int uid =Utility.GetUniversityId();
+        int uid = Utility.GetUniversityId();
         string value = "";
         try
         {
-            var data = db.primaryfieldmaster.Where(x=>x.formid== 15 && x.primaryfieldid == doc_id).FirstOrDefault();
+            var data = db.primaryfieldmaster.Where(x => x.formid == 15 && x.primaryfieldid == doc_id).FirstOrDefault();
             if (data != null)
                 value = data.primaryfiledname;
         }
@@ -2477,9 +2484,9 @@ public class Common
         }
         return value;
     }
-    public bool Is_doc_submittedbyapplicant(int aid , int doc_id)
+    public bool Is_doc_submittedbyapplicant(int aid, int doc_id)
     {
-        int uid =Utility.GetUniversityId();
+        int uid = Utility.GetUniversityId();
         bool result = false;
         try
         {
@@ -2494,5 +2501,93 @@ public class Common
             log.WriteLog(ex.ToString());
         }
         return result;
+    }
+    public List<class_details> BindClassDetails(int classid = 0, int gradeID = 0, int subjectID = 0, int modeID = 0, int typeID = 0, int UserID = 0)
+    {
+        int UniversityID = Utility.GetUniversityId();
+        string webURL = String.Empty;
+        List<class_details> list = new List<class_details>();
+        try
+        {
+            list = (from date in db.ec_class_date_schedule_master
+
+                    join cam in db.ec_class_applicationmaster on date.classID equals cam.classid
+                    join cm in db.ec_class_master on date.classID equals cm.id
+                    join um in db.university_master on cm.universityid equals um.universityid
+
+                    join sm in db.subjectmaster on cm.subjectid equals sm.id
+                    join gm in db.ec_grademaster on cm.gradeid equals gm.id
+                    join mm in db.ec_mode_master on cm.modeid equals mm.mode_id
+                    where date.universityid == UniversityID && cam.applicantid == UserID && cam.status == 7 && date.classID== classid
+                    select new class_details
+                    {
+                        assignID = date.id,
+                        classid = cm.id,
+                        univeristyname = um.university_name,
+                        classname = cm.classname,
+                        startdate = date.class_datetime_start,
+                        mode = mm.mode_description,
+                        recurrence = cm.recurrenceid == 1 ? "Daily" : cm.recurrenceid == 2 ? "Weekly" : "Monthly",
+                        classstarttime = cm.class_starttime,
+                        classendtime = cm.class_endtime,
+                        subject = sm.description,
+                        grade = gm.description,
+                        location = cm.location,
+                        timezone = cm.timezone,
+                        location_name = "-",
+
+                    }).ToList();
+
+            foreach (var item in list)
+            {
+                if (item.mode == "Online")
+                {
+                    item.linkname = "Click Here to Conduct Class";
+                    item.virtuallink = webURL + "ec_class_join.aspx?ID=" + item.assignID;
+                }
+                else
+                {
+                    item.linkname = "Get Direction to Location";
+                    item.virtuallink = webURL + "ec_class_join_offline.aspx?ID=" + item.assignID;
+                }
+
+                if (item.location != null || item.location != 0)
+                    item.location_name = db.universitycampus.Where(x => x.campusid == item.location).Select(x => x.campusname).FirstOrDefault();
+
+                item.classstarttime = Convert.ToDateTime(item.classstarttime).ToString("hh:mm tt");
+                item.classendtime = Convert.ToDateTime(item.classendtime).ToString("hh:mm tt");
+                item.startdate_str = Convert.ToDateTime(item.startdate).ToString("dd/MM/yyyy");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return list;
+    }
+    public class class_details
+    {
+        public string linkname { get; set; }
+        public string link_irl { get; set; }
+        public string virtuallink { get; set; }
+        public int? classid { get; set; }
+        public string univeristyname { get; set; }
+        public string classname { get; set; }
+        public int? startdateID { get; set; }
+        public DateTime? startdate { get; set; }
+        public string startdate_str { get; set; }
+        public string recurrence { get; set; }
+        public string classstarttime { get; set; }
+        public string classendtime { get; set; }
+        public string subject { get; set; }
+        public string grade { get; set; }
+        public int? location { get; set; }
+        public string location_name { get; set; }
+        public string timezone { get; set; }
+        public string mode { get; set; }
+        public int Noofstudents { get; set; }
+        public int assignID { get; set; }
+        public string duration { get; set; }
     }
 }

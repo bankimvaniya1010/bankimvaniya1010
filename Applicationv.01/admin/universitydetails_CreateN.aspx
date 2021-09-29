@@ -45,7 +45,7 @@ section .section-title {
 
     <div class="container page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">Edit Institution</li>
         </ol>
 
@@ -249,7 +249,7 @@ section .section-title {
                                                                     <asp:ListItem Value="2">Assessment Service</asp:ListItem>
                                                                     <asp:ListItem Value="3">GTE(Certification)</asp:ListItem>
                                                                     <asp:ListItem Value="4">GTE(Evalution)</asp:ListItem>
-                                                                    <%--<asp:ListItem Value="5">E-Class Service</asp:ListItem>--%>
+                                                                    <asp:ListItem Value="5">E-Class Service</asp:ListItem>
                                                                 </asp:DropDownList>
                                                             </div>
                                                         </div>

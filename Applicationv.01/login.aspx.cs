@@ -37,7 +37,7 @@ public partial class login : System.Web.UI.Page
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
         universityGTMCode = universityDetails.university_gtm_code;
 
-        isFullService = (int)Session["isfullservice"];
+        isFullService = 5;// (int)Session["isfullservice"];
         
         if (isFullService == 0)
             isfullservicethenlbl = " GTE DIRECT CENTRE";
@@ -154,7 +154,7 @@ public partial class login : System.Web.UI.Page
                             Session["UserID"] = chkUser.studentid;
                             Session["Role"] = "student";
                             isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid, universityID);
-                            isFullService = db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
+                            isFullService = 5;// db.university_master.Where(x => x.IsDeleted != 1 && x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
                             if (isFullService == 1)
                             {

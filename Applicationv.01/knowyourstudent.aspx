@@ -3,7 +3,7 @@
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">Identification Details</li>
         </ol>
         <h1 class="h2">Identification Details</h1>
@@ -21,7 +21,7 @@
                                     <div class="form-row">
                                         <label id="labelpassportno" runat="server" for="passportno" class="col-md-3 col-form-label form-label">Passport Number </label>
                                         <div class="col-md-6">
-                                            <input id="txtPassportNo" runat="server" type="text" class="form-control" placeholder="Enter your passport number"><span class="helpicon"><i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtPassportNo" runat="server" type="text" class="form-control txtPassportNo" placeholder="Enter your passport number"><span class="helpicon"><i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                     <div class="form-row">
                                         <label id="labeldateofissue" runat="server" for="dateofissue" class="col-md-3 col-form-label form-label">Date of Issue </label>
                                         <div class="col-md-6">
-                                            <input id="txtdateofissue" runat="server" type="text" class="form-control" placeholder="Date of Issue" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtdateofissue" runat="server" type="text" onchange="dateCompare()" class="form-control" placeholder="Date of Issue" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     <div class="form-row">
                                         <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">PASSPORT EXPIRY DATE</label>
                                         <div class="col-md-6">
-                                            <input id="txtexpirydate" runat="server" type="text" class="form-control" placeholder="Enter your passport expiry date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtexpirydate" runat="server" type="text" onchange="dateCompare()" class="form-control" placeholder="Enter your passport expiry date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +260,32 @@
                <% }%>
             return flag;
         }
+        function dateCompare() {
+            var d1 = new Date($("#<%=txtdateofissue.ClientID%>").val());
+            var d2 = new Date($("#<%=txtexpirydate.ClientID%>").val());
+            var st = false;
+            if (d1 >= d2) {
+                //validate the input date
+                st = true;
+                $("#<%=txtexpirydate.ClientID%>").val('');
+            }
+
+            if (st) {
+                alert('DATE OF ISSUE is earlier than PASSPORT EXPIRY DATE');
+            }
+        }
         $(document).ready(function () {
+
+            $('.txtPassportNo').keypress(function (e) {
+                var charCode = (e.which) ? e.which : event.keyCode
+                var key = e.keyCode;
+                var regex = new RegExp("^[a-zA-Z]+$");
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if ((String.fromCharCode(charCode).match(/[^0-9]/g)) && (regex.test(str) == false)) {
+                    return false;
+                }
+            });
+
 
             $('.fa-info-circle').tipso({
                 position: 'right',

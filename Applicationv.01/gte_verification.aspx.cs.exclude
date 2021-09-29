@@ -1,0 +1,255 @@
+﻿using Amazon;
+using Amazon.S3;
+using Amazon.S3.Model;
+using Amazon.S3.Transfer;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class gte_verification : System.Web.UI.Page
+{
+    public static int UserID, universityID =0;
+    private GTEEntities db = new GTEEntities();
+    Common objCom = new Common();
+    Logger objLog = new Logger();
+    string webURL = String.Empty;
+    public string fileNAME = string.Empty;
+   
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
+        populategteapplicantdetail();
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = false)]
+    public static void AddBookingData(string data_uri)
+    {
+        Logger objLog = new Logger();
+        int UniversityID = Utility.GetUniversityId();
+
+        try
+        {
+            string x = data_uri.Replace("data:image/jpeg;base64,", "");//data:image\/(png|jpeg|jpg);base64,
+                                                                       //string path = "Docs/webcamCapture/" + UniversityID + " / " + UserID + ".png";
+            string filename = HttpContext.Current.Server.MapPath("Docs/webcamCapture/" + UserID + "/" + DateTime.Now + ".png");
+            saveimg(x);            
+        }
+        catch (Exception ex)
+        { objLog.WriteLog(ex.ToString()); }
+    }
+    //public static System.Drawing.Image Base64ToImage(string base64String)
+    //{
+    //    Logger objLog = new Logger();
+        
+    //    byte[] imageBytes = Convert.FromBase64String(base64String);
+    //    MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+    //    ms.Write(imageBytes, 0, imageBytes.Length);
+    //    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+
+    //    return image;
+    //}
+
+    public static void saveimg(string base64) {
+        Logger objLog = new Logger();
+        try
+        {
+            UserID = Convert.ToInt32(HttpContext.Current.Session["UserID"].ToString());
+            string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
+            string folderPath = @""+ docPath+"/webcamCapture/"+Utility.GetUniversityId()+"/";  //Create a Folder in your Root directory on your solution.
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            string fileName = UserID+".jpg";
+            string imagePath = @""+folderPath + fileName;
+
+            string base64StringData = base64; 
+            string cleandata = base64StringData.Replace("data:image/png;base64,", "");
+            byte[] data = System.Convert.FromBase64String(cleandata);
+            MemoryStream ms = new MemoryStream(data);
+            System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+            img.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    private void populategteapplicantdetail()
+    {
+        try
+        {
+            var studentInfo = (from pInfo in db.applicantdetails
+                               where pInfo.applicantid == UserID && pInfo.universityid == universityID
+                               select pInfo).FirstOrDefault();
+
+
+            if (studentInfo != null)
+            {
+                //profile pic
+                if (studentInfo.profilephoto != null)
+                {
+                    //fileUpload.Visible = false;
+                    hidDocumentPath.Value = studentInfo.profilephoto;
+                    uploadedFile.NavigateUrl = webURL + "/Docs/GTEProfileDetail/" + studentInfo.profilephoto;
+                    uploadedFile.Text = "View File";
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    private void savetoDatabase() {
+        try {
+            var mode = "new";
+            var studentInfo = (from pInfo in db.applicantdetails
+                               where pInfo.applicantid == UserID && pInfo.universityid == universityID
+                               select pInfo).FirstOrDefault();
+            applicantdetails objapplicantdetails = new applicantdetails();
+            if (studentInfo != null)
+            {
+                mode = "update";
+                objapplicantdetails = studentInfo;
+
+            }
+            if (fileUpload.HasFile)
+            {
+                string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                docPath = docPath + "/GTEProfileDetail/";
+                if (!Directory.Exists(docPath))
+                    Directory.CreateDirectory(docPath);
+                string extension = Path.GetExtension(fileUpload.PostedFile.FileName);
+                fileNAME = Guid.NewGuid().ToString();
+                string filename = fileNAME + extension;
+
+
+                if (File.Exists(docPath + filename))
+                {
+                    File.Delete(docPath + filename);
+                }
+
+                fileUpload.PostedFile.SaveAs(docPath + filename);
+
+                objapplicantdetails.profilephoto = filename;
+
+            }
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicantdetails);
+            db.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+
+    }
+
+    protected void Upload_to_AWS_Bucket_Click(object sender, EventArgs e)
+    {
+        try {
+            savetoDatabase();
+
+            Stream st = fileUpload.PostedFile.InputStream;
+
+            string name = Path.GetFileName(fileUpload.FileName);
+            string myBucketName = "mysecondbasket"; //your s3 bucket name goes here  
+            string s3DirectoryName = "";            
+            string s3FileName = fileNAME; // UserID + "_U" + universityID;
+            bool a;
+            AmazonUploader myUploader = new AmazonUploader();
+            a = myUploader.sendMyFileToS3(st, myBucketName, s3DirectoryName, s3FileName);
+            if (a == true)
+            {
+                lbl.InnerText = "successfully uploaded";
+                fileNAME = string.Empty;
+                populategteapplicantdetail();
+            }
+            else
+                lbl.InnerText = "Error";
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    public class AmazonUploader
+    {
+        public bool sendMyFileToS3(System.IO.Stream localFilePath, string bucketName, string subDirectoryInBucket, string fileNameInS3)
+        {
+            IAmazonS3 client = new AmazonS3Client(RegionEndpoint.USWest2);
+            TransferUtility utility = new TransferUtility(client);
+            TransferUtilityUploadRequest request = new TransferUtilityUploadRequest();
+
+            if (subDirectoryInBucket == "" || subDirectoryInBucket == null)
+            {
+                request.BucketName = bucketName; //no subdirectory just bucket name  
+            }
+            else
+            {   // subdirectory and bucket name  
+                request.BucketName = bucketName + @"/" + subDirectoryInBucket;
+            }
+            request.Key = fileNameInS3; //file name up in S3  
+            request.InputStream = localFilePath;
+            utility.Upload(request); //commensing the transfer  
+
+            return true; //indicate that the file was sent  
+        }
+    }
+
+    protected void btncompareimg_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            
+            CompareFaces objcompare = new CompareFaces();
+
+            string captureimage = string.Empty;
+            string s3storedimgID = string.Empty;
+
+            captureimage = "D:/HS_Project/edu_app/Applicationv.01/Docs/webcamCapture/ahs.png";
+            string xyz = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).Select(x => x.profilephoto).FirstOrDefault();
+            string[] duhiu = xyz.Split('.');
+            s3storedimgID = duhiu[0].ToString(); //"D:/HS_Project/edu_app/Applicationv.01/Docs/webcamCapture/ahs.png";
+
+
+
+
+            string remoteImageUrl= "https://applicantprofile.s3.ap-south-1.amazonaws.com/179_U1";
+
+
+            string exts = Path.GetExtension(remoteImageUrl);
+            string strRealname = Path.GetFileName(remoteImageUrl);
+
+            WebClient webClient = new WebClient();
+            webClient.DownloadFile(remoteImageUrl, webURL+"/Docs/AWS/"+strRealname);
+
+
+
+
+
+
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+}

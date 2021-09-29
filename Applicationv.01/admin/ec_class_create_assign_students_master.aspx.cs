@@ -57,7 +57,7 @@ public partial class admin_ec_class_create_assign_students_master : System.Web.U
                             Recurrence = om.recurrenceid == 1?"Daily":om.recurrenceid== 2?"Weekly":"Monthly",
                             Avialability = om.availability,
                             bookablestatus = om.booklatestatus == 1?"Yes":"No",
-                        }).Distinct().ToList();
+                        }).Distinct().OrderBy(x=>x.classid).ToList();
             QuestiontGridView.DataSource = data;
             QuestiontGridView.DataBind();
         }

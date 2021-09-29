@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mb-5 navbar-light">
-                    <a class="navbar-brand m-0">The <%=isfullservicethenlbl %></a>
+                    <a class="navbar-brand m-0">THE <%=isfullservicethenlbl %></a>
                 </div>
                 <div class="card navbar-shadow">
                     <div class="card-header text-center" style="position: relative;margin-bottom: -8px;">

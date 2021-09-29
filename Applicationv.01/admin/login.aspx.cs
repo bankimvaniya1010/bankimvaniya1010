@@ -26,7 +26,7 @@ public partial class admin_login : System.Web.UI.Page
         }
         else
             Session["universityId"] = universityID;
-        int isfullservice = (int)Session["isfullservice"];
+        int isfullservice = 5;// (int)Session["isfullservice"];
 
         if (isfullservice == 0)
             isfullservicethenlbl = " GTE DIRECT CENTRE";
@@ -34,6 +34,8 @@ public partial class admin_login : System.Web.UI.Page
             isfullservicethenlbl = " APPLICATION CENTRE";
         else if (isfullservice == 2)
             isfullservicethenlbl = " ASSESSMENT CENTRE";
+        else if (isfullservice == 5)
+            isfullservicethenlbl = " LEARNING RESOURCES CENTRE";
         studlogin = webURL + "login.aspx";
     }
     protected void btn_login_Click(object sender, EventArgs e)

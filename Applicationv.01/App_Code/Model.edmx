@@ -21,6 +21,13 @@
           <Property Name="type" Type="int" />
           <Property Name="videopath" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="adminabilitiesmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="abilities" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="admincomments">
           <Key>
             <PropertyRef Name="id" />
@@ -34,6 +41,157 @@
           <Property Name="comments" Type="varchar" MaxLength="200" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
           <Property Name="adminaction" Type="int" />
+        </EntityType>
+        <EntityType Name="admincoursesource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursesource" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="admincoursesuitability">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursesuitability" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="admincoursetype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursetype" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="admincoursetypefieldmapping">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseType" Type="int" />
+          <Property Name="Source" Type="int" />
+          <Property Name="PartnerCourseID" Type="varchar" MaxLength="100" />
+          <Property Name="CourseImage" Type="varchar" MaxLength="50" />
+          <Property Name="CourseAudioVideo" Type="varchar" MaxLength="50" />
+          <Property Name="CourseBrochure" Type="varchar" MaxLength="50" />
+          <Property Name="LinktoWebPageURL" Type="varchar" MaxLength="50" />
+          <Property Name="CourseName" Type="varchar" MaxLength="50" />
+          <Property Name="ProvidedByInstitutionName" Type="int" />
+          <Property Name="ShortDescription" Type="varchar" MaxLength="250" />
+          <Property Name="NumberofStudentsTakenCourse" Type="int" />
+          <Property Name="LanguageCourseAvailableIn" Type="int" />
+          <Property Name="CourseSuitablefor" Type="varchar" MaxLength="100" />
+          <Property Name="LearningObjectives" Type="varchar" MaxLength="250" />
+          <Property Name="MainFeatures" Type="varchar" MaxLength="150" />
+          <Property Name="CourseContent" Type="varchar" MaxLength="500" />
+          <Property Name="LongDescription" Type="varchar" MaxLength="500" />
+          <Property Name="DurationYear" Type="int" />
+          <Property Name="DurationMonth" Type="int" />
+          <Property Name="DurationDays" Type="int" />
+          <Property Name="DurationHours" Type="int" />
+          <Property Name="Fee" Type="int" />
+          <Property Name="ApplicationEnrollmentFee" Type="int" />
+          <Property Name="FeePaymentMode" Type="varchar" MaxLength="50" />
+          <Property Name="Mode" Type="int" />
+          <Property Name="LocationsCampusBranch" Type="varchar" MaxLength="100" />
+          <Property Name="Type" Type="int" />
+          <Property Name="AverageNumberParticipantsClassSize" Type="int" />
+          <Property Name="DomesticInternationalBoth" Type="int" />
+          <Property Name="FundingAvailable" Type="varchar" MaxLength="10" />
+          <Property Name="HousingAvailable" Type="varchar" MaxLength="10" />
+          <Property Name="InstitutionType" Type="int" />
+          <Property Name="InstitutionSetting" Type="int" />
+          <Property Name="InstitutionSize" Type="int" />
+          <Property Name="AcceptanceRate" Type="int" />
+          <Property Name="DisabilityServicesAvailable" Type="varchar" MaxLength="10" />
+          <Property Name="SelfPaced" Type="varchar" MaxLength="10" />
+          <Property Name="StartDateIntakeDate" Type="datetime" Precision="0" />
+          <Property Name="ApplicationDeadline" Type="datetime" Precision="0" />
+          <Property Name="CourseOutcome" Type="varchar" MaxLength="250" />
+          <Property Name="InstructorDirectorImage1" Type="varchar" MaxLength="50" />
+          <Property Name="InstructorDirectorName1" Type="varchar" MaxLength="80" />
+          <Property Name="InstructorDirectorDescription1" Type="varchar" MaxLength="150" />
+          <Property Name="InstructorDirectorImage2" Type="varchar" MaxLength="50" />
+          <Property Name="InstructorDirectorName2" Type="varchar" MaxLength="80" />
+          <Property Name="InstructorDirectorDescription2" Type="varchar" MaxLength="150" />
+          <Property Name="InstructorDirectorImage3" Type="varchar" MaxLength="50" />
+          <Property Name="InstructorDirectorName3" Type="varchar" MaxLength="80" />
+          <Property Name="InstructorDirectorDescription3" Type="varchar" MaxLength="150" />
+          <Property Name="InstructorDirectorImage4" Type="varchar" MaxLength="50" />
+          <Property Name="InstructorDirectorName4" Type="varchar" MaxLength="80" />
+          <Property Name="InstructorDirectorDescription4" Type="varchar" MaxLength="150" />
+          <Property Name="InstructorDirectorImage5" Type="varchar" MaxLength="50" />
+          <Property Name="InstructorDirectorName5" Type="varchar" MaxLength="80" />
+          <Property Name="InstructorDirectorDescription5" Type="varchar" MaxLength="10" />
+          <Property Name="DeferralPolicy" Type="varchar" MaxLength="250" />
+          <Property Name="OfferAcceptanceRejectionPolicy" Type="varchar" MaxLength="250" />
+          <Property Name="CancellationPolicy" Type="varchar" MaxLength="250" />
+          <Property Name="RefundPolicy" Type="varchar" MaxLength="250" />
+          <Property Name="PromotionTag1" Type="varchar" MaxLength="50" />
+          <Property Name="PromotionTag2" Type="varchar" MaxLength="50" />
+          <Property Name="ActiveNotActiveStatus" Type="varchar" MaxLength="10" />
+          <Property Name="CertificationEarned" Type="varchar" MaxLength="10" />
+          <Property Name="BroadFieldofStudy" Type="varchar" MaxLength="9000" />
+          <Property Name="NarrowFieldofStudy" Type="varchar" MaxLength="9000" />
+          <Property Name="DetailedFieldofStudy" Type="varchar" MaxLength="9000" />
+          <Property Name="MajorDiscipline" Type="varchar" MaxLength="50" />
+          <Property Name="LevelofStudy" Type="varchar" MaxLength="50" />
+          <Property Name="Skills" Type="varchar" MaxLength="50" />
+          <Property Name="Abilities" Type="varchar" MaxLength="250" />
+          <Property Name="WorkActivities" Type="varchar" MaxLength="50" />
+          <Property Name="MajorFieldofCareers" Type="varchar" MaxLength="9000" />
+          <Property Name="MinorFieldofCareers" Type="varchar" MaxLength="9000" />
+          <Property Name="BroadFieldofCareers" Type="varchar" MaxLength="9000" />
+          <Property Name="EligibleforGovtSubsidy" Type="varchar" MaxLength="10" />
+          <Property Name="DescriptionofGovtSubsidy" Type="varchar" MaxLength="250" />
+          <Property Name="EligibleforScholarship" Type="varchar" MaxLength="10" />
+          <Property Name="ScholarshipAvailable" Type="varchar" MaxLength="50" />
+          <Property Name="Requirements" Type="varchar" MaxLength="500" />
+          <Property Name="LevelStudyCompleted" Type="int" />
+          <Property Name="SelectBaseQualificationCountry" Type="int" />
+          <Property Name="SelectQualificationLevel" Type="int" />
+          <Property Name="SubjectQualification" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectAndGrade" Type="varchar" MaxLength="50" />
+          <Property Name="MoreSubjectsAndGrades" Type="varchar" MaxLength="50" />
+          <Property Name="EnglishLanguageCompetency" Type="varchar" MaxLength="10" />
+          <Property Name="AcceptableEnglishQualifications" Type="varchar" MaxLength="50" />
+          <Property Name="EnglishLanguageCompetencyLevel" Type="varchar" MaxLength="50" />
+          <Property Name="GraduateAdmissionTest" Type="varchar" MaxLength="50" />
+          <Property Name="SelectGraduateAdmissionsTestsMinGrades" Type="varchar" MaxLength="50" />
+          <Property Name="IsInterview" Type="varchar" MaxLength="10" />
+          <Property Name="DetailsOfInterview" Type="varchar" MaxLength="10" />
+          <Property Name="RelatedPathwayCourses" Type="varchar" MaxLength="250" />
+          <Property Name="Grade" Type="varchar" MaxLength="50" />
+          <Property Name="TimeZone" Type="varchar" MaxLength="100" />
+          <Property Name="Recurrence" Type="varchar" MaxLength="250" />
+          <Property Name="ClassStartTime" Type="varchar" MaxLength="50" />
+          <Property Name="ClassEndTime" Type="varchar" MaxLength="50" />
+          <Property Name="Instruction" Type="varchar" MaxLength="250" />
+          <Property Name="InstructionFile" Type="varchar" MaxLength="250" />
+          <Property Name="Group" Type="varchar" MaxLength="100" />
+          <Property Name="Subject" Type="varchar" MaxLength="250" />
+          <Property Name="Currency" Type="int" />
+        </EntityType>
+        <EntityType Name="adminfeemode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="feemode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="adminskillsmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="skillsmaster" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="adminstudymode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studymode" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="admintooltips">
           <Key>
@@ -71,6 +229,13 @@
           <Property Name="status" Type="int" Nullable="false" />
           <Property Name="examinermasterID" Type="int" />
           <Property Name="creationdate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="adminworkactivitiesmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="workactivities" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="admisionfactor_dropdown_master">
           <Key>
@@ -1137,6 +1302,11 @@
           <Property Name="declarationsignature3" Type="varchar" MaxLength="50" />
           <Property Name="declarationdate3" Type="datetime" Precision="0" />
           <Property Name="recordsaved_at" Type="datetime" Precision="0" />
+          <Property Name="30docatt1" Type="varchar" MaxLength="200" />
+          <Property Name="30docatt2" Type="varchar" MaxLength="200" />
+          <Property Name="30docatt3" Type="varchar" MaxLength="200" />
+          <Property Name="36docatt" Type="varchar" MaxLength="200" />
+          <Property Name="36docatt1" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="australiavisadocumentmaster">
           <Key>
@@ -1677,6 +1847,25 @@
           <Property Name="eligibility_response" Type="int" />
           <Property Name="booking_datetime" Type="datetime" Precision="0" />
         </EntityType>
+        <EntityType Name="ec_class_attendance_master">
+          <Key>
+            <PropertyRef Name="recordID" />
+          </Key>
+          <Property Name="recordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ischeck" Type="int" />
+          <Property Name="Is_class_started" Type="int" />
+          <Property Name="classID" Type="int" />
+          <Property Name="class_dateID" Type="int" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="Is_loggedin" Type="int" />
+          <Property Name="login_time" Type="datetime" Precision="0" />
+          <Property Name="login_time_utc" Type="datetime" Precision="0" />
+          <Property Name="logged_out_time" Type="datetime" Precision="0" />
+          <Property Name="logged_out_time_utc" Type="datetime" Precision="0" />
+          <Property Name="verify_status" Type="varchar" MaxLength="100" />
+          <Property Name="verified_by" Type="int" />
+        </EntityType>
         <EntityType Name="ec_class_date_master">
           <Key>
             <PropertyRef Name="id" />
@@ -1694,6 +1883,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="universityid" Type="int" />
           <Property Name="classID" Type="int" />
+          <Property Name="instructorID" Type="int" />
           <Property Name="class_datetime_start" Type="datetime" Precision="0" />
           <Property Name="class_datetime_start_utc" Type="datetime" Precision="0" />
           <Property Name="class_datetime_end" Type="datetime" Precision="0" />
@@ -5388,10 +5578,19 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
         <EntityContainer Name="GTEModelStoreContainer">
           <EntitySet Name="accommodationplan" EntityType="Self.accommodationplan" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="admin_videomaster" EntityType="Self.admin_videomaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="adminabilitiesmaster" EntityType="Self.adminabilitiesmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="admincomments" EntityType="Self.admincomments" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="admincoursesource" EntityType="Self.admincoursesource" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="admincoursesuitability" EntityType="Self.admincoursesuitability" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="admincoursetype" EntityType="Self.admincoursetype" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="admincoursetypefieldmapping" EntityType="Self.admincoursetypefieldmapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="adminfeemode" EntityType="Self.adminfeemode" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="adminskillsmaster" EntityType="Self.adminskillsmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="adminstudymode" EntityType="Self.adminstudymode" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="admintooltips" EntityType="Self.admintooltips" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="adminuniversitywisetooltips" EntityType="Self.adminuniversitywisetooltips" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="adminusers" EntityType="Self.adminusers" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="adminworkactivitiesmaster" EntityType="Self.adminworkactivitiesmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="admisionfactor_dropdown_master" EntityType="Self.admisionfactor_dropdown_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="agentmaster" EntityType="Self.agentmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="agenumber_master" EntityType="Self.agenumber_master" Schema="GTE" store:Type="Tables" />
@@ -5476,6 +5675,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="ec_broad_career_filed_master" EntityType="Self.ec_broad_career_filed_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="ec_careerfield_mapping" EntityType="Self.ec_careerfield_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="ec_class_applicationmaster" EntityType="Self.ec_class_applicationmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="ec_class_attendance_master" EntityType="Self.ec_class_attendance_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="ec_class_date_master" EntityType="Self.ec_class_date_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="ec_class_date_schedule_master" EntityType="Self.ec_class_date_schedule_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="ec_class_master" EntityType="Self.ec_class_master" Schema="GTE" store:Type="Tables" />
@@ -6198,10 +6398,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="GTE_documentverification" EntityType="GTEModel.GTE_documentverification" />
           <EntitySet Name="accommodationplan" EntityType="GTEModel.accommodationplan" />
           <EntitySet Name="admin_videomaster" EntityType="GTEModel.admin_videomaster" />
+          <EntitySet Name="adminabilitiesmaster" EntityType="GTEModel.adminabilitiesmaster" />
           <EntitySet Name="admincomments" EntityType="GTEModel.admincomments" />
+          <EntitySet Name="admincoursesource" EntityType="GTEModel.admincoursesource" />
+          <EntitySet Name="admincoursesuitability" EntityType="GTEModel.admincoursesuitability" />
+          <EntitySet Name="admincoursetype" EntityType="GTEModel.admincoursetype" />
+          <EntitySet Name="admincoursetypefieldmapping" EntityType="GTEModel.admincoursetypefieldmapping" />
+          <EntitySet Name="adminfeemode" EntityType="GTEModel.adminfeemode" />
+          <EntitySet Name="adminskillsmaster" EntityType="GTEModel.adminskillsmaster" />
+          <EntitySet Name="adminstudymode" EntityType="GTEModel.adminstudymode" />
           <EntitySet Name="admintooltips" EntityType="GTEModel.admintooltips" />
           <EntitySet Name="adminuniversitywisetooltips" EntityType="GTEModel.adminuniversitywisetooltips" />
           <EntitySet Name="adminusers" EntityType="GTEModel.adminusers" />
+          <EntitySet Name="adminworkactivitiesmaster" EntityType="GTEModel.adminworkactivitiesmaster" />
           <EntitySet Name="admisionfactor_dropdown_master" EntityType="GTEModel.admisionfactor_dropdown_master" />
           <EntitySet Name="agentmaster" EntityType="GTEModel.agentmaster" />
           <EntitySet Name="agenumber_master" EntityType="GTEModel.agenumber_master" />
@@ -6286,6 +6495,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="ec_broad_career_filed_master" EntityType="GTEModel.ec_broad_career_filed_master" />
           <EntitySet Name="ec_careerfield_mapping" EntityType="GTEModel.ec_careerfield_mapping" />
           <EntitySet Name="ec_class_applicationmaster" EntityType="GTEModel.ec_class_applicationmaster" />
+          <EntitySet Name="ec_class_attendance_master" EntityType="GTEModel.ec_class_attendance_master" />
           <EntitySet Name="ec_class_date_master" EntityType="GTEModel.ec_class_date_master" />
           <EntitySet Name="ec_class_date_schedule_master" EntityType="GTEModel.ec_class_date_schedule_master" />
           <EntitySet Name="ec_class_master" EntityType="GTEModel.ec_class_master" />
@@ -7010,6 +7220,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="type" Type="Int32" />
           <Property Name="videopath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="adminabilitiesmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="abilities" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="admincomments">
           <Key>
             <PropertyRef Name="id" />
@@ -7027,6 +7244,157 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="students" Relationship="GTEModel.fk_applicantdetails_admincomments" FromRole="admincomments" ToRole="students" />
           <NavigationProperty Name="formmaster" Relationship="GTEModel.fk_frommaster_admincomments" FromRole="admincomments" ToRole="formmaster" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.fk_university_master_admincomments" FromRole="admincomments" ToRole="university_master" />
+        </EntityType>
+        <EntityType Name="admincoursesource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursesource" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="admincoursesuitability">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursesuitability" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="admincoursetype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursetype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="admincoursetypefieldmapping">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseType" Type="Int32" />
+          <Property Name="Source" Type="Int32" />
+          <Property Name="PartnerCourseID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CourseImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseAudioVideo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseBrochure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LinktoWebPageURL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProvidedByInstitutionName" Type="Int32" />
+          <Property Name="ShortDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NumberofStudentsTakenCourse" Type="Int32" />
+          <Property Name="LanguageCourseAvailableIn" Type="Int32" />
+          <Property Name="CourseSuitablefor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LearningObjectives" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MainFeatures" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CourseContent" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LongDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DurationYear" Type="Int32" />
+          <Property Name="DurationMonth" Type="Int32" />
+          <Property Name="DurationDays" Type="Int32" />
+          <Property Name="DurationHours" Type="Int32" />
+          <Property Name="Fee" Type="Int32" />
+          <Property Name="ApplicationEnrollmentFee" Type="Int32" />
+          <Property Name="FeePaymentMode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mode" Type="Int32" />
+          <Property Name="LocationsCampusBranch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="AverageNumberParticipantsClassSize" Type="Int32" />
+          <Property Name="DomesticInternationalBoth" Type="Int32" />
+          <Property Name="FundingAvailable" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HousingAvailable" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InstitutionType" Type="Int32" />
+          <Property Name="InstitutionSetting" Type="Int32" />
+          <Property Name="InstitutionSize" Type="Int32" />
+          <Property Name="AcceptanceRate" Type="Int32" />
+          <Property Name="DisabilityServicesAvailable" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SelfPaced" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="StartDateIntakeDate" Type="DateTime" />
+          <Property Name="ApplicationDeadline" Type="DateTime" />
+          <Property Name="CourseOutcome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorImage1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorName1" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorDescription1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorImage2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorName2" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorDescription2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorImage3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorName3" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorDescription3" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorImage4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorName4" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorDescription4" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorImage5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorName5" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="InstructorDirectorDescription5" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DeferralPolicy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OfferAcceptanceRejectionPolicy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CancellationPolicy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RefundPolicy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PromotionTag1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PromotionTag2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveNotActiveStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CertificationEarned" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BroadFieldofStudy" Type="String" MaxLength="9000" FixedLength="false" Unicode="false" />
+          <Property Name="NarrowFieldofStudy" Type="String" MaxLength="9000" FixedLength="false" Unicode="false" />
+          <Property Name="DetailedFieldofStudy" Type="String" MaxLength="9000" FixedLength="false" Unicode="false" />
+          <Property Name="MajorDiscipline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LevelofStudy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Skills" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Abilities" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="WorkActivities" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MajorFieldofCareers" Type="String" MaxLength="9000" FixedLength="false" Unicode="false" />
+          <Property Name="MinorFieldofCareers" Type="String" MaxLength="9000" FixedLength="false" Unicode="false" />
+          <Property Name="BroadFieldofCareers" Type="String" MaxLength="9000" FixedLength="false" Unicode="false" />
+          <Property Name="EligibleforGovtSubsidy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionofGovtSubsidy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EligibleforScholarship" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ScholarshipAvailable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Requirements" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LevelStudyCompleted" Type="Int32" />
+          <Property Name="SelectBaseQualificationCountry" Type="Int32" />
+          <Property Name="SelectQualificationLevel" Type="Int32" />
+          <Property Name="SubjectQualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectAndGrade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MoreSubjectsAndGrades" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EnglishLanguageCompetency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AcceptableEnglishQualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EnglishLanguageCompetencyLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateAdmissionTest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SelectGraduateAdmissionsTestsMinGrades" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsInterview" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DetailsOfInterview" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RelatedPathwayCourses" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TimeZone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Recurrence" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ClassStartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClassEndTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Instruction" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="InstructionFile" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Group" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Currency" Type="Int32" />
+        </EntityType>
+        <EntityType Name="adminfeemode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="feemode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="adminskillsmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="skillsmaster" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="adminstudymode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studymode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="admintooltips">
           <Key>
@@ -7072,6 +7440,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_adminusers_admincomments" FromRole="adminusers" ToRole="admincomments" />
           <NavigationProperty Name="rolemaster" Relationship="GTEModel.FK_adminusers_rolemaster" FromRole="adminusers" ToRole="rolemaster" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_adminusers" FromRole="adminusers" ToRole="supervisorcomments" />
+        </EntityType>
+        <EntityType Name="adminworkactivitiesmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="workactivities" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="admisionfactor_dropdown_master">
           <Key>
@@ -8159,6 +8534,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="declarationsignature3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="declarationdate3" Type="DateTime" />
           <Property Name="recordsaved_at" Type="DateTime" />
+          <Property Name="C30docatt1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="C30docatt2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="C30docatt3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="C36docatt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="C36docatt1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_australiavisadetailmaster_students" FromRole="australiavisadetailmaster" ToRole="students" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_australiavisadetailmaster_university_master" FromRole="australiavisadetailmaster" ToRole="university_master" />
         </EntityType>
@@ -8762,6 +9142,25 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="eligibility_response" Type="Int32" />
           <Property Name="booking_datetime" Type="DateTime" />
         </EntityType>
+        <EntityType Name="ec_class_attendance_master">
+          <Key>
+            <PropertyRef Name="recordID" />
+          </Key>
+          <Property Name="recordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ischeck" Type="Int32" />
+          <Property Name="Is_class_started" Type="Int32" />
+          <Property Name="classID" Type="Int32" />
+          <Property Name="class_dateID" Type="Int32" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="Is_loggedin" Type="Int32" />
+          <Property Name="login_time" Type="DateTime" />
+          <Property Name="login_time_utc" Type="DateTime" />
+          <Property Name="logged_out_time" Type="DateTime" />
+          <Property Name="logged_out_time_utc" Type="DateTime" />
+          <Property Name="verify_status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="verified_by" Type="Int32" />
+        </EntityType>
         <EntityType Name="ec_class_date_master">
           <Key>
             <PropertyRef Name="id" />
@@ -8779,6 +9178,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="universityid" Type="Int32" />
           <Property Name="classID" Type="Int32" />
+          <Property Name="instructorID" Type="Int32" />
           <Property Name="class_datetime_start" Type="DateTime" />
           <Property Name="class_datetime_start_utc" Type="DateTime" />
           <Property Name="class_datetime_end" Type="DateTime" />
@@ -12641,6 +13041,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="adminabilitiesmaster">
+            <EntityTypeMapping TypeName="GTEModel.adminabilitiesmaster">
+              <MappingFragment StoreEntitySet="adminabilitiesmaster">
+                <ScalarProperty Name="abilities" ColumnName="abilities" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="admincomments">
             <EntityTypeMapping TypeName="GTEModel.admincomments">
               <MappingFragment StoreEntitySet="admincomments">
@@ -12652,6 +13060,164 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="formid" ColumnName="formid" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admincoursesource">
+            <EntityTypeMapping TypeName="GTEModel.admincoursesource">
+              <MappingFragment StoreEntitySet="admincoursesource">
+                <ScalarProperty Name="coursesource" ColumnName="coursesource" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admincoursesuitability">
+            <EntityTypeMapping TypeName="GTEModel.admincoursesuitability">
+              <MappingFragment StoreEntitySet="admincoursesuitability">
+                <ScalarProperty Name="coursesuitability" ColumnName="coursesuitability" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admincoursetype">
+            <EntityTypeMapping TypeName="GTEModel.admincoursetype">
+              <MappingFragment StoreEntitySet="admincoursetype">
+                <ScalarProperty Name="coursetype" ColumnName="coursetype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admincoursetypefieldmapping">
+            <EntityTypeMapping TypeName="GTEModel.admincoursetypefieldmapping">
+              <MappingFragment StoreEntitySet="admincoursetypefieldmapping">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="InstructionFile" ColumnName="InstructionFile" />
+                <ScalarProperty Name="Instruction" ColumnName="Instruction" />
+                <ScalarProperty Name="ClassEndTime" ColumnName="ClassEndTime" />
+                <ScalarProperty Name="ClassStartTime" ColumnName="ClassStartTime" />
+                <ScalarProperty Name="Recurrence" ColumnName="Recurrence" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="RelatedPathwayCourses" ColumnName="RelatedPathwayCourses" />
+                <ScalarProperty Name="DetailsOfInterview" ColumnName="DetailsOfInterview" />
+                <ScalarProperty Name="IsInterview" ColumnName="IsInterview" />
+                <ScalarProperty Name="SelectGraduateAdmissionsTestsMinGrades" ColumnName="SelectGraduateAdmissionsTestsMinGrades" />
+                <ScalarProperty Name="GraduateAdmissionTest" ColumnName="GraduateAdmissionTest" />
+                <ScalarProperty Name="EnglishLanguageCompetencyLevel" ColumnName="EnglishLanguageCompetencyLevel" />
+                <ScalarProperty Name="AcceptableEnglishQualifications" ColumnName="AcceptableEnglishQualifications" />
+                <ScalarProperty Name="EnglishLanguageCompetency" ColumnName="EnglishLanguageCompetency" />
+                <ScalarProperty Name="MoreSubjectsAndGrades" ColumnName="MoreSubjectsAndGrades" />
+                <ScalarProperty Name="SubjectAndGrade" ColumnName="SubjectAndGrade" />
+                <ScalarProperty Name="SubjectQualification" ColumnName="SubjectQualification" />
+                <ScalarProperty Name="SelectQualificationLevel" ColumnName="SelectQualificationLevel" />
+                <ScalarProperty Name="SelectBaseQualificationCountry" ColumnName="SelectBaseQualificationCountry" />
+                <ScalarProperty Name="LevelStudyCompleted" ColumnName="LevelStudyCompleted" />
+                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+                <ScalarProperty Name="ScholarshipAvailable" ColumnName="ScholarshipAvailable" />
+                <ScalarProperty Name="EligibleforScholarship" ColumnName="EligibleforScholarship" />
+                <ScalarProperty Name="DescriptionofGovtSubsidy" ColumnName="DescriptionofGovtSubsidy" />
+                <ScalarProperty Name="EligibleforGovtSubsidy" ColumnName="EligibleforGovtSubsidy" />
+                <ScalarProperty Name="BroadFieldofCareers" ColumnName="BroadFieldofCareers" />
+                <ScalarProperty Name="MinorFieldofCareers" ColumnName="MinorFieldofCareers" />
+                <ScalarProperty Name="MajorFieldofCareers" ColumnName="MajorFieldofCareers" />
+                <ScalarProperty Name="WorkActivities" ColumnName="WorkActivities" />
+                <ScalarProperty Name="Abilities" ColumnName="Abilities" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="LevelofStudy" ColumnName="LevelofStudy" />
+                <ScalarProperty Name="MajorDiscipline" ColumnName="MajorDiscipline" />
+                <ScalarProperty Name="DetailedFieldofStudy" ColumnName="DetailedFieldofStudy" />
+                <ScalarProperty Name="NarrowFieldofStudy" ColumnName="NarrowFieldofStudy" />
+                <ScalarProperty Name="BroadFieldofStudy" ColumnName="BroadFieldofStudy" />
+                <ScalarProperty Name="CertificationEarned" ColumnName="CertificationEarned" />
+                <ScalarProperty Name="ActiveNotActiveStatus" ColumnName="ActiveNotActiveStatus" />
+                <ScalarProperty Name="PromotionTag2" ColumnName="PromotionTag2" />
+                <ScalarProperty Name="PromotionTag1" ColumnName="PromotionTag1" />
+                <ScalarProperty Name="RefundPolicy" ColumnName="RefundPolicy" />
+                <ScalarProperty Name="CancellationPolicy" ColumnName="CancellationPolicy" />
+                <ScalarProperty Name="OfferAcceptanceRejectionPolicy" ColumnName="OfferAcceptanceRejectionPolicy" />
+                <ScalarProperty Name="DeferralPolicy" ColumnName="DeferralPolicy" />
+                <ScalarProperty Name="InstructorDirectorDescription5" ColumnName="InstructorDirectorDescription5" />
+                <ScalarProperty Name="InstructorDirectorName5" ColumnName="InstructorDirectorName5" />
+                <ScalarProperty Name="InstructorDirectorImage5" ColumnName="InstructorDirectorImage5" />
+                <ScalarProperty Name="InstructorDirectorDescription4" ColumnName="InstructorDirectorDescription4" />
+                <ScalarProperty Name="InstructorDirectorName4" ColumnName="InstructorDirectorName4" />
+                <ScalarProperty Name="InstructorDirectorImage4" ColumnName="InstructorDirectorImage4" />
+                <ScalarProperty Name="InstructorDirectorDescription3" ColumnName="InstructorDirectorDescription3" />
+                <ScalarProperty Name="InstructorDirectorName3" ColumnName="InstructorDirectorName3" />
+                <ScalarProperty Name="InstructorDirectorImage3" ColumnName="InstructorDirectorImage3" />
+                <ScalarProperty Name="InstructorDirectorDescription2" ColumnName="InstructorDirectorDescription2" />
+                <ScalarProperty Name="InstructorDirectorName2" ColumnName="InstructorDirectorName2" />
+                <ScalarProperty Name="InstructorDirectorImage2" ColumnName="InstructorDirectorImage2" />
+                <ScalarProperty Name="InstructorDirectorDescription1" ColumnName="InstructorDirectorDescription1" />
+                <ScalarProperty Name="InstructorDirectorName1" ColumnName="InstructorDirectorName1" />
+                <ScalarProperty Name="InstructorDirectorImage1" ColumnName="InstructorDirectorImage1" />
+                <ScalarProperty Name="CourseOutcome" ColumnName="CourseOutcome" />
+                <ScalarProperty Name="ApplicationDeadline" ColumnName="ApplicationDeadline" />
+                <ScalarProperty Name="StartDateIntakeDate" ColumnName="StartDateIntakeDate" />
+                <ScalarProperty Name="SelfPaced" ColumnName="SelfPaced" />
+                <ScalarProperty Name="DisabilityServicesAvailable" ColumnName="DisabilityServicesAvailable" />
+                <ScalarProperty Name="AcceptanceRate" ColumnName="AcceptanceRate" />
+                <ScalarProperty Name="InstitutionSize" ColumnName="InstitutionSize" />
+                <ScalarProperty Name="InstitutionSetting" ColumnName="InstitutionSetting" />
+                <ScalarProperty Name="InstitutionType" ColumnName="InstitutionType" />
+                <ScalarProperty Name="HousingAvailable" ColumnName="HousingAvailable" />
+                <ScalarProperty Name="FundingAvailable" ColumnName="FundingAvailable" />
+                <ScalarProperty Name="DomesticInternationalBoth" ColumnName="DomesticInternationalBoth" />
+                <ScalarProperty Name="AverageNumberParticipantsClassSize" ColumnName="AverageNumberParticipantsClassSize" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="LocationsCampusBranch" ColumnName="LocationsCampusBranch" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="FeePaymentMode" ColumnName="FeePaymentMode" />
+                <ScalarProperty Name="ApplicationEnrollmentFee" ColumnName="ApplicationEnrollmentFee" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="DurationHours" ColumnName="DurationHours" />
+                <ScalarProperty Name="DurationDays" ColumnName="DurationDays" />
+                <ScalarProperty Name="DurationMonth" ColumnName="DurationMonth" />
+                <ScalarProperty Name="DurationYear" ColumnName="DurationYear" />
+                <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+                <ScalarProperty Name="CourseContent" ColumnName="CourseContent" />
+                <ScalarProperty Name="MainFeatures" ColumnName="MainFeatures" />
+                <ScalarProperty Name="LearningObjectives" ColumnName="LearningObjectives" />
+                <ScalarProperty Name="CourseSuitablefor" ColumnName="CourseSuitablefor" />
+                <ScalarProperty Name="LanguageCourseAvailableIn" ColumnName="LanguageCourseAvailableIn" />
+                <ScalarProperty Name="NumberofStudentsTakenCourse" ColumnName="NumberofStudentsTakenCourse" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="ProvidedByInstitutionName" ColumnName="ProvidedByInstitutionName" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="LinktoWebPageURL" ColumnName="LinktoWebPageURL" />
+                <ScalarProperty Name="CourseBrochure" ColumnName="CourseBrochure" />
+                <ScalarProperty Name="CourseAudioVideo" ColumnName="CourseAudioVideo" />
+                <ScalarProperty Name="CourseImage" ColumnName="CourseImage" />
+                <ScalarProperty Name="PartnerCourseID" ColumnName="PartnerCourseID" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="CourseType" ColumnName="CourseType" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adminfeemode">
+            <EntityTypeMapping TypeName="GTEModel.adminfeemode">
+              <MappingFragment StoreEntitySet="adminfeemode">
+                <ScalarProperty Name="feemode" ColumnName="feemode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adminskillsmaster">
+            <EntityTypeMapping TypeName="GTEModel.adminskillsmaster">
+              <MappingFragment StoreEntitySet="adminskillsmaster">
+                <ScalarProperty Name="skillsmaster" ColumnName="skillsmaster" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adminstudymode">
+            <EntityTypeMapping TypeName="GTEModel.adminstudymode">
+              <MappingFragment StoreEntitySet="adminstudymode">
+                <ScalarProperty Name="studymode" ColumnName="studymode" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -12693,6 +13259,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityId" ColumnName="universityId" />
                 <ScalarProperty Name="roleid" ColumnName="roleid" />
                 <ScalarProperty Name="adminid" ColumnName="adminid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adminworkactivitiesmaster">
+            <EntityTypeMapping TypeName="GTEModel.adminworkactivitiesmaster">
+              <MappingFragment StoreEntitySet="adminworkactivitiesmaster">
+                <ScalarProperty Name="workactivities" ColumnName="workactivities" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -13419,6 +13993,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="australiavisadetailmaster">
             <EntityTypeMapping TypeName="GTEModel.australiavisadetailmaster">
               <MappingFragment StoreEntitySet="australiavisadetailmaster">
+                <ScalarProperty Name="C36docatt1" ColumnName="36docatt1" />
+                <ScalarProperty Name="C36docatt" ColumnName="36docatt" />
+                <ScalarProperty Name="C30docatt3" ColumnName="30docatt3" />
+                <ScalarProperty Name="C30docatt2" ColumnName="30docatt2" />
+                <ScalarProperty Name="C30docatt1" ColumnName="30docatt1" />
                 <ScalarProperty Name="recordsaved_at" ColumnName="recordsaved_at" />
                 <ScalarProperty Name="declarationdate3" ColumnName="declarationdate3" />
                 <ScalarProperty Name="declarationsignature3" ColumnName="declarationsignature3" />
@@ -14385,6 +14964,26 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ec_class_attendance_master">
+            <EntityTypeMapping TypeName="GTEModel.ec_class_attendance_master">
+              <MappingFragment StoreEntitySet="ec_class_attendance_master">
+                <ScalarProperty Name="verified_by" ColumnName="verified_by" />
+                <ScalarProperty Name="verify_status" ColumnName="verify_status" />
+                <ScalarProperty Name="logged_out_time_utc" ColumnName="logged_out_time_utc" />
+                <ScalarProperty Name="logged_out_time" ColumnName="logged_out_time" />
+                <ScalarProperty Name="login_time_utc" ColumnName="login_time_utc" />
+                <ScalarProperty Name="login_time" ColumnName="login_time" />
+                <ScalarProperty Name="Is_loggedin" ColumnName="Is_loggedin" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="class_dateID" ColumnName="class_dateID" />
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="Is_class_started" ColumnName="Is_class_started" />
+                <ScalarProperty Name="Ischeck" ColumnName="Ischeck" />
+                <ScalarProperty Name="recordID" ColumnName="recordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ec_class_date_master">
             <EntityTypeMapping TypeName="GTEModel.ec_class_date_master">
               <MappingFragment StoreEntitySet="ec_class_date_master">
@@ -14403,6 +15002,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="class_datetime_end" ColumnName="class_datetime_end" />
                 <ScalarProperty Name="class_datetime_start_utc" ColumnName="class_datetime_start_utc" />
                 <ScalarProperty Name="class_datetime_start" ColumnName="class_datetime_start" />
+                <ScalarProperty Name="instructorID" ColumnName="instructorID" />
                 <ScalarProperty Name="classID" ColumnName="classID" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="id" ColumnName="id" />
