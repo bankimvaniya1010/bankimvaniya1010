@@ -5,7 +5,7 @@
 
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">Education Details</li>
         </ol>
         <h1 class="h2">EDUCATION DETAILS</h1>
@@ -247,7 +247,7 @@
                                     <div class="form-row">
                                         <label id="labelhighschoolcontactEmail" runat="server" for="highschoolcontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                         <div class="col-md-6">
-                                            <input id="txtHighSchoolcontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                            <input id="txtHighSchoolcontactEmail" runat="server" onchange="txtHighSchoolcontactEmail()" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
                                             <span class="helpicon"><i id="ichighschoolcontactEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -490,7 +490,7 @@
                                         <div class="form-row">
                                             <label id="labelsecondarycontactEmail" runat="server" for="secondarycontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                             <div class="col-md-6">
-                                                <input id="txtSecondarycontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                                <input id="txtSecondarycontactEmail" onchange="txtSecondarycontactEmail()" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
                                                 <span class="helpicon"><i id="icsecondarycontactEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -753,7 +753,7 @@
                                         <div class="form-row">
                                             <label id="labelhighercontactEmail" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                             <div class="col-md-6">
-                                                <input id="txtHighercontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                                <input id="txtHighercontactEmail" onchange="txtHighercontactEmail()" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
                                                 <span class="helpicon"><i id="ichighercontactEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -1056,7 +1056,7 @@
                                     <div class="form-row">
                                         <label id="labeldiplomacontactEmail" runat="server" for="diplomacontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your employment  </label>
                                         <div class="col-md-6">
-                                            <input id="txtDiplomacontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                            <input id="txtDiplomacontactEmail" onchange="txtDiplomacontactEmail()" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
                                             <span class="helpicon"><i id="icdiplomacontactEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -1136,6 +1136,7 @@
                             <div class="list-group-item" id="employerwebsite" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
+                                        <asp:HiddenField ID="hdfDateFoBrith" runat="server" />
                                         <asp:Button ID="btn_Save" runat="server" Text="Save" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
                                         <asp:Button ID="gotoNextPage" runat="server" Text="Go to English Competency" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
@@ -1193,7 +1194,58 @@
         </div>
     </div>
     <script>
+        function txtHighSchoolcontactEmail() {
+            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#<%=txtHighSchoolcontactEmail.ClientID%>").val()))) {
+                alert("You have entered an invalid email address!");
+                $("#<%=txtHighSchoolcontactEmail.ClientID%>").focus();
+                return false;
+            }
+        }
+        function txtSecondarycontactEmail() {
+            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#<%=txtSecondarycontactEmail.ClientID%>").val()))) {
+                alert("You have entered an invalid email address!");
+                $("#<%=txtSecondarycontactEmail.ClientID%>").focus();
+                return (false)
+            }
+        }
+        function txtHighercontactEmail() { 
+         if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#<%=txtHighercontactEmail.ClientID%>").val()))) {
+                alert("You have entered an invalid email address!");
+                $("#<%=txtHighercontactEmail.ClientID%>").focus();
+                return (false)
+            }
+        }
+        function txtDiplomacontactEmail() {
+         if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#<%=txtDiplomacontactEmail.ClientID%>").val()))) {
+                alert("You have entered an invalid email address!");
+                $("#<%=txtDiplomacontactEmail.ClientID%>").focus();
+                return (false)
+            }
+        }
         $(document).ready(function () {
+
+            $("#<%=txtHighSchoolcontactMobile.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtHighercontactMobile.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtDiplomacontactMobile.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            }); $("#<%=txtSecondarycontactMobile.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+
+
+
             $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
@@ -1798,7 +1850,65 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#applicanteducation').addClass('active');
         });
-         $(document).ready(function () {
+        $(document).ready(function () {
+            $("#<%=ddlHighSchoolStartDateYear.ClientID%>").change(function () {
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                  if ($('option:selected', this).text() < d.getFullYear()) {
+                      alert("Please select START DATE YEAR greater than DATE OF BIRTHDAY YEAR.");
+                      $("#<%=ddlHighSchoolStartDateYear.ClientID%>").val('0');
+                  }
+              });
+            $("#<%=ddlHighSchoolEndDateYear.ClientID%>").change(function () {
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                if ($('option:selected', this).text() < d.getFullYear()) {
+                    alert("Please select END DATE YEAR greater than DATE OF BIRTHDAY YEAR.");
+                    $("#<%=ddlHighSchoolEndDateYear.ClientID%>").val('0');
+                }
+            });
+            $("#<%=ddlSecondaryStartDateYear.ClientID%>").change(function () {
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                if ($('option:selected', this).text() < d.getFullYear()) {
+                    alert("Please select START DATE YEAR greater than DATE OF BIRTHDAY YEAR.");
+                    $("#<%=ddlSecondaryStartDateYear.ClientID%>").val('0');
+                }
+            });
+            $("#<%=ddlSecondaryEndDateYear.ClientID%>").change(function () {
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                if ($('option:selected', this).text() < d.getFullYear()) {
+                    alert("Please select END DATE YEAR greater than DATE OF BIRTHDAY YEAR.");
+                    $("#<%=ddlSecondaryEndDateYear.ClientID%>").val('0');
+                 }
+            });
+            $("#<%=ddlHigherStartDateYear.ClientID%>").change(function () {
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                if ($('option:selected', this).text() < d.getFullYear()) {
+                    alert("Please select START DATE YEAR greater than DATE OF BIRTHDAY YEAR.");
+                      $("#<%=ddlHigherStartDateYear.ClientID%>").val('0');
+                  }
+              });
+            $("#<%=ddlHigherEndDateYear.ClientID%>").change(function () {
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                if ($('option:selected', this).text() < d.getFullYear()) {
+                    alert("Please select END DATE YEAR greater than DATE OF BIRTHDAY YEAR.");
+                    $("#<%=ddlHigherEndDateYear.ClientID%>").val('0');
+                }
+            });
+
+
+            $("#<%=ddlDiplomaStartDateYear.ClientID%>").change(function () {
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                 if ($('option:selected', this).text() < d.getFullYear()) {
+                     alert("Please select START DATE YEAR greater than DATE OF BIRTHDAY YEAR.");
+                     $("#<%=ddlDiplomaStartDateYear.ClientID%>").val('0');
+                  }
+              });
+            $("#<%=ddlDiplomaEndDateYear.ClientID%>").change(function () {
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                if ($('option:selected', this).text() < d.getFullYear()) {
+                    alert("Please select END DATE YEAR greater than DATE OF BIRTHDAY YEAR.");
+                    $("#<%=ddlDiplomaEndDateYear.ClientID%>").val('0');
+                }
+            });
              //countryofhighschooledu
             $("#<%=ddlCountryHighSchool.ClientID%>").change(function () {
                 $.ajax({
