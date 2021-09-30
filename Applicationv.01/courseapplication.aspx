@@ -15,7 +15,7 @@
 
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">APPLICATION</li>
         </ol>
         <h1 class="h2">YOUR COURSE APPLICATION</h1>
@@ -740,16 +740,16 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantcourse').addClass('active');
         });
-        //$(document).keydown(function (event) {
-        //    if (event.keyCode == 123) { // Prevent F12
-        //        return false;
-        //    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-        //        return false;
-        //    }
-        //});
-        //$(document).on("contextmenu", function (e) {   //prevent inspect     
-        //    e.preventDefault();
-        //});
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+                return false;
+            }
+        });
+        $(document).on("contextmenu", function (e) {   //prevent inspect     
+            e.preventDefault();
+        });
 
         $(function () {
             $("#accordion").accordion({

@@ -5,7 +5,7 @@
 
      <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">Upload Document</li>
         </ol>
         <h1 class="h2">UPLOAD DOCUMENT</h1>
@@ -20,7 +20,7 @@
                         <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
                             <li class="col-sm-8 offset-sm-3" style="font-weight:bold">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Visa - Documentary Evidence List</a>                                
-                                <label>( *Please upload document of type .pdf and .jpg )</label>
+                                <label>( *Please upload document of type .pdf ,.png,.jpeg,docx, .jpg )</label>
                             </li>
                         </ul>
                          
@@ -252,8 +252,8 @@
             var fileExtension = filepath.substring(filepath.lastIndexOf(".") + 1).toString().toLowerCase();
             if (filepath != "")
             {  
-                if (fileExtension != "pdf" && fileExtension != "jpg")                          
-                    return false;                                   
+                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "jpeg" && fileExtension != "pdf" && fileExtension != "docx")
+                    return false;
             }
             return true;
         }

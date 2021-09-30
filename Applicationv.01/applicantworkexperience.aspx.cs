@@ -45,6 +45,8 @@ public partial class applicantworkexperience : System.Web.UI.Page
             // PopulateEmployerInfo(1);
             BindEmploymentDetails();
             SetControlsUniversitywise();
+            var date = (from s in db.applicantdetails where s.applicantid == objUser.studentid select new { s.dateofbirth }).FirstOrDefault();
+            hdfDateFoBrith.Value = date.dateofbirth.ToString();
         }
     }
 

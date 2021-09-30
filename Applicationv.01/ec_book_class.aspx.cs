@@ -99,10 +99,11 @@ public partial class ec_book_class : System.Web.UI.Page
                                availability = cm.availability == null ? 0:cm.availability,
                            }).ToList();
             foreach (var item in courses) {
-                //check aavilability
+                
+                //check bookingdeadline  && avilability
                 var applied_class_data = db.ec_class_applicationmaster.Where(x => x.universityid == universityID  && x.classid == item.id && x.status == 7).ToList();
 
-                if (item.availability >= applied_class_data.Count + 1)
+                if (item.bookingdeadline_utc >= DateTime.UtcNow && item.availability >= applied_class_data.Count + 1)
                     temp_List.Add(item);
             }
 

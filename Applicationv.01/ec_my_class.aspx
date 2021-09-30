@@ -72,51 +72,54 @@
     </style>
     <div class="container page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">MY CLASS</li>
         </ol>
         <h1 class="h2">My Class</h1>
-        <div runat="server" id="creatediv" style="display: block">
+        <div runat="server" id="creatediv">
             <div class="media align-items-center">
                 <div class="form-row">
-                    <h3 style="margin-left: 10px;border:none">Your Class Timetable</h3>
-                    <table style="display:none;">
-                        <tr>
-                            <td>
-                                <h3 style="margin-left: 10px;border:none">Your Class Timetable</h3>
-                            </td>
-                        </tr>
-                        <tr style="display:none">
-                            <td>
+                    <h3 style="margin-left: 10px;">Your Class Timetable</h3>
+                   
                                 <asp:Button ID="btn_today_class" runat="server" Text="Class(es) Today" CssClass="btn btn-success" OnClick="btn_today_class_Click" />
-                                <asp:Button ID="btn_week_class" runat="server" Text="Class(es) This Week" CssClass="btn btn-success" OnClick="btn_week_class_Click" />
-                                <asp:Button ID="btn_monthly_class" runat="server" Text="Class(es) This Months" CssClass="btn btn-success" OnClick="btn_monthly_class_Click" />
-                                <asp:Button ID="btn_dw_weekly" runat="server" Text="Download Weekly Schedule" CssClass="btn btn-success" OnClick="btn_dw_weekly_Click" />
-                                <asp:Button ID="btn_dw_monthly" runat="server" Text="Download Monthly Schedule" CssClass="btn btn-success" OnClick="btn_dw_monthly_Click" />
+                                <asp:Button ID="btn_week_class" runat="server" Text="Class(es) This Week" CssClass="btn btn-success" OnClick="btn_week_class_Click"  />
+                                <asp:Button ID="btn_monthly_class" runat="server" Text="Class(es) This Months" CssClass="btn btn-success" OnClick="btn_monthly_class_Click"  />
+                                <asp:Button ID="btn_dw_weekly" runat="server" Text="Download Weekly Schedule" CssClass="btn btn-success" OnClick="btn_dw_weekly_Click"  />
+                                <asp:Button ID="btn_dw_monthly" runat="server" Text="Download Monthly Schedule" CssClass="btn btn-success" OnClick="btn_dw_monthly_Click"  />
                                 <br />
-                            </td>
-                        </tr>
-                    </table>
+                            
                 </div>
             </div>
         </div>
         <div class="card">
-            <div class="tab-content card-body" id="gridDiv" runat="server" style="white-space: nowrap; text-align: center;margin-left: -49px;">
+            <div class="card-body" id="gridDiv" runat="server" style="white-space: nowrap; text-align: center;margin-left: -49px;">
           
                   <%
                     if (applicant.Any())
                     {
                 %>
-                <div class="container">
+                <div class="">
                     <div class="row mainclass_paging mt-2">
                        
-                        <%
+                        <table class="table">
+                            <tr>
+                                <th></th>
+                                <th>Class Name</th>
+                                <th>Time Zone</th>
+                                <th>Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Subject </th>
+                                <th>Mode</th>
+                                <th>Location</th>
+                                <th>Join Class</th>
+                            </tr>
+                             <%
                             for (int i = 0; i < applicant.Count; i++)
                             { %>
-                        <div class="col-sm-12 card pageclass" style="margin-bottom: -18px;">
-                            <table class="table">
-                                <tr>
-                                    <td><%=i+1%></td>
+                        
+                            <tr class="pageclass">
+                                <td><%=i+1%></td>
                                     <td><%=applicant[i].classname%></td>
                                     <td><%=applicant[i].timezone%></td>
                                     <td><%=Convert.ToDateTime(applicant[i].startdate).ToString("dd/MM/yyyy")%></td>
@@ -127,23 +130,22 @@
                                     <td><%=applicant[i].location_name%></td>
                                     <td>
                                         
-                                        <u> <a href="Default.aspx" target="_blank">
+                                        <u> <a href="<%=applicant[i].virtuallink%>" target="_blank">
                                             <%=applicant[i].linkname%></a>
 
                                            </u>
                                     </td>
-
                                 </tr>
-                            </table>
-                        </div>
-                        <%} %>
+                            <%} %>
+                        </table>
+                       
                     </div>
                 </div>
                 <%} %>
 
-                <div id="pagination_container" style="margin-top:40px;"></div>
+                <div id="pagination_container" style="margin-top:40px;margin-left: 50px;"></div>
             </div>
-        <div>
+        <div class="card-body">
             <h4 class="h3">Class(es) You Have Enrolled For </h4>
             <%
                 if (class_enroll.Count > 0)
@@ -176,11 +178,11 @@
                             </tr>
                             <tr>
                                 <td><i class="fas fa-map-marker-alt fa"> Location:</i></td>
-                                <td><%=class_enroll[i].location%></td>
+                                <td><%=class_enroll[i].location_name%></td>
                             </tr>
                             <tr>
                                 <td><i class="far fa-calendar fa"> Start Date:</i></td>
-                                <td><%=class_enroll[i].startdate%></td>
+                                <td><%=class_enroll[i].startdate_str%></td>
                             </tr>
                             <tr>
                                 <td><i class="fas fa-user-clock fa"> Duration:</i></td>
@@ -188,7 +190,9 @@
                             </tr>
                         </table>
                         <div class="border-top border-red"></div>
-                        <asp:Button ID="btn_yes" runat="server" Text="Download Class Schedule" CssClass="btn btn-success " Style="margin-right: 10px;" />
+                        <button id="<%=class_enroll[i].assignID %>"" value="Download Class Schedule" name="btn" onClick="addToCall" class="btn btn-success" style="display:none">Download Class Schedule</button>
+                        <%--<button id="<%=class_enroll[i].assignID %>"" value="Download Class Schedule" name="btn" onClick="return reply_click(this.id)" class="btn btn-success">Download Class Schedule</button>--%>
+                        <%--<asp:Button ID="btn_yes" runat="server" Text="Download Class Schedule" CssClass="btn btn-success " Style="margin-right: 10px;"/>--%>
                     </div>
                     <%} %>
                 </div>
@@ -198,9 +202,28 @@
     </div>
  </div>
        <script>
+  //         function reply_click(clicked_id)
+  //         {
+  //             //alert(clicked_id);
+  //             $.ajax({
+  //                  type: "POST",
+  //                  url: "ec_my_class.aspx/Download_Excel",
+  //                  contentType: "application/json; charset=utf-8",
+  //                  dataType: "json",
+  //                  data: "{'clicked_id': '" + clicked_id + "'}",
+  //                  success: function (result) {
+  //                      if (result) {                            
+  //                          //alert("Request send to mention email id of agent");
+  //                      }
+  //                  }
+  //              });
+  //             return false;
+  //}
+          
+
         var items = $(".mainclass_paging .pageclass");
         var numItems = items.length;
-        var perPage = 9;
+        var perPage = 10;
         items.slice(perPage).hide();
         $('#pagination_container').pagination({
             items: numItems,
@@ -216,10 +239,10 @@
 
            $(document).ready(function () {
                $('.sidebar-menu-item').removeClass('open');
-               $('#classlist').addClass('open');
+               $('#ec_my_class').addClass('open');
                $('.sidebar-menu-item').removeClass('active');
-               $('#createclass_service5').addClass('active');
+               $('#ec_my_class').addClass('active');
            });
-    </script>
+       </script>
 </asp:Content>
 

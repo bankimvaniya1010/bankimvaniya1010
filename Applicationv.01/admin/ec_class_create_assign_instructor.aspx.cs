@@ -14,7 +14,7 @@ public partial class admin_ec_class_create_assign_instructor : System.Web.UI.Pag
     string roleName = string.Empty;
     int adminId, universityID, RecordID;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
-    ec_class_applicationmaster objec_class_master = new ec_class_applicationmaster();
+    ec_class_master objec_class_master = new ec_class_master();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,7 +32,7 @@ public partial class admin_ec_class_create_assign_instructor : System.Web.UI.Pag
             RecordID = -1;
             if (int.TryParse(Request.QueryString["id"], out RecordID))
             {
-                objec_class_master = db.ec_class_applicationmaster.Where(obj => obj.classid == RecordID).FirstOrDefault();
+                objec_class_master = db.ec_class_master.Where(obj => obj.id == RecordID).FirstOrDefault();
                 if (objec_class_master == null)
                     RecordID = -1;
             }
@@ -79,13 +79,9 @@ public partial class admin_ec_class_create_assign_instructor : System.Web.UI.Pag
                 ddlclass.ClearSelection();
                 ddlclass.Items.FindByValue(classID.ToString()).Selected = true;
             }
-            setApplicant(Convert.ToInt32(data.gradeid), Convert.ToInt32(data.subjectid), Convert.ToInt32(data.type), Convert.ToInt32(data.modeid), classID);
-            //chkstudent.ClearSelection();
-            //var universityWise = db.ec_class_applicant_mapping.Where(x => x.universityid == universityID && x.classid == classID).ToList();
-            //for (int k = 0; k < universityWise.Count; k++)
-            //{
-            //    chkstudent.Items.FindByValue(universityWise[k].applicantid.ToString()).Selected = true;
-            //}
+            BindGrid(classID);
+            
+           
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
@@ -117,6 +113,12 @@ public partial class admin_ec_class_create_assign_instructor : System.Web.UI.Pag
             ddlsubject.DataBind();
             ddlsubject.Items.Insert(0, lst);
 
+            var intrcutor = db.examiner_master.Where(x=>x.roleid == 10 && x.universityId == universityID).Select(x=>new { username = x.username ,id= x.examinerID}).ToList();
+            ddlintructor.DataSource = intrcutor;
+            ddlintructor.DataTextField = "username";
+            ddlintructor.DataValueField = "id";
+            ddlintructor.DataBind();
+            ddlintructor.Items.Insert(0, lst);
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
@@ -141,30 +143,46 @@ public partial class admin_ec_class_create_assign_instructor : System.Web.UI.Pag
 
     protected void btn_submit_Click(object sender, EventArgs e)
     {
-        //string[] selectedApplicant = Request.Form["university"].Split(',');
-
+       
         try
         {
-            int classID = Convert.ToInt32(ddlclass.SelectedValue);
-            IEnumerable<ec_class_applicationmaster> list = db.ec_class_applicationmaster.Where(x => x.universityid == universityID && x.classid == classID).ToList();
-            // Use Remove Range function to delete all records at once
-            db.ec_class_applicationmaster.RemoveRange(list);
-            // Save changes
-            db.SaveChanges();
-            ec_class_applicationmaster objmapping = new ec_class_applicationmaster();
-            //foreach (ListItem li in chkstudent.Items)
-            //{
-            //    if (li.Selected)
-            //    {
-            //        int applicantid = Convert.ToInt32(li.Value);
-            //        objmapping.universityid = universityID;
-            //        objmapping.classid = classID;
-            //        objmapping.applicantid = applicantid;
+            int instructorID = Convert.ToInt32(ddlintructor.SelectedValue);
+            foreach (GridViewRow row in grid.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    
+                    Label lblassignid = (Label)row.FindControl("lblassignid");
+                    int assignid = Convert.ToInt32(lblassignid.Text);
 
-            //        db.ec_class_applicant_mapping.Add(objmapping);
-            //        db.SaveChanges();
-            //    }
-            //}
+
+                    ec_class_date_schedule_master objassign = new ec_class_date_schedule_master();
+
+                    CheckBox c = (CheckBox)row.FindControl("chkassign");
+                    if (c.Checked)
+                    {
+                        var examdata = db.ec_class_date_schedule_master.Where(x => x.id == assignid).FirstOrDefault();
+                        if (examdata != null)
+                        {
+                            var mode = "new";
+
+                            if (examdata != null)
+                            {
+                                mode = "update";
+                                objassign = examdata;
+                            }
+                            
+                            objassign.instructorID = instructorID;
+                            if (mode == "new")
+                                db.ec_class_date_schedule_master.Add(objassign);
+
+                            db.SaveChanges();
+                        }
+                    }
+                }
+            }
+            int classID = Convert.ToInt32(ddlclass.SelectedValue);
+            BindGrid(classID);
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
@@ -176,30 +194,11 @@ public partial class admin_ec_class_create_assign_instructor : System.Web.UI.Pag
         int typeID = Convert.ToInt32(ddltype.SelectedValue);
         int modeID = Convert.ToInt32(ddlmode.SelectedValue);
         int classID = Convert.ToInt32(ddlclass.SelectedValue);
-        setApplicant(gradeID, subjectID, typeID, modeID, classID);
+        BindGrid(classID);
+        //setClass_Calender(classID);
     }
 
-    private void setApplicant(int gradeID, int subjectID, int typeID, int modeID, int classID)
-    {
-        try
-        {
-            var temp = (from x in db.applicantdetails
-                        where x.universityid == universityID && x.isdeletedbyAdmin != true /*&& x.subjectId == subjectID && x.gradeid == gradeID && x.classId == classID*/
-                        select new
-                        {
-                            fieldname = x.firstname + " " + x.middlename + " " + x.lastname,
-                            id = x.applicantid,
-                        }).Distinct().OrderBy(x => x.fieldname).ToList();
-
-            //chkstudent.DataSource = temp;
-            //chkstudent.DataTextField = "fieldname";
-            //chkstudent.DataValueField = "id";
-            //chkstudent.DataBind();
-
-        }
-        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
-    }
-
+   
     protected void ddlmode_SelectedIndexChanged(object sender, EventArgs e)
     {
         int gradeID = Convert.ToInt32(ddlgrade.SelectedValue);
@@ -209,4 +208,58 @@ public partial class admin_ec_class_create_assign_instructor : System.Web.UI.Pag
 
         GetClass(gradeID, subjectID, typeID, modeID);
     }
+    public class data {
+        public int assignid { get; set; }
+        public int id { get; set; }
+        public string classstarttime { get; set; }
+        public string classendtime { get; set; }
+        public int? showcheckbox { get; set; }
+        public string date { get; set; }
+        public string fieldname { get; set; }
+        public string instructor { get; set; }
+        public DateTime? classdate { get; set; }
+        public int? instructorID { get; set; }
+        public string conductLink { get; set; }
+    }
+
+    private void BindGrid(int classID) {
+        try {
+            var temp = (from x in db.ec_class_date_schedule_master
+                        
+                        join cm in db.ec_class_master on x.classID equals cm.id
+                        where x.classID == classID
+                        select new data()
+                        {
+                            assignid = x.id,
+                            classdate = x.class_datetime_start,
+                            date = string.Empty,
+                            classstarttime = cm.class_starttime,
+                            classendtime = cm.class_endtime,
+                            //username = im.username,
+                            showcheckbox = x.instructorID == null ? null: x.instructorID,
+                            instructor = string.Empty,
+                            instructorID= x.instructorID,
+                            fieldname = cm.classname + " # " + x.class_datetime_start,
+                            id = cm.id,
+                            conductLink = webURL+ "admin/ec_conduct_class.aspx?DID="+x.id,
+                        }).ToList();
+
+            foreach (var item in temp) {
+
+                if (item.classdate != null)
+                {
+                    item.date = Convert.ToDateTime(item.classdate).ToString("dd/MMM/yyyy");
+                    item.classstarttime = Convert.ToDateTime(item.classstarttime).ToString("hh:mm tt");
+                    item.classendtime = Convert.ToDateTime(item.classendtime).ToString("hh:mm tt");
+                }
+                if (item.instructorID != null)
+                    item.instructor = db.examiner_master.Where(x => x.examinerID == item.instructorID).Select(x => x.username).FirstOrDefault();
+            }
+
+            grid.DataSource =temp;
+            grid.DataBind();
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
+   
 }

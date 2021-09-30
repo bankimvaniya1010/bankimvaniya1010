@@ -2,7 +2,7 @@
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">Your Details</li>
         </ol>
         
@@ -671,7 +671,8 @@
                             <div class="list-group-item" id="btgteapplicantdetail" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-gteapplicantdetail">
                                     <div class="form-row">                                       
-                                        
+                                     <asp:HiddenField ID="hdfDateFoBrith" runat="server" />
+
                                         <asp:Button ID="btngteapplicantdetail" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClientClick="return validateForm()" OnClick="btngteapplicantdetail_Click" style="margin-right: 271px;" />                                        
                                        
                                         <div class="col-md-6">
@@ -962,7 +963,7 @@
             var fileExtension = filepath.substring(filepath.lastIndexOf(".") + 1).toString().toLowerCase();
             if (filepath != "")
             {
-                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension !="jpeg")                    
+                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension != "jpeg" && fileExtension != "pdf" && fileExtension != "docx")
                     return false;                                   
             }
             return true;
@@ -999,6 +1000,38 @@
         });
 
         $(document).ready(function () {
+
+            $("#<%=ddlhighestqualificationYear.ClientID%>").change(function (e) {
+                var d1 = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                if ($('option:selected', this).text() < d1.getFullYear()) {
+                    alert("Please Selected Year is greater than brithday year")
+                    $("#<%=ddlhighestqualificationYear.ClientID%>").val('0');
+                    return false;
+                }
+            });
+
+            $("#<%=txtpassportno.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtpassportno.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=ddlworkexperience.ClientID%>").change(function () {
+                if ($('option:selected', this).val() == 1) {
+                    $("#<%=ddlcurrentlyworking.ClientID%>").val('0');
+                    $("#<%=ddljoboffered.ClientID%>").val('0');
+                    $("#<%=ddlcurrentlyworking.ClientID%>").attr('disabled', 'disabled');;
+                    $("#<%=ddljoboffered.ClientID%>").attr('disabled', 'disabled');;
+                }
+                else {
+                    $("#<%=ddlcurrentlyworking.ClientID%>").removeAttr("disabled");
+                    $("#<%=ddljoboffered.ClientID%>").removeAttr("disabled");;
+                }
+            });
 
             $('.fa-info-circle').tipso({
                 position: 'right',

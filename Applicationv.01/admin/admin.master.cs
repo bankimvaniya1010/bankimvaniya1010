@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class admin_admin : System.Web.UI.MasterPage
 {
     private GTEEntities db = new GTEEntities();
-    int adminID = 0 , roleid = 0;    
+    public int adminID = 0 , roleID = 0;    
     string webURL = String.Empty;
     public string roleName = string.Empty;
     public string fullservice = string.Empty, manageapplicationLink= string.Empty;
@@ -21,6 +21,7 @@ public partial class admin_admin : System.Web.UI.MasterPage
             Response.Redirect(webURL + "admin/Login.aspx", true);
         
         adminID = Convert.ToInt32(Session["UserID"].ToString());
+        roleID= Convert.ToInt32(Session["Role"].ToString());
         string name = db.adminusers.Where(x => x.adminid == adminID).Select(x => x.name).FirstOrDefault();       
         lbladminname.Text = name;
         fullservice = Convert.ToString(Session["isfullservice"]);

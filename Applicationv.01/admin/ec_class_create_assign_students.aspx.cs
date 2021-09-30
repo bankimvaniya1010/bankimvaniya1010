@@ -199,8 +199,10 @@ public partial class admin_ec_class_create_assign_students : System.Web.UI.Page
                                 objmapping.status = 7;//enrolled
                                 db.ec_class_applicationmaster.Add(objmapping);
                                 db.SaveChanges();
-                                //create_Record_In_Assign_Assignment(applicantid, classID);
+                                create_Record_In_Assign_Assignment(applicantid, classID);
                             }
+                            //also add in attendance tbl
+                            
                         }
                         else
                         {

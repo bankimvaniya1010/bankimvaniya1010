@@ -817,6 +817,13 @@
                                             <span class="sidebar-menu-text">My Assignments</span>
                                         </a>
                                     </li>
+                                    <li class="sidebar-menu-item" id="assessment" runat="server">
+                                        <a class="sidebar-menu-button" href="exammodule.aspx">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
+                                                <img src="assets/images/menu_icons/Declaration_ICON.png" /></i>
+                                            <span class="sidebar-menu-text">My Assessment</span>
+                                        </a>
+                                    </li>
                                      <li class="sidebar-menu-item" id="ec_yourpayment" runat="server">
                                         <a class="sidebar-menu-button" href="ec_applicant_payments.aspx">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">
@@ -940,7 +947,7 @@
         }
         $(document).ready(function () {
             //debugger;
-            var fullService = ("<%=Session["FullService"]%>");
+            var fullService = 5;<%-- ("<%=Session["FullService"]%>");--%>
             var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
             var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");
@@ -1187,6 +1194,7 @@
                 $("#ec_create_my_study_materials").hide();
                 $("#assignments_list").hide();
                 $("#ec_yourpayment").hide();
+                $("#assessment").hide();
             }
                 
             

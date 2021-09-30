@@ -290,8 +290,8 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-
-                                    <input type="text" runat="server" id="txtstartdate" class="form-control" readonly="readonly" placeholder="Start Date">
+                                    
+                                    <input type="text" runat="server" id="txtstartdate" class="form-control" readonly="readonly" placeholder="Start Date" data-toggle="flatpickr" >
 
                                    <%-- <label id="lbl1" runat="server" class="form-control" /> 
 
@@ -309,6 +309,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
+                                    
                                     <input type="datetime-local" id="examutcdatetime" class="form-control" disabled="disabled"/>  
                                     <asp:HiddenField runat="server" ID="hidexamutcdatetime"/>
                                 </div>
@@ -351,7 +352,7 @@
                                                 <asp:ListItem Value="0">Please Select</asp:ListItem>
                                                 <asp:ListItem Value="1">Daily</asp:ListItem>
                                                 <asp:ListItem Value="2">Weekly</asp:ListItem>
-                                                <asp:ListItem Value="3">Monthly</asp:ListItem>
+                                                <%--<asp:ListItem Value="3">Monthly</asp:ListItem>--%>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
@@ -374,7 +375,7 @@
                                     <div class="col-sm-8">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <input type="text" runat="server" id="txtenddate_daily" class="form-control" readonly="readonly">
+                                                <input type="text" runat="server" id="txtenddate_daily" class="form-control" readonly="readonly"  data-toggle="flatpickr" >
                                             </div>
                                         </div>
                                     </div>
@@ -414,7 +415,7 @@
                                     <div class="col-sm-8">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <input type="text" runat="server" id="txtenddate_weekly" class="form-control" readonly="readonly">
+                                                <input type="text" runat="server" id="txtenddate_weekly" class="form-control" readonly="readonly" data-toggle="flatpickr" >
                                             </div>
                                         </div>
                                     </div>
@@ -482,7 +483,7 @@
                                     <div class="col-sm-8">
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <input type="text" runat="server" id="txtenddate_monthly" class="form-control" readonly="readonly">
+                                                <input type="text" runat="server" id="txtenddate_monthly" class="form-control" readonly="readonly" data-toggle="flatpickr" >
                                             </div>
                                         </div>
                                     </div>
@@ -521,7 +522,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row">
+                       <%-- <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label form-label">single Instructor</label>
                             <div class="col-sm-8">
                                 <div class="row">
@@ -531,7 +532,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                          <div class="form-group row">
                             <label for="name" class="col-sm-3 col-form-label form-label">Requirement(s)</label>
                             <div class="col-sm-8">
@@ -587,7 +588,7 @@
                             <div class="col-sm-8 offset-sm-3">
                                 <div class="media align-items-center">
                                     <div class="media-left">
-                                        <asp:Button ID="btn_submit" runat="server" Text="Submit & Proceed" CssClass="btn btn-success" OnClick="btn_submit_Click" /><%--OnClientClick="return validateForm()" --%>
+                                        <asp:Button ID="btn_submit" runat="server" Text="Submit & Proceed" CssClass="btn btn-success" OnClick="btn_submit_Click" OnClientClick="return validateForm()"/><%--OnClientClick="return validateForm()" --%>
                                         <div class="col-md-20">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                         </div>
@@ -709,8 +710,8 @@
                 alert("Please select class end time");
             else if ($("#<%=txtAvailability.ClientID%>").val() == "" || !(checOnlykNum.test($("#<%=txtAvailability.ClientID%>").val())))
                 alert("Please enter valid availability");
-            else if (!($("#<%=chkyes.ClientID%>").is(":checked") || $("#<%=chkNo.ClientID%>").is(":checked")))
-                alert("Please select option singel instructor");
+            <%--else if (!($("#<%=chkyes.ClientID%>").is(":checked") || $("#<%=chkNo.ClientID%>").is(":checked")))
+                alert("Please select option singel instructor");--%>
             else if ($("#<%=txtrequirements.ClientID%>").val() == "")
                 alert("Please enter requirements");
             else if ($("#<%=txtinstructions.ClientID%>").val() == "")
@@ -923,12 +924,27 @@
 
         init();
 
-
+          $('#ContentPlaceHolder1_txtstartdate').flatpickr({
+       
+            dateFormat: 'Y-m-d', defaultDate: "",minDate:"today"
+        });
+        $('#ContentPlaceHolder1_txtenddate_weekly').flatpickr({
+       
+            dateFormat: 'Y-m-d', defaultDate: "",minDate:"today"
+        });
+        $('#ContentPlaceHolder1_txtenddate_daily').flatpickr({
+       
+            dateFormat: 'Y-m-d', defaultDate: "",minDate:"today"
+        });
+        $('#ContentPlaceHolder1_txtenddate_monthly').flatpickr({
+       
+            dateFormat: 'Y-m-d', defaultDate: "",minDate:"today"
+        });
         
-        $('#ContentPlaceHolder1_txtenddate_weekly').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
-        $('#ContentPlaceHolder1_txtenddate_monthly').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
-        $('#ContentPlaceHolder1_txtenddate_daily').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
-        $('#ContentPlaceHolder1_txtstartdate').datepicker({ minDate: new Date(), dateFormat: 'yy-mm-dd' });
+        //$('#ContentPlaceHolder1_txtenddate_weekly').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
+        //$('#ContentPlaceHolder1_txtenddate_monthly').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
+        //$('#ContentPlaceHolder1_txtenddate_daily').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
+        //$('#ContentPlaceHolder1_txtstartdate').datepicker({ minDate: new Date(), dateFormat: 'yy-mm-dd' });
 
         $(document).ready(function () {
             // to handle Tool tips
@@ -1068,5 +1084,5 @@
         });
 
     </script>
-</label>
+
 </asp:Content>

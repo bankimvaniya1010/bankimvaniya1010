@@ -34,7 +34,23 @@
     <!-- jQuery UI-->
     <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/jquery-ui-1.12.1.min.js"></script>
     <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/jquery-ui-1.12.1.min.css" rel="stylesheet">
+     <!-- Flatpickr -->
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/flatpickr.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/flatpickr.rtl.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/flatpickr-airbnb.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/flatpickr-airbnb.rtl.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/material-icons.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/material-icons.rtl.css" rel="stylesheet">
 
+    <!-- Font Awesome Icons -->
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/fontawesome.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/fontawesome.rtl.css" rel="stylesheet">
+    <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/jquery.min.js"></script>
+
+    <!-- Flatpickr -->
+    <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/flatpickr/flatpickr.min.js"></script>
+    <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/flatpickr.js"></script>
     <%--colorpicker--%>
     <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/jscolor.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -676,6 +692,13 @@
                                         </a>
                                     </li>
                                 </ul>
+                                 <ul class="sidebar-submenu sm-indent collapse " id="course_menu_">
+                                    <li class="sidebar-menu-item" id="coursemaster_"> 
+                                        <a class="sidebar-menu-button" href="admincoursemapping.aspx">
+                                            <span class="sidebar-menu-text">New Manage Courses</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="sidebar-menu-item" id="careeroutcomes_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#outcomes_menu">
@@ -966,11 +989,12 @@
                                             <span class="sidebar-menu-text">Assign Student(s)</span>
                                         </a>
                                     </li> 
-                                    <%--<li class="sidebar-menu-item" id="assigninstructor"> 
+                                    <li class="sidebar-menu-item" id="assigninstructor"> 
                                         <a class="sidebar-menu-button" href="ec_class_create_assign_instructor_master.aspx">
                                             <span class="sidebar-menu-text">Assign Instructor(s)</span>
                                         </a>
-                                    </li> --%>
+                                    </li> 
+                                   
                                 </ul>
                             </li>
                             
@@ -1114,6 +1138,8 @@
  <script>
         $(document).ready(function () {
             var fullservice = '<%=fullservice %>';
+
+            var roleID= '<%=roleID %>';
             var roleName = '<%=roleName %>';
             var superviser = roleName.toLowerCase() == "university supervisor";
             var universityadmin = roleName.toLowerCase() == "university admin";
@@ -1123,6 +1149,9 @@
             var gteuser = roleName.toLowerCase() == "gte user";
             var assessmentadmin = roleName.toLowerCase() == "assessment admin";
             var assessmentuser = roleName.toLowerCase() == "assessment user";
+            if (roleID == 1) {
+                $("#institution_list").show();
+            }
 
             if (roleName == "Admin") {
                 $("#videolist").show();
@@ -1315,6 +1344,10 @@
                 $("#questionbank").hide();
                 $("#manageresources").hide();
 
+            }
+            if (roleID == 1) {
+                $("#institution_list").show();
+                $("#course_list").show();
             }
      });
    <%--  var UniversityID = '<%= Utility.GetUniversityId()%>';
