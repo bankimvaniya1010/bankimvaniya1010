@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -72,6 +73,69 @@ public partial class australiavisapartB : System.Web.UI.Page
                 objaustraliavisadetail.commencementdate = Convert.ToDateTime(eduProviderCommencementDate.Value);
             if (eduProviderfinishDate.Value != "")
                 objaustraliavisadetail.finishdate = Convert.ToDateTime(eduProviderfinishDate.Value);
+            if(eduProviderdocattachedYes.Checked)
+            {
+                if (fileUpload.HasFile)
+                {
+                    string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                    docPath = docPath + "/VisaForm/"+userID+"/30/";
+                    if (!Directory.Exists(docPath))
+                        Directory.CreateDirectory(docPath);
+                    string extension = Path.GetExtension(fileUpload.PostedFile.FileName);
+                    string filename = Guid.NewGuid() + extension;
+
+                    if (File.Exists(docPath + filename))
+                    {
+                        File.Delete(docPath + filename);
+                    }
+
+                    fileUpload.PostedFile.SaveAs(docPath + filename);
+                    objaustraliavisadetail.C30docatt1 = filename;
+
+                }
+            }
+            if (othercoursedocattachedYes.Checked)
+            {
+                if (fileUploadcourse.HasFile)
+                {
+                    string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                    docPath = docPath + "/VisaForm/" + userID + "/30/";
+                    if (!Directory.Exists(docPath))
+                        Directory.CreateDirectory(docPath);
+                    string extension = Path.GetExtension(fileUploadcourse.PostedFile.FileName);
+                    string filename = Guid.NewGuid() + extension;
+
+                    if (File.Exists(docPath + filename))
+                    {
+                        File.Delete(docPath + filename);
+                    }
+
+                    fileUploadcourse.PostedFile.SaveAs(docPath + filename);
+                    objaustraliavisadetail.C30docatt2 = filename;
+
+                }
+            }
+            if (othercoursedocattachedYes1.Checked)
+            {
+                if (fileUploadothercoursedocattached.HasFile)
+                {
+                    string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                    docPath = docPath + "/VisaForm/" + userID + "/30/";
+                    if (!Directory.Exists(docPath))
+                        Directory.CreateDirectory(docPath);
+                    string extension = Path.GetExtension(fileUploadothercoursedocattached.PostedFile.FileName);
+                    string filename = Guid.NewGuid() + extension;
+
+                    if (File.Exists(docPath + filename))
+                    {
+                        File.Delete(docPath + filename);
+                    }
+
+                    fileUploadothercoursedocattached.PostedFile.SaveAs(docPath + filename);
+                    objaustraliavisadetail.C30docatt3 = filename;
+
+                }
+            }
             if (eduProviderdocattachedNo.Checked)
                 objaustraliavisadetail.educationdocumentattached = 0;
             else if (eduProviderdocattachedYes.Checked)
@@ -188,6 +252,26 @@ public partial class australiavisapartB : System.Web.UI.Page
                 objaustraliavisadetail.employmenthistoryFromDate = Convert.ToDateTime(employmenthistoryFrom.Value);
             if (employmenthistoryTo.Value != "")
                 objaustraliavisadetail.employmenthistoryToDate = Convert.ToDateTime(employmenthistoryTo.Value);
+            if (rbdocattachedYes1.Checked)
+            {
+                if (fileUploaddocattachedYes1.HasFile)
+                {
+                    string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                    docPath = docPath + "/VisaForm/" + userID + "/36/";
+                    if (!Directory.Exists(docPath))
+                        Directory.CreateDirectory(docPath);
+                    string extension = Path.GetExtension(fileUploaddocattachedYes1.PostedFile.FileName);
+                    string filename = Guid.NewGuid() + extension;
+
+                    if (File.Exists(docPath + filename))
+                    {
+                        File.Delete(docPath + filename);
+                    }
+
+                    fileUploaddocattachedYes1.PostedFile.SaveAs(docPath + filename);
+                    objaustraliavisadetail.C36docatt = filename;
+                }
+            }
             objaustraliavisadetail.employerInfoL0 = employerInfoL0.Value ;
             objaustraliavisadetail.employerInfoL1 = employerInfoL1.Value ;
             objaustraliavisadetail.typeofbusiness = txttypeofbusiness.Value;
@@ -196,7 +280,26 @@ public partial class australiavisapartB : System.Web.UI.Page
             if (rbdocattachedNo.Checked)
                 objaustraliavisadetail.leavingdocAttch = 0;
             else if (rbdocattachedYes.Checked)
+            {
                 objaustraliavisadetail.leavingdocAttch = 1;
+                if (fileUploaddocattachedYes.HasFile)
+                {
+                    string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                    docPath = docPath + "/VisaForm/" + userID + "/36/";
+                    if (!Directory.Exists(docPath))
+                        Directory.CreateDirectory(docPath);
+                    string extension = Path.GetExtension(fileUploaddocattachedYes.PostedFile.FileName);
+                    string filename = Guid.NewGuid() + extension;
+
+                    if (File.Exists(docPath + filename))
+                    {
+                        File.Delete(docPath + filename);
+                    }
+
+                    fileUploaddocattachedYes.PostedFile.SaveAs(docPath + filename);
+                    objaustraliavisadetail.C36docatt1 = filename;
+                }
+            }
             //set1
             if (employmenthistoryFrom1.Value != "")
                 objaustraliavisadetail.employmenthistoryFromDate1 = Convert.ToDateTime(employmenthistoryFrom1.Value);
