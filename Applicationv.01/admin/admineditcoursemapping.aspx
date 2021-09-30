@@ -453,6 +453,11 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <asp:DropDownList runat="server" ID="ddlNumberofStudentsTakenCourse" AppendDataBoundItems="true" CssClass="form-control">
+                                                                    <asp:ListItem Selected="True" Text="Select" Value="0"></asp:ListItem>
+                                                                    <asp:ListItem Text="Less than 100" Value="1"></asp:ListItem>
+                                                                    <asp:ListItem Text="100+" Value="1"></asp:ListItem>
+                                                                    <asp:ListItem Text="500+" Value="2"></asp:ListItem>
+                                                                    <asp:ListItem Text="1000+" Value="3"></asp:ListItem>
                                                                 </asp:DropDownList>
                                                             </div>
                                                         </div>
@@ -619,7 +624,10 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <asp:DropDownList runat="server" ID="ddlDomesticInternationalBoth" AppendDataBoundItems="true" CssClass="form-control">
-
+                                                                    <asp:ListItem Selected="True" Text="Select" Value="0"></asp:ListItem>
+                                                                    <asp:ListItem Text="Domestic" Value="1"></asp:ListItem>
+                                                                    <asp:ListItem Text="International" Value="2"></asp:ListItem>
+                                                                    <asp:ListItem Text="Both" Value="3"></asp:ListItem>
                                                                 </asp:DropDownList>
                                                             </div>
                                                         </div>
@@ -792,7 +800,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row Institution Class" style="display: none;">
+                                                <div class="form-group row  online ShortCourse Institution Class" style="display: none;">
                                                     <label for="uniAffiliation" class="col-sm-3 col-form-label form-label">
                                                         Fee Payment Mode(s)
                                                     </label>
@@ -812,9 +820,9 @@
                                                     <div class="col-sm-8">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <asp:RadioButtonList ID="rblFundingAvailable" runat="server">
+                                                                <asp:RadioButtonList ID="rblFundingAvailable"  runat="server">
                                                                     <asp:ListItem Value="Yes"></asp:ListItem>
-                                                                    <asp:ListItem Value="Yes"></asp:ListItem>
+                                                                    <asp:ListItem Value="No"></asp:ListItem>
                                                                 </asp:RadioButtonList>
                                                             </div>
                                                         </div>

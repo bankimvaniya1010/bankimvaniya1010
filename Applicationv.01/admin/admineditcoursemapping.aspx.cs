@@ -447,9 +447,15 @@ public partial class admin_editcoursemapping : System.Web.UI.Page
         ddlProvidedByInstitutionName.DataBind();
         ddlProvidedByInstitutionName.Items.Insert(0, lst);
 
-        var type = db.type_master.ToList();
+        var type = (from q in db.ec_type_master
+
+                    select new
+                    {
+                        id = q.type_id,
+                        text = q.type_description,
+                    }).ToList();
         ddlType.DataSource = type;
-        ddlType.DataTextField = "description";
+        ddlType.DataTextField = "text";
         ddlType.DataValueField = "id";
         ddlType.DataBind();
         ddlType.Items.Insert(0, lst);
@@ -643,7 +649,8 @@ public partial class admin_editcoursemapping : System.Web.UI.Page
         ddlCurrency.DataTextField = "text";
         ddlCurrency.DataValueField = "id";
         ddlCurrency.DataBind();
-        ddlScholarshipAvailable.Items.Insert(0, lst);
+        ddlCurrency.Items.Insert(0, lst);
+
         var admincoursesource = (from q in db.admincoursesource
                                  select new
                                  {
@@ -669,27 +676,16 @@ public partial class admin_editcoursemapping : System.Web.UI.Page
         chkCourseSuitablefor.DataBind();
 
 
-        var adminstudymode = (from q in db.adminstudymode
-                              select new
-                              {
-                                  id = q.id,
-                                  text = q.studymode,
-                              }).ToList();
-        chkFeePaymentMode.DataSource = admincoursesuitability;
-        chkFeePaymentMode.DataTextField = "text";
-        chkFeePaymentMode.DataValueField = "id";
-        chkFeePaymentMode.DataBind();
-
         var adminfeemode = (from q in db.adminfeemode
                             select new
                             {
                                 id = q.id,
                                 text = q.feemode,
                             }).ToList();
-        chkSkills.DataSource = adminfeemode;
-        chkSkills.DataTextField = "text";
-        chkSkills.DataValueField = "id";
-        chkSkills.DataBind();
+        chkFeePaymentMode.DataSource = adminfeemode;
+        chkFeePaymentMode.DataTextField = "text";
+        chkFeePaymentMode.DataValueField = "id";
+        chkFeePaymentMode.DataBind();
 
         var adminskillsmaster = (from q in db.adminskillsmaster
                                  select new
@@ -697,11 +693,12 @@ public partial class admin_editcoursemapping : System.Web.UI.Page
                                      id = q.id,
                                      text = q.skillsmaster,
                                  }).ToList();
-        ddlCurrency.DataSource = adminskillsmaster;
-        ddlCurrency.DataTextField = "text";
-        ddlCurrency.DataValueField = "id";
-        ddlCurrency.DataBind();
-        ddlCurrency.Items.Insert(0, lst);
+        chkSkills.DataSource = adminskillsmaster;
+        chkSkills.DataTextField = "text";
+        chkSkills.DataValueField = "id";
+        chkSkills.DataBind();
+
+
 
         var adminabilitiesmaster = (from q in db.adminabilitiesmaster
                                     select new
