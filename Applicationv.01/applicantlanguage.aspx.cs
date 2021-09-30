@@ -58,6 +58,8 @@ public partial class applicantlanguage : System.Web.UI.Page
             BindQualificationType();
             PopulateLanguageDetails();
             SetControlsUniversitywise();
+            var date = (from s in db.applicantdetails where s.applicantid == objUser.studentid select new { s.dateofbirth }).FirstOrDefault();
+            hdfDateFoBrith.Value = date.dateofbirth.ToString();
         }
     }
 

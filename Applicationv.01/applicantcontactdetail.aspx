@@ -5,7 +5,7 @@
 
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">CONTACT DETAILS</li>
         </ol>
         <h1 class="h2">CONTACT DETAILS</h1>
@@ -129,7 +129,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <label id="labelCurrentAddress" runat="server" for="currentAddressSelection" class="col-md-3 col-form-label form-label">Have you been living in the current address for Less than 1 year?</label>
+                                        <label id="labelCurrentAddress" runat="server" for="currentAddressSelection" class="col-md-3 col-form-label form-label">Have you been living in the current address for Less than 1 year? *</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblCurrentAddYes" runat="server" CssClass="form-control" GroupName="currentAddressSelection" Text="Yes" />
                                             <asp:RadioButton ID="rblCurrentAddNo" runat="server" CssClass="form-control" GroupName="currentAddressSelection" Text="No" />
@@ -494,6 +494,9 @@
                 alert("Please enter guardian e-mail address");
             else if ((!$("#<%=guardianmobile.ClientID%>").is(':hidden')) && ($("#<%=txtMobileNominee.ClientID%>").val() == ""))
                 alert("Please enter guardian mobile no");
+            else if (!($("#<%=rblCurrentAddYes.ClientID%>").is(':checked') || $("#<%=rblCurrentAddNo.ClientID%>").is(':checked'))) {
+                alert("Please select have you been living in the current address for less than 1 year");
+            }
             else
                 flag = true;
             if (flag == true)
@@ -563,6 +566,19 @@
         }
 
         $(document).ready(function () {
+
+            $("#<%=txtMobile.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtHomePhone.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+
+
 
            $('.fa-info-circle').tipso({
 				position: 'right',

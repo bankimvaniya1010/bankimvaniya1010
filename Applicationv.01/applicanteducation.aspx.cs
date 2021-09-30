@@ -109,6 +109,8 @@ public partial class applicanteducation : System.Web.UI.Page
             bindhighergrade();
             bindhigherCourses();
             SetControlsUniversitywise();
+            var date = (from s in db.applicantdetails where s.applicantid == objUser.studentid select new { s.dateofbirth }).FirstOrDefault();
+            hdfDateFoBrith.Value = date.dateofbirth.ToString();
         }
     }
 

@@ -5,7 +5,7 @@
 
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item"><a href="Default.aspx">My Dashboard</a></li>
             <li class="breadcrumb-item active">English Language Competency
 
             </li>
@@ -69,6 +69,7 @@
                                             <div class="col-md-6">
                                                 <input id="txtYearCompletion" runat="server" type="text" class="form-control" placeholder="Completion Year" data-toggle="flatpickr" value="">
                                                 <span class="helpicon"><i id="icYearCompletion" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                                <asp:HiddenField ID="hdfDateFoBrith" runat="server" />
                                             </div>
                                         </div>
                                     </div>
@@ -852,6 +853,53 @@
 
 
         $(document).ready(function () {
+
+            $("#<%=txtCandidateID.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            }); $("#<%=txtCandidateNo.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            }); $("#<%=txtCentreNo.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            }); $("#<%=txtReading.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtListening.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtSpeaking.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            }); $("#<%=txtWriting.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtLanguageScore.ClientID%>").keypress(function (e) {
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+            $("#<%=txtYearCompletion.ClientID%>").change(function () {
+                
+                const d = new Date($("#<%=hdfDateFoBrith.ClientID%>").val());
+                const txtYearCompletion = new Date($("#<%=txtYearCompletion.ClientID%>").val());
+                if (txtYearCompletion.getFullYear() <= d.getFullYear()) {
+                    alert("Please select YEAR OF COMPLETION/EXPECTED greater than DATE OF BIRTHDAY YEAR.");
+                    $("#<%=txtYearCompletion.ClientID%>").val('');
+                }
+            });
+
             $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
